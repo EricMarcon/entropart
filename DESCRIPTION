@@ -1,0 +1,12 @@
+Package: entropart
+Type: Package
+Title: Entropy Partitioning to Measure Diversity
+Version: 1.4-5.9001
+Date: 2016-02-17
+Author: Eric Marcon, Bruno Herault
+Maintainer: Eric Marcon <Eric.Marcon@ecofog.gf>
+Description: Measurement and partitioning of diversity, based on Tsallis entropy.
+License: GNU General Public License
+Imports: ade4, ape, EntropyEstimation, geiger, graphics, grDevices, parallel, stats, utils, vegan
+Suggests: testthat
+LazyData: true

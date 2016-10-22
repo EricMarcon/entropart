@@ -1,0 +1,21 @@
+bibentry(bibtype = "Article",
+  title        = "{entropart}: An {R} Package to Measure and Partition Diversity",
+  author       = c(person(given = "Eric",
+                          family = "Marcon"),
+                   person(given = "Bruno",
+                          family = "H{\\'e}rault")),
+  journal      = "Journal of Statistical Software",
+  year         = "2015",
+  volume       = "67",
+  number       = "8",
+  pages        = "1--26",
+  doi          = "10.18637/jss.v067.i08",
+
+  header       = "To cite entropart in publications use:",
+  textVersion  =
+  paste("Eric Marcon, Bruno Herault (2015).",
+        "entropart: An R Package to Measure and Partition Diversity.",
+        "Journal of Statistical Software, 67(8), 1-26.",
+        "doi:10.18637/jss.v067.i08")
+)
+
