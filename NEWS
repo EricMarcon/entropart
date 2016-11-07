@@ -1,10 +1,14 @@
-  CHANGES IN entropart VERSION 1.4-5.9001
+  CHANGES IN entropart VERSION 1.4-5.9002
   ==================================
 
 IMPROVEMENTS
 
   o LazyData is used to save memory.
   o Better reporting of the argument names in embedded calls of functions.
+
+BUG CORRECTION
+
+  o The simulation of log-series communities was incorrect.
 
 
   CHANGES IN entropart VERSION 1.4-5
