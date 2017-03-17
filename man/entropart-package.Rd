@@ -12,13 +12,15 @@
 }
 \details{
 
-  In the entropart package, individuals of different "species" are counted in several "communities" which are agregated to define a "metacommunity". In the metacommunity, the probability to find a species in the weighted average of probabilities in communities.
-  
-  This is a naming convention, which may correspond to plots in a forest inventory or any data organized the same way.
-  
-  
+  In the entropart package, individuals of different "species" are counted in several "communities" which may (or not) be agregated to define a "metacommunity". In the metacommunity, the probability to find a species in the weighted average of probabilities in communities. This is a naming convention, which may correspond to plots in a forest inventory or any data organized the same way.
 
-  The simplest way to import data is to organize it into two text files. The first file should contain abundance data: the first column named \code{Species} for species names, and a column for each community.
+  Basic functions allow computing diversity of a community. Data is simply a vector of probabilities (summing up to 1) or of abundances (integer values that are numbers of individuals). Calculate entropy with functions such as \code{\link{Tsallis}}, \code{\link{Shannon}}, \code{\link{Simpson}}, \code{\link{Hurlbert}} or \code{\link{GenSimpson}} and explicit diversity (i.e. effective number of species) with \code{\link{Diversity}} and others. By default, the best available estimator of diversity will be used, according to the data.
+  
+  Communities can be simulated by \code{\link{rCommunity}}, explicitely declared as a species distribution (\code{\link{as.AbdVector}} or \code{\link{as.ProbaVector}}), and plotted.
+  
+  Phylogenetic entropy and diversity can be calculated if a phylogenetic (or functional), ultrametric tree is provided. See \code{\link{PhyloEntropy}}, \code{\link{Rao}} for examples of entropy and \code{\link{PhyloDiversity}} to calculate phylodiversity, with the state-of-the-art estimation-bias correction. Similarity-based diversity is calculated with \code{\link{Dqz}}, based on a similarity matrix.
+
+  Metacommunities are addressed by more specialized functions. The simplest way to import such data is to organize it into two text files. The first file should contain abundance data: the first column named \code{Species} for species names, and a column for each community.
 
   \tabular{lcc}{
     \code{Species}        \tab \code{NameOfCommunity1} \tab \code{NameOfCommunity2}\cr
@@ -43,13 +45,9 @@
   MC <- MetaCommunity(Abundances, Weights)
   }
   
-  The last line of the code calls the \code{\link{MetaCommunity}} function to create an object that will be used by all metacommunity functions, 
-  such as \code{\link{DivPart}} (to partition diversity), \code{\link{DivEst}} (to partition diversity and calculate confidence interval of its estimation) 
-  or \code{\link{DivProfile}} (to compute diversity profiles).
+  The last line of the code calls the \code{\link{MetaCommunity}} function to create an object that will be used by all metacommunity functions, such as \code{\link{DivPart}} (to partition diversity), \code{\link{DivEst}} (to partition diversity and calculate confidence interval of its estimation) or \code{\link{DivProfile}} (to compute diversity profiles).
   
-  The package also provides community functions to calculate entropy or diversity with bias correction from a vector of probabilities or abundances, such as \code{\link{bcShannon}} (to calculate the reduced-bias estimator of Shannon entropy of a community) or \code{\link{Diversity}} (to calculate the true diversity of a community).
-  
-  Phylogenetic entropy and diversity can be calculated if a phylogenetic (or functional), ultrametric tree is provided. See \code{\link{PhyloEntropy}}, \code{\link{Rao}} for examples of entropy and \code{\link{bcPhyloDiversity}} to calculate phylodiversity, with bias correction. Similarity-based diversity is calculated with \code{\link{Dqz}} or (with bias correction) \code{\link{bcDqz}}, based on a similarity matrix.
+  A full documentation is available in the vignette. Type: \code{vignette("entropart")}
 
 }
 \author{
@@ -57,6 +55,10 @@
   Bruno Herault
 }
 \references{
+  Grabchak, M., Marcon, E., Lang, G., and Zhang, Z. (2017). The Generalized Simpson's Entropy is a Measure of Biodiversity. \emph{Plos One}, 12(3): e0173305.
+
+  Marcon, E. (2015) Practical Estimation of Diversity from Abundance Data. \emph{HAL} 01212435: 1-27.
+  
   Marcon, E. and Herault, B. (2015). entropart: An R Package to Measure and Partition Diversity. \emph{Journal of Statistical Software}, 67(8): 1-26.
     
   Marcon, E., Herault, B. (2015). Decomposing  Phylodiversity. \emph{Methods in Ecology and Evolution} 6(3): 333-339.
@@ -67,4 +69,4 @@
 
   Marcon, E., Zhang, Z. and Herault, B. (2014). The decomposition of similarity-based diversity and its bias correction. \emph{HAL} hal-00989454(version 1).
 }
-\keyword{ package }
+\keyword{package}

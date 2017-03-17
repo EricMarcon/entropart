@@ -21,7 +21,7 @@
 \fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% declarations for jss.cls %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% declarations for jss.cls 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% almost as usual

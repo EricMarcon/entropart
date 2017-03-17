@@ -78,7 +78,7 @@ bcTsallis(Ns, q = 1, Correction = "Best", CheckArguments = TRUE)
   
   Tsallis, C. (1988). Possible generalization of Boltzmann-Gibbs statistics. \emph{Journal of Statistical Physics} 52(1): 479-487.
   
-  Zhang, Z. and Grabchak M. (2014). Entropic Representation and Estimation of Diversity Indices. \emph{arXiv} 1403.3031(v. 1): 1-12.
+  Zhang, Z., and Grabchak, M. (2016). Entropic Representation and Estimation of Diversity Indices. \emph{Journal of Nonparametric Statistics}, 28(3): 563-575.
 }
 \author{
   Eric Marcon <Eric.Marcon@ecofog.gf>

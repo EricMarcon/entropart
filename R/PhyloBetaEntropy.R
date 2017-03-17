@@ -104,7 +104,7 @@ function(Ns, Nexp, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArgu
   Entropy <- PhyloApply(Tree, function(NandNexp, q, Correction, CheckArguments) bcTsallisBeta(NandNexp[, "Ns"], NandNexp[, "Nexp"], q, Correction, CheckArguments), NandNexp, Normalize, q=q, Correction=Correction, CheckArguments=FALSE)
   # Complete it
   Entropy$Function <- "PhyloEntropy" 
-  Entropy$Distribution <- ArgumentOriginalName(Ps)
+  Entropy$Distribution <- ArgumentOriginalName(Ns)
   Entropy$Tree <- ArgumentOriginalName(Tree)
   Entropy$Type <- "beta"
   Entropy$Order <- q

@@ -1,4 +1,18 @@
-  CHANGES IN entropart VERSION 1.4-5.9002
+  CHANGES IN entropart VERSION 1.4-6.9002
+  ==================================
+
+BUG CORRECTION
+
+  o Argument checking (CheckArguments = TRUE) is not possible when the package is not loaded and a function is called by entropart::function(). An error was returned. It is replaced by a warning.
+  
+IMPROVEMENTS
+
+  o Explicit export of all non-internal functions instead of exportPattern("^[[:alpha:]]+")
+  o Updated references to published articles.
+  o Updated help("entropart").
+  
+
+  CHANGES IN entropart VERSION 1.4-6
   ==================================
 
 IMPROVEMENTS

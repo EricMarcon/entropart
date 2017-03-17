@@ -72,9 +72,9 @@ bcGenSimpsonD(Ns, r = 1, CheckArguments = TRUE)
   The unbiased estimator is calculated by the \code{\link{GenSimp.z}} function of the \code{EntropyEstimation} package. 
 }
 \references{
-  Grabchak M., Marcon E., Lang G. & Zhang Z. (2016) The Generalized Simpson?s Entropy is a Measure of Biodiversity. \emph{Methods in Ecology and Evolution} submitted.
+  Grabchak, M., Marcon, E., Lang, G., and Zhang, Z. (2017). The Generalized Simpson's Entropy is a Measure of Biodiversity. \emph{Plos One}, 12(3): e0173305.
 
-  Zhang Z. & Zhou J. (2010) Re-parameterization of multinomial distributions and diversity indices. \emph{Journal of Statistical Planning and Inference} 140(7): 1731?1738.
+  Zhang Z. and Zhou J. (2010). Re-parameterization of multinomial distributions and diversity indices. \emph{Journal of Statistical Planning and Inference} 140(7): 1731-1738.
 }
 \author{
   Eric Marcon <Eric.Marcon@ecofog.gf>

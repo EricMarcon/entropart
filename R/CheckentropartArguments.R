@@ -1,6 +1,11 @@
 CheckentropartArguments <-
 function() {
-
+  
+  # Verify that the package is attached
+  if (! "entropart" %in% .packages()) {
+    warning("Function arguments cannot be checked because the entropart package is not attached. Add CheckArguments=FALSE to suppress this warning or run library('entropart')")
+    return (TRUE)
+  }
   # Get the list of arguments of the parent function
   ParentFunction <- sys.call(-1)[[1]]
   # If apply() or similar was used, the function name is not in ParentFunction: sys.call(-1)[[1]] returns "FUN"
@@ -10,7 +15,10 @@ function() {
   }
   
   ErrorFunction <- paste("Error in ", ParentFunction, ":")
-  Args <- formals(match.fun(ParentFunction))
+  
+  # Find the arguments. match.fun does not work with entropart::function
+  ParentFunctionNoNS <- as.name(gsub("entropart::", "", as.character(ParentFunction)))
+  Args <- formals(match.fun(ParentFunctionNoNS))
 
   ErrorMessage <- function(Message, Argument) {
     cat(deparse(substitute(Argument)), "cannot be:\n")

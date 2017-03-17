@@ -41,7 +41,7 @@ function(n, size = sum(NorP), NorP = 1, BootstrapMethod = "Chao2015",
       # Other distributions: draw probabilities
       Ps <- switch(Distribution,
                    geom = prob/(1-(1-prob)^S)*(1-prob)^(0:(S-1)),
-                   lnorm = (stats::rlnorm(S, 0, sd) -> Ns)/sum(Ns),
+                   lnorm = (stats::rlnorm(S, 0, sd) -> Nslnorm)/sum(Nslnorm),
                    bstick = c(cuts <- sort(stats::runif(S-1)), 1)- c(0, cuts)
                   )
     }
@@ -52,16 +52,15 @@ function(n, size = sum(NorP), NorP = 1, BootstrapMethod = "Chao2015",
       # Probabilities sum to 1, allowing rounding error
       Ps <- NorP    
     } else {
-      Ns <- NorP
       # Abundances: Generate Ps according to the chosen method
       if (BootstrapMethod == "Chao2015") {
-        Ps <- as.ProbaVector(Ns, Correction = "Chao2015", Unveiling = "geom", CheckArguments = FALSE)
+        Ps <- as.ProbaVector(NorP, Correction = "Chao2015", Unveiling = "geom", CheckArguments = FALSE)
       }
       if (BootstrapMethod == "Chao2013") {
-        Ps <- as.ProbaVector(Ns, Correction = "Chao2013", Unveiling = "unif", CheckArguments = FALSE)
+        Ps <- as.ProbaVector(NorP, Correction = "Chao2013", Unveiling = "unif", CheckArguments = FALSE)
       }
       if (BootstrapMethod == "Marcon") {
-        Ps <- Ns/sum(Ns)
+        Ps <- NorP/sum(NorP)
       }
     }
   }
