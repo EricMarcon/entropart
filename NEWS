@@ -1,4 +1,4 @@
-  CHANGES IN entropart VERSION 1.4-6.9002
+  CHANGES IN entropart VERSION 1.4-6.9003
   ==================================
 
 BUG CORRECTION
@@ -10,6 +10,7 @@ IMPROVEMENTS
   o Explicit export of all non-internal functions instead of exportPattern("^[[:alpha:]]+")
   o Updated references to published articles.
   o Updated help("entropart").
+  o New introduction vignette.
   
 
   CHANGES IN entropart VERSION 1.4-6

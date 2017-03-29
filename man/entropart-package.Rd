@@ -47,7 +47,7 @@
   
   The last line of the code calls the \code{\link{MetaCommunity}} function to create an object that will be used by all metacommunity functions, such as \code{\link{DivPart}} (to partition diversity), \code{\link{DivEst}} (to partition diversity and calculate confidence interval of its estimation) or \code{\link{DivProfile}} (to compute diversity profiles).
   
-  A full documentation is available in the vignette. Type: \code{vignette("entropart")}
+  A full documentation is available in the vignette. Type: \code{vignette("entropart")}. A quick introuction is in \code{vignette("Introduction", "entropart")}.
 
 }
 \author{

@@ -1,0 +1,271 @@
+%\VignetteIndexEntry{Introduction}
+%\VignetteEngine{knitr::knitr} 
+
+\documentclass[nojss]{jss}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+%% Set PDF 1.5 and compression, including object compression
+%% Needed for MiKTeX -- most other distributions default to this
+\ifx\pdfoutput\undefined
+\else
+  \ifx\pdfoutput\relax
+  \else
+    \ifnum\pdfoutput>0
+      % PDF output
+      \pdfminorversion=5
+      \pdfcompresslevel=9
+      \pdfobjcompresslevel=2
+    \fi
+  \fi
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% declarations for jss.cls 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% almost as usual
+\author{Eric Marcon\\AgroParisTech\\UMR EcoFoG \And 
+        Bruno Hérault\\Cirad\\UMR EcoFoG\\
+}
+\title{Introduction to \pkg{entropart}}
+
+%% for pretty printing and a nice hypersummary also set:
+\Plainauthor{Eric Marcon, Bruno Hérault} %% comma-separated
+\Plaintitle{Introduction to entropart} %% without formatting
+
+%% an abstract and keywords
+\Abstract{
+\pkg{entropart} is a package for \proglang{R} designed to estimate diversity based on HCDT entropy or similarity-based entropy. 
+
+This is a short introduction to its use.
+\code{help("entropart")} may be an even shorter one.
+Users should read each function's help for details.
+For a rather exhaustive manual, see the user manual vignette (\code{vignette("entropart")}).
+}
+\Keywords{biodiversity, entropy, partitioning}
+\Plainkeywords{biodiversity, entropy, partitioning} %% without formatting
+%% at least one keyword must be supplied
+
+%% The address of (at least) one author should be given
+%% in the following format:
+\Address{
+  Eric Marcon\\
+  AgroParisTech\\
+  Campus agronomique, BP 316\\
+  97310 Kourou, French Guiana\\
+  E-mail: \email{eric.marcon@ecofog.gf}\\
+
+  Bruno Hérault\\
+  Cirad\\
+  Campus agronomique, BP 316\\
+  97310 Kourou, French Guiana\\
+  E-mail: \email{bruno.herault@ecofog.gf}\\
+}
+\usepackage[labelfont=bf, labelsep=period, justification=justified]{caption}
+
+
+%% end of declarations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+<<knitr, echo=FALSE, cache=FALSE>>=
+library("knitr")
+opts_knit$set(concordance=TRUE)
+# set global chunk options
+opts_chunk$set(cache=TRUE, warning=FALSE, tidy=TRUE, fig.width=8, fig.height=6, out.width='.4\\maxwidth', fig.align = 'center', tidy.opts=list(blank=FALSE, width.cutoff=60), size="scriptsize")
+options(width=60)
+par(mar=c(0,0,0,0))
+@
+
+
+<<Declarations, echo=FALSE>>=
+options(prompt = "R> ", continue = "+  ", width = 70, useFancyQuotes = FALSE)
+@
+
+\section{Estimating the diversity of a community}
+
+
+\subsection{Community data}
+
+Community data is a numeric vector containing abundances of species (the number of individual of each species) or their probabilities (the proportion of individuals of each species, summing to 1).
+
+Example data is provided in the dataset \code{paracou618}.
+Let's get the abundances of tree species in the 1-ha tropical forest plot \#18 from Paracou forest station in French Guiana:
+
+<<LoadParacou18>>=
+library("entropart")
+data("Paracou618")
+N18 <- Paracou618.MC$Nsi[, "P018"]
+@
+
+The data in \code{Paracou618.MC} is a \code{MetaCommunity}, to be discovered later.
+\code{N18} is a vector containing the abundances of 425 tree species, among them some zero values.
+This is the most simple and common format to provide data to estimate diversity.
+It can be used directly by the functions presented here, but it may be declared explicitely as an abundance vector to plot it, and possibly fit a well-known, e.g.\ log-normal \citep{Preston1948}, distribution of species abundance (the red curve):
+
+<<PlotN18>>=
+Abd18 <- as.AbdVector(N18)
+plot(Abd18, Distribution="lnorm")
+@
+
+The parameters of the fitted distribution (here: mean and stadard deviation) are returned by the function.
+
+Abundance vectors can also be converted to probability vectors, summing to 1:
+<<PN18>>=
+P18 <- as.ProbaVector(N18)
+@
+
+The \code{\code{MetaCommunity}} function allows drawing random communities:
+<<rCommunity>>=
+rc <- rCommunity(1, size=10000, Distribution = "lseries", alpha = 30)
+plot(rc, Distribution="lseries")
+@
+
+The Whittaker plot of a random log-series \citep{Fisher1943} distribution of 10000 individuals simulated with parameter $\alpha=30$ is produced.
+
+
+\subsection{Diversity estimation}
+
+The classical indices of diveristy are richness (the number of species), Shannon's and Simpson's entropies:
+
+<<IndicesP>>=
+Richness(P18)
+Shannon(P18)
+Simpson(P18)
+@
+
+When applied to a probability vector (created with \code{as.ProbaVector} or a numeric vector summing to 1), no estimation-bias correction is applied: this means that indices are just calculated by applying their definition function to the probabilities (that is the plugin estimator).
+``None'' means non correction is applied by the plugin estimator.
+
+When abundances are available (a numeric vector of integer values or an object created by \code{as.ProbaVector}), several estimators are available \citep{Marcon2015a} to address unobserved species and the non-linearity of the indices:
+<<IndicesAbd>>=
+Richness(Abd18)
+Shannon(Abd18)
+Simpson(Abd18)
+@
+
+The best available estimator is chosen by default: its name is returned.
+
+Those indices are special cases of the Tsallis entropy \citep{Tsallis1988} or order $q$ (respectively $q=0,1,2$ for richness, Shannon, Simpson):
+<<Tsallis>>=
+Tsallis(Abd18,q=1)
+@
+
+Entropy should be converted to its effective number of species, i.e.\ the number of species with equal probabilities that would yield the observed entropy, called \cite{Hill1973} numbers or simply diversity \citep{Jost2006}.
+<<Diversity>>=
+Diversity(Abd18,q=1)
+@
+
+Diversity is the deformed exponential of order $q$ of entropy, and entropy is the deformed logarithm of of order $q$ of diversity:
+<<lnq>>=
+(d2 <- Diversity(Abd18,q=2))
+lnq(d2, q=2)
+(e2 <-Tsallis(Abd18,q=2))
+expq(e2, q=2)
+@
+
+Diversity can be plotted against its order to provide a diversity profile. Order 0 corresponds to richness, 1 to Shannon's and 2 to Simpson's diversities:
+<<DiversityProfile>>=
+DP <- CommunityProfile(Diversity, Abd18)
+plot(DP)
+@
+
+If an ultrametric dendrogram describing species' phylogeny (here, a mere taxonomy with family, genus and species) is available, phylogenetic entropy and diversity  \citep{Marcon2014a} can be calculated:
+<<PhyloDiversity>>=
+summary(PhyloDiversity(Abd18,q=1,Tree=Paracou618.Taxonomy))
+@
+
+With a Euclidian distance matrix between species, similarity-based diversity \citep{Leinster2012, Marcon2014e} is available:
+<<SBDiversity>>=
+# Prepare the similarity matrix
+DistanceMatrix <- as.matrix(Paracou618.dist)
+# Similarity can be 1 minus normalized distances between species
+Z <- 1 - DistanceMatrix/max(DistanceMatrix)
+# Calculate diversity of order 2
+Dqz(Abd18, q=2, Z)
+@
+
+Profiles of phylogenetic diversity and similarity-based diversity are obtained the same way.
+\code{PhyloDiversity} is an object with a lot of information so an intermediate function is necessary to extract its \code{$Total} component :
+<<PDiversityProfile>>=
+sbDP <- CommunityProfile(Dqz, Abd18, Z=Z)
+pDP <- CommunityProfile(function(X, ...) PhyloDiversity(X, ...)$Total, Abd18, Tree=Paracou618.Taxonomy)
+plot(pDP)
+@
+
+
+
+\section{Estimating the diversity of a meta-community}
+
+\subsection{Meta-community data}
+
+A meta-community is an object defined by the package.
+It is a set of communities, each of them decribed by the abundance of their species and their weight.
+Species probabilities in the meta-community are by definition the weighted average of their probabilities in the communities.
+
+The easiest way to build a meta-community consists of preparing a dataframe whose columns are communities and lines are species, and define weights in a vector (by default, all weights are equal):
+
+<<MetaCommunitydf>>=
+library("entropart")
+(df <- data.frame(C1 = c(10, 10, 10, 10), C2 = c(0, 20, 35, 5), C3 = c(25, 15, 0, 2), row.names = c("sp1", "sp2", "sp3", "sp4")))
+w <- c(1, 2, 1)
+@
+
+The \code{MetaCommunity} function creates the meta-community.
+It can be plotted:
+
+<<MetaCommunityMC>>=
+MC <- MetaCommunity(Abundances = df, Weights = w)
+plot(MC)
+@
+
+Each shade of grey represents a species.
+Heights correspond to the probability of species and the width of each community is its weight.
+
+\code{Paracou618.MC} is an example meta-community provided by the package.
+It is made of two 1-ha communities (plots \#6 and \#18) of tropical forest.
+
+\subsection{Diversity estimation}
+
+High level functions allow computing diversity of all communities ($\alpha$ diversity), of the meta-community ($\gamma$ diversity), and $\beta$ diversity, i.e.\ the number of effective communities (the number of communities with equal weights and no common species that would yield the observed $\beta$ diversity).
+
+The \code{DivPart} function calculates everything at once, for a given order of diversity $q$:
+<<DivPart>>=
+p <- DivPart(q = 1, MC = Paracou618.MC)
+summary(p)
+@
+
+The $\alpha$ diversity of communities is \Sexpr{round(p$TotalAlphaDiversity, 0)} effective species. $\gamma$ diversity of the meta-community is \Sexpr{round(p$GammaDiversity, 0)} effective species. $\beta$ diversity is \Sexpr{round(p$TotalBetaDiversity, 2)} effective communities, i.e.\ the two actual communities are as different from each other as \Sexpr{round(p$TotalBetaDiversity, 2)} ones with equal weights and no species in common.
+
+The \code{DivEst} function decomposes diversity and estimates confidence interval of $\alpha$, $\beta$ and $\gamma$ diversity following \cite{Marcon2012}. 
+If the observed species frequencies of a community are assumed to be a realization of a multinomial distribution, they can be drawn again to obtain a distribution of entropy.
+
+<<DivEst, out.width='.8\\maxwidth'>>=
+de <- DivEst(q = 1, Paracou618.MC, Simulations = 100)
+plot(de)
+@
+The result is a \code{Divest} object which can be summarized and plotted.
+
+\code{DivProfile} calculates diversity profiles. 
+The result is a \code{DivProfile} object which can be summarized and plotted.
+<<DivProfile, out.width='.8\\maxwidth'>>=
+dp <- DivProfile(, Paracou618.MC)
+plot(dp)
+@
+
+Plot \#18 can be considered more diverse than plot \#6 because their profiles (top right figure, plot \#18 is the dotted red line, plot \#6, the solid black one) do not cross \citep{Tothmeresz1995}: its diversity is systematically higher. The shape of the $\beta$ diversity profile shows that the communities are more diverse when their dominant species are considered.
+
+The bootstrap confidence intervals of the values of diversity \citep{Marcon2012, Marcon2014} are calculated if \code{NumberOfSimulations} is not 0.
+
+\code{DivPart}, \code{DivEst} and \code{DivProfile} use plugin estimators by default.
+To force them to apply the same estimators as community functions, the argument \code{Biased = FALSE} must be entered.
+They compute Tsallis entropy and Hill numbers by default.
+A dendrogram in the argument \code{Tree} or a similarity matrix in the argument \code{Z} will make them calculate phylogenetic diversity or similarity-based diversity.
+
+
+\bibliography{entropart}
+
+\end{document}
