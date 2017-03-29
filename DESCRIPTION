@@ -1,8 +1,8 @@
 Package: entropart
 Type: Package
 Title: Entropy Partitioning to Measure Diversity
-Version: 1.4-6.9003
-Date: 2017-03-28
+Version: 1.4-7
+Date: 2017-03-29
 Author: Eric Marcon, Bruno Herault
 Maintainer: Eric Marcon <Eric.Marcon@ecofog.gf>
 Description: Measurement and partitioning of diversity, based on Tsallis entropy.

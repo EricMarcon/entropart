@@ -1,4 +1,4 @@
-  CHANGES IN entropart VERSION 1.4-6.9003
+  CHANGES IN entropart VERSION 1.4-7
   ==================================
 
 BUG CORRECTION
@@ -11,6 +11,7 @@ IMPROVEMENTS
   o Updated references to published articles.
   o Updated help("entropart").
   o New introduction vignette.
+  o Vignettes compiled with knitr instead of Sweave.
   
 
   CHANGES IN entropart VERSION 1.4-6
