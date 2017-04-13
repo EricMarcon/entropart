@@ -118,7 +118,7 @@ Abundance vectors can also be converted to probability vectors, summing to 1:
 P18 <- as.ProbaVector(N18)
 @
 
-The \code{\code{MetaCommunity}} function allows drawing random communities:
+The \code{\code{rCommunity}} function allows drawing random communities:
 <<rCommunity>>=
 rc <- rCommunity(1, size=10000, Distribution = "lseries", alpha = 30)
 plot(rc, Distribution="lseries")
