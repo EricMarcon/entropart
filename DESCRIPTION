@@ -3,9 +3,13 @@ Type: Package
 Title: Entropy Partitioning to Measure Diversity
 Version: 1.4-7.9001
 Date: 2017-03-29
-Author: Eric Marcon, Bruno Herault
-Maintainer: Eric Marcon <Eric.Marcon@ecofog.gf>
+Authors@R: c(
+    person("Eric", "Marcon", email="eric.marcon@ecofog.gf", role=c("aut", "cre")),
+    person("Bruno", "Herault", email="bruno.herault@cirad.fr", role="aut")
+    )
 Description: Measurement and partitioning of diversity, based on Tsallis entropy.
+URL: https://github.com/EricMarcon/entropart
+BugReports: https://github.com/EricMarcon/entropart/issues
 License: GNU General Public License
 Imports: ade4, ape, EntropyEstimation, geiger, graphics, grDevices, parallel, stats, utils, vegan
 Suggests: testthat, knitr 
