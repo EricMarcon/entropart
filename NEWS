@@ -1,5 +1,10 @@
-  CHANGES IN entropart VERSION 1.4-7.9001
+  CHANGES IN entropart VERSION 1.4-7.9002
   ==================================
+
+BUG CORRECTION
+
+  o HqzBeta() returned erroneous values is a species probability was equal to zero. 
+
 
 IMPROVEMENTS
 

@@ -22,18 +22,11 @@ function(NorP, NorPexp = NULL, q = 1, Z = diag(length(Ps)), Correction = "Best",
     if (ncol(as.matrix(Z)) != length(Ps))  # as.matrix(Z) in case it has been reduced to a single value because of zeros
       # The matrix is square (this has been checked)
       stop("The matrix dimension must equal the probability vector length.")    
-    # Eliminate zeros
-    Z <- as.matrix(Z)[Ps != 0, Ps != 0]
-    Pexp <- Pexp[Ps != 0]
-    Ps <- Ps[Ps != 0]
   } else { # Matrix and Ps are be named.
     # Reorder Ps and Pexp
     if (!setequal(names(Ps), names(Pexp)))
       stop("Ps and Pexp should have the names.")
     Pexp <- Pexp[names(Ps)]
-    # Eliminate zeros
-    Pexp <- Pexp[Ps != 0]
-    Ps <- Ps[Ps != 0]
     if (length(setdiff(names(Ps), colnames(Z))) != 0)
       # The matrix is square (this has been checked)
       stop("Some species are missing in the similarity matrix.")    
@@ -43,6 +36,11 @@ function(NorP, NorPexp = NULL, q = 1, Z = diag(length(Ps)), Correction = "Best",
   # Calculate (Zp)
   Zps <- Z %*% Ps
   Zpexp <- Z %*% Pexp
+  # Eliminate data when Ps equal to zero because 0lnq(0)=0
+  Zps <- Zps[Ps != 0]
+  Zpexp <- Zpexp[Ps != 0]
+  Pexp <- Pexp[Ps != 0]
+  Ps <- Ps[Ps != 0]
   
   dataBeta <- Ps * (lnq(1/Zpexp, q)-lnq(1/Zps, q))
   entropy <- sum(dataBeta)
@@ -127,7 +125,7 @@ function(Ns, Nexp = NULL, q = 1, Z = diag(length(Ns)), Correction = "Best", Chec
   
   # No correction available yet
   if (Correction == "None" | Correction == "Best") {
-    return (HqzBeta(Ns/sum(Ns), Nexp/sum(Nexp), q, Z, CheckArguments=FALSE))
+    return (HqzBeta.ProbaVector(Ns/sum(Ns), Nexp/sum(Nexp), q, Z, CheckArguments=FALSE))
   }
   
   warning("Correction was not recognized")
