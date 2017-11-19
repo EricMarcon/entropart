@@ -14,7 +14,7 @@ PDFD(Ps, Tree, CheckArguments = TRUE)
     A probability vector, summing to 1.
   }
   \item{Tree}{
-    An object of class \code{\link{hclust}} or \code{\link{phylog}}. The tree must be ultrametric.
+    An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
   }
   \item{CheckArguments}{
     Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.

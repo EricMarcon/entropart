@@ -21,7 +21,7 @@ GammaDiversity(MC, q = 1, Correction = "Best", Tree = NULL, Normalize = TRUE,
     A string containing one of the possible corrections accepted by \code{\link{AlphaEntropy}} or \code{"None"} or \code{"Best"}, the default value.
   }
   \item{Tree}{
-    An object of class \code{\link{hclust}} or \code{\link{phylog}}. The tree must be ultrametric.
+    An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
   }
   \item{Normalize}{
     If \code{TRUE} (default), diversity is not affected by the height of the tree.\cr

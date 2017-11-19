@@ -43,7 +43,7 @@ is.PhyloEntropy(x)
     A number: the order of entropy. Default is 1.
   }
   \item{Tree}{
-    An object of class \code{\link{hclust}} or \code{\link{phylog}}. The tree must be ultrametric.
+    An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
   }
   \item{Normalize}{
     If \code{TRUE} (default), the \code{Total} entropy returned by the function is normalized by the height of the tree (it is the weighted average value of the entropy in each slice).\cr

@@ -7,10 +7,8 @@ function(Ps, q = 1, PhyloTree, Normalize = TRUE, Prune = FALSE, CheckArguments =
   # Tree must be either a phylog, phylo or a hclust object
   if (inherits(PhyloTree, "phylog")) {
     # build a phylo object. Go through an hclust because as.phylo.phylog generates errors
-    hTree <- stats::hclust(PhyloTree$Wdist^2/2, "average")
+    hTree <- stats::hclust((PhyloTree$Wdist/2)^2, "average")
     Tree <- ape::as.phylo.hclust(hTree)
-    # edge lengths are divided by 2 during the conversion. See ?as.phylo.hclust
-    Tree$edge.length <- 2*Tree$edge.length
   } else {
     if (inherits(PhyloTree, "hclust")) {
       # build a phylo object

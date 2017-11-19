@@ -34,7 +34,7 @@ bcRao(Ns, Tree, Correction="Lande", CheckArguments = TRUE)
     A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities.
   }
   \item{Tree}{
-    An object of class \code{\link{hclust}} or \code{\link{phylog}}. The tree must be ultrametric.
+    An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
   }
   \item{Correction}{
     A string containing one of the possible corrections accepted by \code{\link{bcTsallis}} or \code{"Lande"}, the default value (equivalent to \code{"Best"}).

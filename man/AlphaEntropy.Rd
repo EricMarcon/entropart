@@ -21,7 +21,7 @@ AlphaEntropy(MC, q = 1, Correction = "Best", Tree = NULL, Normalize = TRUE,
     A string containing one of the possible corrections accepted by the bias-corrected entropy function (see details) or \code{"None"} or \code{"Best"}, the default value.
   }
   \item{Tree}{
-    An object of class \code{\link{hclust}} or \code{\link{phylog}}. The tree must be ultrametric.
+    An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
   }
   \item{Normalize}{
     If \code{TRUE} (default), the entropy returned by the function is normalized by the height of the tree (it is the weighted average value of the entropy in each slice).\cr

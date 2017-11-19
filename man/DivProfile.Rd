@@ -35,7 +35,7 @@ is.DivProfile(x)
     The correction must be accepted by \code{\link{AlphaEntropy}}, \code{\link{BetaEntropy}} and \code{\link{GammaEntropy}}. \code{"Best"} is the default value.
   }
   \item{Tree}{
-    An object of class \code{\link{hclust}} or \code{\link{phylog}}. The tree must be ultrametric.
+    An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
   }
   \item{Normalize}{
     If \code{TRUE} (default), diversity is not affected by the height of the tree.\cr

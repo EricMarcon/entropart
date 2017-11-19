@@ -1,14 +1,16 @@
-  CHANGES IN entropart VERSION 1.4-7.9002
+  CHANGES IN entropart VERSION 1.4-7.9003
   ==================================
 
 BUG CORRECTION
 
-  o HqzBeta() returned erroneous values is a species probability was equal to zero. 
-
+  o HqzBeta() returned erroneous values is a species probability was equal to zero.
 
 IMPROVEMENTS
 
   o On GitHub now.
+  o Documentation updated: phylogenetic dendrograms can be of class phylo, phylog, hclust of PPtree whatever the function.
+  o The introduction vignette is HTML now.
+  o The hcluster representation of dendrograms in class PPtree now respects hcluster conventions: distances are from tip to tip, i.e. twice the distance to the common ancestor in ultrametric trees. 
   
   
 
