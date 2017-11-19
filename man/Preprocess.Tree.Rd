@@ -15,7 +15,7 @@ Preprocess.Tree(Tree)
   }
 }
 \details{
-  This is an internal function. It is used by \code{\link{PhyloApply}} and to obtain values of intervals.
+  This is an internal function. It is used by \code{\link{PhyloApply}} to obtain values of intervals.
 }
 \value{
   An object of class \code{\link{PPtree}}.
