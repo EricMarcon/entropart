@@ -8,10 +8,11 @@ author:
   affiliation: Cirad, UMR EcoFoG
 date: "`r Sys.Date()`"
 bibliography: entropart.bib
+package: entropart
 output:
   BiocStyle::html_document
 abstract: |
-  **entropart** is a package for R designed to estimate diversity based on HCDT entropy or similarity-based entropy. This is a short introduction to its use. `help("entropart")` is yet a shorter one. Users should read each function's help for details. For a rather exhaustive manual, see the user manual vignette `vignette("entropart")`.
+  `r CRANpkg("entropart")` is a package for _R_ designed to estimate diversity based on HCDT entropy or similarity-based entropy. This is a short introduction to its use. `help("entropart")` is yet a shorter one. Users should read each function's help for details. For a rather exhaustive manual, see the user manual vignette `vignette("entropart")`.
 vignette: >
   %\VignetteIndexEntry{Introduction}
   %\VignetteEngine{knitr::rmarkdown}

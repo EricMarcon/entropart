@@ -1,4 +1,4 @@
-  CHANGES IN entropart VERSION 1.4-7.9003
+  CHANGES IN entropart VERSION 1.4-7-9004
   ==================================
 
 BUG CORRECTION
@@ -10,9 +10,8 @@ IMPROVEMENTS
   o On GitHub now.
   o Documentation updated: phylogenetic dendrograms can be of class phylo, phylog, hclust of PPtree whatever the function.
   o The introduction vignette is HTML now.
-  o The hcluster representation of dendrograms in class PPtree now respects hcluster conventions: distances are from tip to tip, i.e. twice the distance to the common ancestor in ultrametric trees. 
-  
-  
+  o A new vignette is dedicated to phylogenies.
+
 
   CHANGES IN entropart VERSION 1.4-7
   ==================================

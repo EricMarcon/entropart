@@ -35,11 +35,7 @@ is.PPtree(x)
 \note{
   Versions up to 1.3 contained a \code{\link{phylog}} tree, now deprecated in \code{ade4}. A \code{\link{phylo}} tree is now used.
   
-  Distances are not represented the same way in different formats of trees so choices must be made.
-  From version 1.4.8 up, all dendrograms in entropart follow conventions of the package \code{\link{ape}}.
-  Edge lengths are those of the \code{\link{phylo}} object, stored in its component \code{$edge.length}. 
-  When converted to \code{\link{hclust}}, edge lengths are multiplied by 2 to obtain the values of \code{$heights}, see \code{\link{as.hclust.phylo}}.
-  In \code{\link{phylog}} objects, \code{$Wdist} contains values that are twice the square root of distances between tips.
+  See the dedicated vignette (\code{vignette("Phylogenies", package="entropart")}) for more details.
 }
 
 \author{
