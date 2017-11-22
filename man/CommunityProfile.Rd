@@ -29,7 +29,7 @@ CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", \d
     A numeric vector or a two-column matrix. Contains either abundances or probabilities. Two-column matrices should contain the observed abundances (or probabilities) in the first column and the expected ones in the second column, to allow using beta diversity functions.
   }
   \item{q.seq}{
-    A numeric vector: the sequence of divrsity orders to address. Default is from 0 to 2.
+    A numeric vector: the sequence of diversity orders to address. Default is from 0 to 2.
   }
   \item{NumberOfSimulations}{
     The number of simulations to run, 0 by default.

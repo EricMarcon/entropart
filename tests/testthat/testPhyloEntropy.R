@@ -8,7 +8,7 @@ Ns <- as.AbdVector(Paracou618.MC$Ns)
 Ps <- as.ProbaVector(Paracou618.MC$Ns)
 # Taxonomy
 # Build an hclust object. Distances in $Wdist are actually 2*sqrt(distance)
-hTree <- stats::hclust(Paracou618.Taxonomy$Wdist^2/4, "average")
+hTree <- stats::hclust(Paracou618.Taxonomy$Wdist^2/2, "average")
 # Build a phylo object
 phyTree <- ape::as.phylo.hclust(hTree)
 # Build a ppTree
@@ -63,7 +63,7 @@ names(PsStar) <- c("A", "B", "C")
 test_that("PhyloEntropy of order 2 of a star dendrogram equals Simpson", {
   # PhyloEntropy vs Rao
   expect_equal(as.numeric(PhyloEntropy(PsStar, q=2, Tree=phyStar, Normalize = FALSE)$Total), 
-               as.numeric(Rao(PsStar, phyStar)))
+               as.numeric(Rao(PsStar, phyStar)), tolerance = 100*sqrt(.Machine$double.eps))
   # Rao vs Simpson. Should be equal but the tree is not exactly a star.
   expect_lt((Simpson(PsStar)-Rao(PsStar, phyStar))/Simpson(PsStar), 
              1/1000)

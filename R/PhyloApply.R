@@ -54,8 +54,7 @@ function(Tree, FUN, NorP, Normalize = TRUE, ..., CheckArguments = TRUE)
   
   # Rounding errors in cutree: is.unsorted(hTree$height) may return TRUE even though height is sorted by construction
   # Values are may not be sorted properly because of rounding errors, e.g. 4e-16 (2 * .Machine$double.eps) in a taxonomy where Cuts contains (1,2,3)
-  # Also, heights in hclust are twice the desired heights (distances are defined as the added lengths of branches) 
-  OriginalHeights <- ppTree$hTree$height/2
+  OriginalHeights <- ppTree$hTree$height
   # Run sort so that is.unsorted returns FALSE.
   ppTree$hTree$height <- sort(OriginalHeights)
   # If there is no rounding error, add one (10 * .Machine$double.eps times the tree height) or cutree will miss some nodes.

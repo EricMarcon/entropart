@@ -19,7 +19,8 @@ function(Tree)
     if (inherits(Tree, "phylo")) {
       phyTree <- Tree
       # Build an hclust object to use cutree later.
-      # Caution: edge lengths are multiplied by 2 during the conversion. See ?as.phylo.hclust
+      # Edge lengths are multiplied by 2 during the conversion. Divide by 2 before that.
+      Tree$edge.length <- Tree$edge.length/2
       hTree <- ape::as.hclust.phylo(Tree)
     } else {
       if (inherits(Tree, "hclust")) {
