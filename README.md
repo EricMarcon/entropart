@@ -1,5 +1,8 @@
 # Entropy Partitioning to Measure Diversity
 
+[![CRAN version](http://www.r-pkg.org/badges/version/entropart)](https://cran.r-project.org/package=entropart)
+[![](http://cranlogs.r-pkg.org/badges/entropart)](http://cran.rstudio.com/web/packages/entropart/index.html)
+
 entropart is an R package that provides functions to calculate alpha, beta and gamma diversity of communities, 
 including phylogenetic and functional diversity.
   
