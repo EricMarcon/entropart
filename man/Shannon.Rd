@@ -12,17 +12,15 @@
   Calculates the Shannon entropy of a probability vector.
 }
 \usage{
-Shannon(NorP, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
+Shannon(NorP, ...)
 bcShannon(Ns, Correction = "Best", CheckArguments = TRUE)
-\method{Shannon}{ProbaVector}(NorP, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{Shannon}{AbdVector}(NorP, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{Shannon}{integer}(NorP, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{Shannon}{numeric}(NorP, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL) 
+\method{Shannon}{ProbaVector}(NorP, \dots, CheckArguments = TRUE, Ps = NULL)
+\method{Shannon}{AbdVector}(NorP, Correction = "Best", \dots, 
+  CheckArguments = TRUE, Ns = NULL)
+\method{Shannon}{integer}(NorP, Correction = "Best", \dots, 
+  CheckArguments = TRUE, Ns = NULL)
+\method{Shannon}{numeric}(NorP, Correction = "Best", \dots, 
+  CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 }
 \arguments{
   \item{Ps}{
@@ -36,6 +34,9 @@ bcShannon(Ns, Correction = "Best", CheckArguments = TRUE)
   }
   \item{Correction}{
     A string containing one of the possible corrections: \code{"None"} (no correction), \code{"ChaoShen"}, \code{"GenCov"}, \code{"Grassberger"}, \code{"Grassberger2003"}, \code{"Schurmann"}, \code{"Holste"}, \code{"Bonachela"}, \code{"Miller"}, \code{"ZhangHz"}, \code{"ChaoWangJost"}, \code{"Marcon"}, \code{"UnveilC"}, \code{"UnveiliC"}, \code{"UnveilJ"} or \code{"Best"}, the default value. Currently, \code{"Best"} is \code{"ChaoWangJost"}.
+  }
+  \item{\dots}{
+    Additional arguments. Unused.
   }
   \item{CheckArguments}{
     Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.

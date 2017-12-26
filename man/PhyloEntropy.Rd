@@ -14,18 +14,17 @@
   Calculates the phylogenetic entropy of order \eqn{q} of a probability vector.
 }
 \usage{
-PhyloEntropy(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+PhyloEntropy(NorP, q = 1, Tree, Normalize = TRUE, \dots)
 bcPhyloEntropy(Ns, q = 1, Tree, Normalize = TRUE, Correction = "Best", 
   CheckArguments = TRUE)
-\method{PhyloEntropy}{ProbaVector}(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+\method{PhyloEntropy}{ProbaVector}(NorP, q = 1, Tree, Normalize = TRUE, 
+  \dots, CheckArguments = TRUE, Ps = NULL)
 \method{PhyloEntropy}{AbdVector}(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+  \dots, CheckArguments = TRUE, Ns = NULL)
 \method{PhyloEntropy}{integer}(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+  \dots, CheckArguments = TRUE, Ns = NULL)
 \method{PhyloEntropy}{numeric}(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+  \dots, CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 is.PhyloEntropy(x)
 \method{summary}{PhyloEntropy}(object, \dots)
 }

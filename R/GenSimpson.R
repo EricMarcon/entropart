@@ -1,12 +1,12 @@
 GenSimpson <-
-  function(NorP, r = 1, CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+  function(NorP, r = 1, ...) 
   {
     UseMethod("GenSimpson")
   }
 
 
 GenSimpson.ProbaVector <-
-function(NorP, r = 1, CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, r = 1, ..., CheckArguments = TRUE, Ps = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -25,7 +25,7 @@ function(NorP, r = 1, CheckArguments = TRUE, Ps = NULL, Ns = NULL)
 
 
 GenSimpson.AbdVector <-
-function(NorP, r = 1, CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, r = 1, ..., CheckArguments = TRUE, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -39,7 +39,7 @@ function(NorP, r = 1, CheckArguments = TRUE, Ps = NULL, Ns = NULL)
 
 
 GenSimpson.integer <-
-  function(NorP, r = 1, CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+  function(NorP, r = 1, ..., CheckArguments = TRUE, Ns = NULL)
   {
     if (missing(NorP)){
       if (!missing(Ns)) {
@@ -53,7 +53,7 @@ GenSimpson.integer <-
 
 
 GenSimpson.numeric <-
-  function(NorP, r = 1, CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+  function(NorP, r = 1, ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
   {
     if (missing(NorP)){
       if (!missing(Ps)) {
@@ -82,8 +82,7 @@ function(Ns, r = 1, CheckArguments = TRUE)
 {
   if (CheckArguments)
     CheckentropartArguments()
-  
-  
+
   entropy <- EntropyEstimation::GenSimp.z(Ns, r)
   names(entropy) <- "Unbiased"
   return (entropy)

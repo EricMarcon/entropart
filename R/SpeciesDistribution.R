@@ -1,12 +1,12 @@
 as.SpeciesDistribution <-
-function (x) 
+function (x, ...)
 {
   UseMethod("as.SpeciesDistribution")
 }
 
 
 as.SpeciesDistribution.data.frame <-
-function (x) 
+function (x, ...) 
 {
   if (any(x < 0)) stop("Species distribution abundances or probabilities must be positive.")
 
@@ -22,9 +22,10 @@ function (x)
 
 
 as.SpeciesDistribution.numeric <-
-function (x) 
+function (x, ...) 
 {
   if (any(x < 0)) stop("Species distribution abundances or probabilities must be positive.")
+  
   spD <- x
   class(spD) <- c("SpeciesDistribution", class(spD))
   return(spD)
@@ -32,47 +33,44 @@ function (x)
 
 
 as.SpeciesDistribution.integer <-
-function (x) 
+function (x, ...) 
 {
   return(as.SpeciesDistribution.numeric(x))
 }
 
 
 is.SpeciesDistribution <-
-function (x) 
+function (x)
 {
   inherits(x, "SpeciesDistribution")
 }
 
 
 as.ProbaVector <-
-function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", JackOver = FALSE, CEstimator = "ZhangHuang", CheckArguments = TRUE) 
+function (x, ...) 
 {
   UseMethod("as.ProbaVector")
 }
 
 
 as.ProbaVector.data.frame  <-
-function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", JackOver = FALSE, CEstimator = "ZhangHuang", CheckArguments = TRUE) 
+function (x, ...) 
 {
-  if (CheckArguments)
-    CheckentropartArguments()
-
-  spD <- as.SpeciesDistribution(x)
+  spD <- as.SpeciesDistribution(x, ...)
   
   return(as.ProbaVector.numeric(spD, CheckArguments=FALSE))
 }
 
 
 as.ProbaVector.numeric <-
-function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", JackOver = FALSE, CEstimator = "ZhangHuang", CheckArguments = TRUE) 
+function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", JackOver = FALSE, CEstimator = "ZhangHuang", ..., CheckArguments = TRUE) 
 {
   if (CheckArguments)
     CheckentropartArguments()
   
   # Try to save the names before applying as.vector
   spNames <- names(x)
-  spD <- as.SpeciesDistribution(as.vector(x))
+  spD <- as.SpeciesDistribution(as.vector(x), ...)
   if (length(spNames) == length(spD))
     names(spD) <- spNames
 
@@ -187,7 +185,7 @@ function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", Jac
     } else {
       spD <- PsTuned
     }
-    spD <- as.SpeciesDistribution(spD)
+    spD <- as.SpeciesDistribution(spD, ...)
   }
   class(spD) <- c("ProbaVector", class(spD))
   return(spD)
@@ -195,12 +193,12 @@ function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", Jac
 
 
 as.ProbaVector.integer <-
-function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", JackOver = FALSE, CEstimator = "ZhangHuang", CheckArguments = TRUE) 
+function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", JackOver = FALSE, CEstimator = "ZhangHuang", ..., CheckArguments = TRUE) 
 {
   if (CheckArguments)
     CheckentropartArguments()
   
-  return(as.ProbaVector.numeric(x, Correction=Correction, Unveiling=Unveiling, RCorrection=RCorrection, JackOver=JackOver, CEstimator=CEstimator, CheckArguments=FALSE))
+  return(as.ProbaVector.numeric(x, Correction=Correction, Unveiling=Unveiling, RCorrection=RCorrection, JackOver=JackOver, CEstimator=CEstimator, ..., CheckArguments=FALSE))
 }
 
 
@@ -212,23 +210,23 @@ function (x)
 
 
 as.AbdVector <-
-function (x, Round = TRUE)
+function (x, ...)
 {
   UseMethod("as.AbdVector")
 }
 
 
 as.AbdVector.data.frame <-
-function (x, Round = TRUE) 
+function (x, Round = TRUE, ...) 
 {
   # Try to save the names before applying as.vector
   spNames <- names(x)
   
   if (Round) {
     intx <- as.integer(as.matrix(round(x)))
-    spD <- as.SpeciesDistribution(as.vector(intx))
+    spD <- as.SpeciesDistribution(as.vector(intx), ...)
   } else {      
-    spD <- as.SpeciesDistribution(as.vector(x))
+    spD <- as.SpeciesDistribution(as.vector(x), ...)
   }
 
   # Restore the names
@@ -241,16 +239,16 @@ function (x, Round = TRUE)
 
 
 as.AbdVector.numeric <-
-function (x, Round = TRUE) 
+function (x, Round = TRUE, ...) 
 {
   # Try to save the names before applyinf as.vector
   spNames <- names(x)
 
   if (Round) {
     intx <- as.integer(round(x))
-    spD <- as.SpeciesDistribution(as.vector(intx))
+    spD <- as.SpeciesDistribution(as.vector(intx), ...)
   } else {      
-    spD <- as.SpeciesDistribution(as.vector(x))
+    spD <- as.SpeciesDistribution(as.vector(x), ...)
   }
   
   # Restore the names
@@ -263,7 +261,7 @@ function (x, Round = TRUE)
 
 
 as.AbdVector.integer <-
-function (x, Round = TRUE) 
+function (x, ...) 
 {
   return(as.AbdVector.numeric(x))
 }

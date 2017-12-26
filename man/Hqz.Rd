@@ -12,17 +12,16 @@
   Calculates the entropy of order \eqn{q} of a probability vector according to a similarity matrix.
 }
 \usage{
-Hqz(NorP, q = 1, Z = diag(length(Ps)), Correction = "Best", 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+Hqz(NorP, q = 1, Z = diag(length(NorP)),  \dots)
 bcHqz(Ns, q = 1, Z = diag(length(Ns)), Correction = "Best", CheckArguments = TRUE)
-\method{Hqz}{ProbaVector}(NorP, q = 1, Z = diag(length(Ps)), Correction = "Best", 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL)
-\method{Hqz}{AbdVector}(NorP, q = 1, Z = diag(length(Ps)), Correction = "Best", 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL)
-\method{Hqz}{integer}(NorP, q = 1, Z = diag(length(Ps)), Correction = "Best", 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL)
-\method{Hqz}{numeric}(NorP, q = 1, Z = diag(length(Ps)), Correction = "Best", 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+\method{Hqz}{ProbaVector}(NorP, q = 1, Z = diag(length(NorP)), 
+  \dots, CheckArguments = TRUE, Ps = NULL)
+\method{Hqz}{AbdVector}(NorP, q = 1, Z = diag(length(NorP)), Correction = "Best",
+  \dots, CheckArguments = TRUE, Ns = NULL)
+\method{Hqz}{integer}(NorP, q = 1, Z = diag(length(NorP)), Correction = "Best", 
+  \dots, CheckArguments = TRUE, Ns = NULL)
+\method{Hqz}{numeric}(NorP, q = 1, Z = diag(length(NorP)), Correction = "Best", 
+  \dots, CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 }
 \arguments{
   \item{Ps}{
@@ -42,6 +41,9 @@ bcHqz(Ns, q = 1, Z = diag(length(Ns)), Correction = "Best", CheckArguments = TRU
   }
   \item{Correction}{
     A string containing one of the possible corrections: \code{"None"} (no correction), \code{"ChaoShen"}, \code{"MarconZhang"} or \code{"Best"}, the default value. The \code{"MarconZhang"} correction assumes a similarity matrix.
+  }
+  \item{\dots}{
+    Additional arguments. Unused.
   }
   \item{CheckArguments}{
     Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.

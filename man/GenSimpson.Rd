@@ -18,26 +18,26 @@
   Calculates the Generalized Simpson's entropy of order \eqn{r} of a probability or abundance vector, and its effective number of species.
 }
 \usage{
-GenSimpson(NorP, r = 1, CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+GenSimpson(NorP, r = 1, \dots)
 bcGenSimpson(Ns, r = 1, CheckArguments = TRUE)
-\method{GenSimpson}{ProbaVector}(NorP, r = 1, CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{GenSimpson}{AbdVector}(NorP, r = 1, CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{GenSimpson}{integer}(NorP, r = 1, CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{GenSimpson}{numeric}(NorP, r = 1, CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL) 
-GenSimpsonD(NorP, r = 1, CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+\method{GenSimpson}{ProbaVector}(NorP, r = 1, \dots, 
+  CheckArguments = TRUE, Ps = NULL)
+\method{GenSimpson}{AbdVector}(NorP, r = 1, \dots, 
+  CheckArguments = TRUE, Ns = NULL)
+\method{GenSimpson}{integer}(NorP, r = 1, \dots, 
+  CheckArguments = TRUE, Ns = NULL)
+\method{GenSimpson}{numeric}(NorP, r = 1, \dots, 
+  CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+GenSimpsonD(NorP, r = 1, \dots)
 bcGenSimpsonD(Ns, r = 1, CheckArguments = TRUE)
-\method{GenSimpsonD}{ProbaVector}(NorP, r = 1, CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{GenSimpsonD}{AbdVector}(NorP, r = 1, CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{GenSimpsonD}{integer}(NorP, r = 1, CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{GenSimpsonD}{numeric}(NorP, r = 1, CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL) 
+\method{GenSimpsonD}{ProbaVector}(NorP, r = 1, \dots,
+  CheckArguments = TRUE, Ps = NULL)
+\method{GenSimpsonD}{AbdVector}(NorP, r = 1, \dots, 
+  CheckArguments = TRUE, Ns = NULL)
+\method{GenSimpsonD}{integer}(NorP, r = 1, \dots, 
+  CheckArguments = TRUE, Ns = NULL)
+\method{GenSimpsonD}{numeric}(NorP, r = 1, \dots, 
+  CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 }
 \arguments{
   \item{Ps}{
@@ -51,6 +51,9 @@ bcGenSimpsonD(Ns, r = 1, CheckArguments = TRUE)
   }
   \item{r}{
     A number: the order of diversity. Default is 1 for Simpson's diversity.
+  }
+  \item{\dots}{
+    Additional arguments. Unused.
   }
   \item{CheckArguments}{
     Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.

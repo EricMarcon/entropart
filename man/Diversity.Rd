@@ -12,17 +12,16 @@
   Calculates the HCDT (generalized) diversity of order \eqn{q} of a probability vector.
 }
 \usage{
-Diversity(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
+Diversity(NorP, q = 1, \dots)
 bcDiversity(Ns, q = 1, Correction = "Best", CheckArguments = TRUE)
-\method{Diversity}{ProbaVector}(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{Diversity}{AbdVector}(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{Diversity}{integer}(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{Diversity}{numeric}(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL) 
+\method{Diversity}{ProbaVector}(NorP, q = 1, \dots, 
+  CheckArguments = TRUE, Ps = NULL)
+\method{Diversity}{AbdVector}(NorP, q = 1, Correction = "Best", \dots,
+  CheckArguments = TRUE, Ns = NULL)
+\method{Diversity}{integer}(NorP, q = 1, Correction = "Best", \dots, 
+  CheckArguments = TRUE, Ns = NULL)
+\method{Diversity}{numeric}(NorP, q = 1, Correction = "Best", \dots, 
+  CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 }
 \arguments{
   \item{Ps}{
@@ -39,6 +38,9 @@ bcDiversity(Ns, q = 1, Correction = "Best", CheckArguments = TRUE)
   }
   \item{Correction}{
     A string containing one of the possible corrections: \code{"None"} (no correction), \code{"ChaoShen"}, \code{"GenCov"}, \code{"Grassberger"}, \code{"Holste"}, \code{"Bonachela"}, \code{"ZhangGrabchak"}, or \code{"ChaoWangJost"}, \code{"Marcon"}, \code{"UnveilC"}, \code{"UnveiliC"}, \code{"UnveilJ"} or \code{"Best"}, the default value.  Currently, \code{"Best"} is \code{"ChaoWangJost"}.
+  }
+  \item{\dots}{
+    Additional arguments. Unused.
   }
   \item{CheckArguments}{
     Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.

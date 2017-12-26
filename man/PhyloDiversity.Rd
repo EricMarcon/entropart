@@ -14,18 +14,17 @@
   Calculates the phylogenetic diversity of order \eqn{q} of a probability vector.
 }
 \usage{
-PhyloDiversity(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+PhyloDiversity(NorP, q = 1, Tree, Normalize = TRUE, \dots)
 bcPhyloDiversity(Ns, q = 1, Tree, Normalize = TRUE, Correction = "Best",
   CheckArguments = TRUE)
-\method{PhyloDiversity}{ProbaVector}(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL)
-\method{PhyloDiversity}{AbdVector}(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL)
-\method{PhyloDiversity}{integer}(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL)
-\method{PhyloDiversity}{numeric}(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+\method{PhyloDiversity}{ProbaVector}(NorP, q = 1, Tree, Normalize = TRUE,  
+  \dots, CheckArguments = TRUE, Ps = NULL)
+\method{PhyloDiversity}{AbdVector}(NorP, q = 1, Tree, Normalize = TRUE, 
+  Correction = "Best", \dots, CheckArguments = TRUE, Ns = NULL)
+\method{PhyloDiversity}{integer}(NorP, q = 1, Tree, Normalize = TRUE, 
+  Correction = "Best", \dots, CheckArguments = TRUE, Ns = NULL)
+\method{PhyloDiversity}{numeric}(NorP, q = 1, Tree, Normalize = TRUE, 
+  Correction = "Best", \dots, CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 is.PhyloDiversity(x)
 \method{summary}{PhyloDiversity}(object, \dots)
 }

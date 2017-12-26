@@ -12,22 +12,17 @@
   Calculates the phylogenetic beta entropy of order \eqn{q} of a a community belonging to a metacommunity.
 }
 \usage{
-PhyloBetaEntropy(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, 
-  Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, 
-  Pexp = NULL, Nexp = NULL)
+PhyloBetaEntropy(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, \dots)
 bcPhyloBetaEntropy(Ns, Nexp, q = 1, Tree, Normalize = TRUE, 
   Correction = "Best", CheckArguments = TRUE)
 \method{PhyloBetaEntropy}{ProbaVector}(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, 
-  Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, 
-  Pexp = NULL, Nexp = NULL)
+  \dots, CheckArguments = TRUE, Ps = NULL, Pexp = NULL)
 \method{PhyloBetaEntropy}{AbdVector}(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, 
-  Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, 
-  Pexp = NULL, Nexp = NULL)
+  Correction = "Best", \dots, CheckArguments = TRUE, Ns = NULL, Nexp = NULL)
 \method{PhyloBetaEntropy}{integer}(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, 
-  Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, 
-  Pexp = NULL, Nexp = NULL)
+  Correction = "Best", \dots, CheckArguments = TRUE, Ns = NULL, Nexp = NULL)
 \method{PhyloBetaEntropy}{numeric}(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, 
-  Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, 
+  Correction = "Best", \dots, CheckArguments = TRUE, Ps = NULL, Ns = NULL, 
   Pexp = NULL, Nexp = NULL) 
 }
 \arguments{
@@ -61,6 +56,9 @@ bcPhyloBetaEntropy(Ns, Nexp, q = 1, Tree, Normalize = TRUE,
   }
   \item{Correction}{
     A string containing one of the possible corrections: currently, only \code{"ChaoShen"}. \code{"Best"} is the default value, it is equivalent to \code{"ChaoShen"}.
+  }
+  \item{\dots}{
+    Additional arguments. Unused.
   }
   \item{CheckArguments}{
     Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.

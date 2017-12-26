@@ -25,30 +25,26 @@
   A Species Distribution is a (preferably named) vector containing species abundances or probabilities.
 }
 \usage{
-as.SpeciesDistribution(x)
-\method{as.SpeciesDistribution}{data.frame}(x)
-\method{as.SpeciesDistribution}{integer}(x)
-\method{as.SpeciesDistribution}{numeric}(x)
+as.SpeciesDistribution(x, \dots)
+\method{as.SpeciesDistribution}{data.frame}(x, \dots)
+\method{as.SpeciesDistribution}{integer}(x, \dots)
+\method{as.SpeciesDistribution}{numeric}(x, \dots)
 \method{plot}{SpeciesDistribution}(x, \dots, Distribution = NULL, 
          type = "b", log = "y", main = NULL, xlab = "Rank", ylab = NULL)
 is.SpeciesDistribution(x)
-as.ProbaVector(x, Correction = "None", Unveiling = "None", 
-          RCorrection = "Chao1", JackOver = FALSE, CEstimator = "ZhangHuang", 
-          CheckArguments = TRUE)
-\method{as.ProbaVector}{data.frame}(x, Correction = "None", Unveiling = "None", 
-          RCorrection = "Chao1", JackOver = FALSE, CEstimator = "ZhangHuang", 
-          CheckArguments = TRUE)
+as.ProbaVector(x, \dots)
+\method{as.ProbaVector}{data.frame}(x, \dots)
 \method{as.ProbaVector}{integer}(x, Correction = "None", Unveiling = "None", 
           RCorrection = "Chao1", JackOver = FALSE, CEstimator = "ZhangHuang", 
-          CheckArguments = TRUE)
+          \dots, CheckArguments = TRUE)
 \method{as.ProbaVector}{numeric}(x, Correction = "None", Unveiling = "None", 
           RCorrection = "Chao1", JackOver = FALSE, CEstimator = "ZhangHuang", 
-          CheckArguments = TRUE)
+          \dots, CheckArguments = TRUE)
 is.ProbaVector(x)
-as.AbdVector(x, Round = TRUE)
-\method{as.AbdVector}{data.frame}(x, Round = TRUE)
-\method{as.AbdVector}{integer}(x, Round = TRUE)
-\method{as.AbdVector}{numeric}(x, Round = TRUE)
+as.AbdVector(x, \dots)
+\method{as.AbdVector}{data.frame}(x, Round = TRUE, \dots)
+\method{as.AbdVector}{integer}(x, \dots)
+\method{as.AbdVector}{numeric}(x, Round = TRUE, \dots)
 is.AbdVector(x)
 }
 \arguments{
@@ -92,7 +88,7 @@ is.AbdVector(x)
     The Y axis label. if \code{NULL} (by default), "Probability" or "Abundance" is chosen according to the object class.
   }
   \item{\dots}{
-    Additional arguments to be passed to \code{\link{plot}}.
+    Additional arguments to be passed to \code{\link{plot}}. Unused elsewhere.
   }
   \item{CheckArguments}{
     Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.

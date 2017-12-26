@@ -18,26 +18,26 @@
   Calculates the Hurlbert entropy of order \eqn{k} of a probability or abundance vector, and its effective number of species.
 }
 \usage{
-Hurlbert(NorP, k = 2, CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+Hurlbert(NorP, k = 2, \dots)
 bcHurlbert(Ns, k = 2, CheckArguments = TRUE)
-\method{Hurlbert}{ProbaVector}(NorP, k = 2, CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{Hurlbert}{AbdVector}(NorP, k = 2, CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{Hurlbert}{integer}(NorP, k = 2, CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{Hurlbert}{numeric}(NorP, k = 2, CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL) 
-HurlbertD(NorP, k = 2, CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+\method{Hurlbert}{ProbaVector}(NorP, k = 2, \dots, 
+  CheckArguments = TRUE, Ps = NULL)
+\method{Hurlbert}{AbdVector}(NorP, k = 2, \dots, 
+  CheckArguments = TRUE, Ns = NULL)
+\method{Hurlbert}{integer}(NorP, k = 2, \dots,
+  CheckArguments = TRUE, Ns = NULL)
+\method{Hurlbert}{numeric}(NorP, k = 2, \dots,
+  CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+HurlbertD(NorP, k = 2, ...)
 bcHurlbertD(Ns, k = 2, CheckArguments = TRUE)
-\method{HurlbertD}{ProbaVector}(NorP, k = 2, CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{HurlbertD}{AbdVector}(NorP, k = 2, CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{HurlbertD}{integer}(NorP, k = 2, CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{HurlbertD}{numeric}(NorP, k = 2, CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL) 
+\method{HurlbertD}{ProbaVector}(NorP, k = 2, \dots,
+  CheckArguments = TRUE, Ps = NULL)
+\method{HurlbertD}{AbdVector}(NorP, k = 2, \dots,
+  CheckArguments = TRUE, Ns = NULL)
+\method{HurlbertD}{integer}(NorP, k = 2, \dots,
+  CheckArguments = TRUE, Ns = NULL)
+\method{HurlbertD}{numeric}(NorP, k = 2, \dots,
+  CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 }
 \arguments{
   \item{Ps}{
@@ -51,6 +51,9 @@ bcHurlbertD(Ns, k = 2, CheckArguments = TRUE)
   }
   \item{k}{
     A number: the order of diversity. Default is 2 for Simpson's diversity.
+  }
+  \item{\dots}{
+    Additional arguments. Unused.
   }
   \item{CheckArguments}{
     Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.

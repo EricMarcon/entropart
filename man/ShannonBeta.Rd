@@ -12,17 +12,16 @@
   Calculates the Shannon beta entropy of a community belonging to a metacommunity.
 }
 \usage{
-ShannonBeta(NorP, NorPexp = NULL, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL)
+ShannonBeta(NorP, NorPexp = NULL, \dots)
 bcShannonBeta(Ns, Nexp, Correction = "Best", CheckArguments = TRUE)
-\method{ShannonBeta}{ProbaVector}(NorP, NorPexp = NULL, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL)
-\method{ShannonBeta}{AbdVector}(NorP, NorPexp = NULL, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL)
-\method{ShannonBeta}{integer}(NorP, NorPexp = NULL, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL)
-\method{ShannonBeta}{numeric}(NorP, NorPexp = NULL, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+\method{ShannonBeta}{ProbaVector}(NorP, NorPexp = NULL, \dots, 
+  CheckArguments = TRUE, Ps = NULL, Pexp = NULL)
+\method{ShannonBeta}{AbdVector}(NorP, NorPexp = NULL, Correction = "Best", \dots,
+  CheckArguments = TRUE, Ns = NULL, Nexp = NULL)
+\method{ShannonBeta}{integer}(NorP, NorPexp = NULL, Correction = "Best", \dots,
+  CheckArguments = TRUE, Ns = NULL, Nexp = NULL)
+\method{ShannonBeta}{numeric}(NorP, NorPexp = NULL, Correction = "Best", \dots,
+  CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
 }
 \arguments{
   \item{Ps}{
@@ -45,6 +44,9 @@ bcShannonBeta(Ns, Nexp, Correction = "Best", CheckArguments = TRUE)
   }
   \item{Correction}{
    A string containing one of the possible corrections: currently, \code{"ChaoShen"} (Marcon \emph{et al.}, 2012) equivalent to \code{"Best"}, and \code{"ZhangGrabchak"} (Zhang and Grabchak, 2014).
+  }
+  \item{\dots}{
+    Additional arguments. Unused.
   }
   \item{CheckArguments}{
     Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.

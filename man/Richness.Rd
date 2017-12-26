@@ -12,18 +12,16 @@
   Calculates the number of species from probability vector.  The name is that of the estimator (the bias correction) used.
 }
 \usage{
-Richness(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+Richness(NorP, \dots)
 bcRichness(Ns, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, 
               CheckArguments = TRUE)
-\method{Richness}{ProbaVector}(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+\method{Richness}{ProbaVector}(NorP, \dots, CheckArguments = TRUE, Ps = NULL)
 \method{Richness}{AbdVector}(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+  \dots, CheckArguments = TRUE, Ns = NULL)
 \method{Richness}{integer}(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+  \dots, CheckArguments = TRUE, Ns = NULL)
 \method{Richness}{numeric}(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+  \dots, CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 }
 \arguments{
   \item{Ps}{
@@ -43,6 +41,9 @@ bcRichness(Ns, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE,
   }
   \item{JackOver}{
     If \code{TRUE}, retain the jackknife order immediately superior to the optimal one, usually resulting in the overestimation of the number of species. Default is \code{FALSE}.
+  }
+  \item{\dots}{
+    Additional arguments. Unused.
   }
   \item{CheckArguments}{
     Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.

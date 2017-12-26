@@ -1,12 +1,12 @@
 Dqz <-
-function(NorP, q = 1, Z = diag(length(Ps)), Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Z = diag(length(NorP)), ...) 
 {
   UseMethod("Dqz")
 }
 
 
 Dqz.ProbaVector <-
-function(NorP, q = 1, Z = diag(length(Ps)), Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Z = diag(length(NorP)), ..., CheckArguments = TRUE, Ps = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -55,7 +55,7 @@ function(NorP, q = 1, Z = diag(length(Ps)), Correction = "Best", CheckArguments 
 
 
 Dqz.AbdVector <-
-function(NorP, q = 1, Z = diag(length(Ps)), Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Z = diag(length(NorP)), Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -69,7 +69,7 @@ function(NorP, q = 1, Z = diag(length(Ps)), Correction = "Best", CheckArguments 
 
 
 Dqz.integer <-
-function(NorP, q = 1, Z = diag(length(Ps)), Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+function(NorP, q = 1, Z = diag(length(NorP)), Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -83,7 +83,7 @@ function(NorP, q = 1, Z = diag(length(Ps)), Correction = "Best", CheckArguments 
 
 
 Dqz.numeric <-
-function(NorP, q = 1, Z = diag(length(Ps)), Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Z = diag(length(NorP)), Correction = "Best", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {

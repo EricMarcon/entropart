@@ -1,6 +1,7 @@
 CommunityProfile <-
 function(FUN, NorP, q.seq = seq(0, 2, 0.1), 
-         NumberOfSimulations = 0, Alpha = 0.05, BootstrapMethod = "Chao2015", ..., CheckArguments = TRUE) 
+         NumberOfSimulations = 0, Alpha = 0.05, BootstrapMethod = "Chao2015", 
+         size = 1, ..., CheckArguments = TRUE) 
 {
   if (CheckArguments) {
     CheckentropartArguments()
@@ -13,7 +14,9 @@ function(FUN, NorP, q.seq = seq(0, 2, 0.1),
     NsInt <- round(NorP)
     if (any(abs(NsInt-NorP) > sum(NorP)*.Machine$double.eps)) warning("Evaluation of the confidence interval of community profiles requires integer abundances in argument NorP. Abundances have been rounded.")
     # Create a MetaCommunity made of simulated communities
-    MCSim <- rCommunity(NumberOfSimulations, NorP=NsInt, BootstrapMethod=BootstrapMethod, CheckArguments = FALSE)
+    if (size == 1) size=sum(NsInt)
+    # The simulated communities may be of arbitrary size to obtain the confidence interval of the diversity of a smaller community
+    MCSim <- rCommunity(NumberOfSimulations, size=size, NorP=NsInt, BootstrapMethod=BootstrapMethod, CheckArguments = FALSE)
     # May return NA if the bootstrap method is not recognized
     if (any(is.na(MCSim))) stop("Communities could not be simulated.")
     ProgressBar <- utils::txtProgressBar(min=0, max=NumberOfSimulations)

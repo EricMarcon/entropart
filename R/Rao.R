@@ -1,12 +1,12 @@
 Rao <-
-function(NorP, Tree, Correction = "Lande", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, Tree, ...) 
 {
   UseMethod("Rao")
 }
 
 
 Rao.ProbaVector <-
-function(NorP, Tree, Correction = "Lande", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, Tree, ..., CheckArguments = TRUE, Ps = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -23,7 +23,7 @@ function(NorP, Tree, Correction = "Lande", CheckArguments = TRUE, Ps = NULL, Ns 
 
 
 Rao.AbdVector <-
-function(NorP, Tree, Correction = "Lande", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, Tree, Correction = "Lande", ..., CheckArguments = TRUE, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -37,7 +37,7 @@ function(NorP, Tree, Correction = "Lande", CheckArguments = TRUE, Ps = NULL, Ns 
 
 
 Rao.integer <-
-function(NorP, Tree, Correction = "Lande", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, Tree, Correction = "Lande", ..., CheckArguments = TRUE, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -51,7 +51,7 @@ function(NorP, Tree, Correction = "Lande", CheckArguments = TRUE, Ps = NULL, Ns 
 
 
 Rao.numeric <-
-function(NorP, Tree, Correction = "Lande", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, Tree, Correction = "Lande", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {

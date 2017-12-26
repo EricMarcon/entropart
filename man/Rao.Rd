@@ -12,16 +12,15 @@
   Calculates Rao's quadratic entropy of a community described by a probability vector and a phylogenetic / functional tree.
 }
 \usage{
-Rao(NorP, Tree, Correction = "Lande", CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+Rao(NorP, Tree, \dots)
 bcRao(Ns, Tree, Correction="Lande", CheckArguments = TRUE)
-\method{Rao}{ProbaVector}(NorP, Tree, Correction = "Lande", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{Rao}{AbdVector}(NorP, Tree, Correction = "Lande", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{Rao}{integer}(NorP, Tree, Correction = "Lande", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{Rao}{numeric}(NorP, Tree, Correction = "Lande", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL) 
+\method{Rao}{ProbaVector}(NorP, Tree, \dots, CheckArguments = TRUE, Ps = NULL)
+\method{Rao}{AbdVector}(NorP, Tree, Correction = "Lande", \dots, 
+  CheckArguments = TRUE, Ns = NULL)
+\method{Rao}{integer}(NorP, Tree, Correction = "Lande", \dots, 
+  CheckArguments = TRUE, Ns = NULL)
+\method{Rao}{numeric}(NorP, Tree, Correction = "Lande", \dots, 
+  CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 }
 \arguments{
   \item{Ps}{
@@ -38,6 +37,9 @@ bcRao(Ns, Tree, Correction="Lande", CheckArguments = TRUE)
   }
   \item{Correction}{
     A string containing one of the possible corrections accepted by \code{\link{bcTsallis}} or \code{"Lande"}, the default value (equivalent to \code{"Best"}).
+  }
+  \item{\dots}{
+    Additional arguments. Unused.
   }
   \item{CheckArguments}{
     Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.

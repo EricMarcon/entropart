@@ -12,17 +12,16 @@
   Calculates the Simpson entropy of a probability vector.
 }
 \usage{
-Simpson(NorP, Correction="Lande", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
+Simpson(NorP, \dots)
 bcSimpson(Ns, Correction = "Lande", CheckArguments = TRUE)
-\method{Simpson}{ProbaVector}(NorP, Correction="Lande", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{Simpson}{AbdVector}(NorP, Correction="Lande", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{Simpson}{integer}(NorP, Correction="Lande", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL)
-\method{Simpson}{numeric}(NorP, Correction="Lande", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL) 
+\method{Simpson}{ProbaVector}(NorP, \dots, CheckArguments = TRUE, 
+  Ps = NULL)
+\method{Simpson}{AbdVector}(NorP, Correction="Lande",  \dots, 
+  CheckArguments = TRUE, Ns = NULL)
+\method{Simpson}{integer}(NorP, Correction="Lande", \dots, 
+  CheckArguments = TRUE, Ns = NULL)
+\method{Simpson}{numeric}(NorP, Correction="Lande", \dots, 
+  CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 }
 \arguments{
   \item{Ps}{
@@ -36,6 +35,9 @@ bcSimpson(Ns, Correction = "Lande", CheckArguments = TRUE)
   }
   \item{Correction}{
     A string containing one of the possible corrections accepted by \code{\link{bcTsallis}} or \code{"Lande"}, the default value (equivalent to \code{"Best"}).
+  }
+  \item{\dots}{
+    Additional arguments. Unused.
   }
   \item{CheckArguments}{
     Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.

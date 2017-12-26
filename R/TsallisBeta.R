@@ -1,12 +1,12 @@
 TsallisBeta <-
-function(NorP, NorPexp = NULL, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, q = 1, ...) 
 {
   UseMethod("TsallisBeta")
 }
 
 
 TsallisBeta.ProbaVector <-
-function(NorP, NorPexp = NULL, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, q = 1, ..., CheckArguments = TRUE, Ps = NULL, Pexp = NULL) 
 {
   if (CheckArguments)
     CheckentropartArguments()
@@ -25,14 +25,14 @@ function(NorP, NorPexp = NULL, q = 1, Correction = "Best", CheckArguments = TRUE
 
 
 TsallisBeta.AbdVector <-
-function(NorP, NorPexp = NULL, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL, Nexp = NULL) 
 {
   return (bcTsallisBeta(Ns=NorP, Nexp=NorPexp, q=q, Correction=Correction, CheckArguments=CheckArguments))
 }
 
 
 TsallisBeta.integer <-
-function(NorP, NorPexp = NULL, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL, Nexp = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -53,7 +53,7 @@ function(NorP, NorPexp = NULL, q = 1, Correction = "Best", CheckArguments = TRUE
 
 
 TsallisBeta.numeric <-
-function(NorP, NorPexp = NULL, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {

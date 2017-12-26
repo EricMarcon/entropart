@@ -1,12 +1,12 @@
 PhyloDiversity <-
-function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Tree, Normalize = TRUE, ...) 
 {
   UseMethod("PhyloDiversity")
 }
 
 
 PhyloDiversity.ProbaVector <-
-function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Tree, Normalize = TRUE, ..., CheckArguments = TRUE, Ps = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -44,7 +44,7 @@ function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArgument
 
 
 PhyloDiversity.AbdVector <-
-function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -58,7 +58,7 @@ function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArgument
 
 
 PhyloDiversity.integer <-
-function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -72,7 +72,7 @@ function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArgument
 
 
 PhyloDiversity.numeric <-
-function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
