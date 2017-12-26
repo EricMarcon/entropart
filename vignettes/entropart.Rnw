@@ -73,7 +73,7 @@ It allows calculating species-neutral, phylogenetic and functional entropy and d
 library("knitr")
 opts_knit$set(concordance=TRUE)
 # set global chunk options
-opts_chunk$set(cache=TRUE, warning=FALSE, tidy=TRUE, fig.width=8, fig.height=6, out.width='.4\\maxwidth', tidy.opts=list(blank=FALSE, width.cutoff=60), size="scriptsize")
+opts_chunk$set(cache=TRUE, warning=FALSE, tidy=TRUE, fig.width=8, fig.height=6, out.width='.6\\maxwidth', tidy.opts=list(blank=FALSE, width.cutoff=60), size="scriptsize")
 options(width=60)
 par(mar=c(0,0,0,0))
 @
@@ -138,9 +138,11 @@ The weighted average probabilities of occurrence of species and the total number
 
 <<MetaCommunity>>=
 library("entropart")
-(df <- data.frame(C1 = c(10, 10, 10, 10), C2 = c(0, 20, 35, 5), C3 = c(25, 15, 0, 2), row.names = c("sp1", "sp2", "sp3", "sp4")))
+df <- data.frame(C1=c(10, 10, 10, 10), C2=c(0, 20, 35, 5), C3=c(25, 15, 0, 2))
+row.names(df) <- c("sp1", "sp2", "sp3", "sp4")
+df
 w <- c(1, 2, 1)
-MC <- MetaCommunity(Abundances = df, Weights = w)
+MC <- MetaCommunity(Abundances=df, Weights=w)
 @
 
 \begin{figure}[!t]
