@@ -1,5 +1,5 @@
 language: r
-sudo: required
+sudo: false
 cache: packages
 r_packages:
  - devtools
@@ -13,6 +13,9 @@ r_packages:
  - stats
  - utils
  - vegan
-Suggests: testthat, knitr, BiocStyle, rmarkdown
+ - testthat
+ - knitr
+ - BiocStyle
+ - rmarkdown
 r_build_args: --no-build-vignettes
 r_check_args: --no-build-vignettes
