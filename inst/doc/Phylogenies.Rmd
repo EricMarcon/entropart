@@ -1,0 +1,106 @@
+---
+title: "Phylogenetic Tree Representation"
+author:
+- name: Eric Marcon
+  affiliation: AgroParisTech, UMR EcoFoG
+  email: eric.marcon@ecofog.gf
+package: entropart
+output:
+  BiocStyle::html_document
+abstract: |
+  Several object classes can be used in `r CRANpkg("entropart")` to represent phylogenies and calculate phylogenetic diversity. They are detailed here.
+vignette: |
+  %\VignetteIndexEntry{Phylogenies}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Formats used
+
+Supported phylogenies are classes `phylo` from package `r CRANpkg("ape")`, `phylog` from package `r CRANpkg("ade4")` and `hclust` from package `r Rpackage("base")`.
+
+To optimize performance, a specific class `PPtree`, for "preprocessed trees", is introduced by the package: it is basically a list containing a `phylo` and an `hclust` representation of the phylogeny and preprocessed useful statistics.
+
+The arguments `Tree` or `PhyloTree` used in phylogenetic diversity estimation functions of the package may be any of those formats.
+
+
+# Conversion between classes
+
+Let's start from an ultrametric distance matrix.
+Three species are defined, with distance 1 between the first 2 and distance 2 between both and the last one.
+
+```{r DistMatrix}
+dSp <- matrix(c(0, 1, 2, 1, 0, 2, 2, 2, 0), nrow=3, byrow=TRUE)
+row.names(dSp) <- colnames(dSp) <- c("A", "B", "C")
+dSp
+```
+
+## hclust
+
+An `hclust` object is created by UPGMA hierarchical clustering.
+
+```{r hclust}
+require("stats")
+plot(hTree <- hclust(as.dist(dSp), method="average"), hang=-0.01, axes = F)
+axis(2)
+```
+
+Node heights are stored in `$height`.
+
+```{r hclust2}
+
+hTree$height
+```
+
+
+## phylo
+
+Conversion to a `phylo` object is straightforward.
+
+```{r phylo}
+require("ape")
+plot(phyloTree <- as.phylo(hTree))
+axis(1)
+```
+
+Edge lengths have been divided by 2 during the conversion, as documented in `?as.phylo.hclust`.
+```{r phylo2}
+phyloTree$edge.length
+```
+
+That does not suit our needs. In `r CRANpkg("entropart")`, edge lengths are multiplied by 2 after conversion, so that `phylo`objects can be identical to other phylogenies. 
+
+```{r phylo3}
+phyloTree$edge.length <- 2*phyloTree$edge.length
+plot(phyloTree)
+axis(1)
+```
+
+## phylog
+
+The last conversion is from `phylo` to `phylog`.
+
+```{r phylog}
+require("ade4")
+plot(phylogTree <- hclust2phylog(hTree))
+axis(1)
+```
+
+Edge lengths are not stored directly in `phylog` objects.
+The `$droot` component keeps distances from tips to root.
+The `$Wdist` component is a `dist` (half a distance matrix without the zero-diagonal) whose values are $d_{s,t}=\sqrt{2 \delta_{s,t}^2}$, where $\delta_{s,t}$ is the distance between species $s$ ant $t$.
+
+```{r phylog2}
+phylogTree$droot
+phylogTree$Wdist^2/2
+```
+
+# Newick dendrograms
+
+A Newick description of a dendrogram can read into a `phylo` object.
+
+```{r Newick}
+NewickABC <- "(C:2,(A:1,B:1):1);"
+plot(phyloABC <- ape::read.tree(text=NewickABC))
+axis(1)
+````
