@@ -7,15 +7,11 @@ r_packages:
  - ape
  - EntropyEstimation
  - geiger
- - graphics
- - grDevices
- - parallel
- - stats
- - utils
  - vegan
  - testthat
  - knitr
- - BiocStyle
  - rmarkdown
+bioc_packages:
+ - BiocStyle
 r_build_args: --no-build-vignettes
 r_check_args: --no-build-vignettes
