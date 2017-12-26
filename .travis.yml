@@ -11,6 +11,7 @@ r_packages:
  - testthat
  - knitr
  - rmarkdown
+ - SPECIES
 bioc_packages:
  - BiocStyle
 r_build_args: --no-build-vignettes
