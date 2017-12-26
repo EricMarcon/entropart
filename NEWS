@@ -1,8 +1,9 @@
-  CHANGES IN entropart VERSION 1.4-8.9002
+  CHANGES IN entropart VERSION 1.4-8.9003
   ==================================
 
 IMPROVEMENTS
 
+  o On Travis now.
   o The rule to calculate the number of individuals of MetaCommunities has been changed to improve gamma diversity bias correction. See the user manual vignette, section 2.1.
   o Generic function arguments cleaned up.
 
