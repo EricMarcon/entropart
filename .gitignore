@@ -21,6 +21,9 @@
 # produced vignettes
 vignettes/*.html
 vignettes/*.pdf
+vignettes/*.R
+vignettes/.build.timestamp
+vignettes/cache/
 vignettes/figure/
 vignettes/Introduction_*/
 
