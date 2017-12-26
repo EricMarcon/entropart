@@ -13,7 +13,7 @@ function(q.seq = seq(0, 2, .1), MC, Biased = TRUE, Correction = "Best", Tree = N
   }  
 
   # Calculate diversity profile. Parallelize.
-  Diversity.seq <- simplify2array(mclapply(q.seq, DivPart, MC=MC, Biased=Biased, Correction=Correction, Tree=ppTree, Normalize=Normalize, Z=Z, CheckArguments =FALSE))
+  Diversity.seq <- simplify2array(parallel::mclapply(q.seq, DivPart, MC=MC, Biased=Biased, Correction=Correction, Tree=ppTree, Normalize=Normalize, Z=Z, CheckArguments =FALSE))
 
   # Rearrange complex structures
   Dalpha <- unlist(Diversity.seq["CommunityAlphaDiversities", ])
@@ -77,7 +77,7 @@ function(q.seq = seq(0, 2, .1), MC, Biased = TRUE, Correction = "Best", Tree = N
                              "GammaDiversityLow", "GammaDiversityHigh")
     for (qi in 1:Q) {
       # Calculate diversites. Parallelize.
-      Diversity.qi <- simplify2array(mclapply(SimMC, function(mc) DivPart(q=q.seq[qi], MC=mc, Biased=Biased, Correction=Correction, Tree=ppTree, Normalize=Normalize, Z=Z, CheckArguments=FALSE)))
+      Diversity.qi <- simplify2array(parallel::mclapply(SimMC, function(mc) DivPart(q=q.seq[qi], MC=mc, Biased=Biased, Correction=Correction, Tree=ppTree, Normalize=Normalize, Z=Z, CheckArguments=FALSE)))
       # Put alpha and gamma simulated entropies into vectors
       TotalAlphaEntropy <-  unlist(Diversity.qi["TotalAlphaEntropy", ])
       TotalBetaEntropy <-  unlist(Diversity.qi["TotalBetaEntropy", ])

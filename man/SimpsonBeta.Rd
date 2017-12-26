@@ -12,17 +12,16 @@
   Calculates the Simpson beta entropy of a community belonging to a metacommunity.
 }
 \usage{
-SimpsonBeta(NorP, NorPexp = NULL, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL)
+SimpsonBeta(NorP, NorPexp = NULL, \dots)
 bcSimpsonBeta(Ns, Nexp, Correction = "Best", CheckArguments = TRUE)
-\method{SimpsonBeta}{ProbaVector}(NorP, NorPexp = NULL, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL)
-\method{SimpsonBeta}{AbdVector}(NorP, NorPexp = NULL, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL)
-\method{SimpsonBeta}{integer}(NorP, NorPexp = NULL, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL)
-\method{SimpsonBeta}{numeric}(NorP, NorPexp = NULL, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+\method{SimpsonBeta}{ProbaVector}(NorP, NorPexp = NULL, \dots, 
+  CheckArguments = TRUE, Ps = NULL, Pexp = NULL)
+\method{SimpsonBeta}{AbdVector}(NorP, NorPexp = NULL, Correction = "Best", \dots, 
+  CheckArguments = TRUE, Ns = NULL, Nexp = NULL)
+\method{SimpsonBeta}{integer}(NorP, NorPexp = NULL, Correction = "Best", \dots, 
+  CheckArguments = TRUE, Ns = NULL, Nexp = NULL)
+\method{SimpsonBeta}{numeric}(NorP, NorPexp = NULL, Correction = "Best", \dots, 
+  CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
 }
 \arguments{
   \item{Ps}{
@@ -45,6 +44,9 @@ bcSimpsonBeta(Ns, Nexp, Correction = "Best", CheckArguments = TRUE)
   }
   \item{Correction}{
     A string containing one of the possible corrections: currently, only \code{"ChaoShen"}, identical to \code{"Best"}.
+  }
+  \item{\dots}{
+    Additional arguments. Unused.
   }
   \item{CheckArguments}{
     Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.

@@ -4,11 +4,10 @@ function(q = 1, MC, Biased = TRUE, Correction = "Best", Tree = NULL, Normalize =
   if (CheckArguments)
     CheckentropartArguments()
   
-  # Preprocess the tree
+  # Preprocess the tree. Height is 1 by default, including species neutral diversity.
+  Height <- 1
   ppTree <- Preprocess.Tree(Tree)
-  if (Normalize) {
-    Height <- 1
-  } else {
+  if (!is.null(ppTree$Height) & !Normalize) {
     Height <- ppTree$Height
   }  
 

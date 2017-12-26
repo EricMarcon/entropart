@@ -8,9 +8,8 @@ function(Nsi, Wi)
   dimnames(Psi) <- dimnames(Nsi)
   # p_s
   Ps <- apply(Psi %*% diag(Wi), 1, sum)
-  # n_s and n
-  # The size of the meta-community is the number of individuals of the lower-weight community divided by its weight 
-  N <- sum(Nsi[ , which.min(Wi)]) / min(Wi)
+  # n is by choice the sum of ni. Avoid integer overflow.
+  N <- sum(as.numeric(Ni))
   # n_s
   Ns <- Ps * N
   

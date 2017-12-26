@@ -1,12 +1,12 @@
 HurlbertD <-
-function(NorP, k = 2, CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, k = 2, ...) 
 {
   UseMethod("HurlbertD")
 }
 
 
 HurlbertD.ProbaVector <-
-function(NorP, k = 2, CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, k = 2, ..., CheckArguments = TRUE, Ps = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -29,7 +29,7 @@ function(NorP, k = 2, CheckArguments = TRUE, Ps = NULL, Ns = NULL)
 }
 
 HurlbertD.AbdVector <-
-function(NorP, k = 2, CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+function(NorP, k = 2, ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -43,7 +43,7 @@ function(NorP, k = 2, CheckArguments = TRUE, Ps = NULL, Ns = NULL)
 
 
 HurlbertD.integer <-
-function(NorP, k = 2, CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+function(NorP, k = 2, ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -57,7 +57,7 @@ function(NorP, k = 2, CheckArguments = TRUE, Ps = NULL, Ns = NULL)
 
 
 HurlbertD.numeric <-
-function(NorP, k = 2, CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+function(NorP, k = 2, ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ps)) {

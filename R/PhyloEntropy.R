@@ -1,12 +1,12 @@
 PhyloEntropy <-
-function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Tree, Normalize = TRUE, ...) 
 {
   UseMethod("PhyloEntropy")
 }
 
 
 PhyloEntropy.ProbaVector <-
-function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Tree, Normalize = TRUE, ..., CheckArguments = TRUE, Ps = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -34,7 +34,7 @@ function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArgument
 
 
 PhyloEntropy.AbdVector <-
-function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -48,7 +48,7 @@ function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArgument
 
 
 PhyloEntropy.integer <-
-function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -62,7 +62,7 @@ function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArgument
 
 
 PhyloEntropy.numeric <-
-function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {

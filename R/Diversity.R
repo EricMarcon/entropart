@@ -1,12 +1,12 @@
 Diversity <-
-function (NorP, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function (NorP, q = 1, ...) 
 {
   UseMethod("Diversity")
 }
 
 
 Diversity.ProbaVector <-
-function(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, ..., CheckArguments = TRUE, Ps = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -25,7 +25,7 @@ function(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns 
 
 
 Diversity.AbdVector <-
-function(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+function(NorP, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -39,7 +39,7 @@ function(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns 
 
 
 Diversity.integer <-
-function(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+function(NorP, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -53,7 +53,7 @@ function(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns 
 
 
 Diversity.numeric <-
-function(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {

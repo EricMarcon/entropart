@@ -1,12 +1,12 @@
 PhyloBetaEntropy <-
-function(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, ...) 
 {
   UseMethod("PhyloBetaEntropy")
 }
 
 
 PhyloBetaEntropy.ProbaVector <-
-function(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, ..., CheckArguments = TRUE, Ps = NULL, Pexp = NULL) 
 {
   if (CheckArguments)
     CheckentropartArguments()
@@ -29,14 +29,14 @@ function(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, Correction = "Best
 
 
 PhyloBetaEntropy.AbdVector <-
-function(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL, Nexp = NULL) 
 {
   return(bcPhyloBetaEntropy(Ns=NorP, Nexp=NorPexp, q=q, Tree=Tree, Normalize=Normalize, Correction=Correction, CheckArguments=CheckArguments))
 }
 
 
 PhyloBetaEntropy.integer <-
-function(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL, Nexp = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -57,7 +57,7 @@ function(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, Correction = "Best
 
 
 PhyloBetaEntropy.numeric <-
-function(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, Correction = "Best", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -114,5 +114,3 @@ function(Ns, Nexp, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArgu
   
   return (Entropy)
 }
-
-

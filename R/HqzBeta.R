@@ -1,12 +1,12 @@
 HqzBeta <-
-function(NorP, NorPexp = NULL, q = 1, Z = diag(length(Ps)), Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, q = 1, Z = diag(length(NorP)), ...) 
 {
   UseMethod("HqzBeta")
 }
 
 
 HqzBeta.ProbaVector <-
-function(NorP, NorPexp = NULL, q = 1, Z = diag(length(Ps)), Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, q = 1, Z = diag(length(NorP)), ..., CheckArguments = TRUE, Ps = NULL, Pexp = NULL) 
 {
   if (CheckArguments)
     CheckentropartArguments()
@@ -50,14 +50,14 @@ function(NorP, NorPexp = NULL, q = 1, Z = diag(length(Ps)), Correction = "Best",
 
 
 HqzBeta.AbdVector <-
-function(NorP, NorPexp = NULL, q = 1, Z = diag(length(Ps)), Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, q = 1, Z = diag(length(NorP)), Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL, Nexp = NULL) 
 {
   return (bcHqzBeta(Ns=NorP, Nexp=NorPexp , q=q, Z=Z, Correction=Correction, CheckArguments=CheckArguments))
 }
 
 
 HqzBeta.integer <-
-function(NorP, NorPexp = NULL, q = 1, Z = diag(length(Ps)), Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, q = 1, Z = diag(length(NorP)), Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL, Nexp = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -78,7 +78,7 @@ function(NorP, NorPexp = NULL, q = 1, Z = diag(length(Ps)), Correction = "Best",
 
 
 HqzBeta.numeric <-
-function(NorP, NorPexp = NULL, q = 1, Z = diag(length(Ps)), Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, q = 1, Z = diag(length(NorP)), Correction = "Best", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {

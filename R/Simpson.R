@@ -1,12 +1,12 @@
 Simpson <-
-function(NorP, Correction="Lande", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, ...) 
 {
   UseMethod("Simpson")
 }
 
 
 Simpson.ProbaVector <-
-function(NorP, Correction="Lande", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, ..., CheckArguments = TRUE, Ps = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -23,7 +23,7 @@ function(NorP, Correction="Lande", CheckArguments = TRUE, Ps = NULL, Ns = NULL)
 
 
 Simpson.AbdVector <-
-function(NorP, Correction="Lande", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, Correction="Lande", ..., CheckArguments = TRUE, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -37,7 +37,7 @@ function(NorP, Correction="Lande", CheckArguments = TRUE, Ps = NULL, Ns = NULL)
 
 
 Simpson.integer <-
-function(NorP, Correction="Lande", CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+function(NorP, Correction="Lande", ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -51,7 +51,7 @@ function(NorP, Correction="Lande", CheckArguments = TRUE, Ps = NULL, Ns = NULL)
 
 
 Simpson.numeric <-
-function(NorP, Correction="Lande", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, Correction="Lande", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {

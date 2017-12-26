@@ -168,6 +168,12 @@ The component \code{\$Ps} of a \code{MetaCommunity} object contains the probabil
 MC$Ps
 @
 
+The number of individuals \code{\$Ns} of a \code{MetaCommunity} is theoretically unknown, since coommunities are just samples of it.
+The total number of individuals is \code{\$N}.
+For simplicity, it is set to the total number of individuals of all communities.
+If community weights are their number of individuals, \code{\$Ns} is just the sum of the numbers of individuals per species of communities.
+Else, \code{\$Ns} may contain non-integer values, respecting the probabilities \code{\$Ps} and summing to \code{\$N}.
+
 A \code{MetaCommunity} can be summarized and plotted (Figure~\ref{MetaCommunityPlot}).
 
 The package contains an example dataset containing the inventory of two 1-ha tropical forest plots in Paracou, French Guiana \citep{Marcon2012}:

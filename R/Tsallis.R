@@ -1,12 +1,12 @@
 Tsallis <-
-function(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, ...) 
 {
   UseMethod("Tsallis")
 }
 
 
 Tsallis.ProbaVector <-
-function(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, ..., CheckArguments = TRUE, Ps = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -30,7 +30,7 @@ function(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns 
 
 
 Tsallis.AbdVector <-
-function(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -44,7 +44,7 @@ function(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns 
 
 
 Tsallis.integer <-
-function(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+function(NorP, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -58,7 +58,7 @@ function(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns 
 
 
 Tsallis.numeric <-
-function(NorP, q = 1, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {

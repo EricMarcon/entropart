@@ -1,12 +1,12 @@
 ShannonBeta <-
-function(NorP, NorPexp = NULL, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, ...) 
 {
   UseMethod("ShannonBeta")
 }
 
 
 ShannonBeta.ProbaVector <-
-function(NorP, NorPexp = NULL, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, ..., CheckArguments = TRUE, Ps = NULL, Pexp = NULL) 
 {
   if (CheckArguments)
     CheckentropartArguments()
@@ -16,14 +16,14 @@ function(NorP, NorPexp = NULL, Correction = "Best", CheckArguments = TRUE, Ps = 
 
 
 ShannonBeta.AbdVector <-
-function(NorP, NorPexp = NULL, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL, Nexp = NULL) 
 {
   return (bcShannonBeta(Ns=NorP, Nexp=NorPexp, Correction=Correction, CheckArguments=CheckArguments))
 }
 
 
 ShannonBeta.integer <-
-function(NorP, NorPexp = NULL, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL, Nexp = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -44,7 +44,7 @@ function(NorP, NorPexp = NULL, Correction = "Best", CheckArguments = TRUE, Ps = 
 
 
 ShannonBeta.numeric <-
-function(NorP, NorPexp = NULL, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+function(NorP, NorPexp = NULL, Correction = "Best", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {

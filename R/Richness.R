@@ -1,12 +1,12 @@
 Richness <-
-function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, ...) 
 {
   UseMethod("Richness")
 }
 
 
 Richness.ProbaVector <-
-function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, CheckArguments = TRUE, Ps = NULL, Ns = NULL)  
+function(NorP, ..., CheckArguments = TRUE, Ps = NULL)  
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -25,7 +25,7 @@ function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, CheckArgume
 
 
 Richness.AbdVector <-
-function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -39,7 +39,7 @@ function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, CheckArgume
 
 
 Richness.integer <-
-function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -53,7 +53,7 @@ function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, CheckArgume
 
 
 Richness.numeric <-
-function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ps)) {

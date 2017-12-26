@@ -12,19 +12,17 @@
   Calculates the similarity-based beta entropy of order \eqn{q} of a community belonging to a metacommunity.
 }
 \usage{
-HqzBeta(NorP, NorPexp = NULL, q = 1, Z = diag(length(Ps)), Correction = "Best", 
-  CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL)
+HqzBeta(NorP, NorPexp = NULL, q = 1, Z = diag(length(NorP)), \dots)
 bcHqzBeta(Ns, Nexp = NULL, q = 1, Z = diag(length(Ns)), Correction = "Best",
           CheckArguments = TRUE)
-\method{HqzBeta}{ProbaVector}(NorP, NorPexp = NULL, q = 1, Z = diag(length(Ps)), Correction = "Best", 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL)
-\method{HqzBeta}{AbdVector}(NorP, NorPexp = NULL, q = 1, Z = diag(length(Ps)), Correction = "Best", 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL)
-\method{HqzBeta}{integer}(NorP, NorPexp = NULL, q = 1, Z = diag(length(Ps)), Correction = "Best", 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL)
-\method{HqzBeta}{numeric}(NorP, NorPexp = NULL, q = 1, Z = diag(length(Ps)), Correction = "Best", 
-  CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+\method{HqzBeta}{ProbaVector}(NorP, NorPexp = NULL, q = 1, Z = diag(length(NorP)),
+  \dots, CheckArguments = TRUE, Ps = NULL, Pexp = NULL)
+\method{HqzBeta}{AbdVector}(NorP, NorPexp = NULL, q = 1, Z = diag(length(NorP)), Correction = "Best", 
+  \dots, CheckArguments = TRUE, Ns = NULL, Nexp = NULL)
+\method{HqzBeta}{integer}(NorP, NorPexp = NULL, q = 1, Z = diag(length(NorP)), Correction = "Best", 
+  \dots, CheckArguments = TRUE, Ns = NULL, Nexp = NULL)
+\method{HqzBeta}{numeric}(NorP, NorPexp = NULL, q = 1, Z = diag(length(NorP)), Correction = "Best", 
+  \dots, CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
 }
 \arguments{
   \item{Ps}{
@@ -53,6 +51,9 @@ bcHqzBeta(Ns, Nexp = NULL, q = 1, Z = diag(length(Ns)), Correction = "Best",
   }
   \item{Correction}{
     A string containing one of the possible corrections: currently, no correction is available so \code{"Best"},  the default value, is equivalent to \code{"None"}.
+  }
+  \item{\dots}{
+    Additional arguments. Unused.
   }
   \item{CheckArguments}{
     Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.

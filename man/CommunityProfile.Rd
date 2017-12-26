@@ -13,7 +13,7 @@
 \usage{
 CommunityProfile(FUN, NorP, q.seq = seq(0, 2, 0.1), 
     NumberOfSimulations = 0, Alpha = 0.05, BootstrapMethod = "Chao2015", 
-    \dots, CheckArguments = TRUE)
+    size = 1, \dots, CheckArguments = TRUE)
 as.CommunityProfile(x, y, low = NULL, high = NULL)
 is.CommunityProfile(x)
 \method{plot}{CommunityProfile}(x, \dots, main = NULL, 
@@ -39,6 +39,9 @@ CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", \d
   }
   \item{BootstrapMethod}{
     The method used to obtain the probabilities to generate bootstrapped communities from observed abundances. See \code{\link{rCommunity}}.
+  }
+  \item{size}{
+    The size of simulated communities used to compute the bootstrap confidence envelope. 1 (default) means that the actual size must be used.
   }
   \item{x}{
     An object to be tested or plotted or the vector of orders of community profiles in \code{as.CommunityProfile}.
@@ -87,7 +90,7 @@ CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", \d
   The function \code{CommunityProfile} is used to calculate diversity or entropy profiles based on community functions such as \code{\link{Tsallis}} or \code{\link{ChaoPD}}. The first two arguments of the function must be a probability or abundance vector or a two-column matrix (for beta diversity functions) and a number (\eqn{q}).
   Additional arguments cannot be checked. Unexpected results may be returned if \code{FUN} is not used properly.
   
-  If \code{NumberOfSimulations} is greater than 0, a bootstrap confidence interval is produced by simulating communities with \code{\link{rCommunity}} and calculating their profiles.
+  If \code{NumberOfSimulations} is greater than 0, a bootstrap confidence interval is produced by simulating communities with \code{\link{rCommunity}} and calculating their profiles. The size of those communities may be that of the actual community or specified by \code{size}.
   
   \code{CommunityProfile} objects can be plotted. They can also be added to the current plot by \code{CEnvelope}.
 }

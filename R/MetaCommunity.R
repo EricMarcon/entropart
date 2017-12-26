@@ -24,7 +24,7 @@ function(Abundances, Weights = rep(1, ncol(Abundances)))
     colnames(Abundances) <- paste("P", 1:(ncol(Abundances)), sep="")
   }
   
-  # Matrix containing p_si
+  # Matrix containing n_si
   Nsi <- as.matrix(Abundances[, FirstColumnOfData:length(Abundances[1, ])])
   dimnames(Nsi)[[1]] <- SpeciesNames
   # Vector of weights

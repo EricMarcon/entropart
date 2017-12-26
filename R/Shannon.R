@@ -1,12 +1,12 @@
 Shannon <-
-function(NorP, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, ...) 
 {
   UseMethod("Shannon")
 }
 
 
 Shannon.ProbaVector <-
-function(NorP, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, ..., CheckArguments = TRUE, Ps = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -23,7 +23,7 @@ function(NorP, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL)
 
 
 Shannon.AbdVector <-
-function(NorP, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -37,7 +37,7 @@ function(NorP, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL)
 
 
 Shannon.integer <-
-function(NorP, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+function(NorP, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -51,7 +51,7 @@ function(NorP, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL)
 
 
 Shannon.numeric <-
-function(NorP, Correction = "Best", CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, Correction = "Best", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {

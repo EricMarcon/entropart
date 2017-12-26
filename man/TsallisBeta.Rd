@@ -12,17 +12,16 @@
   Calculates the Tsallis beta entropy of order \eqn{q} of a community belonging to a metacommunity.
 }
 \usage{
-TsallisBeta(NorP, NorPexp = NULL, q = 1, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL)
+TsallisBeta(NorP, NorPexp = NULL, q = 1, \dots)
 bcTsallisBeta(Ns, Nexp = NULL, q, Correction = "Best", CheckArguments = TRUE)
-\method{TsallisBeta}{ProbaVector}(NorP, NorPexp = NULL, q = 1, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL)
-\method{TsallisBeta}{AbdVector}(NorP, NorPexp = NULL, q = 1, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL)
-\method{TsallisBeta}{integer}(NorP, NorPexp = NULL, q = 1, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL)
-\method{TsallisBeta}{numeric}(NorP, NorPexp = NULL, q = 1, Correction = "Best", CheckArguments = TRUE, 
-  Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
+\method{TsallisBeta}{ProbaVector}(NorP, NorPexp = NULL, q = 1, \dots, 
+  CheckArguments = TRUE, Ps = NULL, Pexp = NULL)
+\method{TsallisBeta}{AbdVector}(NorP, NorPexp = NULL, q = 1, Correction = "Best", \dots, 
+  CheckArguments = TRUE, Ns = NULL, Nexp = NULL)
+\method{TsallisBeta}{integer}(NorP, NorPexp = NULL, q = 1, Correction = "Best", \dots, 
+  CheckArguments = TRUE, Ns = NULL, Nexp = NULL)
+\method{TsallisBeta}{numeric}(NorP, NorPexp = NULL, q = 1, Correction = "Best", \dots, 
+  CheckArguments = TRUE, Ps = NULL, Ns = NULL, Pexp = NULL, Nexp = NULL) 
 }
 \arguments{
   \item{Ps}{
@@ -48,6 +47,9 @@ bcTsallisBeta(Ns, Nexp = NULL, q, Correction = "Best", CheckArguments = TRUE)
   }
   \item{Correction}{
     A string containing one of the possible corrections: currently, only \code{"ChaoShen"} or \code{"None"}. \code{"Best"} is the default value, it is equivalent to \code{"ChaoShen"}.
+  }
+  \item{\dots}{
+    Additional arguments. Unused.
   }
   \item{CheckArguments}{
     Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
