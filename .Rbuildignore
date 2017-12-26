@@ -8,3 +8,6 @@
 \.blg$
 \.bbl$
 ^\.travis\.yml$
+vignettes/figure/
+vignettes/Introduction_cache/
+vignettes/Introduction_files/
