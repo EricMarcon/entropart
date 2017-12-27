@@ -10,7 +10,7 @@ including phylogenetic and functional diversity.
   
 Estimation-bias corrections are available.
 
-# Details
+## Details
 
 In the entropart package, individuals of different *species* are counted in several *communities* which may (or not) 
 be agregated to define a *metacommunity*. 
@@ -31,9 +31,14 @@ See *PhyloEntropy*, *Rao* for examples of entropy and *PhyloDiversity* to calcul
 with the state-of-the-art estimation-bias correction. 
 Similarity-based diversity is calculated with *Dqz*, based on a similarity matrix.
 
-A full documentation is available in the vignette. 
-Type: *vignette("entropart")*. 
-A quick introuction is in *vignette("Introduction", "entropart")*.
+# Vignettes
+
+A full documentation is available in the main [vignette](https://EricMarcon.github.io/entropart/entropart.pdf). 
+In R, type: `vignette("entropart")`. 
+
+A quick [introduction](https://EricMarcon.github.io/entropart/Introduction.html) is in `vignette("Introduction", "entropart")`.
+
+The way [phylogenies](https://EricMarcon.github.io/entropart/Phylogenies.html) are handled in the package is detailed in `vignette("Phylogenies", "entropart")`.
 
 ## Reference
 
