@@ -78,9 +78,9 @@ function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", Jac
     spD <- spD/sum(spD)
   } else {
     # Integer abundances are required
+    if (!is.IntValues(spD)) warning("Integer abundance values are required to estimate community probabilities. Abundances have been rounded.")
     NsInt <- round(spD)
-    if (any(abs(NsInt-spD) > sum(spD)*.Machine$double.eps)) warning("Integer abundance values are required to estimate community probabilities. Abundances have been rounded.")
-    
+
     # Eliminate 0 and calculate elementary statistics
     Ns <- NsInt[NsInt > 0]
     S <- length(Ns)
@@ -338,4 +338,13 @@ function(x, ..., Distribution = NULL,
     warning("The distribution to fit has not been recognized")
     return(NA)
   }
+}
+
+
+is.IntValues <-
+function (Ns)
+{
+  NsInt <- round(Ns)
+  # Return TRUE if no value in Ns has been modified by rounding
+  return(!(any(abs(NsInt-Ns) > sum(Ns)*.Machine$double.eps)))
 }
