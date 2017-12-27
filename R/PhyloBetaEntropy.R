@@ -11,13 +11,28 @@ function(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, ..., CheckArgument
   if (CheckArguments)
     CheckentropartArguments()
   
+  if (missing(NorP)){
+    if (!missing(Ps)) {
+      NorP <- Ps
+    } else {
+      stop("An argument NorP or Ps must be provided.")
+    }
+  }
+  if (missing(NorPexp)){
+    if (!missing(Pexp)) {
+      NorPexp <- Pexp
+    } else {
+      stop("An argument NorPexp or Pexp must be provided.")
+    }
+  }
+  
   # Prepare NorP
   PandPexp <- matrix(c(NorP, NorPexp), nrow = length(NorP), ncol = 2, dimnames = list(names(NorP), c("Ps", "Pexp")))
   # Calculate the PhyloValue. Intermediate function is necessary to separate P and Pexp before calling TsallisBeta.ProbaVector
   Entropy <- PhyloApply(Tree, function(PandPexp, q, CheckArguments) TsallisBeta(PandPexp[, "Ps"], PandPexp[, "Pexp"], q, CheckArguments), PandPexp, Normalize, q=q, CheckArguments=FALSE)
   # Complete it
   Entropy$Function <- "PhyloBetaEntropy" 
-  Entropy$Distribution <- c(ArgumentOriginalName(Ps), "compared to", ArgumentOriginalName(Pexp))
+  Entropy$Distribution <- c(ArgumentOriginalName(NorP), "compared to", ArgumentOriginalName(NorP))
   Entropy$Tree <- ArgumentOriginalName(Tree)
   Entropy$Type <- "beta"
   Entropy$Order <- q
@@ -31,6 +46,20 @@ function(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, ..., CheckArgument
 PhyloBetaEntropy.AbdVector <-
 function(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL, Nexp = NULL) 
 {
+  if (missing(NorP)){
+    if (!missing(Ns)) {
+      NorP <- Ns
+    } else {
+      stop("An argument NorP or Ns must be provided.")
+    }
+  }
+  if (missing(NorPexp)){
+    if (!missing(Nexp)) {
+      NorPexp <- Nexp
+    } else {
+      stop("An argument NorPexp or Nexp must be provided.")
+    }
+  }
   return(bcPhyloBetaEntropy(Ns=NorP, Nexp=NorPexp, q=q, Tree=Tree, Normalize=Normalize, Correction=Correction, CheckArguments=CheckArguments))
 }
 
