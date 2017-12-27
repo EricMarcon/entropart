@@ -1,6 +1,7 @@
-language: r
+language: R
 sudo: false
 cache: packages
+
 r_packages:
  - devtools
  - ade4
@@ -12,7 +13,6 @@ r_packages:
  - knitr
  - rmarkdown
  - SPECIES
+
 bioc_packages:
  - BiocStyle
-r_build_args: --no-build-vignettes
-r_check_args: --no-build-vignettes
