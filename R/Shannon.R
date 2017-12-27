@@ -108,6 +108,12 @@ function(Ns, Correction = "Best", CheckArguments = TRUE)
   # No correction
   if (Correction == "None") {
     return (Shannon.ProbaVector(Ns/sum(Ns), CheckArguments=FALSE))
+  } else {
+    if (!is.IntValues(Ns)) {
+      warning("Correction can't be applied to non-integer values.")
+      Correction <- "None"
+      return (Shannon.ProbaVector(Ns/sum(Ns), CheckArguments=FALSE))
+    }
   }
   
   
@@ -180,7 +186,7 @@ function(Ns, Correction = "Best", CheckArguments = TRUE)
     if (is.na(Singletons)) Singletons <- 0
     Doubletons <- DistN["2"]
     if (is.na(Doubletons)) Doubletons <- 0
-    # Calculate A
+    # Calculate A (Chao & Jost, 2015, eq. 6b)
     if (Doubletons) {
       A <- 2*Doubletons/((N-1)*Singletons+2*Doubletons)
     } else {
@@ -190,7 +196,9 @@ function(Ns, Correction = "Best", CheckArguments = TRUE)
         A <- 1
       }
     }
+    # Chao, Wang & Jost 2013, eq. 7. Equals EntropyEstimation::Entropy.z(Ns).
     ChaoWangJost <- sum(Ns/N*(digamma(N)-digamma(Ns)))
+    # Add Chao-Jost correction to that of Zhang-Grabchak
     if (A != 1) {
       Part2 <- vapply(1:(N-1), function(r) 1/r*(1-A)^r, 0) 
       ChaoWangJost <- as.numeric(ChaoWangJost + Singletons/N*(1-A)^(1-N)*(-log(A)-sum(Part2)))
