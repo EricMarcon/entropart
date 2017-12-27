@@ -121,19 +121,19 @@ function(Ns, q = 1, Correction = "Best", CheckArguments = TRUE)
   
   
   # Common code for ZhangGrabchak. Useless if EntropyEstimation is used.
-  # if (Correction == "ZhangGrabchak" | Correction == "ChaoWangJost") {
-  #   Ps <- Ns/N
-  #   V <- 1:(N-1)
-  #   # p_V_Ns is an array, containing (1 - (n_s-1)/(n-j)) for each species (lines) and all j from 1 to n-1
-  #   p_V_Ns <- outer(Ns, V, function(Ns, j) 1- (Ns-1)/(N-j))
-  #   # Useful values are products from j=1 to v, so prepare cumulative products
-  #   p_V_Ns <- t(apply(p_V_Ns, 1, cumprod))
-  #   # Sum of products weighted by w_v
-  #   S_v <- function(s) {
-  #     Usedv <- 1:(N-Ns[s])
-  #     return(sum(w_v[Usedv]*p_V_Ns[s, Usedv]))
-  #   }
-  # }
+  if (Correction == "ZhangGrabchak" | Correction == "ChaoWangJost") {
+    Ps <- Ns/N
+    V <- 1:(N-1)
+    # p_V_Ns is an array, containing (1 - (n_s-1)/(n-j)) for each species (lines) and all j from 1 to n-1
+    p_V_Ns <- outer(Ns, V, function(Ns, j) 1- (Ns-1)/(N-j))
+    # Useful values are products from j=1 to v, so prepare cumulative products
+    p_V_Ns <- t(apply(p_V_Ns, 1, cumprod))
+    # Sum of products weighted by w_v
+    S_v <- function(s) {
+      Usedv <- 1:(N-Ns[s])
+      return(sum(w_v[Usedv]*p_V_Ns[s, Usedv]))
+    }
+  }
   
   # Shannon
   if (q == 1) {
@@ -146,9 +146,10 @@ function(Ns, q = 1, Correction = "Best", CheckArguments = TRUE)
     } else {
       if (Correction == "ZhangGrabchak") {
         # Weights. Useless if EntropyEstimation is used.
-        # w_v <- 1/V
-        # entropy <- sum(Ps*vapply(1:length(Ns), S_v, 0))
-        entropy <- EntropyEstimation::Entropy.z(Ns)
+        w_v <- 1/V
+        entropy <- sum(Ps*vapply(1:length(Ns), S_v, 0))
+        # Use EntropyEstimation instead
+        # entropy <- EntropyEstimation::Entropy.z(Ns)
         names(entropy) <- Correction
         return (entropy)
       } else {
@@ -160,11 +161,12 @@ function(Ns, q = 1, Correction = "Best", CheckArguments = TRUE)
   # Not Shannon
   if (Correction == "ZhangGrabchak" | Correction == "ChaoWangJost") {
     # Weights. Useless here if EntropyEstimation is used, but weights are necessary for ChaoWangJost
-    # i <- 1:N
-    # w_vi <- (i-q)/i
-    # w_v <- cumprod(w_vi)
-    # ZhangGrabchak <- sum(Ps*vapply(1:length(Ns), S_v, 0))/(1-q)
-    if (q==0) ZhangGrabchak <- length(Ns)-1 else ZhangGrabchak <- EntropyEstimation::Tsallis.z(Ns, q)
+    i <- 1:N
+    w_vi <- (i-q)/i
+    w_v <- cumprod(w_vi)
+    ZhangGrabchak <- sum(Ps*vapply(1:length(Ns), S_v, 0))/(1-q)
+    # Use EntropyEstimation instead
+    # if (q==0) ZhangGrabchak <- length(Ns)-1 else ZhangGrabchak <- EntropyEstimation::Tsallis.z(Ns, q)
     # ZhangGrabchak stops here, but ChaoWangJost adds an estimator of the bias
     if (Correction == "ZhangGrabchak") {
       names(ZhangGrabchak) <- Correction
@@ -176,7 +178,7 @@ function(Ns, q = 1, Correction = "Best", CheckArguments = TRUE)
     if (is.na(Singletons)) Singletons <- 0
     Doubletons <- DistN["2"]
     if (is.na(Doubletons)) Doubletons <- 0
-    # Calculate A
+    # Calculate A (Chao & Jost, 2015, eq. 6b)
     if (Doubletons) {
       A <- 2*Doubletons/((N-1)*Singletons+2*Doubletons)
     } else {
@@ -187,10 +189,10 @@ function(Ns, q = 1, Correction = "Best", CheckArguments = TRUE)
       }
     }
     # Eq 7d in Chao & Jost (2015). Terms for r in 1:(N-1) equal (-1)^r * w_v[r] * (A-1)^r. w_v is already available from ZhangGrabchak
-    # Weights: here only if EntropyEstimation is used.
     i <- 1:N
-    w_vi <- (i-q)/i
-    w_v <- cumprod(w_vi)
+    # Weights: here only if EntropyEstimation is used. Else, they have been calculated above.
+    # w_vi <- (i-q)/i
+    # w_v <- cumprod(w_vi)
     if (A == 1) {
       # The general formula of Eq 7d has a 0/0 part that must be forced to 0
       ChaoJostBias <- 0
