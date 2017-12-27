@@ -23,10 +23,10 @@ CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", \d
 }
 \arguments{
   \item{FUN}{
-    The function to be applied to each value of \eqn{q}. 
+    The function to be applied to each value of \eqn{q.seq}. Any function accepting a numeric vector (or a two-column matrix) and a number as first two arguments and an argument named \code{CheckArguments} is acceptable (other arguments of the functions are passed by \code{\dots}). See *Details* for useful entropy and diversity functions and *Examples* for an ad-hoc one.
   }
   \item{NorP}{
-    A numeric vector or a two-column matrix. Contains either abundances or probabilities. Two-column matrices should contain the observed abundances (or probabilities) in the first column and the expected ones in the second column, to allow using beta diversity functions.
+    A numeric vector. Contains either abundances or probabilities.
   }
   \item{q.seq}{
     A numeric vector: the sequence of diversity orders to address. Default is from 0 to 2.
@@ -87,7 +87,7 @@ CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", \d
   }
 }
 \details{
-  The function \code{CommunityProfile} is used to calculate diversity or entropy profiles based on community functions such as \code{\link{Tsallis}} or \code{\link{ChaoPD}}. The first two arguments of the function must be a probability or abundance vector or a two-column matrix (for beta diversity functions) and a number (\eqn{q}).
+  The function \code{CommunityProfile} is used to calculate diversity or entropy profiles based on community functions such as \code{\link{Tsallis}} or \code{\link{ChaoPD}}. The first two arguments of the function must be a probability or abundance vector and a number (\eqn{q}).
   Additional arguments cannot be checked. Unexpected results may be returned if \code{FUN} is not used properly.
   
   If \code{NumberOfSimulations} is greater than 0, a bootstrap confidence interval is produced by simulating communities with \code{\link{rCommunity}} and calculating their profiles. The size of those communities may be that of the actual community or specified by \code{size}.
@@ -117,4 +117,11 @@ CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", \d
   # Complete the plot, and add the legend
   CEnvelope(Profile, main="Paracou Plots Diversity")
   legend("topright", c("Bias Corrected", "Biased"), lty=c(1,3), inset=0.01)
+  
+  # Advanced use with beta-diversity functions :
+  # Profile of the beta entropy of the first community of Paracou618.
+  # Observed and expected probabilities are bound into a 2-column matrix
+  # An intermediate function is necessary to separate them before calling TsallisBeta
+  # The CheckArguments is mandatory but does not need to be set: CommunityProfile() sets it to FALSE
+  CommunityProfile(function(PandPexp, q, CheckArguments) {TsallisBeta(PandPexp[, 1], PandPexp[, 2], q)}, NorP=cbind(Paracou618.MC$Psi[, 1], Paracou618.MC$Ps), q.seq=seq(0, 2, 0.2))
 }
