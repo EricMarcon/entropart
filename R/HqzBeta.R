@@ -11,38 +11,51 @@ function(NorP, NorPexp = NULL, q = 1, Z = diag(length(NorP)), ..., CheckArgument
   if (CheckArguments)
     CheckentropartArguments()
   
-  Ps <- NorP
-  Pexp <- NorPexp
+  if (missing(NorP)){
+    if (!missing(Ps)) {
+      NorP <- Ps
+    } else {
+      stop("An argument NorP or Ps must be provided.")
+    }
+  }
+  if (missing(NorPexp)){
+    if (!missing(Pexp)) {
+      NorPexp <- Pexp
+    } else {
+      stop("An argument NorPexp or Pexp must be provided.")
+    }
+  }
   
-  if (length(Ps) != length(Pexp)) {
-    stop("Ps and Pexp should have the same length.")
+  
+  if (length(NorP) != length(NorPexp)) {
+    stop("NorP and NorPexp should have the same length.")
   }  
   # If names are missing, the probability vector and the similarity vector are assumed to be in the same order
-  if (is.null(colnames(Z)) | is.null(names(Ps))) {
-    if (ncol(as.matrix(Z)) != length(Ps))  # as.matrix(Z) in case it has been reduced to a single value because of zeros
+  if (is.null(colnames(Z)) | is.null(names(NorP))) {
+    if (ncol(as.matrix(Z)) != length(NorP))  # as.matrix(Z) in case it has been reduced to a single value because of zeros
       # The matrix is square (this has been checked)
       stop("The matrix dimension must equal the probability vector length.")    
-  } else { # Matrix and Ps are be named.
-    # Reorder Ps and Pexp
-    if (!setequal(names(Ps), names(Pexp)))
-      stop("Ps and Pexp should have the names.")
-    Pexp <- Pexp[names(Ps)]
-    if (length(setdiff(names(Ps), colnames(Z))) != 0)
+  } else { # Matrix and NorP are named
+    # Reorder NorP and NorPexp
+    if (!setequal(names(NorP), names(NorPexp)))
+      stop("NorP and NorPexp should have the same names.")
+    NorPexp <- NorPexp[names(NorP)]
+    if (length(setdiff(names(NorP), colnames(Z))) != 0)
       # The matrix is square (this has been checked)
       stop("Some species are missing in the similarity matrix.")    
-    Z <- as.matrix(Z)[names(Ps), names(Ps)]
+    Z <- as.matrix(Z)[names(NorP), names(NorP)]
   }
   
   # Calculate (Zp)
-  Zps <- Z %*% Ps
-  Zpexp <- Z %*% Pexp
-  # Eliminate data when Ps equal to zero because 0lnq(0)=0
-  Zps <- Zps[Ps != 0]
-  Zpexp <- Zpexp[Ps != 0]
-  Pexp <- Pexp[Ps != 0]
-  Ps <- Ps[Ps != 0]
+  Zps <- Z %*% NorP
+  Zpexp <- Z %*% NorPexp
+  # Eliminate data when NorP is equal to zero because 0lnq(0)=0
+  Zps <- ZPs[NorP != 0]
+  Zpexp <- Zpexp[NorP != 0]
+  NorPexp <- NorPexp[NorP != 0]
+  NorP <- NorP[NorP != 0]
   
-  dataBeta <- Ps * (lnq(1/Zpexp, q)-lnq(1/Zps, q))
+  dataBeta <- NorP * (lnq(1/Zpexp, q)-lnq(1/Zps, q))
   entropy <- sum(dataBeta)
   names(entropy) <- "None"
   return (entropy)
@@ -52,6 +65,20 @@ function(NorP, NorPexp = NULL, q = 1, Z = diag(length(NorP)), ..., CheckArgument
 HqzBeta.AbdVector <-
 function(NorP, NorPexp = NULL, q = 1, Z = diag(length(NorP)), Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL, Nexp = NULL) 
 {
+  if (missing(NorP)){
+    if (!missing(Ns)) {
+      NorP <- Ns
+    } else {
+      stop("An argument NorP or Ns must be provided.")
+    }
+  }
+  if (missing(NorPexp)){
+    if (!missing(Nexp)) {
+      NorPexp <- Nexp
+    } else {
+      stop("An argument NorPexp or Nexp must be provided.")
+    }
+  }
   return (bcHqzBeta(Ns=NorP, Nexp=NorPexp , q=q, Z=Z, Correction=Correction, CheckArguments=CheckArguments))
 }
 
