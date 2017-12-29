@@ -108,7 +108,7 @@ function(NorP, q = 1, Z = diag(length(NorP)), Correction = "Best", ..., CheckArg
 
 
 bcHqz <- 
-function (Ns, q = 1, Z = diag(length(Ns)), Correction = "Best", CheckArguments = TRUE)
+function (Ns, q = 1, Z = diag(length(Ns)), Correction = "Best", SampleCoverage = NULL, CheckArguments = TRUE)
 {
   if (CheckArguments)
     CheckentropartArguments()
@@ -129,7 +129,6 @@ function (Ns, q = 1, Z = diag(length(Ns)), Correction = "Best", CheckArguments =
     Z <- as.matrix(Z)[names(Ns), names(Ns)]
   }
   
-  N <- sum(Ns)
   # Exit if Ns contains no or a single species
   if (length(Ns) < 2) {
   	if (length(Ns) == 0) {
@@ -141,20 +140,34 @@ function (Ns, q = 1, Z = diag(length(Ns)), Correction = "Best", CheckArguments =
   	  names(entropy) <- "Single Species"
   	  return (entropy)
   	}
-  } else {
-    # Probabilities instead of abundances
-    if (N < 2) {
-      warning("Bias correction attempted with probability data. Correction forced to 'None'")
-      Correction <- "None"
-    }
   }
-  Ps <- Ns/N
 
+  N <- sum(Ns)
   
   # No correction
   if (Correction == "None") {
-    return (Hqz.ProbaVector(Ps, q, Z, CheckArguments = FALSE))
+    return (Hqz.ProbaVector(Ns/N, q, Z, CheckArguments = FALSE))
+  } else {
+    if (!is.IntValues(Ns) & (is.null(SampleCoverage)) & Correction == "ChaoShen") {
+      # No correction if Ns contains non-integer values, except if SampleCoverage is provided (for MC gamma entropy)
+      warning("Correction can't be applied to non-integer values.")
+      # Correction <- "None"
+      return (Hqz.ProbaVector(Ns/N, q, Z, CheckArguments = FALSE))
+    }
   }
+
+  # Meta-Community estimation (Ns may not be integers, SampleCoverage and n are given)
+  # SampleCoverage is between 0 and 1 and n is a positive integer (by CheckArguments)
+  if (!is.null(SampleCoverage)) {
+    # Use SampleCoverage and force correction to ChaoShen
+    C <- SampleCoverage
+    Correction <- "ChaoShen"
+  } else {
+    # Calculate sample coverage
+    C <- Coverage(Ns)
+  }
+  # Tune probabilities
+  CPs <- C*Ns /N
   
   if (Correction == "MarconZhang" | Correction == "Best") {
     V <- 1:(N-1)
@@ -169,9 +182,6 @@ function (Ns, q = 1, Z = diag(length(Ns)), Correction = "Best", CheckArguments =
     }
   }
   
-  # Sample coverage
-  C <- Coverage(Ns)
-  CPs <- C*Ps
   # Calculate the average similarity
   Zcopy <- Z
   diag(Zcopy) <- NA
@@ -197,7 +207,7 @@ function (Ns, q = 1, Z = diag(length(Ns)), Correction = "Best", CheckArguments =
     i <- 1:N
     w_vi <- (1-AverageZ)*(i-q)/i
     w_v <- cumprod(w_vi)
-    Taylor <- 1 + sum(Ps*vapply(1:length(Ns), S_v, 0))
+    Taylor <- 1 + sum(Ns/N*vapply(1:length(Ns), S_v, 0))
     FirstTerms <- CPs*(AverageZ+(1-AverageZ)*CPs)^(q-1)
     U <- Taylor-sum(FirstTerms)
     MZ <- ((K+U-1)/(1-q))
@@ -207,7 +217,7 @@ function (Ns, q = 1, Z = diag(length(Ns)), Correction = "Best", CheckArguments =
     L <- -sum(CPs*log(Zp))
     # Weights
     w_v <- ((1-AverageZ)^V)/V
-    Taylor <- sum(Ps*vapply(1:length(Ns), S_v, 0))
+    Taylor <- sum(Ns/N*vapply(1:length(Ns), S_v, 0))
     FirstTerms <- -CPs*log(AverageZ+(1-AverageZ)*CPs)
     X <- Taylor-sum(FirstTerms)
     # MZ <- -sum(CPs*log(Zp)) -(1-C)*log(AverageZ)

@@ -16,7 +16,7 @@
 \usage{
 PhyloEntropy(NorP, q = 1, Tree, Normalize = TRUE, \dots)
 bcPhyloEntropy(Ns, q = 1, Tree, Normalize = TRUE, Correction = "Best", 
-  CheckArguments = TRUE)
+  SampleCoverage = NULL, CheckArguments = TRUE)
 \method{PhyloEntropy}{ProbaVector}(NorP, q = 1, Tree, Normalize = TRUE, 
   \dots, CheckArguments = TRUE, Ps = NULL)
 \method{PhyloEntropy}{AbdVector}(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", 
@@ -51,6 +51,9 @@ is.PhyloEntropy(x)
   \item{Correction}{
     A string containing one of the possible corrections: \code{"None"} (no correction), \code{"ChaoShen"}, \code{"Grassberger"}, \code{"Holste"}, \code{"Bonachela"} or \code{"Best"}, the default value.
   }
+  \item{SampleCoverage}{
+    The sample coverage of \code{Ns} calculated elsewhere. Used to calculate the gamma diversity of meta-communities, see details. 
+  }
   \item{CheckArguments}{
     Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }
@@ -74,6 +77,8 @@ is.PhyloEntropy(x)
   Bias correction requires the number of individuals to estimate sample \code{\link{Coverage}}. Use \code{bcPhyloEntropy} and choose the \code{Correction}.
 
   The functions are designed to be used as simply as possible. \code{PhyloEntropy} is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function \code{bcPhyloEntropy} is called. Explicit calls to \code{bcPhyloEntropy} (with bias correction) or to \code{PhyloEntropy.ProbaVector} (without correction) are possible to avoid ambiguity. The \code{.integer} and \code{.numeric} methods accept \code{Ps} or \code{Ns} arguments instead of \code{NorP} for backward compatibility.
+
+  The size of a metacommunity (see \code{\link{MetaCommunity}}) is unknown so it has to be set according to a rule which does not ensure that its abundances are integer values. Then, classical bias-correction methods do not apply. Providing the \code{SampleCoverage} argument allows applying the \code{"ChaoShen"} and \code{"Grassberger"} corrections to estimate quite well the entropy. \code{\link{DivPart}} and \code{\link{GammaEntropy}} functions use this tweak.
 }
 \note{
   The tree must contain all species of the probability vector. If it contains extra species, computation time will just be increased.

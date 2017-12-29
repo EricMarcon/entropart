@@ -50,7 +50,7 @@ function(NorP, NorPexp = NULL, q = 1, Z = diag(length(NorP)), ..., CheckArgument
   Zps <- Z %*% NorP
   Zpexp <- Z %*% NorPexp
   # Eliminate data when NorP is equal to zero because 0lnq(0)=0
-  Zps <- ZPs[NorP != 0]
+  Zps <- Zps[NorP != 0]
   Zpexp <- Zpexp[NorP != 0]
   NorPexp <- NorPexp[NorP != 0]
   NorP <- NorP[NorP != 0]

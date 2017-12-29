@@ -82,9 +82,9 @@ function() {
   if (!is.na(names(Args["Alpha"]))) {
     Alpha <- eval(expression(Alpha), parent.frame())
     if (!is.numeric(Alpha))
-      ErrorMessage("Alpha must be a number.", Alpha)    
+      ErrorMessage("Alpha must be a number.", Alpha)
     if (Alpha <= 0 | Alpha >= 1)
-      ErrorMessage("Alpha must be strictly between 0 and 1.", Alpha)    
+      ErrorMessage("Alpha must be strictly between 0 and 1.", Alpha)
   }
 
   # BootstrapMethod 
@@ -128,12 +128,14 @@ function() {
   # n
   if (!is.na(names(Args["n"]))) {
     n <- eval(expression(n), parent.frame())
-    if (!is.numeric(n) | length(n)!=1)
-      ErrorMessage("n must be a number.", n)
-    if (any(n < 1))
-      ErrorMessage("n must be at least 1.", n)
-    if (as.integer(n) != n)
-      ErrorMessage("n must be an integer.", n)
+    if (!is.null(n)) {
+      if (!is.numeric(n) | length(n)!=1)
+        ErrorMessage("n must be a number.", n)
+      if (any(n < 1))
+        ErrorMessage("n must be at least 1.", n)
+      if (as.integer(n) != n)
+        ErrorMessage("n must be an integer.", n)
+    }
   }
   
   # Normalize 
@@ -341,6 +343,17 @@ function() {
       ErrorMessage("S must be at least 1.", S)
     if (as.integer(S) != S)
       ErrorMessage("S must be an integer.", S)
+  }
+  
+  # SampleCoverage 
+  if (!is.na(names(Args["SampleCoverage"]))) {
+    SampleCoverage <- eval(expression(SampleCoverage), parent.frame())
+    if (!is.null(SampleCoverage)) {
+      if (!is.numeric(SampleCoverage))
+        ErrorMessage("SampleCoverage must be a number.", SampleCoverage)
+      if (SampleCoverage <= 0 | SampleCoverage >= 1)
+        ErrorMessage("SampleCoverage must be strictly between 0 and 1.", SampleCoverage)
+    }
   }
   
   # SimulatedValues
