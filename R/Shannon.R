@@ -8,6 +8,9 @@ function(NorP, ...)
 Shannon.ProbaVector <-
 function(NorP, ..., CheckArguments = TRUE, Ps = NULL) 
 {
+  if (CheckArguments)
+    CheckentropartArguments()
+
   if (missing(NorP)){
     if (!missing(Ps)) {
       NorP <- Ps
@@ -15,8 +18,6 @@ function(NorP, ..., CheckArguments = TRUE, Ps = NULL)
       stop("An argument NorP or Ps must be provided.")
     }
   }
-  if (CheckArguments)
-    CheckentropartArguments()
   
   return (Tsallis.ProbaVector(NorP, q=1, CheckArguments=FALSE))
 }
@@ -85,7 +86,7 @@ function(Ns, Correction = "Best", CheckArguments = TRUE)
   
   # Eliminate 0
   Ns <- Ns[Ns > 0]
-  N <- sum(Ns)
+
   # Exit if Ns contains no or a single species
   if (length(Ns) < 2) {
   	if (length(Ns) == 0) {
@@ -97,25 +98,20 @@ function(Ns, Correction = "Best", CheckArguments = TRUE)
   	  names(entropy) <- "Single Species"
   	  return (entropy)
   	}
-  } else {
-    # Probabilities instead of abundances
-    if (N < 2) {
-      warning("Bias correction attempted with probability data. Correction forced to 'None'")
-      Correction <- "None"
-    }
   }
-  
+
+  # Community estimation
+  N <- sum(Ns)
   # No correction
   if (Correction == "None") {
     return (Shannon.ProbaVector(Ns/sum(Ns), CheckArguments=FALSE))
   } else {
     if (!is.IntValues(Ns)) {
       warning("Correction can't be applied to non-integer values.")
-      Correction <- "None"
+      # Correction <- "None"
       return (Shannon.ProbaVector(Ns/sum(Ns), CheckArguments=FALSE))
     }
   }
-  
   
   if (Correction == "Miller") {
     return (Shannon(Ns/sum(Ns), CheckArguments=FALSE) + (length(Ns)-1)/2/N)  

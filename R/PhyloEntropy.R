@@ -87,13 +87,13 @@ function(NorP, q = 1, Tree, Normalize = TRUE, Correction = "Best", ..., CheckArg
 
 
 bcPhyloEntropy <-
-function(Ns, q = 1, Tree, Normalize = TRUE, Correction = "Best", CheckArguments = TRUE) 
+function(Ns, q = 1, Tree, Normalize = TRUE, Correction = "Best", SampleCoverage = NULL, CheckArguments = TRUE) 
 {
   if (CheckArguments)
     CheckentropartArguments()
   
   # Calculate the PhyloValue
-  Entropy <- PhyloApply(Tree, bcTsallis, Ns, Normalize, q=q, Correction=Correction, CheckArguments=FALSE)
+  Entropy <- PhyloApply(Tree, bcTsallis, Ns, Normalize, q=q, Correction=Correction, SampleCoverage=SampleCoverage, CheckArguments=FALSE)
   # Complete it
   Entropy$Function <- "PhyloEntropy" 
   Entropy$Distribution <- ArgumentOriginalName(Ns)

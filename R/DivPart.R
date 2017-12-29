@@ -9,19 +9,21 @@ function(q = 1, MC, Biased = TRUE, Correction = "Best", Tree = NULL, Normalize =
   ppTree <- Preprocess.Tree(Tree)
   if (!is.null(ppTree$Height) & !Normalize) {
     Height <- ppTree$Height
-  }  
+  }
+  
+  # Correction methods
+  if (Biased) Correction = "None"
+  if (!is.IntValues(MC$Ns)) {
+    # Only ChaoShen, Marcon (HCDT only, not Similarity-based) or None are acceptable if MC$Ns are not integers.
+    if (Correction == "Best") Correction <- "ChaoShen"
+  }
 
   # Alpha and beta entropy of communities
-  if (Biased) {
-    AlphaEntropy <- AlphaEntropy(MC, q, "None", ppTree, Normalize, Z, CheckArguments=FALSE)
-    GammaEntropy <- GammaEntropy(MC, q, "None", ppTree, Normalize, Z, CheckArguments=FALSE)
-    BetaEntropy  <- BetaEntropy (MC, q, "None", ppTree, Normalize, Z, CheckArguments=FALSE)
-  } else {
-    AlphaEntropy <- AlphaEntropy(MC, q, Correction, ppTree, Normalize, Z, CheckArguments=FALSE)
-    GammaEntropy <- GammaEntropy(MC, q, Correction, ppTree, Normalize, Z, CheckArguments=FALSE)
-    # beta is calculated as gamma-alpha to ensure continuity. Community beta entropy is not calculated.
-    BetaEntropy  <- list(Communities = NA, Total = GammaEntropy - AlphaEntropy$Total)      
-  }
+  AlphaEntropy <- AlphaEntropy(MC, q, Correction, ppTree, Normalize, Z, CheckArguments=FALSE)
+  GammaEntropy <- GammaEntropy(MC, q, Correction, ppTree, Normalize, Z, CheckArguments=FALSE)
+  # beta is calculated as gamma-alpha to ensure continuity. Community beta entropy is not calculated.
+  BetaEntropy  <- list(Communities = NA, Total = GammaEntropy - AlphaEntropy$Total)      
+
   # Total Diversities
   AlphaDiversity <- expq(AlphaEntropy$Total / Height, q) * Height
   GammaDiversity <- expq(GammaEntropy / Height, q) * Height

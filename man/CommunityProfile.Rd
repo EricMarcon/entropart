@@ -123,5 +123,7 @@ CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", \d
   # Observed and expected probabilities are bound into a 2-column matrix
   # An intermediate function is necessary to separate them before calling TsallisBeta
   # The CheckArguments is mandatory but does not need to be set: CommunityProfile() sets it to FALSE
-  CommunityProfile(function(PandPexp, q, CheckArguments) {TsallisBeta(PandPexp[, 1], PandPexp[, 2], q)}, NorP=cbind(Paracou618.MC$Psi[, 1], Paracou618.MC$Ps), q.seq=seq(0, 2, 0.2))
+  CommunityProfile(function(PandPexp, q, CheckArguments) 
+      {TsallisBeta(PandPexp[, 1], PandPexp[, 2], q)}, 
+      NorP=cbind(Paracou618.MC$Psi[, 1], Paracou618.MC$Ps), q.seq=seq(0, 2, 0.2))
 }

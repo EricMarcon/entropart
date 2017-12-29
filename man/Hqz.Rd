@@ -13,7 +13,8 @@
 }
 \usage{
 Hqz(NorP, q = 1, Z = diag(length(NorP)),  \dots)
-bcHqz(Ns, q = 1, Z = diag(length(Ns)), Correction = "Best", CheckArguments = TRUE)
+bcHqz(Ns, q = 1, Z = diag(length(Ns)), Correction = "Best", SampleCoverage = NULL, 
+  CheckArguments = TRUE)
 \method{Hqz}{ProbaVector}(NorP, q = 1, Z = diag(length(NorP)), 
   \dots, CheckArguments = TRUE, Ps = NULL)
 \method{Hqz}{AbdVector}(NorP, q = 1, Z = diag(length(NorP)), Correction = "Best",
@@ -42,6 +43,9 @@ bcHqz(Ns, q = 1, Z = diag(length(Ns)), Correction = "Best", CheckArguments = TRU
   \item{Correction}{
     A string containing one of the possible corrections: \code{"None"} (no correction), \code{"ChaoShen"}, \code{"MarconZhang"} or \code{"Best"}, the default value. The \code{"MarconZhang"} correction assumes a similarity matrix.
   }
+  \item{SampleCoverage}{
+    The sample coverage of \code{Ns} calculated elsewhere. Used to calculate the gamma diversity of meta-communities, see details. 
+  }
   \item{\dots}{
     Additional arguments. Unused.
   }
@@ -61,6 +65,7 @@ bcHqz(Ns, q = 1, Z = diag(length(Ns)), Correction = "Best", CheckArguments = TRU
 
   The functions are designed to be used as simply as possible. \code{Hqz} is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function \code{bcHqz} is called. Explicit calls to \code{bcHqz} (with bias correction) or to \code{Hqz.ProbaVector} (without correction) are possible to avoid ambiguity. The \code{.integer} and \code{.numeric} methods accept \code{Ps} or \code{Ns} arguments instead of \code{NorP} for backward compatibility.
 
+  The size of a metacommunity (see \code{\link{MetaCommunity}}) is unknown so it has to be set according to a rule which does not ensure that its abundances are integer values. Then, classical bias-correction methods do not apply. Providing the \code{SampleCoverage} argument allows applying the \code{"ChaoShen"} correction to estimate quite well the entropy. \code{\link{DivPart}} and \code{\link{GammaEntropy}} functions use this tweak.
 }
 \value{
   A named number equal to the calculated entropy. The name is that of the bias correction used.
