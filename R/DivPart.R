@@ -15,20 +15,27 @@ function(q = 1, MC, Biased = TRUE, Correction = "Best", Tree = NULL, Normalize =
   if (Biased) Correction = "None"
   if (!is.IntValues(MC$Ns)) {
     # Only ChaoShen, Marcon (HCDT only, not Similarity-based) or None are acceptable if MC$Ns are not integers.
-    if (Correction == "Best") Correction <- "ChaoShen"
+    if (Correction == "Best") {
+      if (is.null(Z)) {
+        Correction <- "Marcon"
+      } else {
+        Correction <- "ChaoShen"
+      }
+    }
   }
 
   # Alpha and beta entropy of communities
-  AlphaEntropy <- AlphaEntropy(MC, q, Correction, ppTree, Normalize, Z, CheckArguments=FALSE)
-  GammaEntropy <- GammaEntropy(MC, q, Correction, ppTree, Normalize, Z, CheckArguments=FALSE)
+  GammaE <- GammaEntropy(MC, q, Correction, ppTree, Normalize, Z, CheckArguments=FALSE)
+  # Alpha entropy is estimated with the same correction as Gamma
+  AlphaE <- AlphaEntropy(MC, q, Correction=names(GammaE), ppTree, Normalize, Z, CheckArguments=FALSE)
   # beta is calculated as gamma-alpha to ensure continuity. Community beta entropy is not calculated.
-  BetaEntropy  <- list(Communities = NA, Total = GammaEntropy - AlphaEntropy$Total)      
+  BetaE  <- list(Communities = NA, Total = GammaE - AlphaE$Total)      
 
   # Total Diversities
-  AlphaDiversity <- expq(AlphaEntropy$Total / Height, q) * Height
-  GammaDiversity <- expq(GammaEntropy / Height, q) * Height
-  BetaDiversity  <- GammaDiversity / AlphaDiversity
-    # equals: expq(BetaEntropy$Total / Height / (1 - (q-1)*AlphaEntropy$Total/Height), q) 
+  AlphaD <- expq(AlphaE$Total / Height, q) * Height
+  GammaD <- expq(GammaE / Height, q) * Height
+  BetaD  <- GammaD / AlphaD
+    # equals: expq(BetaE$Total / Height / (1 - (q-1)*AlphaE$Total/Height), q) 
   
   DivPart <- (list(
     MetaCommunity = ArgumentOriginalName(MC),
@@ -36,15 +43,15 @@ function(q = 1, MC, Biased = TRUE, Correction = "Best", Tree = NULL, Normalize =
     Biased = Biased, 
     Correction = Correction,
     Normalized = Normalize,
-    TotalAlphaDiversity = AlphaDiversity, 
-    TotalBetaDiversity = BetaDiversity, 
-    GammaDiversity = GammaDiversity, 
-    CommunityAlphaDiversities = expq(AlphaEntropy$Communities / Height, q) * Height, 
-    TotalAlphaEntropy = AlphaEntropy$Total, 
-    TotalBetaEntropy = BetaEntropy$Total, 
-    GammaEntropy = GammaEntropy, 
-    CommunityAlphaEntropies = AlphaEntropy$Communities, 
-    CommunityBetaEntropies = BetaEntropy$Communities
+    TotalAlphaDiversity = AlphaD, 
+    TotalBetaDiversity = BetaD, 
+    GammaDiversity = GammaD, 
+    CommunityAlphaDiversities = expq(AlphaE$Communities / Height, q) * Height, 
+    TotalAlphaEntropy = AlphaE$Total, 
+    TotalBetaEntropy = BetaE$Total, 
+    GammaEntropy = GammaE, 
+    CommunityAlphaEntropies = AlphaE$Communities, 
+    CommunityBetaEntropies = BetaE$Communities
     ))
   if(!is.null(Tree))
     DivPart$Tree <- ArgumentOriginalName(Tree)

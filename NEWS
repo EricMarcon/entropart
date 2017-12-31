@@ -1,4 +1,4 @@
-  CHANGES IN entropart VERSION 1.4-8.9005
+  CHANGES IN entropart VERSION 1.4-8.9006
   ==================================
 
 IMPROVEMENTS
@@ -10,7 +10,7 @@ IMPROVEMENTS
 BUG CORRECTION
 
   o Very large metacommunities returned an integer overflow error.
-  o ZhangGrabchak estimator of entropy is calculated internally again (cancelling changes of v.1.4-5) rather thant by the C code of EntropyEstimation::Tsallis.z/Entropy.z. Slower but more reliable with highly diverse communities (no issue with Paracou example data, 200 species but some errors appeared in a 800-species community).
+  o ZhangGrabchak estimator of entropy is calculated internally again (cancelling changes of v.1.4-5) rather thant by the C code of EntropyEstimation::Tsallis.z/Entropy.z. Slower but more reliable with highly diverse communities (no issue with Paracou example data, 200 species, but some errors appeared in a 900-species community).
 
 
 
