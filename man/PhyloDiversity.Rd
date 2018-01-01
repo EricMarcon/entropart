@@ -30,38 +30,38 @@ is.PhyloDiversity(x)
 }
 \arguments{
   \item{Ps}{
-    A probability vector, summing to 1.
+  A probability vector, summing to 1.
   }
   \item{Ns}{
-    A numeric vector containing species abundances.
+  A numeric vector containing species abundances.
   }
   \item{NorP}{
-    A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities.
+  A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities.
   }
   \item{q}{
-    A number: the order of diversity. Default is 1.
+  A number: the order of diversity. Default is 1.
   }
   \item{Tree}{
-    An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
+  An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
   }
   \item{Normalize}{
-    If \code{TRUE} (default), the \code{Total} diversity is not affected by the height of the tree.\cr
-    If \code{FALSE}, it is proportional to the height of the tree.\cr
+  If \code{TRUE} (default), the \code{Total} diversity is not affected by the height of the tree.\cr
+  If \code{FALSE}, it is proportional to the height of the tree.\cr
   }
   \item{Correction}{
-    A string containing one of the possible corrections: \code{"None"} (no correction), \code{"ChaoShen"}, \code{"Grassberger"}, \code{"Holste"}, \code{"Bonachela"} or \code{"Best"}, the default value.
+  A string containing one of the possible corrections: \code{"None"} (no correction), \code{"ChaoShen"}, \code{"Grassberger"}, \code{"Holste"}, \code{"Bonachela"} or \code{"Best"}, the default value.
   }
   \item{CheckArguments}{
-    Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
+  Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }
   \item{x}{
-    An object to be tested or plotted
+  An object to be tested or plotted
   }
   \item{object}{
-    A \code{PhyloDiversity} object to be summarized.
+  A \code{PhyloDiversity} object to be summarized.
   }
   \item{\dots}{
-    Additional arguments to be passed to the generic methods.
+  Additional arguments to be passed to the generic methods.
   }
 }
 \details{
@@ -107,18 +107,18 @@ is.PhyloDiversity(x)
   \code{\link{PhyloEntropy}}, \code{\link{Diversity}}
 }
 \examples{
-  # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest
-  #      and their taxonomy)
-  data(Paracou618)
-  # Ps is the vector of probabilities
-  Ps <- as.ProbaVector(Paracou618.MC$Ps)
-  # Calculate the phylogenetic Shannon diversity of the plot
-  summary(PhyloDiversity(Ps, 1, Paracou618.Taxonomy) -> d)
-  plot(d)
-  
-  # Ns is the vector of abundances of the metacommunity
-  Ns <- as.AbdVector(Paracou618.MC$Ns)
-  # Calculate the phylogenetic Shannon diversity of the plot
-  summary(bcPhyloDiversity(Ns, 1, Paracou618.Taxonomy, Correction = "Best") -> d)
-  plot(d)
+# Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest
+#      and their taxonomy)
+data(Paracou618)
+# Ps is the vector of probabilities
+Ps <- as.ProbaVector(Paracou618.MC$Ps)
+# Calculate the phylogenetic Shannon diversity of the plot
+summary(PhyloDiversity(Ps, 1, Paracou618.Taxonomy) -> d)
+plot(d)
+
+# Ns is the vector of abundances of the metacommunity
+Ns <- as.AbdVector(Paracou618.MC$Ns)
+# Calculate the phylogenetic Shannon diversity of the plot
+summary(bcPhyloDiversity(Ns, 1, Paracou618.Taxonomy, Correction = "Best") -> d)
+plot(d)
 }

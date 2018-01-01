@@ -12,34 +12,34 @@ rCommunity(n, size = sum(NorP), NorP = 1, BootstrapMethod = "Chao2015", S = 300,
     CheckArguments = TRUE)}
 \arguments{
   \item{n}{
-    The number of communities to draw.
+  The number of communities to draw.
   }
   \item{size}{
-    The number of individuals to draw in each community.
+  The number of individuals to draw in each community.
   }
   \item{BootstrapMethod}{
-    The method used to obtain the probabilities to generate bootstrapped communities from observed abundances. If \code{"Marcon"}, the probabilities are simply the abundances divided by the total number of individuals (Marcon \emph{et al.}, 2012). If \code{"Chao2013"} or \code{"Chao2015"} (by default), a more sophisticated approach is used (see \code{\link{as.ProbaVector}}) following Chao \emph{et al.} (2013) or Chao \emph{et al.} (2015).
+  The method used to obtain the probabilities to generate bootstrapped communities from observed abundances. If \code{"Marcon"}, the probabilities are simply the abundances divided by the total number of individuals (Marcon \emph{et al.}, 2012). If \code{"Chao2013"} or \code{"Chao2015"} (by default), a more sophisticated approach is used (see \code{\link{as.ProbaVector}}) following Chao \emph{et al.} (2013) or Chao \emph{et al.} (2015).
   }
   \item{NorP}{
-    A numeric vector or a two-column matrix. Contains either abundances or probabilities. Two-column matrices should contain the observed abundances (or probabilities) in the first column and the expected ones in the second column, to allow using beta diversity functions.
+  A numeric vector or a two-column matrix. Contains either abundances or probabilities. Two-column matrices should contain the observed abundances (or probabilities) in the first column and the expected ones in the second column, to allow using beta diversity functions.
   }
   \item{S}{
-    The number of species.
+  The number of species.
   }
   \item{Distribution}{
-    The distribution of species frequencies. May be \code{"lnorm"} (log-normal), \code{"lseries"} (log-series), \code{"geom"} (geometric) or \code{"bstick"} (broken stick).
+  The distribution of species frequencies. May be \code{"lnorm"} (log-normal), \code{"lseries"} (log-series), \code{"geom"} (geometric) or \code{"bstick"} (broken stick).
   }
   \item{sd}{
-    The simulated distribution standard deviation. For the log-normal distribution, this is the standard deviation on the log scale.
+  The simulated distribution standard deviation. For the log-normal distribution, this is the standard deviation on the log scale.
   }
   \item{prob}{
-    The probability of success in each trial.
+  The probability of success in each trial.
   }
   \item{alpha}{
-    Fisher's alpha.
+  Fisher's alpha.
   }
   \item{CheckArguments}{
-    Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
+  Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }
 }
 \details{
@@ -78,10 +78,10 @@ rCommunity(n, size = sum(NorP), NorP = 1, BootstrapMethod = "Chao2015", S = 300,
   \code{\link{SpeciesDistribution}} and the program \code{SimAssem} (Reese \emph{et al.}, 2013; not an R package) for more distributions.
 }
 \examples{
-  # Generate communities made of 100000 individuals among 300 species and fit them
-  par(mfrow = c(2,2))
-  for (d in c("lnorm", "lseries", "geom", "bstick")) {  
-    rCommunity(n = 1, size = 1E5, S = 300, Distribution = d) -> AbdVec
-    plot(AbdVec, Distribution = d, main = d)
-  }
+# Generate communities made of 100000 individuals among 300 species and fit them
+par(mfrow = c(2,2))
+for (d in c("lnorm", "lseries", "geom", "bstick")) {  
+rCommunity(n = 1, size = 1E5, S = 300, Distribution = d) -> AbdVec
+plot(AbdVec, Distribution = d, main = d)
+}
 }

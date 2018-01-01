@@ -11,10 +11,10 @@ Preprocess.MC(Nsi, Wi)
 }
 \arguments{
   \item{Nsi}{
-    A matrix containing abundance data, species in line, communities in column.
+  A matrix containing abundance data, species in line, communities in column.
   }
   \item{Wi}{
-    Normalized community weights (sum to 1).
+  Normalized community weights (sum to 1).
   }
 }
 \details{
@@ -37,4 +37,4 @@ An object of class \strong{MetaCommunity}. It is a list:
 \author{
   Eric Marcon <Eric.Marcon@ecofog.gf>
 }
-\keyword{ internal }
+\keyword{internal}

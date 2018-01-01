@@ -41,22 +41,22 @@ bcGenSimpsonD(Ns, r = 1, CheckArguments = TRUE)
 }
 \arguments{
   \item{Ps}{
-    A probability vector, summing to 1.
+  A probability vector, summing to 1.
   }
   \item{Ns}{
-    A numeric vector containing species abundances.
+  A numeric vector containing species abundances.
   }
   \item{NorP}{
-    A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities.
+  A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities.
   }
   \item{r}{
-    A number: the order of diversity. Default is 1 for Simpson's diversity.
+  A number: the order of diversity. Default is 1 for Simpson's diversity.
   }
   \item{\dots}{
-    Additional arguments. Unused.
+  Additional arguments. Unused.
   }
   \item{CheckArguments}{
-    Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
+  Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }
 }
 \details{
@@ -83,17 +83,17 @@ bcGenSimpsonD(Ns, r = 1, CheckArguments = TRUE)
   Eric Marcon <Eric.Marcon@ecofog.gf>
 }
 \examples{
-  # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
-  data(Paracou618)
-  # Ns is the total number of trees per species
-  Ns <- as.AbdVector(Paracou618.MC$Ns)
-  # Species probabilities
-  Ps <- as.ProbaVector(Paracou618.MC$Ns)
-  # Whittaker plot
-  plot(Ns)
+# Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
+data(Paracou618)
+# Ns is the total number of trees per species
+Ns <- as.AbdVector(Paracou618.MC$Ns)
+# Species probabilities
+Ps <- as.ProbaVector(Paracou618.MC$Ns)
+# Whittaker plot
+plot(Ns)
 
-  # Calculate GenSimpson entropy of order 1, equal to Simpson's index of diversity
-  GenSimpson(Ps, 1) 
-  # Calculate an unbiased estimator of GenSimpson entropy of order 100
-  GenSimpson(Ns, 100)
+# Calculate GenSimpson entropy of order 1, equal to Simpson's index of diversity
+GenSimpson(Ps, 1) 
+# Calculate an unbiased estimator of GenSimpson entropy of order 100
+GenSimpson(Ns, 100)
 }

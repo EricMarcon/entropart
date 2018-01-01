@@ -11,10 +11,10 @@ AbdFreqCount(Ns, CheckArguments = TRUE)
 }
 \arguments{
   \item{Ns}{
-    A numeric vector containing species abundances.
+  A numeric vector containing species abundances.
   }
   \item{CheckArguments}{
-    Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
+  Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }
 }
 \details{
@@ -35,14 +35,14 @@ AbdFreqCount(Ns, CheckArguments = TRUE)
   \code{\link{PhyloEntropy}}, \code{\link{ChaoPD}}
 }
 \examples{
-  # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest
-  #      and their taxonomy)
-  data(Paracou618)
-  # Ns is the vector of abundances of the first plot
-  Ns <- Paracou618.MC$Nsi[, 1]
-  
-  # Return the abundance frequency count
-  (AbdFreqCount(Ns) -> afc)
-  plot(afc, xlab="Number of observations", ylab="Number of species")
-  lines(afc)
+# Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest
+#      and their taxonomy)
+data(Paracou618)
+# Ns is the vector of abundances of the first plot
+Ns <- Paracou618.MC$Nsi[, 1]
+
+# Return the abundance frequency count
+(AbdFreqCount(Ns) -> afc)
+plot(afc, xlab="Number of observations", ylab="Number of species")
+lines(afc)
 }

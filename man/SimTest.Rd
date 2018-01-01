@@ -20,40 +20,40 @@ is.SimTest(x)
 }
 \arguments{
   \item{RealValue}{
-    A numeric Value (the actual one).
+  A numeric Value (the actual one).
   }
   \item{SimulatedValues}{
-    A numeric vector containing the simulated values.
+  A numeric vector containing the simulated values.
   }
   \item{x}{
-    An object to be tested or plotted.
+  An object to be tested or plotted.
   }
   \item{object}{
-    A \code{SimTest} object to be summarized.
+  A \code{SimTest} object to be summarized.
   }
   \item{Quantiles}{
-    A vector containing the quantiles of interest.
+  A vector containing the quantiles of interest.
   }
   \item{colValue}{
-    The color of the line representing the real value on the plot.
+  The color of the line representing the real value on the plot.
   }
   \item{lwdValue}{
-    The width of the line representing the real value on the plot.
+  The width of the line representing the real value on the plot.
   }
   \item{ltyValue}{
-    The line type of the line representing the real value on the plot.
+  The line type of the line representing the real value on the plot.
   }
   \item{colQuantiles}{
-    The color of the lines representing the quantiles on the plot.
+  The color of the lines representing the quantiles on the plot.
   }
   \item{lwdQuantiles}{
-    The width of the lines representing the quantiles on the plot.
+  The width of the lines representing the quantiles on the plot.
   }
   \item{ltyQuantiles}{
-    The line type of the lines representing the quantiles on the plot.
+  The line type of the lines representing the quantiles on the plot.
   }
   \item{\dots}{
-    Additional arguments to be passed to the generic methods.   
+  Additional arguments to be passed to the generic methods.   
   }
 }
 \details{

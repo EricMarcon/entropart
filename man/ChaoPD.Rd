@@ -11,25 +11,25 @@ ChaoPD(Ps, q = 1, PhyloTree, Normalize = TRUE, Prune = FALSE, CheckArguments = T
 }
 \arguments{
   \item{Ps}{
-    A probability vector, summing to 1.
+  A probability vector, summing to 1.
   }
   \item{q}{
-    A number: the order of diversity. Default is 1.
+  A number: the order of diversity. Default is 1.
   }
   \item{PhyloTree}{
-    An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree is not necessarily ultrametric.
+  An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree is not necessarily ultrametric.
   }
   \item{Normalize}{
-    If \code{TRUE} (default), diversity is not affected by the height of the tree.\cr
-    If \code{FALSE}, it is proportional to the height of the tree.
+  If \code{TRUE} (default), diversity is not affected by the height of the tree.\cr
+  If \code{FALSE}, it is proportional to the height of the tree.
   }
   \item{Prune}{
-    What to do when somes species are in the tree but not in \code{Ps}?\cr
-    If \code{TRUE}, the tree is pruned to keep species of \code{Ps} only. The height of the tree may be changed if a pruned branch is related to the root.\cr
-    If \code{FALSE} (default), species with probability 0 are added in \code{Ps}.
+  What to do when somes species are in the tree but not in \code{Ps}?\cr
+  If \code{TRUE}, the tree is pruned to keep species of \code{Ps} only. The height of the tree may be changed if a pruned branch is related to the root.\cr
+  If \code{FALSE} (default), species with probability 0 are added in \code{Ps}.
   }
   \item{CheckArguments}{
-    Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
+  Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }
 }
 \details{
@@ -54,17 +54,17 @@ ChaoPD(Ps, q = 1, PhyloTree, Normalize = TRUE, Prune = FALSE, CheckArguments = T
   \code{\link{PhyloDiversity}}, \code{\link{AllenH}}
 }
 \examples{
-  # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest
-  #      and their taxonomy)
-  data(Paracou618)
-  # Ps is the vector of probabilities
-  Ps <- Paracou618.MC$Ps
-  
-  # Calculate the phylogenetic Simpson diversity of the plot
-  (ChaoPD(Paracou618.MC$Ps, 2, Paracou618.Taxonomy, Normalize=TRUE))
-  
-  # Calculate it using PhyloDiversity
-  # (more powerful but much slower if the tree has many periods)
-  PhyloDiversity(Paracou618.MC$Ps, 2, Paracou618.Taxonomy, Normalize=TRUE) -> phyD
-  summary(phyD)
+# Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest
+#      and their taxonomy)
+data(Paracou618)
+# Ps is the vector of probabilities
+Ps <- Paracou618.MC$Ps
+
+# Calculate the phylogenetic Simpson diversity of the plot
+(ChaoPD(Paracou618.MC$Ps, 2, Paracou618.Taxonomy, Normalize=TRUE))
+
+# Calculate it using PhyloDiversity
+# (more powerful but much slower if the tree has many periods)
+PhyloDiversity(Paracou618.MC$Ps, 2, Paracou618.Taxonomy, Normalize=TRUE) -> phyD
+summary(phyD)
 }

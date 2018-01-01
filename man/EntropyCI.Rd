@@ -12,22 +12,22 @@ EntropyCI(FUN, Simulations = 100, Ns, BootstrapMethod = "Chao2015",
 }
 \arguments{
   \item{FUN}{
-    The entropy function to be applied to each simulated community. May be any entropy function accepting a vector of species abundances, such as \code{\link{bcTsallis}}, \code{\link{bcShannon}}, \code{\link{bcSimpson}} or \code{\link{bcPhyloEntropy}}.
+  The entropy function to be applied to each simulated community. May be any entropy function accepting a vector of species abundances, such as \code{\link{bcTsallis}}, \code{\link{bcShannon}}, \code{\link{bcSimpson}} or \code{\link{bcPhyloEntropy}}.
   }
   \item{Simulations}{
-    The number of simulations to build confidence intervals.
+  The number of simulations to build confidence intervals.
   }
   \item{Ns}{
-    A numeric vector containing species abundances.
+  A numeric vector containing species abundances.
   }
   \item{BootstrapMethod}{
-    The method used to obtain the probabilities to generate bootstrapped communities from observed abundances. See \code{\link{rCommunity}}.
+  The method used to obtain the probabilities to generate bootstrapped communities from observed abundances. See \code{\link{rCommunity}}.
   }
   \item{\dots}{
-    Additional arguments to be passed to \code{FUN}.
+  Additional arguments to be passed to \code{FUN}.
   }
   \item{CheckArguments}{
-    Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
+  Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }
 }
 \details{
@@ -45,23 +45,23 @@ EntropyCI(FUN, Simulations = 100, Ns, BootstrapMethod = "Chao2015",
   Eric Marcon <Eric.Marcon@ecofog.gf>
 }
 \examples{
-  # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
-  data(Paracou618)
-  # Abundance (all estimators will include bias corrrection)
-  Ns <- as.AbdVector(Paracou618.MC$Ns)
-  q <- 1
-  # Estimate entropy and transform it into diversity
-  RealEst <- expq(Tsallis(Ns, q), q)
-  # Transform the distribution of Tsallis entropy into diversity
-  SimulatedDiversity <- expq(EntropyCI(Tsallis, Simulations=50, Ns, q=q), q)
-  # Figure
-  plot(density(SimulatedDiversity), col="black", lwd=2, main="", xlab ="Diversity")
-  abline(v=RealEst, col="red", lwd=2, lty=2)
-  abline(v=quantile(SimulatedDiversity, probs = 0.025), col="black", lwd=1, lty=3)
-  abline(v=quantile(SimulatedDiversity, probs = 0.975), col="black", lwd=1, lty=3)
-  legend("topright", c("Real value", "Confidence interval"), lty=c(2,3),
-    col=c("red", "black"), inset=0.01)
-  # Print results
-  cat("Estimated Diversity:", RealEst)
-  quantile(SimulatedDiversity, probs = c(0.025, 0.975))
+# Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
+data(Paracou618)
+# Abundance (all estimators will include bias corrrection)
+Ns <- as.AbdVector(Paracou618.MC$Ns)
+q <- 1
+# Estimate entropy and transform it into diversity
+RealEst <- expq(Tsallis(Ns, q), q)
+# Transform the distribution of Tsallis entropy into diversity
+SimulatedDiversity <- expq(EntropyCI(Tsallis, Simulations=50, Ns, q=q), q)
+# Figure
+plot(density(SimulatedDiversity), col="black", lwd=2, main="", xlab ="Diversity")
+abline(v=RealEst, col="red", lwd=2, lty=2)
+abline(v=quantile(SimulatedDiversity, probs = 0.025), col="black", lwd=1, lty=3)
+abline(v=quantile(SimulatedDiversity, probs = 0.975), col="black", lwd=1, lty=3)
+legend("topright", c("Real value", "Confidence interval"), lty=c(2,3),
+col=c("red", "black"), inset=0.01)
+# Print results
+cat("Estimated Diversity:", RealEst)
+quantile(SimulatedDiversity, probs = c(0.025, 0.975))
 }

@@ -11,10 +11,10 @@ Enq(n, q)
 }
 \arguments{
   \item{n}{
-    A positive integer vector.
+  A positive integer vector.
   }
   \item{q}{
-    A positive number.
+  A positive number.
   }
 }
 \details{

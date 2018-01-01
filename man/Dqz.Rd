@@ -25,28 +25,28 @@ bcDqz(Ns, q = 1, Z = diag(length(Ns)), Correction = "Best", CheckArguments = TRU
 }
 \arguments{
   \item{Ps}{
-    A probability vector, summing to 1.
+  A probability vector, summing to 1.
   }
   \item{Ns}{
-    A numeric vector containing species abundances.
+  A numeric vector containing species abundances.
   }
   \item{NorP}{
-    A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities.
+  A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities.
   }
   \item{q}{
-    A number: the order of diversity. Default is 1.
+  A number: the order of diversity. Default is 1.
   }
   \item{Z}{
-    A relatedness matrix, \emph{i.e.} a square matrix whose terms are all positive, strictly positive on the diagonal. Generally, the matrix is a similarity matrix, \emph{i.e.} the diagonal terms equal 1 and other terms are between 0 and 1. Default is the identity matrix to calculate neutral diversity.
+  A relatedness matrix, \emph{i.e.} a square matrix whose terms are all positive, strictly positive on the diagonal. Generally, the matrix is a similarity matrix, \emph{i.e.} the diagonal terms equal 1 and other terms are between 0 and 1. Default is the identity matrix to calculate neutral diversity.
   }
   \item{Correction}{
-    A string containing one of the possible corrections: \code{"None"} (no correction), \code{"HorvitzThomson"}, \code{"MarconZhang"} or \code{"Best"}, the default value. The \code{"MarconZhang"} correction assumes a similarity matrix.
+  A string containing one of the possible corrections: \code{"None"} (no correction), \code{"HorvitzThomson"}, \code{"MarconZhang"} or \code{"Best"}, the default value. The \code{"MarconZhang"} correction assumes a similarity matrix.
   }
   \item{\dots}{
-    Additional arguments. Unused.
+  Additional arguments. Unused.
   }
   \item{CheckArguments}{
-    Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
+  Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }
 }
 \details{
@@ -76,12 +76,12 @@ bcDqz(Ns, q = 1, Z = diag(length(Ns)), Correction = "Best", CheckArguments = TRU
   \code{\link{Hqz}}, \code{\link{PhyloDiversity}}
 }
 \examples{
-  # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
-  data(Paracou618)
-  # Prepare the similarity matrix
-  DistanceMatrix <- as.matrix(Paracou618.dist)
-  # Similarity can be 1 minus normalized distances between species
-  Z <- 1 - DistanceMatrix/max(DistanceMatrix)
-  # Calculate diversity of order 2
-  Dqz(Paracou618.MC$Ns, 2, Z)
+# Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
+data(Paracou618)
+# Prepare the similarity matrix
+DistanceMatrix <- as.matrix(Paracou618.dist)
+# Similarity can be 1 minus normalized distances between species
+Z <- 1 - DistanceMatrix/max(DistanceMatrix)
+# Calculate diversity of order 2
+Dqz(Paracou618.MC$Ns, 2, Z)
 }

@@ -21,8 +21,8 @@ data(Paracou618)
   Gourlet-Fleury, S., Guehl, J. M. and Laroussinie, O., Eds. (2004). \emph{Ecology & management of a neotropical rainforest. Lessons drawn from Paracou, a long-term experimental research site in French Guiana}. Paris, Elsevier.
 }
 \examples{
-  data(Paracou618)
-  plot(Paracou618.Taxonomy, type="fan", show.tip.label=FALSE)
+data(Paracou618)
+plot(Paracou618.Taxonomy, type="fan", show.tip.label=FALSE)
 }
 
 \keyword{datasets}

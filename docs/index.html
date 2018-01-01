@@ -1,0 +1,524 @@
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc" />
+
+    <meta name="author" content="Eric Marcon" />
+  
+  
+  <title>entropart</title>
+
+    <script src="index_files/jquery-1.11.3/jquery.min.js"></script>
+  <link href="index_files/bootstrap-3.3.2/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="index_files/bootstrap-3.3.2/js/bootstrap.min.js"></script>
+  <script src="index_files/bootstrap-3.3.2/shim/html5shiv.min.js"></script>
+  <script src="index_files/bootstrap-3.3.2/shim/respond.min.js"></script>
+  <link href="index_files/highlight-8.4/tomorrow.css" rel="stylesheet" />
+  <script src="index_files/highlight-8.4/highlight.pack.js"></script>
+  <link href="index_files/fontawesome-4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+  <script src="index_files/stickykit-1.1.1/sticky-kit.min.js"></script>
+  <script src="index_files/jqueryeasing-1.3/jquery.easing.min.js"></script>
+  <link href="index_files/recliner-0.2.2/recliner.css" rel="stylesheet" />
+  <script src="index_files/recliner-0.2.2/recliner.min.js"></script>
+  <script src="index_files/recliner-0.2.2/onload.js"></script>
+  <link href="index_files/packagedocs-0.0.1/pd.css" rel="stylesheet" />
+  <script src="index_files/packagedocs-0.0.1/pd.js"></script>
+  <script src="index_files/packagedocs-0.0.1/pd-sticky-toc.js"></script>
+  
+  
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+
+<body>
+
+  
+  <header class="navbar navbar-white navbar-fixed-top" role="banner" id="header">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+                <a href="index.html" class="navbar-brand page-scroll">
+        entropart - Entropy Partitioning to Measure Diversity
+        </a>
+      </div>
+            <nav class="collapse navbar-collapse" role="navigation">
+        <ul class="nav nav-pills pull-right">
+<li class="active">
+<a href='index.html'>Docs</a>
+</li>
+<li>
+<a href='rd.html'>Package Ref</a>
+</li>
+<li>
+<a href='https://github.com/EricMarcon/entropart'>Github<i class='fa fa-github'></i></a>
+</li>
+        </ul>
+      </nav>
+          </div>
+  </header>
+
+  <!-- Begin Body -->
+  <div class="container">
+    <div class="row">
+            <div class="col-md-3" id="sidebar-col">
+        <div id="toc">
+          <ul>
+          <li><a href="#estimating-the-diversity-of-a-community">Estimating the diversity of a community</a><ul>
+          <li><a href="#community-data">Community data</a></li>
+          <li><a href="#diversity-estimation">Diversity estimation</a></li>
+          </ul></li>
+          <li><a href="#estimating-the-diversity-of-a-meta-community">Estimating the diversity of a meta-community</a><ul>
+          <li><a href="#meta-community-data">Meta-community data</a></li>
+          <li><a href="#diversity-estimation-1">Diversity estimation</a></li>
+          </ul></li>
+          <li><a href="#phylogenies">Phylogenies</a><ul>
+          <li><a href="#formats-used">Formats used</a></li>
+          <li><a href="#conversion-between-classes">Conversion between classes</a></li>
+          <li><a href="#newick-dendrograms">Newick dendrograms</a></li>
+          </ul></li>
+          <li><a href="#references">References</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-9" id="content-col">
+      
+<div id="content-top"></div>
+<p><em>entropart</em> is a package for <em>R</em> designed to estimate diversity based on HCDT entropy or similarity-based entropy. This is a short introduction to its use. <code>help(&quot;entropart&quot;)</code> is yet a shorter one. Users should read each function’s help for details. For a rather exhaustive manual, see the user manual vignette <code>vignette(&quot;entropart&quot;)</code>.</p>
+<div id="estimating-the-diversity-of-a-community" class="section level1">
+<h1>Estimating the diversity of a community</h1>
+<div id="community-data" class="section level2">
+<h2>Community data</h2>
+<p>Community data is a numeric vector containing abundances of species (the number of individual of each species) or their probabilities (the proportion of individuals of each species, summing to 1).</p>
+<p>Example data is provided in the dataset <code>paracou618</code>. Let’s get the abundances of tree species in the 1-ha tropical forest plot #18 from Paracou forest station in French Guiana:</p>
+<pre class="r"><code>library(&quot;entropart&quot;)
+data(&quot;Paracou618&quot;)
+N18 &lt;- Paracou618.MC$Nsi[, &quot;P018&quot;]</code></pre>
+<p>The data in <code>Paracou618.MC</code> is a <code>MetaCommunity</code>, to be discovered later. <code>N18</code> is a vector containing the abundances of 425 tree species, among them some zero values. This is the most simple and common format to provide data to estimate diversity. It can be used directly by the functions presented here, but it may be declared explicitely as an abundance vector to plot it, and possibly fit a well-known, e.g. log-normal <span class="citation">(Preston 1948)</span>, distribution of species abundance (the red curve):</p>
+<pre class="r"><code>Abd18 &lt;- as.AbdVector(N18)
+plot(Abd18, Distribution=&quot;lnorm&quot;)</code></pre>
+<p><img src="index_files/figure-html/PlotN18-1.png" width="624" /></p>
+<pre><code>$mu
+[1] 0.6843775
+
+$sigma
+[1] 0.8568455</code></pre>
+<p>The parameters of the fitted distribution (here: mean and stadard deviation) are returned by the function.</p>
+<p>Abundance vectors can also be converted to probability vectors, summing to 1:</p>
+<pre class="r"><code>P18 &lt;- as.ProbaVector(N18)</code></pre>
+<p>The <code>rCommunity</code> function allows drawing random communities:</p>
+<pre class="r"><code>rc &lt;- rCommunity(1, size=10000, Distribution = &quot;lseries&quot;, alpha = 30)
+plot(rc, Distribution=&quot;lseries&quot;)</code></pre>
+<p><img src="index_files/figure-html/rCommunity-1.png" width="624" /></p>
+<pre><code>$alpha
+[1] 30.87452</code></pre>
+<p>The Whittaker plot of a random log-series <span class="citation">(Fisher, Corbet, and Williams 1943)</span> distribution of 10000 individuals simulated with parameter <span class="math inline"><em>α</em> = 30</span> is produced.</p>
+</div>
+<div id="diversity-estimation" class="section level2">
+<h2>Diversity estimation</h2>
+<p>The classical indices of diveristy are richness (the number of species), Shannon’s and Simpson’s entropies:</p>
+<pre class="r"><code>Richness(P18)</code></pre>
+<pre><code>None 
+ 149 </code></pre>
+<pre class="r"><code>Shannon(P18)</code></pre>
+<pre><code>    None 
+4.421358 </code></pre>
+<pre class="r"><code>Simpson(P18)</code></pre>
+<pre><code>     None 
+0.9794563 </code></pre>
+<p>When applied to a probability vector (created with <code>as.ProbaVector</code> or a numeric vector summing to 1), no estimation-bias correction is applied: this means that indices are just calculated by applying their definition function to the probabilities (that is the plugin estimator). <code>None</code> means non correction is applied by the plugin estimator.</p>
+<p>When abundances are available (a numeric vector of integer values or an object created by <code>as.ProbaVector</code>), several estimators are available <span class="citation">(Marcon 2015)</span> to address unobserved species and the non-linearity of the indices:</p>
+<pre class="r"><code>Richness(Abd18)</code></pre>
+<pre><code>   Chao1 
+254.0888 </code></pre>
+<pre class="r"><code>Shannon(Abd18)</code></pre>
+<pre><code>ChaoWangJost 
+     4.70651 </code></pre>
+<pre class="r"><code>Simpson(Abd18)</code></pre>
+<pre><code>    Lande 
+0.9814969 </code></pre>
+<p>The best available estimator is chosen by default: its name is returned.</p>
+<p>Those indices are special cases of the Tsallis entropy <span class="citation">(1988)</span> or order <span class="math inline"><em>q</em></span> (respectively <span class="math inline"><em>q</em> = 0, 1, 2</span> for richness, Shannon, Simpson):</p>
+<pre class="r"><code>Tsallis(Abd18,q=1)</code></pre>
+<pre><code>ChaoWangJost 
+     4.70651 </code></pre>
+<p>Entropy should be converted to its effective number of species, i.e. the number of species with equal probabilities that would yield the observed entropy, called <span class="citation">Hill (1973)</span> numbers or simply diversity <span class="citation">(Jost 2006)</span>.</p>
+<pre class="r"><code>Diversity(Abd18,q=1)</code></pre>
+<pre><code>ChaoWangJost 
+    110.6652 </code></pre>
+<p>Diversity is the deformed exponential of order <span class="math inline"><em>q</em></span> of entropy, and entropy is the deformed logarithm of of order <span class="math inline"><em>q</em></span> of diversity:</p>
+<pre class="r"><code>(d2 &lt;- Diversity(Abd18,q=2))</code></pre>
+<pre><code>ChaoWangJost 
+    54.04494 </code></pre>
+<pre class="r"><code>lnq(d2, q=2)</code></pre>
+<pre><code>ChaoWangJost 
+   0.9814969 </code></pre>
+<pre class="r"><code>(e2 &lt;-Tsallis(Abd18,q=2))</code></pre>
+<pre><code>ChaoWangJost 
+   0.9814969 </code></pre>
+<pre class="r"><code>expq(e2, q=2)</code></pre>
+<pre><code>ChaoWangJost 
+    54.04494 </code></pre>
+<p>Diversity can be plotted against its order to provide a diversity profile. Order 0 corresponds to richness, 1 to Shannon’s and 2 to Simpson’s diversities:</p>
+<pre class="r"><code>DP &lt;- CommunityProfile(Diversity, Abd18)
+plot(DP)</code></pre>
+<p><img src="index_files/figure-html/DiversityProfile-1.png" width="624" /></p>
+<p>If an ultrametric dendrogram describing species’ phylogeny (here, a mere taxonomy with family, genus and species) is available, phylogenetic entropy and diversity <span class="citation">(Marcon and Hérault 2015)</span> can be calculated:</p>
+<pre class="r"><code>summary(PhyloDiversity(Abd18,q=1,Tree=Paracou618.Taxonomy))</code></pre>
+<pre><code>alpha or gamma phylogenetic or functional diversity of order 1 
+of distribution 
+structure(c(3L, 0L, 3L, 0L, 1L, 0L, 0L, 0L, 0L, 2L, 0L, 1L, 0L,  
+0L, 1L, 4L, 5L, 0L, 1L, 1L, 1L, 0L, 0L, 3L, 0L, 0L, 0L, 1L, 4L,  
+1L, 10L, 1L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 2L, 0L, 0L, 0L,  
+0L, 0L, 0L, 5L, 3L, 1L, 0L, 0L, 1L, 2L, 0L, 3L, 1L, 8L, 0L, 2L,  
+0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 11L,  
+2L, 3L, 0L, 0L, 1L, 0L, 3L, 0L, 0L, 2L, 0L, 0L, 1L, 0L, 0L, 0L,  
+0L, 1L, 11L, 0L, 10L, 1L, 1L, 27L, 4L, 5L, 0L, 0L, 0L, 0L, 2L,  
+0L, 0L, 2L, 0L, 1L, 0L, 1L, 9L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L,  
+0L, 0L, 3L, 11L, 1L, 1L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 1L,  
+1L, 3L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L,  
+0L, 0L, 0L, 0L, 1L, 1L, 0L, 0L, 7L, 3L, 1L, 0L, 1L, 0L, 0L, 0L,  
+0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 1L, 0L, 0L,  
+0L, 2L, 0L, 0L, 2L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 2L, 4L, 0L,  
+0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L,  
+0L, 1L, 1L, 0L, 1L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L,  
+0L, 2L, 0L, 0L, 3L, 0L, 0L, 1L, 1L, 0L, 0L, 1L, 30L, 0L, 0L,  
+0L, 0L, 0L, 1L, 0L, 0L, 24L, 2L, 2L, 11L, 0L, 0L, 5L, 1L, 0L,  
+0L, 0L, 1L, 0L, 2L, 2L, 2L, 1L, 0L, 0L, 0L, 0L, 2L, 0L, 0L, 0L,  
+1L, 1L, 2L, 0L, 0L, 0L, 0L, 0L, 5L, 1L, 16L, 0L, 0L, 0L, 0L,  
+0L, 0L, 0L, 0L, 0L, 1L, 0L, 1L, 0L, 0L, 0L, 0L, 3L, 1L, 0L, 0L,  
+1L, 0L, 13L, 19L, 0L, 1L, 0L, 0L, 0L, 0L, 1L, 1L, 0L, 0L, 0L,  
+1L, 0L, 0L, 6L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L,  
+0L, 3L, 0L, 0L, 1L, 0L, 0L, 0L, 2L, 0L, 0L, 0L, 0L, 0L, 0L, 2L,  
+0L, 1L, 0L, 2L, 1L, 0L, 4L, 0L, 0L, 1L, 0L, 0L, 0L, 1L, 0L, 4L,  
+0L, 0L, 0L, 3L, 0L, 0L, 0L, 0L, 2L, 2L, 4L, 0L, 0L, 0L, 0L, 0L,  
+0L, 1L, 15L, 1L, 1L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L,  
+4L, 0L, 4L, 1L, 0L, 1L, 0L, 0L, 3L, 3L, 2L, 0L, 4L, 0L, 2L, 0L,  
+0L, 1L, 0L, 4L), class = c(&quot;AbdVector&quot;, &quot;SpeciesDistribution&quot;,  
+&quot;integer&quot;), .Names = c(&quot;Anac_Anac_spru&quot;, &quot;Anac_Astr_ulei&quot;, &quot;Anac_Tapi_guia&quot;,  
+&quot;Anac_Thyr_guia&quot;, &quot;Anac_Thyr_pube&quot;, &quot;Anno_Dugu_caly&quot;, &quot;Anno_Dugu_suri&quot;,  
+&quot;Anno_Fusa_long&quot;, &quot;Anno_Guat_anth&quot;, &quot;Anno_Guat_guia&quot;, &quot;Anno_Guat_wach&quot;,  
+&quot;Anno_Oxan_asbe&quot;, &quot;Anno_Roll_elli&quot;, &quot;Anno_Unon_perr&quot;, &quot;Anno_Unon_rufe&quot;,  
+&quot;Anno_Xylo_niti&quot;, &quot;Apoc_Ambe_acid&quot;, &quot;Apoc_Anar_meye&quot;, &quot;Apoc_Aspi_albu&quot;,  
+&quot;Apoc_Aspi_crue&quot;, &quot;Apoc_Aspi_marc&quot;, &quot;Apoc_Aspi_oblo&quot;, &quot;Apoc_Aspi_spru&quot;,  
+&quot;Apoc_Coum_guia&quot;, &quot;Apoc_Hima_sp_&quot;, &quot;Apoc_Lacm_acul&quot;, &quot;Aqui_Ilex_sp_&quot;,  
+&quot;Aral_Sche_deca&quot;, &quot;Arec_Astr_scio&quot;, &quot;Arec_Eute_oler&quot;, &quot;Arec_Jess_bata&quot;,  
+&quot;Arec_Oeno_baca&quot;, &quot;Bign_Jaca_copa&quot;, &quot;Bign_Tabe_sp_&quot;, &quot;Bora_Cord_IND&quot;,  
+&quot;Bora_Cord_sago&quot;, &quot;Bora_Cord_sp_&quot;, &quot;Bras_Capp_maro&quot;, &quot;Burs_Crep_goud&quot;,  
+&quot;Burs_Dacr_cusp&quot;, &quot;Burs_Dacr_nite&quot;, &quot;Burs_Dacr_sp_&quot;, &quot;Burs_Prot_apic&quot;,  
+&quot;Burs_Prot_deca&quot;, &quot;Burs_Prot_gall&quot;, &quot;Burs_Prot_guia&quot;, &quot;Burs_Prot_mori&quot;,  
+&quot;Burs_Prot_opac&quot;, &quot;Burs_Prot_sago&quot;, &quot;Burs_Prot_subs&quot;, &quot;Burs_Prot_tenu&quot;,  
+&quot;Burs_Prot_trif&quot;, &quot;Burs_Tetr_alti&quot;, &quot;Burs_Tetr_pana&quot;, &quot;Burs_Trat_deme&quot;,  
+&quot;Cary_Cary_glab&quot;, &quot;Cela_Chei_cogn&quot;, &quot;Cela_Goup_glab&quot;, &quot;Cela_IND_sp_&quot;,  
+&quot;Cela_Mayt_oblo&quot;, &quot;Cela_Mayt_sp_1&quot;, &quot;Cela_Mayt_sp_2&quot;, &quot;Chry_Coue_brac&quot;,  
+&quot;Chry_Coue_cary&quot;, &quot;Chry_Coue_guia&quot;, &quot;Chry_Coue_habr&quot;, &quot;Chry_Coue_joaq&quot;,  
+&quot;Chry_Coue_magn&quot;, &quot;Chry_Coue_pari&quot;, &quot;Chry_Hirt_arag&quot;, &quot;Chry_Hirt_glandi&quot;,  
+&quot;Chry_Hirt_glandu&quot;, &quot;Chry_Hirt_IND&quot;, &quot;Chry_Hirt_suff&quot;, &quot;Chry_IND_IND&quot;,  
+&quot;Chry_Lica_alba&quot;, &quot;Chry_Lica_cane&quot;, &quot;Chry_Lica_hete&quot;, &quot;Chry_Lica_IND&quot;,  
+&quot;Chry_Lica_laxi&quot;, &quot;Chry_Lica_lica&quot;, &quot;Chry_Lica_maju&quot;, &quot;Chry_Lica_memb&quot;,  
+&quot;Chry_Lica_micr&quot;, &quot;Chry_Lica_minu&quot;, &quot;Chry_Lica_oval&quot;, &quot;Chry_Lica_sp_1&quot;,  
+&quot;Chry_Lica_sp_2&quot;, &quot;Chry_Lica_spru&quot;, &quot;Chry_Pari_camp&quot;, &quot;Chry_Pari_mont&quot;,  
+&quot;Clus_Clus_gran&quot;, &quot;Clus_Moro_cocc&quot;, &quot;Clus_Plat_insi&quot;, &quot;Clus_Rhee_madr&quot;,  
+&quot;Clus_Symp_glob&quot;, &quot;Clus_Symp_sp_&quot;, &quot;Clus_Tovo_IND&quot;, &quot;Clus_Tovo_sp_1&quot;,  
+&quot;Clus_Tovo_sp_2&quot;, &quot;Clus_Tovo_sp_3&quot;, &quot;Clus_Tovo_sp_4&quot;, &quot;Clus_Tovo_sp_5&quot;,  
+&quot;Clus_Tovo_sp_6&quot;, &quot;Clus_Tovo_sp_7&quot;, &quot;Clus_Vism_caye&quot;, &quot;Comb_Buch_gran&quot;,  
+&quot;Comb_Buch_guia&quot;, &quot;Comb_Buch_IND&quot;, &quot;Comb_Buch_tetr&quot;, &quot;Comb_Term_guia&quot;,  
+&quot;Dich_Tapu_amaz&quot;, &quot;Dich_Tapu_capi&quot;, &quot;Eben_Dios_capr&quot;, &quot;Eben_Dios_carb&quot;,  
+&quot;Elae_Sloa_brev&quot;, &quot;Elae_Sloa_garc&quot;, &quot;Elae_Sloa_guia&quot;, &quot;Elae_Sloa_lati&quot;,  
+&quot;Elae_Sloa_sp_1&quot;, &quot;Elae_Sloa_sp_2&quot;, &quot;Elae_Sloa_sp_3&quot;, &quot;Elae_Sloa_sp_4&quot;,  
+&quot;Euph_Chae_scho&quot;, &quot;Euph_Chae_sp_&quot;, &quot;Euph_Conc_guia&quot;, &quot;Euph_Dryp_fans&quot;,  
+&quot;Euph_Dryp_vari&quot;, &quot;Euph_Glyc_amaz&quot;, &quot;Euph_Heve_guia&quot;, &quot;Euph_Hyer_alch&quot;,  
+&quot;Euph_Mabe_piri&quot;, &quot;Euph_Pogo_scho&quot;, &quot;Euph_Sand_guia&quot;, &quot;Faba_Abar_jupu&quot;,  
+&quot;Faba_Abar_mata&quot;, &quot;Faba_Andi_IND&quot;, &quot;Faba_Boco_prou&quot;, &quot;Faba_Cass_spru&quot;,  
+&quot;Faba_Dico_guia&quot;, &quot;Faba_Dipl_purp&quot;, &quot;Faba_Dipt_odor&quot;, &quot;Faba_Dipt_punc&quot;,  
+&quot;Faba_Ente_scho&quot;, &quot;Faba_Eper_falc&quot;, &quot;Faba_Eper_gran&quot;, &quot;Faba_Hyme_cour&quot;,  
+&quot;Faba_Hyme_flav&quot;, &quot;Faba_IND_sp_&quot;, &quot;Faba_Inga_acre&quot;, &quot;Faba_Inga_acro&quot;,  
+&quot;Faba_Inga_alba&quot;, &quot;Faba_Inga_albi&quot;, &quot;Faba_Inga_brac&quot;, &quot;Faba_Inga_fanc&quot;,  
+&quot;Faba_Inga_grac&quot;, &quot;Faba_Inga_hube&quot;, &quot;Faba_Inga_leio&quot;, &quot;Faba_Inga_long&quot;,  
+&quot;Faba_Inga_loub&quot;, &quot;Faba_Inga_nour&quot;, &quot;Faba_Inga_para&quot;, &quot;Faba_Inga_pezi&quot;,  
+&quot;Faba_Inga_rubi&quot;, &quot;Faba_Inga_sarm&quot;, &quot;Faba_Inga_stip&quot;, &quot;Faba_Ormo_stip&quot;,  
+&quot;Faba_Papi_IND&quot;, &quot;Faba_Park_giga&quot;, &quot;Faba_Park_niti&quot;, &quot;Faba_Park_pend&quot;,  
+&quot;Faba_Park_sp_&quot;, &quot;Faba_Park_ulei&quot;, &quot;Faba_Park_velu&quot;, &quot;Faba_Pelt_pani&quot;,  
+&quot;Faba_Plat_pinn&quot;, &quot;Faba_Pseu_psil&quot;, &quot;Faba_Pseu_suav&quot;, &quot;Faba_Reco_spec&quot;,  
+&quot;Faba_Stry_mori&quot;, &quot;Faba_Swar_cane&quot;, &quot;Faba_Swar_lebl&quot;, &quot;Faba_Swar_pana&quot;,  
+&quot;Faba_Swar_poly&quot;, &quot;Faba_Swar_sp_&quot;, &quot;Faba_Tach_brac&quot;, &quot;Faba_Tach_guia&quot;,  
+&quot;Faba_Tach_meli&quot;, &quot;Faba_Tach_pani&quot;, &quot;Faba_Tach_para&quot;, &quot;Faba_Vata_eryt&quot;,  
+&quot;Faba_Vata_suri&quot;, &quot;Faba_Voua_amer&quot;, &quot;Faba_Zygi_race&quot;, &quot;Faba_Zygi_tetr&quot;,  
+&quot;Humi_Humi_subc&quot;, &quot;Humi_Saco_guia&quot;, &quot;Humi_Vant_parv&quot;, &quot;Icac_Dend_boli&quot;,  
+&quot;Icac_Emmo_fagi&quot;, &quot;Icac_Pora_guia&quot;, &quot;Ixon_Cyri_para&quot;, &quot;Laur_Aiou_long&quot;,  
+&quot;Laur_Anib_host&quot;, &quot;Laur_Anib_term&quot;, &quot;Laur_Endl_meli&quot;, &quot;Laur_IND_sp_1&quot;,  
+&quot;Laur_IND_sp_2&quot;, &quot;Laur_IND_sp_3&quot;, &quot;Laur_IND_sp_4&quot;, &quot;Laur_IND_sp_5&quot;,  
+&quot;Laur_IND_sp_6&quot;, &quot;Laur_IND_sp_7&quot;, &quot;Laur_IND_sp_8&quot;, &quot;Laur_IND_sp_9&quot;,  
+&quot;Laur_IND_sp_10&quot;, &quot;Laur_IND_sp_11&quot;, &quot;Laur_IND_sp_12&quot;, &quot;Laur_IND_sp_13&quot;,  
+&quot;Laur_IND_sp_14&quot;, &quot;Laur_IND_sp_15&quot;, &quot;Laur_IND_sp_16&quot;, &quot;Laur_IND_sp_17&quot;,  
+&quot;Laur_IND_sp_18&quot;, &quot;Laur_IND_sp_19&quot;, &quot;Laur_IND_sp_20&quot;, &quot;Laur_Lica_cann&quot;,  
+&quot;Laur_Lica_chry&quot;, &quot;Laur_Lica_guia&quot;, &quot;Laur_Ocot_amaz&quot;, &quot;Laur_Ocot_argy&quot;,  
+&quot;Laur_Ocot_indi&quot;, &quot;Laur_Ocot_perc&quot;, &quot;Laur_Ocot_sp_&quot;, &quot;Laur_Ocot_subt&quot;,  
+&quot;Laur_Rhod_gran&quot;, &quot;Laur_Rhod_kunt&quot;, &quot;Laur_Rhod_rufo&quot;, &quot;Laur_Sext_rubr&quot;,  
+&quot;Lecy_Cour_caly&quot;, &quot;Lecy_Cour_glor&quot;, &quot;Lecy_Cour_guia&quot;, &quot;Lecy_Cour_mult&quot;,  
+&quot;Lecy_Cour_oblo&quot;, &quot;Lecy_Esch_char&quot;, &quot;Lecy_Esch_cong&quot;, &quot;Lecy_Esch_cori&quot;,  
+&quot;Lecy_Esch_deco&quot;, &quot;Lecy_Esch_gran&quot;, &quot;Lecy_Esch_micr&quot;, &quot;Lecy_Esch_pedi&quot;,  
+&quot;Lecy_Esch_prae&quot;, &quot;Lecy_Esch_sago&quot;, &quot;Lecy_Esch_simi&quot;, &quot;Lecy_Esch_squa&quot;,  
+&quot;Lecy_Gust_hexa&quot;, &quot;Lecy_IND_sp_&quot;, &quot;Lecy_Lecy_char&quot;, &quot;Lecy_Lecy_corr&quot;,  
+&quot;Lecy_Lecy_holc&quot;, &quot;Lecy_Lecy_idat&quot;, &quot;Lecy_Lecy_pers&quot;, &quot;Lecy_Lecy_poit&quot;,  
+&quot;Lecy_Lecy_zabu&quot;, &quot;Lina_Hebe_humi&quot;, &quot;Loga_Anto_ovat&quot;, &quot;Loga_Stry_IND&quot;,  
+&quot;Malp_Bunc_sp_&quot;, &quot;Malv_Apei_glab&quot;, &quot;Malv_Apei_peto&quot;, &quot;Malv_Cato_frag&quot;,  
+&quot;Malv_Erio_long&quot;, &quot;Malv_Erio_sp_1&quot;, &quot;Malv_Erio_sp_2&quot;, &quot;Malv_IND_sp_1&quot;,  
+&quot;Malv_IND_sp_2&quot;, &quot;Malv_Lueh_rugo&quot;, &quot;Malv_Pach_doli&quot;, &quot;Malv_Quar_duck&quot;,  
+&quot;Malv_Ster_mult&quot;, &quot;Malv_Ster_prur&quot;, &quot;Malv_Ster_spec&quot;, &quot;Malv_Theo_subi&quot;,  
+&quot;Marc_Nora_IND&quot;, &quot;Mela_Henr_flav&quot;, &quot;Mela_Mico_acum&quot;, &quot;Mela_Mico_sp_&quot;,  
+&quot;Mela_Mico_tsch&quot;, &quot;Mela_Mour_cras&quot;, &quot;Mela_Mour_hube&quot;, &quot;Meli_Cara_proc&quot;,  
+&quot;Meli_Guar_guid&quot;, &quot;Meli_Guar_silv&quot;, &quot;Meli_Tric_cipo&quot;, &quot;Meli_Tric_pall&quot;,  
+&quot;Meli_Tric_suri&quot;, &quot;Moni_Sipa_cris&quot;, &quot;Moni_Sipa_deci&quot;, &quot;Moni_Sipa_pach&quot;,  
+&quot;Mora_Baga_guia&quot;, &quot;Mora_Bros_guia&quot;, &quot;Mora_Bros_rube&quot;, &quot;Mora_Bros_util&quot;,  
+&quot;Mora_Ficu_sp_&quot;, &quot;Mora_Heli_pedu&quot;, &quot;Mora_Heli_tome&quot;, &quot;Mora_Maqu_calo&quot;,  
+&quot;Mora_Maqu_guia&quot;, &quot;Mora_Nauc_guia&quot;, &quot;Mora_Pere_guia&quot;, &quot;Mora_Pere_rubr&quot;,  
+&quot;Mora_Trym_amaz&quot;, &quot;Mora_Trym_olig&quot;, &quot;Myri_Irya_host&quot;, &quot;Myri_Irya_sago&quot;,  
+&quot;Myri_Viro_kwat&quot;, &quot;Myri_Viro_mich&quot;, &quot;Myrt_Euge_coff&quot;, &quot;Myrt_Euge_cucu&quot;,  
+&quot;Myrt_Euge_cupu&quot;, &quot;Myrt_Euge_macr&quot;, &quot;Myrt_Euge_patr&quot;, &quot;Myrt_Euge_pseu&quot;,  
+&quot;Myrt_Euge_sp_1&quot;, &quot;Myrt_Euge_sp_2&quot;, &quot;Myrt_Euge_sp_3&quot;, &quot;Myrt_Euge_tetr&quot;,  
+&quot;Myrt_IND_IND&quot;, &quot;Myrt_IND_sp_&quot;, &quot;Myrt_Myrc_deco&quot;, &quot;Myrt_Myrc_magn&quot;,  
+&quot;Nyct_Neea_flor&quot;, &quot;Nyct_Neea_sp_&quot;, &quot;Olac_Chau_kapp&quot;, &quot;Olac_Heis_dens&quot;,  
+&quot;Olac_Minq_guia&quot;, &quot;Olac_Ptyc_olac&quot;, &quot;Opil_Agon_silv&quot;, &quot;Poly_Cocc_moll&quot;,  
+&quot;Quii_Lacu_cren&quot;, &quot;Quii_Lacu_jenm&quot;, &quot;Quii_Quii_guia&quot;, &quot;Rubi_Amai_guia&quot;,  
+&quot;Rubi_Chim_turb&quot;, &quot;Rubi_Duro_aqua&quot;, &quot;Rubi_Duro_erio&quot;, &quot;Rubi_Duro_long&quot;,  
+&quot;Rubi_Fara_pedu&quot;, &quot;Rubi_Guet_acre&quot;, &quot;Rubi_IND_IND&quot;, &quot;Rubi_Poso_lati&quot;,  
+&quot;Rubi_Psyc_mapo&quot;, &quot;Sali_Case_deca&quot;, &quot;Sali_Case_javi&quot;, &quot;Sali_Case_sylv&quot;,  
+&quot;Sapi_Allo_angu&quot;, &quot;Sapi_Cupa_diph&quot;, &quot;Sapi_Cupa_rubi&quot;, &quot;Sapi_Cupa_scro&quot;,  
+&quot;Sapi_Meli_pedi&quot;, &quot;Sapi_Tali_micr&quot;, &quot;Sapi_Tali_prae&quot;, &quot;Sapi_Tali_sima&quot;,  
+&quot;Sapi_Voua_guia&quot;, &quot;Sapo_Chry_arge&quot;, &quot;Sapo_Chry_exim&quot;, &quot;Sapo_Chry_luce&quot;,  
+&quot;Sapo_Chry_prie&quot;, &quot;Sapo_Chry_sang&quot;, &quot;Sapo_Dipl_cusp&quot;, &quot;Sapo_Eccl_rami&quot;,  
+&quot;Sapo_Elae_nuda&quot;, &quot;Sapo_Elae_sp_&quot;, &quot;Sapo_Mani_bide&quot;, &quot;Sapo_Mani_hube&quot;,  
+&quot;Sapo_Micr_caye&quot;, &quot;Sapo_Micr_egen&quot;, &quot;Sapo_Micr_guya&quot;, &quot;Sapo_Micr_long&quot;,  
+&quot;Sapo_Micr_obsc&quot;, &quot;Sapo_Micr_porp&quot;, &quot;Sapo_Micr_sanc&quot;, &quot;Sapo_Micr_venu&quot;,  
+&quot;Sapo_Pout_ambe&quot;, &quot;Sapo_Pout_bang&quot;, &quot;Sapo_Pout_bena&quot;, &quot;Sapo_Pout_bilo&quot;,  
+&quot;Sapo_Pout_clad&quot;, &quot;Sapo_Pout_deco&quot;, &quot;Sapo_Pout_euge&quot;, &quot;Sapo_Pout_fili&quot;,  
+&quot;Sapo_Pout_fimb&quot;, &quot;Sapo_Pout_gong&quot;, &quot;Sapo_Pout_guia&quot;, &quot;Sapo_Pout_hisp&quot;,  
+&quot;Sapo_Pout_jari&quot;, &quot;Sapo_Pout_mela&quot;, &quot;Sapo_Pout_retic&quot;, &quot;Sapo_Pout_retin&quot;,  
+&quot;Sapo_Pout_sing&quot;, &quot;Sapo_Pout_sp_1&quot;, &quot;Sapo_Pout_sp_2&quot;, &quot;Sapo_Pout_sp_3&quot;,  
+&quot;Sapo_Pout_tort&quot;, &quot;Sapo_Pout_veno&quot;, &quot;Sapo_Prad_coch&quot;, &quot;Sapo_Prad_ptyc&quot;,  
+&quot;Sima_Sima_cedr&quot;, &quot;Sima_Sima_more&quot;, &quot;Sima_Sima_poly&quot;, &quot;Sima_Sima_amar&quot;,  
+&quot;Styr_Styr_sp_&quot;, &quot;Symp_Symp_mart&quot;, &quot;Urti_Cecr_obtu&quot;, &quot;Urti_Pour_bico&quot;,  
+&quot;Urti_Pour_meli&quot;, &quot;Urti_Pour_tome&quot;, &quot;Urti_Pour_vill&quot;, &quot;Viol_Amph_long&quot;,  
+&quot;Viol_Leon_glyc&quot;, &quot;Voch_Eris_flor&quot;, &quot;Voch_Eris_unci&quot;, &quot;Voch_IND_sp_&quot;,  
+&quot;Voch_Qual_rose&quot;, &quot;Voch_Ruiz_albi&quot;))
+ with correction: Best
+Phylogenetic or functional diversity was calculated according to the tree 
+Paracou618.Taxonomy 
+
+Diversity is normalized
+
+Diversity equals: 51.98951</code></pre>
+<p>With a Euclidian distance matrix between species, similarity-based diversity <span class="citation">(Leinster and Cobbold 2012; Marcon, Zhang, and Hérault 2014)</span> is available:</p>
+<pre class="r"><code># Prepare the similarity matrix
+DistanceMatrix &lt;- as.matrix(Paracou618.dist)
+# Similarity can be 1 minus normalized distances between species
+Z &lt;- 1 - DistanceMatrix/max(DistanceMatrix)
+# Calculate diversity of order 2
+Dqz(Abd18, q=2, Z)</code></pre>
+<pre><code>    Best 
+1.477898 </code></pre>
+<p>Profiles of phylogenetic diversity and similarity-based diversity are obtained the same way. <code>PhyloDiversity</code> is an object with a lot of information so an intermediate function is necessary to extract its <code>$Total</code> component:</p>
+<pre class="r"><code>sbDP &lt;- CommunityProfile(Dqz, Abd18, Z=Z)
+pDP &lt;- CommunityProfile(function(X, ...) PhyloDiversity(X, ...)$Total, Abd18, Tree=Paracou618.Taxonomy)
+plot(pDP)</code></pre>
+<p><img src="C:\Users\Eric.Marcon\Documents\R\entropart\vignettes\index_files/figure-html/PDiversityProfile-1.png" width="624" /></p>
+</div>
+</div>
+<div id="estimating-the-diversity-of-a-meta-community" class="section level1">
+<h1>Estimating the diversity of a meta-community</h1>
+<div id="meta-community-data" class="section level2">
+<h2>Meta-community data</h2>
+<p>A meta-community is an object defined by the package. It is a set of communities, each of them decribed by the abundance of their species and their weight. Species probabilities in the meta-community are by definition the weighted average of their probabilities in the communities.</p>
+<p>The easiest way to build a meta-community consists of preparing a dataframe whose columns are communities and lines are species, and define weights in a vector (by default, all weights are equal):</p>
+<pre class="r"><code>library(&quot;entropart&quot;)
+(df &lt;- data.frame(C1 = c(10, 10, 10, 10), C2 = c(0, 20, 35, 5), C3 = c(25, 15, 0, 2), row.names = c(&quot;sp1&quot;, &quot;sp2&quot;, &quot;sp3&quot;, &quot;sp4&quot;)))</code></pre>
+<pre><code>    C1 C2 C3
+sp1 10  0 25
+sp2 10 20 15
+sp3 10 35  0
+sp4 10  5  2</code></pre>
+<pre class="r"><code>w &lt;- c(1, 2, 1)</code></pre>
+<p>The <code>MetaCommunity</code> function creates the meta-community. It can be plotted:</p>
+<pre class="r"><code>MC &lt;- MetaCommunity(Abundances = df, Weights = w)
+plot(MC)</code></pre>
+<p><img src="index_files/figure-html/MetaCommunityMC-1.png" width="624" /></p>
+<p>Each shade of grey represents a species. Heights correspond to the probability of species and the width of each community is its weight.</p>
+<p><code>Paracou618.MC</code> is an example meta-community provided by the package. It is made of two 1-ha communities (plots #6 and #18) of tropical forest.</p>
+</div>
+<div id="diversity-estimation-1" class="section level2">
+<h2>Diversity estimation</h2>
+<p>High level functions allow computing diversity of all communities (<span class="math inline"><em>α</em></span> diversity), of the meta-community (<span class="math inline"><em>γ</em></span> diversity), and <span class="math inline"><em>β</em></span> diversity, i.e. the number of effective communities (the number of communities with equal weights and no common species that would yield the observed <span class="math inline"><em>β</em></span> diversity).</p>
+<p>The <code>DivPart</code> function calculates everything at once, for a given order of diversity <span class="math inline"><em>q</em></span>:</p>
+<pre class="r"><code>p &lt;- DivPart(q = 1, MC = Paracou618.MC)
+summary(p)</code></pre>
+<pre><code>HCDT diversity partitioning of order 1 of metaCommunity Paracou618.MC
+
+Alpha diversity of communities: 
+    P006     P018 
+66.00455 83.20917 
+Total alpha diversity of the communities: 
+[1] 72.88247
+Beta diversity of the communities: 
+    None 
+1.563888 
+Gamma diversity of the metacommunity: 
+  None 
+113.98 </code></pre>
+<p>The <span class="math inline"><em>α</em></span> diversity of communities is 73 effective species. <span class="math inline"><em>γ</em></span> diversity of the meta-community is 114 effective species. <span class="math inline"><em>β</em></span> diversity is 1.56 effective communities, i.e. the two actual communities are as different from each other as 1.56 ones with equal weights and no species in common.</p>
+<p>The <code>DivEst</code> function decomposes diversity and estimates confidence interval of <span class="math inline"><em>α</em></span>, <span class="math inline"><em>β</em></span> and <span class="math inline"><em>γ</em></span> diversity following <span class="citation">Marcon et al. (2012)</span>. If the observed species frequencies of a community are assumed to be a realization of a multinomial distribution, they can be drawn again to obtain a distribution of entropy.</p>
+<pre class="r"><code>de &lt;- DivEst(q = 1, Paracou618.MC, Simulations = 100)</code></pre>
+<pre><code>===========================================================================</code></pre>
+<pre class="r"><code>plot(de)</code></pre>
+<p><img src="C:\Users\Eric.Marcon\Documents\R\entropart\vignettes\index_files/figure-html/DivEst, -1.png" width="624" /></p>
+<p>The result is a <code>Divest</code> object which can be summarized and plotted.</p>
+<p><code>DivProfile</code> calculates diversity profiles. The result is a <code>DivProfile</code> object which can be summarized and plotted.</p>
+<pre class="r"><code>dp &lt;- DivProfile(, Paracou618.MC)
+plot(dp)</code></pre>
+<p><img src="index_files/figure-html/DivProfile-1.png" width="624" /></p>
+<p>Plot #18 can be considered more diverse than plot #6 because their profiles (top right figure, plot #18 is the dotted red line, plot #6, the solid black one) do not cross <span class="citation">(Tothmeresz 1995)</span>: its diversity is systematically higher. The shape of the <span class="math inline"><em>β</em></span> diversity profile shows that the communities are more diverse when their dominant species are considered.</p>
+<p>The bootstrap confidence intervals of the values of diversity <span class="citation">(Marcon et al. 2012; Marcon et al. 2014)</span> are calculated if <code>NumberOfSimulations</code> is not 0.</p>
+<p><code>DivPart</code>, <code>DivEst</code> and <code>DivProfile</code> use plugin estimators by default. To force them to apply the same estimators as community functions, the argument <code>Biased = FALSE</code> must be entered. They compute Tsallis entropy and Hill numbers by default. A dendrogram in the argument <code>Tree</code> or a similarity matrix in the argument <code>Z</code> will make them calculate phylogenetic diversity or similarity-based diversity.</p>
+</div>
+</div>
+<div id="phylogenies" class="section level1">
+<h1>Phylogenies</h1>
+<p>Several object classes can be used in <em>entropart</em> to represent phylogenies and calculate phylogenetic diversity. They are detailed here.</p>
+<div id="formats-used" class="section level2">
+<h2>Formats used</h2>
+<p>Supported phylogenies are classes <code>phylo</code> from package <em>ape</em>, <code>phylog</code> from package <em>ade4</em> and <code>hclust</code> from package <em>base</em>.</p>
+<p>To optimize performance, a specific class <code>PPtree</code>, for “preprocessed trees”, is introduced by the package: it is basically a list containing a <code>phylo</code> and an <code>hclust</code> representation of the phylogeny and preprocessed useful statistics.</p>
+<p>The arguments <code>Tree</code> or <code>PhyloTree</code> used in phylogenetic diversity estimation functions of the package may be any of those formats.</p>
+</div>
+<div id="conversion-between-classes" class="section level2">
+<h2>Conversion between classes</h2>
+<p>Let’s start from an ultrametric distance matrix. Three species are defined, with distance 1 between the first 2 and distance 2 between both and the last one.</p>
+<pre class="r"><code>dSp &lt;- matrix(c(0, 1, 2, 1, 0, 2, 2, 2, 0), nrow=3, byrow=TRUE)
+row.names(dSp) &lt;- colnames(dSp) &lt;- c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;)
+dSp</code></pre>
+<pre><code>  A B C
+A 0 1 2
+B 1 0 2
+C 2 2 0</code></pre>
+<div id="hclust" class="section level3">
+<h3>hclust</h3>
+<p>An <code>hclust</code> object is created by UPGMA hierarchical clustering.</p>
+<pre class="r"><code>require(&quot;stats&quot;)
+plot(hTree &lt;- hclust(as.dist(dSp), method=&quot;average&quot;), hang=-0.01, axes = F)
+axis(2)</code></pre>
+<p><img src="index_files/figure-html/hclust-1.png" width="624" /></p>
+<p>Node heights are stored in <code>$height</code>.</p>
+<pre class="r"><code>hTree$height</code></pre>
+<pre><code>[1] 1 2</code></pre>
+</div>
+<div id="phylo" class="section level3">
+<h3>phylo</h3>
+<p>Conversion to a <code>phylo</code> object is straightforward.</p>
+<pre class="r"><code>require(&quot;ape&quot;)
+plot(phyloTree &lt;- as.phylo(hTree))
+axis(1)</code></pre>
+<p><img src="index_files/figure-html/phylo-1.png" width="624" /></p>
+<p>Edge lengths have been divided by 2 during the conversion, as documented in <code>?as.phylo.hclust</code>.</p>
+<pre class="r"><code>phyloTree$edge.length</code></pre>
+<pre><code>[1] 1.0 0.5 0.5 0.5</code></pre>
+<p>That does not suit our needs. In <em>entropart</em>, edge lengths are multiplied by 2 after conversion, so that <code>phylo</code>objects can be identical to other phylogenies.</p>
+<pre class="r"><code>phyloTree$edge.length &lt;- 2*phyloTree$edge.length
+plot(phyloTree)
+axis(1)</code></pre>
+<p><img src="index_files/figure-html/phylo3-1.png" width="624" /></p>
+</div>
+<div id="phylog" class="section level3">
+<h3>phylog</h3>
+<p>The last conversion is from <code>phylo</code> to <code>phylog</code>.</p>
+<pre class="r"><code>require(&quot;ade4&quot;)
+plot(phylogTree &lt;- hclust2phylog(hTree))
+axis(1)</code></pre>
+<p><img src="index_files/figure-html/phylog-1.png" width="624" /></p>
+<p>Edge lengths are not stored directly in <code>phylog</code> objects. The <code>$droot</code> component keeps distances from tips to root. The <code>$Wdist</code> component is a <code>dist</code> (half a distance matrix without the zero-diagonal) whose values are <span class="math inline">$d_{s,t}=\sqrt{2 \delta_{s,t}^2}$</span>, where <span class="math inline"><em>δ</em><sub><em>s</em>, <em>t</em></sub></span> is the distance between species <span class="math inline"><em>s</em></span> ant <span class="math inline"><em>t</em></span>.</p>
+<pre class="r"><code>phylogTree$droot</code></pre>
+<pre><code>   C    A    B Int1 Root 
+   2    2    2    1    0 </code></pre>
+<pre class="r"><code>phylogTree$Wdist^2/2</code></pre>
+<pre><code>  C A
+A 2  
+B 2 1</code></pre>
+</div>
+</div>
+<div id="newick-dendrograms" class="section level2">
+<h2>Newick dendrograms</h2>
+<p>A Newick description of a dendrogram can be read into a <code>phylo</code> object.</p>
+<pre class="r"><code>NewickABC &lt;- &quot;(C:2,(A:1,B:1):1);&quot;
+plot(phyloABC &lt;- ape::read.tree(text=NewickABC))
+axis(1)</code></pre>
+<p><img src="index_files/figure-html/Newick-1.png" width="624" /></p>
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-Fisher1943">
+<p>Fisher, R. A., A. S. Corbet, and C. B. Williams. 1943. “The Relation Between the Number of Species and the Number of Individuals in a Random Sample of an Animal Population.” <em>Journal of Animal Ecology</em> 12: 42–58.</p>
+</div>
+<div id="ref-Hill1973">
+<p>Hill, M. O. 1973. “Diversity and Evenness: A Unifying Notation and Its Consequences.” <em>Ecology</em> 54 (2): 427–32.</p>
+</div>
+<div id="ref-Jost2006">
+<p>Jost, Lou. 2006. “Entropy and Diversity.” <em>Oikos</em> 113 (2): 363–75.</p>
+</div>
+<div id="ref-Leinster2012">
+<p>Leinster, Tom, and Christina Cobbold. 2012. “Measuring Diversity: The Importance of Species Similarity.” <em>Ecology</em> 93 (3): 477–89.</p>
+</div>
+<div id="ref-Marcon2015a">
+<p>Marcon, Eric. 2015. “Practical Estimation of Diversity from Abundance Data.” <em>HAL</em> 01212435 (version 2).</p>
+</div>
+<div id="ref-Marcon2014a">
+<p>Marcon, Eric, and Bruno Hérault. 2015. “Decomposing Phylodiversity.” <em>Methods in Ecology and Evolution</em> 6 (3): 333–39.</p>
+</div>
+<div id="ref-Marcon2012">
+<p>Marcon, Eric, Bruno Hérault, Christopher Baraloto, and Gabriel Lang. 2012. “The Decomposition of Shannon’s Entropy and a Confidence Interval for Beta Diversity.” <em>Oikos</em> 121 (4): 516–22.</p>
+</div>
+<div id="ref-Marcon2014">
+<p>Marcon, Eric, Ivan Scotti, Bruno Hérault, Vivien Rossi, and Gabriel Lang. 2014. “Generalization of the Partitioning of Shannon Diversity.” <em>PLOS One</em> 9 (3): e90289.</p>
+</div>
+<div id="ref-Marcon2014e">
+<p>Marcon, Eric, Zhiyi Zhang, and Bruno Hérault. 2014. “The Decomposition of Similarity-Based Diversity and Its Bias Correction.” <em>HAL</em> hal-00989454 (version 1): 1–12.</p>
+</div>
+<div id="ref-Preston1948">
+<p>Preston, F. W. 1948. “The Commonness, and Rarity, of Species.” <em>Ecology</em> 29 (3): 254–83.</p>
+</div>
+<div id="ref-Tothmeresz1995">
+<p>Tothmeresz, B. 1995. “Comparison of Different Methods for Diversity Ordering.” <em>Journal of Vegetation Science</em> 6 (2): 283–90.</p>
+</div>
+<div id="ref-Tsallis1988">
+<p>Tsallis, Constantino. 1988. “Possible Generalization of Boltzmann-Gibbs Statistics.” <em>Journal of Statistical Physics</em> 52 (1): 479–87.</p>
+</div>
+</div>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div id="footer">
+    <div class="container">
+      <div class="col-md-6">
+                <p>&copy; Eric Marcon, 2018</p>
+              </div>
+      <div class="col-md-6">
+        <p class="pull-right">created with <a href="https://github.com/hafen/packagedocs">packagedocs</a>
+                  </p>
+      </div>
+    </div>
+  </div>
+
+  
+</body>
+</html>

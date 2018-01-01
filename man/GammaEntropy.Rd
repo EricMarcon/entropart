@@ -12,26 +12,26 @@ GammaEntropy(MC, q = 1, Correction = "Best", Tree = NULL, Normalize = TRUE,
 }
 \arguments{
   \item{MC}{
-    A \code{\link{MetaCommunity}} object.
+  A \code{\link{MetaCommunity}} object.
   }
   \item{q}{
-    A number: the order of entropy. Default is 1.
+  A number: the order of entropy. Default is 1.
   }
   \item{Correction}{
-    A string containing one of the possible corrections accepted by the bias-corrected entropy function (see details) or \code{"None"} or \code{"Best"}, the default value.
+  A string containing one of the possible corrections accepted by the bias-corrected entropy function (see details) or \code{"None"} or \code{"Best"}, the default value.
   }
   \item{Tree}{
-    An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
+  An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
   }
   \item{Normalize}{
-    If \code{TRUE} (default), the entropy returned by the function is normalized by the height of the tree (it is the weighted average value of the entropy in each slice).\cr
+  If \code{TRUE} (default), the entropy returned by the function is normalized by the height of the tree (it is the weighted average value of the entropy in each slice).\cr
     If \code{FALSE}, it is the unnormalized weighted sum of the results.
   }
   \item{Z}{
-    A relatedness matrix, \emph{i.e.} a square matrix whose terms are all positive, strictly positive on the diagonal. Generally, the matrix is a similarity matrix, \emph{i.e.} the diagonal terms equal 1 and other terms are between 0 and 1.
+  A relatedness matrix, \emph{i.e.} a square matrix whose terms are all positive, strictly positive on the diagonal. Generally, the matrix is a similarity matrix, \emph{i.e.} the diagonal terms equal 1 and other terms are between 0 and 1.
   }
   \item{CheckArguments}{
-    Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
+  Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }
 }
 \details{
@@ -58,12 +58,12 @@ GammaEntropy(MC, q = 1, Correction = "Best", Tree = NULL, Normalize = TRUE,
   \code{\link{bcTsallis}}, \code{\link{bcPhyloEntropy}}
 }
 \examples{
-  # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
-  data(Paracou618)
-  # Calculate Simpson gamma entropy
-  GammaEntropy(Paracou618.MC, 2)
-  # Compare without correction
-  GammaEntropy(Paracou618.MC, 2, Correction = "None")
-  # Estimate phylogenetic Simpson gamma entropy
-  GammaEntropy(Paracou618.MC, 2, Tree = Paracou618.Taxonomy)   
+# Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
+data(Paracou618)
+# Calculate Simpson gamma entropy
+GammaEntropy(Paracou618.MC, 2)
+# Compare without correction
+GammaEntropy(Paracou618.MC, 2, Correction = "None")
+# Estimate phylogenetic Simpson gamma entropy
+GammaEntropy(Paracou618.MC, 2, Tree = Paracou618.Taxonomy)   
 }

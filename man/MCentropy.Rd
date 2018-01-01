@@ -16,13 +16,13 @@ is.MCentropy(x)
 }
 \arguments{
   \item{x}{
-    An object to be tested or plotted.
+  An object to be tested or plotted.
   }
   \item{object}{
-    A \code{MCentropy} object to be summarized.
+  A \code{MCentropy} object to be summarized.
   }
   \item{\dots}{
-    Additional arguments to be passed to the generic methods.
+  Additional arguments to be passed to the generic methods.
   }
 }
 \value{

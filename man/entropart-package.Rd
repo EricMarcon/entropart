@@ -20,34 +20,21 @@
   
   Phylogenetic entropy and diversity can be calculated if a phylogenetic (or functional), ultrametric tree is provided. See \code{\link{PhyloEntropy}}, \code{\link{Rao}} for examples of entropy and \code{\link{PhyloDiversity}} to calculate phylodiversity, with the state-of-the-art estimation-bias correction. Similarity-based diversity is calculated with \code{\link{Dqz}}, based on a similarity matrix.
 
-  Metacommunities are addressed by more specialized functions. The simplest way to import such data is to organize it into two text files. The first file should contain abundance data: the first column named \code{Species} for species names, and a column for each community.
+  The simplest way to import data is to organize it into two text files. The first file should contain abundance data: the first column named \code{Species} for species names, and a column for each community.
 
-  \tabular{lcc}{
-    \code{Species}        \tab \code{NameOfCommunity1} \tab \code{NameOfCommunity2}\cr
-    \code{NameOfSpecies1} \tab \code{1}                \tab \code{5}               \cr
-    \code{NameOfSpecies2} \tab \code{4}                \tab \code{2}               \cr
-    \code{...}            \tab \code{...}              \tab \code{...}
-  }
-
-  The second file should contain the community weights and be organized as follows:
+  The second file should contain the community weights in two columns. The first one, named \code{Communities} should contain their names and the second one, named \code{Weights}, their weights.
   
-  \tabular{lc}{
-    \code{Communities}      \tab \code{Weights}\cr
-    \code{NameOfCommunity1} \tab \code{3}      \cr
-    \code{NameOfCommunity2} \tab \code{1}
-  }
-
   Files can be read and data imported by code such as:
   
-  \preformatted{
-  Abundances <- read.csv(file="Abundances.csv")
-  Weights <- read.csv(file="Weights.csv")
-  MC <- MetaCommunity(Abundances, Weights)
-  }
-  
+\preformatted{
+Abundances <- read.csv(file="Abundances.csv", row.names = 1)
+Weights <- read.csv(file="Weights.csv")
+MC <- MetaCommunity(Abundances, Weights)
+}
+
   The last line of the code calls the \code{\link{MetaCommunity}} function to create an object that will be used by all metacommunity functions, such as \code{\link{DivPart}} (to partition diversity), \code{\link{DivEst}} (to partition diversity and calculate confidence interval of its estimation) or \code{\link{DivProfile}} (to compute diversity profiles).
   
-  A full documentation is available in the vignette. Type: \code{vignette("entropart")}. A quick introuction is in \code{vignette("Introduction", "entropart")}.
+  A full documentation is available in the vignette. Type: \code{vignette("entropart")}. A quick introuction is in \code{vignette("introduction", "entropart")}.
 
 }
 \author{
