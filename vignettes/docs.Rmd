@@ -145,7 +145,7 @@ Dqz(Abd18, q=2, Z)
 Profiles of phylogenetic diversity and similarity-based diversity are obtained the same way.
 `PhyloDiversity` is an object with a lot of information so an intermediate function is necessary to extract its `$Total` component:
 
-```{r PDiversityProfile, cache = TRUE}
+```{r PDiversityProfile}
 sbDP <- CommunityProfile(Dqz, Abd18, Z=Z)
 pDP <- CommunityProfile(function(X, ...) PhyloDiversity(X, ...)$Total, Abd18, Tree=Paracou618.Taxonomy)
 plot(pDP)
@@ -199,7 +199,7 @@ The $\alpha$ diversity of communities is `r round(p$TotalAlphaDiversity, 0)` eff
 The `DivEst` function decomposes diversity and estimates confidence interval of $\alpha$, $\beta$ and $\gamma$ diversity following @Marcon2012. 
 If the observed species frequencies of a community are assumed to be a realization of a multinomial distribution, they can be drawn again to obtain a distribution of entropy.
 
-```{r DivEst, , cache = TRUE}
+```{r DivEst}
 de <- DivEst(q = 1, Paracou618.MC, Simulations = 100)
 plot(de)
 ```
