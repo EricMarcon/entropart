@@ -21,5 +21,13 @@ function(x)
       }
     }
   }
-  return(deparse(VarName))
+  argumentOriginalName <- deparse(VarName)
+  # Not found or too long
+  if (length(argumentOriginalName) > 1) {
+    argumentOriginalName <- "-"
+  } else {
+    if (nchar(argumentOriginalName) > 30)
+      paste(substr(argumentOriginalName, 1, 25), "(...)", sep="")
+  }
+  return(argumentOriginalName) 
 }

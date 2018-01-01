@@ -12,7 +12,6 @@ redirect: https://EricMarcon.github.io/entropart
 vignette: |
   %\VignetteIndexEntry{entropart introduction}
   %\VignetteEngine{packagedocs::redirect}
-  %\VignetteEncoding{UTF-8}
 navpills: |
   <li class="active"><a href='index.html'>Docs</a></li>
   <li><a href='rd.html'>Package Ref</a></li>
