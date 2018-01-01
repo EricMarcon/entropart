@@ -118,7 +118,7 @@ $sigma
 plot(rc, Distribution=&quot;lseries&quot;)</code></pre>
 <p><img src="index_files/figure-html/rCommunity-1.png" width="624" /></p>
 <pre><code>$alpha
-[1] 30.87452</code></pre>
+[1] 31.37909</code></pre>
 <p>The Whittaker plot of a random log-series <span class="citation">(Fisher, Corbet, and Williams 1943)</span> distribution of 10000 individuals simulated with parameter <span class="math inline"><em>α</em> = 30</span> is produced.</p>
 </div>
 <div id="diversity-estimation" class="section level2">
@@ -173,142 +173,7 @@ plot(DP)</code></pre>
 <p>If an ultrametric dendrogram describing species’ phylogeny (here, a mere taxonomy with family, genus and species) is available, phylogenetic entropy and diversity <span class="citation">(Marcon and Hérault 2015)</span> can be calculated:</p>
 <pre class="r"><code>summary(PhyloDiversity(Abd18,q=1,Tree=Paracou618.Taxonomy))</code></pre>
 <pre><code>alpha or gamma phylogenetic or functional diversity of order 1 
-of distribution 
-structure(c(3L, 0L, 3L, 0L, 1L, 0L, 0L, 0L, 0L, 2L, 0L, 1L, 0L,  
-0L, 1L, 4L, 5L, 0L, 1L, 1L, 1L, 0L, 0L, 3L, 0L, 0L, 0L, 1L, 4L,  
-1L, 10L, 1L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 2L, 0L, 0L, 0L,  
-0L, 0L, 0L, 5L, 3L, 1L, 0L, 0L, 1L, 2L, 0L, 3L, 1L, 8L, 0L, 2L,  
-0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 11L,  
-2L, 3L, 0L, 0L, 1L, 0L, 3L, 0L, 0L, 2L, 0L, 0L, 1L, 0L, 0L, 0L,  
-0L, 1L, 11L, 0L, 10L, 1L, 1L, 27L, 4L, 5L, 0L, 0L, 0L, 0L, 2L,  
-0L, 0L, 2L, 0L, 1L, 0L, 1L, 9L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L,  
-0L, 0L, 3L, 11L, 1L, 1L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 1L,  
-1L, 3L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L,  
-0L, 0L, 0L, 0L, 1L, 1L, 0L, 0L, 7L, 3L, 1L, 0L, 1L, 0L, 0L, 0L,  
-0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 1L, 0L, 0L,  
-0L, 2L, 0L, 0L, 2L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 2L, 4L, 0L,  
-0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L,  
-0L, 1L, 1L, 0L, 1L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L,  
-0L, 2L, 0L, 0L, 3L, 0L, 0L, 1L, 1L, 0L, 0L, 1L, 30L, 0L, 0L,  
-0L, 0L, 0L, 1L, 0L, 0L, 24L, 2L, 2L, 11L, 0L, 0L, 5L, 1L, 0L,  
-0L, 0L, 1L, 0L, 2L, 2L, 2L, 1L, 0L, 0L, 0L, 0L, 2L, 0L, 0L, 0L,  
-1L, 1L, 2L, 0L, 0L, 0L, 0L, 0L, 5L, 1L, 16L, 0L, 0L, 0L, 0L,  
-0L, 0L, 0L, 0L, 0L, 1L, 0L, 1L, 0L, 0L, 0L, 0L, 3L, 1L, 0L, 0L,  
-1L, 0L, 13L, 19L, 0L, 1L, 0L, 0L, 0L, 0L, 1L, 1L, 0L, 0L, 0L,  
-1L, 0L, 0L, 6L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L,  
-0L, 3L, 0L, 0L, 1L, 0L, 0L, 0L, 2L, 0L, 0L, 0L, 0L, 0L, 0L, 2L,  
-0L, 1L, 0L, 2L, 1L, 0L, 4L, 0L, 0L, 1L, 0L, 0L, 0L, 1L, 0L, 4L,  
-0L, 0L, 0L, 3L, 0L, 0L, 0L, 0L, 2L, 2L, 4L, 0L, 0L, 0L, 0L, 0L,  
-0L, 1L, 15L, 1L, 1L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L,  
-4L, 0L, 4L, 1L, 0L, 1L, 0L, 0L, 3L, 3L, 2L, 0L, 4L, 0L, 2L, 0L,  
-0L, 1L, 0L, 4L), class = c(&quot;AbdVector&quot;, &quot;SpeciesDistribution&quot;,  
-&quot;integer&quot;), .Names = c(&quot;Anac_Anac_spru&quot;, &quot;Anac_Astr_ulei&quot;, &quot;Anac_Tapi_guia&quot;,  
-&quot;Anac_Thyr_guia&quot;, &quot;Anac_Thyr_pube&quot;, &quot;Anno_Dugu_caly&quot;, &quot;Anno_Dugu_suri&quot;,  
-&quot;Anno_Fusa_long&quot;, &quot;Anno_Guat_anth&quot;, &quot;Anno_Guat_guia&quot;, &quot;Anno_Guat_wach&quot;,  
-&quot;Anno_Oxan_asbe&quot;, &quot;Anno_Roll_elli&quot;, &quot;Anno_Unon_perr&quot;, &quot;Anno_Unon_rufe&quot;,  
-&quot;Anno_Xylo_niti&quot;, &quot;Apoc_Ambe_acid&quot;, &quot;Apoc_Anar_meye&quot;, &quot;Apoc_Aspi_albu&quot;,  
-&quot;Apoc_Aspi_crue&quot;, &quot;Apoc_Aspi_marc&quot;, &quot;Apoc_Aspi_oblo&quot;, &quot;Apoc_Aspi_spru&quot;,  
-&quot;Apoc_Coum_guia&quot;, &quot;Apoc_Hima_sp_&quot;, &quot;Apoc_Lacm_acul&quot;, &quot;Aqui_Ilex_sp_&quot;,  
-&quot;Aral_Sche_deca&quot;, &quot;Arec_Astr_scio&quot;, &quot;Arec_Eute_oler&quot;, &quot;Arec_Jess_bata&quot;,  
-&quot;Arec_Oeno_baca&quot;, &quot;Bign_Jaca_copa&quot;, &quot;Bign_Tabe_sp_&quot;, &quot;Bora_Cord_IND&quot;,  
-&quot;Bora_Cord_sago&quot;, &quot;Bora_Cord_sp_&quot;, &quot;Bras_Capp_maro&quot;, &quot;Burs_Crep_goud&quot;,  
-&quot;Burs_Dacr_cusp&quot;, &quot;Burs_Dacr_nite&quot;, &quot;Burs_Dacr_sp_&quot;, &quot;Burs_Prot_apic&quot;,  
-&quot;Burs_Prot_deca&quot;, &quot;Burs_Prot_gall&quot;, &quot;Burs_Prot_guia&quot;, &quot;Burs_Prot_mori&quot;,  
-&quot;Burs_Prot_opac&quot;, &quot;Burs_Prot_sago&quot;, &quot;Burs_Prot_subs&quot;, &quot;Burs_Prot_tenu&quot;,  
-&quot;Burs_Prot_trif&quot;, &quot;Burs_Tetr_alti&quot;, &quot;Burs_Tetr_pana&quot;, &quot;Burs_Trat_deme&quot;,  
-&quot;Cary_Cary_glab&quot;, &quot;Cela_Chei_cogn&quot;, &quot;Cela_Goup_glab&quot;, &quot;Cela_IND_sp_&quot;,  
-&quot;Cela_Mayt_oblo&quot;, &quot;Cela_Mayt_sp_1&quot;, &quot;Cela_Mayt_sp_2&quot;, &quot;Chry_Coue_brac&quot;,  
-&quot;Chry_Coue_cary&quot;, &quot;Chry_Coue_guia&quot;, &quot;Chry_Coue_habr&quot;, &quot;Chry_Coue_joaq&quot;,  
-&quot;Chry_Coue_magn&quot;, &quot;Chry_Coue_pari&quot;, &quot;Chry_Hirt_arag&quot;, &quot;Chry_Hirt_glandi&quot;,  
-&quot;Chry_Hirt_glandu&quot;, &quot;Chry_Hirt_IND&quot;, &quot;Chry_Hirt_suff&quot;, &quot;Chry_IND_IND&quot;,  
-&quot;Chry_Lica_alba&quot;, &quot;Chry_Lica_cane&quot;, &quot;Chry_Lica_hete&quot;, &quot;Chry_Lica_IND&quot;,  
-&quot;Chry_Lica_laxi&quot;, &quot;Chry_Lica_lica&quot;, &quot;Chry_Lica_maju&quot;, &quot;Chry_Lica_memb&quot;,  
-&quot;Chry_Lica_micr&quot;, &quot;Chry_Lica_minu&quot;, &quot;Chry_Lica_oval&quot;, &quot;Chry_Lica_sp_1&quot;,  
-&quot;Chry_Lica_sp_2&quot;, &quot;Chry_Lica_spru&quot;, &quot;Chry_Pari_camp&quot;, &quot;Chry_Pari_mont&quot;,  
-&quot;Clus_Clus_gran&quot;, &quot;Clus_Moro_cocc&quot;, &quot;Clus_Plat_insi&quot;, &quot;Clus_Rhee_madr&quot;,  
-&quot;Clus_Symp_glob&quot;, &quot;Clus_Symp_sp_&quot;, &quot;Clus_Tovo_IND&quot;, &quot;Clus_Tovo_sp_1&quot;,  
-&quot;Clus_Tovo_sp_2&quot;, &quot;Clus_Tovo_sp_3&quot;, &quot;Clus_Tovo_sp_4&quot;, &quot;Clus_Tovo_sp_5&quot;,  
-&quot;Clus_Tovo_sp_6&quot;, &quot;Clus_Tovo_sp_7&quot;, &quot;Clus_Vism_caye&quot;, &quot;Comb_Buch_gran&quot;,  
-&quot;Comb_Buch_guia&quot;, &quot;Comb_Buch_IND&quot;, &quot;Comb_Buch_tetr&quot;, &quot;Comb_Term_guia&quot;,  
-&quot;Dich_Tapu_amaz&quot;, &quot;Dich_Tapu_capi&quot;, &quot;Eben_Dios_capr&quot;, &quot;Eben_Dios_carb&quot;,  
-&quot;Elae_Sloa_brev&quot;, &quot;Elae_Sloa_garc&quot;, &quot;Elae_Sloa_guia&quot;, &quot;Elae_Sloa_lati&quot;,  
-&quot;Elae_Sloa_sp_1&quot;, &quot;Elae_Sloa_sp_2&quot;, &quot;Elae_Sloa_sp_3&quot;, &quot;Elae_Sloa_sp_4&quot;,  
-&quot;Euph_Chae_scho&quot;, &quot;Euph_Chae_sp_&quot;, &quot;Euph_Conc_guia&quot;, &quot;Euph_Dryp_fans&quot;,  
-&quot;Euph_Dryp_vari&quot;, &quot;Euph_Glyc_amaz&quot;, &quot;Euph_Heve_guia&quot;, &quot;Euph_Hyer_alch&quot;,  
-&quot;Euph_Mabe_piri&quot;, &quot;Euph_Pogo_scho&quot;, &quot;Euph_Sand_guia&quot;, &quot;Faba_Abar_jupu&quot;,  
-&quot;Faba_Abar_mata&quot;, &quot;Faba_Andi_IND&quot;, &quot;Faba_Boco_prou&quot;, &quot;Faba_Cass_spru&quot;,  
-&quot;Faba_Dico_guia&quot;, &quot;Faba_Dipl_purp&quot;, &quot;Faba_Dipt_odor&quot;, &quot;Faba_Dipt_punc&quot;,  
-&quot;Faba_Ente_scho&quot;, &quot;Faba_Eper_falc&quot;, &quot;Faba_Eper_gran&quot;, &quot;Faba_Hyme_cour&quot;,  
-&quot;Faba_Hyme_flav&quot;, &quot;Faba_IND_sp_&quot;, &quot;Faba_Inga_acre&quot;, &quot;Faba_Inga_acro&quot;,  
-&quot;Faba_Inga_alba&quot;, &quot;Faba_Inga_albi&quot;, &quot;Faba_Inga_brac&quot;, &quot;Faba_Inga_fanc&quot;,  
-&quot;Faba_Inga_grac&quot;, &quot;Faba_Inga_hube&quot;, &quot;Faba_Inga_leio&quot;, &quot;Faba_Inga_long&quot;,  
-&quot;Faba_Inga_loub&quot;, &quot;Faba_Inga_nour&quot;, &quot;Faba_Inga_para&quot;, &quot;Faba_Inga_pezi&quot;,  
-&quot;Faba_Inga_rubi&quot;, &quot;Faba_Inga_sarm&quot;, &quot;Faba_Inga_stip&quot;, &quot;Faba_Ormo_stip&quot;,  
-&quot;Faba_Papi_IND&quot;, &quot;Faba_Park_giga&quot;, &quot;Faba_Park_niti&quot;, &quot;Faba_Park_pend&quot;,  
-&quot;Faba_Park_sp_&quot;, &quot;Faba_Park_ulei&quot;, &quot;Faba_Park_velu&quot;, &quot;Faba_Pelt_pani&quot;,  
-&quot;Faba_Plat_pinn&quot;, &quot;Faba_Pseu_psil&quot;, &quot;Faba_Pseu_suav&quot;, &quot;Faba_Reco_spec&quot;,  
-&quot;Faba_Stry_mori&quot;, &quot;Faba_Swar_cane&quot;, &quot;Faba_Swar_lebl&quot;, &quot;Faba_Swar_pana&quot;,  
-&quot;Faba_Swar_poly&quot;, &quot;Faba_Swar_sp_&quot;, &quot;Faba_Tach_brac&quot;, &quot;Faba_Tach_guia&quot;,  
-&quot;Faba_Tach_meli&quot;, &quot;Faba_Tach_pani&quot;, &quot;Faba_Tach_para&quot;, &quot;Faba_Vata_eryt&quot;,  
-&quot;Faba_Vata_suri&quot;, &quot;Faba_Voua_amer&quot;, &quot;Faba_Zygi_race&quot;, &quot;Faba_Zygi_tetr&quot;,  
-&quot;Humi_Humi_subc&quot;, &quot;Humi_Saco_guia&quot;, &quot;Humi_Vant_parv&quot;, &quot;Icac_Dend_boli&quot;,  
-&quot;Icac_Emmo_fagi&quot;, &quot;Icac_Pora_guia&quot;, &quot;Ixon_Cyri_para&quot;, &quot;Laur_Aiou_long&quot;,  
-&quot;Laur_Anib_host&quot;, &quot;Laur_Anib_term&quot;, &quot;Laur_Endl_meli&quot;, &quot;Laur_IND_sp_1&quot;,  
-&quot;Laur_IND_sp_2&quot;, &quot;Laur_IND_sp_3&quot;, &quot;Laur_IND_sp_4&quot;, &quot;Laur_IND_sp_5&quot;,  
-&quot;Laur_IND_sp_6&quot;, &quot;Laur_IND_sp_7&quot;, &quot;Laur_IND_sp_8&quot;, &quot;Laur_IND_sp_9&quot;,  
-&quot;Laur_IND_sp_10&quot;, &quot;Laur_IND_sp_11&quot;, &quot;Laur_IND_sp_12&quot;, &quot;Laur_IND_sp_13&quot;,  
-&quot;Laur_IND_sp_14&quot;, &quot;Laur_IND_sp_15&quot;, &quot;Laur_IND_sp_16&quot;, &quot;Laur_IND_sp_17&quot;,  
-&quot;Laur_IND_sp_18&quot;, &quot;Laur_IND_sp_19&quot;, &quot;Laur_IND_sp_20&quot;, &quot;Laur_Lica_cann&quot;,  
-&quot;Laur_Lica_chry&quot;, &quot;Laur_Lica_guia&quot;, &quot;Laur_Ocot_amaz&quot;, &quot;Laur_Ocot_argy&quot;,  
-&quot;Laur_Ocot_indi&quot;, &quot;Laur_Ocot_perc&quot;, &quot;Laur_Ocot_sp_&quot;, &quot;Laur_Ocot_subt&quot;,  
-&quot;Laur_Rhod_gran&quot;, &quot;Laur_Rhod_kunt&quot;, &quot;Laur_Rhod_rufo&quot;, &quot;Laur_Sext_rubr&quot;,  
-&quot;Lecy_Cour_caly&quot;, &quot;Lecy_Cour_glor&quot;, &quot;Lecy_Cour_guia&quot;, &quot;Lecy_Cour_mult&quot;,  
-&quot;Lecy_Cour_oblo&quot;, &quot;Lecy_Esch_char&quot;, &quot;Lecy_Esch_cong&quot;, &quot;Lecy_Esch_cori&quot;,  
-&quot;Lecy_Esch_deco&quot;, &quot;Lecy_Esch_gran&quot;, &quot;Lecy_Esch_micr&quot;, &quot;Lecy_Esch_pedi&quot;,  
-&quot;Lecy_Esch_prae&quot;, &quot;Lecy_Esch_sago&quot;, &quot;Lecy_Esch_simi&quot;, &quot;Lecy_Esch_squa&quot;,  
-&quot;Lecy_Gust_hexa&quot;, &quot;Lecy_IND_sp_&quot;, &quot;Lecy_Lecy_char&quot;, &quot;Lecy_Lecy_corr&quot;,  
-&quot;Lecy_Lecy_holc&quot;, &quot;Lecy_Lecy_idat&quot;, &quot;Lecy_Lecy_pers&quot;, &quot;Lecy_Lecy_poit&quot;,  
-&quot;Lecy_Lecy_zabu&quot;, &quot;Lina_Hebe_humi&quot;, &quot;Loga_Anto_ovat&quot;, &quot;Loga_Stry_IND&quot;,  
-&quot;Malp_Bunc_sp_&quot;, &quot;Malv_Apei_glab&quot;, &quot;Malv_Apei_peto&quot;, &quot;Malv_Cato_frag&quot;,  
-&quot;Malv_Erio_long&quot;, &quot;Malv_Erio_sp_1&quot;, &quot;Malv_Erio_sp_2&quot;, &quot;Malv_IND_sp_1&quot;,  
-&quot;Malv_IND_sp_2&quot;, &quot;Malv_Lueh_rugo&quot;, &quot;Malv_Pach_doli&quot;, &quot;Malv_Quar_duck&quot;,  
-&quot;Malv_Ster_mult&quot;, &quot;Malv_Ster_prur&quot;, &quot;Malv_Ster_spec&quot;, &quot;Malv_Theo_subi&quot;,  
-&quot;Marc_Nora_IND&quot;, &quot;Mela_Henr_flav&quot;, &quot;Mela_Mico_acum&quot;, &quot;Mela_Mico_sp_&quot;,  
-&quot;Mela_Mico_tsch&quot;, &quot;Mela_Mour_cras&quot;, &quot;Mela_Mour_hube&quot;, &quot;Meli_Cara_proc&quot;,  
-&quot;Meli_Guar_guid&quot;, &quot;Meli_Guar_silv&quot;, &quot;Meli_Tric_cipo&quot;, &quot;Meli_Tric_pall&quot;,  
-&quot;Meli_Tric_suri&quot;, &quot;Moni_Sipa_cris&quot;, &quot;Moni_Sipa_deci&quot;, &quot;Moni_Sipa_pach&quot;,  
-&quot;Mora_Baga_guia&quot;, &quot;Mora_Bros_guia&quot;, &quot;Mora_Bros_rube&quot;, &quot;Mora_Bros_util&quot;,  
-&quot;Mora_Ficu_sp_&quot;, &quot;Mora_Heli_pedu&quot;, &quot;Mora_Heli_tome&quot;, &quot;Mora_Maqu_calo&quot;,  
-&quot;Mora_Maqu_guia&quot;, &quot;Mora_Nauc_guia&quot;, &quot;Mora_Pere_guia&quot;, &quot;Mora_Pere_rubr&quot;,  
-&quot;Mora_Trym_amaz&quot;, &quot;Mora_Trym_olig&quot;, &quot;Myri_Irya_host&quot;, &quot;Myri_Irya_sago&quot;,  
-&quot;Myri_Viro_kwat&quot;, &quot;Myri_Viro_mich&quot;, &quot;Myrt_Euge_coff&quot;, &quot;Myrt_Euge_cucu&quot;,  
-&quot;Myrt_Euge_cupu&quot;, &quot;Myrt_Euge_macr&quot;, &quot;Myrt_Euge_patr&quot;, &quot;Myrt_Euge_pseu&quot;,  
-&quot;Myrt_Euge_sp_1&quot;, &quot;Myrt_Euge_sp_2&quot;, &quot;Myrt_Euge_sp_3&quot;, &quot;Myrt_Euge_tetr&quot;,  
-&quot;Myrt_IND_IND&quot;, &quot;Myrt_IND_sp_&quot;, &quot;Myrt_Myrc_deco&quot;, &quot;Myrt_Myrc_magn&quot;,  
-&quot;Nyct_Neea_flor&quot;, &quot;Nyct_Neea_sp_&quot;, &quot;Olac_Chau_kapp&quot;, &quot;Olac_Heis_dens&quot;,  
-&quot;Olac_Minq_guia&quot;, &quot;Olac_Ptyc_olac&quot;, &quot;Opil_Agon_silv&quot;, &quot;Poly_Cocc_moll&quot;,  
-&quot;Quii_Lacu_cren&quot;, &quot;Quii_Lacu_jenm&quot;, &quot;Quii_Quii_guia&quot;, &quot;Rubi_Amai_guia&quot;,  
-&quot;Rubi_Chim_turb&quot;, &quot;Rubi_Duro_aqua&quot;, &quot;Rubi_Duro_erio&quot;, &quot;Rubi_Duro_long&quot;,  
-&quot;Rubi_Fara_pedu&quot;, &quot;Rubi_Guet_acre&quot;, &quot;Rubi_IND_IND&quot;, &quot;Rubi_Poso_lati&quot;,  
-&quot;Rubi_Psyc_mapo&quot;, &quot;Sali_Case_deca&quot;, &quot;Sali_Case_javi&quot;, &quot;Sali_Case_sylv&quot;,  
-&quot;Sapi_Allo_angu&quot;, &quot;Sapi_Cupa_diph&quot;, &quot;Sapi_Cupa_rubi&quot;, &quot;Sapi_Cupa_scro&quot;,  
-&quot;Sapi_Meli_pedi&quot;, &quot;Sapi_Tali_micr&quot;, &quot;Sapi_Tali_prae&quot;, &quot;Sapi_Tali_sima&quot;,  
-&quot;Sapi_Voua_guia&quot;, &quot;Sapo_Chry_arge&quot;, &quot;Sapo_Chry_exim&quot;, &quot;Sapo_Chry_luce&quot;,  
-&quot;Sapo_Chry_prie&quot;, &quot;Sapo_Chry_sang&quot;, &quot;Sapo_Dipl_cusp&quot;, &quot;Sapo_Eccl_rami&quot;,  
-&quot;Sapo_Elae_nuda&quot;, &quot;Sapo_Elae_sp_&quot;, &quot;Sapo_Mani_bide&quot;, &quot;Sapo_Mani_hube&quot;,  
-&quot;Sapo_Micr_caye&quot;, &quot;Sapo_Micr_egen&quot;, &quot;Sapo_Micr_guya&quot;, &quot;Sapo_Micr_long&quot;,  
-&quot;Sapo_Micr_obsc&quot;, &quot;Sapo_Micr_porp&quot;, &quot;Sapo_Micr_sanc&quot;, &quot;Sapo_Micr_venu&quot;,  
-&quot;Sapo_Pout_ambe&quot;, &quot;Sapo_Pout_bang&quot;, &quot;Sapo_Pout_bena&quot;, &quot;Sapo_Pout_bilo&quot;,  
-&quot;Sapo_Pout_clad&quot;, &quot;Sapo_Pout_deco&quot;, &quot;Sapo_Pout_euge&quot;, &quot;Sapo_Pout_fili&quot;,  
-&quot;Sapo_Pout_fimb&quot;, &quot;Sapo_Pout_gong&quot;, &quot;Sapo_Pout_guia&quot;, &quot;Sapo_Pout_hisp&quot;,  
-&quot;Sapo_Pout_jari&quot;, &quot;Sapo_Pout_mela&quot;, &quot;Sapo_Pout_retic&quot;, &quot;Sapo_Pout_retin&quot;,  
-&quot;Sapo_Pout_sing&quot;, &quot;Sapo_Pout_sp_1&quot;, &quot;Sapo_Pout_sp_2&quot;, &quot;Sapo_Pout_sp_3&quot;,  
-&quot;Sapo_Pout_tort&quot;, &quot;Sapo_Pout_veno&quot;, &quot;Sapo_Prad_coch&quot;, &quot;Sapo_Prad_ptyc&quot;,  
-&quot;Sima_Sima_cedr&quot;, &quot;Sima_Sima_more&quot;, &quot;Sima_Sima_poly&quot;, &quot;Sima_Sima_amar&quot;,  
-&quot;Styr_Styr_sp_&quot;, &quot;Symp_Symp_mart&quot;, &quot;Urti_Cecr_obtu&quot;, &quot;Urti_Pour_bico&quot;,  
-&quot;Urti_Pour_meli&quot;, &quot;Urti_Pour_tome&quot;, &quot;Urti_Pour_vill&quot;, &quot;Viol_Amph_long&quot;,  
-&quot;Viol_Leon_glyc&quot;, &quot;Voch_Eris_flor&quot;, &quot;Voch_Eris_unci&quot;, &quot;Voch_IND_sp_&quot;,  
-&quot;Voch_Qual_rose&quot;, &quot;Voch_Ruiz_albi&quot;))
+of distribution -
  with correction: Best
 Phylogenetic or functional diversity was calculated according to the tree 
 Paracou618.Taxonomy 
@@ -329,7 +194,7 @@ Dqz(Abd18, q=2, Z)</code></pre>
 <pre class="r"><code>sbDP &lt;- CommunityProfile(Dqz, Abd18, Z=Z)
 pDP &lt;- CommunityProfile(function(X, ...) PhyloDiversity(X, ...)$Total, Abd18, Tree=Paracou618.Taxonomy)
 plot(pDP)</code></pre>
-<p><img src="C:\Users\Eric.Marcon\Documents\R\entropart\vignettes\index_files/figure-html/PDiversityProfile-1.png" width="624" /></p>
+<p><img src="index_files/figure-html/PDiversityProfile-1.png" width="624" /></p>
 </div>
 </div>
 <div id="estimating-the-diversity-of-a-meta-community" class="section level1">
@@ -377,7 +242,7 @@ Gamma diversity of the metacommunity:
 <pre class="r"><code>de &lt;- DivEst(q = 1, Paracou618.MC, Simulations = 100)</code></pre>
 <pre><code>===========================================================================</code></pre>
 <pre class="r"><code>plot(de)</code></pre>
-<p><img src="C:\Users\Eric.Marcon\Documents\R\entropart\vignettes\index_files/figure-html/DivEst, -1.png" width="624" /></p>
+<p><img src="index_files/figure-html/DivEst-1.png" width="624" /></p>
 <p>The result is a <code>Divest</code> object which can be summarized and plotted.</p>
 <p><code>DivProfile</code> calculates diversity profiles. The result is a <code>DivProfile</code> object which can be summarized and plotted.</p>
 <pre class="r"><code>dp &lt;- DivProfile(, Paracou618.MC)
