@@ -6,23 +6,17 @@ data(Paracou618)
 Ns <- as.AbdVector(Paracou618.MC$Ns)
 # Species probabilities
 Ps <- as.ProbaVector(Paracou618.MC$Ns)
-# Taxonomy
-# Build an hclust object. Distances in $Wdist are actually 2*sqrt(distance)
-hTree <- stats::hclust(Paracou618.Taxonomy$Wdist^2/2, "average")
-# Build a phylo object
-phyTree <- ape::as.phylo.hclust(hTree)
-# Build a ppTree
+# Taxonomy: Build a ppTree
 ppTree <- Preprocess.Tree(Paracou618.Taxonomy)
+# Build a phylog
+phylogTree <- ade4::hclust2phylog(ppTree$hTree)
 
 
 # Check PhyloEntropy does not change with dendrogram format
 test_that("PhyloEntropy does not depend on tree format", {
-  # PPtree and hcluster
-  expect_equal(AlphaEntropy(Paracou618.MC, q=1, Tree = ppTree)$Total,
-               AlphaEntropy(Paracou618.MC, q=1, Tree = hTree)$Total)
   # phylog and phylo
-  expect_equal(AlphaEntropy(Paracou618.MC, q=1, Tree = Paracou618.Taxonomy)$Total,
-               AlphaEntropy(Paracou618.MC, q=1, Tree = phyTree)$Total)
+  expect_equal(AlphaEntropy(Paracou618.MC, q=1, Tree = phylogTree)$Total,
+               AlphaEntropy(Paracou618.MC, q=1, Tree = Paracou618.Taxonomy)$Total)
 })
 
 
@@ -36,7 +30,7 @@ test_that("PhyloEntropy of order 2 equals Rao", {
                as.numeric(Rao(Ns, Paracou618.Taxonomy)))
   # HqZ
   expect_equal(as.numeric(PhyloEntropy(Ps, 2, Paracou618.Taxonomy, Normalize = TRUE)$Total), 
-               as.numeric(Hqz(Ps, 2, Z=1-as.matrix(Paracou618.Taxonomy$Wdist^2/6))))
+               as.numeric(Hqz(Ps, 2, Z=1-as.matrix(phylogTree$Wdist^2/6))))
 })
 
 

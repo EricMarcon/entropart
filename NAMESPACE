@@ -1,4 +1,4 @@
-importFrom("ade4", "originality")
+importFrom("ade4", "hclust2phylog", "originality")
 importFrom("ape", "as.hclust.phylo", "as.phylo.hclust", "as.phylo.phylog", "branching.times", "drop.tip", "is.ultrametric")
 importFrom("EntropyEstimation", "Entropy.z", "GenSimp.z", "Tsallis.z")
 importFrom("geiger", "tips")

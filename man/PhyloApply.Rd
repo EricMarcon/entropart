@@ -60,9 +60,7 @@ PhyloApply(Tree, FUN, NorP, Normalize = TRUE, \dots, CheckArguments = TRUE)
   #      and their taxonomy)
   data(Paracou618)
   # Plot the taxonomy
-  if (require(ade4, quietly = TRUE)) {
-    radial.phylog(Paracou618.Taxonomy)
-  }
+  plot(Paracou618.Taxonomy, type="fan", show.tip.label=FALSE)
   # Calculate the mean number of trees (individuals) per species 
   # (Cuts are 1=species, 2=genus, 3=family)
   PhyloApply(Paracou618.Taxonomy, mean, Paracou618.MC$Ns, TRUE)

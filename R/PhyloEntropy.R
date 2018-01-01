@@ -26,6 +26,7 @@ function(NorP, q = 1, Tree, Normalize = TRUE, ..., CheckArguments = TRUE, Ps = N
   Entropy$Tree <- ArgumentOriginalName(Tree)
   Entropy$Type <- "alpha or gamma"
   Entropy$Order <- q
+  Entropy$Correction <- names(Entropy$Total) <- "None"
   
   class(Entropy) <- c("PhyloEntropy", class(Entropy))
   
@@ -100,7 +101,7 @@ function(Ns, q = 1, Tree, Normalize = TRUE, Correction = "Best", SampleCoverage 
   Entropy$Tree <- ArgumentOriginalName(Tree)
   Entropy$Type <- "alpha or gamma"
   Entropy$Order <- q
-  Entropy$Correction <- Correction
+  Entropy$Correction <- names(Entropy$Total) <- Correction
   
   class(Entropy) <- c("PhyloEntropy", class(Entropy))
   
