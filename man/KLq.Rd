@@ -11,16 +11,16 @@ KLq(Ps, Pexp, q = 1, CheckArguments = TRUE)
 }
 \arguments{
   \item{Ps}{
-    The observed probability vector.
+  The observed probability vector.
   }
   \item{Pexp}{
-    The expected probability vector.
+  The expected probability vector.
   }
   \item{q}{
-    A number: the order of entropy. Default is 1.
+  A number: the order of entropy. Default is 1.
   }
   \item{CheckArguments}{
-    Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
+  Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }
 }
 \details{
@@ -44,12 +44,12 @@ KLq(Ps, Pexp, q = 1, CheckArguments = TRUE)
   \code{\link{TsallisBeta}}
 }
 \examples{
-  # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
-  data(Paracou618)
-  # Ps is the vector of probabilities
-  Ps <- Paracou618.MC$Ps
-  # Probability distribution of the first plot
-  Ps1 <- Paracou618.MC$Psi[, 1]
-  # Divergence of order 2 between the first plot and the whole forest
-  KLq(Ps1, Ps, 2)
+# Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
+data(Paracou618)
+# Ps is the vector of probabilities
+Ps <- Paracou618.MC$Ps
+# Probability distribution of the first plot
+Ps1 <- Paracou618.MC$Psi[, 1]
+# Divergence of order 2 between the first plot and the whole forest
+KLq(Ps1, Ps, 2)
 }

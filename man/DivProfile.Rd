@@ -21,67 +21,67 @@ is.DivProfile(x)
 }
 \arguments{
   \item{q.seq}{
-    A numeric vector.
+  A numeric vector.
   }
   \item{MC}{
-    A \code{\link{MetaCommunity}} object.
+  A \code{\link{MetaCommunity}} object.
   }
   \item{Biased}{
-    Logical; if \code{FALSE}, a bias correction is appplied.
+  Logical; if \code{FALSE}, a bias correction is appplied.
   }
   \item{Correction}{
-    A string containing one of the possible corrections.
+  A string containing one of the possible corrections.
 	
-    The correction must be accepted by \code{\link{AlphaEntropy}}, \code{\link{BetaEntropy}} and \code{\link{GammaEntropy}}. \code{"Best"} is the default value.
+  The correction must be accepted by \code{\link{AlphaEntropy}}, \code{\link{BetaEntropy}} and \code{\link{GammaEntropy}}. \code{"Best"} is the default value.
   }
   \item{Tree}{
-    An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
+  An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
   }
   \item{Normalize}{
-    If \code{TRUE} (default), diversity is not affected by the height of the tree.\cr
-    If \code{FALSE}, diversity is proportional to the height of the tree.
+  If \code{TRUE} (default), diversity is not affected by the height of the tree.\cr
+  If \code{FALSE}, diversity is proportional to the height of the tree.
   }
   \item{Z}{
-    A relatedness matrix, \emph{i.e.} a square matrix whose terms are all positive, strictly positive on the diagonal. Generally, the matrix is a similarity matrix, \emph{i.e.} the diagonal terms equal 1 and other terms are between 0 and 1.
+  A relatedness matrix, \emph{i.e.} a square matrix whose terms are all positive, strictly positive on the diagonal. Generally, the matrix is a similarity matrix, \emph{i.e.} the diagonal terms equal 1 and other terms are between 0 and 1.
   }
   \item{NumberOfSimulations}{
-    The number of simulations to run, 0 by default.
+  The number of simulations to run, 0 by default.
   }
   \item{Alpha}{
-    The risk level, 5\% by default.
+  The risk level, 5\% by default.
   }
   \item{CheckArguments}{
-    Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
+  Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }
   \item{x}{
-    An object to be tested or plotted.
+  An object to be tested or plotted.
   }
   \item{main}{
-    The main title of the plot. Ignored if \code{Which = "All"}.
+  The main title of the plot. Ignored if \code{Which = "All"}.
   }
   \item{xlab}{
-    The x axis label of the plots.
+  The x axis label of the plots.
   }
   \item{ylab}{
-    The y axis label of the plot. Ignored if \code{Which = "All"}.
+  The y axis label of the plot. Ignored if \code{Which = "All"}.
   }
   \item{Which}{
-    May be \code{"Communities"}, \code{"Alpha"}, \code{"Beta"} or \code{"Gamma"} to respectively plot the alpha diversity of communities or the metacommunity's alpha, beta or gamma diversity. If \code{"All"} (default), all four plots are shown.
+  May be \code{"Communities"}, \code{"Alpha"}, \code{"Beta"} or \code{"Gamma"} to respectively plot the alpha diversity of communities or the metacommunity's alpha, beta or gamma diversity. If \code{"All"} (default), all four plots are shown.
   }
   \item{LineWidth}{
-    The width of the line that represents the actual profile.
+  The width of the line that represents the actual profile.
   }
   \item{ShadeColor}{
-    The color of the shaded confidence envelope.
+  The color of the shaded confidence envelope.
   }
   \item{BorderColor}{
-    The color of the bounds of the confidence envelope.
+  The color of the bounds of the confidence envelope.
   }
   \item{object}{
-    A \code{MCdiversity} object to be summarized.
+  A \code{MCdiversity} object to be summarized.
   }
   \item{\dots}{
-    Additional arguments to be passed to the generic methods.
+  Additional arguments to be passed to the generic methods.
   }
 }
 \details{
@@ -132,10 +132,10 @@ is.DivProfile(x)
   \code{\link{DivPart}}
 }
 \examples{
-  # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
-  data(Paracou618)
-  # Estimate diversity.
-  Profile <- DivProfile(q.seq = seq(0, 2, 0.1), Paracou618.MC, Biased = FALSE)
-  plot(Profile)
-  summary(Profile)
+# Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
+data(Paracou618)
+# Estimate diversity.
+Profile <- DivProfile(q.seq = seq(0, 2, 0.1), Paracou618.MC, Biased = FALSE)
+plot(Profile)
+summary(Profile)
 }

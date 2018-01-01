@@ -30,41 +30,41 @@ is.PhyloEntropy(x)
 }
 \arguments{
   \item{Ps}{
-    A probability vector, summing to 1.
+  A probability vector, summing to 1.
   }
   \item{Ns}{
-    A numeric vector containing species abundances.
+  A numeric vector containing species abundances.
   }
   \item{NorP}{
-    A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities.
+  A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities.
   }
   \item{q}{
-    A number: the order of entropy. Default is 1.
+  A number: the order of entropy. Default is 1.
   }
   \item{Tree}{
-    An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
+  An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
   }
   \item{Normalize}{
-    If \code{TRUE} (default), the \code{Total} entropy returned by the function is normalized by the height of the tree (it is the weighted average value of the entropy in each slice).\cr
-    If \code{FALSE}, it is the unnormalized weighted sum of the results.
+  If \code{TRUE} (default), the \code{Total} entropy returned by the function is normalized by the height of the tree (it is the weighted average value of the entropy in each slice).\cr
+  If \code{FALSE}, it is the unnormalized weighted sum of the results.
   }
   \item{Correction}{
-    A string containing one of the possible corrections: \code{"None"} (no correction), \code{"ChaoShen"}, \code{"Grassberger"}, \code{"Holste"}, \code{"Bonachela"} or \code{"Best"}, the default value.
+  A string containing one of the possible corrections: \code{"None"} (no correction), \code{"ChaoShen"}, \code{"Grassberger"}, \code{"Holste"}, \code{"Bonachela"} or \code{"Best"}, the default value.
   }
   \item{SampleCoverage}{
-    The sample coverage of \code{Ns} calculated elsewhere. Used to calculate the gamma diversity of meta-communities, see details. 
+  The sample coverage of \code{Ns} calculated elsewhere. Used to calculate the gamma diversity of meta-communities, see details. 
   }
   \item{CheckArguments}{
-    Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
+  Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }
   \item{x}{
-    An object to be tested or plotted
+  An object to be tested or plotted
   }
   \item{object}{
-    A \code{PhyloEntropy} object to be summarized.
+  A \code{PhyloEntropy} object to be summarized.
   }
   \item{\dots}{
-    Additional arguments to be passed to the generic methods.
+  Additional arguments to be passed to the generic methods.
   }
 }
 \details{
@@ -112,19 +112,18 @@ is.PhyloEntropy(x)
   \code{\link{Tsallis}}, \code{\link{PhyloDiversity}}
 }
 \examples{
-  # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest
-  #      and their taxonomy)
-  data(Paracou618)
-  # Ps is the vector of probabilities
-  Ps <- as.ProbaVector(Paracou618.MC$Ps)
-  # Calculate the phylogenetic Shannon entropy of the plot
-  summary(PhyloEntropy(Ps, 1, Paracou618.Taxonomy) -> e)
-  plot(e)
-  
-  # Ns is the vector of abundances of the metacommunity
-  Ns <- as.AbdVector(Paracou618.MC$Ns)
-  # Calculate the phylogenetic Shannon entropy of the plot
-  summary(bcPhyloEntropy(Ns, 1, Paracou618.Taxonomy, Correction = "Best") -> e)
-  plot(e)
+# Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest
+#      and their taxonomy)
+data(Paracou618)
+# Ps is the vector of probabilities
+Ps <- as.ProbaVector(Paracou618.MC$Ps)
+# Calculate the phylogenetic Shannon entropy of the plot
+summary(PhyloEntropy(Ps, 1, Paracou618.Taxonomy) -> e)
+plot(e)
 
+# Ns is the vector of abundances of the metacommunity
+Ns <- as.AbdVector(Paracou618.MC$Ns)
+# Calculate the phylogenetic Shannon entropy of the plot
+summary(bcPhyloEntropy(Ns, 1, Paracou618.Taxonomy, Correction = "Best") -> e)
+plot(e)
 }

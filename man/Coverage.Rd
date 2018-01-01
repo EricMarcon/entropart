@@ -11,13 +11,13 @@ Coverage(Ns, Estimator = "ZhangHuang", CheckArguments = TRUE)
 }
 \arguments{
   \item{Ns}{
-    A numeric vector containing species abundances.
+  A numeric vector containing species abundances.
   }
   \item{Estimator}{
-    A string containing one of the possible estimators: \code{"ZhangHuang"} (default), \code{"Chao"}, \code{"Turing"}.
+  A string containing one of the possible estimators: \code{"ZhangHuang"} (default), \code{"Chao"}, \code{"Turing"}.
   }
   \item{CheckArguments}{
-    Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
+  Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }
 }
 \details{
@@ -41,10 +41,10 @@ Coverage(Ns, Estimator = "ZhangHuang", CheckArguments = TRUE)
   Eric Marcon <Eric.Marcon@ecofog.gf>
 }
 \examples{
-  # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
-  data(Paracou618)
-  # Ns is the vector of abundances of the metacommunity
-  Ns <- Paracou618.MC$Ns
-  # Calculate the sample coverage of the metacommunity
-  Coverage(Ns)    # Stored in Paracou618.SampleCoverage
+# Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
+data(Paracou618)
+# Ns is the vector of abundances of the metacommunity
+Ns <- Paracou618.MC$Ns
+# Calculate the sample coverage of the metacommunity
+Coverage(Ns)    # Stored in Paracou618.SampleCoverage
 }

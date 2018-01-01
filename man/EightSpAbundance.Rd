@@ -15,10 +15,8 @@ data(Paracou618)
 }
 
 \examples{
-
 data(Paracou618)
 EightSpAbundance
-
 }
 
 \keyword{datasets}

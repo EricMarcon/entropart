@@ -25,28 +25,28 @@ bcRichness(Ns, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE,
 }
 \arguments{
   \item{Ps}{
-    A probability vector, summing to 1.
+  A probability vector, summing to 1.
   }
   \item{Ns}{
-    A numeric vector containing species abundances.
+  A numeric vector containing species abundances.
   }
   \item{NorP}{
-    A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities.
+  A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities.
   }
   \item{Correction}{
-    A string containing one of the possible corrections: \code{"None"} (no correction), \code{"Jackknife"}, \code{"iChao1"}, or \code{"Chao1"}, the default value.
+  A string containing one of the possible corrections: \code{"None"} (no correction), \code{"Jackknife"}, \code{"iChao1"}, or \code{"Chao1"}, the default value.
   }
   \item{Alpha}{
-    The risk level, 5\% by default, used to optimize the jackknife order.
+  The risk level, 5\% by default, used to optimize the jackknife order.
   }
   \item{JackOver}{
-    If \code{TRUE}, retain the jackknife order immediately superior to the optimal one, usually resulting in the overestimation of the number of species. Default is \code{FALSE}.
+  If \code{TRUE}, retain the jackknife order immediately superior to the optimal one, usually resulting in the overestimation of the number of species. Default is \code{FALSE}.
   }
   \item{\dots}{
-    Additional arguments. Unused.
+  Additional arguments. Unused.
   }
   \item{CheckArguments}{
-    Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
+  Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }
 }
 \details{
@@ -73,20 +73,20 @@ bcRichness(Ns, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE,
   Eric Marcon <Eric.Marcon@ecofog.gf>
 }
 \examples{
-  # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
-  data(Paracou618)
-  # Ns is the total number of trees per species
-  Ns <- as.AbdVector(Paracou618.MC$Ns)
-  # Species probabilities
-  Ps <- as.ProbaVector(Paracou618.MC$Ns)
-  # Whittaker plot
-  plot(Ns)
+# Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
+data(Paracou618)
+# Ns is the total number of trees per species
+Ns <- as.AbdVector(Paracou618.MC$Ns)
+# Species probabilities
+Ps <- as.ProbaVector(Paracou618.MC$Ns)
+# Whittaker plot
+plot(Ns)
 
-  # Number of observed species
-  Richness(Ps)
-  # Estimate the actual number of species
-  bcRichness(Ns, Correction = "Chao1")
-  bcRichness(Ns, Correction = "iChao1")
-  bcRichness(Ns, Correction = "Jackknife")
-  bcRichness(Ns, Correction = "Jackknife", JackOver=TRUE)
+# Number of observed species
+Richness(Ps)
+# Estimate the actual number of species
+bcRichness(Ns, Correction = "Chao1")
+bcRichness(Ns, Correction = "iChao1")
+bcRichness(Ns, Correction = "Jackknife")
+bcRichness(Ns, Correction = "Jackknife", JackOver=TRUE)
 }

@@ -23,67 +23,67 @@ CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", \d
 }
 \arguments{
   \item{FUN}{
-    The function to be applied to each value of \eqn{q.seq}. Any function accepting a numeric vector (or a two-column matrix) and a number as first two arguments and an argument named \code{CheckArguments} is acceptable (other arguments of the functions are passed by \code{\dots}). See *Details* for useful entropy and diversity functions and *Examples* for an ad-hoc one.
+  The function to be applied to each value of \eqn{q.seq}. Any function accepting a numeric vector (or a two-column matrix) and a number as first two arguments and an argument named \code{CheckArguments} is acceptable (other arguments of the functions are passed by \code{\dots}). See *Details* for useful entropy and diversity functions and *Examples* for an ad-hoc one.
   }
   \item{NorP}{
-    A numeric vector. Contains either abundances or probabilities.
+  A numeric vector. Contains either abundances or probabilities.
   }
   \item{q.seq}{
-    A numeric vector: the sequence of diversity orders to address. Default is from 0 to 2.
+  A numeric vector: the sequence of diversity orders to address. Default is from 0 to 2.
   }
   \item{NumberOfSimulations}{
-    The number of simulations to run, 0 by default.
+  The number of simulations to run, 0 by default.
   }
   \item{Alpha}{
-    The risk level, 5\% by default.
+  The risk level, 5\% by default.
   }
   \item{BootstrapMethod}{
-    The method used to obtain the probabilities to generate bootstrapped communities from observed abundances. See \code{\link{rCommunity}}.
+  The method used to obtain the probabilities to generate bootstrapped communities from observed abundances. See \code{\link{rCommunity}}.
   }
   \item{size}{
-    The size of simulated communities used to compute the bootstrap confidence envelope. 1 (default) means that the actual size must be used.
+  The size of simulated communities used to compute the bootstrap confidence envelope. 1 (default) means that the actual size must be used.
   }
   \item{x}{
-    An object to be tested or plotted or the vector of orders of community profiles in \code{as.CommunityProfile}.
+  An object to be tested or plotted or the vector of orders of community profiles in \code{as.CommunityProfile}.
   }
   \item{y}{
-    Entropy or diversity values of each order, corresponding to \code{x} values.
+  Entropy or diversity values of each order, corresponding to \code{x} values.
   }
   \item{low}{
-    Entropy or diversity lower bound of the confidence envelope, corresponding to \code{x} values.
+  Entropy or diversity lower bound of the confidence envelope, corresponding to \code{x} values.
   }
   \item{high}{
-    Entropy or diversity higher bound of the confidence envelope, corresponding to \code{x} values.
+  Entropy or diversity higher bound of the confidence envelope, corresponding to \code{x} values.
   }
   \item{Profile}{
-    An \code{CommunityProfile} to be plotted.
+  An \code{CommunityProfile} to be plotted.
   }
   \item{\dots}{
-    Additional arguments to be passed to \code{FUN} in \code{CommunityProfile}, to \code{plot} in \code{plot.CommunityProfile} or to \code{lines} in \code{CEnvelope}.
+  Additional arguments to be passed to \code{FUN} in \code{CommunityProfile}, to \code{plot} in \code{plot.CommunityProfile} or to \code{lines} in \code{CEnvelope}.
   }
   \item{main}{
-    The main title of the plot.
+  The main title of the plot.
   }
   \item{xlab}{
-    The x axis label of the plots.
+  The x axis label of the plots.
   }
   \item{ylab}{
-    The y axis label of the plot.
+  The y axis label of the plot.
   }
   \item{ylim}{
-    The interval of y values plotted.
+  The interval of y values plotted.
   }
   \item{LineWidth}{
-    The width of the line that represents the actual profile.
+  The width of the line that represents the actual profile.
   }
   \item{ShadeColor}{
-    The color of the shaded confidence envelope.
+  The color of the shaded confidence envelope.
   }
   \item{BorderColor}{
-    The color of the bounds of the confidence envelope.
+  The color of the bounds of the confidence envelope.
   }
   \item{CheckArguments}{
-    Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
+  Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }
 }
 \details{
@@ -96,34 +96,34 @@ CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", \d
 }
 \value{
   A \code{CommunityProfile}, which is a list:
-    \item{x}{The order \eqn{q} values}
-    \item{y}{The entropy or diversity values returned by \code{FUN}}
-    \item{low}{The lower bound of the confidence interval}
-    \item{high}{The upper bound of the confidence interval}
+  \item{x}{The order \eqn{q} values}
+  \item{y}{The entropy or diversity values returned by \code{FUN}}
+  \item{low}{The lower bound of the confidence interval}
+  \item{high}{The upper bound of the confidence interval}
 }
 \author{
   Eric Marcon <Eric.Marcon@ecofog.gf>, Bruno Herault <Bruno.Herault@ecofog.gf>
 }
 \examples{
-  # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
-  data(Paracou618)
-  # Plot diversity estimated without bias correction
-  plot(CommunityProfile(Diversity, Paracou618.MC$Ps, seq(0, 2, 0.2)), 
-    lty=3, ylim=c(50, 350))
-  # Estimate diversity, with a condidence envelope 
-  # (only 10 simulations to save time, should be 1000)
-  Profile <- CommunityProfile(Diversity, as.AbdVector(Paracou618.MC$Ns), 
-              seq(0, 2, 0.2), Correction="UnveilJ", NumberOfSimulations=10)
-  # Complete the plot, and add the legend
-  CEnvelope(Profile, main="Paracou Plots Diversity")
-  legend("topright", c("Bias Corrected", "Biased"), lty=c(1,3), inset=0.01)
-  
-  # Advanced use with beta-diversity functions :
-  # Profile of the beta entropy of the first community of Paracou618.
-  # Observed and expected probabilities are bound into a 2-column matrix
-  # An intermediate function is necessary to separate them before calling TsallisBeta
-  # The CheckArguments is mandatory but does not need to be set: CommunityProfile() sets it to FALSE
-  CommunityProfile(function(PandPexp, q, CheckArguments) 
-      {TsallisBeta(PandPexp[, 1], PandPexp[, 2], q)}, 
-      NorP=cbind(Paracou618.MC$Psi[, 1], Paracou618.MC$Ps), q.seq=seq(0, 2, 0.2))
+# Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
+data(Paracou618)
+# Plot diversity estimated without bias correction
+plot(CommunityProfile(Diversity, Paracou618.MC$Ps, seq(0, 2, 0.2)), 
+lty=3, ylim=c(50, 350))
+# Estimate diversity, with a condidence envelope 
+# (only 10 simulations to save time, should be 1000)
+Profile <- CommunityProfile(Diversity, as.AbdVector(Paracou618.MC$Ns), 
+		  seq(0, 2, 0.2), Correction="UnveilJ", NumberOfSimulations=10)
+# Complete the plot, and add the legend
+CEnvelope(Profile, main="Paracou Plots Diversity")
+legend("topright", c("Bias Corrected", "Biased"), lty=c(1,3), inset=0.01)
+
+# Advanced use with beta-diversity functions :
+# Profile of the beta entropy of the first community of Paracou618.
+# Observed and expected probabilities are bound into a 2-column matrix
+# An intermediate function is necessary to separate them before calling TsallisBeta
+# The CheckArguments is mandatory but does not need to be set: CommunityProfile() sets it to FALSE
+CommunityProfile(function(PandPexp, q, CheckArguments) 
+  {TsallisBeta(PandPexp[, 1], PandPexp[, 2], q)}, 
+  NorP=cbind(Paracou618.MC$Psi[, 1], Paracou618.MC$Ps), q.seq=seq(0, 2, 0.2))
 }

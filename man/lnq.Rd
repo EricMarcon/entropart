@@ -13,13 +13,13 @@ lnq.CommunityProfile(Profile)
 }
 \arguments{
   \item{x}{
-    A numeric vector.
+  A numeric vector.
   }
   \item{Profile}{
-    A \code{\link{CommunityProfile}}.
+  A \code{\link{CommunityProfile}}.
   }
   \item{q}{
-    A number.
+  A number.
   }
 }
 \details{
@@ -44,8 +44,8 @@ lnq.CommunityProfile(Profile)
   \code{\link{expq}}
 }
 \examples{
-  curve(log(x), 0, 1, lty=1)
-  curve(lnq(x, 2), 0, 1, lty=2, add=TRUE)
-  curve(lnq(x, 3), 0, 1, lty=3, add=TRUE)  
-  legend("topleft", legend = c("log(x)", "ln2(x)", "ln3(x)"), lty = c(1, 2, 3), inset=0.02)
+curve(log(x), 0, 1, lty=1)
+curve(lnq(x, 2), 0, 1, lty=2, add=TRUE)
+curve(lnq(x, 3), 0, 1, lty=3, add=TRUE)  
+legend("topleft", legend = c("log(x)", "ln2(x)", "ln3(x)"), lty = c(1, 2, 3), inset=0.02)
 }

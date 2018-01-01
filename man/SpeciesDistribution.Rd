@@ -49,49 +49,49 @@ is.AbdVector(x)
 }
 \arguments{
   \item{x}{
-    An object.
+  An object.
   }
   \item{Distribution}{
-    The distribution to fit on the plot. May be \code{"lnorm"} (log-normal), \code{"lseries"} (log-series), \code{"geom"} (geometric) or \code{"bstick"} (broken stick). If \code{NULL}, no distribution is fitted. See \code{\link{rCommunity}} for the description of these distributions.
+  The distribution to fit on the plot. May be \code{"lnorm"} (log-normal), \code{"lseries"} (log-series), \code{"geom"} (geometric) or \code{"bstick"} (broken stick). If \code{NULL}, no distribution is fitted. See \code{\link{rCommunity}} for the description of these distributions.
   }
   \item{Round}{
-    If \code{TRUE} (by default), values of \code{x} are set to integer to create an \code{AbdVector}. This is useful if original abundances are not integers (this is often the case for \code{\link{MetaCommunity}} abundances which are the product of probabilities by the number of individuals) and integer values are required (for example to calculate the bootstrap confidence interval of a community profile).
+  If \code{TRUE} (by default), values of \code{x} are set to integer to create an \code{AbdVector}. This is useful if original abundances are not integers (this is often the case for \code{\link{MetaCommunity}} abundances which are the product of probabilities by the number of individuals) and integer values are required (for example to calculate the bootstrap confidence interval of a community profile).
   }
   \item{Correction}{
-    A string containing one of the possible corrections to estimate a probability distribution: \code{"None"} (no correction, the default value), \code{"Chao2013"}, \code{"Chao2015"} or \code{"ChaoShen"}.
+  A string containing one of the possible corrections to estimate a probability distribution: \code{"None"} (no correction, the default value), \code{"Chao2013"}, \code{"Chao2015"} or \code{"ChaoShen"}.
   }
   \item{Unveiling}{
-    A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species: \code{"None"} (default, no species is added), \code{"unif"} (uniform: all unobserved species have the same probability) or \code{"geom"} (geometric: the unobserved species distribution is geometric).
+  A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species: \code{"None"} (default, no species is added), \code{"unif"} (uniform: all unobserved species have the same probability) or \code{"geom"} (geometric: the unobserved species distribution is geometric).
   }
   \item{RCorrection}{
-    A string containing a correction recognized by \code{\link{Richness}} to evaluate the total number of species. \code{"Chao1"} is  the default value.
+  A string containing a correction recognized by \code{\link{Richness}} to evaluate the total number of species. \code{"Chao1"} is  the default value.
   }
   \item{JackOver}{
-    If \code{TRUE}, retain the jackknife order immediately superior to the optimal one, usually resulting in the overestimation of the number of species. Default is \code{FALSE}. Ignored if \code{RCorrection} is not \code{"Jackknife"}.
+  If \code{TRUE}, retain the jackknife order immediately superior to the optimal one, usually resulting in the overestimation of the number of species. Default is \code{FALSE}. Ignored if \code{RCorrection} is not \code{"Jackknife"}.
   }
   \item{CEstimator}{
-    A string containing an estimator recognized by \code{\link{Coverage}} to evaluate the sample coverage. \code{"ZhangHuang"} is the default value.
+  A string containing an estimator recognized by \code{\link{Coverage}} to evaluate the sample coverage. \code{"ZhangHuang"} is the default value.
   }
  \item{type}{
-    The plot type, see \code{\link{plot}}.
+  The plot type, see \code{\link{plot}}.
   }
   \item{log}{
-    The axis to plot in log scale, \emph{e.g.} \code{"xy"} for both axes. Default is \code{"y"}.
+  The axis to plot in log scale, \emph{e.g.} \code{"xy"} for both axes. Default is \code{"y"}.
   }
   \item{main}{
-    The main title of the plot. if \code{NULL} (by default), there is no title.
+  The main title of the plot. if \code{NULL} (by default), there is no title.
   }
   \item{xlab}{
-    The X axis label, "Rank" by default.
+  The X axis label, "Rank" by default.
   }
   \item{ylab}{
-    The Y axis label. if \code{NULL} (by default), "Probability" or "Abundance" is chosen according to the object class.
+  The Y axis label. if \code{NULL} (by default), "Probability" or "Abundance" is chosen according to the object class.
   }
   \item{\dots}{
-    Additional arguments to be passed to \code{\link{plot}}. Unused elsewhere.
+  Additional arguments to be passed to \code{\link{plot}}. Unused elsewhere.
   }
   \item{CheckArguments}{
-    Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
+  Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }
 }
 \details{
@@ -126,10 +126,10 @@ is.AbdVector(x)
   \code{\link{rgeom}}, \code{\link{rlnorm}}, \code{\link{rCommunity}}
 }
 \examples{
-  # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
-  data(Paracou618)
-  # Ns is the total number of trees per species
-  Ns <- as.AbdVector(Paracou618.MC$Ns)
-  # Whittaker plot, poorly fitted by a log-normal distribution
-  plot(Ns, Distribution = "lnorm")
+# Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
+data(Paracou618)
+# Ns is the total number of trees per species
+Ns <- as.AbdVector(Paracou618.MC$Ns)
+# Whittaker plot, poorly fitted by a log-normal distribution
+plot(Ns, Distribution = "lnorm")
 }

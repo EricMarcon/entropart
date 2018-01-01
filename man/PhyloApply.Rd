@@ -11,23 +11,23 @@ PhyloApply(Tree, FUN, NorP, Normalize = TRUE, \dots, CheckArguments = TRUE)
 }
 \arguments{
   \item{Tree}{
-    An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
+  An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
   }
   \item{FUN}{
-    The function to be applied to each interval of the tree. 
+  The function to be applied to each interval of the tree. 
   }
   \item{NorP}{
-    A numeric vector or a two-column matrix. Contains either abundances or probabilities. Two-column matrices should contain the observed abundances (or probabilities) in the first column and the expected ones in the second column, to allow using beta diversity functions.
+  A numeric vector or a two-column matrix. Contains either abundances or probabilities. Two-column matrices should contain the observed abundances (or probabilities) in the first column and the expected ones in the second column, to allow using beta diversity functions.
   }
   \item{Normalize}{
-    If \code{TRUE} (default), the \code{Total} value returned by \code{Function} is normalized by the height of the tree (it is the weighted average value of the result in each slice).\cr
-    If \code{FALSE}, it is the unnormalized weighted sum of the results.
+  If \code{TRUE} (default), the \code{Total} value returned by \code{Function} is normalized by the height of the tree (it is the weighted average value of the result in each slice).\cr
+  If \code{FALSE}, it is the unnormalized weighted sum of the results.
   }
   \item{\dots}{
-    Further arguments to pass to \code{Function}.
+  Further arguments to pass to \code{Function}.
   }
   \item{CheckArguments}{
-    Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
+  Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }
 }
 \details{
@@ -56,12 +56,12 @@ PhyloApply(Tree, FUN, NorP, Normalize = TRUE, \dots, CheckArguments = TRUE)
   \code{\link{Preprocess.Tree}}
 }
 \examples{
-  # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest
-  #      and their taxonomy)
-  data(Paracou618)
-  # Plot the taxonomy
-  plot(Paracou618.Taxonomy, type="fan", show.tip.label=FALSE)
-  # Calculate the mean number of trees (individuals) per species 
-  # (Cuts are 1=species, 2=genus, 3=family)
-  PhyloApply(Paracou618.Taxonomy, mean, Paracou618.MC$Ns, TRUE)
+# Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest
+#      and their taxonomy)
+data(Paracou618)
+# Plot the taxonomy
+plot(Paracou618.Taxonomy, type="fan", show.tip.label=FALSE)
+# Calculate the mean number of trees (individuals) per species 
+# (Cuts are 1=species, 2=genus, 3=family)
+PhyloApply(Paracou618.Taxonomy, mean, Paracou618.MC$Ns, TRUE)
 }

@@ -31,28 +31,28 @@ bcTsallisBeta(Ns, Nexp = NULL, q, Correction = "Best", CheckArguments = TRUE)
   The probability vector of species of the metacommunity.
   }
   \item{Ns}{
-    A numeric vector containing species abundances of the community.
+  A numeric vector containing species abundances of the community.
   }
   \item{Nexp}{
-    A numeric vector containing species abundances of the metacommunity.
+  A numeric vector containing species abundances of the metacommunity.
   }
   \item{NorP}{
-    A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities of the community.
+  A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities of the community.
   }
   \item{NorPexp}{
-    A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities of the metacommunity.
+  A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities of the metacommunity.
   }
   \item{q}{
   A number: the order of entropy. Default is 1 for Shannon entropy.
   }
   \item{Correction}{
-    A string containing one of the possible corrections: currently, only \code{"ChaoShen"} or \code{"None"}. \code{"Best"} is the default value, it is equivalent to \code{"ChaoShen"}.
+  A string containing one of the possible corrections: currently, only \code{"ChaoShen"} or \code{"None"}. \code{"Best"} is the default value, it is equivalent to \code{"ChaoShen"}.
   }
   \item{\dots}{
-    Additional arguments. Unused.
+  Additional arguments. Unused.
   }
   \item{CheckArguments}{
-    Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
+  Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }
 }
 \details{
@@ -76,19 +76,19 @@ bcTsallisBeta(Ns, Nexp = NULL, q, Correction = "Best", CheckArguments = TRUE)
   Eric Marcon <Eric.Marcon@ecofog.gf>
 }
 \examples{
-  # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
-  data(Paracou618)
-  # Ps is the vector of probabilities
-  Ps <- Paracou618.MC$Ps
-  # Probability distribution of the first plot
-  Ps1 <- Paracou618.MC$Psi[, 1]
-  # Divergence of order 2 between plot 1 and the whole forest
-  TsallisBeta(Ps1, Ps, 2)
+# Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
+data(Paracou618)
+# Ps is the vector of probabilities
+Ps <- Paracou618.MC$Ps
+# Probability distribution of the first plot
+Ps1 <- Paracou618.MC$Psi[, 1]
+# Divergence of order 2 between plot 1 and the whole forest
+TsallisBeta(Ps1, Ps, 2)
 
-  # Ns is the vector of abundances of the metacommunity
-  Ns <- Paracou618.MC$Ns
-  # Abundances in the first plot
-  Ns1 <- Paracou618.MC$Nsi[, 1]
-  # Divergence of order 2 between plot 1 and the whole forest, with bias correction
-  bcTsallisBeta(Ns1, Ns, 2)
+# Ns is the vector of abundances of the metacommunity
+Ns <- Paracou618.MC$Ns
+# Abundances in the first plot
+Ns1 <- Paracou618.MC$Nsi[, 1]
+# Divergence of order 2 between plot 1 and the whole forest, with bias correction
+bcTsallisBeta(Ns1, Ns, 2)
 }

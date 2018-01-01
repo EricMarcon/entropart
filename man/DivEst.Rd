@@ -18,47 +18,47 @@ is.DivEst(x)
 }
 \arguments{
   \item{q}{
-    A number: the order of diversity.
+  A number: the order of diversity.
   }
   \item{MC}{
-    A \code{\link{MetaCommunity}} object.
+  A \code{\link{MetaCommunity}} object.
   }
   \item{Biased}{
-    Logical; if \code{FALSE}, a bias correction is appplied.
+  Logical; if \code{FALSE}, a bias correction is appplied.
   }
   \item{Correction}{
-    A string containing one of the possible corrections. The correction must be accepted by \code{\link{DivPart}}. \code{"Best"} is the default value.
+  A string containing one of the possible corrections. The correction must be accepted by \code{\link{DivPart}}. \code{"Best"} is the default value.
   }
   \item{Tree}{
-    An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
+  An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
   }
   \item{Normalize}{
-    If \code{TRUE} (default), diversity is not affected by the height of the tree..\cr
-    If \code{FALSE}, diversity is proportional to the height of the tree.
+  If \code{TRUE} (default), diversity is not affected by the height of the tree..\cr
+  If \code{FALSE}, diversity is proportional to the height of the tree.
   }
   \item{Z}{
-    A relatedness matrix, \emph{i.e.} a square matrix whose terms are all positive, strictly positive on the diagonal. Generally, the matrix is a similarity matrix, \emph{i.e.} the diagonal terms equal 1 and other terms are between 0 and 1.
+  A relatedness matrix, \emph{i.e.} a square matrix whose terms are all positive, strictly positive on the diagonal. Generally, the matrix is a similarity matrix, \emph{i.e.} the diagonal terms equal 1 and other terms are between 0 and 1.
   }
   \item{Simulations}{
-    The number of simulations to build confidence intervals.
+  The number of simulations to build confidence intervals.
   }
   \item{CheckArguments}{
-    Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
+  Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }
   \item{x}{
-    An object to be tested or plotted.
+  An object to be tested or plotted.
   }
   \item{main}{
-    The title of the plot.
+  The title of the plot.
   }
   \item{Which}{
-    May be \code{"Alpha"}, \code{"Beta"} or \code{"Gamma"} to respectively plot the metacommunity's alpha, beta or gamma diversity. If \code{"All"} (default), all three plots are shown.
-    }
+  May be \code{"Alpha"}, \code{"Beta"} or \code{"Gamma"} to respectively plot the metacommunity's alpha, beta or gamma diversity. If \code{"All"} (default), all three plots are shown.
+  }
   \item{object}{
-    A \code{MCdiversity} object to be summarized.
+  A \code{MCdiversity} object to be summarized.
   }
   \item{\dots}{
-    Additional arguments to be passed to the generic methods.
+  Additional arguments to be passed to the generic methods.
   }
 }
 \details{
@@ -70,7 +70,7 @@ is.DivEst(x)
 }
 \value{
   A \code{Divest} object which is a \code{\link{DivPart}} object with an additional item in its list:
-    \item{SimulatedDiversity}{A matrix containing the simulated values of alpha, beta and gamma diversity.}
+  \item{SimulatedDiversity}{A matrix containing the simulated values of alpha, beta and gamma diversity.}
 
   \code{Divest} objects can be summarized and plotted.
 }
@@ -88,11 +88,11 @@ is.DivEst(x)
   \code{\link{DivPart}}
 }
 \examples{
-  # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
-  data(Paracou618)
-  # Estimate Shannon diversity.
-  Estimation <- DivEst(q = 1, Paracou618.MC, Biased = FALSE, Correction = "UnveilJ", 
-    Simulations = 20)
-  plot(Estimation)
-  summary(Estimation)
+# Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
+data(Paracou618)
+# Estimate Shannon diversity.
+Estimation <- DivEst(q = 1, Paracou618.MC, Biased = FALSE, Correction = "UnveilJ", 
+Simulations = 20)
+plot(Estimation)
+summary(Estimation)
 }

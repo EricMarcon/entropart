@@ -29,4 +29,4 @@ mergeandlabel(x, y)
 \seealso{
   \code{\link{MergeC}}, \code{\link{MergeMC}}, \code{\link{ShuffleMC}}
 }
-\keyword{ internal }
+\keyword{internal}
