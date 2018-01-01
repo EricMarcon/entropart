@@ -34,11 +34,10 @@ Similarity-based diversity is calculated with *Dqz*, based on a similarity matri
 # Vignettes
 
 A full documentation is available in the main [vignette](https://EricMarcon.github.io/entropart/entropart.pdf). 
-In R, type: `vignette("entropart")`. 
+In R, type: `vignette("entropart")`.
+It is a continuous update of the paper published in the Journal of Statistical Software [Marcon & Hérault, 2015](https://www.jstatsoft.org/article/view/v067i08).
 
-A quick [introduction](https://EricMarcon.github.io/entropart/Introduction.html) is in `vignette("Introduction", "entropart")`.
-
-The way [phylogenies](https://EricMarcon.github.io/entropart/Phylogenies.html) are handled in the package is detailed in `vignette("Phylogenies", "entropart")`.
+A quick [introduction](https://EricMarcon.github.io/entropart/) is in `vignette("introduction", "entropart")`.
 
 ## Reference
 

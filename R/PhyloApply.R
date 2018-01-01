@@ -25,7 +25,7 @@ function(Tree, FUN, NorP, Normalize = TRUE, ..., CheckArguments = TRUE)
     } 
   }
   # Save the name of NorP before manipulating it
-  NorPName <- deparse(substitute(NorP))
+  NorPName <- ArgumentOriginalName(NorP) #deparse(substitute(NorP))
   if (NorPisVector) {
     NorP <- matrix(NorP, nrow = length(NorP), ncol = 2, dimnames = list(names(NorP), c("NorP", "Dummy")))
   }

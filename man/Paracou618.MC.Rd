@@ -25,7 +25,7 @@ data(Paracou618)
 \examples{
 
 data(Paracou618)
-Paracou618.MC
+summary(Paracou618.MC)
 
 }
 
