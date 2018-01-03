@@ -10,7 +10,7 @@ output:
 bibliography: entropart.bib
 redirect: https://EricMarcon.github.io/entropart
 vignette: |
-  %\VignetteIndexEntry{entropart introduction}
+  %\VignetteIndexEntry{Introduction to entropart}
   %\VignetteEngine{packagedocs::redirect}
 navpills: |
   <li class="active"><a href='index.html'>Docs</a></li>
