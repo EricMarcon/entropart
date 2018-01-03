@@ -14,7 +14,7 @@ function(Tree, FUN, NorP, Normalize = TRUE, ..., CheckArguments = TRUE)
   if (!ape::is.ultrametric(ppTree$phyTree))
     stop("The tree must be ultrametric to apply a function over it.")
 
-  # NorP may be a vector or a matrix. If it is a vector, double it into a matrix to simplify the code (use rownames)
+  # NorP may be a vector or a matrix.
   if (is.vector(NorP) | is.SpeciesDistribution(NorP)) {
     NorPisVector <- TRUE
   } else {
@@ -26,16 +26,17 @@ function(Tree, FUN, NorP, Normalize = TRUE, ..., CheckArguments = TRUE)
   }
   # Save the name of NorP before manipulating it
   NorPName <- ArgumentOriginalName(NorP)
+  # If NorP is a vector, double it into a matrix to simplify the code (use rownames)
   if (NorPisVector) {
     NorP <- matrix(NorP, nrow = length(NorP), ncol = 2, dimnames = list(names(NorP), c("NorP", "Dummy")))
   }
-  # NorP should be named. If it is not, but has the same number of elements as the tree, just warn.
+  # NorP rows should be named. If they are not, but are the same number of elements as the tree, just warn.
   if (is.null(rownames(NorP))) {
     if (nrow(NorP) == length(ppTree$phyTree$tip.label)) {
       rownames(NorP) <- ppTree$phyTree$tip.label
       warning("The abundance or frequency vector was not named. It was supposed to be ordered as the tree leaves.")
     } else {
-      stop("The abundance or frequency vector is not named and does not have the same number of elements as the tree. Abundances and species could not be related.")
+      stop("The abundance or frequency vector is not named and does not have the same number of elements as the tree. Abundances and species could not be linked.")
     }
   }
 
