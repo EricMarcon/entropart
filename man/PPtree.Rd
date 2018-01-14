@@ -41,3 +41,12 @@ is.PPtree(x)
 \author{
   Eric Marcon <Eric.Marcon@ecofog.gf>
 }
+\examples{
+data(Paracou618)
+# Preprocess a phylog object
+ppt <- Preprocess.Tree(EightSpTree)
+# Is it a preprocessed tree?
+is.PPtree(ppt)
+# Plot it
+plot(ppt, hang=-1)
+}

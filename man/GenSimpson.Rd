@@ -94,6 +94,6 @@ plot(Ns)
 
 # Calculate GenSimpson entropy of order 1, equal to Simpson's index of diversity
 GenSimpson(Ps, 1) 
-# Calculate an unbiased estimator of GenSimpson entropy of order 100
-GenSimpson(Ns, 100)
+# Calculate an unbiased estimator of GenSimpson diversity of order 100
+GenSimpsonD(Ns, 100)
 }
