@@ -18,3 +18,13 @@ test_that("Tsallis tends to Shannon", {
                as.numeric(Shannon(Ns)),
                tolerance = 1e-6)
 })
+
+# Check Shannon vs EntropyEstimation
+Ns <- Ns[Ns>0]
+N <- sum(Ns)
+test_that("Shannon with Zhang-Grabchak correction equals EntropyEstimation::Entropy.z", {
+  # No correction
+  expect_equal(sum(Ns/N*(digamma(N)-digamma(Ns))),
+               EntropyEstimation::Entropy.z(Ns),
+               tolerance = 1e-6)
+})
