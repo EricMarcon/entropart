@@ -15,8 +15,5 @@ r_packages:
  - SPECIES
  - covr
 
-bioc_packages:
- - BiocStyle
-
 after_success:
   - Rscript -e 'library(covr); codecov(type ="all")'
