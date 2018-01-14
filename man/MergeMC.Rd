@@ -57,4 +57,6 @@ MC2 <- MetaCommunity(Abundances = df, Weights = w)
 plot(MergeC(list(MC1, MC2)), main="Merged communities")
 # Merge metacommunities
 plot(MergeMC(list(MC1, MC2)), main="Merged meta-communities")
+smc <- ShuffleMC(list(MC1, MC2))
+plot(MergeMC(smc), main="Shuffled, then Merged meta-communities")
 }
