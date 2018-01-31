@@ -44,7 +44,8 @@ PhyloApply(Tree, FUN, NorP, Normalize = TRUE, \dots, CheckArguments = TRUE)
   \item{Tree}{The functional or phylogenetic tree used to calculate the value}
   \item{Normalized}{Logical. Indicates whether phylovalue is normalized or proportional to the height of the tree.}
   \item{Cuts}{A named vector containing values along the tree. Names are cut ends, \emph{i.e.} the ends of intervals (the first interval starts at 0 for leaves, the max value is the height of the tree).}
-  \item{Total}{A value equal the total value, multiplied by the tree height if \code{Normalize} is FALSE.}
+  \item{Corrections}{A named vector containing the correction used by FUN to obtain each value of \code{Cuts}. Names are those of \code{Cuts}.}
+  \item{Total}{The total value, multiplied by the tree height if \code{Normalize} is FALSE.}
 }
 \references{
   Marcon, E., Herault, B. (2015). Decomposing  Phylodiversity. \emph{Methods in Ecology and Evolution} 6(3): 333-339.

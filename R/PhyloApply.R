@@ -71,10 +71,15 @@ function(Tree, FUN, NorP, Normalize = TRUE, ..., CheckArguments = TRUE)
   if (NorPisVector) {
     DatedN <- lapply(DatedN, function(m) m[,1])
   }
-  # Apply Function to each slice.
-  DatedResult <- unlist(parallel::mclapply(DatedN, FUN, ..., CheckArguments = FALSE))
+  
+  # Apply Function to each slice. A list is returned
+  DatedResult <- parallel::mclapply(DatedN, FUN, ..., CheckArguments = FALSE)
+  # Read the corrections
+  Corrections <- sapply(DatedResult, function(x) names(x))
+  # Unlist DatedResult to a vector
+  DatedResult <- unlist(DatedResult)
   # Names of slices should be the cut time, without the rounding error
-  names(DatedResult) <- ppTree$Cuts
+  names(DatedResult) <- names(Corrections) <- ppTree$Cuts
   # Normalization
   if (Normalize) {
     Normalization <- sum(ppTree$Intervals)
@@ -87,7 +92,8 @@ function(Tree, FUN, NorP, Normalize = TRUE, ..., CheckArguments = TRUE)
     Function = deparse(substitute(FUN)),
     Tree = deparse(substitute(Tree)),
     Normalized = Normalize,
-    Cuts = DatedResult, 
+    Cuts = DatedResult,
+    Corrections = Corrections,
     Total = sum(DatedResult * ppTree$Intervals / Normalization)
   )
   class(Value) <- "PhyloValue"
