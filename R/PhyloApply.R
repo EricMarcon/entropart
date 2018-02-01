@@ -1,5 +1,5 @@
 PhyloApply <-
-function(Tree, FUN, NorP, Normalize = TRUE, ..., CheckArguments = TRUE)
+function(Tree, FUN, NorP, Normalize = TRUE, dfArgs = NULL, ..., CheckArguments = TRUE)
 {
   if (CheckArguments)
     CheckentropartArguments()
@@ -73,7 +73,26 @@ function(Tree, FUN, NorP, Normalize = TRUE, ..., CheckArguments = TRUE)
   }
   
   # Apply Function to each slice. A list is returned
-  DatedResult <- parallel::mclapply(DatedN, FUN, ..., CheckArguments = FALSE)
+  if (is.null(dfArgs)) {
+    # Simple way: apply FUN to DatedN
+    DatedResult <- parallel::mclapply(DatedN, FUN, ..., CheckArguments=FALSE)
+  } else {
+    # Complicated way: each call of FUN has specific values of arguments passed to FUN
+    # Ex.: bcTsallis with Marcon correction requires argument SampleCoverage whose value changes along the tree.
+    FUNArglist <- function(i, ...) {
+      # Prepare the call to FUN
+      # NorP : first argument: a vector of abundances. Not named.
+      FUNNorP <- as.numeric(unlist(DatedN[i]))
+      # Arguments passed by dfArgs. Named.
+      FUNdfArgs <- dfArgs[i, ]
+      names(FUNdfArgs) <- colnames(dfArgs)
+      # Make a list of all arguments, includings the ...
+      return(c(list(FUNNorP), as.list(FUNdfArgs), ..., list(CheckArguments=FALSE)))
+    }
+    DatedResult <- parallel::mclapply(1:length(DatedN), function(i) do.call(FUN, FUNArglist(i, ...)))
+    # Debug: print the arguments instead of doing the call
+    # sapply(1:length(DatedN), function(i) print(FUNArglist(i, ...))); stop("Code not run, calls are printed.")
+  }
   # Read the corrections
   Corrections <- sapply(DatedResult, function(x) names(x))
   # Unlist DatedResult to a vector

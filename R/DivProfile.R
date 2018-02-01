@@ -22,11 +22,21 @@ function(q.seq = seq(0, 2, .1), MC, Biased = TRUE, Correction = "Best", Tree = N
   Ealpha <- unlist(Diversity.seq["CommunityAlphaEntropies", ])
   arrEalpha <- simplify2array(tapply(Ealpha, names(Ealpha), c))
   row.names(arrEalpha) <- q.seq
+  # Correction
+  Correctionlist <- Diversity.seq["Correction", ]
+  if (length(unique(unlist(Correctionlist))) == 1) {
+    # A single correction. Keep it.
+    Correctionlist <- unique(unlist(Correctionlist))
+  } else {
+    # Keep the whole list. Name q values.
+    names(Correctionlist) <- q.seq
+  }
+
   # Prepare a list of results
   DivProfile <- list(MetaCommunity = unlist(Diversity.seq["MetaCommunity", 1], use.names=FALSE),
                      Order = unlist(Diversity.seq["Order", ], use.names=FALSE), 
                      Biased = unlist(Diversity.seq["Biased", 1], use.names=FALSE), 
-                     Correction = unlist(Diversity.seq["Correction", 1], use.names=FALSE),
+                     Correction = Correctionlist,
                      Normalized = unlist(Diversity.seq["Normalized", 1], use.names=FALSE),
                      CommunityAlphaDiversities = arrDalpha, 
                      CommunityAlphaEntropies = arrEalpha, 

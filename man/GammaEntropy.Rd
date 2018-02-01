@@ -8,7 +8,7 @@
 }
 \usage{
 GammaEntropy(MC, q = 1, Correction = "Best", Tree = NULL, Normalize = TRUE, 
-  Z = NULL, CheckArguments = TRUE)
+  Z = NULL, PhyloDetails = FALSE, CheckArguments = TRUE)
 }
 \arguments{
   \item{MC}{
@@ -29,6 +29,9 @@ GammaEntropy(MC, q = 1, Correction = "Best", Tree = NULL, Normalize = TRUE,
   }
   \item{Z}{
   A relatedness matrix, \emph{i.e.} a square matrix whose terms are all positive, strictly positive on the diagonal. Generally, the matrix is a similarity matrix, \emph{i.e.} the diagonal terms equal 1 and other terms are between 0 and 1.
+  }
+  \item{PhyloDetails}{
+  If \code{FALSE} (default), the function always returns a number. If \code{TRUE} and \code{Tree} is not Tree is not \code{NULL} then a \code{\link{PhyloValue}} object is returned with all details. That is used internally by \code{\link{DivPart}} to obtain the corrections used to estimate gamma entropy along the tree and apply them to the estimation of alpha diversity.
   }
   \item{CheckArguments}{
   Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
