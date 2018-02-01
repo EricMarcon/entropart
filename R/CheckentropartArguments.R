@@ -67,6 +67,8 @@ function() {
     q.seq <- eval(expression(q.seq), parent.frame())
     if (!is.vector(q.seq))
       ErrorMessage("q.seq must be a numeric vector.", q.seq)
+    if (length(q.seq) < 2)
+      ErrorMessage("q.seq must contain at least 2 values.", q.seq)
   }
 
   # alpha
@@ -260,6 +262,13 @@ function() {
     }
   }
   
+  # PhyloDetails 
+  if (!is.na(names(Args["PhyloDetails"]))) {
+    PhyloDetails <- eval(expression(PhyloDetails), parent.frame())
+    if (!is.logical(PhyloDetails))
+      ErrorMessage("PhyloDetails must be TRUE or FALSE.", PhyloDetails)
+  }
+  
   # r
   if (!is.na(names(Args["r"]))) {
     r <- eval(expression(r), parent.frame())
@@ -271,7 +280,7 @@ function() {
       ErrorMessage("r must be an integer.", r)
   }
 
-    # sd
+  # sd
   if (!is.na(names(Args["sd"]))) {
     sd <- eval(expression(sd), parent.frame())
     if (!is.numeric(sd) | length(sd)!=1)

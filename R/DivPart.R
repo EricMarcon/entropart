@@ -24,10 +24,19 @@ function(q = 1, MC, Biased = TRUE, Correction = "Best", Tree = NULL, Normalize =
     }
   }
 
-  # Alpha and beta entropy of communities
-  GammaE <- GammaEntropy(MC, q, Correction, ppTree, Normalize, Z, CheckArguments=FALSE)
+  # Alpha and beta entropy of communities. PhyloDetails=TRUE forces the return of a is.PhyloValue if phyloentropy is calculated.
+  GammaE <- GammaEntropy(MC, q, Correction, ppTree, Normalize, Z, PhyloDetails=TRUE, CheckArguments=FALSE)
   # Alpha entropy is estimated with the same correction as Gamma
-  AlphaE <- AlphaEntropy(MC, q, Correction=names(GammaE), ppTree, Normalize, Z, CheckArguments=FALSE)
+  if (is.PhyloValue(GammaE)) {
+    # Phyloentropy. GammaEntropy returned a PhyloValue with Corrections along the tree
+    AlphaCorrection <- GammaE$Corrections
+    # Make GammaE a number again
+    GammaE <- GammaE$Total
+  } else {
+    # GammaEntropy is a named number
+    AlphaCorrection <- names(GammaE)
+  }
+  AlphaE <- AlphaEntropy(MC, q, AlphaCorrection, ppTree, Normalize, Z, CheckArguments=FALSE)
   # beta is calculated as gamma-alpha to ensure continuity. Community beta entropy is not calculated.
   BetaE  <- list(Communities = NA, Total = GammaE - AlphaE$Total)      
 
@@ -41,16 +50,16 @@ function(q = 1, MC, Biased = TRUE, Correction = "Best", Tree = NULL, Normalize =
     MetaCommunity = ArgumentOriginalName(MC),
     Order = q, 
     Biased = Biased, 
-    Correction = Correction,
+    Correction = AlphaCorrection,
     Normalized = Normalize,
-    TotalAlphaDiversity = AlphaD, 
-    TotalBetaDiversity = BetaD, 
-    GammaDiversity = GammaD, 
-    CommunityAlphaDiversities = expq(AlphaE$Communities / Height, q) * Height, 
-    TotalAlphaEntropy = AlphaE$Total, 
-    TotalBetaEntropy = BetaE$Total, 
-    GammaEntropy = GammaE, 
-    CommunityAlphaEntropies = AlphaE$Communities, 
+    TotalAlphaDiversity = AlphaD,
+    TotalBetaDiversity = BetaD,
+    GammaDiversity = GammaD,
+    CommunityAlphaDiversities = expq(AlphaE$Communities / Height, q) * Height,
+    TotalAlphaEntropy = AlphaE$Total,
+    TotalBetaEntropy = BetaE$Total,
+    GammaEntropy = GammaE,
+    CommunityAlphaEntropies = AlphaE$Communities,
     CommunityBetaEntropies = BetaE$Communities
     ))
   if(!is.null(Tree))

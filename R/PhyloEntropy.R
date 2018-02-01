@@ -93,15 +93,39 @@ function(Ns, q = 1, Tree, Normalize = TRUE, Correction = "Best", SampleCoverage 
   if (CheckArguments)
     CheckentropartArguments()
   
+  # If SampleCoverage is a vector, prepare an argument dataframe for PhyloApply
+  if(is.null(SampleCoverage)) {
+    dfArgs <- NULL
+  } else {
+    dfArgs <- data.frame(SampleCoverage=SampleCoverage)
+  }
+  # If Correction is a vector, idem
+  if(length(Correction) > 1) {
+    if (is.null(dfArgs)) {
+      # Create a new dataframe...
+      dfArgs <- data.frame(Correction=Correction)
+    } else {
+      # ... or a a column
+      dfArgs <- cbind(dfArgs, data.frame(Correction=Correction))    
+    }
+  }
+  
   # Calculate the PhyloValue
-  Entropy <- PhyloApply(Tree, bcTsallis, Ns, Normalize, q=q, Correction=Correction, SampleCoverage=SampleCoverage, CheckArguments=FALSE)
+  if(length(Correction) == 1) {
+    # Call PhyloApply with an argument Correction
+    Entropy <- PhyloApply(Tree, FUN=bcTsallis, NorP=Ns, Normalize=Normalize, dfArgs=dfArgs, q=q, Correction=Correction, CheckArguments=FALSE)
+  } else {
+    # Call PhyloApply without an argument Correction since it is in dfArgs
+    Entropy <- PhyloApply(Tree, FUN=bcTsallis, NorP=Ns, Normalize=Normalize, dfArgs=dfArgs, q=q, CheckArguments=FALSE)
+  }
   # Complete it
   Entropy$Function <- "PhyloEntropy" 
   Entropy$Distribution <- ArgumentOriginalName(Ns)
   Entropy$Tree <- ArgumentOriginalName(Tree)
   Entropy$Type <- "alpha or gamma"
   Entropy$Order <- q
-  Entropy$Correction <- names(Entropy$Total) <- Correction
+  # Corrections. May be a vector.
+  Entropy$Correction <- Correction
   
   class(Entropy) <- c("PhyloEntropy", class(Entropy))
   

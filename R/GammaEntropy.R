@@ -1,5 +1,5 @@
 GammaEntropy <-
-function(MC, q = 1, Correction = "Best", Tree = NULL, Normalize = TRUE, Z = NULL, CheckArguments = TRUE) 
+function(MC, q = 1, Correction = "Best", Tree = NULL, Normalize = TRUE, Z = NULL, PhyloDetails = FALSE, CheckArguments = TRUE) 
 {
   if (CheckArguments) 
     CheckentropartArguments()
@@ -8,11 +8,14 @@ function(MC, q = 1, Correction = "Best", Tree = NULL, Normalize = TRUE, Z = NULL
     # Method <- "HCDT"
     if (is.IntValues(MC$Ns) | Correction=="None") {
       # Integer abundances or no correction: just estimate.
-      Entropy <- bcPhyloEntropy(MC$Ns, q, Tree, Normalize, Correction, CheckArguments=FALSE)$Total
+      Entropy <- bcPhyloEntropy(MC$Ns, q, Tree, Normalize, Correction, CheckArguments=FALSE)
     } else {
-      # Use the fallback estimation
-      SampleCoverage <- Coverage(rowSums(MC$Nsi), CheckArguments=FALSE)
-      Entropy <- bcPhyloEntropy(MC$Ns, q, Tree, Normalize, Correction, SampleCoverage=SampleCoverage, CheckArguments=FALSE)$Total
+      # Use the fallback estimation. Calculate sample coverage in each slice of the tree.
+      SampleCoverage <- PhyloApply(Tree, Coverage, rowSums(MC$Nsi), CheckArguments=FALSE)$Cuts
+      # Only in this case (to be used only by DivPart), return the Phylovalue object instead of its $Total
+      PhyloDetails = TRUE
+      # $Corrections will be necessary to calculate alpha entropy
+      Entropy <- bcPhyloEntropy(MC$Ns, q, Tree, Normalize, Correction, SampleCoverage=SampleCoverage, CheckArguments=FALSE)
     }
   } else {
     if (!is.null(Z)) {
@@ -38,5 +41,10 @@ function(MC, q = 1, Correction = "Best", Tree = NULL, Normalize = TRUE, Z = NULL
     }
   }
   
-  return(Entropy)
+  # Return either the whole Phylovalue object or just the Total
+  if (is.PhyloValue(Entropy) & !PhyloDetails) {
+    return(Entropy$Total)
+  } else {
+    return(Entropy)
+  }
 }

@@ -101,7 +101,7 @@ is.DivProfile(x)
   \item{MetaCommunity}{The name of the \code{\link{MetaCommunity}} object containing inventory data.}
   \item{Order}{A vector containing the values of \code{q}.}
   \item{Biased}{Logical. If \code{FALSE}, bias corrected values of diversity have been computed.}
-  \item{Correction}{The estimation bias correction used to calculate diversity.}
+  \item{Correction}{The estimation bias correction used to calculate diversity. Usually a string, but it may be a list if different corrections have been used in the estimation of phylodiversity.}
   \item{Method}{The method used to calculate entropy ("HCDT", "Similarity-based").}
   \item{Tree}{The phylogenetic or functional tree used to calculate phylodiversity.}
   \item{Normalized}{Logical. Indicates whether phylodiversity is normalized or proportional to the height of the tree.}
@@ -114,7 +114,7 @@ is.DivProfile(x)
   \item{TotalAlphaEntropy}{A vector containing the alpha entropy of communities for each order.}
   \item{BetaEntropy}{A vector containing the beta entropy of communities for each order.}
   \item{GammaEntropy}{A vector containing the gamma entropy of the metacommunity for each order.}
-  \item{confidence envelopes}{Total Alpha, Beta and Gamma Entropy and Diversity may come with a confidence envelope whose value is stored in twelve more vectors named suffixed Low or High, such as \code{GammaEntropyLow}}
+  \item{Confidence envelopes}{Total Alpha, Beta and Gamma Entropy and Diversity may come with a confidence envelope whose value is stored in twelve more vectors named suffixed Low or High, such as \code{GammaEntropyLow}}
   
   \code{DivProfile} objects can be summarized and plotted.
 }
