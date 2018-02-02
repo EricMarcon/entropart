@@ -1,13 +1,13 @@
 Package: entropart
 Type: Package
 Title: Entropy Partitioning to Measure Diversity
-Version: 1.5-0
-Date: 2017-02-02
+Version: 1.5-1
+Date: 2018-02-02
 Authors@R: c(
     person("Eric", "Marcon", email="eric.marcon@ecofog.gf", role=c("aut", "cre")),
     person("Bruno", "Herault", email="bruno.herault@cirad.fr", role="aut")
     )
-Description: Measurement and partitioning of diversity, based on Tsallis entropy.
+Description: Measurement and partitioning of diversity, based on Tsallis entropy, following Marcon & Herault (2015) <doi:10.18637/jss.v067.i08>
 URL: https://github.com/EricMarcon/entropart
 BugReports: https://github.com/EricMarcon/entropart/issues
 License: GNU General Public License
