@@ -1,4 +1,4 @@
-  CHANGES IN entropart VERSION 1.4-8.9010
+  CHANGES IN entropart VERSION 1.5-0
   ==================================
 
 IMPROVEMENTS
@@ -18,7 +18,7 @@ BUG CORRECTION
 
 BUG CORRECTION
 
-  o HqzBeta() returned erroneous values is a species probability was equal to zero.
+  o HqzBeta() returned erroneous values if a species probability was equal to zero.
 
 IMPROVEMENTS
 
