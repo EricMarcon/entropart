@@ -88,11 +88,11 @@ Interpretation of entropy is not straightforward but one can easily transform it
 Special cases are the well-known PD \citep{Faith1992} and FD \citep{Petchey2002} indices and Rao's (\citeyear{Rao1982}) quadratic entropy. 
 The same relation holds between Ricotta and Szeidl's entropy of a community \citep{Ricotta2006} and similarity-based diversity \citep{Leinster2012}.
 
-The \pkg{entropart} package for \proglang{R} \citep{R2014} enables calculation of all these measures of diversity and entropy and their partitioning.
+The \pkg{entropart} package for \proglang{R} \citep{R} enables calculation of all these measures of diversity and entropy and their partitioning.
 
 Diversity partitioning means that, in a given area, the $\gamma$ diversity $D_{\gamma}$ of all individuals found may be split into within ($\alpha$ diversity, $D_{\alpha}$) and between ($\beta$ diversity, $D_{\beta}$) local assemblages. 
 $\alpha$ diversity reflects the diversity of individuals \emph{in} local assemblages whereas $\beta$ diversity reflects the diversity \emph{of} the local assemblages. 
-\cite{Marcon2014} derived the decomposition of Tsallis $\gamma$ entropy into its $\alpha$ and $\beta$ components, generalized to phylodiversity \citep{Marcon2014b} and similarity-based diversity \citep{Marcon2014e}.
+\cite{Marcon2014a} derived the decomposition of Tsallis $\gamma$ entropy into its $\alpha$ and $\beta$ components, generalized to phylodiversity \citep{Marcon2014b} and similarity-based diversity \citep{Marcon2014e}.
 
 Estimators of diversity are biased because of unseen species and also because they are not linear functions of probabilities \citep{Marcon2014a}. 
 $\alpha$ and $\gamma$ diversities are underestimated by naive estimators \citep{Chao2003, Dauby2012}. 
