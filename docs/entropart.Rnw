@@ -80,24 +80,24 @@ par(mar=c(0,0,0,0))
 
 \section{Introduction}
 
-Diversity measurement can be done through a quite rigorous framework based on entropy, \emph{i.e.}\ the amount of uncertainty calculated from the frequency distribution of a community \citep{Patil1982, Jost2006, Marcon2014}. 
-Tsallis entropy, also known as HCDT entropy \citep{Havrda1967, Daroczy1970, Tsallis1988}, is of particular interest \citep{Jost2006, Marcon2014} namely because it gathers the number of species, Shannon (\citeyear{Shannon1948}) and Simpson (\citeyear{Simpson1949}) indices of diversity into a single framework.
+Diversity measurement can be done through a quite rigorous framework based on entropy, \emph{i.e.}\ the amount of uncertainty calculated from the frequency distribution of a community \citep{Patil1982, Jost2006, Marcon2014a}. 
+Tsallis entropy, also known as HCDT entropy \citep{Havrda1967, Daroczy1970, Tsallis1988}, is of particular interest \citep{Jost2006, Marcon2014a} namely because it gathers the number of species, Shannon (\citeyear{Shannon1948}) and Simpson (\citeyear{Simpson1949}) indices of diversity into a single framework.
 Interpretation of entropy is not straightforward but one can easily transform it into Hill numbers \citep{Hill1973} which have many desirable properties \citep{Jost2007}: mainly, they are the number of equally-frequent species that would give the same level of diversity as the data.
 
-\cite{Marcon2014a} generalized the duality of entropy and diversity, deriving the relation between phylogenetic or functional diversity \citep {Chao2010} and phylogenetic or functional entropy (we will write \emph{phylodiversity} and \emph{phyloentropy} for short), as introduced by \cite {Pavoine2009}. 
+\cite{Marcon2014b} generalized the duality of entropy and diversity, deriving the relation between phylogenetic or functional diversity \citep {Chao2010} and phylogenetic or functional entropy (we will write \emph{phylodiversity} and \emph{phyloentropy} for short), as introduced by \cite {Pavoine2009}. 
 Special cases are the well-known PD \citep{Faith1992} and FD \citep{Petchey2002} indices and Rao's (\citeyear{Rao1982}) quadratic entropy. 
 The same relation holds between Ricotta and Szeidl's entropy of a community \citep{Ricotta2006} and similarity-based diversity \citep{Leinster2012}.
 
-The \pkg{entropart} package for \proglang{R} \citep{R2014} enables calculation of all these measures of diversity and entropy and their partitioning.
+The \pkg{entropart} package for \proglang{R} \citep{R} enables calculation of all these measures of diversity and entropy and their partitioning.
 
 Diversity partitioning means that, in a given area, the $\gamma$ diversity $D_{\gamma}$ of all individuals found may be split into within ($\alpha$ diversity, $D_{\alpha}$) and between ($\beta$ diversity, $D_{\beta}$) local assemblages. 
 $\alpha$ diversity reflects the diversity of individuals \emph{in} local assemblages whereas $\beta$ diversity reflects the diversity \emph{of} the local assemblages. 
-\cite{Marcon2014} derived the decomposition of Tsallis $\gamma$ entropy into its $\alpha$ and $\beta$ components, generalized to phylodiversity \citep{Marcon2014a} and similarity-based diversity \citep{Marcon2014e}.
+\cite{Marcon2014a} derived the decomposition of Tsallis $\gamma$ entropy into its $\alpha$ and $\beta$ components, generalized to phylodiversity \citep{Marcon2014b} and similarity-based diversity \citep{Marcon2014e}.
 
-Estimators of diversity are biased because of unseen species and also because they are not linear functions of probabilities \citep{Marcon2014}. 
+Estimators of diversity are biased because of unseen species and also because they are not linear functions of probabilities \citep{Marcon2014a}. 
 $\alpha$ and $\gamma$ diversities are underestimated by naive estimators \citep{Chao2003, Dauby2012}. 
 $\beta$ diversity is severely biased too when sampling is not sufficient \citep{Beck2013}. 
-Bias-corrected estimators of phylodiversity have been developed by \cite{Marcon2014a}. 
+Bias-corrected estimators of phylodiversity have been developed by \cite{Marcon2014b}. 
 Estimators of similarity-based diversity were derived by \cite{Marcon2014e}. 
 The package includes them all \citep{Marcon2014c}.
 
@@ -114,7 +114,7 @@ After transformation, $\beta$ diversity is the ratio of $\gamma$ to $\alpha$ div
 It is an effective number of communities, \emph{i.e.}\ the number of equally-weighted communities with no species in common (and where species are maximally distinct between communities) necessary to obtain the same diversity as the data.
 Estimation-bias correction is more easily applied to entropy before transforming it into diversity.
 
-This framework is somehow different from that of \cite{Chao2014a} who define $\alpha$ diversity in another way \citep[see][for a detailed comparison]{Marcon2014a}, such that $\alpha$ entropy is not the average surprise of an assemblage. They also propose a definition of functional diversity \citep{Chiu2014b} based in the information brought by pairs of individuals that is not supported in the package.
+This framework is somehow different from that of \cite{Chao2014a} who define $\alpha$ diversity in another way \citep[see][for a detailed comparison]{Marcon2014b}, such that $\alpha$ entropy is not the average surprise of an assemblage. They also propose a definition of functional diversity \citep{Chiu2014b} based in the information brought by pairs of individuals that is not supported in the package.
 
 The successive sections of this paper presents the package features, illustrated by worked examples based on the data included in the package.
 
@@ -170,7 +170,7 @@ The component \code{\$Ps} of a \code{MetaCommunity} object contains the probabil
 MC$Ps
 @
 
-The number of individuals \code{\$Ns} of a \code{MetaCommunity} is theoretically unknown, since coommunities are just samples of it.
+The number of individuals \code{\$Ns} of a \code{MetaCommunity} is theoretically unknown, since communities are just samples of it.
 The total number of individuals is \code{\$N}.
 For simplicity, it is set to the total number of individuals of all communities.
 If community weights are their number of individuals, \code{\$Ns} is just the sum of the numbers of individuals per species of communities.
@@ -192,7 +192,7 @@ Sample coverage will be explained later.
 The dataset also contains a taxonomy and a functional tree. 
 \code{Paracou618.Taxonomy} is an object of class \code{phylog}, defined in \pkg{ade4} \citep{Dray2007}, namely a phylogenetic tree. 
 This example data is only a taxonomy, containing family, genus and species levels for the sake of simplicity. 
-\code{Paracou618.Functional} is an object of class \code{hclust} containing a functional tree based on leaf, height, stem and seed functional traits \citep{Herault2007, Marcon2014a}. 
+\code{Paracou618.Functional} is an object of class \code{hclust} containing a functional tree based on leaf, height, stem and seed functional traits \citep{Herault2007, Marcon2014b}. 
 The package accepts any ultrametric tree of class \code{phylog} or \code{hclust}. 
 \code{Paracou618.dist} is the distance matrix (actually a \code{dist} object) used to build the functional tree.
 
@@ -310,7 +310,7 @@ Its interpretation is straightforward: some species have not been sampled. Their
 
 \subsubsection{Bias corrected estimators}
 
-Correction of estimationbias is used to improve the estimation of entropy despite unobserved species and also mathematical issues \citep{Bonachela2008}. 
+Correction of estimation bias is used to improve the estimation of entropy despite unobserved species and also mathematical issues \citep{Bonachela2008}. 
 Bias-corrected estimators (often relying on sample coverage) are returned by functions whose names are prefixed by \code{bc}, such as \code{bcTsallis}. 
 They are similar to the non-corrected ones but they use abundance data and propose several bias-correction techniques to select in the \code{Correction} argument. 
 A ``Best'' correction is calculated by default, detailed in the help file of each function.
@@ -411,7 +411,7 @@ Jost's (\citeyear{Jost2007}) definition of $\alpha$ entropy is not supported exp
 In this particular case, both definitions are identical.
 
 $\gamma$ entropy of the meta-community is defined as $\alpha$ entropy of a community. 
-$\beta$ entropy, the difference between $\gamma$ and $\alpha$, is the generalized Jensen-Shannon divergence between the species distribution of the meta-community and those of communities \citep{Marcon2014}:
+$\beta$ entropy, the difference between $\gamma$ and $\alpha$, is the generalized Jensen-Shannon divergence between the species distribution of the meta-community and those of communities \citep{Marcon2014a}:
 \begin{equation}
 ^q\!H_{\beta
   }=^q\!H_{\gamma}-^q\!H_{\alpha}
@@ -438,6 +438,13 @@ summary(e)
 @
 
 The Shannon $\alpha$ entropy of the meta-community is \Sexpr{round(e$Total, 2)}. It is the weighted average entropy of communities.
+
+The estimation of the diversity of a meta-community whose numbers of individuals \code{\$Ns} are not integer values can't be done with most corrections, which do require integers.
+The Grassberger correction can be used.
+Community data is pooled to obtain a global inventory whose sample coverage is estimated.
+The Chao-Shen correction can be applied based on this sample coverage and the actual \code{\$Ps} values of the meta-community.
+Finally, the ``Best'' correction is the greater of the two values obtained by Chao-Shen and Grassberger \citep{Marcon2014a}.
+
 
 \subsubsection{Diversity Partition of a metacommunity}
 
@@ -514,7 +521,7 @@ $\alpha$ and $\gamma$ diversity decrease from $q=0$ (number of species) to $q=2$
 
 Small orders of diversity give more weight to rare species. P018 can be considered more diverse than P006 because their profiles (Figure~\ref{DivProfile}, top right) do not cross \citep{Tothmeresz1995}: its diversity is systematically higher. The shape of the $\beta$ diversity profile shows that the communities are more diverse when their dominant species are considered.
 
-The bootstrap confidence intervals of the values of diversity \citep{Marcon2012, Marcon2014} are calculated if \code{NumberOfSimulations} is not 0.
+The bootstrap confidence intervals of the values of diversity \citep{Marcon2012, Marcon2014a} are calculated if \code{NumberOfSimulations} is not 0.
 
 
 \subsubsection{Alternative functions}
@@ -548,7 +555,7 @@ Frequencies of collapsed species are $u_{k,l}$.
 \end{figure}
 
 
-Phylogenetic or functional diversity generalizes HCDT diversity, considering the distance between species \citep{Marcon2014a}. 
+Phylogenetic or functional diversity generalizes HCDT diversity, considering the distance between species \citep{Marcon2014b}. 
 Here, all species take place in an ultrametric phylogenetic or functional tree (Figure~\ref{Tree}). 
 The tree is cut into slices, delimited by two nodes. 
 The first slice starts at the bottom of the tree and ends at the first node. 
@@ -640,6 +647,9 @@ Compare with Rao's \code{divc} computed by \pkg{ade4}:
 library("ade4")
 divc(as.data.frame(Paracou618.MC$Wi), disc(as.data.frame(Paracou618.MC$Nsi), Paracou618.Taxonomy$Wdist))
 @
+
+The decomposition of the diversity of meta-communities with non integer \code{\$Ns} starts with the estimation of $\gamma$ diversity. The best estimator is found for each slice of the tree.
+It is then used to estimate $\alpha$ diversity.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -844,8 +854,8 @@ The $\gamma$ diversity of MC1 is \Sexpr{round(dpMC1$GammaDiversity, 2)} effectiv
 
 \section{Conclusion}
 
-The entropart package allows estimating biodiversity according to the framework based on HCDT entropy, the correction of its estimation-bias \citep{Grassberger1988, Chao2003, Chao2015} and its transformation into equivalent numbers of species \citep{Hill1973, Jost2006, Marcon2014}. 
-Phylogenetic or functional diversity \citep{Marcon2014a} can be estimated, considering phyloentropy as the average species-neutral diversity over slices of a phylogenetic or functional tree \citep{Pavoine2009}. 
+The entropart package allows estimating biodiversity according to the framework based on HCDT entropy, the correction of its estimation-bias \citep{Grassberger1988, Chao2003, Chao2015} and its transformation into equivalent numbers of species \citep{Hill1973, Jost2006, Marcon2014a}. 
+Phylogenetic or functional diversity \citep{Marcon2014b} can be estimated, considering phyloentropy as the average species-neutral diversity over slices of a phylogenetic or functional tree \citep{Pavoine2009}. 
 Similarity-based diversity \cite{Leinster2012} can be used to estimate \citep{Marcon2014e} functional diversity from a similarity or dissimilarity matrix between species without requiring building a dendrogram and thus preserving the topology of species  \citep{Pavoine2005a, Podani2007}.
 
 The classical diversity estimators (Shannon and Simpson entropy) can be found in many \proglang{R} packages. 

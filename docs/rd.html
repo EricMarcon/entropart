@@ -140,11 +140,14 @@
           </ul></li>
           <li><a href="#utilities">Utilities</a><ul>
           <li><a href="#abdfreqcount">AbdFreqCount</a></li>
+          <li><a href="#argumentoriginalname">ArgumentOriginalName</a></li>
+          <li><a href="#checkentropartarguments">CheckentropartArguments</a></li>
           <li><a href="#entropyci">EntropyCI</a></li>
           <li><a href="#mergeandlabel">mergeandlabel</a></li>
           <li><a href="#optimal.similarity">Optimal.Similarity</a></li>
           <li><a href="#phyloapply">PhyloApply</a></li>
           <li><a href="#preprocess.mc">Preprocess.MC</a></li>
+          <li><a href="#preprocess.tree">Preprocess.Tree</a></li>
           </ul></li>
           </ul>
         </div>
@@ -159,7 +162,7 @@ Entropy Partitioning to Measure Diversity
 <strong>Authors:</strong> <a href="mailto:eric.marcon@ecofog.gf">Eric Marcon</a> [aut, cre],<a href="mailto:bruno.herault@cirad.fr">Bruno Herault</a> [aut]
 </p>
 <p>
-<strong>Version:</strong> 1.4-8.9007
+<strong>Version:</strong> 1.4-8.9010
 </p>
 <p>
 <strong>License:</strong> GNU General Public License
@@ -1577,10 +1580,10 @@ plot(Ns)</code></pre>
 GenSimpson(Ps, 1) </code></pre>
 <pre><code>##    Biased 
 ## 0.9854485</code></pre>
-<pre class="r"><code># Calculate an unbiased estimator of GenSimpson entropy of order 100
-GenSimpson(Ns, 100)</code></pre>
-<pre><code>##  Unbiased 
-## 0.4205852</code></pre>
+<pre class="r"><code># Calculate an unbiased estimator of GenSimpson diversity of order 100
+GenSimpsonD(Ns, 100)</code></pre>
+<pre><code>## Unbiased 
+## 115.9597</code></pre>
 <h4>
 Author
 </h4>
@@ -2246,7 +2249,7 @@ Ps1 &lt;- as.ProbaVector(Paracou618.MC$Psi[, 1])
 summary(PhyloBetaEntropy(Ps1, Ps, 1, Paracou618.Taxonomy) -&gt; e)</code></pre>
 <pre><code>## beta phylogenetic or functional entropy of order 1 of distribution - 
 ## compared to -
-## 
+##  with correction: None None None
 ## Phylogenetic or functional entropy was calculated according to the tree 
 ## Paracou618.Taxonomy 
 ## 
@@ -4011,8 +4014,8 @@ summary(AlphaDiversity(Paracou618.MC, 2, Tree = Paracou618.Taxonomy) -&gt; e)</c
 ## Diversity is normalized 
 ## 
 ## Diversity of communities: 
-## P006.Best P018.Best 
-##  17.16735  25.50972 
+##     P006     P018 
+## 17.16735 25.50972 
 ## Average diversity of the communities: 
 ## [1] 19.96079</code></pre>
 <pre class="r"><code>plot(e)  </code></pre>
@@ -4153,7 +4156,7 @@ summary(AlphaEntropy(Paracou618.MC, 2, Tree = Paracou618.Taxonomy) -&gt; e)</cod
 ## 
 ## Entropy is normalized
 ## Entropy of communities: 
-## P006.Best P018.Best 
+##      P006      P018 
 ## 0.9417499 0.9607993 
 ## Average entropy of the communities: 
 ## [1] 0.9499018</code></pre>
@@ -4612,17 +4615,17 @@ Simulations = 20)</code></pre>
 ## 138.8377 
 ## Quantiles of simulations (alpha, beta and gamma diversity):
 ##        0%        1%      2.5%        5%       10%       25%       50% 
-##  91.84631  92.07706  92.42318  93.00005  93.42578  96.23559  97.96301 
+##  90.26077  90.68106  91.31150  92.36223  93.43824  94.83874  98.25047 
 ##       75%       90%       95%     97.5%       99%      100% 
-## 100.15772 102.52729 102.98206 103.65647 104.06111 104.33087 
+## 100.11994 102.08626 104.07020 106.13901 107.38030 108.20782 
 ##       0%       1%     2.5%       5%      10%      25%      50%      75% 
-## 1.359016 1.359030 1.359052 1.359088 1.384568 1.397993 1.416594 1.438522 
+## 1.374663 1.375940 1.377855 1.381047 1.390060 1.400366 1.410817 1.440414 
 ##      90%      95%    97.5%      99%     100% 
-## 1.449787 1.459879 1.460014 1.460096 1.460150 
+## 1.450031 1.450883 1.451422 1.451745 1.451961 
 ##       0%       1%     2.5%       5%      10%      25%      50%      75% 
-## 131.5661 131.9046 132.4125 133.2590 134.2553 135.7830 137.9978 140.0850 
+## 129.4875 129.5875 129.7375 129.9875 130.6357 134.2130 138.6381 141.5795 
 ##      90%      95%    97.5%      99%     100% 
-## 146.3328 147.7294 147.7380 147.7432 147.7466</code></pre>
+## 146.1178 147.9815 152.4861 155.1889 156.9908</code></pre>
 <h4>
 See also
 </h4>
@@ -4892,7 +4895,7 @@ data(Paracou618)
 # Estimate Shannon diversity.
 summary(DivPart(q = 1, Paracou618.MC, Biased = FALSE) -&gt; dp)</code></pre>
 <pre><code>## HCDT diversity partitioning of order 1 of metaCommunity Paracou618.MC
-##  with correction: Best
+##  with correction: ChaoWangJost
 ## Alpha diversity of communities: 
 ##      P006      P018 
 ##  80.20125 110.66525 
@@ -5111,7 +5114,7 @@ Logical. If <code>FALSE</code>, bias corrected values of diversity have been com
 Correction
 </dt>
 <dd>
-The estimation bias correction used to calculate diversity.
+The estimation bias correction used to calculate diversity. Usually a string, but it may be a list if different corrections have been used in the estimation of phylodiversity.
 </dd>
 </p>
 <p class="rd-p">
@@ -5212,7 +5215,7 @@ A vector containing the gamma entropy of the metacommunity for each order.
 </p>
 <p class="rd-p">
 <dt>
-confidence envelopes
+Confidence envelopes
 </dt>
 <dd>
 Total Alpha, Beta and Gamma Entropy and Diversity may come with a confidence envelope whose value is stored in twelve more vectors named suffixed Low or High, such as <code>GammaEntropyLow</code>
@@ -5245,30 +5248,30 @@ plot(Profile)</code></pre>
 <p><img src="rd_files/figure-html/DivProfile_id_37-1.png" width="624" /></p>
 <pre class="r"><code>summary(Profile)</code></pre>
 <pre><code>## Diversity profile of MetaCommunity Paracou618.MC
-##  with correction: Best
+##  with correction: ChaoWangJost
 ## Diversity against its order:
 ##              Order Alpha Diversity Beta Diversity Gamma Diversity
 ## ChaoWangJost   0.0       238.36351       1.321238       314.93484
-## ChaoWangJost   0.1       221.29193       1.320894       292.30317
-## ChaoWangJost   0.2       204.17972       1.322729       270.07441
-## ChaoWangJost   0.3       187.24324       1.327199       248.50910
-## ChaoWangJost   0.4       170.72117       1.334724       227.86565
-## ChaoWangJost   0.5       154.85926       1.345620       208.38174
-## ChaoWangJost   0.6       139.89024       1.360036       190.25572
-## ChaoWangJost   0.7       126.01236       1.377889       173.63105
-## ChaoWangJost   0.8       113.37058       1.398840       158.58725
-## ChaoWangJost   0.9       102.04503       1.422300       145.13862
+## ChaoWangJost   0.1       221.29193       1.321166       292.36347
+## ChaoWangJost   0.2       204.17972       1.323271       270.18504
+## ChaoWangJost   0.3       187.24324       1.327987       248.65650
+## ChaoWangJost   0.4       170.72117       1.335708       228.03372
+## ChaoWangJost   0.5       154.85926       1.346729       208.55339
+## ChaoWangJost   0.6       139.89024       1.361171       190.41457
+## ChaoWangJost   0.7       126.01236       1.378937       173.76304
+## ChaoWangJost   0.8       113.37058       1.399674       158.68180
+## ChaoWangJost   0.9       102.04503       1.422796       145.18921
 ## ChaoWangJost   1.0        92.04908       1.447498       133.24089
-## ChaoWangJost   1.1        83.33700       1.473576       122.80337
-## ChaoWangJost   1.2        75.81819       1.499692       113.70393
-## ChaoWangJost   1.3        69.37405       1.525118       105.80358
-## ChaoWangJost   1.4        63.87372       1.549289        98.95886
-## ChaoWangJost   1.5        59.18644       1.571829        93.03093
-## ChaoWangJost   1.6        55.18979       1.592530        87.89138
-## ChaoWangJost   1.7        51.77425       1.611327        83.42525
-## ChaoWangJost   1.8        48.84485       1.628258        79.53203
-## ChaoWangJost   1.9        46.32106       1.643427        76.12530
-## ChaoWangJost   2.0        44.13559       1.656977        73.13163</code></pre>
+## ChaoWangJost   1.1        83.33700       1.473077       122.76180
+## ChaoWangJost   1.2        75.81819       1.498587       113.62013
+## ChaoWangJost   1.3        69.37405       1.523374       105.68260
+## ChaoWangJost   1.4        63.87372       1.546905        98.80658
+## ChaoWangJost   1.5        59.18644       1.568829        92.85340
+## ChaoWangJost   1.6        55.18979       1.588960        87.69438
+## ChaoWangJost   1.7        51.77425       1.607247        83.21401
+## ChaoWangJost   1.8        48.84485       1.623736        79.31112
+## ChaoWangJost   1.9        46.32106       1.638533        75.89860
+## ChaoWangJost   2.0        44.13559       1.651781        72.90234</code></pre>
 <h4>
 See also
 </h4>
@@ -5372,15 +5375,14 @@ data(Paracou618)
 # Calculate Simpson gamma diversity
 GammaDiversity(Paracou618.MC, 2)</code></pre>
 <pre><code>## ChaoWangJost 
-##     73.13163</code></pre>
+##     72.90234</code></pre>
 <pre class="r"><code># Compare without correction
 GammaDiversity(Paracou618.MC, 2, Correction = &quot;None&quot;)</code></pre>
 <pre><code>##    None 
 ## 68.7215</code></pre>
 <pre class="r"><code># Estimate phylogenetic Simpson gamma diversity
 GammaDiversity(Paracou618.MC, 2, Tree = Paracou618.Taxonomy)   </code></pre>
-<pre><code>##    Best 
-## 25.1458</code></pre>
+<pre><code>## [1] 25.05541</code></pre>
 <h4>
 See also
 </h4>
@@ -5402,7 +5404,7 @@ Calculates the reduced-bias Tsallis entropy of order <span class="math inline"><
 <h4>
 Usage
 </h4>
-<pre class="r"><code><div>GammaEntropy(MC, q&nbsp;=&nbsp;1, Correction&nbsp;=&nbsp;"Best", Tree&nbsp;=&nbsp;NULL, Normalize&nbsp;=&nbsp;TRUE,  Z&nbsp;=&nbsp;NULL, CheckArguments&nbsp;=&nbsp;TRUE)</div></code></pre>
+<pre class="r"><code><div>GammaEntropy(MC, q&nbsp;=&nbsp;1, Correction&nbsp;=&nbsp;"Best", Tree&nbsp;=&nbsp;NULL, Normalize&nbsp;=&nbsp;TRUE,  Z&nbsp;=&nbsp;NULL, PhyloDetails&nbsp;=&nbsp;FALSE, CheckArguments&nbsp;=&nbsp;TRUE)</div></code></pre>
 <h4>
 Arguments
 </h4>
@@ -5442,6 +5444,12 @@ Z
 </dt>
 <dd class="rd-dd">
 A relatedness matrix, <em>i.e.</em> a square matrix whose terms are all positive, strictly positive on the diagonal. Generally, the matrix is a similarity matrix, <em>i.e.</em> the diagonal terms equal 1 and other terms are between 0 and 1.
+</dd>
+<dt>
+PhyloDetails
+</dt>
+<dd class="rd-dd">
+If <code>FALSE</code> (default), the function always returns a number. If <code>TRUE</code> and <code>Tree</code> is not Tree is not <code>NULL</code> then a <code><a href=#phylovalue>PhyloValue</a></code> object is returned with all details. That is used internally by <code><a href=#divpart>DivPart</a></code> to obtain the corrections used to estimate gamma entropy along the tree and apply them to the estimation of alpha diversity.
 </dd>
 <dt>
 CheckArguments
@@ -5490,15 +5498,14 @@ data(Paracou618)
 # Calculate Simpson gamma entropy
 GammaEntropy(Paracou618.MC, 2)</code></pre>
 <pre><code>## ChaoWangJost 
-##     0.986326</code></pre>
+##     0.986283</code></pre>
 <pre class="r"><code># Compare without correction
 GammaEntropy(Paracou618.MC, 2, Correction = &quot;None&quot;)</code></pre>
 <pre><code>##      None 
 ## 0.9854485</code></pre>
 <pre class="r"><code># Estimate phylogenetic Simpson gamma entropy
 GammaEntropy(Paracou618.MC, 2, Tree = Paracou618.Taxonomy)   </code></pre>
-<pre><code>##      Best 
-## 0.9602319</code></pre>
+<pre><code>## [1] 0.9600885</code></pre>
 <h4>
 See also
 </h4>
@@ -5599,6 +5606,9 @@ plot(MergeC(list(MC1, MC2)), main=&quot;Merged communities&quot;)</code></pre>
 <pre class="r"><code># Merge metacommunities
 plot(MergeMC(list(MC1, MC2)), main=&quot;Merged meta-communities&quot;)</code></pre>
 <p><img src="rd_files/figure-html/MergeMC_id_40-2.png" width="624" /></p>
+<pre class="r"><code>smc &lt;- ShuffleMC(list(MC1, MC2))
+plot(MergeMC(smc), main=&quot;Shuffled, then Merged meta-communities&quot;)</code></pre>
+<p><img src="rd_files/figure-html/MergeMC_id_40-3.png" width="624" /></p>
 <h4>
 See also
 </h4>
@@ -6243,6 +6253,18 @@ Versions up to 1.3 contained a <code><a href=http://www.rdocumentation.org/packa
 See the dedicated vignette (<code>vignette(“Phylogenies”, package=“entropart”)</code>) for more details.
 </p>
 <h4>
+Examples
+</h4>
+<pre class="r"><code>data(Paracou618)
+# Preprocess a phylog object
+ppt &lt;- Preprocess.Tree(EightSpTree)
+# Is it a preprocessed tree?
+is.PPtree(ppt)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code># Plot it
+plot(ppt, hang=-1)</code></pre>
+<p><img src="rd_files/figure-html/PPtree_id_45-1.png" width="624" /></p>
+<h4>
 Author
 </h4>
 <p>Eric Marcon <a href="mailto:Eric.Marcon@ecofog.gf">Eric.Marcon@ecofog.gf</a></p>
@@ -6390,11 +6412,11 @@ plot(st)</code></pre>
 <p><img src="rd_files/figure-html/SimTest_id_46-1.png" width="624" /></p>
 <pre class="r"><code>summary(st)</code></pre>
 <pre><code>## Real value:  0.8 
-## Quantile in the simulated distribution:  0.792 
+## Quantile in the simulated distribution:  0.811 
 ## Quantiles of simulations:
-## 2.50% :  -1.982832 
-## 97.50% :  1.937896 
-## Mean simulated value:  -0.00888375</code></pre>
+## 2.50% :  -1.890744 
+## 97.50% :  1.973684 
+## Mean simulated value:  -0.04275117</code></pre>
 <h4>
 Author
 </h4>
@@ -6633,7 +6655,7 @@ Value
 </h4>
 <p class="rd-p">
 <dl>
-A vector of the same length as <code>x</code> containing the transformed values.
+A vector of the same length as <code>n</code> containing the transformed values.
 </dl>
 </p>
 <h4>
@@ -6651,6 +6673,22 @@ The function is computed using the <code><a href=http://www.rdocumentation.org/p
 <p class="rd-p">
 Its value is 0 for <span class="math inline"><em>n</em> − <em>q</em> + 1 &lt; 0</span>.
 </p>
+<h4>
+Examples
+</h4>
+<pre class="r"><code># Compare
+n &lt;- c(2,3)
+Enq(n, q=2)</code></pre>
+<pre><code>## [1] 2 6</code></pre>
+<pre class="r"><code># with
+n^2</code></pre>
+<pre><code>## [1] 4 9</code></pre>
+<pre class="r"><code># Result is 1
+Enq(n, q=0)</code></pre>
+<pre><code>## [1] 1 1</code></pre>
+<pre class="r"><code># Result is 0
+Enq(n, q=5)</code></pre>
+<pre><code>## [1] -7.796086e-15  5.847065e-15</code></pre>
 <h4>
 Author
 </h4>
@@ -7013,6 +7051,82 @@ Author
 </h4>
 <p>Eric Marcon <a href="mailto:Eric.Marcon@ecofog.gf">Eric.Marcon@ecofog.gf</a></p>
 </div>
+<div id="argumentoriginalname" class="section level2">
+<h2>ArgumentOriginalName</h2>
+<a id="ArgumentOriginalName_alias"></a>
+<h3>
+Finds the original value (name of expression) of the argument of a function even in the case of embedded calls.
+</h3>
+<p class="rd-p">
+This function is used internally to find the name of arguments passed to entropart functions such as <code><a href='PhyloDiversity.html'>PhyloDiversity</a></code> that store them in their results.
+</p>
+<h4>
+Usage
+</h4>
+<pre class="r"><code><div>ArgumentOriginalName(x)</div></code></pre>
+<h4>
+Arguments
+</h4>
+<dl class="rd-dl">
+<dt>
+x
+</dt>
+<dd class="rd-dd">
+Any argument.
+</dd>
+</dl>
+<h4>
+Value
+</h4>
+<p class="rd-p">
+<dl>
+The name of the argument.
+</dl>
+</p>
+<h4>
+Details
+</h4>
+<p class="rd-p">
+The function searches the name of the argument in the parent frame of the function and stops at the top.
+</p>
+<h4>
+Author
+</h4>
+<p>BrodieG, <a href="https://stackoverflow.com/users/2725969/brodieg" class="uri">https://stackoverflow.com/users/2725969/brodieg</a></p>
+<p>Eric Marcon <a href="mailto:Eric.Marcon@ecofog.gf">Eric.Marcon@ecofog.gf</a></p>
+</div>
+<div id="checkentropartarguments" class="section level2">
+<h2>CheckentropartArguments</h2>
+<a id="CheckentropartArguments_alias"></a>
+<h3>
+Checks the arguments of a function of the package entropart
+</h3>
+<p class="rd-p">
+This function is used internally to verify that arguments passed to entropart functions such as <code><a href='PhyloDiversity.html'>PhyloDiversity</a></code> are correct.
+</p>
+<h4>
+Usage
+</h4>
+<pre class="r"><code><div>CheckentropartArguments()</div></code></pre>
+<h4>
+Value
+</h4>
+<p class="rd-p">
+<dl>
+Returns <code>TRUE</code> or stops if a problem is detected.
+</dl>
+</p>
+<h4>
+Details
+</h4>
+<p class="rd-p">
+The function compares the arguments passed to its parent function to the type they should be and performs some extra tests (<em>e.g.</em> probabilities must be positive and sum to 1). It stops if an argument is not correct.
+</p>
+<h4>
+Author
+</h4>
+<p>Eric Marcon <a href="mailto:Eric.Marcon@ecofog.gf">Eric.Marcon@ecofog.gf</a></p>
+</div>
 <div id="entropyci" class="section level2">
 <h2>EntropyCI</h2>
 <a id="EntropyCI_alias"></a>
@@ -7110,13 +7224,13 @@ abline(v=quantile(SimulatedDiversity, probs = 0.025), col=&quot;black&quot;, lwd
 abline(v=quantile(SimulatedDiversity, probs = 0.975), col=&quot;black&quot;, lwd=1, lty=3)
 legend(&quot;topright&quot;, c(&quot;Real value&quot;, &quot;Confidence interval&quot;), lty=c(2,3),
 col=c(&quot;red&quot;, &quot;black&quot;), inset=0.01)</code></pre>
-<p><img src="rd_files/figure-html/EntropyCI_id_53-1.png" width="624" /></p>
+<p><img src="rd_files/figure-html/EntropyCI_id_55-1.png" width="624" /></p>
 <pre class="r"><code># Print results
 cat(&quot;Estimated Diversity:&quot;, RealEst)</code></pre>
 <pre><code>## Estimated Diversity: 133.2409</code></pre>
 <pre class="r"><code>quantile(SimulatedDiversity, probs = c(0.025, 0.975))</code></pre>
 <pre><code>##     2.5%    97.5% 
-## 125.1125 143.2358</code></pre>
+## 123.1379 145.6714</code></pre>
 <h4>
 Author
 </h4>
@@ -7276,7 +7390,7 @@ Cuts the tree into slices separated by nodes, applies the function to each slice
 <h4>
 Usage
 </h4>
-<pre class="r"><code><div>PhyloApply(Tree, FUN, NorP, Normalize&nbsp;=&nbsp;TRUE, ..., CheckArguments&nbsp;=&nbsp;TRUE)</div></code></pre>
+<pre class="r"><code><div>PhyloApply(Tree, FUN, NorP, Normalize&nbsp;=&nbsp;TRUE, dfArgs&nbsp;=&nbsp;NULL, ..., CheckArguments&nbsp;=&nbsp;TRUE)</div></code></pre>
 <h4>
 Arguments
 </h4>
@@ -7306,6 +7420,12 @@ Normalize
 If <code>TRUE</code> (default), the <code>Total</code> value returned by <code>Function</code> is normalized by the height of the tree (it is the weighted average value of the result in each slice). If <code>FALSE</code>, it is the unnormalized weighted sum of the results.
 </dd>
 <dt>
+dfArgs
+</dt>
+<dd class="rd-dd">
+A dataframe. Columns are arguments for <code>FUN</code>: their names are those of valid arguments. Values will be passed to <code>FUN</code> in each slice of the tree, starting from the tips. The number of lines must equal the number of slices.
+</dd>
+<dt>
 …
 </dt>
 <dd class="rd-dd">
@@ -7325,10 +7445,13 @@ Details
 This funtion is generally not used directly. It is a tool to calculate <code><a href=#phyloentropy>PhyloEntropy</a></code> and <code><a href=#phylodiversity>PhyloDiversity</a></code>.
 </p>
 <p class="rd-p">
-Intervals separate two cuts in a tree: no node is found at heights contained in an interval.
+Intervals (slices) separate two cuts (nodes) in a tree: no node is found at heights contained in an interval.
 </p>
 <p class="rd-p">
 Objects of class <strong>PPtree</strong> are returned by <code><a href=#preprocess.tree>Preprocess.Tree</a></code>.
+</p>
+<p class="rd-p">
+… allow passing arguments to the function but they cant change along the tree. If necessary, <code>dfArgs</code> allow passing a different value for each slice of the tree.
 </p>
 <h4>
 Value
@@ -7377,10 +7500,18 @@ A named vector containing values along the tree. Names are cut ends, <em>i.e.</e
 </p>
 <p class="rd-p">
 <dt>
+Corrections
+</dt>
+<dd>
+A named vector containing the correction used by FUN to obtain each value of <code>Cuts</code>. Names are those of <code>Cuts</code>.
+</dd>
+</p>
+<p class="rd-p">
+<dt>
 Total
 </dt>
 <dd>
-A value equal the total value, multiplied by the tree height if <code>Normalize</code> is FALSE.
+The total value, multiplied by the tree height if <code>Normalize</code> is FALSE.
 </dd>
 </p>
 <p class="rd-p">
@@ -7400,7 +7531,7 @@ Examples
 data(Paracou618)
 # Plot the taxonomy
 plot(Paracou618.Taxonomy, type=&quot;fan&quot;, show.tip.label=FALSE)</code></pre>
-<p><img src="rd_files/figure-html/PhyloApply_id_56-1.png" width="624" /></p>
+<p><img src="rd_files/figure-html/PhyloApply_id_58-1.png" width="624" /></p>
 <pre class="r"><code># Calculate the mean number of trees (individuals) per species 
 # (Cuts are 1=species, 2=genus, 3=family)
 PhyloApply(Paracou618.Taxonomy, mean, Paracou618.MC$Ns, TRUE)</code></pre>
@@ -7419,6 +7550,17 @@ PhyloApply(Paracou618.Taxonomy, mean, Paracou618.MC$Ns, TRUE)</code></pre>
 ## $Cuts
 ##         1         2         3 
 ##  2.644706  6.108696 22.039216 
+## 
+## $Corrections
+## $Corrections$`1`
+## NULL
+## 
+## $Corrections$`2`
+## NULL
+## 
+## $Corrections$`3`
+## NULL
+## 
 ## 
 ## $Total
 ## [1] 10.26421
@@ -7564,6 +7706,49 @@ A vector containing the sample coverages of each community
 </dd>
 </p>
 <p class="rd-p">
+</dl>
+</p>
+<h4>
+Author
+</h4>
+<p>Eric Marcon <a href="mailto:Eric.Marcon@ecofog.gf">Eric.Marcon@ecofog.gf</a></p>
+</div>
+<div id="preprocess.tree" class="section level2">
+<h2>Preprocess.Tree</h2>
+<a id="Preprocess.Tree_alias"></a>
+<h3>
+Preprocessing of a phylogenetic tree
+</h3>
+<p class="rd-p">
+Calculates cuts and intervals of a phylogenetic tree and make it available both in <code><a href='http://www.rdocumentation.org/packages/stats/topics/hclust'>hclust</a></code> and <code><a href='http://www.rdocumentation.org/packages/ade4/topics/phylog'>phylog</a></code> formats.
+</p>
+<h4>
+Usage
+</h4>
+<pre class="r"><code><div>Preprocess.Tree(Tree)</div></code></pre>
+<h4>
+Arguments
+</h4>
+<dl class="rd-dl">
+<dt>
+Tree
+</dt>
+<dd class="rd-dd">
+An object of class <code><a href=http://www.rdocumentation.org/packages/stats/topics/hclust>hclust</a></code> or <code><a href=http://www.rdocumentation.org/packages/ade4/topics/phylog>phylog</a></code>. The tree must be ultrametric.
+</dd>
+</dl>
+<h4>
+Details
+</h4>
+<p class="rd-p">
+This is an internal function. It is used by <code><a href=#phyloapply>PhyloApply</a></code> to obtain values of intervals.
+</p>
+<h4>
+Value
+</h4>
+<p class="rd-p">
+<dl>
+An object of class <code><a href=#pptree>PPtree</a></code>.
 </dl>
 </p>
 <h4>
