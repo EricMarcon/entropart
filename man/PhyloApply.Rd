@@ -7,7 +7,8 @@
   Cuts the tree into slices separated by nodes, applies the function to each slice and returns the weighted (by slice lengths) sum of the results.
 }
 \usage{
-PhyloApply(Tree, FUN, NorP, Normalize = TRUE, \dots, CheckArguments = TRUE)
+PhyloApply(Tree, FUN, NorP, Normalize = TRUE, dfArgs = NULL,
+           \dots, CheckArguments = TRUE)
 }
 \arguments{
   \item{Tree}{
@@ -23,6 +24,9 @@ PhyloApply(Tree, FUN, NorP, Normalize = TRUE, \dots, CheckArguments = TRUE)
   If \code{TRUE} (default), the \code{Total} value returned by \code{Function} is normalized by the height of the tree (it is the weighted average value of the result in each slice).\cr
   If \code{FALSE}, it is the unnormalized weighted sum of the results.
   }
+  \item{dfArgs}{
+  A dataframe. Columns are arguments for \code{FUN}: their names are those of valid arguments. Values will be passed to \code{FUN} in each slice of the tree, starting from the tips. The number of lines must equal the number of slices.
+  }
   \item{\dots}{
   Further arguments to pass to \code{Function}.
   }
@@ -31,11 +35,13 @@ PhyloApply(Tree, FUN, NorP, Normalize = TRUE, \dots, CheckArguments = TRUE)
   }
 }
 \details{
-  This funtion is generally not used directly. It is a tool to calculate \code{\link{PhyloEntropy}} and  \code{\link{PhyloDiversity}}.
+  This funtion is generally not used directly. It is a tool to calculate \code{\link{PhyloEntropy}} and \code{\link{PhyloDiversity}}.
   
-  Intervals separate two cuts in a tree: no node is found at heights contained in an interval.
+  Intervals (slices) separate two cuts (nodes) in a tree: no node is found at heights contained in an interval.
   
   Objects of class \strong{PPtree} are returned by \code{\link{Preprocess.Tree}}.
+  
+  \dots allow passing arguments to the function but they can't change along the tree. If necessary, \code{dfArgs} allow passing a different value for each slice of the tree.
 }
 \value{
   An object of class \code{PhyloValue}. It is a list:
