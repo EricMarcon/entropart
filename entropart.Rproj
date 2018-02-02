@@ -15,5 +15,4 @@ LaTeX: pdfLaTeX
 BuildType: Package
 PackageUseDevtools: Yes
 PackageInstallArgs: --no-multiarch
-PackageBuildArgs: --no-build-vignettes
 PackageCheckArgs: --as-cran
