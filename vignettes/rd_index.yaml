@@ -163,8 +163,11 @@ sections:
   section_name: Utilities
   topics:
     - AbdFreqCount
+    - ArgumentOriginalName
+    - CheckentropartArguments
     - EntropyCI
     - mergeandlabel
     - Optimal.Similarity
     - PhyloApply
     - Preprocess.MC
+    - Preprocess.Tree

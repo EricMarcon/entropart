@@ -124,7 +124,7 @@ DP <- CommunityProfile(Diversity, Abd18)
 plot(DP)
 ```
 
-If an ultrametric dendrogram describing species' phylogeny (here, a mere taxonomy with family, genus and species) is available, phylogenetic entropy and diversity  [@Marcon2014a] can be calculated:
+If an ultrametric dendrogram describing species' phylogeny (here, a mere taxonomy with family, genus and species) is available, phylogenetic entropy and diversity  [@Marcon2014b] can be calculated:
 
 ```{r PhyloDiversity}
 summary(PhyloDiversity(Abd18,q=1,Tree=Paracou618.Taxonomy))
@@ -215,7 +215,7 @@ plot(dp)
 
 Plot #18 can be considered more diverse than plot #6 because their profiles (top right figure, plot #18 is the dotted red line, plot #6, the solid black one) do not cross [@Tothmeresz1995]: its diversity is systematically higher. The shape of the $\beta$ diversity profile shows that the communities are more diverse when their dominant species are considered.
 
-The bootstrap confidence intervals of the values of diversity [@Marcon2012; @Marcon2014] are calculated if `NumberOfSimulations` is not 0.
+The bootstrap confidence intervals of the values of diversity [@Marcon2012; @Marcon2014a] are calculated if `NumberOfSimulations` is not 0.
 
 `DivPart`, `DivEst` and `DivProfile` use plugin estimators by default.
 To force them to apply the same estimators as community functions, the argument `Biased = FALSE` must be entered.
