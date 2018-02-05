@@ -22,6 +22,7 @@ test_that("PhyloEntropy does not depend on tree format", {
 
 # Check PhyloEntropy of order 2 equals Rao
 test_that("PhyloEntropy of order 2 equals Rao", {
+  skip_on_cran()
   # No correction
   expect_equal(as.numeric(PhyloEntropy(Ps, 2, Paracou618.Taxonomy, Normalize = FALSE)$Total), 
                as.numeric(Rao(Ps, Paracou618.Taxonomy)))
@@ -36,6 +37,7 @@ test_that("PhyloEntropy of order 2 equals Rao", {
 
 # Check PhyloDiversity equals ChaoPD
 test_that("PhyloDiversity equals ChaoPD", {
+  skip_on_cran()
   # Order 2
   expect_equal(as.numeric(PhyloDiversity(Ps, 2, Paracou618.Taxonomy)$Total), 
                as.numeric(ChaoPD(Ps, 2, Paracou618.Taxonomy)))
@@ -55,6 +57,7 @@ PsStar <- c(BrockenStick[1], BrockenStick[2]-BrockenStick[1], 1-BrockenStick[2])
 names(PsStar) <- c("A", "B", "C")
 
 test_that("PhyloEntropy of order 2 of a star dendrogram equals Simpson", {
+  skip_on_cran()
   # PhyloEntropy vs Rao
   expect_equal(as.numeric(PhyloEntropy(PsStar, q=2, Tree=phyStar, Normalize = FALSE)$Total), 
                as.numeric(Rao(PsStar, phyStar)), tolerance = 100*sqrt(.Machine$double.eps))

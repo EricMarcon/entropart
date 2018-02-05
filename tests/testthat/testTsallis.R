@@ -9,7 +9,8 @@ Ps <- as.ProbaVector(Paracou618.MC$Ns)
 
 # Check Tsallis limit at 1 equals Shannon
 test_that("Tsallis tends to Shannon", {
-  # No correction
+  skip_on_cran()
+# No correction
   expect_equal(as.numeric(Tsallis(Ps, 1 + 1E-7)),
                as.numeric(Shannon(Ps)),
                tolerance = 1e-6)
@@ -23,6 +24,7 @@ test_that("Tsallis tends to Shannon", {
 Ns <- Ns[Ns>0]
 N <- sum(Ns)
 test_that("Shannon with Zhang-Grabchak correction equals EntropyEstimation::Entropy.z", {
+  skip_on_cran()
   # No correction
   expect_equal(sum(Ns/N*(digamma(N)-digamma(Ns))),
                EntropyEstimation::Entropy.z(Ns),
