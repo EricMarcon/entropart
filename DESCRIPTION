@@ -1,14 +1,14 @@
 Package: entropart
 Type: Package
 Title: Entropy Partitioning to Measure Diversity
-Version: 1.5-3
+Version: 1.5-3-9001
 Date: 2018-02-05
 Authors@R: c(
     person("Eric", "Marcon", email="eric.marcon@ecofog.gf", role=c("aut", "cre")),
     person("Bruno", "Herault", email="bruno.herault@cirad.fr", role="aut")
     )
 Description: Measurement and partitioning of diversity, based on Tsallis entropy, following Marcon and Herault (2015) <doi:10.18637/jss.v067.i08>.
-             entropart provides functions to calculate alpha, beta and gamma diversity of communities, including phylogenetic and functional diversity.
+             'entropart' provides functions to calculate alpha, beta and gamma diversity of communities, including phylogenetic and functional diversity.
              Estimation-bias corrections are available.
 URL: https://EricMarcon.github.io/entropart
 BugReports: https://github.com/EricMarcon/entropart/issues
