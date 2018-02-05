@@ -162,7 +162,7 @@ Entropy Partitioning to Measure Diversity
 <strong>Authors:</strong> <a href="mailto:eric.marcon@ecofog.gf">Eric Marcon</a> [aut, cre],<a href="mailto:bruno.herault@cirad.fr">Bruno Herault</a> [aut]
 </p>
 <p>
-<strong>Version:</strong> 1.4-8.9010
+<strong>Version:</strong> 1.5-3
 </p>
 <p>
 <strong>License:</strong> GNU General Public License
@@ -171,7 +171,7 @@ Entropy Partitioning to Measure Diversity
 Description
 </h4>
 <p>
-Measurement and partitioning of diversity, based on Tsallis entropy.
+Measurement and partitioning of diversity, based on Tsallis entropy, following Marcon and Herault (2015) <a href="doi:10.18637/jss.v067.i08" class="uri">doi:10.18637/jss.v067.i08</a>. entropart provides functions to calculate alpha, beta and gamma diversity of communities, including phylogenetic and functional diversity. Estimation-bias corrections are available.
 </p>
 <h4>
 Imports
@@ -293,8 +293,8 @@ Examples
 </h4>
 <pre class="r"><code>data(Paracou618)
 EightSpAbundance</code></pre>
-<pre><code>##  Sr Ess  Me  S1  Bg  Ef  Vm  Dg 
-## 284 228 139  91 173 169 141 221</code></pre>
+<pre><code> Sr Ess  Me  S1  Bg  Ef  Vm  Dg 
+284 228 139  91 173 169 141 221 </code></pre>
 </div>
 <div id="eightsptree" class="section level2">
 <h2>EightSpTree</h2>
@@ -449,19 +449,19 @@ Examples
 </h4>
 <pre class="r"><code>data(Paracou618)
 summary(Paracou618.MC)</code></pre>
-<pre><code>## Meta-community (class &#39;MetaCommunity&#39;) made of 1124 individuals in 2 
-## communities and 425 species. 
-## 
-## Its sample coverage is 0.92266748426447 
-## 
-## Community weights are: 
-## [1] 0.5720641 0.4279359
-## Community sample numbers of individuals are: 
-## P006 P018 
-##  643  481 
-## Community sample coverages are: 
-##      P006      P018 
-## 0.8943859 0.8463782</code></pre>
+<pre><code>Meta-community (class &#39;MetaCommunity&#39;) made of 1124 individuals in 2 
+communities and 425 species. 
+
+Its sample coverage is 0.92266748426447 
+
+Community weights are: 
+[1] 0.5720641 0.4279359
+Community sample numbers of individuals are: 
+P006 P018 
+ 643  481 
+Community sample coverages are: 
+     P006      P018 
+0.8943859 0.8463782 </code></pre>
 </div>
 <div id="paracou618.taxonomy" class="section level2">
 <h2>Paracou618.Taxonomy</h2>
@@ -748,20 +748,20 @@ Ps &lt;- as.ProbaVector(Paracou618.MC$Ns)
 
 # Calculate the phylogenetic Shannon diversity of the plot
 AllenH(Ps, 1, Paracou618.Taxonomy, Normalize=TRUE)</code></pre>
-<pre><code>##     None 
-## 3.919941</code></pre>
+<pre><code>    None 
+3.919941 </code></pre>
 <pre class="r"><code># Calculate it using PhyloEntropy: more powerful but much slower is the tree has many periods
 PhyloEntropy(Ps, 1, Paracou618.Taxonomy, Normalize=TRUE) -&gt; phyE
 summary(phyE)</code></pre>
-<pre><code>## alpha or gamma phylogenetic or functional entropy of order 1 
-## of distribution -
-##  with correction: None
-## Phylogenetic or functional entropy was calculated according to the tree 
-## Paracou618.Taxonomy 
-## 
-## Entropy is normalized
-## 
-## Entropy equals: 3.919941</code></pre>
+<pre><code>alpha or gamma phylogenetic or functional entropy of order 1 
+of distribution -
+ with correction: None
+Phylogenetic or functional entropy was calculated according to the tree 
+Paracou618.Taxonomy 
+
+Entropy is normalized
+
+Entropy equals: 3.919941</code></pre>
 <h4>
 See also
 </h4>
@@ -865,21 +865,21 @@ Ps &lt;- Paracou618.MC$Ps
 
 # Calculate the phylogenetic Simpson diversity of the plot
 (ChaoPD(Paracou618.MC$Ps, 2, Paracou618.Taxonomy, Normalize=TRUE))</code></pre>
-<pre><code>##     None 
-## 24.61698</code></pre>
+<pre><code>    None 
+24.61698 </code></pre>
 <pre class="r"><code># Calculate it using PhyloDiversity
 # (more powerful but much slower if the tree has many periods)
 PhyloDiversity(Paracou618.MC$Ps, 2, Paracou618.Taxonomy, Normalize=TRUE) -&gt; phyD
 summary(phyD)</code></pre>
-<pre><code>## alpha or gamma phylogenetic or functional diversity of order 2 
-## of distribution -
-##  with correction: None
-## Phylogenetic or functional diversity was calculated according to the tree 
-## Paracou618.Taxonomy 
-## 
-## Diversity is normalized
-## 
-## Diversity equals: 24.61698</code></pre>
+<pre><code>alpha or gamma phylogenetic or functional diversity of order 2 
+of distribution -
+ with correction: None
+Phylogenetic or functional diversity was calculated according to the tree 
+Paracou618.Taxonomy 
+
+Diversity is normalized
+
+Diversity equals: 24.61698</code></pre>
 <h4>
 See also
 </h4>
@@ -1101,7 +1101,7 @@ lty=3, ylim=c(50, 350))
 # (only 10 simulations to save time, should be 1000)
 Profile &lt;- CommunityProfile(Diversity, as.AbdVector(Paracou618.MC$Ns), 
           seq(0, 2, 0.2), Correction=&quot;UnveilJ&quot;, NumberOfSimulations=10)</code></pre>
-<pre><code>## ===========================================================================</code></pre>
+<pre><code>===========================================================================</code></pre>
 <pre class="r"><code># Complete the plot, and add the legend
 CEnvelope(Profile, main=&quot;Paracou Plots Diversity&quot;)
 legend(&quot;topright&quot;, c(&quot;Bias Corrected&quot;, &quot;Biased&quot;), lty=c(1,3), inset=0.01)</code></pre>
@@ -1114,16 +1114,16 @@ legend(&quot;topright&quot;, c(&quot;Bias Corrected&quot;, &quot;Biased&quot;), 
 CommunityProfile(function(PandPexp, q, CheckArguments) 
   {TsallisBeta(PandPexp[, 1], PandPexp[, 2], q)}, 
   NorP=cbind(Paracou618.MC$Psi[, 1], Paracou618.MC$Ps), q.seq=seq(0, 2, 0.2))</code></pre>
-<pre><code>## $x
-##  [1] 0.0 0.2 0.4 0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0
-## 
-## $y
-##  [1] 53.42961065 16.60496236  5.55701448  2.02871915  0.80974134
-##  [6]  0.34993577  0.16100624  0.07750741  0.03849038  0.01952232
-## [11]  0.01004705
-## 
-## attr(,&quot;class&quot;)
-## [1] &quot;CommunityProfile&quot;</code></pre>
+<pre><code>$x
+ [1] 0.0 0.2 0.4 0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0
+
+$y
+ [1] 53.42961065 16.60496236  5.55701448  2.02871915  0.80974134
+ [6]  0.34993577  0.16100624  0.07750741  0.03849038  0.01952232
+[11]  0.01004705
+
+attr(,&quot;class&quot;)
+[1] &quot;CommunityProfile&quot;</code></pre>
 <h4>
 Author
 </h4>
@@ -1206,8 +1206,8 @@ data(Paracou618)
 Ns &lt;- Paracou618.MC$Ns
 # Calculate the sample coverage of the metacommunity
 Coverage(Ns)    # Stored in Paracou618.SampleCoverage</code></pre>
-<pre><code>## ZhangHuang 
-##  0.9226675</code></pre>
+<pre><code>ZhangHuang 
+ 0.9226675 </code></pre>
 <h4>
 Author
 </h4>
@@ -1318,12 +1318,12 @@ plot(Ns)</code></pre>
 <p><img src="rd_files/figure-html/Diversity_id_13-1.png" width="624" /></p>
 <pre class="r"><code># Calculate diversity of order 1, i.e. Shannon&#39;s diversity
 Diversity(Ps, 1)</code></pre>
-<pre><code>##   None 
-## 113.98</code></pre>
+<pre><code>  None 
+113.98 </code></pre>
 <pre class="r"><code># Calculate it with estimation bias correction
 Diversity(Ns, 1)</code></pre>
-<pre><code>## ChaoWangJost 
-##     133.2409</code></pre>
+<pre><code>ChaoWangJost 
+    133.2409 </code></pre>
 <h4>
 See also
 </h4>
@@ -1450,8 +1450,8 @@ DistanceMatrix &lt;- as.matrix(Paracou618.dist)
 Z &lt;- 1 - DistanceMatrix/max(DistanceMatrix)
 # Calculate diversity of order 2
 Dqz(Paracou618.MC$Ns, 2, Z)</code></pre>
-<pre><code>##    Best 
-## 1.48295</code></pre>
+<pre><code>   Best 
+1.48295 </code></pre>
 <h4>
 See also
 </h4>
@@ -1578,12 +1578,12 @@ plot(Ns)</code></pre>
 <p><img src="rd_files/figure-html/GenSimpson_id_15-1.png" width="624" /></p>
 <pre class="r"><code># Calculate GenSimpson entropy of order 1, equal to Simpson&#39;s index of diversity
 GenSimpson(Ps, 1) </code></pre>
-<pre><code>##    Biased 
-## 0.9854485</code></pre>
+<pre><code>   Biased 
+0.9854485 </code></pre>
 <pre class="r"><code># Calculate an unbiased estimator of GenSimpson diversity of order 100
 GenSimpsonD(Ns, 100)</code></pre>
-<pre><code>## Unbiased 
-## 115.9597</code></pre>
+<pre><code>Unbiased 
+115.9597 </code></pre>
 <h4>
 Author
 </h4>
@@ -1719,26 +1719,26 @@ Z &lt;- 1 - DistanceMatrix/max(DistanceMatrix)
 # Calculate diversity of order 2
 Ps &lt;- EightSpAbundance/sum(EightSpAbundance)
 Hqz(Ps, 2, Z)</code></pre>
-<pre><code>##      None 
-## 0.6033223</code></pre>
+<pre><code>     None 
+0.6033223 </code></pre>
 <pre class="r"><code># Equal to normalized Rao quadratic entropy when q=2
 Rao(Ps, EightSpTree)/max(DistanceMatrix)</code></pre>
-<pre><code>##      None 
-## 0.6033223</code></pre>
+<pre><code>     None 
+0.6033223 </code></pre>
 <pre class="r"><code># But different from PhyloEntropy for all other q, e.g. 1
 Hqz(Ps, 1, Z)</code></pre>
-<pre><code>##      None 
-## 0.9348275</code></pre>
+<pre><code>     None 
+0.9348275 </code></pre>
 <pre class="r"><code>summary(PhyloEntropy(Ps, 1, EightSpTree))</code></pre>
-<pre><code>## alpha or gamma phylogenetic or functional entropy of order 1 
-## of distribution -
-##  with correction: None
-## Phylogenetic or functional entropy was calculated according to the tree 
-## EightSpTree 
-## 
-## Entropy is normalized
-## 
-## Entropy equals: 1.034531</code></pre>
+<pre><code>alpha or gamma phylogenetic or functional entropy of order 1 
+of distribution -
+ with correction: None
+Phylogenetic or functional entropy was calculated according to the tree 
+EightSpTree 
+
+Entropy is normalized
+
+Entropy equals: 1.034531</code></pre>
 <h4>
 See also
 </h4>
@@ -1884,8 +1884,8 @@ DistanceMatrix &lt;- as.matrix(Paracou618.dist)
 Z &lt;- 1 - DistanceMatrix/max(DistanceMatrix)
 # Divergence of order 2 between plot 1 and the whole forest
 HqzBeta(Ps1, Ps, q=2, Z)</code></pre>
-<pre><code>##        None 
-## 0.004107207</code></pre>
+<pre><code>       None 
+0.004107207 </code></pre>
 <h4>
 Author
 </h4>
@@ -2002,12 +2002,12 @@ plot(Ns)</code></pre>
 <p><img src="rd_files/figure-html/Hurlbert_id_18-1.png" width="624" /></p>
 <pre class="r"><code># Calculate Hurlbert entropy of order 2, equal to Simpson&#39;s index of diversity
 Hurlbert(Ps, 2) </code></pre>
-<pre><code>##   Biased 
-## 1.985449</code></pre>
+<pre><code>  Biased 
+1.985449 </code></pre>
 <pre class="r"><code># Calculate an unbiased estimator of Hurlbert entropy of order 2
 Hurlbert(Ns, 2)</code></pre>
-<pre><code>## Unbiased 
-## 1.986326</code></pre>
+<pre><code>Unbiased 
+1.986326 </code></pre>
 <h4>
 Author
 </h4>
@@ -2091,8 +2091,8 @@ data(Paracou618)
 Ps &lt;- Paracou618.MC$Ps
 # Calculate the phylogenetic Shannon diversity of the plot
 PDFD(Ps, Paracou618.Taxonomy)</code></pre>
-<pre><code>## None 
-##  395</code></pre>
+<pre><code>None 
+ 395 </code></pre>
 <h4>
 See also
 </h4>
@@ -2247,15 +2247,15 @@ Ps &lt;- as.ProbaVector(Paracou618.MC$Ps)
 Ps1 &lt;- as.ProbaVector(Paracou618.MC$Psi[, 1])
 # Calculate the phylogenetic Shannon beta entropy of the plot
 summary(PhyloBetaEntropy(Ps1, Ps, 1, Paracou618.Taxonomy) -&gt; e)</code></pre>
-<pre><code>## beta phylogenetic or functional entropy of order 1 of distribution - 
-## compared to -
-##  with correction: None None None
-## Phylogenetic or functional entropy was calculated according to the tree 
-## Paracou618.Taxonomy 
-## 
-## Entropy is normalized
-## 
-## Entropy equals: 0.2323112</code></pre>
+<pre><code>beta phylogenetic or functional entropy of order 1 of distribution - 
+compared to -
+ with correction: None None None
+Phylogenetic or functional entropy was calculated according to the tree 
+Paracou618.Taxonomy 
+
+Entropy is normalized
+
+Entropy equals: 0.2323112</code></pre>
 <pre class="r"><code>plot(e)</code></pre>
 <p><img src="rd_files/figure-html/PhyloBetaEntropy_id_20-1.png" width="624" /></p>
 <pre class="r"><code># Ns is the vector of abundances of the metacommunity
@@ -2264,14 +2264,14 @@ Ns &lt;- as.AbdVector(Paracou618.MC$Ns)
 Ns1 &lt;- as.AbdVector(Paracou618.MC$Nsi[, 1])
 # Calculate the phylogenetic Shannon beta entropy of the plot
 summary(bcPhyloBetaEntropy(Ns1, Ns, 1, Paracou618.Taxonomy, Correction = &quot;Best&quot;) -&gt; e)</code></pre>
-<pre><code>## beta phylogenetic or functional entropy of order 1 of distribution -
-##  with correction: Best
-## Phylogenetic or functional entropy was calculated according to the tree 
-## Paracou618.Taxonomy 
-## 
-## Entropy is normalized
-## 
-## Entropy equals: 0.2049819</code></pre>
+<pre><code>beta phylogenetic or functional entropy of order 1 of distribution -
+ with correction: Best
+Phylogenetic or functional entropy was calculated according to the tree 
+Paracou618.Taxonomy 
+
+Entropy is normalized
+
+Entropy equals: 0.2049819</code></pre>
 <pre class="r"><code>plot(e)</code></pre>
 <p><img src="rd_files/figure-html/PhyloBetaEntropy_id_20-2.png" width="624" /></p>
 <h4>
@@ -2496,30 +2496,30 @@ data(Paracou618)
 Ps &lt;- as.ProbaVector(Paracou618.MC$Ps)
 # Calculate the phylogenetic Shannon diversity of the plot
 summary(PhyloDiversity(Ps, 1, Paracou618.Taxonomy) -&gt; d)</code></pre>
-<pre><code>## alpha or gamma phylogenetic or functional diversity of order 1 
-## of distribution -
-##  with correction: None
-## Phylogenetic or functional diversity was calculated according to the tree 
-## Paracou618.Taxonomy 
-## 
-## Diversity is normalized
-## 
-## Diversity equals: 50.39747</code></pre>
+<pre><code>alpha or gamma phylogenetic or functional diversity of order 1 
+of distribution -
+ with correction: None
+Phylogenetic or functional diversity was calculated according to the tree 
+Paracou618.Taxonomy 
+
+Diversity is normalized
+
+Diversity equals: 50.39747</code></pre>
 <pre class="r"><code>plot(d)</code></pre>
 <p><img src="rd_files/figure-html/PhyloDiversity_id_21-1.png" width="624" /></p>
 <pre class="r"><code># Ns is the vector of abundances of the metacommunity
 Ns &lt;- as.AbdVector(Paracou618.MC$Ns)
 # Calculate the phylogenetic Shannon diversity of the plot
 summary(bcPhyloDiversity(Ns, 1, Paracou618.Taxonomy, Correction = &quot;Best&quot;) -&gt; d)</code></pre>
-<pre><code>## alpha or gamma phylogenetic or functional diversity of order 1 
-## of distribution -
-##  with correction: Best
-## Phylogenetic or functional diversity was calculated according to the tree 
-## Paracou618.Taxonomy 
-## 
-## Diversity is normalized
-## 
-## Diversity equals: 54.78324</code></pre>
+<pre><code>alpha or gamma phylogenetic or functional diversity of order 1 
+of distribution -
+ with correction: Best
+Phylogenetic or functional diversity was calculated according to the tree 
+Paracou618.Taxonomy 
+
+Diversity is normalized
+
+Diversity equals: 54.78324</code></pre>
 <pre class="r"><code>plot(d)</code></pre>
 <p><img src="rd_files/figure-html/PhyloDiversity_id_21-2.png" width="624" /></p>
 <h4>
@@ -2753,30 +2753,30 @@ data(Paracou618)
 Ps &lt;- as.ProbaVector(Paracou618.MC$Ps)
 # Calculate the phylogenetic Shannon entropy of the plot
 summary(PhyloEntropy(Ps, 1, Paracou618.Taxonomy) -&gt; e)</code></pre>
-<pre><code>## alpha or gamma phylogenetic or functional entropy of order 1 
-## of distribution -
-##  with correction: None
-## Phylogenetic or functional entropy was calculated according to the tree 
-## Paracou618.Taxonomy 
-## 
-## Entropy is normalized
-## 
-## Entropy equals: 3.919941</code></pre>
+<pre><code>alpha or gamma phylogenetic or functional entropy of order 1 
+of distribution -
+ with correction: None
+Phylogenetic or functional entropy was calculated according to the tree 
+Paracou618.Taxonomy 
+
+Entropy is normalized
+
+Entropy equals: 3.919941</code></pre>
 <pre class="r"><code>plot(e)</code></pre>
 <p><img src="rd_files/figure-html/PhyloEntropy_id_22-1.png" width="624" /></p>
 <pre class="r"><code># Ns is the vector of abundances of the metacommunity
 Ns &lt;- as.AbdVector(Paracou618.MC$Ns)
 # Calculate the phylogenetic Shannon entropy of the plot
 summary(bcPhyloEntropy(Ns, 1, Paracou618.Taxonomy, Correction = &quot;Best&quot;) -&gt; e)</code></pre>
-<pre><code>## alpha or gamma phylogenetic or functional entropy of order 1 
-## of distribution -
-##  with correction: Best
-## Phylogenetic or functional entropy was calculated according to the tree 
-## Paracou618.Taxonomy 
-## 
-## Entropy is normalized
-## 
-## Entropy equals: 4.003384</code></pre>
+<pre><code>alpha or gamma phylogenetic or functional entropy of order 1 
+of distribution -
+ with correction: Best
+Phylogenetic or functional entropy was calculated according to the tree 
+Paracou618.Taxonomy 
+
+Entropy is normalized
+
+Entropy equals: 4.003384</code></pre>
 <pre class="r"><code>plot(e)</code></pre>
 <p><img src="rd_files/figure-html/PhyloEntropy_id_22-2.png" width="624" /></p>
 <h4>
@@ -2893,8 +2893,8 @@ Ns &lt;- as.AbdVector(Paracou618.MC$Ns)
 Ps &lt;- as.ProbaVector(Paracou618.MC$Ns)
 # Calculate Rao&#39;s quadratic entropy of the plot
 Rao(Ps, Paracou618.Taxonomy)</code></pre>
-<pre><code>##     None 
-## 2.878133</code></pre>
+<pre><code>    None 
+2.878133 </code></pre>
 <h4>
 See also
 </h4>
@@ -3024,21 +3024,21 @@ plot(Ns)</code></pre>
 <p><img src="rd_files/figure-html/Richness_id_24-1.png" width="624" /></p>
 <pre class="r"><code># Number of observed species
 Richness(Ps)</code></pre>
-<pre><code>## None 
-##  229</code></pre>
+<pre><code>None 
+ 229 </code></pre>
 <pre class="r"><code># Estimate the actual number of species
 bcRichness(Ns, Correction = &quot;Chao1&quot;)</code></pre>
-<pre><code>##    Chao1 
-## 314.9348</code></pre>
+<pre><code>   Chao1 
+314.9348 </code></pre>
 <pre class="r"><code>bcRichness(Ns, Correction = &quot;iChao1&quot;)</code></pre>
-<pre><code>##   iChao1 
-## 333.7466</code></pre>
+<pre><code>  iChao1 
+333.7466 </code></pre>
 <pre class="r"><code>bcRichness(Ns, Correction = &quot;Jackknife&quot;)</code></pre>
-<pre><code>## Jackknife 2 
-##         359</code></pre>
+<pre><code>Jackknife 2 
+        359 </code></pre>
 <pre class="r"><code>bcRichness(Ns, Correction = &quot;Jackknife&quot;, JackOver=TRUE)</code></pre>
-<pre><code>## Jackknife 3 
-##         381</code></pre>
+<pre><code>Jackknife 3 
+        381 </code></pre>
 <h4>
 Author
 </h4>
@@ -3176,17 +3176,17 @@ plot(Ns)</code></pre>
 <p><img src="rd_files/figure-html/Shannon_id_25-1.png" width="624" /></p>
 <pre class="r"><code># Calculate Shannon entropy
 Shannon(Ps)</code></pre>
-<pre><code>##     None 
-## 4.736023</code></pre>
+<pre><code>    None 
+4.736023 </code></pre>
 <pre class="r"><code># Calculate the best estimator of Shannon entropy
 Shannon(Ns)</code></pre>
-<pre><code>## ChaoWangJost 
-##     4.892159</code></pre>
+<pre><code>ChaoWangJost 
+    4.892159 </code></pre>
 <pre class="r"><code># Use metacommunity data to calculate reduced-bias Shannon beta as mutual information
 (bcShannon(Paracou618.MC$Ns) + bcShannon(colSums(Paracou618.MC$Nsi))
 - bcShannon(Paracou618.MC$Nsi))</code></pre>
-<pre><code>## ChaoWangJost 
-##    0.3701823</code></pre>
+<pre><code>ChaoWangJost 
+   0.3701823 </code></pre>
 <h4>
 See also
 </h4>
@@ -3313,16 +3313,16 @@ Ps &lt;- as.ProbaVector(Paracou618.MC$Ps)
 Ps1 &lt;- as.ProbaVector(Paracou618.MC$Psi[, 1])
 # Shannon beta entropy of the plot
 ShannonBeta(Ps1, Ps)</code></pre>
-<pre><code>##      None 
-## 0.3499358</code></pre>
+<pre><code>     None 
+0.3499358 </code></pre>
 <pre class="r"><code># Ns is the vector of abundances of the metacommunity
 Ns &lt;- as.AbdVector(Paracou618.MC$Ns)
 # Abundances in the first plot
 Ns1 &lt;- as.AbdVector(Paracou618.MC$Nsi[, 1])
 # Reduced-bias estimator of Shannon beta entropy of the plot
 bcShannonBeta(Ns1, Ns)</code></pre>
-<pre><code>##      Best 
-## 0.2949188</code></pre>
+<pre><code>     Best 
+0.2949188 </code></pre>
 <h4>
 See also
 </h4>
@@ -3435,8 +3435,8 @@ plot(Ns)</code></pre>
 <p><img src="rd_files/figure-html/Simpson_id_27-1.png" width="624" /></p>
 <pre class="r"><code># Calculate an unbiased estimator of Simpson&#39;s index of diversity
 Simpson(Ns)</code></pre>
-<pre><code>##    Lande 
-## 0.986326</code></pre>
+<pre><code>   Lande 
+0.986326 </code></pre>
 <h4>
 See also
 </h4>
@@ -3567,20 +3567,20 @@ Ps1 &lt;- as.ProbaVector(Paracou618.MC$Psi[, 1])
 
 # Simpson beta entropy of the plot
 SimpsonBeta(Ps1, Ps)</code></pre>
-<pre><code>##       None 
-## 0.01004705</code></pre>
+<pre><code>      None 
+0.01004705 </code></pre>
 <pre class="r"><code># Transform into diversity
 expq(SimpsonBeta(Ps1, Ps)/(1-Simpson(Ps1)), 2)</code></pre>
-<pre><code>##     None 
-## 1.583005</code></pre>
+<pre><code>    None 
+1.583005 </code></pre>
 <pre class="r"><code># Ns is the vector of abundances of the metacommunity
 Ns &lt;- as.AbdVector(Paracou618.MC$Ns)
 # Abundances in the first plot
 Ns1 &lt;- as.AbdVector(Paracou618.MC$Nsi[, 1])
 # Reduced-bias Shannon beta entropy of the plot
 bcSimpsonBeta(Ns1, Ns)</code></pre>
-<pre><code>##        Best 
-## 0.007566555</code></pre>
+<pre><code>       Best 
+0.007566555 </code></pre>
 <h4>
 See also
 </h4>
@@ -3737,12 +3737,12 @@ plot(Ns)</code></pre>
 <p><img src="rd_files/figure-html/Tsallis_id_29-1.png" width="624" /></p>
 <pre class="r"><code># Calculate entropy of order 1, i.e. Shannon&#39;s entropy
 Tsallis(Ps, 1)</code></pre>
-<pre><code>##     None 
-## 4.736023</code></pre>
+<pre><code>    None 
+4.736023 </code></pre>
 <pre class="r"><code># Calculate it with estimation bias correction
 Tsallis(Ns, 1)</code></pre>
-<pre><code>## ChaoWangJost 
-##     4.892159</code></pre>
+<pre><code>ChaoWangJost 
+    4.892159 </code></pre>
 <h4>
 Author
 </h4>
@@ -3874,16 +3874,16 @@ Ps &lt;- Paracou618.MC$Ps
 Ps1 &lt;- Paracou618.MC$Psi[, 1]
 # Divergence of order 2 between plot 1 and the whole forest
 TsallisBeta(Ps1, Ps, 2)</code></pre>
-<pre><code>##       None 
-## 0.01004705</code></pre>
+<pre><code>      None 
+0.01004705 </code></pre>
 <pre class="r"><code># Ns is the vector of abundances of the metacommunity
 Ns &lt;- Paracou618.MC$Ns
 # Abundances in the first plot
 Ns1 &lt;- Paracou618.MC$Nsi[, 1]
 # Divergence of order 2 between plot 1 and the whole forest, with bias correction
 bcTsallisBeta(Ns1, Ns, 2)</code></pre>
-<pre><code>##        Best 
-## 0.007566555</code></pre>
+<pre><code>       Best 
+0.007566555 </code></pre>
 <h4>
 Author
 </h4>
@@ -3985,39 +3985,39 @@ Examples
 data(Paracou618)
 # Calculate Simpson alpha diversity
 summary(AlphaDiversity(Paracou618.MC, 2))</code></pre>
-<pre><code>## Neutral alpha diversity of order 2 of metaCommunity Paracou618.MC 
-## with correction: Best 
-## 
-## Diversity of communities: 
-##     P006     P018 
-## 38.81215 54.04494 
-## Average diversity of the communities: 
-## [1] 44.13559</code></pre>
+<pre><code>Neutral alpha diversity of order 2 of metaCommunity Paracou618.MC 
+with correction: Best 
+
+Diversity of communities: 
+    P006     P018 
+38.81215 54.04494 
+Average diversity of the communities: 
+[1] 44.13559</code></pre>
 <pre class="r"><code># Compare without correction
 summary(AlphaDiversity(Paracou618.MC, 2, Correction = &quot;None&quot;))</code></pre>
-<pre><code>## Neutral alpha diversity of order 2 of metaCommunity Paracou618.MC 
-## with correction: None 
-## 
-## Diversity of communities: 
-##     P006     P018 
-## 36.65653 48.67684 
-## Average diversity of the communities: 
-## [1] 40.98793</code></pre>
+<pre><code>Neutral alpha diversity of order 2 of metaCommunity Paracou618.MC 
+with correction: None 
+
+Diversity of communities: 
+    P006     P018 
+36.65653 48.67684 
+Average diversity of the communities: 
+[1] 40.98793</code></pre>
 <pre class="r"><code># Estimate phylogenetic Simpson alpha diversity
 summary(AlphaDiversity(Paracou618.MC, 2, Tree = Paracou618.Taxonomy) -&gt; e)</code></pre>
-<pre><code>## HCDT alpha diversity of order 2 of metaCommunity Paracou618.MC 
-## with correction: Best 
-## 
-## Phylogenetic or functional diversity was calculated according to the tree 
-## Paracou618.Taxonomy 
-## 
-## Diversity is normalized 
-## 
-## Diversity of communities: 
-##     P006     P018 
-## 17.16735 25.50972 
-## Average diversity of the communities: 
-## [1] 19.96079</code></pre>
+<pre><code>HCDT alpha diversity of order 2 of metaCommunity Paracou618.MC 
+with correction: Best 
+
+Phylogenetic or functional diversity was calculated according to the tree 
+Paracou618.Taxonomy 
+
+Diversity is normalized 
+
+Diversity of communities: 
+    P006     P018 
+17.16735 25.50972 
+Average diversity of the communities: 
+[1] 19.96079</code></pre>
 <pre class="r"><code>plot(e)  </code></pre>
 <p><img src="rd_files/figure-html/AlphaDiversity_id_31-1.png" width="624" /></p>
 <h4>
@@ -4128,38 +4128,38 @@ Examples
 data(Paracou618)
 # Calculate Simpson alpha entropy
 summary(AlphaEntropy(Paracou618.MC, 2))</code></pre>
-<pre><code>## Neutral alpha entropy of order 2 of metaCommunity Paracou618.MC 
-## with correction: Best 
-## 
-## Entropy of communities: 
-##      P006      P018 
-## 0.9742349 0.9814969 
-## Average entropy of the communities: 
-## [1] 0.9773425</code></pre>
+<pre><code>Neutral alpha entropy of order 2 of metaCommunity Paracou618.MC 
+with correction: Best 
+
+Entropy of communities: 
+     P006      P018 
+0.9742349 0.9814969 
+Average entropy of the communities: 
+[1] 0.9773425</code></pre>
 <pre class="r"><code># Compare without correction
 summary(AlphaEntropy(Paracou618.MC, 2, Correction = &quot;None&quot;))</code></pre>
-<pre><code>## Neutral alpha entropy of order 2 of metaCommunity Paracou618.MC 
-## with correction: None 
-## 
-## Entropy of communities: 
-##      P006      P018 
-## 0.9727197 0.9794563 
-## Average entropy of the communities: 
-## [1] 0.9756026</code></pre>
+<pre><code>Neutral alpha entropy of order 2 of metaCommunity Paracou618.MC 
+with correction: None 
+
+Entropy of communities: 
+     P006      P018 
+0.9727197 0.9794563 
+Average entropy of the communities: 
+[1] 0.9756026</code></pre>
 <pre class="r"><code># Estimate phylogenetic Simpson alpha entropy
 summary(AlphaEntropy(Paracou618.MC, 2, Tree = Paracou618.Taxonomy) -&gt; e)</code></pre>
-<pre><code>## HCDT alpha entropy of order 2 of metaCommunity Paracou618.MC 
-## with correction: Best 
-## 
-## Phylogenetic or functional entropy was calculated according to the tree 
-## Paracou618.Taxonomy 
-## 
-## Entropy is normalized
-## Entropy of communities: 
-##      P006      P018 
-## 0.9417499 0.9607993 
-## Average entropy of the communities: 
-## [1] 0.9499018</code></pre>
+<pre><code>HCDT alpha entropy of order 2 of metaCommunity Paracou618.MC 
+with correction: Best 
+
+Phylogenetic or functional entropy was calculated according to the tree 
+Paracou618.Taxonomy 
+
+Entropy is normalized
+Entropy of communities: 
+     P006      P018 
+0.9417499 0.9607993 
+Average entropy of the communities: 
+[1] 0.9499018</code></pre>
 <pre class="r"><code>plot(e)</code></pre>
 <p><img src="rd_files/figure-html/AlphaEntropy_id_32-1.png" width="624" /></p>
 <h4>
@@ -4267,30 +4267,30 @@ Examples
 data(Paracou618)
 # Estimate Shannon beta diversity
 summary(BetaDiversity(Paracou618.MC, 1))</code></pre>
-<pre><code>## Neutral beta diversity of order 1 of metaCommunity Paracou618.MC 
-## with correction: Best 
-## 
-## Average diversity of the communities: 
-## [1] 1.436039</code></pre>
+<pre><code>Neutral beta diversity of order 1 of metaCommunity Paracou618.MC 
+with correction: Best 
+
+Average diversity of the communities: 
+[1] 1.436039</code></pre>
 <pre class="r"><code># Compare without correction
 summary(BetaDiversity(Paracou618.MC, 1, Correction = &quot;None&quot;))</code></pre>
-<pre><code>## Neutral beta diversity of order 1 of metaCommunity Paracou618.MC 
-## with correction: None 
-## 
-## Average diversity of the communities: 
-## [1] 1.563888</code></pre>
+<pre><code>Neutral beta diversity of order 1 of metaCommunity Paracou618.MC 
+with correction: None 
+
+Average diversity of the communities: 
+[1] 1.563888</code></pre>
 <pre class="r"><code># Estimate phylogenetic Shannon beta diversity
 summary(BetaDiversity(Paracou618.MC, 1, Tree = Paracou618.Taxonomy) -&gt; e)</code></pre>
-<pre><code>## HCDT beta diversity of order 1 of metaCommunity Paracou618.MC 
-## with correction: Best 
-## 
-## Phylogenetic or functional diversity was calculated according to the tree 
-## Paracou618.Taxonomy 
-## 
-## Diversity is normalized 
-## 
-## Average diversity of the communities: 
-## [1] 1.289993</code></pre>
+<pre><code>HCDT beta diversity of order 1 of metaCommunity Paracou618.MC 
+with correction: Best 
+
+Phylogenetic or functional diversity was calculated according to the tree 
+Paracou618.Taxonomy 
+
+Diversity is normalized 
+
+Average diversity of the communities: 
+[1] 1.289993</code></pre>
 <h4>
 See also
 </h4>
@@ -4399,38 +4399,38 @@ Examples
 data(Paracou618)
 # Estimate Shannon beta entropy
 summary(BetaEntropy(Paracou618.MC, 1))</code></pre>
-<pre><code>## Neutral beta entropy of order 1 of metaCommunity Paracou618.MC 
-## with correction: Best 
-## 
-## Entropy of communities: 
-##      P006      P018 
-## 0.2949188 0.4514132 
-## Average entropy of the communities: 
-## [1] 0.3618884</code></pre>
+<pre><code>Neutral beta entropy of order 1 of metaCommunity Paracou618.MC 
+with correction: Best 
+
+Entropy of communities: 
+     P006      P018 
+0.2949188 0.4514132 
+Average entropy of the communities: 
+[1] 0.3618884</code></pre>
 <pre class="r"><code># Compare without correction
 summary(BetaEntropy(Paracou618.MC, 1, Correction = &quot;None&quot;))</code></pre>
-<pre><code>## Neutral beta entropy of order 1 of metaCommunity Paracou618.MC 
-## with correction: None 
-## 
-## Entropy of communities: 
-##      P006      P018 
-## 0.3499358 0.5771645 
-## Average entropy of the communities: 
-## [1] 0.4471751</code></pre>
+<pre><code>Neutral beta entropy of order 1 of metaCommunity Paracou618.MC 
+with correction: None 
+
+Entropy of communities: 
+     P006      P018 
+0.3499358 0.5771645 
+Average entropy of the communities: 
+[1] 0.4471751</code></pre>
 <pre class="r"><code># Estimate phylogenetic Shannon beta entropy
 summary(BetaEntropy(Paracou618.MC, 1, Tree = Paracou618.Taxonomy) -&gt; e)</code></pre>
-<pre><code>## HCDT beta entropy of order 1 of metaCommunity Paracou618.MC 
-## with correction: Best 
-## 
-## Phylogenetic or functional entropy was calculated according to the tree 
-## Paracou618.Taxonomy 
-## 
-## Entropy is normalized
-## Entropy of communities: 
-##      P006      P018 
-## 0.2049819 0.3210147 
-## Average entropy of the communities: 
-## [1] 0.2546365</code></pre>
+<pre><code>HCDT beta entropy of order 1 of metaCommunity Paracou618.MC 
+with correction: Best 
+
+Phylogenetic or functional entropy was calculated according to the tree 
+Paracou618.Taxonomy 
+
+Entropy is normalized
+Entropy of communities: 
+     P006      P018 
+0.2049819 0.3210147 
+Average entropy of the communities: 
+[1] 0.2546365</code></pre>
 <pre class="r"><code>plot(e)  </code></pre>
 <p><img src="rd_files/figure-html/BetaEntropy_id_34-1.png" width="624" /></p>
 <h4>
@@ -4596,36 +4596,36 @@ data(Paracou618)
 # Estimate Shannon diversity.
 Estimation &lt;- DivEst(q = 1, Paracou618.MC, Biased = FALSE, Correction = &quot;UnveilJ&quot;, 
 Simulations = 20)</code></pre>
-<pre><code>## ===========================================================================</code></pre>
+<pre><code>===========================================================================</code></pre>
 <pre class="r"><code>plot(Estimation)</code></pre>
 <p><img src="rd_files/figure-html/DivEst_id_35-1.png" width="624" /></p>
 <pre class="r"><code>summary(Estimation)</code></pre>
-<pre><code>## Diversity partitioning of order 1 of MetaCommunity Paracou618.MC
-##  with correction: UnveilJ
-## Alpha diversity of communities: 
-##      P006      P018 
-##  84.52352 119.50807 
-## Total alpha diversity of the communities: 
-## [1] 98.02742
-## Beta diversity of the communities: 
-##  UnveilJ 
-## 1.416315 
-## Gamma diversity of the metacommunity: 
-##  UnveilJ 
-## 138.8377 
-## Quantiles of simulations (alpha, beta and gamma diversity):
-##        0%        1%      2.5%        5%       10%       25%       50% 
-##  90.26077  90.68106  91.31150  92.36223  93.43824  94.83874  98.25047 
-##       75%       90%       95%     97.5%       99%      100% 
-## 100.11994 102.08626 104.07020 106.13901 107.38030 108.20782 
-##       0%       1%     2.5%       5%      10%      25%      50%      75% 
-## 1.374663 1.375940 1.377855 1.381047 1.390060 1.400366 1.410817 1.440414 
-##      90%      95%    97.5%      99%     100% 
-## 1.450031 1.450883 1.451422 1.451745 1.451961 
-##       0%       1%     2.5%       5%      10%      25%      50%      75% 
-## 129.4875 129.5875 129.7375 129.9875 130.6357 134.2130 138.6381 141.5795 
-##      90%      95%    97.5%      99%     100% 
-## 146.1178 147.9815 152.4861 155.1889 156.9908</code></pre>
+<pre><code>Diversity partitioning of order 1 of MetaCommunity Paracou618.MC
+ with correction: UnveilJ
+Alpha diversity of communities: 
+     P006      P018 
+ 84.52352 119.50807 
+Total alpha diversity of the communities: 
+[1] 98.02742
+Beta diversity of the communities: 
+ UnveilJ 
+1.416315 
+Gamma diversity of the metacommunity: 
+ UnveilJ 
+138.8377 
+Quantiles of simulations (alpha, beta and gamma diversity):
+       0%        1%      2.5%        5%       10%       25%       50% 
+ 89.27897  89.79357  90.56546  91.85196  92.80682  96.99102  98.60604 
+      75%       90%       95%     97.5%       99%      100% 
+100.83217 102.05383 102.34603 102.46138 102.53059 102.57673 
+      0%       1%     2.5%       5%      10%      25%      50%      75% 
+1.339930 1.349429 1.363677 1.387424 1.393903 1.405338 1.422608 1.432790 
+     90%      95%    97.5%      99%     100% 
+1.437418 1.442556 1.444825 1.446186 1.447093 
+      0%       1%     2.5%       5%      10%      25%      50%      75% 
+128.0497 128.0901 128.1506 128.2516 128.9658 136.0489 140.4300 142.8132 
+     90%      95%    97.5%      99%     100% 
+144.9261 145.1049 146.1502 146.7774 147.1955 </code></pre>
 <h4>
 See also
 </h4>
@@ -4894,19 +4894,19 @@ Examples
 data(Paracou618)
 # Estimate Shannon diversity.
 summary(DivPart(q = 1, Paracou618.MC, Biased = FALSE) -&gt; dp)</code></pre>
-<pre><code>## HCDT diversity partitioning of order 1 of metaCommunity Paracou618.MC
-##  with correction: ChaoWangJost
-## Alpha diversity of communities: 
-##      P006      P018 
-##  80.20125 110.66525 
-## Total alpha diversity of the communities: 
-## [1] 92.04908
-## Beta diversity of the communities: 
-## ChaoWangJost 
-##     1.447498 
-## Gamma diversity of the metacommunity: 
-## ChaoWangJost 
-##     133.2409</code></pre>
+<pre><code>HCDT diversity partitioning of order 1 of metaCommunity Paracou618.MC
+ with correction: ChaoWangJost
+Alpha diversity of communities: 
+     P006      P018 
+ 80.20125 110.66525 
+Total alpha diversity of the communities: 
+[1] 92.04908
+Beta diversity of the communities: 
+ChaoWangJost 
+    1.447498 
+Gamma diversity of the metacommunity: 
+ChaoWangJost 
+    133.2409 </code></pre>
 <pre class="r"><code>plot(dp)</code></pre>
 <p><img src="rd_files/figure-html/DivPart_id_36-1.png" width="624" /></p>
 <h4>
@@ -5247,31 +5247,31 @@ Profile &lt;- DivProfile(q.seq = seq(0, 2, 0.1), Paracou618.MC, Biased = FALSE)
 plot(Profile)</code></pre>
 <p><img src="rd_files/figure-html/DivProfile_id_37-1.png" width="624" /></p>
 <pre class="r"><code>summary(Profile)</code></pre>
-<pre><code>## Diversity profile of MetaCommunity Paracou618.MC
-##  with correction: ChaoWangJost
-## Diversity against its order:
-##              Order Alpha Diversity Beta Diversity Gamma Diversity
-## ChaoWangJost   0.0       238.36351       1.321238       314.93484
-## ChaoWangJost   0.1       221.29193       1.321166       292.36347
-## ChaoWangJost   0.2       204.17972       1.323271       270.18504
-## ChaoWangJost   0.3       187.24324       1.327987       248.65650
-## ChaoWangJost   0.4       170.72117       1.335708       228.03372
-## ChaoWangJost   0.5       154.85926       1.346729       208.55339
-## ChaoWangJost   0.6       139.89024       1.361171       190.41457
-## ChaoWangJost   0.7       126.01236       1.378937       173.76304
-## ChaoWangJost   0.8       113.37058       1.399674       158.68180
-## ChaoWangJost   0.9       102.04503       1.422796       145.18921
-## ChaoWangJost   1.0        92.04908       1.447498       133.24089
-## ChaoWangJost   1.1        83.33700       1.473077       122.76180
-## ChaoWangJost   1.2        75.81819       1.498587       113.62013
-## ChaoWangJost   1.3        69.37405       1.523374       105.68260
-## ChaoWangJost   1.4        63.87372       1.546905        98.80658
-## ChaoWangJost   1.5        59.18644       1.568829        92.85340
-## ChaoWangJost   1.6        55.18979       1.588960        87.69438
-## ChaoWangJost   1.7        51.77425       1.607247        83.21401
-## ChaoWangJost   1.8        48.84485       1.623736        79.31112
-## ChaoWangJost   1.9        46.32106       1.638533        75.89860
-## ChaoWangJost   2.0        44.13559       1.651781        72.90234</code></pre>
+<pre><code>Diversity profile of MetaCommunity Paracou618.MC
+ with correction: ChaoWangJost
+Diversity against its order:
+             Order Alpha Diversity Beta Diversity Gamma Diversity
+ChaoWangJost   0.0       238.36351       1.321238       314.93484
+ChaoWangJost   0.1       221.29193       1.321166       292.36347
+ChaoWangJost   0.2       204.17972       1.323271       270.18504
+ChaoWangJost   0.3       187.24324       1.327987       248.65650
+ChaoWangJost   0.4       170.72117       1.335708       228.03372
+ChaoWangJost   0.5       154.85926       1.346729       208.55339
+ChaoWangJost   0.6       139.89024       1.361171       190.41457
+ChaoWangJost   0.7       126.01236       1.378937       173.76304
+ChaoWangJost   0.8       113.37058       1.399674       158.68180
+ChaoWangJost   0.9       102.04503       1.422796       145.18921
+ChaoWangJost   1.0        92.04908       1.447498       133.24089
+ChaoWangJost   1.1        83.33700       1.473077       122.76180
+ChaoWangJost   1.2        75.81819       1.498587       113.62013
+ChaoWangJost   1.3        69.37405       1.523374       105.68260
+ChaoWangJost   1.4        63.87372       1.546905        98.80658
+ChaoWangJost   1.5        59.18644       1.568829        92.85340
+ChaoWangJost   1.6        55.18979       1.588960        87.69438
+ChaoWangJost   1.7        51.77425       1.607247        83.21401
+ChaoWangJost   1.8        48.84485       1.623736        79.31112
+ChaoWangJost   1.9        46.32106       1.638533        75.89860
+ChaoWangJost   2.0        44.13559       1.651781        72.90234</code></pre>
 <h4>
 See also
 </h4>
@@ -5374,15 +5374,15 @@ Examples
 data(Paracou618)
 # Calculate Simpson gamma diversity
 GammaDiversity(Paracou618.MC, 2)</code></pre>
-<pre><code>## ChaoWangJost 
-##     72.90234</code></pre>
+<pre><code>ChaoWangJost 
+    72.90234 </code></pre>
 <pre class="r"><code># Compare without correction
 GammaDiversity(Paracou618.MC, 2, Correction = &quot;None&quot;)</code></pre>
-<pre><code>##    None 
-## 68.7215</code></pre>
+<pre><code>   None 
+68.7215 </code></pre>
 <pre class="r"><code># Estimate phylogenetic Simpson gamma diversity
 GammaDiversity(Paracou618.MC, 2, Tree = Paracou618.Taxonomy)   </code></pre>
-<pre><code>## [1] 25.05541</code></pre>
+<pre><code>[1] 25.05541</code></pre>
 <h4>
 See also
 </h4>
@@ -5497,15 +5497,15 @@ Examples
 data(Paracou618)
 # Calculate Simpson gamma entropy
 GammaEntropy(Paracou618.MC, 2)</code></pre>
-<pre><code>## ChaoWangJost 
-##     0.986283</code></pre>
+<pre><code>ChaoWangJost 
+    0.986283 </code></pre>
 <pre class="r"><code># Compare without correction
 GammaEntropy(Paracou618.MC, 2, Correction = &quot;None&quot;)</code></pre>
-<pre><code>##      None 
-## 0.9854485</code></pre>
+<pre><code>     None 
+0.9854485 </code></pre>
 <pre class="r"><code># Estimate phylogenetic Simpson gamma entropy
 GammaEntropy(Paracou618.MC, 2, Tree = Paracou618.Taxonomy)   </code></pre>
-<pre><code>## [1] 0.9600885</code></pre>
+<pre><code>[1] 0.9600885</code></pre>
 <h4>
 See also
 </h4>
@@ -5585,18 +5585,18 @@ Examples
 <pre class="r"><code># First meta-community
 (df &lt;- data.frame(C1 = c(10, 10, 10, 10), C2 = c(0, 20, 35, 5),
   C3 = c(25, 15, 0, 2), row.names = c(&quot;sp1&quot;, &quot;sp2&quot;, &quot;sp3&quot;, &quot;sp4&quot;)))</code></pre>
-<pre><code>##     C1 C2 C3
-## sp1 10  0 25
-## sp2 10 20 15
-## sp3 10 35  0
-## sp4 10  5  2</code></pre>
+<pre><code>    C1 C2 C3
+sp1 10  0 25
+sp2 10 20 15
+sp3 10 35  0
+sp4 10  5  2</code></pre>
 <pre class="r"><code>w &lt;- c(1, 2, 1)
 MC1 &lt;- MetaCommunity(Abundances = df, Weights = w)
 # Second meta-community
 (df &lt;- data.frame(C1 = c(10, 4), C2 = c(3, 4), row.names = c(&quot;sp1&quot;, &quot;sp5&quot;)))</code></pre>
-<pre><code>##     C1 C2
-## sp1 10  3
-## sp5  4  4</code></pre>
+<pre><code>    C1 C2
+sp1 10  3
+sp5  4  4</code></pre>
 <pre class="r"><code>w &lt;- c(3, 2)
 MC2 &lt;- MetaCommunity(Abundances = df, Weights = w)
 
@@ -5815,6 +5815,7 @@ if (require(vegan, quietly = TRUE)) {
   # (here, all plots have a weight equal to 1)
   MC &lt;- MetaCommunity(BCI.df)
 }</code></pre>
+<pre><code>This is vegan 2.4-5</code></pre>
 <h4>
 Author
 </h4>
@@ -6260,7 +6261,7 @@ Examples
 ppt &lt;- Preprocess.Tree(EightSpTree)
 # Is it a preprocessed tree?
 is.PPtree(ppt)</code></pre>
-<pre><code>## [1] TRUE</code></pre>
+<pre><code>[1] TRUE</code></pre>
 <pre class="r"><code># Plot it
 plot(ppt, hang=-1)</code></pre>
 <p><img src="rd_files/figure-html/PPtree_id_45-1.png" width="624" /></p>
@@ -6411,12 +6412,12 @@ st &lt;- as.SimTest(Real, Sims)
 plot(st)</code></pre>
 <p><img src="rd_files/figure-html/SimTest_id_46-1.png" width="624" /></p>
 <pre class="r"><code>summary(st)</code></pre>
-<pre><code>## Real value:  0.8 
-## Quantile in the simulated distribution:  0.811 
-## Quantiles of simulations:
-## 2.50% :  -1.890744 
-## 97.50% :  1.973684 
-## Mean simulated value:  -0.04275117</code></pre>
+<pre><code>Real value:  0.8 
+Quantile in the simulated distribution:  0.8 
+Quantiles of simulations:
+2.50% :  -1.988826 
+97.50% :  1.94163 
+Mean simulated value:  -0.03296755</code></pre>
 <h4>
 Author
 </h4>
@@ -6597,11 +6598,11 @@ Ns &lt;- as.AbdVector(Paracou618.MC$Ns)
 # Whittaker plot, poorly fitted by a log-normal distribution
 plot(Ns, Distribution = &quot;lnorm&quot;)</code></pre>
 <p><img src="rd_files/figure-html/SpeciesDistribution_id_47-1.png" width="624" /></p>
-<pre><code>## $mu
-## [1] 0.9519812
-## 
-## $sigma
-## [1] 1.011383</code></pre>
+<pre><code>$mu
+[1] 0.9519812
+
+$sigma
+[1] 1.011383</code></pre>
 <h4>
 See also
 </h4>
@@ -6679,16 +6680,16 @@ Examples
 <pre class="r"><code># Compare
 n &lt;- c(2,3)
 Enq(n, q=2)</code></pre>
-<pre><code>## [1] 2 6</code></pre>
+<pre><code>[1] 2 6</code></pre>
 <pre class="r"><code># with
 n^2</code></pre>
-<pre><code>## [1] 4 9</code></pre>
+<pre><code>[1] 4 9</code></pre>
 <pre class="r"><code># Result is 1
 Enq(n, q=0)</code></pre>
-<pre><code>## [1] 1 1</code></pre>
+<pre><code>[1] 1 1</code></pre>
 <pre class="r"><code># Result is 0
 Enq(n, q=5)</code></pre>
-<pre><code>## [1] -7.796086e-15  5.847065e-15</code></pre>
+<pre><code>[1] -7.796086e-15  5.847065e-15</code></pre>
 <h4>
 Author
 </h4>
@@ -6773,7 +6774,7 @@ Ps &lt;- Paracou618.MC$Ps
 Ps1 &lt;- Paracou618.MC$Psi[, 1]
 # Divergence of order 2 between the first plot and the whole forest
 KLq(Ps1, Ps, 2)</code></pre>
-<pre><code>## [1] 0.01004705</code></pre>
+<pre><code>[1] 0.01004705</code></pre>
 <h4>
 See also
 </h4>
@@ -7016,29 +7017,29 @@ Ns &lt;- Paracou618.MC$Nsi[, 1]
 
 # Return the abundance frequency count
 (AbdFreqCount(Ns) -&gt; afc)</code></pre>
-<pre><code>##       Abundance NbSpecies
-##  [1,]         1        68
-##  [2,]         2        29
-##  [3,]         3        14
-##  [4,]         4         5
-##  [5,]         5         8
-##  [6,]         6         3
-##  [7,]         7         4
-##  [8,]         9         1
-##  [9,]        10         2
-## [10,]        13         1
-## [11,]        14         1
-## [12,]        16         1
-## [13,]        19         1
-## [14,]        21         1
-## [15,]        23         1
-## [16,]        25         1
-## [17,]        26         1
-## [18,]        30         1
-## [19,]        31         1
-## [20,]        38         1
-## [21,]        39         1
-## [22,]        45         1</code></pre>
+<pre><code>      Abundance NbSpecies
+ [1,]         1        68
+ [2,]         2        29
+ [3,]         3        14
+ [4,]         4         5
+ [5,]         5         8
+ [6,]         6         3
+ [7,]         7         4
+ [8,]         9         1
+ [9,]        10         2
+[10,]        13         1
+[11,]        14         1
+[12,]        16         1
+[13,]        19         1
+[14,]        21         1
+[15,]        23         1
+[16,]        25         1
+[17,]        26         1
+[18,]        30         1
+[19,]        31         1
+[20,]        38         1
+[21,]        39         1
+[22,]        45         1</code></pre>
 <pre class="r"><code>plot(afc, xlab=&quot;Number of observations&quot;, ylab=&quot;Number of species&quot;)
 lines(afc)</code></pre>
 <p><img src="rd_files/figure-html/AbdFreqCount_id_52-1.png" width="624" /></p>
@@ -7216,7 +7217,7 @@ q &lt;- 1
 RealEst &lt;- expq(Tsallis(Ns, q), q)
 # Transform the distribution of Tsallis entropy into diversity
 SimulatedDiversity &lt;- expq(EntropyCI(Tsallis, Simulations=50, Ns, q=q), q)</code></pre>
-<pre><code>## ===========================================================================</code></pre>
+<pre><code>===========================================================================</code></pre>
 <pre class="r"><code># Figure
 plot(density(SimulatedDiversity), col=&quot;black&quot;, lwd=2, main=&quot;&quot;, xlab =&quot;Diversity&quot;)
 abline(v=RealEst, col=&quot;red&quot;, lwd=2, lty=2)
@@ -7227,10 +7228,10 @@ col=c(&quot;red&quot;, &quot;black&quot;), inset=0.01)</code></pre>
 <p><img src="rd_files/figure-html/EntropyCI_id_55-1.png" width="624" /></p>
 <pre class="r"><code># Print results
 cat(&quot;Estimated Diversity:&quot;, RealEst)</code></pre>
-<pre><code>## Estimated Diversity: 133.2409</code></pre>
+<pre><code>Estimated Diversity: 133.2409</code></pre>
 <pre class="r"><code>quantile(SimulatedDiversity, probs = c(0.025, 0.975))</code></pre>
-<pre><code>##     2.5%    97.5% 
-## 123.1379 145.6714</code></pre>
+<pre><code>    2.5%    97.5% 
+124.0336 144.4598 </code></pre>
 <h4>
 Author
 </h4>
@@ -7364,11 +7365,11 @@ data(Paracou618)
 optimal &lt;- Optimal.Similarity(sqrt(Paracou618.dist))
 # Optimal scale
 optimal$u</code></pre>
-<pre><code>## [1] 2.348622</code></pre>
+<pre><code>[1] 2.348622</code></pre>
 <pre class="r"><code># Calculate diversity of order 2
 bcDqz(Paracou618.MC$Ns, 2, optimal$Matrix)</code></pre>
-<pre><code>##     Best 
-## 1.558321</code></pre>
+<pre><code>    Best 
+1.558321 </code></pre>
 <h4>
 See also
 </h4>
@@ -7535,38 +7536,38 @@ plot(Paracou618.Taxonomy, type=&quot;fan&quot;, show.tip.label=FALSE)</code></pr
 <pre class="r"><code># Calculate the mean number of trees (individuals) per species 
 # (Cuts are 1=species, 2=genus, 3=family)
 PhyloApply(Paracou618.Taxonomy, mean, Paracou618.MC$Ns, TRUE)</code></pre>
-<pre><code>## $Distribution
-## [1] &quot;-&quot;
-## 
-## $Function
-## [1] &quot;mean&quot;
-## 
-## $Tree
-## [1] &quot;Paracou618.Taxonomy&quot;
-## 
-## $Normalized
-## [1] TRUE
-## 
-## $Cuts
-##         1         2         3 
-##  2.644706  6.108696 22.039216 
-## 
-## $Corrections
-## $Corrections$`1`
-## NULL
-## 
-## $Corrections$`2`
-## NULL
-## 
-## $Corrections$`3`
-## NULL
-## 
-## 
-## $Total
-## [1] 10.26421
-## 
-## attr(,&quot;class&quot;)
-## [1] &quot;PhyloValue&quot;</code></pre>
+<pre><code>$Distribution
+[1] &quot;-&quot;
+
+$Function
+[1] &quot;mean&quot;
+
+$Tree
+[1] &quot;Paracou618.Taxonomy&quot;
+
+$Normalized
+[1] TRUE
+
+$Cuts
+        1         2         3 
+ 2.644706  6.108696 22.039216 
+
+$Corrections
+$Corrections$`1`
+NULL
+
+$Corrections$`2`
+NULL
+
+$Corrections$`3`
+NULL
+
+
+$Total
+[1] 10.26421
+
+attr(,&quot;class&quot;)
+[1] &quot;PhyloValue&quot;</code></pre>
 <h4>
 See also
 </h4>

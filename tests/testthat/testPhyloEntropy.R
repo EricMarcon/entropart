@@ -14,6 +14,7 @@ phylogTree <- ade4::hclust2phylog(ppTree$hTree)
 
 # Check PhyloEntropy does not change with dendrogram format
 test_that("PhyloEntropy does not depend on tree format", {
+  skip_on_cran()
   # phylog and phylo
   expect_equal(AlphaEntropy(Paracou618.MC, q=1, Tree = phylogTree)$Total,
                AlphaEntropy(Paracou618.MC, q=1, Tree = Paracou618.Taxonomy)$Total)
