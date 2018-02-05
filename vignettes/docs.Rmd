@@ -225,7 +225,7 @@ The `DivEst` function decomposes diversity and estimates confidence interval of 
 If the observed species frequencies of a community are assumed to be a realization of a multinomial distribution, they can be drawn again to obtain a distribution of entropy.
 
 ```{r DivEst}
-de <- DivEst(q = 1, Paracou618.MC, Simulations = 4)
+de <- DivEst(q = 1, Paracou618.MC, Simulations = 100)
 plot(de)
 ```
 
@@ -606,7 +606,7 @@ The `DivEst` function decomposes diversity and estimates confidence interval of 
 If the observed species frequencies of a community are assumed to be a realization of a multinomial distribution, they can be drawn again to obtain a distribution of entropy.
 
 ```{r DivEstPlot}
-de <- DivEst(q = 1, Paracou618.MC, Biased = FALSE, Correction = "Best", Simulations = 4)
+de <- DivEst(q = 1, Paracou618.MC, Biased = FALSE, Correction = "Best", Simulations = 100)
 summary(de)
 plot(de)
 ```
@@ -627,7 +627,7 @@ New estimators to reduce the bias are included in the package regularly.
 The result is a `DivProfile` object which can be summarized and plotted.
 
 ```{r DivProfilePlot}
-dp <- DivProfile(seq(0, 2, 0.2), Paracou618.MC, Biased = FALSE, NumberOfSimulations = 4)
+dp <- DivProfile(seq(0, 2, 0.2), Paracou618.MC, Biased = FALSE, NumberOfSimulations = 20)
 summary(dp)
 plot(dp)
 ```
@@ -845,7 +845,7 @@ First, the distribution of the $\gamma$ HCDT entropy of order 1 (Shannon entropy
 Then, the actual diversity is calculated and completed by the 95\% confidence interval of the simulated values.
 
 ```{r EntropyCI}
-SimulatedDiversity <- expq(EntropyCI(FUN = Tsallis, Simulations = 4, Ns = PAbd, q = 1), q = 1)
+SimulatedDiversity <- expq(EntropyCI(FUN = Tsallis, Simulations = 100, Ns = PAbd, q = 1), q = 1)
 Diversity(PAbd, q = 1)
 quantile(SimulatedDiversity, probs = c(0.025, 0.975))
 ```
@@ -864,7 +864,7 @@ This example evaluates bias correction on the diversity profile of the Paracou d
 First, diversity profiles are calculated with and without bias correction. The corrected profile is calculated with its confidence envelope:
 
 ```{r CommunityProfile}
-bcProfile <- CommunityProfile(Diversity, PAbd, NumberOfSimulations = 4)
+bcProfile <- CommunityProfile(Diversity, PAbd, NumberOfSimulations = 100)
 Profile <- CommunityProfile(Diversity, PProba)
 ```
 
@@ -986,7 +986,6 @@ axis(2)
 Node heights are stored in `$height`.
 
 ```{r hclust2}
-
 hTree$height
 ```
 
