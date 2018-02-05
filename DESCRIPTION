@@ -1,8 +1,8 @@
 Package: entropart
 Type: Package
 Title: Entropy Partitioning to Measure Diversity
-Version: 1.5-2
-Date: 2018-02-03
+Version: 1.5-3
+Date: 2018-02-05
 Authors@R: c(
     person("Eric", "Marcon", email="eric.marcon@ecofog.gf", role=c("aut", "cre")),
     person("Bruno", "Herault", email="bruno.herault@cirad.fr", role="aut")
@@ -16,4 +16,4 @@ License: GNU General Public License
 Imports: ade4, ape, EntropyEstimation, geiger, graphics, grDevices, parallel, stats, utils, vegan
 Suggests: testthat, knitr, rmarkdown, packagedocs
 LazyData: true
-VignetteBuilder: knitr, packagedocs
+VignetteBuilder: packagedocs
