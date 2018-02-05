@@ -8,8 +8,7 @@
 \.blg$
 \.bbl$
 ^\.travis\.yml$
-vignettes/index_files/
 vignettes/docs_cache/
-vignettes/figure/
+vignettes/rd_cache/
 docs/
 ^_gh-pages$
