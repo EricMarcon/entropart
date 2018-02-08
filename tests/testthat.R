@@ -1,4 +1,4 @@
 library(testthat)
 library(entropart)
 
-test_check("entropart")
+testthat::test_check("entropart")
