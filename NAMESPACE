@@ -6,6 +6,7 @@ importFrom("graphics", "abline", "axis", "axTicks", "barplot", "box", "legend", 
 importFrom("grDevices", "palette", "rainbow")
 importFrom("parallel", "mclapply")
 importFrom("stats", "cutree", "dbinom", "density", "ecdf", "hclust", "integrate", "lm", "optim", "optimize", "pnorm", "qnorm", "quantile", "rlnorm", "rmultinom", "runif", "sd", "uniroot", "var")
+importFrom("testthat", "expect_equal", "expect_lt", "skip_on_cran", "testthat")
 importFrom("utils", "head", "setTxtProgressBar", "txtProgressBar")
 importFrom("vegan", "fisher.alpha")
 export(AbdFreqCount)
