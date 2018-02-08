@@ -7,14 +7,14 @@ ecp <- CommunityProfile(Tsallis, Paracou618.MC$Ps, seq(0, 2, 0.2))
 dcp <- CommunityProfile(Diversity, Paracou618.MC$Ps, seq(0, 2, 0.2))
 
 # Check that 
-test_that("Exponential of entropy equals diverssity", {
-  skip_on_cran()
+testthat::test_that("Exponential of entropy equals diverssity", {
+  testthat::skip_on_cran()
   # Exponential
-  expect_equal(expq.CommunityProfile(ecp),
+  testthat::expect_equal(expq.CommunityProfile(ecp),
                dcp,
                tolerance = 1e-6)
   # Logarithm
-  expect_equal(lnq.CommunityProfile(dcp),
+  testthat::expect_equal(lnq.CommunityProfile(dcp),
                ecp,
                tolerance = 1e-6)
 })
