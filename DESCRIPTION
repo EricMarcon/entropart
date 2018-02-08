@@ -14,6 +14,6 @@ URL: https://EricMarcon.github.io/entropart
 BugReports: https://github.com/EricMarcon/entropart/issues
 License: GNU General Public License
 Imports: ade4, ape, EntropyEstimation, geiger, graphics, grDevices, parallel, stats, utils, vegan
-Suggests: testthat, knitr, rmarkdown, packagedocs
+Suggests: testthat, packagedocs
 LazyData: true
 VignetteBuilder: packagedocs
