@@ -150,7 +150,7 @@ DP <- CommunityProfile(Diversity, Abd18)
 plot(DP)
 ```
 
-If an ultrametric dendrogram describing species' phylogeny (here, a mere taxonomy with family, genus and species) is available, phylogenetic entropy and diversity  [@Marcon2014b] can be calculated:
+If an ultrametric dendrogram describing species' phylogeny (here, a mere taxonomy with family, genus and species) is available, phylogenetic entropy and diversity [@Marcon2014b] can be calculated:
 
 ```{r PhyloDiversity}
 summary(PhyloDiversity(Abd18,q=1,Tree=Paracou618.Taxonomy))
