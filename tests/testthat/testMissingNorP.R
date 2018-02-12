@@ -8,6 +8,7 @@ testthat::test_that("Expected error messages are returned", {
   testthat::expect_error(entropart:::Diversity.AbdVector(), AbdVectorError, ignore.case = TRUE)
   testthat::expect_error(entropart:::Dqz.AbdVector(), AbdVectorError, ignore.case = TRUE)
   testthat::expect_error(entropart:::Hqz.AbdVector(), AbdVectorError, ignore.case = TRUE)
+  testthat::expect_error(entropart:::HqzBeta.AbdVector(), AbdVectorError, ignore.case = TRUE)
   testthat::expect_error(entropart:::GenSimpson.AbdVector(), AbdVectorError, ignore.case = TRUE)
   testthat::expect_error(entropart:::GenSimpsonD.AbdVector(), AbdVectorError, ignore.case = TRUE)
   testthat::expect_error(entropart:::Hurlbert.AbdVector(), AbdVectorError, ignore.case = TRUE)
@@ -26,6 +27,7 @@ testthat::test_that("Expected error messages are returned", {
   testthat::expect_error(entropart:::Diversity.integer(), AbdVectorError, ignore.case = TRUE)
   testthat::expect_error(entropart:::Dqz.integer(), AbdVectorError, ignore.case = TRUE)
   testthat::expect_error(entropart:::Hqz.integer(), AbdVectorError, ignore.case = TRUE)
+  testthat::expect_error(entropart:::HqzBeta.integer(), AbdVectorError, ignore.case = TRUE)
   testthat::expect_error(entropart:::GenSimpson.integer(), AbdVectorError, ignore.case = TRUE)
   testthat::expect_error(entropart:::GenSimpsonD.integer(), AbdVectorError, ignore.case = TRUE)
   testthat::expect_error(entropart:::Hurlbert.integer(), AbdVectorError, ignore.case = TRUE)
@@ -43,15 +45,17 @@ testthat::test_that("Expected error messages are returned", {
   testthat::expect_error(entropart:::TsallisBeta.integer(), AbdVectorError, ignore.case = TRUE)
   
   AbdVectorExpError <- "An argument NorPexp or Nexp must be provided."
+  testthat::expect_error(entropart:::HqzBeta.AbdVector(0), AbdVectorExpError, ignore.case = TRUE)
   testthat::expect_error(entropart:::PhyloBetaEntropy.AbdVector(0), AbdVectorExpError, ignore.case = TRUE)
   testthat::expect_error(entropart:::ShannonBeta.AbdVector(0), AbdVectorExpError, ignore.case = TRUE)
   testthat::expect_error(entropart:::SimpsonBeta.AbdVector(0), AbdVectorExpError, ignore.case = TRUE)
   testthat::expect_error(entropart:::TsallisBeta.AbdVector(0), AbdVectorExpError, ignore.case = TRUE)
   
+  testthat::expect_error(entropart:::HqzBeta.integer(0), AbdVectorExpError, ignore.case = TRUE)
   testthat::expect_error(entropart:::PhyloBetaEntropy.integer(0), AbdVectorExpError, ignore.case = TRUE)
-  testthat::expect_error(entropart:::ShannonBeta.AbdVector(0), AbdVectorExpError, ignore.case = TRUE)
-  testthat::expect_error(entropart:::SimpsonBeta.AbdVector(0), AbdVectorExpError, ignore.case = TRUE)
-  testthat::expect_error(entropart:::TsallisBeta.AbdVector(0), AbdVectorExpError, ignore.case = TRUE)
+  testthat::expect_error(entropart:::ShannonBeta.integer(0), AbdVectorExpError, ignore.case = TRUE)
+  testthat::expect_error(entropart:::SimpsonBeta.integer(0), AbdVectorExpError, ignore.case = TRUE)
+  testthat::expect_error(entropart:::TsallisBeta.integer(0), AbdVectorExpError, ignore.case = TRUE)
   
   
   ProbaVectorError <- "An argument NorP or Ps must be provided."
@@ -76,6 +80,7 @@ testthat::test_that("Expected error messages are returned", {
   testthat::expect_error(entropart:::TsallisBeta.ProbaVector(), ProbaVectorError, ignore.case = TRUE)
   
   ProbaVectorExpError <- "An argument NorPexp or Pexp must be provided."
+  testthat::expect_error(entropart:::HqzBeta.ProbaVector(0), ProbaVectorExpError, ignore.case = TRUE)
   testthat::expect_error(entropart:::PhyloBetaEntropy.ProbaVector(0), ProbaVectorExpError, ignore.case = TRUE)
   testthat::expect_error(entropart:::ShannonBeta.ProbaVector(0), ProbaVectorExpError, ignore.case = TRUE)
   testthat::expect_error(entropart:::SimpsonBeta.ProbaVector(0), ProbaVectorExpError, ignore.case = TRUE)
@@ -86,6 +91,7 @@ testthat::test_that("Expected error messages are returned", {
   testthat::expect_error(entropart:::Diversity.numeric(), numericError, ignore.case = TRUE)
   testthat::expect_error(entropart:::Dqz.numeric(), numericError, ignore.case = TRUE)
   testthat::expect_error(entropart:::Hqz.numeric(), numericError, ignore.case = TRUE)
+  testthat::expect_error(entropart:::HqzBeta.numeric(), numericError, ignore.case = TRUE)
   testthat::expect_error(entropart:::GenSimpson.numeric(), numericError, ignore.case = TRUE)
   testthat::expect_error(entropart:::GenSimpsonD.numeric(), numericError, ignore.case = TRUE)
   testthat::expect_error(entropart:::Hurlbert.numeric(), numericError, ignore.case = TRUE)
@@ -103,6 +109,7 @@ testthat::test_that("Expected error messages are returned", {
   testthat::expect_error(entropart:::TsallisBeta.numeric(), numericError, ignore.case = TRUE)
   
   numericExpError <- "An argument NorPexp or Pexp or Nexp must be provided."
+  testthat::expect_error(entropart:::HqzBeta.numeric(0), numericExpError, ignore.case = TRUE)
   testthat::expect_error(entropart:::PhyloBetaEntropy.numeric(0), numericExpError, ignore.case = TRUE)
   testthat::expect_error(entropart:::ShannonBeta.numeric(0), numericExpError, ignore.case = TRUE)
   testthat::expect_error(entropart:::SimpsonBeta.numeric(0), numericExpError, ignore.case = TRUE)
