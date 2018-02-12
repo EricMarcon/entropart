@@ -1,4 +1,4 @@
-context("Tsallis")
+testthat::context("Tsallis")
 
 # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
 data(Paracou618)
@@ -10,7 +10,7 @@ Ps <- as.ProbaVector(Paracou618.MC$Ns)
 # Check Tsallis limit at 1 equals Shannon
 testthat::test_that("Tsallis tends to Shannon", {
   testthat::skip_on_cran()
-# No correction
+  # No correction
   testthat::expect_equal(as.numeric(Tsallis(Ps, 1 + 1E-7)),
                as.numeric(Shannon(Ps)),
                tolerance = 1e-6)

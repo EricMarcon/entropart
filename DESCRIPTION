@@ -1,8 +1,8 @@
 Package: entropart
 Type: Package
 Title: Entropy Partitioning to Measure Diversity
-Version: 1.5-3-9001
-Date: 2018-02-05
+Version: 1.5-3-9002
+Date: 2018-02-12
 Authors@R: c(
     person("Eric", "Marcon", email="eric.marcon@ecofog.gf", role=c("aut", "cre")),
     person("Bruno", "Herault", email="bruno.herault@cirad.fr", role="aut")
