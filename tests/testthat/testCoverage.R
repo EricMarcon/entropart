@@ -8,7 +8,7 @@ testthat::test_that("Warning is returned", {
                            "Sample coverage is 0, most bias corrections will return NaN.", 
                            ignore.case = TRUE)
   # Zhang-Huang
-  testthat::expect_warning(Coverage(c(0.6, 0.4), Estimator="ZhangHuang"), 
+  testthat::expect_warning(Coverage(c(8, 4, 2, 1), Estimator="ZhangHuang"), 
                            "Zhang-Huang sample coverage cannot be estimated because one probability is over 1/2. Chao estimator is returned.", 
                            ignore.case = TRUE)
   # Chao no doubletons
