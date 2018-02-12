@@ -1,4 +1,4 @@
-context("Diversity of order 2")
+testthat::context("Diversity of order 2")
 
 # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
 data(Paracou618)

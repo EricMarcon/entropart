@@ -1,4 +1,4 @@
-context("PhyloEntropy")
+testthat::context("PhyloEntropy")
 
 # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
 data(Paracou618)
