@@ -71,7 +71,7 @@
 ## User-visible changes
 
 - Generalized Simpson's entropy and diversity added (`GenSimpson` and `GenSimpsonD`).
-- `Originality.Species()` is deprecated because it is pointless. `ade4::originality()` allows calculating it for $q=2$. Leinster (2009) and Leinster and Meckes (2015) showed that `Originality.Species()` does not depend on the order of diversity.
+- `Originality.Species()` is deprecated because it is pointless. `ade4::originality()` allows calculating it for q=2. Leinster (2009) and Leinster and Meckes (2015) showed that `Originality.Species()` does not depend on the order of diversity.
   
 ## Improvements
 
@@ -89,7 +89,7 @@
 ## Bug Correction
 
 - The entropy estimation (of order different from 1) of a distribution with no singleton returned `NA` with `ChaoWangJost` correction. Reported by Zach Marion. Only partly corrected in Version 1.4-1. Corrected.
-- `DivEst` returned incorrect beta diversity if $q$ was not 1. Corrected.
+- `DivEst` returned incorrect beta diversity if q was not 1. Corrected.
 
 
 
@@ -149,7 +149,7 @@
 ## Bug Correction 
 
 - Applying `bcTsallis` and similar functions with a probability vector instead of abundance values could cause errors depending in the correction. Correction is now forced to `None` with a warning.
-- Allowed rounding error was too small on some systems (typically r-patched-solaris-sparc) to recognize probability vectors. The difference between their sum and 1 had to be less than 3 times `.Machine$double.eps`. Now set to $S$ times (where $S$ is the number of species, i.e the vector's length).
+- Allowed rounding error was too small on some systems (typically r-patched-solaris-sparc) to recognize probability vectors. The difference between their sum and 1 had to be less than 3 times `.Machine$double.eps`. Now set to S times (where S is the number of species, i.e the vector's length).
 
 
 
@@ -178,7 +178,7 @@
 
 ## Bug Correction 
 
-- `ChaoPD()` returned an incorrect value when $q=0$ and some probabilities $=0$.
+- `ChaoPD()` returned an incorrect value when q=0 and some probabilities =0.
 
 
 
@@ -235,7 +235,7 @@
 
 ## Bug Correction 
 
-- `Hqz()` was erroneous for $q \ne 1$. Corrected.
+- `Hqz()` was erroneous for q<>1. Corrected.
 - `bcPhyloEntropy()` and `bcPhyloDiversity()` returned an incorrect `$Distribution` component. Corrected.
 - `summary.MCentropy()` did not return the name of the tree. Corrected.
 
