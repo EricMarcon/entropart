@@ -19,6 +19,6 @@ testthat::test_that("Hurlbert equals Simpson", {
 testthat::test_that("GenSimpson equals Simpson", {
   testthat::skip_on_cran()
 
-  testthat::expect_equal(GenSimpson(Paracou618.MC$Ps, 1), Simpson(Paracou618.MC$Ps))
-  testthat::expect_lt(bcGenSimpson(Paracou618.MC$Ns, 1) - bcSimpson(Paracou618.MC$Ns), 1/1000)
+  testthat::expect_equal(as.numeric(GenSimpson(Ps, 1)), as.numeric(Simpson(Ps)))
+  testthat::expect_lt(bcGenSimpson(Ns, 1) - bcSimpson(Ns), 1/1000)
 })
