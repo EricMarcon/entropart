@@ -49,7 +49,7 @@ function(NorP, k = 2, ..., CheckArguments = TRUE, Ns = NULL)
     if (!missing(Ns)) {
       NorP <- Ns
     } else {
-      stop("An argument NorP Ns must be provided.")
+      stop("An argument NorP or Ns must be provided.")
     }
   }
   return (bcHurlbertD(Ns=NorP, k=k, CheckArguments=CheckArguments))

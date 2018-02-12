@@ -45,7 +45,7 @@ function(NorP, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL
     if (!missing(Ns)) {
       NorP <- Ns
     } else {
-      stop("An argument NorP Ns must be provided.")
+      stop("An argument NorP or Ns must be provided.")
     }
   }
   return (bcDiversity(Ns=NorP, q=q, Correction=Correction, CheckArguments=CheckArguments))
