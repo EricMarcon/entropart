@@ -7,9 +7,18 @@ Ns <- as.AbdVector(Paracou618.MC$Ns)
 # Species probabilities
 Ps <- as.ProbaVector(Paracou618.MC$Ns)
 
-# Check Tsallis limit at 1 equals Shannon
+# Check Hurlbert equals Simpson
 testthat::test_that("Hurlbert equals Simpson", {
   testthat::skip_on_cran()
   # No correction
   testthat::expect_equal(as.numeric(Hurlbert(Ps)-1), as.numeric(Simpson(Ps)), tolerance = 1e-8, scale = Simpson(Ps))
+})
+
+
+# Check GenSimpson
+testthat::test_that("GenSimpson equals Simpson", {
+  testthat::skip_on_cran()
+
+  testthat::expect_equal(GenSimpson(Paracou618.MC$Ps, 1), Simpson(Paracou618.MC$Ps))
+  testthat::expect_lt(bcGenSimpson(Paracou618.MC$Ns, 1) - bcSimpson(Paracou618.MC$Ns), 1/1000)
 })
