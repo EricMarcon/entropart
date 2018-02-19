@@ -1,9 +1,10 @@
-# Changes in entropart Version 1.5-3-9002
+# Changes in entropart Version 1.5-3-9003
 
 ## Improvements
 
+- ggplot2 supported. `autoplot()` methods added for entropart objects.
 - Unit tests added.
-  
+
 
   
 # Changes in entropart Version 1.5-3

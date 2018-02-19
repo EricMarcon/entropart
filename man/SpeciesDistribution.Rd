@@ -5,6 +5,7 @@
 \alias{as.SpeciesDistribution.integer}
 \alias{as.SpeciesDistribution.numeric}
 \alias{is.SpeciesDistribution}
+\alias{autoplot.SpeciesDistribution}
 \alias{plot.SpeciesDistribution}
 \alias{AbdVector}
 \alias{as.AbdVector}
@@ -29,6 +30,8 @@ as.SpeciesDistribution(x, \dots)
 \method{as.SpeciesDistribution}{data.frame}(x, \dots)
 \method{as.SpeciesDistribution}{integer}(x, \dots)
 \method{as.SpeciesDistribution}{numeric}(x, \dots)
+\method{autoplot}{SpeciesDistribution}(object, \dots, Distribution = NULL, 
+         ylog = TRUE, main = NULL, xlab = "Rank", ylab = NULL)
 \method{plot}{SpeciesDistribution}(x, \dots, Distribution = NULL, 
          type = "b", log = "y", main = NULL, xlab = "Rank", ylab = NULL)
 is.SpeciesDistribution(x)
@@ -87,6 +90,9 @@ is.AbdVector(x)
   \item{ylab}{
   The Y axis label. if \code{NULL} (by default), "Probability" or "Abundance" is chosen according to the object class.
   }
+  \item{ylog}{
+  Logical; if \code{TRUE} (by default), the Y-axis of the plot is log scaled.
+  }
   \item{\dots}{
   Additional arguments to be passed to \code{\link{plot}}. Unused elsewhere.
   }
@@ -123,7 +129,7 @@ is.AbdVector(x)
   Gregorius H.-R. (2010) Linking Diversity and Differentiation. \emph{Diversity} 2(3): 370-394.
 }
 \seealso{
-  \code{\link{rgeom}}, \code{\link{rlnorm}}, \code{\link{rCommunity}}
+  \code{\link{rgeom}}, \code{\link{rlnorm}}, \code{\link{rCommunity}}, \code{\link{RAClnorm}}
 }
 \examples{
 # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
@@ -132,4 +138,6 @@ data(Paracou618)
 Ns <- as.AbdVector(Paracou618.MC$Ns)
 # Whittaker plot, poorly fitted by a log-normal distribution
 plot(Ns, Distribution = "lnorm")
+# ggplot version
+autoplot(Ns, Distribution = "lnorm")
 }

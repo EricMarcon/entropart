@@ -33,7 +33,7 @@ rCommunity(n, size = sum(NorP), NorP = 1, BootstrapMethod = "Chao2015", S = 300,
   The simulated distribution standard deviation. For the log-normal distribution, this is the standard deviation on the log scale.
   }
   \item{prob}{
-  The probability of success in each trial.
+  The proportion of ressources taken by successive species.
   }
   \item{alpha}{
   Fisher's alpha.
