@@ -1,8 +1,8 @@
 Package: entropart
 Type: Package
 Title: Entropy Partitioning to Measure Diversity
-Version: 1.5-3-9002
-Date: 2018-02-12
+Version: 1.5-3-9003
+Date: 2018-02-19
 Authors@R: c(
     person("Eric", "Marcon", email="eric.marcon@ecofog.gf", role=c("aut", "cre")),
     person("Bruno", "Herault", email="bruno.herault@cirad.fr", role="aut")
@@ -13,7 +13,7 @@ Description: Measurement and partitioning of diversity, based on Tsallis entropy
 URL: https://EricMarcon.github.io/entropart
 BugReports: https://github.com/EricMarcon/entropart/issues
 License: GNU General Public License
-Imports: ade4, ape, EntropyEstimation, geiger, graphics, grDevices, parallel, stats, utils, vegan
+Imports: ade4, ape, EntropyEstimation, geiger, ggplot2, graphics, grDevices, parallel, stats, utils, vegan
 Suggests: testthat, packagedocs
 LazyData: true
 VignetteBuilder: packagedocs

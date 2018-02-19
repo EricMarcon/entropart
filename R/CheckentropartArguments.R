@@ -399,6 +399,13 @@ function() {
       ErrorMessage("xy must be a numeric vector of length 2.", xy)
   }
 
+  # ylog 
+  if (!is.na(names(Args["ylog"]))) {
+    ylog <- eval(expression(ylog), parent.frame())
+    if (!is.logical(ylog))
+      ErrorMessage("ylog must be TRUE or FALSE.", ylog)
+  }
+  
   # Z
   if (!is.na(names(Args["Z"]))) {
     Z <- eval(expression(Z), parent.frame())

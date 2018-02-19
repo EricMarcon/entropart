@@ -300,43 +300,109 @@ function(x, ..., Distribution = NULL,
   
   if (!is.null(Distribution)) {
     if (Distribution == "lnorm") {
-      # Fit a lognormal distribution
-      mu <- mean(log(Ns))
-      sigma <- stats::sd(log(Ns))
-      ranks <- S*(1-stats::pnorm(log(Ns), mu, sigma))
-      graphics::lines(ranks, Ns, col = "red")
-      return(list(mu = mu, sigma = sigma))
+      FittedRAC <- RAClnorm(Ns)
+      graphics::lines(FittedRAC$Rank, FittedRAC$Abundance, col = "red")
+      return(list(mu = FittedRAC$mu, sigma = FittedRAC$sigma))
     }
     if (Distribution == "geom") {
-      lNs <- log(Ns)
-      Rank <- 1:S
-      reg <- stats::lm(lNs~Rank)
-      graphics::lines(Rank, exp(reg$coefficients[1]+reg$coefficients[2]*Rank), col = "red")
-      return(list(prob = as.numeric(-reg$coefficients[2])))
+      FittedRAC <- RACgeom(Ns)
+      graphics::lines(FittedRAC$Rank, FittedRAC$Abundance, col = "red")
+      return(list(prob = FittedRAC$prob))
     }
     if (Distribution == "lseries") {
-      # evaluate alpha
-      alpha <- vegan::fisher.alpha(Ns)
-      # May (1975) Ecology and evolution of communities, Harvard University Press
-      sei <- function(t) exp(-t)/t
-      ranks <- vapply(Ns, function(x) {
-        n <- x * log(1 + alpha/N)
-        f <- stats::integrate(sei, n, Inf)
-        fv <- f[["value"]]
-        return(alpha * fv)}
-      , 0)
-      graphics::lines(ranks, Ns, col = "red")
-      return(list(alpha = alpha))
+      FittedRAC <- RACgeom(Ns)
+      graphics::lines(FittedRAC$Rank, FittedRAC$Abundance, col = "red")
+      return(list(alpha = FittedRAC$alpha))
     }
     if (Distribution == "bstick") {
-      f1 <- sort(cumsum(1/(S:1)), decreasing = TRUE)
-      Rank <- 1:S
-      Abundance <- N*f1/sum(f1)
-      graphics::lines(Rank, Abundance, col = "red")
-      return(list(max = max(Abundance)))
+      FittedRAC <- RACgeom(Ns)
+      graphics::lines(FittedRAC$Rank, FittedRAC$Abundance, col = "red")
+      return(list(max = FittedRAC$max))
     }
     warning("The distribution to fit has not been recognized")
     return(NA)
+  }
+}
+
+
+autoplot.SpeciesDistribution <-
+function(object, ..., Distribution = NULL, 
+         ylog = TRUE, main = NULL, xlab = "Rank", ylab = NULL) 
+{
+  # Eliminate zeros and sort
+  Ns <- sort(object[object > 0], decreasing = TRUE)
+  N <- sum(Ns)
+  S <- length(Ns)
+  
+  # Transform data into df
+  df <- data.frame(Rank=1:S, Ns)
+  
+  # Prepare ylab
+  if (is.null(ylab)) {
+    if (is.ProbaVector(object)) {
+      ylab <- "Probability"
+    } else {
+      ylab <- "Abundance" 
+    }
+  }
+
+  # Plot. X-axis starts at 0.01 to avoid the 0 X-label.
+  thePlot <- ggplot2::ggplot() +
+    ggplot2::geom_point(data=df, mapping=ggplot2::aes(Rank, Ns)) +
+    ggplot2::scale_x_continuous(limits=c(0.01, S), expand=c(0, 0)) +
+    ggplot2::labs(title=main, x=xlab, y=ylab)
+  
+  # Log Y-axis
+  if (ylog) thePlot <- thePlot + scale_y_log10() 
+  
+  OK <- TRUE
+  # Fit distributions
+  if (!is.null(Distribution)) {
+    OK <- FALSE
+    if (Distribution == "lnorm") {
+      FittedRAC <- RAClnorm(Ns)
+      OK <- TRUE
+    }
+    if (Distribution == "geom") {
+      FittedRAC <- RACgeom(Ns)
+      OK <- TRUE
+    }
+    if (Distribution == "lseries") {
+      FittedRAC <- RAClseries(Ns)
+      OK <- TRUE
+    }
+    if (Distribution == "bstick") {
+      FittedRAC <- RACbstick(Ns)
+      OK <- TRUE
+    }
+    if (OK) {
+      # Add the adjusted curve to the plot
+      thePlot <- thePlot + 
+        ggplot2::geom_line(data=with(FittedRAC, data.frame(Rank, Abundance)), mapping=ggplot2::aes(Rank, Abundance, col="red")) + 
+        ggplot2::theme(legend.position="none")
+      # Add fitted parameters to the attributes of the plot
+      if (Distribution == "lnorm") {
+        attr(thePlot, "mu") <- FittedRAC$mu
+        attr(thePlot, "sigma") <- FittedRAC$sigma
+      }
+      if (Distribution == "geom") {
+        attr(thePlot, "prob") <- FittedRAC$prob
+      }
+      if (Distribution == "lseries") {
+        attr(thePlot, "alpha") <- FittedRAC$alpha
+      }
+      if (Distribution == "bstick") {
+        attr(thePlot, "max") <- FittedRAC$max
+      }
+    }
+  } 
+  if (OK) {
+    # Return the plot
+    return(thePlot)
+  } else {
+    # Return NA with a warning
+    warning("The distribution to fit has not been recognized")
+    return(NA)   
   }
 }
 
@@ -347,4 +413,77 @@ function (Ns)
   NsInt <- round(Ns)
   # Return TRUE if no value in Ns has been modified by rounding
   return(!(any(abs(NsInt-Ns) > sum(Ns)*.Machine$double.eps)))
+}
+
+
+RAClnorm <- 
+function (Ns, CheckArguments = TRUE)
+{
+  # Eliminate zeros
+  Ns <- sort(Ns[Ns > 0], decreasing = TRUE)
+  S <- length(Ns)
+  
+  # Fit a lognormal distribution
+  mu <- mean(log(Ns))
+  sigma <- stats::sd(log(Ns))
+  # Unique values
+  Ns1 <- unique(Ns)
+  Rank <- S*(1-stats::pnorm(log(Ns1), mu, sigma))
+  
+  return(list(Rank=Rank, Abundance=Ns1, mu=mu, sigma=sigma))
+}
+
+
+RACgeom <- 
+function (Ns, CheckArguments = TRUE)
+{
+  # Eliminate zeros
+  Ns <- sort(Ns[Ns > 0], decreasing = TRUE)
+  S <- length(Ns)
+  
+  # Fit a geometric distribution
+  lNs <- log(Ns)
+  Rank <- 1:S
+  reg <- stats::lm(lNs~Rank)
+  
+  return(list(Rank=Rank, Abundance=exp(reg$coefficients[1]+reg$coefficients[2]*Rank), prob=as.numeric(-reg$coefficients[2])))
+}
+
+
+RAClseries <- 
+function (Ns, CheckArguments = TRUE)
+{
+  # Eliminate zeros
+  Ns <- sort(Ns[Ns > 0], decreasing = TRUE)
+  N <- sum(Ns)
+  
+  # Evaluate alpha
+  alpha <- vegan::fisher.alpha(Ns)
+  # May (1975) Ecology and evolution of communities, Harvard University Press
+  sei <- function(t) exp(-t)/t
+  Rank <- vapply(unique(Ns), function(x) {
+    n <- x * log(1 + alpha/N)
+    f <- stats::integrate(sei, n, Inf)
+    fv <- f[["value"]]
+    return(alpha * fv)}
+    , 0)
+  
+  return(list(Rank=Rank, Abundance=unique(Ns), alpha=alpha))
+}
+
+
+RACbstick <- 
+function (Ns, CheckArguments = TRUE)
+{
+  # Eliminate zeros
+  Ns <- sort(Ns[Ns > 0], decreasing = TRUE)
+  N <- sum(Ns)
+  S <- length(Ns)
+  
+  # Fit a broken stick
+  f1 <- sort(cumsum(1/(S:1)), decreasing = TRUE)
+  Rank <- 1:S
+  Abundance <- N*f1/sum(f1)
+  
+  return(list(Rank=Rank, Abundance=Abundance, max=max(Abundance)))
 }
