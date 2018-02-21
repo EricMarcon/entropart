@@ -1,3 +1,6 @@
+importFrom("ggplot2", "autoplot")
+importFrom("graphics", "plot")
+
 export("AbdFreqCount")
 export("AllenH")
 export("AlphaDiversity")
@@ -93,6 +96,7 @@ export("SimpsonBeta")
 export("ShuffleMC")
 export("Tsallis")
 export("TsallisBeta")
+
 S3method("as.AbdVector", "data.frame")
 S3method("as.AbdVector", "integer")
 S3method("as.AbdVector", "numeric")

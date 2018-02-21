@@ -158,7 +158,7 @@ function (x, ..., main = NULL, xlab = "Order of Diversity", ylab = NULL, Which =
     if (!(is.null(x$TotalAlphaDiversityHigh) | is.null(x$TotalAlphaDiversityLow))) {
       # Shaded polygon (adapted from Didzis Elferts, 
       # http://stackoverflow.com/questions/14069629/plotting-confidence-intervals)
-      graphics::polygon(c(x$Order, rev(x$Order)), c(pmax(x$TotalAlphaDiversityLow, graphics::par('usr')[3]), pmin(rev(x$TotalAlphaDiversityHigh), par('usr')[4])), col = ShadeColor, border = FALSE)
+      graphics::polygon(c(x$Order, rev(x$Order)), c(pmax(x$TotalAlphaDiversityLow, graphics::par('usr')[3]), pmin(rev(x$TotalAlphaDiversityHigh), graphics::par('usr')[4])), col = ShadeColor, border = FALSE)
       # Add red lines on borders of polygon
       graphics::lines(x$Order, x$TotalAlphaDiversityHigh, col=BorderColor, lty=2)
       graphics::lines(x$Order, x$TotalAlphaDiversityLow, col=BorderColor, lty=2)
@@ -184,7 +184,7 @@ function (x, ..., main = NULL, xlab = "Order of Diversity", ylab = NULL, Which =
     if (!(is.null(x$TotalBetaDiversityHigh) | is.null(x$TotalBetaDiversityLow))) {
       # Shaded polygon (adapted from Didzis Elferts, 
       # http://stackoverflow.com/questions/14069629/plotting-confidence-intervals)
-      graphics::polygon(c(x$Order, rev(x$Order)), c(pmax(x$TotalBetaDiversityLow, graphics::par('usr')[3]), pmin(rev(x$TotalBetaDiversityHigh), par('usr')[4])), col = ShadeColor, border = FALSE)
+      graphics::polygon(c(x$Order, rev(x$Order)), c(pmax(x$TotalBetaDiversityLow, graphics::par('usr')[3]), pmin(rev(x$TotalBetaDiversityHigh), graphics::par('usr')[4])), col = ShadeColor, border = FALSE)
       # Add red lines on borders of polygon
       graphics::lines(x$Order, x$TotalBetaDiversityHigh, col=BorderColor, lty=2)
       graphics::lines(x$Order, x$TotalBetaDiversityLow, col=BorderColor, lty=2)
@@ -198,7 +198,7 @@ function (x, ..., main = NULL, xlab = "Order of Diversity", ylab = NULL, Which =
     if (!(is.null(x$GammaDiversityHigh) | is.null(x$GammaDiversityLow))) {
       # Shaded polygon (adapted from Didzis Elferts, 
       # http://stackoverflow.com/questions/14069629/plotting-confidence-intervals)
-      graphics::polygon(c(x$Order, rev(x$Order)), c(pmax(x$GammaDiversityLow, graphics::par('usr')[3]), pmin(rev(x$GammaDiversityHigh), par('usr')[4])), col = ShadeColor, border = FALSE)
+      graphics::polygon(c(x$Order, rev(x$Order)), c(pmax(x$GammaDiversityLow, graphics::par('usr')[3]), pmin(rev(x$GammaDiversityHigh), graphics::par('usr')[4])), col = ShadeColor, border = FALSE)
       # Add red lines on borders of polygon
       graphics::lines(x$Order, x$GammaDiversityHigh, col=BorderColor, lty=2)
       graphics::lines(x$Order, x$GammaDiversityLow, col=BorderColor, lty=2)
