@@ -1,16 +1,18 @@
 \name{PhyloValue}
 \alias{PhyloValue}
 \alias{is.PhyloValue}
+\alias{autoplot.PhyloValue}
 \alias{plot.PhyloValue}
 \alias{summary.PhyloValue}
 \title{
-  Phylogenetic entropy of diversity.
+  Phylogenetic entropy or diversity.
 }
 \description{
   Entropy or diversity against the height of the phylogenetic or functional tree.
 }
 \usage{
 is.PhyloValue(x)
+\method{autoplot}{PhyloValue}(object, xlab = expression(italic("T")), ylab = NULL, main = NULL, \dots)
 \method{plot}{PhyloValue}(x, xlab = expression(italic("T")), ylab = NULL, main = NULL, \dots)
 \method{summary}{PhyloValue}(object, \dots)
 }
@@ -39,4 +41,14 @@ is.PhyloValue(x)
 }
 \author{
   Eric Marcon <Eric.Marcon@ecofog.gf>
+}
+\examples{
+# Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest
+#      and their taxonomy)
+data(Paracou618)
+# Calculate richness along the tree
+# (Cuts are 1=species, 2=genus, 3=family)
+summary(r <- PhyloApply(Paracou618.Taxonomy, FUN=Richness,
+  NorP=Paracou618.MC$Ns, Normalize=TRUE))
+autoplot(r)
 }
