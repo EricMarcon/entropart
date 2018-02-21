@@ -2,6 +2,7 @@
 \alias{SimTest}
 \alias{as.SimTest}
 \alias{is.SimTest}
+\alias{autoplot.SimTest}
 \alias{plot.SimTest}
 \alias{summary.SimTest}
 \title{
@@ -13,23 +14,27 @@
 \usage{
 as.SimTest(RealValue, SimulatedValues)
 is.SimTest(x)
+\method{autoplot}{SimTest}(object, Quantiles = c(0.025, 0.975), \dots,
+  colValue = "red", colQuantiles = "black", ltyQuantiles = 2,
+  main = NULL, xlab = "Simulated Values", ylab = "Density")
 \method{plot}{SimTest}(x, Quantiles = c(0.025, 0.975), \dots,
-  colValue = "red",lwdValue = 2, ltyValue = 2,
-  colQuantiles = "black", lwdQuantiles = 1, ltyQuantiles = 2)
+  colValue = "red", lwdValue = 2, ltyValue = 2,
+  colQuantiles = "black", lwdQuantiles = 1, ltyQuantiles = 2,
+  main = NULL, xlab = "Simulated Values", ylab = "Density")
 \method{summary}{SimTest}(object, Quantiles = c(0.025, 0.975), \dots)
 }
 \arguments{
+  \item{x}{
+  An object to be tested or plotted.
+  }
+  \item{object}{
+  An object.
+  }
   \item{RealValue}{
   A numeric Value (the actual one).
   }
   \item{SimulatedValues}{
   A numeric vector containing the simulated values.
-  }
-  \item{x}{
-  An object to be tested or plotted.
-  }
-  \item{object}{
-  A \code{SimTest} object to be summarized.
   }
   \item{Quantiles}{
   A vector containing the quantiles of interest.
@@ -51,6 +56,15 @@ is.SimTest(x)
   }
   \item{ltyQuantiles}{
   The line type of the lines representing the quantiles on the plot.
+  }
+  \item{main}{
+  The main title of the plot. if \code{NULL} (by default), there is no title.
+  }
+  \item{xlab}{
+  The X axis label.
+  }
+  \item{ylab}{
+  The Y axis label. 
   }
   \item{\dots}{
   Additional arguments to be passed to the generic methods.   
@@ -79,6 +93,10 @@ Real <- 0.8
 Sims <- rnorm(1000)
 # Make a Simtest object
 st <- as.SimTest(Real, Sims)
-plot(st)
 summary(st)
+# Plot
+plot(st)
+# ggplot
+autoplot(st)
+
 }

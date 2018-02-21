@@ -348,12 +348,12 @@ function(object, ..., Distribution = NULL,
 
   # Plot. X-axis starts at 0.01 to avoid the 0 X-label.
   thePlot <- ggplot2::ggplot() +
-    ggplot2::geom_point(data=df, mapping=ggplot2::aes(Rank, Ns)) +
+    ggplot2::geom_point(data=df, mapping=ggplot2::aes_(x=~Rank, y=~Ns)) +
     ggplot2::scale_x_continuous(limits=c(0.01, S), expand=c(0, 0)) +
     ggplot2::labs(title=main, x=xlab, y=ylab)
   
   # Log Y-axis
-  if (ylog) thePlot <- thePlot + scale_y_log10() 
+  if (ylog) thePlot <- thePlot + ggplot2::scale_y_log10() 
   
   OK <- TRUE
   # Fit distributions
@@ -378,7 +378,7 @@ function(object, ..., Distribution = NULL,
     if (OK) {
       # Add the adjusted curve to the plot
       thePlot <- thePlot + 
-        ggplot2::geom_line(data=with(FittedRAC, data.frame(Rank, Abundance)), mapping=ggplot2::aes(Rank, Abundance, col="red")) + 
+        ggplot2::geom_line(data=with(FittedRAC, data.frame(Rank, Abundance)), mapping=ggplot2::aes_(x=~Rank, y=~Abundance, col="red")) + 
         ggplot2::theme(legend.position="none")
       # Add fitted parameters to the attributes of the plot
       if (Distribution == "lnorm") {

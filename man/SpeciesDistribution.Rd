@@ -54,6 +54,9 @@ is.AbdVector(x)
   \item{x}{
   An object.
   }
+  \item{object}{
+  An object.
+  }
   \item{Distribution}{
   The distribution to fit on the plot. May be \code{"lnorm"} (log-normal), \code{"lseries"} (log-series), \code{"geom"} (geometric) or \code{"bstick"} (broken stick). If \code{NULL}, no distribution is fitted. See \code{\link{rCommunity}} for the description of these distributions.
   }
