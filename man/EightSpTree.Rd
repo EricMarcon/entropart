@@ -5,7 +5,7 @@
   Functional tree with 8 species.
 }
 \description{
-  This dataset is a light-weight example.
+  This dataset is a leight-weight example.
 }
 \usage{
 data(Paracou618)
@@ -16,7 +16,9 @@ data(Paracou618)
 
 \examples{
 data(Paracou618)
-plot(EightSpTree)
+# Preprocess the tree to be able to plot it 
+# without loading ade4 package
+plot(Preprocess.Tree(EightSpTree), hang=-0.01)
 }
 
 \keyword{datasets}

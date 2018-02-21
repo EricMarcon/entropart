@@ -162,7 +162,7 @@ function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", Jac
               out <- sum(beta^i)^2 / sum((beta^i)^2) - r
               abs(out)
             }
-            beta <-  tryCatch(optimize(beta.solve, lower=(r-1)/(r+1), upper=1, tol=.Machine$double.eps)$min, error = function(e) {(r-1)/(r+1)})
+            beta <-  tryCatch(stats::optimize(beta.solve, lower=(r-1)/(r+1), upper=1, tol=.Machine$double.eps)$min, error = function(e) {(r-1)/(r+1)})
             alpha <- (1-C) / sum(beta^i)
             Ps0 <- alpha * beta^i
             # Sometimes fails when the distribution is very uneven (sometimes r < 1) 

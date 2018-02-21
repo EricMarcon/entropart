@@ -8,7 +8,7 @@ function(x)
   VarName <- eval(Received)
 
   # Search the frames up to the top one to find the real name of the variable or expression
-  for(i in rev(head(sys.frames(), -1L))) {
+  for(i in rev(utils::head(sys.frames(), -1L))) {
     Received[[2]] <- VarName
     # Candidate name
     VarNameCandidate <- eval(Received, i)

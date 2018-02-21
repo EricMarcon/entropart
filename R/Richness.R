@@ -191,7 +191,7 @@ function(Ns, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, CheckArgument
       }
     }
     # Threshold for Burnham and Overton's test
-    coe <- qnorm(1 - Alpha/2, 0, 1)
+    coe <- stats::qnorm(1 - Alpha/2, 0, 1)
     # Which orders pass the test?
     x <- (gene[2:(k + 1), 5] < coe)
     if (sum(x, na.rm=TRUE) == 0) {
