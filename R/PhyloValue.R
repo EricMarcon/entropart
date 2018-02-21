@@ -31,6 +31,40 @@ function (x, xlab = expression(italic("T")), ylab = NULL, main = NULL, ...)
 }
 
 
+autoplot.PhyloValue <- 
+function (x, xlab = expression(italic("T")), ylab = NULL, main = NULL, ...) 
+{
+  Entity <- ""
+  # Entity
+  if (is.PhyloEntropy(x)) {
+    Entity <- "Entropy"
+  } else {
+    if (is.PhyloDiversity(x)) {
+      Entity <- "Diversity"
+    }
+  }
+  
+  # ylab
+  if (is.null(ylab))
+    ylab <- Entity
+  
+  # main
+  if (is.null(main))
+    main <- paste(Entity, "along the tree")
+  
+  # Prepare data. as.numeric() to avoid factors.
+  df <- data.frame(Time=as.numeric(c(0, rep(names(x$Cuts), each=2))), Value=c(rep(x$Cuts, each=2), 0))
+  
+  # Plot
+  thePlot <- ggplot2::ggplot(data=df, ggplot2::aes_(x=~Time, y=~Value)) +
+    ggplot2::geom_line() +
+    ggplot2::labs(title=main, x=xlab, y=ylab) +
+    ggplot2::geom_hline(yintercept=x$Total, , linetype=2)
+  
+  return(thePlot)
+}
+
+
 summary.PhyloValue <-
 function(object, ...) 
 {

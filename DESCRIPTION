@@ -13,7 +13,8 @@ Description: Measurement and partitioning of diversity, based on Tsallis entropy
 URL: https://EricMarcon.github.io/entropart
 BugReports: https://github.com/EricMarcon/entropart/issues
 License: GNU General Public License
-Imports: ade4, ape, EntropyEstimation, geiger, ggplot2, graphics, grDevices, parallel, stats, utils, vegan
+Depends: ggplot2
+Imports: ade4, ape, EntropyEstimation, geiger, graphics, grDevices, parallel, stats, utils, vegan
 Suggests: testthat, packagedocs
 LazyData: true
 VignetteBuilder: packagedocs

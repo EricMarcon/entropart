@@ -14,13 +14,32 @@ function (x)
 
 
 plot.SimTest <- 
-function (x, Quantiles = c(0.025, 0.975), ..., colValue = "red", lwdValue = 2, ltyValue = 2, colQuantiles = "black", lwdQuantiles = 1, ltyQuantiles = 2)
+function (x, Quantiles = c(0.025, 0.975), ..., colValue = "red", lwdValue = 2, ltyValue = 2, 
+          colQuantiles = "black", lwdQuantiles = 1, ltyQuantiles = 2, 
+          main = NULL, xlab = "Simulated Values", ylab = "Density")
 {
-  plot(stats::density(x$SimulatedValues), ...)
+  plot(stats::density(x$SimulatedValues), main=main, xlab=xlab, ylab=ylab, ...)
   graphics::abline(v=x$RealValue, col=colValue, lwd=lwdValue, lty=ltyValue)
   for (qt in Quantiles) {
     graphics::abline(v=stats::quantile(x$SimulatedValues, probs = qt), col=colQuantiles, lwd=lwdQuantiles, lty=ltyQuantiles)
   }
+}
+
+
+autoplot.SimTest <- 
+function (object, Quantiles = c(0.025, 0.975), ..., colValue = "red", colQuantiles = "black", ltyQuantiles = 2, 
+          main = NULL, xlab = "Simulated Values", ylab = "Density")
+{
+  df <- data.frame(SimulatedValues=object$SimulatedValues)
+  thePlot <- ggplot2::ggplot() +
+    ggplot2::geom_density(data=df, ggplot2::aes_(x=~SimulatedValues, fill=factor("unique"), alpha=0.8)) +
+    ggplot2::labs(title=main, x=xlab, y=ylab) +
+    ggplot2::geom_vline(xintercept=object$RealValue, colour=colValue)
+  for (qt in Quantiles) {
+    thePlot <- thePlot +
+      ggplot2::geom_vline(xintercept=stats::quantile(object$SimulatedValues, probs = qt), colour=colQuantiles, linetype=ltyQuantiles)
+  }
+  return(thePlot+ggplot2::theme(legend.position="none"))
 }
 
 
