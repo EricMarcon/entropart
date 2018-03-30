@@ -3,6 +3,7 @@
 \alias{as.CommunityProfile}
 \alias{is.CommunityProfile}
 \alias{plot.CommunityProfile}
+\alias{auplot.CommunityProfile}
 \alias{CEnvelope}
 \title{
   Diversity or Entropy Profile of a community
@@ -19,6 +20,9 @@ is.CommunityProfile(x)
 \method{plot}{CommunityProfile}(x, \dots, main = NULL, 
           xlab = "Order of Diversity", ylab = "Diversity", ylim = NULL,
           LineWidth = 2, ShadeColor = "grey75", BorderColor = "red")
+\method{plot}{CommunityProfile}(x, \dots, main = NULL, 
+          xlab = "Order of Diversity", ylab = "Diversity", ylim = NULL,
+          ShadeColor = "grey75", BorderColor = "red")
 CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", \dots)
 }
 \arguments{
@@ -110,6 +114,7 @@ data(Paracou618)
 # Plot diversity estimated without bias correction
 plot(CommunityProfile(Diversity, Paracou618.MC$Ps, seq(0, 2, 0.2)), 
 lty=3, ylim=c(50, 350))
+autoplot(CommunityProfile(Diversity, Paracou618.MC$Ps, seq(0, 2, 0.2)))
 # Estimate diversity, with a condidence envelope 
 # (only 10 simulations to save time, should be 1000)
 Profile <- CommunityProfile(Diversity, as.AbdVector(Paracou618.MC$Ns), 
