@@ -96,18 +96,18 @@ plot.DivEst <-
 
 
 autoplot.DivEst <- 
-function (x, ..., main = NULL, Which = "All", labels = NULL, font.label = list(size=11, face="plain")) 
+function (object, ..., main = NULL, Which = "All", labels = NULL, font.label = list(size=11, face="plain")) 
 {
   if (Which == "All" | (Which == "Alpha" & is.null(main))) main <- "Alpha Diversity"
   if (Which == "All" | Which == "Alpha") {
-    AlphaPlot <- autoplot(as.SimTest(x$TotalAlphaDiversity, x$SimulatedDiversity["Alpha",]), main=main, ...)
+    AlphaPlot <- autoplot(as.SimTest(object$TotalAlphaDiversity, object$SimulatedDiversity["Alpha",]), main=main, ...)
   }
   if (Which == "Alpha")
     return(AlphaPlot)
 
   if (Which == "All" | (Which == "Beta" & is.null(main))) main <- "Beta Diversity"
   if (Which == "All" | Which == "Beta") {
-    BetaPlot <- autoplot(as.SimTest(x$TotalBetaDiversity, x$SimulatedDiversity["Beta",]), main=main, ...)
+    BetaPlot <- autoplot(as.SimTest(object$TotalBetaDiversity, object$SimulatedDiversity["Beta",]), main=main, ...)
   }
   if (Which == "Beta")
     return(BetaPlot)
@@ -120,7 +120,7 @@ function (x, ..., main = NULL, Which = "All", labels = NULL, font.label = list(s
     return(GammaPlot)
   
   # Which == "All": return a multiple plot
-  return(ggpubr::ggarrange(AlphaPlot + labs(x=NULL), BetaPlot + labs(x=NULL), GammaPlot, 
+  return(ggpubr::ggarrange(AlphaPlot + ggplot2::labs(x=NULL), BetaPlot +  ggplot2::labs(x=NULL), GammaPlot, 
                            ncol = 1, nrow = 3, labels=labels, font.label=font.label))
 }
 

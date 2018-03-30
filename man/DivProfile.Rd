@@ -18,7 +18,7 @@ is.DivProfile(x)
 \method{plot}{DivProfile}(x, \dots, main = NULL, xlab = "Order of Diversity",
   ylab = NULL, Which = "All", 
   LineWidth = 2, ShadeColor = "grey75", BorderColor = "red")
-\method{autoplot}{DivProfile}(x, \dots, main = NULL, xlab = "Order of Diversity",
+\method{autoplot}{DivProfile}(object, \dots, main = NULL, xlab = "Order of Diversity",
   ylab = NULL, Which = "All", ShadeColor = "grey75", BorderColor = "red", 
   labels = NULL, font.label = list(size=11, face="plain"))
 \method{summary}{DivProfile}(object, \dots)
@@ -81,6 +81,9 @@ is.DivProfile(x)
   \item{BorderColor}{
   The color of the bounds of the confidence envelope.
   }
+  \item{alpha}{
+  Opacity of the confidence enveloppe, between 0 and 1.
+  }
   \item{labels}{
   Vector of labels to be added to multiple plots. \code{"auto"} is the same as \code{c("a", "b", "c", "d)"}.
   }
@@ -88,7 +91,7 @@ is.DivProfile(x)
   A list of arguments to customize labels. See \code{\link{ggarrange}}.
   }
   \item{object}{
-  A \code{MCdiversity} object to be summarized.
+  A \code{MCdiversity} object to be summarized or plotted.
   }
   \item{\dots}{
   Additional arguments to be passed to the generic methods.
