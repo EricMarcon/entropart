@@ -65,33 +65,63 @@ function (x)
 
 
 plot.DivEst <- 
-function (x, ..., main = NULL, Which = "All") 
+  function (x, ..., main = NULL, Which = "All") 
+  {
+    # Save graphical parameters
+    op <- graphics::par(no.readonly = TRUE)
+    graphics::par(mfrow=c(2, 2))
+    
+    if (Which == "All" | (Which == "Alpha" & is.null(main))) main <- "Alpha Diversity"
+    if (Which == "All" | Which == "Alpha") {
+      graphics::plot(as.SimTest(x$TotalAlphaDiversity, x$SimulatedDiversity["Alpha",]), main=main, ...)
+    }
+    if (Which == "All" | (Which == "Beta" & is.null(main))) main <- "Beta Diversity"
+    if (Which == "All" | Which == "Beta") {
+      graphics::plot(as.SimTest(x$TotalBetaDiversity, x$SimulatedDiversity["Beta",]), main=main, ...)
+    }
+    if (Which == "All" | (Which == "Gamma" & is.null(main))) main <- "Gamma Diversity"
+    if (Which == "All" | Which == "Gamma") {
+      graphics::plot(as.SimTest(x$GammaDiversity, x$SimulatedDiversity["Gamma",]), main=main, ...)
+    }
+    
+    # Legend and restore parameters
+    if (Which == "All") {
+      graphics::par(mar=c(0, 0, 0, 0))
+      graphics::plot(0:10, 0:10, type="n", xlab=NULL, frame.plot=FALSE, xaxt="n", yaxt="n", col.lab="white")
+      leg <- c("Null Distribution", "True Estimate", "95% confidence interval") 
+      graphics::legend(2, 8, leg, col = c(1, 2, 1), lty = 1:3, merge = TRUE, cex=1)
+      graphics::par(op)
+    }
+  }
+
+
+autoplot.DivEst <- 
+function (x, ..., main = NULL, Which = "All", labels = NULL, font.label = list(size=11, face="plain")) 
 {
-  # Save graphical parameters
-  op <- graphics::par(no.readonly = TRUE)
-  graphics::par(mfrow=c(2, 2))
-  
   if (Which == "All" | (Which == "Alpha" & is.null(main))) main <- "Alpha Diversity"
   if (Which == "All" | Which == "Alpha") {
-    graphics::plot(as.SimTest(x$TotalAlphaDiversity, x$SimulatedDiversity["Alpha",]), main=main, ...)
+    AlphaPlot <- autoplot(as.SimTest(x$TotalAlphaDiversity, x$SimulatedDiversity["Alpha",]), main=main, ...)
   }
+  if (Which == "Alpha")
+    return(AlphaPlot)
+
   if (Which == "All" | (Which == "Beta" & is.null(main))) main <- "Beta Diversity"
   if (Which == "All" | Which == "Beta") {
-    graphics::plot(as.SimTest(x$TotalBetaDiversity, x$SimulatedDiversity["Beta",]), main=main, ...)
+    BetaPlot <- autoplot(as.SimTest(x$TotalBetaDiversity, x$SimulatedDiversity["Beta",]), main=main, ...)
   }
+  if (Which == "Beta")
+    return(BetaPlot)
+  
   if (Which == "All" | (Which == "Gamma" & is.null(main))) main <- "Gamma Diversity"
   if (Which == "All" | Which == "Gamma") {
-    graphics::plot(as.SimTest(x$GammaDiversity, x$SimulatedDiversity["Gamma",]), main=main, ...)
+    GammaPlot <- autoplot(as.SimTest(x$GammaDiversity, x$SimulatedDiversity["Gamma",]), main=main, ...)
   }
+  if (Which == "Gamma")
+    return(GammaPlot)
   
-  # Legend and restore parameters
-  if (Which == "All") {
-    graphics::par(mar=c(0, 0, 0, 0))
-    graphics::plot(0:10, 0:10, type="n", xlab=NULL, frame.plot=FALSE, xaxt="n", yaxt="n", col.lab="white")
-    leg <- c("Null Distribution", "True Estimate", "95% confidence interval") 
-    graphics::legend(2, 8, leg, col = c(1, 2, 1), lty = 1:3, merge = TRUE, cex=1)
-    graphics::par(op)
-  }
+  # Which == "All": return a multiple plot
+  return(ggpubr::ggarrange(AlphaPlot + labs(x=NULL), BetaPlot + labs(x=NULL), GammaPlot, 
+                           ncol = 1, nrow = 3, labels=labels, font.label=font.label))
 }
 
 

@@ -2,6 +2,7 @@
 \alias{DivEst}
 \alias{is.DivEst}
 \alias{plot.DivEst}
+\alias{autoplot.DivEst}
 \alias{summary.DivEst}
 \title{
   Diversity Estimation of a metacommunity
@@ -14,6 +15,8 @@ DivEst(q = 0, MC, Biased = TRUE, Correction = "Best", Tree = NULL,
   Normalize = TRUE, Z = NULL, Simulations = 100, CheckArguments = TRUE)
 is.DivEst(x)
 \method{plot}{DivEst}(x, \dots, main = NULL, Which = "All")
+\method{autoplot}{DivEst}(x, \dots, main = NULL, Which = "All",
+  font.label = list(size=11, face="plain"))
 \method{summary}{DivEst}(object, \dots)
 }
 \arguments{
@@ -53,6 +56,12 @@ is.DivEst(x)
   }
   \item{Which}{
   May be \code{"Alpha"}, \code{"Beta"} or \code{"Gamma"} to respectively plot the metacommunity's alpha, beta or gamma diversity. If \code{"All"} (default), all three plots are shown.
+  }
+  \item{labels}{
+  Vector of labels to be added to multiple plots. \code{"auto"} is the same as \code{c("a", "b", "c", "d)"}.
+  }
+  \item{font.label}{
+  A list of arguments to customize labels. See \code{\link{ggarrange}}.
   }
   \item{object}{
   A \code{MCdiversity} object to be summarized.

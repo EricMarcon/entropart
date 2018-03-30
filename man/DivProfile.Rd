@@ -2,6 +2,7 @@
 \alias{DivProfile}
 \alias{is.DivProfile}
 \alias{plot.DivProfile}
+\alias{autoplot.DivProfile}
 \alias{summary.DivProfile}
 \title{
   Diversity Profile of a metacommunity
@@ -17,6 +18,9 @@ is.DivProfile(x)
 \method{plot}{DivProfile}(x, \dots, main = NULL, xlab = "Order of Diversity",
   ylab = NULL, Which = "All", 
   LineWidth = 2, ShadeColor = "grey75", BorderColor = "red")
+\method{autoplot}{DivProfile}(x, \dots, main = NULL, xlab = "Order of Diversity",
+  ylab = NULL, Which = "All", ShadeColor = "grey75", BorderColor = "red", 
+  labels = NULL, font.label = list(size=11, face="plain"))
 \method{summary}{DivProfile}(object, \dots)
 }
 \arguments{
@@ -76,6 +80,12 @@ is.DivProfile(x)
   }
   \item{BorderColor}{
   The color of the bounds of the confidence envelope.
+  }
+  \item{labels}{
+  Vector of labels to be added to multiple plots. \code{"auto"} is the same as \code{c("a", "b", "c", "d)"}.
+  }
+  \item{font.label}{
+  A list of arguments to customize labels. See \code{\link{ggarrange}}.
   }
   \item{object}{
   A \code{MCdiversity} object to be summarized.
@@ -137,5 +147,6 @@ data(Paracou618)
 # Estimate diversity.
 Profile <- DivProfile(q.seq = seq(0, 2, 0.1), Paracou618.MC, Biased = FALSE)
 plot(Profile)
+autoplot(Profile)
 summary(Profile)
 }
