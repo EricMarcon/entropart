@@ -112,31 +112,14 @@ function(x, ..., main = NULL,
 
 
 autoplot.CommunityProfile <- 
-  function(x, ..., main = NULL, 
-           xlab = "Order of Diversity", ylab = "Diversity", ylim = NULL,
-           ShadeColor = "grey75", BorderColor = "red")
+  function(object, ..., main = NULL, 
+           xlab = "Order of Diversity", ylab = "Diversity", 
+           ShadeColor = "grey75", alpha = 0.3, BorderColor = "red")
 {  
-  if (is.null(ylim)) {
-    # Evaluate ylim if not set by an argument
-    if (is.null(x$low)) {
-      ymin <- min(x$y)
-    } else {
-      ymin <- min(x$low)
-    }
-    if (is.null(x$high)) {
-      ymax <- max(x$y)
-    } else {
-      ymax <- max(x$high)
-    }
-  } else {
-    ymin <- ylim[1]
-    ymax <- ylim[2]
-  }
-  
-  thePlot <- ggplot2::ggplot(as.data.frame.list(x), ggplot2::aes_(x=~x, y=~y))
-  if (!(is.null(x$high) | is.null(x$low))) {
+  thePlot <- ggplot2::ggplot(as.data.frame.list(object), ggplot2::aes_(x=~x, y=~y))
+  if (!(is.null(object$high) | is.null(object$low))) {
     thePlot <- thePlot +
-      ggplot2::geom_ribbon(ggplot2::aes_(ymin=~low, ymax=~high), fill = ShadeColor) +
+      ggplot2::geom_ribbon(ggplot2::aes_(ymin=~low, ymax=~high), fill=ShadeColor, alpha=alpha) +
       # Add red lines on borders of polygon
       ggplot2::geom_line(ggplot2::aes_(y=~low), colour=BorderColor, linetype=2) +
       ggplot2::geom_line(ggplot2::aes_(y=~high), colour=BorderColor, linetype=2)

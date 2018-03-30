@@ -15,8 +15,8 @@ DivEst(q = 0, MC, Biased = TRUE, Correction = "Best", Tree = NULL,
   Normalize = TRUE, Z = NULL, Simulations = 100, CheckArguments = TRUE)
 is.DivEst(x)
 \method{plot}{DivEst}(x, \dots, main = NULL, Which = "All")
-\method{autoplot}{DivEst}(x, \dots, main = NULL, Which = "All",
-  font.label = list(size=11, face="plain"))
+\method{autoplot}{DivEst}(object, \dots, main = NULL, Which = "All",
+  labels = NULL, font.label = list(size=11, face="plain"))
 \method{summary}{DivEst}(object, \dots)
 }
 \arguments{
@@ -64,7 +64,7 @@ is.DivEst(x)
   A list of arguments to customize labels. See \code{\link{ggarrange}}.
   }
   \item{object}{
-  A \code{MCdiversity} object to be summarized.
+  A \code{MCdiversity} object to be summarized or plotted.
   }
   \item{\dots}{
   Additional arguments to be passed to the generic methods.

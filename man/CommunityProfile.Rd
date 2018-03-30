@@ -3,7 +3,7 @@
 \alias{as.CommunityProfile}
 \alias{is.CommunityProfile}
 \alias{plot.CommunityProfile}
-\alias{auplot.CommunityProfile}
+\alias{autoplot.CommunityProfile}
 \alias{CEnvelope}
 \title{
   Diversity or Entropy Profile of a community
@@ -20,9 +20,9 @@ is.CommunityProfile(x)
 \method{plot}{CommunityProfile}(x, \dots, main = NULL, 
           xlab = "Order of Diversity", ylab = "Diversity", ylim = NULL,
           LineWidth = 2, ShadeColor = "grey75", BorderColor = "red")
-\method{plot}{CommunityProfile}(x, \dots, main = NULL, 
-          xlab = "Order of Diversity", ylab = "Diversity", ylim = NULL,
-          ShadeColor = "grey75", BorderColor = "red")
+\method{autoplot}{CommunityProfile}(object, \dots, main = NULL, 
+          xlab = "Order of Diversity", ylab = "Diversity",
+          ShadeColor = "grey75", alpha = 0.3, BorderColor = "red")
 CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", \dots)
 }
 \arguments{
@@ -46,6 +46,9 @@ CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", \d
   }
   \item{size}{
   The size of simulated communities used to compute the bootstrap confidence envelope. 1 (default) means that the actual size must be used.
+  }
+  \item{object}{
+  An object.
   }
   \item{x}{
   An object to be tested or plotted or the vector of orders of community profiles in \code{as.CommunityProfile}.
@@ -85,6 +88,9 @@ CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", \d
   }
   \item{BorderColor}{
   The color of the bounds of the confidence envelope.
+  }
+  \item{alpha}{
+  Opacity of the confidence enveloppe, between 0 and 1.
   }
   \item{CheckArguments}{
   Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
