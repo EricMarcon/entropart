@@ -92,6 +92,25 @@ function (x, ...)
 }
 
 
+
+autoplot.DivPart <- 
+function (object, ...) 
+{
+  thePlot <- ggplot2::ggplot() +
+    ggplot2::geom_rect(ggplot2::aes_(xmin=~xmin, ymin=~ymin, xmax=~xmax, ymax=~ymax), 
+                       data.frame(xmin=0, ymin=0, xmax=object$GammaDiversity, ymax=1), alpha=0.3) +
+    ggplot2::geom_rect(ggplot2::aes_(xmin=~xmin, ymin=~ymin, xmax=~xmax, ymax=~ymax), 
+                       data.frame(xmin=0, ymin=0, xmax=object$TotalAlphaDiversity, ymax=object$TotalBetaDiversity), alpha=0.3) +
+    expand_limits(y=c(0, length(object$CommunityAlphaDiversities))) +
+    labs(x=expression(paste(alpha, " and ", gamma, " diversity")), y=expression(paste(beta, " diversity"))) +
+    annotate(geom="text", y=0, x=object$TotalAlphaDiversity, parse=TRUE, label=as.character(expression(alpha))) +
+    annotate(geom="text", y=0, x=object$GammaDiversity, parse=TRUE, label=as.character(expression(gamma))) +
+    annotate(geom="text", x=0, y=object$TotalBetaDiversity, parse=TRUE, label=as.character(expression(beta)))
+  
+  return(thePlot)
+}
+
+
 summary.DivPart <-
 function(object, ...) 
 {    

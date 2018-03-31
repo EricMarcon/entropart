@@ -18,6 +18,22 @@ function (x, ...)
 }
 
 
+autoplot.MCentropy <- 
+function (object, ...) 
+{
+  theData <- data.frame(x=c(names(object$Communities), "", "Metacommunity"), y=c(object$Communities, 0, object$Total))
+  # Factors to keep the order of bars (avoid sort by name)
+  theData$x <- factor(theData$x, levels=theData$x)
+  
+  thePlot <- ggplot2::ggplot(theData, aes_(x=~x, y=~y)) + 
+    ggplot2::geom_col(width=c(object$Weights, .5, .1)) +
+    labs(y="Entropy")
+  
+  return(thePlot)
+}
+
+
+
 summary.MCentropy <-
 function(object, ...) 
 {

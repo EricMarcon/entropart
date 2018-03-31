@@ -2,6 +2,7 @@
 \alias{MCentropy}
 \alias{is.MCentropy}
 \alias{plot.MCentropy}
+\alias{autoplot.MCentropy}
 \alias{summary.MCentropy}
 \title{
   Meta-Community entropy class.
@@ -12,6 +13,7 @@
 \usage{
 is.MCentropy(x)
 \method{plot}{MCentropy}(x, \dots)
+\method{autoplot}{MCentropy}(x, \dots)
 \method{summary}{MCentropy}(object, \dots)
 }
 \arguments{
@@ -19,7 +21,7 @@ is.MCentropy(x)
   An object to be tested or plotted.
   }
   \item{object}{
-  A \code{MCentropy} object to be summarized.
+  A \code{MCentropy} object to be summarized or plotted.
   }
   \item{\dots}{
   Additional arguments to be passed to the generic methods.

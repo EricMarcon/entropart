@@ -2,6 +2,7 @@
 \alias{DivPart}
 \alias{is.DivPart}
 \alias{plot.DivPart}
+\alias{autoplot.DivPart}
 \alias{summary.DivPart}
 \title{
   Diversity Partition of a metacommunity
@@ -14,6 +15,7 @@ DivPart(q = 1, MC, Biased = TRUE, Correction = "Best", Tree = NULL,
   Normalize = TRUE, Z = NULL, CheckArguments = TRUE)
 is.DivPart(x)
 \method{plot}{DivPart}(x, \dots)
+\method{plot}{DivPart}(object, \dots)
 \method{summary}{DivPart}(object, \dots)
 }
 \arguments{
@@ -48,7 +50,7 @@ is.DivPart(x)
   An object to be tested or plotted.
   }
   \item{object}{
-  A \code{MCdiversity} object to be summarized.
+  A \code{MCdiversity} object to be summarized or plotted.
   }
   \item{\dots}{
   Additional arguments to be passed to the generic methods.

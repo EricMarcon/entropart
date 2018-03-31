@@ -2,6 +2,7 @@
 \alias{MCdiversity}
 \alias{is.MCdiversity}
 \alias{plot.MCdiversity}
+\alias{autoplot.MCdiversity}
 \alias{summary.MCdiversity}
 \title{
   Meta-Community diversity class.
@@ -12,6 +13,7 @@
 \usage{
 is.MCdiversity(x)
 \method{plot}{MCdiversity}(x, \dots)
+\method{autoplot}{MCdiversity}(x, \dots)
 \method{summary}{MCdiversity}(object, \dots)
 }
 \arguments{
@@ -19,7 +21,7 @@ is.MCdiversity(x)
   An object to be tested or plotted.
   }
   \item{object}{
-  A \code{MCdiversity} object to be summarized.
+  A \code{MCdiversity} object to be summarized or plotted.
   }
   \item{\dots}{
   Additional arguments to be passed to the generic methods.
