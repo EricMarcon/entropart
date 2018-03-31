@@ -19,7 +19,7 @@ is.DivProfile(x)
   ylab = NULL, Which = "All", 
   LineWidth = 2, ShadeColor = "grey75", BorderColor = "red")
 \method{autoplot}{DivProfile}(object, \dots, main = NULL, xlab = "Order of Diversity",
-  ylab = NULL, Which = "All", ShadeColor = "grey75", BorderColor = "red", 
+  ylab = NULL, Which = "All", ShadeColor = "grey75", alpha = 0.3, BorderColor = "red", 
   labels = NULL, font.label = list(size=11, face="plain"))
 \method{summary}{DivProfile}(object, \dots)
 }

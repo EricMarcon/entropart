@@ -13,7 +13,7 @@
 \usage{
 is.MCentropy(x)
 \method{plot}{MCentropy}(x, \dots)
-\method{autoplot}{MCentropy}(x, \dots)
+\method{autoplot}{MCentropy}(object, \dots)
 \method{summary}{MCentropy}(object, \dots)
 }
 \arguments{

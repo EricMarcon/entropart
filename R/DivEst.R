@@ -107,14 +107,14 @@ function (object, ..., main = NULL, Which = "All", labels = NULL, font.label = l
 
   if (Which == "All" | (Which == "Beta" & is.null(main))) main <- "Beta Diversity"
   if (Which == "All" | Which == "Beta") {
-    BetaPlot <- autoplot(as.SimTest(object$TotalBetaDiversity, object$SimulatedDiversity["Beta",]), main=main, ...)
+    BetaPlot <- autoplot(as.SimTest(c$TotalBetaDiversity, object$SimulatedDiversity["Beta",]), main=main, ...)
   }
   if (Which == "Beta")
     return(BetaPlot)
   
   if (Which == "All" | (Which == "Gamma" & is.null(main))) main <- "Gamma Diversity"
   if (Which == "All" | Which == "Gamma") {
-    GammaPlot <- autoplot(as.SimTest(x$GammaDiversity, x$SimulatedDiversity["Gamma",]), main=main, ...)
+    GammaPlot <- autoplot(as.SimTest(object$GammaDiversity, object$SimulatedDiversity["Gamma",]), main=main, ...)
   }
   if (Which == "Gamma")
     return(GammaPlot)

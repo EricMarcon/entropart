@@ -13,7 +13,7 @@
 \usage{
 is.MCdiversity(x)
 \method{plot}{MCdiversity}(x, \dots)
-\method{autoplot}{MCdiversity}(x, \dots)
+\method{autoplot}{MCdiversity}(object, \dots)
 \method{summary}{MCdiversity}(object, \dots)
 }
 \arguments{

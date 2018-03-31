@@ -15,7 +15,7 @@ DivPart(q = 1, MC, Biased = TRUE, Correction = "Best", Tree = NULL,
   Normalize = TRUE, Z = NULL, CheckArguments = TRUE)
 is.DivPart(x)
 \method{plot}{DivPart}(x, \dots)
-\method{plot}{DivPart}(object, \dots)
+\method{autoplot}{DivPart}(object, \dots)
 \method{summary}{DivPart}(object, \dots)
 }
 \arguments{
