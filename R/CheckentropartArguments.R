@@ -109,6 +109,19 @@ function() {
       ErrorMessage("CEstimator must be a string.", CEstimator)
   }
   
+  # Level
+  if (!is.na(names(Args["Level"]))) {
+    Level <- eval(expression(Level), parent.frame())
+    if (!is.numeric(Level) | length(Level)!=1)
+      ErrorMessage("Level must be a number.", Level)
+    if (Level <=0)
+      ErrorMessage("Level must be positive", alpha)
+    if (Level > 1)
+      # Level is an abundance
+      if (as.integer(Level) != Level)
+        ErrorMessage("Level must be an integer.", Level)
+  }
+
   # k
   if (!is.na(names(Args["k"]))) {
     k <- eval(expression(k), parent.frame())
@@ -119,7 +132,7 @@ function() {
     if (as.integer(k) != k)
       ErrorMessage("k must be an integer.", k)
   }
-
+  
   # mean
   if (!is.na(names(Args["mean"]))) {
     mean <- eval(expression(mean), parent.frame())
