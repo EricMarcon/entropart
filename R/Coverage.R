@@ -121,3 +121,39 @@ ChaoA <- function(Ns) {
   
   return(A)
 }
+
+
+
+Coverage2Size <-
+function(Ns, SampleCoverage, CheckArguments = TRUE)
+{
+  if (CheckArguments)
+    CheckentropartArguments()
+  
+  # Round values
+  Ns <- as.integer(round(Ns))
+  # Eliminate zeros
+  Ns <- Ns[Ns>0]
+  # Calculate abundance distribution
+  DistN <- tapply(Ns, Ns, length)
+  Singletons <- DistN["1"]
+  SampleSize <- sum(Ns)
+  
+  # Singletons only
+  if (Singletons == SampleSize) {
+    stop("Sample coverage is 0.")
+  }
+  
+  # Actual coverage
+  C <- Coverage(Ns, Estimator = "Chao", CheckArguments = FALSE)
+  
+  if (SampleCoverage >= C) {
+    # Extrapolation
+    Size <- round(SampleSize + (log(SampleSize/Singletons) + log(1-SampleCoverage))/log(1-ChaoA(Ns)) - 1)
+  } else {
+    # Interpolation. Numeric resolution: minimize Delta.
+    Delta <- function(Size) abs(Coverage(Ns, Estimator = "Chao", Level=Size, CheckArguments = FALSE) - SampleCoverage)
+    Size <- round(stats::optimize(Delta, lower=1, upper=SampleSize)$minimum)
+  }
+  return(Size)
+}
