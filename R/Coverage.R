@@ -13,10 +13,11 @@ function(Ns, Estimator = "Best", Level = NULL, CheckArguments = TRUE)
   Singletons <- DistN["1"]
   SampleSize <- sum(Ns)
   
-  if (is.na(Level)) {
+  if (is.null(Level)) {
     # Etimate C at the observed level
     
     if (Estimator == "Best") Estimator <- "ZhangHuang"
+    # More accurate
     
     # No singletons, C=1
     if (is.na(Singletons)) {
@@ -47,7 +48,7 @@ function(Ns, Estimator = "Best", Level = NULL, CheckArguments = TRUE)
       }    
     }
     if (Estimator == "Chao") {
-      coverage <- 1 - Singletons / SampleSize * (1-ChaoA)
+      coverage <- 1 - Singletons / SampleSize * (1-ChaoA(Ns))
       return(coverage)
     }
     if (Estimator == "Turing") {
@@ -60,11 +61,13 @@ function(Ns, Estimator = "Best", Level = NULL, CheckArguments = TRUE)
     # Chose level. Must be an integer. CheckEntropartArguments() may have accepted a value between 0 and 1
     if (Level <=1) stop("Level must be an integer >1.")
 
-    if (Estimator == "Best") Estimator <- "Good"
+    if (Estimator == "Best") Estimator <- "Chao"
+    # Faster. Extrapolation allowed.
     
     if (Estimator == "Good") {
       if (Level >= SampleSize) stop("The Good estimator only allows interpolation: Level must be less than the observed community size.")
       coverage <- 1 - EntropyEstimation::GenSimp.z(Ns, Level)
+      names(coverage) <- "Good"
       return(coverage)
     }
     if (Estimator == "Chao") {
@@ -75,8 +78,16 @@ function(Ns, Estimator = "Best", Level = NULL, CheckArguments = TRUE)
           * exp(lgamma(SampleSize - NsRestricted + 1) - lgamma(SampleSize - NsRestricted - Level + 1) - lgamma(SampleSize) + lgamma(SampleSize - Level)))
       } else {
         # Extrapolation
-        coverage <- 1 - Singletons / SampleSize * (1 - ChaoA(Ns))^(Level - SampleSize + 1)
+        if (is.na(Singletons)) {
+          # No singletons, C=1
+          coverage <- 1
+          names(coverage) <- "No singleton"
+          return(coverage)
+        } else {
+          coverage <- 1 - Singletons / SampleSize * (1 - ChaoA(Ns))^(Level - SampleSize + 1)
+        }
       }
+      names(coverage) <- "Chao"
       return(coverage)
     }
   }

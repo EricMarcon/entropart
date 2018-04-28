@@ -112,14 +112,16 @@ function() {
   # Level
   if (!is.na(names(Args["Level"]))) {
     Level <- eval(expression(Level), parent.frame())
-    if (!is.numeric(Level) | length(Level)!=1)
-      ErrorMessage("Level must be a number.", Level)
-    if (Level <=0)
-      ErrorMessage("Level must be positive", alpha)
-    if (Level > 1)
-      # Level is an abundance
-      if (as.integer(Level) != Level)
-        ErrorMessage("Level must be an integer.", Level)
+    if (!is.null(Level)) {
+      if (!is.numeric(Level) | length(Level)!=1)
+        ErrorMessage("Level must be a number.", Level)
+      if (Level <=0)
+        ErrorMessage("Level must be positive", alpha)
+      if (Level > 1)
+        # Level is an abundance
+        if (as.integer(Level) != Level)
+          ErrorMessage("Level must be an integer.", Level)
+    }
   }
 
   # k
