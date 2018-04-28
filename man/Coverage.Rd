@@ -1,13 +1,16 @@
 \name{Coverage}
 \alias{Coverage}
+\alias{Coverage2Size}
 \title{
   Sample coverage of a community
 }
 \description{
-  Calculates an estimator of the sample coverage of a community described by its abundance vector.
+  \code{"Coverage"} calculates an estimator of the sample coverage of a community described by its abundance vector.
+  \code{"Coverage2Size"} estimates the sample size corresponding to the chosen sample coverage.
 }
 \usage{
 Coverage(Ns, Estimator = "Best", Level = NULL, CheckArguments = TRUE)
+Coverage2Size(Ns, SampleCoverage, CheckArguments = TRUE)
 }
 \arguments{
   \item{Ns}{
@@ -18,6 +21,9 @@ Coverage(Ns, Estimator = "Best", Level = NULL, CheckArguments = TRUE)
   }
   \item{Level}{
   The level of interpolation or extrapolation, i.e. an abundance.
+  }
+  \item{SampleCoverage}{
+  The target sample coverage. 
   }
   \item{CheckArguments}{
   Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
