@@ -1,8 +1,12 @@
-# Changes in entropart Version 1.5-3-9004
+# Changes in entropart Version 1.5-3-9005
+
+## New features
+
+- estimation of diversity at a chosen level (sample size or coverage).
+- ggplot2 supported. `autoplot()` methods added for entropart objects.
 
 ## Improvements
 
-- ggplot2 supported. `autoplot()` methods added for entropart objects.
 - Unit tests added.
 
 
@@ -19,7 +23,6 @@
 ## Bug Correction
 
 - Very large metacommunities returned an integer overflow error.
-
 
 
 
