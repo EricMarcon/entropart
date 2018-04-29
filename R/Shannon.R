@@ -24,7 +24,7 @@ function(NorP, ..., CheckArguments = TRUE, Ps = NULL)
 
 
 Shannon.AbdVector <-
-function(NorP, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL) 
+function(NorP, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -33,12 +33,16 @@ function(NorP, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL)
       stop("An argument NorP or Ns must be provided.")
     }
   }
-  return (bcShannon(Ns=NorP, Correction=Correction, CheckArguments=CheckArguments))
+  if (is.null(Level)) {
+    return (bcShannon(Ns=NorP, Correction=Correction, CheckArguments=CheckArguments))
+  } else {
+    return (Shannon.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+  }
 }
 
 
 Shannon.integer <-
-function(NorP, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL)
+function(NorP, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -47,12 +51,16 @@ function(NorP, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL)
       stop("An argument NorP or Ns must be provided.")
     }
   }
-  return (bcShannon(Ns=NorP, Correction=Correction, CheckArguments=CheckArguments))
+  if (is.null(Level)) {
+    return (bcShannon(Ns=NorP, Correction=Correction, CheckArguments=CheckArguments))
+  } else {
+    return (Shannon.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+  }
 }
 
 
 Shannon.numeric <-
-function(NorP, Correction = "Best", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -71,7 +79,17 @@ function(NorP, Correction = "Best", ..., CheckArguments = TRUE, Ps = NULL, Ns = 
     return (Shannon.ProbaVector(NorP, CheckArguments=CheckArguments))
   } else {
     # Abundances
-    return (Shannon.AbdVector(NorP, Correction=Correction, CheckArguments=CheckArguments))
+    if (is.null(Level)) {
+      return (Shannon.AbdVector(NorP, Correction=Correction, CheckArguments=CheckArguments))
+    } else {
+      # If Level is coverage, get size
+      if (Level < 1) Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=CheckArguments)
+      # Obtain Abundance Frequence Count
+      afc <- AbdFreqCount(NorP, Level=Level, Estimator=Correction, CheckArguments=FALSE)
+      entropy <- -(sum((1:Level)/Level * log((1:Level)/Level) * afc[, 2]))
+      names(entropy) <- names(afc)
+      return (entropy)
+    } 
   }
 }
 
