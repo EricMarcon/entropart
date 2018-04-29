@@ -87,7 +87,7 @@ function(NorP, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ps
       # Obtain Abundance Frequence Count
       afc <- AbdFreqCount(NorP, Level=Level, Estimator=Correction, CheckArguments=FALSE)
       entropy <- -(sum((1:Level)/Level * log((1:Level)/Level) * afc[, 2]))
-      names(entropy) <- names(afc)
+      names(entropy) <- attr(afc, "Estimator")
       return (entropy)
     } 
   }
