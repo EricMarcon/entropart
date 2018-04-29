@@ -30,7 +30,7 @@ function(NorP, q = 1, ..., CheckArguments = TRUE, Ps = NULL)
 
 
 Tsallis.AbdVector <-
-function(NorP, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL) 
+function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -39,12 +39,16 @@ function(NorP, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL
       stop("An argument NorP or Ns must be provided.")
     }
   }
-  return (bcTsallis(Ns=NorP, q=q, Correction=Correction, CheckArguments=CheckArguments))
+  if (is.null(Level)) {
+    return (bcTsallis(Ns=NorP, q=q, Correction=Correction, CheckArguments=CheckArguments))
+  } else {
+    return (Tsallis.numeric(NorP, q=q, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+  }
 }
 
 
 Tsallis.integer <-
-function(NorP, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL)
+function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -53,12 +57,16 @@ function(NorP, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL
       stop("An argument NorP or Ns must be provided.")
     }
   }
-  return(bcTsallis(Ns=NorP, q=q, Correction=Correction, CheckArguments=CheckArguments))
+  if (is.null(Level)) {
+    return(bcTsallis(Ns=NorP, q=q, Correction=Correction, CheckArguments=CheckArguments))
+  } else {
+    return (Tsallis.numeric(NorP, q=q, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+  }
 }
 
 
 Tsallis.numeric <-
-function(NorP, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -77,7 +85,26 @@ function(NorP, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ps = NULL
     return(Tsallis.ProbaVector(NorP, q=q, CheckArguments=CheckArguments))
   } else {
     # Abundances
-    return(Tsallis.AbdVector(NorP, q=q, Correction=Correction, CheckArguments=CheckArguments))
+    if (is.null(Level)) {
+      return(Tsallis.AbdVector(NorP, q=q, Correction=Correction, CheckArguments=CheckArguments))
+    } else {
+      if (q==1) {
+        return(Shannon.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+      } else {
+        if (q==2) {
+          return(Simpson.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+        } else {
+          # non integer q
+          # If Level is coverage, get size
+          if (Level < 1) Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=CheckArguments)
+          # Obtain Abundance Frequence Count
+          afc <- AbdFreqCount(NorP, Level=Level, Estimator=Correction, CheckArguments=FALSE)
+          entropy <- (1 - sum(((1:Level)/Level)^q * afc[, 2]))/(q-1)
+        }
+      }
+      names(entropy) <- names(afc)
+      return (entropy)
+    }
   }
 }
 

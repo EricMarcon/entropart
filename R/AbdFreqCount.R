@@ -18,10 +18,10 @@ function (Ns, Level = NULL, Estimator = "Best", CheckArguments = TRUE)
     # No extrapolation. Prepare a two-column matrix
     afc <- matrix(c(as.integer(names(DistNs)), DistNs), ncol = 2)
   } else {
-    Singletons <- DistN["1"]
+    Singletons <- DistNs["1"]
     SampleSize <- sum(Ns)
     # If Level is coverage, get size
-    if (Level < 1) Level <- Coverage2Size(Ns, Level, CheckArguments=FALSE)
+    if (Level < 1) Level <- Coverage2Size(Ns, SampleCoverage=Level, CheckArguments=FALSE)
     if (Level <= SampleSize) {
       # Interpolation
       Snu <- sapply(1:Level, function(nu) sum(exp(lchoose(Ns, nu) + lchoose(SampleSize-Ns, Level-nu) - lchoose(SampleSize, Level))))
@@ -34,9 +34,9 @@ function (Ns, Level = NULL, Estimator = "Best", CheckArguments = TRUE)
         # Extrapolate
         Snu <- sapply(1:Level, function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))))
       }
-      # Make a matrix and eliminate zeros
-      afc <- cbind(1:Level, Snu)[Snu > .Machine$double.eps, ]
     }
+    # Make a matrix with all possible abundances
+    afc <- cbind(1:Level, Snu)
   }
   colnames(afc) <- c("Abundance", "NbSpecies")
   class(afc) <- c("AbdFreqCount", class(afc))

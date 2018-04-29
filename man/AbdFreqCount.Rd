@@ -28,7 +28,7 @@ AbdFreqCount(Ns, Level = NULL, Estimator = "Best", CheckArguments = TRUE)
   
   It is a way to summarize the species distribution.
   
-  It can be estimated at a specified level by interpolation or extrapolation. Extrapolation relies on the estimation of eq. (5) of Chao et al. (2014). The \code{"UnveilJ"} estimator builds the full distribution (Chao et al., 2015) of probabilities.
+  It can be estimated at a specified level of interpolation or extrapolation. Extrapolation relies on the estimation of eq. (5) of Chao et al. (2014). The \code{"UnveilJ"} estimator builds the full distribution (Chao et al., 2015) of probabilities.
 }
 \value{
   A two-column matrix. The first column contains the number of observations, the second one the number of species observed this number of times.

@@ -17,11 +17,11 @@ bcTsallis(Ns, q = 1, Correction = "Best", SampleCoverage = NULL,
   CheckArguments = TRUE)
 \method{Tsallis}{ProbaVector}(NorP, q = 1, \dots, 
   CheckArguments = TRUE, Ps = NULL)
-\method{Tsallis}{AbdVector}(NorP, q = 1, Correction = "Best", \dots, 
+\method{Tsallis}{AbdVector}(NorP, q = 1, Correction = "Best", Level = NULL, \dots, 
   CheckArguments = TRUE, Ns = NULL)
-\method{Tsallis}{integer}(NorP, q = 1, Correction = "Best", \dots, 
+\method{Tsallis}{integer}(NorP, q = 1, Correction = "Best", Level = NULL, \dots, 
   CheckArguments = TRUE, Ns = NULL)
-\method{Tsallis}{numeric}(NorP, q = 1, Correction = "Best", \dots, 
+\method{Tsallis}{numeric}(NorP, q = 1, Correction = "Best", Level = NULL, \dots, 
   CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 }
 \arguments{
@@ -38,7 +38,10 @@ bcTsallis(Ns, q = 1, Correction = "Best", SampleCoverage = NULL,
   A number: the order of entropy. Some corrections allow only a positive number. Default is 1 for Shannon entropy.
   }
   \item{Correction}{
-  A string containing one of the possible corrections: \code{"None"} (no correction), \code{"ChaoShen"}, \code{"GenCov"}, \code{"Grassberger"}, \code{"Holste"}, \code{"Bonachela"}, \code{"ZhangGrabchak"}, or \code{"ChaoWangJost"}, \code{"Marcon"}, \code{"UnveilC"}, \code{"UnveiliC"}, \code{"UnveilJ"} or \code{"Best"}, the default value.  Currently, \code{"Best"} is \code{"ChaoWangJost"}.
+  A string containing one of the possible asymptotic estimators: \code{"None"} (no correction), \code{"ChaoShen"}, \code{"GenCov"}, \code{"Grassberger"}, \code{"Holste"}, \code{"Bonachela"}, \code{"ZhangGrabchak"}, or \code{"ChaoWangJost"}, \code{"Marcon"}, \code{"UnveilC"}, \code{"UnveiliC"}, \code{"UnveilJ"} or \code{"Best"}, the default value.  Currently, \code{"Best"} is \code{"ChaoWangJost"}. Interpolation and extrapolation rely on the estimators of \code{\link{AbdFreqCount}}.
+  }
+  \item{Level}{
+  The level of interpolation or extrapolation. It may be an a chosen sample size (an integer) or a sample coverage (a number between 0 and 1).
   }
   \item{SampleCoverage}{
   The sample coverage of \code{Ns} calculated elsewhere. Used to calculate the gamma diversity of meta-communities, see details. 
@@ -63,11 +66,15 @@ bcTsallis(Ns, q = 1, Correction = "Best", SampleCoverage = NULL,
   The functions are designed to be used as simply as possible. \code{Tsallis} is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function \code{bcTsallis} is called. Explicit calls to \code{bcTsallis} (with bias correction) or to \code{Tsallis.ProbaVector} (without correction) are possible to avoid ambiguity. The \code{.integer} and \code{.numeric} methods accept \code{Ps} or \code{Ns} arguments instead of \code{NorP} for backward compatibility.
   
   The size of a metacommunity (see \code{\link{MetaCommunity}}) is unknown so it has to be set according to a rule which does not ensure that its abundances are integer values. Then, classical bias-correction methods do not apply. Providing the \code{SampleCoverage} argument allows applying the \code{"ChaoShen"} and \code{"Grassberger"} corrections to estimate quite well the entropy. \code{\link{DivPart}} and \code{\link{GammaEntropy}} functions use this tweak.
+  
+  Entropy can be estimated at a specified level of interpolation or extrapolation, either a chosen sample size or sample coverage (Chao et al., 2014), rather than its asymptotic value.
 }
 \value{
   A named number equal to the calculated entropy. The name is that of the bias correction used.
 }
 \references{
+  Chao, A., Gotelli, N. J., Hsieh, T. C., Sander, E. L., Ma, K. H., Colwell, R. K., and  Ellison, A. M. (2014). Rarefaction and extrapolation with Hill numbers: A framework for sampling and estimation in species diversity studies.  \emph{Ecological Monographs}, 84(1): 45–67.
+
   Chao, A. and Jost, L. (2015) Estimating diversity and entropy profiles via discovery rates of new species. \emph{Methods in Ecology and Evolution} 6(8): 873-882.
 
   Chao, A., Hsieh, T. C., Chazdon, R. L., Colwell, R. K., Gotelli, N. J. (2015) Unveiling the Species-Rank Abundance Distribution by Generalizing Good-Turing Sample Coverage Theory. \emph{Ecology} 96(5): 1189-1201.
