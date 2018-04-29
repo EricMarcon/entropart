@@ -25,6 +25,8 @@ function (Ns, Level = NULL, Estimator = "Best", CheckArguments = TRUE)
     if (Level <= SampleSize) {
       # Interpolation
       Snu <- sapply(1:Level, function(nu) sum(exp(lchoose(Ns, nu) + lchoose(SampleSize-Ns, Level-nu) - lchoose(SampleSize, Level))))
+      # Make a matrix with all possible abundances
+      afc <- cbind(1:Level, Snu)
     } else {
       # Extrapolation. Unveiled estimator currently the best.
       if (Estimator == "Best") Estimator <- "UnveilJ"
@@ -33,10 +35,12 @@ function (Ns, Level = NULL, Estimator = "Best", CheckArguments = TRUE)
         PsU <- as.ProbaVector(Ns, RCorrection="Jackknife", Correction="Chao2015", Unveiling="geom")
         # Extrapolate
         Snu <- sapply(1:Level, function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))))
+        # Make a matrix with all possible abundances
+        afc <- cbind(1:Level, Snu)
+        # Return the estimator as an attribute
+        attr(afc, "Estimator") <- Estimator
       }
     }
-    # Make a matrix with all possible abundances
-    afc <- cbind(1:Level, Snu)
   }
   colnames(afc) <- c("Abundance", "NbSpecies")
   class(afc) <- c("AbdFreqCount", class(afc))

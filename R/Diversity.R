@@ -25,7 +25,7 @@ function(NorP, q = 1, ..., CheckArguments = TRUE, Ps = NULL)
 
 
 Diversity.AbdVector <-
-function(NorP, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL)
+function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -34,12 +34,17 @@ function(NorP, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL
       stop("An argument NorP or Ns must be provided.")
     }
   }
-  return (bcDiversity(Ns=NorP, q=q, Correction=Correction, CheckArguments=CheckArguments))
+  if (is.null(Level)) {
+    return (bcDiversity(Ns=NorP, q=q, Correction=Correction, CheckArguments=CheckArguments))
+  } else {
+    Entropy <- Tsallis.AbdVector(NorP, q=q, Correction=Correction, Level=Level, CheckArguments=CheckArguments)
+    return (expq(Entropy, q))  
+  }
 }
 
 
 Diversity.integer <-
-function(NorP, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL)
+function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -48,12 +53,17 @@ function(NorP, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ns = NULL
       stop("An argument NorP or Ns must be provided.")
     }
   }
-  return (bcDiversity(Ns=NorP, q=q, Correction=Correction, CheckArguments=CheckArguments))
+  if (is.null(Level)) {
+    return (bcDiversity(Ns=NorP, q=q, Correction=Correction, CheckArguments=CheckArguments))
+  } else {
+    Entropy <- Tsallis.integer(NorP, q=q, Correction=Correction, Level=Level, CheckArguments=CheckArguments)
+    return (expq(Entropy, q))  
+  }
 }
 
 
 Diversity.numeric <-
-function(NorP, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -72,7 +82,12 @@ function(NorP, q = 1, Correction = "Best", ..., CheckArguments = TRUE, Ps = NULL
     return (Diversity.ProbaVector(NorP, q=q, CheckArguments=CheckArguments))
   } else {
     # Abundances
-    return (Diversity.AbdVector(NorP, q=q, Correction=Correction, CheckArguments=CheckArguments))
+    if (is.null(Level)) {
+      return (Diversity.AbdVector(NorP, q=q, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+    } else {
+      Entropy <- Tsallis.numeric(NorP, q=q, Correction=Correction, Level=Level, CheckArguments=CheckArguments)
+      return (expq(Entropy, q))  
+    }
   }
 }
 
