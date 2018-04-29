@@ -16,11 +16,11 @@ Simpson(NorP, \dots)
 bcSimpson(Ns, Correction = "Lande", CheckArguments = TRUE)
 \method{Simpson}{ProbaVector}(NorP, \dots, CheckArguments = TRUE, 
   Ps = NULL)
-\method{Simpson}{AbdVector}(NorP, Correction="Lande",  \dots, 
+\method{Simpson}{AbdVector}(NorP, Correction="Lande", Level = NULL, \dots, 
   CheckArguments = TRUE, Ns = NULL)
-\method{Simpson}{integer}(NorP, Correction="Lande", \dots, 
+\method{Simpson}{integer}(NorP, Correction="Lande", Level = NULL, \dots, 
   CheckArguments = TRUE, Ns = NULL)
-\method{Simpson}{numeric}(NorP, Correction="Lande", \dots, 
+\method{Simpson}{numeric}(NorP, Correction="Lande", Level = NULL, \dots, 
   CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 }
 \arguments{
@@ -34,7 +34,10 @@ bcSimpson(Ns, Correction = "Lande", CheckArguments = TRUE)
   A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities.
   }
   \item{Correction}{
-  A string containing one of the possible corrections accepted by \code{\link{bcTsallis}} or \code{"Lande"}, the default value (equivalent to \code{"Best"}).
+  A string containing one of the possible corrections accepted by \code{\link{bcTsallis}} or \code{"Lande"}, the default value (equivalent to \code{"Best"}). Interpolation and extropolation rely on Lande's asymptotic estimator, so \code{Correction} is ignored if \code{Level} is not \code{NULL}.
+  }
+  \item{Level}{
+  The level of interpolation or extrapolation. It may be an a chosen sample size (an integer) or a sample coverage (a number between 0 and 1).
   }
   \item{\dots}{
   Additional arguments. Unused.
@@ -49,11 +52,15 @@ bcSimpson(Ns, Correction = "Lande", CheckArguments = TRUE)
   Bias correction requires the number of individuals to estimate sample \code{\link{Coverage}}. Use \code{bcSimpson} and choose the \code{Correction}.
 
   The functions are designed to be used as simply as possible. \code{Simpson} is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function \code{bcSimpson} is called. Explicit calls to \code{bcSimpson} (with bias correction) or to \code{Simpson.ProbaVector} (without correction) are possible to avoid ambiguity. The \code{.integer} and \code{.numeric} methods accept \code{Ps} or \code{Ns} arguments instead of \code{NorP} for backward compatibility.
+
+  Entropy can be estimated at a specified level of interpolation or extrapolation, either a chosen sample size or sample coverage (Chao et al., 2014), rather than its asymptotic value.
 }
 \value{
   A named number equal to the calculated entropy. The name is that of the bias correction used.
 }
 \references{
+  Chao, A., Gotelli, N. J., Hsieh, T. C., Sander, E. L., Ma, K. H., Colwell, R. K., and  Ellison, A. M. (2014). Rarefaction and extrapolation with Hill numbers: A framework for sampling and estimation in species diversity studies.  \emph{Ecological Monographs}, 84(1): 45–67.
+
   Good, I. J. (1953). On the Population Frequency of Species and the Estimation of Population Parameters. \emph{Biometrika} 40(3/4): 237-264.
 
   Lande, R. (1996). Statistics and partitioning of species diversity, and similarity among multiple communities. \emph{Oikos} 76: 5-13.
