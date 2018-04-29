@@ -4,6 +4,8 @@
 
 - estimation of diversity at a chosen level (sample size or coverage).
 - ggplot2 supported. `autoplot()` methods added for entropart objects.
+- The "Best" estimator of diversity is now "UnveilJ".
+- The "ChaoWangJost" estimator is renamed "ChaoJost".
 
 ## Improvements
 

@@ -115,7 +115,7 @@ function(Ns, q = 1, Correction = "Best", SampleCoverage = NULL, CheckArguments =
   if (CheckArguments)
     CheckentropartArguments()
   
-  if (Correction == "Best") Correction <- "ChaoWangJost"
+  if (Correction == "Best") Correction <- "UnveilJ"
   
   # Eliminate 0
   Ns <- Ns[Ns > 0]
@@ -214,7 +214,7 @@ function(Ns, q = 1, Correction = "Best", SampleCoverage = NULL, CheckArguments =
   }
   
   # Not Shannon
-  if (Correction == "ZhangGrabchak" | Correction == "ChaoWangJost") {
+  if (Correction == "ZhangGrabchak" | Correction == "ChaoWangJost" | Correction == "ChaoJost") {
     # Weights. Useless here if EntropyEstimation is used, but weights are necessary for ChaoWangJost
     # i <- 1:N
     # w_vi <- (i-q)/i

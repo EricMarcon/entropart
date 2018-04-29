@@ -100,7 +100,7 @@ function(Ns, Correction = "Best", CheckArguments = TRUE)
   if (CheckArguments)
     CheckentropartArguments()
   
-  if (Correction == "Best") Correction <- "ChaoWangJost"
+  if (Correction == "Best") Correction <- "UnveilJ"
   
   # Eliminate 0
   Ns <- Ns[Ns > 0]
@@ -193,7 +193,7 @@ function(Ns, Correction = "Best", CheckArguments = TRUE)
       return (entropy)
     }
   }
-  if (Correction == "ChaoWangJost") {
+  if (Correction == "ChaoWangJost" | Correction == "ChaoJost") {
     # Calculate abundance distribution
     DistN <- tapply(Ns, Ns, length)
     Singletons <- DistN["1"]
@@ -217,7 +217,7 @@ function(Ns, Correction = "Best", CheckArguments = TRUE)
       Part2 <- vapply(1:(N-1), function(r) 1/r*(1-A)^r, 0) 
       ChaoWangJost <- as.numeric(ChaoWangJost + Singletons/N*(1-A)^(1-N)*(-log(A)-sum(Part2)))
     }
-    names(ChaoWangJost) <- Correction
+    names(ChaoWangJost) <- "ChaoJost"
     return(ChaoWangJost)  
   }
   if (Correction == "ZhangHz") {
