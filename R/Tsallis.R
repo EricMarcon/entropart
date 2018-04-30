@@ -171,7 +171,7 @@ function(Ns, q = 1, Correction = "Best", SampleCoverage = NULL, CheckArguments =
   
   
   # Common code for ZhangGrabchak. Useless if EntropyEstimation is used.
-  # if (Correction == "ZhangGrabchak" | Correction == "ChaoWangJost") {
+  # if (Correction == "ZhangGrabchak" | Correction == "ChaoWangJost" | Correction == "ChaoJost") {
   #   Ps <- Ns/N
   #   V <- 1:(N-1)
   #   # p_V_Ns is an array, containing (1 - (n_s-1)/(n-j)) for each species (lines) and all j from 1 to n-1

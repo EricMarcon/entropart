@@ -22,3 +22,4 @@ testthat::test_that("GenSimpson equals Simpson", {
   testthat::expect_equal(as.numeric(GenSimpson(Ps, 1)), as.numeric(Simpson(Ps)))
   testthat::expect_lt(bcGenSimpson(Ns, 1) - bcSimpson(Ns), 1/1000)
 })
+
