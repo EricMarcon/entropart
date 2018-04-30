@@ -44,7 +44,7 @@ Coverage2Size(Ns, SampleCoverage, CheckArguments = TRUE)
   
   Chao, A. and Shen, T.-J. (2010). \emph{Program SPADE: Species Prediction And Diversity Estimation. Program and user's guide}. CARE, Hsin-Chu, Taiwan.
   
-  Chao, A., Gotelli, N. J., Hsieh, T. C., Sander, E. L., Ma, K. H., Colwell, R. K., and  Ellison, A. M. (2014). Rarefaction and extrapolation with Hill numbers: A framework for sampling and estimation in species diversity studies.  \emph{Ecological Monographs}, 84(1): 45–67.
+  Chao, A., Gotelli, N. J., Hsieh, T. C., Sander, E. L., Ma, K. H., Colwell, R. K., Ellison, A. M (2014). Rarefaction and extrapolation with Hill numbers: A framework for sampling and estimation in species diversity studies.  \emph{Ecological Monographs}, 84(1): 45-67.
   
   Good, I. J. (1953). On the Population Frequency of Species and the Estimation of Population Parameters. \emph{Biometrika} 40(3/4): 237-264.
   

@@ -27,8 +27,8 @@ testthat::test_that("PhyloEntropy of order 2 equals Rao", {
   # No correction
   testthat::expect_equal(as.numeric(PhyloEntropy(Ps, 2, Paracou618.Taxonomy, Normalize = FALSE)$Total), 
                as.numeric(Rao(Ps, Paracou618.Taxonomy)))
-  # Best correction
-  testthat::expect_equal(as.numeric(PhyloEntropy(Ns, 2, Paracou618.Taxonomy, Normalize = FALSE)$Total), 
+  # With correction
+  testthat::expect_equal(as.numeric(PhyloEntropy(Ns, 2, Paracou618.Taxonomy, Normalize = FALSE, Correction = "ChaoJost")$Total), 
                as.numeric(Rao(Ns, Paracou618.Taxonomy)))
   # HqZ
   testthat::expect_equal(as.numeric(PhyloEntropy(Ps, 2, Paracou618.Taxonomy, Normalize = TRUE)$Total), 
@@ -66,3 +66,4 @@ testthat::test_that("PhyloEntropy of order 2 of a star dendrogram equals Simpson
   testthat::expect_lt((Simpson(PsStar)-Rao(PsStar, phyStar))/Simpson(PsStar), 
              1/1000)
 })
+

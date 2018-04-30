@@ -49,7 +49,7 @@ is.PhyloEntropy(x)
   If \code{FALSE}, it is the unnormalized weighted sum of the results.
   }
   \item{Correction}{
-  A string containing one of the possible corrections: \code{"None"} (no correction), \code{"ChaoShen"}, \code{"Grassberger"}, \code{"Holste"}, \code{"Bonachela"} or \code{"Best"}, the default value.
+  A string containing one of the possible corrections supported by \code{\link{Tsallis}}.
   }
   \item{SampleCoverage}{
   The sample coverage of \code{Ns} calculated elsewhere. Used to calculate the gamma diversity of meta-communities, see details. 

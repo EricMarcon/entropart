@@ -11,11 +11,6 @@ testthat::test_that("Warning is returned", {
   testthat::expect_warning(Coverage(c(8, 4, 2, 1), Estimator="ZhangHuang"), 
                            "Zhang-Huang sample coverage cannot be estimated because one probability is over 1/2. Chao estimator is returned.", 
                            ignore.case = TRUE)
-  # Chao no doubletons
-  testthat::expect_warning(Coverage(c(1, 5), Estimator="Chao"), 
-                           "Chao's sample coverage cannot be estimated because there are no doubletons. Turing estimator is returned.", 
-                           ignore.case = TRUE)
-  
 })
 
 # Check rarely used estimators

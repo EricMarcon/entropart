@@ -73,7 +73,7 @@ bcTsallis(Ns, q = 1, Correction = "Best", SampleCoverage = NULL,
   A named number equal to the calculated entropy. The name is that of the bias correction used.
 }
 \references{
-  Chao, A., Gotelli, N. J., Hsieh, T. C., Sander, E. L., Ma, K. H., Colwell, R. K., and  Ellison, A. M. (2014). Rarefaction and extrapolation with Hill numbers: A framework for sampling and estimation in species diversity studies.  \emph{Ecological Monographs}, 84(1): 45–67.
+  Chao, A., Gotelli, N. J., Hsieh, T. C., Sander, E. L., Ma, K. H., Colwell, R. K., Ellison, A. M (2014). Rarefaction and extrapolation with Hill numbers: A framework for sampling and estimation in species diversity studies.  \emph{Ecological Monographs}, 84(1): 45-67.
 
   Chao, A. and Jost, L. (2015) Estimating diversity and entropy profiles via discovery rates of new species. \emph{Methods in Ecology and Evolution} 6(8): 873-882.
 
