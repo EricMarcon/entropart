@@ -14,7 +14,7 @@ function(FUN, NorP, q.seq = seq(0, 2, 0.1),
     if (!is.IntValues(NorP)) warning("Evaluation of the confidence interval of community profiles requires integer abundances in argument NorP. Abundances have been rounded.")
     NsInt <- round(NorP)
     # Create a MetaCommunity made of simulated communities
-    if (size == 1) size=sum(NsInt)
+    if (size == 1) size <- sum(NsInt)
     # The simulated communities may be of arbitrary size to obtain the confidence interval of the diversity of a smaller community
     MCSim <- rCommunity(NumberOfSimulations, size=size, NorP=NsInt, BootstrapMethod=BootstrapMethod, CheckArguments = FALSE)
     # May return NA if the bootstrap method is not recognized
