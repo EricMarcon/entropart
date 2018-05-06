@@ -1,7 +1,7 @@
 CEnvelope <- 
 function(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", ...)
 { 
-  if (!is.CommunityProfile(Profile)) 
+  if (!is.CommunityProfile(Profile) & !is.AccumCurve(Profile)) 
     stop("Confidence Envelopes require a CommunityProfile.")
   if (!(is.null(Profile$high) | is.null(Profile$low))) {
   	# Shaded polygon (adapted from Didzis Elferts, 
