@@ -120,7 +120,6 @@ data(Paracou618)
 # Plot diversity estimated without bias correction
 plot(CommunityProfile(Diversity, Paracou618.MC$Ps, seq(0, 2, 0.2)), 
 lty=3, ylim=c(50, 350))
-autoplot(CommunityProfile(Diversity, Paracou618.MC$Ps, seq(0, 2, 0.2)))
 # Estimate diversity, with a condidence envelope 
 # (only 10 simulations to save time, should be 1000)
 Profile <- CommunityProfile(Diversity, as.AbdVector(Paracou618.MC$Ns), 
