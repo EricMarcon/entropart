@@ -1,19 +1,22 @@
 Package: entropart
 Type: Package
 Title: Entropy Partitioning to Measure Diversity
-Version: 1.5-3-9005
+Version: 1.5-3-9006
 Authors@R: c(
-    person("Eric", "Marcon", email="eric.marcon@ecofog.gf", role=c("aut", "cre")),
-    person("Bruno", "Herault", email="bruno.herault@cirad.fr", role="aut")
+    person("Eric", "Marcon", email="eric.marcon@ecofog.gf", role=c("aut", "cre"), comment = c(ORCID = "0000-0002-5249-321X")),
+    person("Bruno", "Herault", email="bruno.herault@cirad.fr", role="aut", comment = c(ORCID = "0000-0002-6950-7286"))
     )
 Description: Measurement and partitioning of diversity, based on Tsallis entropy, following Marcon and Herault (2015) <doi:10.18637/jss.v067.i08>.
              'entropart' provides functions to calculate alpha, beta and gamma diversity of communities, including phylogenetic and functional diversity.
              Estimation-bias corrections are available.
-URL: https://EricMarcon.github.io/entropart
+URL: https://github.com/EricMarcon/entropart
 BugReports: https://github.com/EricMarcon/entropart/issues
 License: GNU General Public License
 Depends: ggplot2
 Imports: ade4, ape, EntropyEstimation, geiger, ggpubr, graphics, grDevices, parallel, reshape2, stats, utils, vegan
-Suggests: testthat, packagedocs
+Suggests: testthat, knitr, pkgdown
 LazyData: true
-VignetteBuilder: packagedocs
+VignetteBuilder: knitr
+SystemRequirements: pandoc
+Encoding: UTF-8
+RoxygenNote: 6.1.1

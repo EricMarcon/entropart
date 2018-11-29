@@ -1,4 +1,4 @@
-# Entropy Partitioning to Measure Diversity
+# Entropy Partitioning to Measure Diversity <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
 [![CRAN version](http://www.r-pkg.org/badges/version/entropart)](https://cran.r-project.org/package=entropart)
 [![](http://cranlogs.r-pkg.org/badges/entropart)](https://cran.r-project.org/package=entropart)
