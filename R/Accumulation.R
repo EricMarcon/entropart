@@ -1,5 +1,5 @@
-EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), Estimator = "Best", 
-                  NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
+EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), Correction = "Best", 
+                  Simulations = 0, Alpha = 0.05, CheckArguments = TRUE)
 {
   if (CheckArguments)
     CheckentropartArguments()
@@ -123,8 +123,8 @@ function(x, ..., main = NULL,
   CEnvelope(x, LineWidth=LineWidth, ShadeColor=ShadeColor, BorderColor=BorderColor)
   
   # Actual value
-  abline(v=attr(x, "Size"), lty=2)
-  abline(h=attr(x, "Value"), lty=2)
+  graphics::abline(v=attr(x, "Size"), lty=2)
+  graphics::abline(h=attr(x, "Value"), lty=2)
 }
 
 
