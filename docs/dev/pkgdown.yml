@@ -1,0 +1,11 @@
+pandoc: 1.19.2.1
+pkgdown: 1.2.0
+pkgdown_sha: ~
+articles:
+  phylogenies: articles/phylogenies.html
+  reference: articles/reference.html
+  entropart: entropart.html
+urls:
+  reference: https://ericmarcon.github.io/entropart//reference
+  article: https://ericmarcon.github.io/entropart//articles
+

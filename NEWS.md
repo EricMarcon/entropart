@@ -1,8 +1,7 @@
-# Changes in entropart Version 1.5-3-9005
+# entropart 1.5-3-9006
 
 ## New features
 
-- estimation of diversity at a chosen level (sample size or coverage).
 - ggplot2 supported. `autoplot()` methods added for entropart objects.
 - The "Best" estimator of diversity is now "UnveilJ".
 - The "ChaoWangJost" estimator is renamed "ChaoJost".
@@ -10,10 +9,15 @@
 ## Improvements
 
 - Unit tests added.
+- Vignette by pkgdown.
 
+## Beta
+
+- estimation of diversity at a chosen level (sample size or coverage). Extrapolation is not fully operational.
+- entropy accumulation preversion functions.
 
   
-# Changes in entropart Version 1.5-3
+# entropart 1.5-3
 
 ## Improvements
 
@@ -28,7 +32,7 @@
 
 
 
-# Changes in entropart Version 1.4-8
+# entropart 1.4-8
 
 ## Bug Correction
 
@@ -43,7 +47,7 @@
 
 
 
-# Changes in entropart Version 1.4-7
+# entropart 1.4-7
 
 ## Bug Correction
 
@@ -59,7 +63,7 @@
   
 
 
-# Changes in entropart Version 1.4-6
+# entropart 1.4-6
 
 # Improvements
 
@@ -72,7 +76,7 @@
 
 
 
-# Changes in entropart Version 1.4-5
+# entropart 1.4-5
 
 ## User-visible changes
 
@@ -85,7 +89,7 @@
 
 
 
-# Changes in entropart Version 1.4-4
+# entropart 1.4-4
 
 ## User-visible changes 
 
@@ -99,7 +103,7 @@
 
 
 
-# Changes in entropart Version 1.4-3
+# entropart 1.4-3
 
 ## User-visible changes 
 
@@ -120,7 +124,7 @@
 
 
 
-# Changes in entropart Version 1.4.1
+# entropart 1.4.1
 
 
 ## New Features
@@ -137,7 +141,7 @@
   
   
   
-# Changes in entropart Version 1.3.3
+# entropart 1.3.3
 
 ## New Features
 
@@ -159,7 +163,7 @@
 
 
 
-# Changes in entropart Version 1.2.1
+# entropart 1.2.1
 
 ## New Features
 
@@ -180,7 +184,7 @@
 
 
 
-# Changes in entropart Version 1.2.0
+# entropart 1.2.0
 
 ## Bug Correction 
 
@@ -188,7 +192,7 @@
 
 
 
-# Changes in entropart Version 1.2.0
+# entropart 1.2.0
 
 ## New Features
 
@@ -199,7 +203,7 @@
 - Default values for arguments added whenever possible.
 
 
-# Changes in entropart Version 1.1.4
+# entropart 1.1.4
 
 ## New Features
 
@@ -212,7 +216,7 @@
 
 
 
-# Changes in entropart Version 1.1.3
+# entropart 1.1.3
 
 ## New Features
 
@@ -229,7 +233,7 @@
 
 
 
-# Changes in entropart Version 1.1.2
+# entropart 1.1.2
 
 ## New Features
   
@@ -246,6 +250,6 @@
 - `summary.MCentropy()` did not return the name of the tree. Corrected.
 
 
-# Changes in entropart Version 1.1.1
+# entropart 1.1.1
   
 - First Version.
