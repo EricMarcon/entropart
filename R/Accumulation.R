@@ -1,5 +1,5 @@
-EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), Correction = "Best", 
-                  Simulations = 0, Alpha = 0.05, CheckArguments = TRUE)
+EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), Estimator = "Best", 
+                  NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
 {
   if (CheckArguments)
     CheckentropartArguments()
