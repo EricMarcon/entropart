@@ -47,7 +47,7 @@ EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), Estimator = "Best",
   class(entAC) <- c("EntAC", "AccumCurve", class(entAC))
   # Return actual values as attributes
   attr(entAC, "Size") <- Size
-  attr(entAC, "Value") <- Tsallis(Ns, q=q, Correction = "None", CheckArguments=FALSE)
+  attr(entAC, "Value") <- Tsallis(Ns, q=q, Correction="None", CheckArguments=FALSE)
   return(entAC)
 }
 
