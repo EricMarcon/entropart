@@ -1,8 +1,8 @@
 ---
 title: "entropart"
 subtitle: "Entropy Partitioning to Measure Diversity"
-author: "Eric Marcon"
 bibliography: entropart.bib
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to entropart}
   %\VignetteEngine{knitr::rmarkdown}
@@ -10,7 +10,6 @@ vignette: >
 ---
 
 ```{r global_options, include=FALSE}
-knitr::opts_chunk$set(comment = NA, cache = TRUE)
 set.seed(97310)
 ```
 
@@ -196,8 +195,10 @@ The $\alpha$ diversity of communities is `r round(p$TotalAlphaDiversity, 0)` eff
 The `DivEst` function decomposes diversity and estimates confidence interval of $\alpha$, $\beta$ and $\gamma$ diversity following @Marcon2012a. 
 If the observed species frequencies of a community are assumed to be a realization of a multinomial distribution, they can be drawn again to obtain a distribution of entropy.
 
-```{r DivEst}
-de <- DivEst(q = 1, Paracou618.MC, Simulations = 100)
+```{r DivEst, fig.width=6, fig.height=6}
+de <- DivEst(q = 1, Paracou618.MC, Simulations = 50)
+# Margin adjustment required for this vignette html output
+par(mar=c(1,1,2.2,1))
 plot(de)
 ```
 
@@ -206,7 +207,7 @@ The result is a `Divest` object which can be summarized and plotted.
 `DivProfile` calculates diversity profiles. 
 The result is a `DivProfile` object which can be summarized and plotted.
 
-```{r DivProfile}
+```{r DivProfile, fig.width=6, fig.height=6}
 dp <- DivProfile(, Paracou618.MC)
 autoplot(dp)
 ```
