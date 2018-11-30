@@ -14,8 +14,8 @@
 \usage{
 as.AccumCurve(x, y, low = NULL, high = NULL)
 is.AccumCurve(x)
-EntAC(Ns, q = 0, n.seq = 1:sum(Ns), Correction = "Best", 
-      Simulations = 0, Alpha = 0.05, CheckArguments = TRUE)
+EntAC(Ns, q = 0, n.seq = 1:sum(Ns), Estimator = "Best", 
+      NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
 \method{plot}{AccumCurve}(x, ..., main = NULL, 
          xlab = "Sample Size", ylab = NULL, ylim = NULL,
          LineWidth = 2, ShadeColor = "grey75", BorderColor = "red")
@@ -32,6 +32,12 @@ EntAC(Ns, q = 0, n.seq = 1:sum(Ns), Correction = "Best",
   \item{y}{
   A numeric vector.
   }
+  \item{low}{
+  A numeric vector.
+  }
+  \item{high}{
+  A numeric vector.
+  }
   \item{Ns}{
   A numeric vector containing species abundances.
   }
@@ -41,11 +47,11 @@ EntAC(Ns, q = 0, n.seq = 1:sum(Ns), Correction = "Best",
   \item{n.seq}{
   A sequence of numbers. Accumulation will be calculated at each value.
   }
-  \item{Correction}{
+  \item{Estimator}{
   A string containing one of the possible asymptotic corrections of \code{\link{Tsallis}}: \code{"None"} (no correction) and  \code{"Best"} are two of them.
   }
-  \item{Simulations}{
-  The number of simulations to build confidence intervals.
+  \item{NumberOfSimulations}{
+  The number of Simulations to build confidence intervals.
   }
   \item{Alpha}{
   The risk level, 5\% by default.

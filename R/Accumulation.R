@@ -1,5 +1,5 @@
 EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), Correction = "Best", 
-                  Simulations = 0, Alpha = 0.05, CheckArguments = TRUE)
+                  NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
 {
   if (CheckArguments)
     CheckentropartArguments()
@@ -9,10 +9,10 @@ EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), Correction = "Best",
   }
   Size <- sum(Ns)
   
-  if (Estimator == "Best") Estimator <- "UnveilJ"
+  if (Correction == "Best") Correction <- "UnveilJ"
   
   # Calculate entropy. Parallelize. Do not allow more forks.
-  Entropy <- parallel::mclapply(n.seq, function(n) Tsallis(Ns, q=q, Correction=Estimator, Level=n, CheckArguments=FALSE), mc.allow.recursive=FALSE)
+  Entropy <- parallel::mclapply(n.seq, function(n) Tsallis(Ns, q=q, Correction=Correction, Level=n, CheckArguments=FALSE), mc.allow.recursive=FALSE)
   Entropy <- simplify2array(Entropy)
   # Simulations
   if (NumberOfSimulations > 0) {
@@ -22,10 +22,10 @@ EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), Correction = "Best",
     MCSim <- rCommunity(NumberOfSimulations, size=Size, NorP=PsU, CheckArguments=FALSE)
     ProgressBar <- utils::txtProgressBar(min=0, max=NumberOfSimulations)
     Sims <- matrix(nrow=NumberOfSimulations, ncol=length(n.seq))
-    # Simulations with a progress bar
+    # NumberOfSimulations with a progress bar
     for (i in 1:NumberOfSimulations) {
       # Parallelize. Do not allow more forks.
-      ACasaList <- parallel::mclapply(n.seq, function(n) Tsallis(MCSim$Nsi[, i], q=q, Correction=Estimator, Level=n, CheckArguments=FALSE), mc.allow.recursive=FALSE)
+      ACasaList <- parallel::mclapply(n.seq, function(n) Tsallis(MCSim$Nsi[, i], q=q, Correction=Correction, Level=n, CheckArguments=FALSE), mc.allow.recursive=FALSE)
       Sims[i, ] <- simplify2array(ACasaList)
       utils::setTxtProgressBar(ProgressBar, i)
     }
