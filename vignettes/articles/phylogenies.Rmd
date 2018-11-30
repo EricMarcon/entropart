@@ -1,15 +1,14 @@
 ---
 title: "Phylogenies in entropart"
-author: "Eric Marcon"
+output: rmarkdown::html_vignette
 bibliography: ../entropart.bib
-vignette: |
+vignette: >
   %\VignetteIndexEntry{Phylogenies in entropart}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r global_options, include=FALSE}
-# R output pre blocks are styled by default to indicate output
 knitr::opts_chunk$set(comment = NA, cache = TRUE)
 set.seed(97310)
 ```
