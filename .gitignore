@@ -18,7 +18,6 @@ doc
 vignettes/*.html
 vignettes/*.pdf
 vignettes/*.R
-vignettes/*.R
 vignettes/*_files/
 vignettes/articles/*.html
 vignettes/articles/*.pdf

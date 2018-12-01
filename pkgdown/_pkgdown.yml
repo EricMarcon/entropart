@@ -2,3 +2,83 @@ url: https://ericmarcon.github.io/entropart/
 
 development:
   mode: auto
+
+reference:
+  - title: Package summary
+    contents:
+    - starts_with("entropart")
+  - title: Datasets
+    contents:
+    - starts_with("Paracou618")    
+    - starts_with("EightSp")
+  - title: Generate data
+    contents:
+    - starts_with("rCommunity")    
+  - title: Community diversity
+    contents:
+    - AllenH
+    - ChaoPD
+    - CommunityProfile
+    - Coverage
+    - Diversity
+    - Dqz
+    - GenSimpson
+    - Hqz
+    - HqzBeta
+    - Hurlbert
+    - PDFD
+    - PhyloBetaEntropy
+    - PhyloDiversity
+    - PhyloEntropy
+    - Rao
+    - Richness
+    - Shannon
+    - ShannonBeta
+    - Simpson
+    - SimpsonBeta
+    - Tsallis
+    - TsallisBeta
+  - title: Rank Abundance Curves
+    contents:
+    - RAC
+  - title: Metacommunity Diversity
+    contents:
+    - AlphaDiversity
+    - AlphaEntropy
+    - BetaDiversity
+    - BetaEntropy
+    - DivEst
+    - DivPart
+    - DivProfile
+    - GammaDiversity
+    - GammaEntropy
+  - title: Metacommunity utilities
+    contents:
+    - MergeMC
+    - MetaCommunity
+  - title: Classes
+    contents:
+    - Accumulation
+    - MCdiversity
+    - MCentropy
+    - PhyloValue
+    - PPtree
+    - SimTest
+    - SpeciesDistribution
+  - title: Arithmetics
+    contents:
+    - Enq
+    - KLq
+    - expq
+    - lnq
+  - title: Utilities
+    contents:
+    - AbdFreqCount
+    - ArgumentOriginalName
+    - CheckentropartArguments
+    - EntropyCI
+    - mergeandlabel
+    - Optimal.Similarity
+    - PhyloApply
+    - Preprocess.MC
+    - Preprocess.Tree
