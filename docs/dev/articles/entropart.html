@@ -96,7 +96,6 @@
     <div class="page-header toc-ignore">
       <h1>entropart</h1>
             <h3 class="subtitle">Entropy Partitioning to Measure Diversity</h3>
-                        <h4 class="author">Eric Marcon</h4>
             
       
       <small class="dont-index">Source: <a href="https://github.com/EricMarcon/entropart/blob/master/vignettes/entropart.Rmd"><code>vignettes/entropart.Rmd</code></a></small>
@@ -119,8 +118,9 @@
 <a href="#community-data" class="anchor"></a>Community data</h2>
 <p>Community data is a numeric vector containing abundances of species (the number of individual of each species) or their probabilities (the proportion of individuals of each species, summing to 1).</p>
 <p>Example data is provided in the dataset <code>paracou618</code>. Let’s get the abundances of tree species in the 1-ha tropical forest plot #18 from Paracou forest station in French Guiana:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"entropart"</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"Paracou618"</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"entropart"</span>)</code></pre></div>
+<pre><code>## Le chargement a nécessité le package : ggplot2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"Paracou618"</span>)
 N18 &lt;-<span class="st"> </span>Paracou618.MC<span class="op">$</span>Nsi[, <span class="st">"P018"</span>]</code></pre></div>
 <p>The data in <code>Paracou618.MC</code> is a <code>MetaCommunity</code>, to be discovered later. <code>N18</code> is a vector containing the abundances of 425 tree species, among them some zero values. This is the most simple and common format to provide data to estimate diversity. It can be used directly by the functions presented here, but it may be declared explicitely as an abundance vector to plot it, and possibly fit a well-known, e.g. log-normal <span class="citation">(Preston 1948)</span>, distribution of species abundance (the red curve):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Abd18 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/SpeciesDistribution.html">as.AbdVector</a></span>(N18)
@@ -140,62 +140,62 @@ N18 &lt;-<span class="st"> </span>Paracou618.MC<span class="op">$</span>Nsi[, <s
 <a href="#diversity-estimation" class="anchor"></a>Diversity estimation</h2>
 <p>The classical indices of diversity are richness (the number of species), Shannon’s and Simpson’s entropies:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/Richness.html">Richness</a></span>(P18)</code></pre></div>
-<pre><code>None 
- 149 </code></pre>
+<pre><code>## None 
+##  149</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/Shannon.html">Shannon</a></span>(P18)</code></pre></div>
-<pre><code>    None 
-4.421358 </code></pre>
+<pre><code>##     None 
+## 4.421358</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/Simpson.html">Simpson</a></span>(P18)</code></pre></div>
-<pre><code>     None 
-0.9794563 </code></pre>
+<pre><code>##      None 
+## 0.9794563</code></pre>
 <p>When applied to a probability vector (created with <code>as.ProbaVector</code> or a numeric vector summing to 1), no estimation-bias correction is applied: this means that indices are just calculated by applying their definition function to the probabilities (that is the plugin estimator).</p>
 <p>When abundances are available (a numeric vector of integer values or an object created by <code>as.ProbaVector</code>), several estimators are available <span class="citation">(Marcon 2015)</span> to address unobserved species and the non-linearity of the indices:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/Richness.html">Richness</a></span>(Abd18)</code></pre></div>
-<pre><code>   Chao1 
-254.0888 </code></pre>
+<pre><code>##    Chao1 
+## 254.0888</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/Shannon.html">Shannon</a></span>(Abd18)</code></pre></div>
-<pre><code> UnveilJ 
-4.783384 </code></pre>
+<pre><code>##  UnveilJ 
+## 4.783384</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/Simpson.html">Simpson</a></span>(Abd18)</code></pre></div>
-<pre><code>    Lande 
-0.9814969 </code></pre>
+<pre><code>##     Lande 
+## 0.9814969</code></pre>
 <p>The best available estimator is chosen by default: its name is returned.</p>
 <p>Those indices are special cases of the Tsallis entropy <span class="citation">(1988)</span> or order <span class="math inline">\(q\)</span> (respectively <span class="math inline">\(q=0,1,2\)</span> for richness, Shannon, Simpson):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/Tsallis.html">Tsallis</a></span>(Abd18,<span class="dt">q=</span><span class="dv">1</span>)</code></pre></div>
-<pre><code> UnveilJ 
-4.783384 </code></pre>
+<pre><code>##  UnveilJ 
+## 4.783384</code></pre>
 <p>Entropy should be converted to its effective number of species, i.e. the number of species with equal probabilities that would yield the observed entropy, called <span class="citation">Hill (1973)</span> numbers or simply diversity <span class="citation">(Jost 2006)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/Diversity.html">Diversity</a></span>(Abd18,<span class="dt">q=</span><span class="dv">1</span>)</code></pre></div>
-<pre><code> UnveilJ 
-119.5081 </code></pre>
+<pre><code>##  UnveilJ 
+## 119.5081</code></pre>
 <p>Diversity is the deformed exponential of order <span class="math inline">\(q\)</span> of entropy, and entropy is the deformed logarithm of of order <span class="math inline">\(q\)</span> of diversity:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(d2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Diversity.html">Diversity</a></span>(Abd18,<span class="dt">q=</span><span class="dv">2</span>))</code></pre></div>
-<pre><code> UnveilJ 
-54.04457 </code></pre>
+<pre><code>##  UnveilJ 
+## 54.04457</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/lnq.html">lnq</a></span>(d2, <span class="dt">q=</span><span class="dv">2</span>)</code></pre></div>
-<pre><code>  UnveilJ 
-0.9814968 </code></pre>
+<pre><code>##   UnveilJ 
+## 0.9814968</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(e2 &lt;-<span class="kw"><a href="../reference/Tsallis.html">Tsallis</a></span>(Abd18,<span class="dt">q=</span><span class="dv">2</span>))</code></pre></div>
-<pre><code>  UnveilJ 
-0.9814968 </code></pre>
+<pre><code>##   UnveilJ 
+## 0.9814968</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/expq.html">expq</a></span>(e2, <span class="dt">q=</span><span class="dv">2</span>)</code></pre></div>
-<pre><code> UnveilJ 
-54.04457 </code></pre>
+<pre><code>##  UnveilJ 
+## 54.04457</code></pre>
 <p>Diversity can be plotted against its order to provide a diversity profile. Order 0 corresponds to richness, 1 to Shannon’s and 2 to Simpson’s diversities:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DP &lt;-<span class="st"> </span><span class="kw"><a href="../reference/CommunityProfile.html">CommunityProfile</a></span>(Diversity, Abd18)
 <span class="kw">autoplot</span>(DP)</code></pre></div>
 <p><img src="entropart_files/figure-html/DiversityProfile-1.png" width="700"></p>
 <p>If an ultrametric dendrogram describing species’ phylogeny (here, a mere taxonomy with family, genus and species) is available, phylogenetic entropy and diversity <span class="citation">(Marcon and Hérault 2015)</span> can be calculated:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(<span class="kw"><a href="../reference/PhyloDiversity.html">PhyloDiversity</a></span>(Abd18,<span class="dt">q=</span><span class="dv">1</span>,<span class="dt">Tree=</span>Paracou618.Taxonomy))</code></pre></div>
-<pre><code>alpha or gamma phylogenetic or functional diversity of order 1 
-of distribution Abd18
- with correction: Best
-Phylogenetic or functional diversity was calculated according to the tree 
-Paracou618.Taxonomy 
-
-Diversity is normalized
-
-Diversity equals: 54.08534</code></pre>
+<pre><code>## alpha or gamma phylogenetic or functional diversity of order 1 
+## of distribution Abd18
+##  with correction: Best
+## Phylogenetic or functional diversity was calculated according to the tree 
+## Paracou618.Taxonomy 
+## 
+## Diversity is normalized
+## 
+## Diversity equals: 54.08534</code></pre>
 <p>With a Euclidian distance matrix between species, similarity-based diversity <span class="citation">(Leinster and Cobbold 2012; Marcon, Zhang, and Hérault 2014)</span> is available:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Prepare the similarity matrix</span>
 DistanceMatrix &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(Paracou618.dist)
@@ -203,8 +203,8 @@ DistanceMatrix &lt;-<span class="st"> </span><span class="kw"><a href="https://w
 Z &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>DistanceMatrix<span class="op">/</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">max</a></span>(DistanceMatrix)
 <span class="co"># Calculate diversity of order 2</span>
 <span class="kw"><a href="../reference/Dqz.html">Dqz</a></span>(Abd18, <span class="dt">q=</span><span class="dv">2</span>, Z)</code></pre></div>
-<pre><code>    Best 
-1.477898 </code></pre>
+<pre><code>##     Best 
+## 1.477898</code></pre>
 <p>Profiles of phylogenetic diversity and similarity-based diversity are obtained the same way. <code>PhyloDiversity</code> is an object with a lot of information so an intermediate function is necessary to extract its <code>$Total</code> component:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sbDP &lt;-<span class="st"> </span><span class="kw"><a href="../reference/CommunityProfile.html">CommunityProfile</a></span>(Dqz, Abd18, <span class="dt">Z=</span>Z)
 pDP &lt;-<span class="st"> </span><span class="kw"><a href="../reference/CommunityProfile.html">CommunityProfile</a></span>(<span class="cf">function</span>(X, ...) <span class="kw"><a href="../reference/PhyloDiversity.html">PhyloDiversity</a></span>(X, ...)<span class="op">$</span>Total, Abd18, <span class="dt">Tree=</span>Paracou618.Taxonomy)
@@ -222,11 +222,11 @@ pDP &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Communi
 <p>The easiest way to build a meta-community consists of preparing a dataframe whose columns are communities and lines are species, and define weights in a vector (by default, all weights are equal):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"entropart"</span>)
 (df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">C1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>), <span class="dt">C2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">5</span>), <span class="dt">C3 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">25</span>, <span class="dv">15</span>, <span class="dv">0</span>, <span class="dv">2</span>), <span class="dt">row.names =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"sp1"</span>, <span class="st">"sp2"</span>, <span class="st">"sp3"</span>, <span class="st">"sp4"</span>)))</code></pre></div>
-<pre><code>    C1 C2 C3
-sp1 10  0 25
-sp2 10 20 15
-sp3 10 35  0
-sp4 10  5  2</code></pre>
+<pre><code>##     C1 C2 C3
+## sp1 10  0 25
+## sp2 10 20 15
+## sp3 10 35  0
+## sp4 10  5  2</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">w &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</code></pre></div>
 <p>The <code>MetaCommunity</code> function creates the meta-community. It can be plotted:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MC &lt;-<span class="st"> </span><span class="kw"><a href="../reference/MetaCommunity.html">MetaCommunity</a></span>(<span class="dt">Abundances =</span> df, <span class="dt">Weights =</span> w)
@@ -242,30 +242,32 @@ sp4 10  5  2</code></pre>
 <p>The <code>DivPart</code> function calculates everything at once, for a given order of diversity <span class="math inline">\(q\)</span>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw"><a href="../reference/DivPart.html">DivPart</a></span>(<span class="dt">q =</span> <span class="dv">1</span>, <span class="dt">MC =</span> Paracou618.MC)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(p)</code></pre></div>
-<pre><code>HCDT diversity partitioning of order 1 of metaCommunity Paracou618.MC
-
-Alpha diversity of communities: 
-    P006     P018 
-66.00455 83.20917 
-Total alpha diversity of the communities: 
-[1] 72.88247
-Beta diversity of the communities: 
-    None 
-1.563888 
-Gamma diversity of the metacommunity: 
-  None 
-113.98 </code></pre>
+<pre><code>## HCDT diversity partitioning of order 1 of metaCommunity Paracou618.MC
+## 
+## Alpha diversity of communities: 
+##     P006     P018 
+## 66.00455 83.20917 
+## Total alpha diversity of the communities: 
+## [1] 72.88247
+## Beta diversity of the communities: 
+##     None 
+## 1.563888 
+## Gamma diversity of the metacommunity: 
+##   None 
+## 113.98</code></pre>
 <p>The <span class="math inline">\(\alpha\)</span> diversity of communities is 73 effective species. <span class="math inline">\(\gamma\)</span> diversity of the meta-community is 114 effective species. <span class="math inline">\(\beta\)</span> diversity is 1.56 effective communities, i.e. the two actual communities are as different from each other as 1.56 ones with equal weights and no species in common.</p>
 <p>The <code>DivEst</code> function decomposes diversity and estimates confidence interval of <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\gamma\)</span> diversity following <span class="citation">Marcon et al. (2012)</span>. If the observed species frequencies of a community are assumed to be a realization of a multinomial distribution, they can be drawn again to obtain a distribution of entropy.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">de &lt;-<span class="st"> </span><span class="kw"><a href="../reference/DivEst.html">DivEst</a></span>(<span class="dt">q =</span> <span class="dv">1</span>, Paracou618.MC, <span class="dt">Simulations =</span> <span class="dv">100</span>)</code></pre></div>
-<pre><code>===========================================================================</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(de)</code></pre></div>
-<p><img src="entropart_files/figure-html/DivEst-1.png" width="700"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">de &lt;-<span class="st"> </span><span class="kw"><a href="../reference/DivEst.html">DivEst</a></span>(<span class="dt">q =</span> <span class="dv">1</span>, Paracou618.MC, <span class="dt">Simulations =</span> <span class="dv">50</span>)</code></pre></div>
+<pre><code>## ===========================================================================</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Margin adjustment required for this vignette html output</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">mar=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="fl">2.2</span>,<span class="dv">1</span>))
+<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(de)</code></pre></div>
+<p><img src="entropart_files/figure-html/DivEst-1.png" width="576"></p>
 <p>The result is a <code>Divest</code> object which can be summarized and plotted.</p>
 <p><code>DivProfile</code> calculates diversity profiles. The result is a <code>DivProfile</code> object which can be summarized and plotted.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dp &lt;-<span class="st"> </span><span class="kw"><a href="../reference/DivProfile.html">DivProfile</a></span>(, Paracou618.MC)
 <span class="kw">autoplot</span>(dp)</code></pre></div>
-<p><img src="entropart_files/figure-html/DivProfile-1.png" width="700"></p>
+<p><img src="entropart_files/figure-html/DivProfile-1.png" width="576"></p>
 <p>Plot #18 can be considered more diverse than plot #6 because their profiles (top right figure, plot #18 is the dotted red line, plot #6, the solid black one) do not cross <span class="citation">(Tothmeresz 1995)</span>: its diversity is systematically higher. The shape of the <span class="math inline">\(\beta\)</span> diversity profile shows that the communities are more diverse when their dominant species are considered.</p>
 <p>The bootstrap confidence intervals of the values of diversity <span class="citation">(Marcon et al. 2012; Marcon et al. 2014)</span> are calculated if <code>NumberOfSimulations</code> is not 0.</p>
 <p><code>DivPart</code>, <code>DivEst</code> and <code>DivProfile</code> use plugin estimators by default. To force them to apply the same estimators as community functions, the argument <code>Biased = FALSE</code> must be entered. They compute Tsallis entropy and Hill numbers by default. A dendrogram in the argument <code>Tree</code> or a similarity matrix in the argument <code>Z</code> will make them calculate phylogenetic diversity or similarity-based diversity.</p>

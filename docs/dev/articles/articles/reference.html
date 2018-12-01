@@ -6,6 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>entropart Package Reference • entropart</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
@@ -69,7 +75,14 @@
   <a href="../../news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/EricMarcon/entropart">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -82,10 +95,9 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>entropart Package Reference</h1>
-                        <h4 class="author">Eric Marcon</h4>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/EricMarcon/entropart/blob/master/vignettes/articles/reference.Rmd"><code>vignettes/articles/reference.Rmd</code></a></small>
       <div class="hidden name"><code>reference.Rmd</code></div>
 
     </div>
@@ -109,15 +121,16 @@
 <a href="#data" class="anchor"></a>Data</h2>
 <p>Most functions of the package calculate entropy or diversity of a community or of an assemblage of communities called a <em>meta-community</em>. Community functions accept a vector of probabilities or of abundances for species data. Each element of the vector contains the probability or the number of occurrences of a species in a given community. Meta-community functions require a particular data organization in a <code>MetaCommunity</code> object described here.</p>
 <p>A <code>MetaCommunity</code> is basically a list. Its main components are <code>$Nsi</code>, a matrix containing the species abundances whose lines are species, columns are communities and <code>$Wi</code>, a vector containing community weights. Creating a <code>MetaCommunity</code> object is the purpose of the <code>MetaCommunity</code> function. Arguments are a dataframe containing the number of individuals per species (lines) in each community (columns), and a vector containing the community weights. The following example creates a <code>MetaCommunity</code> made of three communities of unequal weights with 4 species. The weighted average probabilities of occurrence of species and the total number of individuals define the meta-community as the assemblage of communities.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"entropart"</span>)
-df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">C1=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>), <span class="dt">C2=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">5</span>), <span class="dt">C3=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">25</span>, <span class="dv">15</span>, <span class="dv">0</span>, <span class="dv">2</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"entropart"</span>)</code></pre></div>
+<pre><code>## Le chargement a nécessité le package : ggplot2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">C1=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>), <span class="dt">C2=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">5</span>), <span class="dt">C3=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">25</span>, <span class="dv">15</span>, <span class="dv">0</span>, <span class="dv">2</span>))
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/row.names">row.names</a></span>(df) &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"sp1"</span>, <span class="st">"sp2"</span>, <span class="st">"sp3"</span>, <span class="st">"sp4"</span>)
 df</code></pre></div>
-<pre><code>    C1 C2 C3
-sp1 10  0 25
-sp2 10 20 15
-sp3 10 35  0
-sp4 10  5  2</code></pre>
+<pre><code>##     C1 C2 C3
+## sp1 10  0 25
+## sp2 10 20 15
+## sp3 10 35  0
+## sp4 10  5  2</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">w &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)
 MC &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/MetaCommunity.html">MetaCommunity</a></span>(<span class="dt">Abundances=</span>df, <span class="dt">Weights=</span>w)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(MC)</code></pre></div>
@@ -126,26 +139,26 @@ MC &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/MetaC
 <p>A meta-community is partitioned into several local communities (indexed by <span class="math inline">\(i=1, 2,\dots, I\)</span>). <span class="math inline">\(n_i\)</span> individuals are sampled in community <span class="math inline">\(i\)</span>. Let <span class="math inline">\(s=1,\ 2,\dots ,S\)</span> denote the species that compose the meta-community, <span class="math inline">\(n_{s,i}\)</span> the number of individuals of species <span class="math inline">\(s\)</span> sampled in the local community <span class="math inline">\(i\)</span>, <span class="math inline">\(n_s=\sum_i{n_{s,i}}\)</span> the total number of individuals of species <span class="math inline">\(s\)</span>, <span class="math inline">\(n=\sum_s{\sum_i{n_{s,i}}}\)</span> the total number of sampled individuals. Within each community <span class="math inline">\(i\)</span>, the probability <span class="math inline">\(p_{s,i}\)</span> for an individual to belong to species <span class="math inline">\(s\)</span> is estimated by <span class="math inline">\(\hat{p}_{s,i}=n_{s,i}/{n_i}\)</span>. The same probability for the meta-community is <span class="math inline">\(p_s\)</span>.</p>
 <p>Communities have a weight <span class="math inline">\(w_i\)</span>, satisfying <span class="math inline">\(p_s=\sum_i{w_i p_{s,i}}\)</span>. The commonly-used <span class="math inline">\(w_i=n_i/n\)</span> is a possible weight, but the weighting may be arbitrary (e.g. the sampled areas). The component <code>$Ps</code> of a <code>MetaCommunity</code> object contains the probability of occurrence of each species in the meta-community, calculated this way:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MC<span class="op">$</span>Ps</code></pre></div>
-<pre><code>      sp1       sp2       sp3       sp4 
-0.2113095 0.3184524 0.3541667 0.1160714 </code></pre>
+<pre><code>##       sp1       sp2       sp3       sp4 
+## 0.2113095 0.3184524 0.3541667 0.1160714</code></pre>
 <p>The number of individuals <code>$Ns</code> of a <code>MetaCommunity</code> is theoretically unknown, since communities are just samples of it. The total number of individuals is <code>$N</code>. For simplicity, it is set to the total number of individuals of all communities. If community weights are their number of individuals, <code>$Ns</code> is just the sum of the numbers of individuals per species of communities. Else, <code>$Ns</code> may contain non-integer values, respecting the probabilities <code>$Ps</code> and summing to <code>$N</code>.</p>
 <p>A <code>MetaCommunity</code> can be summarized and plotted.</p>
 <p>The package contains an example dataset containing the inventory of two 1-ha tropical forest plots in Paracou, French Guiana <span class="citation">(Marcon et al. 2012)</span>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"Paracou618"</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(Paracou618.MC)</code></pre></div>
-<pre><code>Meta-community (class 'MetaCommunity') made of 1124 individuals in 2 
-communities and 425 species. 
-
-Its sample coverage is 0.92266748426447 
-
-Community weights are: 
-[1] 0.5720641 0.4279359
-Community sample numbers of individuals are: 
-P006 P018 
- 643  481 
-Community sample coverages are: 
-     P006      P018 
-0.8943859 0.8463782 </code></pre>
+<pre><code>## Meta-community (class 'MetaCommunity') made of 1124 individuals in 2 
+## communities and 425 species. 
+## 
+## Its sample coverage is 0.92266748426447 
+## 
+## Community weights are: 
+## [1] 0.5720641 0.4279359
+## Community sample numbers of individuals are: 
+## P006 P018 
+##  643  481 
+## Community sample coverages are: 
+##      P006      P018 
+## 0.8943859 0.8463782</code></pre>
 <p><code>Paracou618.MC</code> is a meta-community made of two communities named <em>P006</em> and <em>P018</em>, containing 425 species (their name is <em>Family_Genus_Species</em>, abbreviated to 4 characters). The values of the abundance matrix are the number of individuals of each species in each community. Sample coverage will be explained later.</p>
 <p>The dataset also contains a taxonomy and a functional tree. <code>Paracou618.Taxonomy</code> is an object of class <code>phylo</code>, defined in the package <em>ape</em> <span class="citation">(Paradis, Claude, and Strimmer 2004)</span>, namely a phylogenetic tree. This example data is only a taxonomy, containing family, genus and species levels for the sake of simplicity. <code>Paracou618.Functional</code> is an object of class <code>hclust</code> containing a functional tree based on leaf, height, stem and seed functional traits <span class="citation">(Hérault and Honnay 2007; Marcon and Hérault 2015)</span>. The package also accepts any ultrametric tree of class <code>phylog</code>, from <em>ade4</em> <span class="citation">(Dray and Dufour 2007)</span> or <code>hclust</code>. <code>Paracou618.dist</code> is the distance matrix (actually a <code>dist</code> object) used to build the functional tree.</p>
 <p>Numeric vectors containing species abundances (such as the <code>$Ns</code> component of <code>MetaCommunity</code>) or probabilities (such as <code>$Ps</code>) may be converted to abundance vectors (<code>AbdVector</code>) or probability vectors (<code>ProbaVector</code>) to clarify their content. By default, the <code>as.AbdVector</code> function transforms abundance values into integer if they are not (the <code>$Ns</code> components of a <code>MetaCommunity</code> is typically not an integer vector if community weights are not proportional to their numbers of individuals):</p>
@@ -189,12 +202,12 @@ PAbd &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Spe
 <p><span class="math display">\[^q\!H=\frac{1-\sum_s{p^q_s}}{q-1}=-\sum_s{p^q_s}\ln_q{p_s}=\sum_s{p_s}\ln_q{\frac{1}{p_s}}\]</span></p>
 <p><span class="math inline">\(q\)</span> is the order of diversity (e.g.: 1 for Shannon). Entropy can be calculated by the <code>Tsallis</code> function. Paracou meta-community entropy of order 1 is:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Tsallis.html">Tsallis</a></span>(PProba, <span class="dt">q =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>    None 
-4.736023 </code></pre>
+<pre><code>##     None 
+## 4.736023</code></pre>
 <p>For convenience, special cases of entropy of order <span class="math inline">\(q\)</span> have a clear-name function: <code>Richess</code> for <span class="math inline">\(q=0\)</span>, <code>Shannon</code> for <span class="math inline">\(q=1\)</span>, <code>Simpson</code> for <span class="math inline">\(q=2\)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Shannon.html">Shannon</a></span>(PProba)</code></pre></div>
-<pre><code>    None 
-4.736023 </code></pre>
+<pre><code>##     None 
+## 4.736023</code></pre>
 <p>Entropy values have no intuitive interpretation in general, except for the number of species <span class="math inline">\(^0\!H\)</span> and Simpson entropy <span class="math inline">\(^2\!H\)</span> which is the probability for two randomly chosen individuals to belong to different species.</p>
 </div>
 <div id="sample-coverage" class="section level3">
@@ -204,8 +217,8 @@ PAbd &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Spe
 <p><span class="math display">\[\hat{C}=1-\frac{S^1}{n}\]</span></p>
 <p><span class="math inline">\(S^1\)</span> is the number of singletons (species observed once) of the sample, and <span class="math inline">\(n\)</span> is its size. The estimator has been improved by taking into account the whole distribution of species <span class="citation">(Zhang and Huang 2007)</span>. The <code>Coverage</code> function calculates it, allowing to choose the estimator:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Coverage.html">Coverage</a></span>(PAbd)</code></pre></div>
-<pre><code>ZhangHuang 
- 0.9226675 </code></pre>
+<pre><code>## ZhangHuang 
+##  0.9226675</code></pre>
 <p>The sample coverage cannot be estimated from probability data: abundances are required.</p>
 <p>Its interpretation is straightforward: some species have not been sampled. Their number is unknown but their total probability of occurence can be estimated accurately. Here, it is a bit less than 8%. From another point of view, the probability for an individual of the community to belong to a sampled species is <span class="math inline">\(C\)</span>: 8% of them belong to missed species. The number of missed species may be estimated by <code>Richness</code> but this is not the point here. The sample coverage is the foundation of many estimators of entropy.</p>
 </div>
@@ -214,18 +227,18 @@ PAbd &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Spe
 <a href="#bias-corrected-estimators" class="anchor"></a>Bias corrected estimators</h3>
 <p>Correction of estimation bias is used to improve the estimation of entropy despite unobserved species and also mathematical issues <span class="citation">(Bonachela, Hinrichsen, and Muñoz 2008)</span>. Bias-corrected estimators (often relying on sample coverage) are returned by functions whose names are prefixed by <code>bc</code>, such as <code>bcTsallis</code>. They are similar to the non-corrected ones but they use abundance data and propose several bias-correction techniques to select in the <code>Correction</code> argument. A <em>Best</em> correction is calculated by default, detailed in the help file of each function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Tsallis.html">bcTsallis</a></span>(PAbd, <span class="dt">q =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code> UnveilJ 
-4.933306 </code></pre>
+<pre><code>##  UnveilJ 
+## 4.933306</code></pre>
 <p>The best correction for Tsallis entropy follows <span class="citation">Chao and Jost (2015)</span>. It combines an unbiased estimator previously derived by <span class="citation">Zhang and Grabchak (2016)</span> and an estimate of the remaining bias.</p>
 <p>All community functions such as <code>Tsallis</code> are actually generic methods that can handle several types of data the appropriate way: if the first argument of the function is a <code>ProbaVector</code> (or a numeric vector summing to 1), no bias correction is applied. If it is an <code>AbdVector</code> (or an integer vector), the bias-corrected estimator is used (e.g. <code>bcTsallis</code>). Numeric vectors summing to more than 2 are considered as abundances but most bias corrections do not allow non-integer values and return a warning.</p>
 <p>The different ways to use the functions are a matter of personal preference. <code>bcTsallis</code> is equivalent to <code>Tsallis</code> with an abundance vector:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Tsallis.html">Tsallis</a></span>(PAbd, <span class="dt">q =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code> UnveilJ 
-4.933306 </code></pre>
+<pre><code>##  UnveilJ 
+## 4.933306</code></pre>
 <p>whilst <code>Tsallis</code> with a probability vector does not allow bias correction:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Tsallis.html">Tsallis</a></span>(PProba, <span class="dt">q =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>    None 
-4.736023 </code></pre>
+<pre><code>##     None 
+## 4.736023</code></pre>
 <p>Bias-corrected entropy is ready to be transformed into explicit diversity.</p>
 </div>
 <div id="effective-numbers-of-species" class="section level3">
@@ -235,11 +248,11 @@ PAbd &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Spe
 <p><span class="math display">\[^q\!D={\left(\sum_s{p^q_s}\right)}^{\frac{1}{1-q}}\]</span></p>
 <p>This can be done by the deformed exponential function, or using directly the <code>Diversity</code> or <code>bcDiversity</code> functions (equal to the deformed exponential of order <span class="math inline">\(q\)</span> of <code>Tsallis</code> or <code>bcTsallis</code>)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/expq.html">expq</a></span>(<span class="kw"><a href="../../reference/Tsallis.html">Tsallis</a></span>(PAbd, <span class="dt">q =</span> <span class="dv">2</span>), <span class="dt">q =</span> <span class="dv">2</span>)</code></pre></div>
-<pre><code> UnveilJ 
-73.13138 </code></pre>
+<pre><code>##  UnveilJ 
+## 73.13138</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(PAbd, <span class="dt">q =</span> <span class="dv">2</span>)</code></pre></div>
-<pre><code> UnveilJ 
-73.13138 </code></pre>
+<pre><code>##  UnveilJ 
+## 73.13138</code></pre>
 <p>The effective number of species of the Paracou dataset is estimated to be 73 after bias correction (rather than 69 without it). It means that a community made of 73 equally-frequent species has the same Simpson entropy as the actual one. This is much less than the actual 425 sampled species. Simpson’s entropy focuses on dominant species.</p>
 </div>
 <div id="hurlberts-diversity" class="section level3">
@@ -254,14 +267,14 @@ PAbd &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Spe
 <p><span class="math display">\[_k\!S  = {_k\!D} \left[1-{\left(1-\frac{1}{_k\!D}\right)}^k\right]\]</span></p>
 <p>Hurlbert’s index is calculated by the <code>Hurlbert</code> function. Its unbiased estimator is obtained by <code>bcHurlbert</code> (implicitly if an abundance vector is used). Its effective number of species is caclulated by <code>HurlbertD</code> or <code>bcHurlbertD</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Hurlbert.html">Hurlbert</a></span>(PProba, <span class="dt">k =</span> <span class="dv">2</span>)</code></pre></div>
-<pre><code>  Biased 
-1.985449 </code></pre>
+<pre><code>##   Biased 
+## 1.985449</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Hurlbert.html">Hurlbert</a></span>(PAbd, <span class="dt">k =</span> <span class="dv">2</span>)</code></pre></div>
-<pre><code>Unbiased 
-1.986326 </code></pre>
+<pre><code>## Unbiased 
+## 1.986326</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Hurlbert.html">HurlbertD</a></span>(PAbd, <span class="dt">k =</span> <span class="dv">2</span>)</code></pre></div>
-<pre><code>Unbiased 
-73.13163 </code></pre>
+<pre><code>## Unbiased 
+## 73.13163</code></pre>
 <p>Hurlbert’s diversity of order 2 is identical to Simpson’s diversity.</p>
 </div>
 </div>
@@ -282,14 +295,14 @@ PAbd &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Spe
 <p>These values can be estimated by the meta-community functions named <code>AlphaEntropy</code>, <code>AlphaDiversity</code>, <code>BetaEntropy</code>, <code>BetaDiversity</code>. They accept a <code>Metacommunity</code> and an order of diversity <span class="math inline">\(q\)</span> as arguments, and return an <code>MCentropy</code> or <code>MCdiversity</code> object which can be summarized and plotted. <code>GammaEntropy</code> and <code>GammaDiversity</code> return a number. Estimation-bias corrections are applied by default:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">e &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/AlphaEntropy.html">AlphaEntropy</a></span>(Paracou618.MC, <span class="dt">q =</span> <span class="dv">1</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(e)</code></pre></div>
-<pre><code>Neutral alpha entropy of order 1 of metaCommunity Paracou618.MC 
-with correction: Best 
-
-Entropy of communities: 
-    P006     P018 
-4.437030 4.783384 
-Average entropy of the communities: 
-[1] 4.585247</code></pre>
+<pre><code>## Neutral alpha entropy of order 1 of metaCommunity Paracou618.MC 
+## with correction: Best 
+## 
+## Entropy of communities: 
+##     P006     P018 
+## 4.437030 4.783384 
+## Average entropy of the communities: 
+## [1] 4.585247</code></pre>
 <p>The Shannon <span class="math inline">\(\alpha\)</span> entropy of the meta-community is 4.59. It is the weighted average entropy of communities.</p>
 <p>The estimation of the diversity of a meta-community whose numbers of individuals<code>$Ns</code> are not integer values can’t be done with most corrections, which do require integers. The Grassberger correction can be used. Community data is pooled to obtain a global inventory whose sample coverage is estimated. The Chao-Shen correction can also be applied based on this sample coverage and the actual <code>$Ps</code> values of the meta-community. Finally, the <em>Best</em> correction is the greater of the two values obtained by Chao-Shen and Grassberger <span class="citation">(Marcon et al. 2014)</span>.</p>
 </div>
@@ -299,22 +312,22 @@ Average entropy of the communities:
 <p>The <code>DivPart</code> function calculates everything at once. Its arguments are the same but bias correction is not applied by default. It can be, using the argument <code>Biased = FALSE</code>, and the correction chosen by the argument<code>Correction</code>. It returns a <code>DivPart</code> object which can be summarized (entropy is not printed by <code>summary</code>) and plotted:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/DivPart.html">DivPart</a></span>(<span class="dt">q =</span> <span class="dv">1</span>, <span class="dt">MC =</span> Paracou618.MC, <span class="dt">Biased =</span> <span class="ot">FALSE</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(p)</code></pre></div>
-<pre><code>HCDT diversity partitioning of order 1 of metaCommunity Paracou618.MC
- with correction: UnveilJ
-Alpha diversity of communities: 
-     P006      P018 
- 84.52352 119.50807 
-Total alpha diversity of the communities: 
-[1] 98.02742
-Beta diversity of the communities: 
- UnveilJ 
-1.416315 
-Gamma diversity of the metacommunity: 
- UnveilJ 
-138.8377 </code></pre>
+<pre><code>## HCDT diversity partitioning of order 1 of metaCommunity Paracou618.MC
+##  with correction: UnveilJ
+## Alpha diversity of communities: 
+##      P006      P018 
+##  84.52352 119.50807 
+## Total alpha diversity of the communities: 
+## [1] 98.02742
+## Beta diversity of the communities: 
+##  UnveilJ 
+## 1.416315 
+## Gamma diversity of the metacommunity: 
+##  UnveilJ 
+## 138.8377</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p<span class="op">$</span>CommunityAlphaEntropies</code></pre></div>
-<pre><code>    P006     P018 
-4.437030 4.783384 </code></pre>
+<pre><code>##     P006     P018 
+## 4.437030 4.783384</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(p)</code></pre></div>
 <p><img src="reference_files/figure-html/DivPartPlot-1.png" width="700"></p>
 <p>The <span class="math inline">\(\alpha\)</span> diversity of communities is 98 effective species (it is the exponential of the entropy calculated previously). This is more than Simpson’s diversity 73 species, calculated above) because less frequent species are taken into account. <span class="math inline">\(\gamma\)</span> diversity of the meta-community is 139 effective species. <span class="math inline">\(\beta\)</span> diversity is 1.42 effective communities, i.e. the two actual communities are as different from each other as 1.42 ones with equal weights and no species in common.</p>
@@ -325,34 +338,34 @@ Gamma diversity of the metacommunity:
 <a href="#diversity-estimation-of-a-metacommunity" class="anchor"></a>Diversity Estimation of a metacommunity</h3>
 <p>The <code>DivEst</code> function decomposes diversity and estimates confidence interval of <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\gamma\)</span> diversity following <span class="citation">Marcon et al. (2012)</span>. If the observed species frequencies of a community are assumed to be a realization of a multinomial distribution, they can be drawn again to obtain a distribution of entropy.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">de &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/DivEst.html">DivEst</a></span>(<span class="dt">q =</span> <span class="dv">1</span>, Paracou618.MC, <span class="dt">Biased =</span> <span class="ot">FALSE</span>, <span class="dt">Correction =</span> <span class="st">"Best"</span>, <span class="dt">Simulations =</span> <span class="dv">100</span>)</code></pre></div>
-<pre><code>===========================================================================</code></pre>
+<pre><code>## ===========================================================================</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(de)</code></pre></div>
-<pre><code>Diversity partitioning of order 1 of MetaCommunity Paracou618.MC
- with correction: UnveilJ
-Alpha diversity of communities: 
-     P006      P018 
- 84.52352 119.50807 
-Total alpha diversity of the communities: 
-[1] 98.02742
-Beta diversity of the communities: 
- UnveilJ 
-1.416315 
-Gamma diversity of the metacommunity: 
- UnveilJ 
-138.8377 
-Quantiles of simulations (alpha, beta and gamma diversity):
-       0%        1%      2.5%        5%       10%       25%       50% 
- 87.53434  88.94890  89.97727  90.98349  91.73358  95.70958  98.29179 
-      75%       90%       95%     97.5%       99%      100% 
-100.74141 103.21183 104.43606 105.67126 107.59586 108.46870 
-      0%       1%     2.5%       5%      10%      25%      50%      75% 
-1.366916 1.368766 1.371854 1.384775 1.387309 1.403464 1.415551 1.431029 
-     90%      95%    97.5%      99%     100% 
-1.444131 1.464233 1.466195 1.468060 1.469985 
-      0%       1%     2.5%       5%      10%      25%      50%      75% 
-128.1078 128.2453 129.1272 130.1883 130.8159 135.5112 139.6024 142.1396 
-     90%      95%    97.5%      99%     100% 
-146.0946 148.6270 149.6144 151.0420 154.4869 </code></pre>
+<pre><code>## Diversity partitioning of order 1 of MetaCommunity Paracou618.MC
+##  with correction: UnveilJ
+## Alpha diversity of communities: 
+##      P006      P018 
+##  84.52352 119.50807 
+## Total alpha diversity of the communities: 
+## [1] 98.02742
+## Beta diversity of the communities: 
+##  UnveilJ 
+## 1.416315 
+## Gamma diversity of the metacommunity: 
+##  UnveilJ 
+## 138.8377 
+## Quantiles of simulations (alpha, beta and gamma diversity):
+##        0%        1%      2.5%        5%       10%       25%       50% 
+##  87.53434  88.94890  89.97727  90.98349  91.73358  95.70958  98.29179 
+##       75%       90%       95%     97.5%       99%      100% 
+## 100.74141 103.21183 104.43606 105.67126 107.59586 108.46870 
+##       0%       1%     2.5%       5%      10%      25%      50%      75% 
+## 1.366916 1.368766 1.371854 1.384775 1.387309 1.403464 1.415551 1.431029 
+##      90%      95%    97.5%      99%     100% 
+## 1.444131 1.464233 1.466195 1.468060 1.469985 
+##       0%       1%     2.5%       5%      10%      25%      50%      75% 
+## 128.1078 128.2453 129.1272 130.1883 130.8159 135.5112 139.6024 142.1396 
+##      90%      95%    97.5%      99%     100% 
+## 146.0946 148.6270 149.6144 151.0420 154.4869</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(de)</code></pre></div>
 <p><img src="reference_files/figure-html/DivEstPlot-1.png" width="700"></p>
 <p>The result is a <code>Divest</code> object which can be summarized and plotted. On the figure of the diversity estimation of the meta-community <code>Paracou618.MC</code>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\gamma\)</span> diversity probability densities are plotted, with a 95% confidence interval.</p>
@@ -363,23 +376,23 @@ Quantiles of simulations (alpha, beta and gamma diversity):
 <a href="#diversity-profile-of-a-metacommunity" class="anchor"></a>Diversity Profile of a metacommunity</h3>
 <p><code>DivProfile</code> calculates diversity profiles, i.e. the value of diversity against its order. The result is a <code>DivProfile</code> object which can be summarized and plotted.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dp &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/DivProfile.html">DivProfile</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.2</span>), Paracou618.MC, <span class="dt">Biased =</span> <span class="ot">FALSE</span>, <span class="dt">NumberOfSimulations =</span> <span class="dv">20</span>)</code></pre></div>
-<pre><code>===========================================================================</code></pre>
+<pre><code>## ===========================================================================</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(dp)</code></pre></div>
-<pre><code>Diversity profile of MetaCommunity Paracou618.MC
- with correction: UnveilJ
-Diversity against its order:
-        Order Alpha Diversity Beta Diversity Gamma Diversity
-UnveilJ   0.0       277.53648       1.293524       359.00000
-UnveilJ   0.2       232.16042       1.290650       299.63787
-UnveilJ   0.4       190.35593       1.299783       247.42149
-UnveilJ   0.6       153.42839       1.324017       203.14186
-UnveilJ   0.8       122.50295       1.363976       167.09113
-UnveilJ   1.0        98.02742       1.416315       138.83774
-UnveilJ   1.2        79.57516       1.474386       117.32449
-UnveilJ   1.4        66.09814       1.531048       101.19945
-UnveilJ   1.6        56.37334       1.581349        89.14592
-UnveilJ   1.8        49.32460       1.623276        80.06741
-UnveilJ   2.0        44.13571       1.656966        73.13138</code></pre>
+<pre><code>## Diversity profile of MetaCommunity Paracou618.MC
+##  with correction: UnveilJ
+## Diversity against its order:
+##         Order Alpha Diversity Beta Diversity Gamma Diversity
+## UnveilJ   0.0       277.53648       1.293524       359.00000
+## UnveilJ   0.2       232.16042       1.290650       299.63787
+## UnveilJ   0.4       190.35593       1.299783       247.42149
+## UnveilJ   0.6       153.42839       1.324017       203.14186
+## UnveilJ   0.8       122.50295       1.363976       167.09113
+## UnveilJ   1.0        98.02742       1.416315       138.83774
+## UnveilJ   1.2        79.57516       1.474386       117.32449
+## UnveilJ   1.4        66.09814       1.531048       101.19945
+## UnveilJ   1.6        56.37334       1.581349        89.14592
+## UnveilJ   1.8        49.32460       1.623276        80.06741
+## UnveilJ   2.0        44.13571       1.656966        73.13138</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(dp)</code></pre></div>
 <p><img src="reference_files/figure-html/DivProfilePlot-1.png" width="700"></p>
 <p>The figure shows the diversity profile of the meta-community <code>Paracou618.MC</code>. Values are the number of effective species (<span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\gamma\)</span> diversity) and the effective number of communities (<span class="math inline">\(\beta\)</span> diversity). Community P006 is represented by the solid line and community P018 by the dotted line. <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\gamma\)</span> diversity decrease from <span class="math inline">\(q=0\)</span> (number of species) to <span class="math inline">\(q=2\)</span> (Simpson diversity) by construction.}</p>
@@ -391,8 +404,8 @@ UnveilJ   2.0        44.13571       1.656966        73.13138</code></pre>
 <a href="#alternative-functions" class="anchor"></a>Alternative functions</h3>
 <p>Beta entropy can also be calculated by a set of functions named after the community functions, such as <code>TsallisBeta</code>, <code>bcTsallisBeta</code>, <code>SimpsonBeta</code>, etc. which require two vectors of abundances or probabilities instead of a <code>MetaCommunity</code> object: that of the community and the expected one (usually that of the meta-community). Bias correction is currently limited to Chao and Shen’s correction. The example below calculates the Shannon <span class="math inline">\(\beta\)</span> entropy of the first community of Paracou618 and the meta-community.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/ShannonBeta.html">ShannonBeta</a></span>(Paracou618.MC<span class="op">$</span>Psi[, <span class="dv">1</span>], PProba)</code></pre></div>
-<pre><code>     None 
-0.3499358 </code></pre>
+<pre><code>##      None 
+## 0.3499358</code></pre>
 <p>These functions are available for particular uses, when a <code>MetaCommunity</code> is not available or not convenient to use (e.g. simulations). Meta-community functions are preferred in general.</p>
 </div>
 </div>
@@ -420,15 +433,15 @@ UnveilJ   2.0        44.13571       1.656966        73.13138</code></pre>
 <p>Results are either a <code>PhyloDiversity</code> or a <code>PhyloEntropy</code> object, which can be plotted and summarized.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">phd &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/PhyloDiversity.html">bcPhyloDiversity</a></span>(PAbd, <span class="dt">q =</span> <span class="dv">1</span>, <span class="dt">Tree =</span> Paracou618.Taxonomy, <span class="dt">Normalize =</span> <span class="ot">TRUE</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(phd)</code></pre></div>
-<pre><code>alpha or gamma phylogenetic or functional diversity of order 1 
-of distribution PAbd
- with correction: Best
-Phylogenetic or functional diversity was calculated according to the tree 
-Paracou618.Taxonomy 
-
-Diversity is normalized
-
-Diversity equals: 55.78626</code></pre>
+<pre><code>## alpha or gamma phylogenetic or functional diversity of order 1 
+## of distribution PAbd
+##  with correction: Best
+## Phylogenetic or functional diversity was calculated according to the tree 
+## Paracou618.Taxonomy 
+## 
+## Diversity is normalized
+## 
+## Diversity equals: 55.78626</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(phd, <span class="dt">main =</span> <span class="st">""</span>)</code></pre></div>
 <p><img src="reference_files/figure-html/PhyloDiversityPlot-1.png" width="700"></p>
 <p>The figure shows the <span class="math inline">\(\gamma\)</span> phylodiversity estimation of the meta-community <code>Paracou618.MC</code>. The effective number of taxa of Shannon diversity is plotted against the distance from the leaves of the phylogenetic tree. Here, the tree is based on a rough taxonomy, so diversity of species, genera and families are the three levels of the curve. The dotted line represents the value of phylodiversity.</p>
@@ -443,43 +456,43 @@ Diversity equals: 55.78626</code></pre>
 <p><code>DivPart</code>, <code>DivEst</code> and <code>DivProfile</code> functions return phylogenetic entropy and diversity values instead of species-neutral ones if a tree is provided in the arguments.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dp &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/DivPart.html">DivPart</a></span>(<span class="dt">q =</span> <span class="dv">1</span>, Paracou618.MC, <span class="dt">Biased =</span> <span class="ot">FALSE</span>, <span class="dt">Correction =</span> <span class="st">"Best"</span>, <span class="dt">Tree =</span> Paracou618.Taxonomy)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(dp)</code></pre></div>
-<pre><code>HCDT diversity partitioning of order 1 of metaCommunity Paracou618.MC
- with correction: UnveilJ UnveilJ UnveilJ
-Phylogenetic or functional diversity was calculated
-according to the tree 
-Paracou618.Taxonomy 
-
-Diversity is normalized 
-
-Alpha diversity of communities: 
-    P006     P018 
-37.58366 54.08534 
-Total alpha diversity of the communities: 
-[1] 43.91849
-Beta diversity of the communities: 
-[1] 1.270223
-Gamma diversity of the metacommunity: 
-[1] 55.78626</code></pre>
+<pre><code>## HCDT diversity partitioning of order 1 of metaCommunity Paracou618.MC
+##  with correction: UnveilJ UnveilJ UnveilJ
+## Phylogenetic or functional diversity was calculated
+## according to the tree 
+## Paracou618.Taxonomy 
+## 
+## Diversity is normalized 
+## 
+## Alpha diversity of communities: 
+##     P006     P018 
+## 37.58366 54.08534 
+## Total alpha diversity of the communities: 
+## [1] 43.91849
+## Beta diversity of the communities: 
+## [1] 1.270223
+## Gamma diversity of the metacommunity: 
+## [1] 55.78626</code></pre>
 <p>The decomposition is interpreted as the species-neutral one: <span class="math inline">\(\gamma\)</span> diversity is 56 effective species, made of 1.3 effective communities of 44 effective species.</p>
 <p>Other meta-community functions, such as <code>AlphaEntropy</code> behave the same way:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(<span class="kw"><a href="../../reference/BetaEntropy.html">BetaEntropy</a></span>(Paracou618.MC, <span class="dt">q =</span> <span class="dv">2</span>, <span class="dt">Tree =</span> Paracou618.Taxonomy, <span class="dt">Correction =</span> <span class="st">"None"</span>, <span class="dt">Normalize =</span> <span class="ot">FALSE</span>))</code></pre></div>
-<pre><code>HCDT beta entropy of order 2 of metaCommunity Paracou618.MC 
-with correction: None 
-
-Phylogenetic or functional entropy was calculated according to the tree 
-Paracou618.Taxonomy 
-
-Entropy is not normalized
-Entropy of communities: 
-      P006       P018 
-0.04117053 0.02325883 
-Average entropy of the communities: 
-[1] 0.03350547</code></pre>
+<pre><code>## HCDT beta entropy of order 2 of metaCommunity Paracou618.MC 
+## with correction: None 
+## 
+## Phylogenetic or functional entropy was calculated according to the tree 
+## Paracou618.Taxonomy 
+## 
+## Entropy is not normalized
+## Entropy of communities: 
+##       P006       P018 
+## 0.04117053 0.02325883 
+## Average entropy of the communities: 
+## [1] 0.03350547</code></pre>
 <p>Compare with Rao’s <code>divc</code> computed by <em>ade4</em>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"ade4"</span>)
 <span class="kw">divc</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.data.frame">as.data.frame</a></span>(Paracou618.MC<span class="op">$</span>Wi), <span class="kw">disc</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.data.frame">as.data.frame</a></span>(Paracou618.MC<span class="op">$</span>Nsi), Paracou618.Taxonomy<span class="op">$</span>Wdist))</code></pre></div>
-<pre><code>                   diversity
-Paracou618.MC$Wi 0.009845941</code></pre>
+<pre><code>##                    diversity
+## Paracou618.MC$Wi 0.009845941</code></pre>
 <p>The decomposition of the diversity of meta-communities with non integer <code>$Ns</code> starts with the estimation of <span class="math inline">\(\gamma\)</span> diversity. The best estimator is found for each slice of the tree. It is then used to estimate <span class="math inline">\(\alpha\)</span> diversity.</p>
 </div>
 </div>
@@ -492,38 +505,38 @@ Paracou618.MC$Wi 0.009845941</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DistanceMatrix &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(Paracou618.dist)
 Z &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>DistanceMatrix<span class="op">/</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">max</a></span>(DistanceMatrix)
 <span class="kw"><a href="../../reference/Dqz.html">bcDqz</a></span>(PAbd, <span class="dt">q =</span> <span class="dv">2</span>, Z)</code></pre></div>
-<pre><code>   Best 
-1.48295 </code></pre>
+<pre><code>##    Best 
+## 1.48295</code></pre>
 <p>If <span class="math inline">\(\mathbf{Z}\)</span> is the identity matrix, similarity-based diversity equals HCDT diversity:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Dqz.html">Dqz</a></span>(PProba, <span class="dt">q =</span> <span class="dv">2</span>, <span class="dt">Z =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diag">diag</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(PProba)))</code></pre></div>
-<pre><code>   None 
-68.7215 </code></pre>
+<pre><code>##    None 
+## 68.7215</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(PProba, <span class="dt">q =</span> <span class="dv">2</span>)</code></pre></div>
-<pre><code>   None 
-68.7215 </code></pre>
+<pre><code>##    None 
+## 68.7215</code></pre>
 <p>Functional diversity of order 2 is only 1.48 effective species, which is very small compared to 69 effective species for Simpson diversity. 1.48 equally-frequent species with similarity equal to 0 would have the same functional diversity as the actual community (made of 425 species). This means that species are very similar from a functional point of view. The very low values returned by <span class="math inline">\(^qD^Z\)</span> are questioned by <span class="citation">Chao, Chiu, and Jost (2014)</span> and discussed in depth by <span class="citation">Marcon, Zhang, and Hérault (2014)</span>: the choice of the similarity matrix is not trivial.</p>
 <p>The similarity-based entropy of a community <span class="math inline">\(^qH^Z\)</span> [<span class="citation">Leinster and Cobbold (2012)</span>; Ricotta2006] has the same relations with diversity as HCDT entropy and Hill numbers. The <code>Hqz</code> function calculates it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Hqz.html">Hqz</a></span>(PProba, <span class="dt">q =</span> <span class="dv">2</span>, Z)</code></pre></div>
-<pre><code>     None 
-0.3208152 </code></pre>
+<pre><code>##      None 
+## 0.3208152</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/lnq.html">lnq</a></span>(<span class="kw"><a href="../../reference/Dqz.html">Dqz</a></span>(PProba, <span class="dt">q =</span> <span class="dv">2</span>, Z), <span class="dt">q =</span> <span class="dv">2</span>)</code></pre></div>
-<pre><code>     None 
-0.3208152 </code></pre>
+<pre><code>##      None 
+## 0.3208152</code></pre>
 <p>As species-neutral entropy, <span class="math inline">\(^qH^Z\)</span> has no straightforward interpretation beyond the average surprise of a community.</p>
 <p>All meta-community functions can be used to estimate similarity-based diversity: argument <code>Z</code> must be provided:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">e &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/AlphaEntropy.html">AlphaEntropy</a></span>(Paracou618.MC, <span class="dt">q =</span> <span class="dv">1</span>, <span class="dt">Z =</span> Z)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(e)</code></pre></div>
-<pre><code>Similarity-based alpha entropy of order 1 of metaCommunity Paracou618.MC 
-with correction: Best 
-
-Phylogenetic or functional entropy was calculated according to the similarity matrix 
-Z 
-
-Entropy of communities: 
-     P006      P018 
-0.3945541 0.3934725 
-Average entropy of the communities: 
-[1] 0.3940912</code></pre>
+<pre><code>## Similarity-based alpha entropy of order 1 of metaCommunity Paracou618.MC 
+## with correction: Best 
+## 
+## Phylogenetic or functional entropy was calculated according to the similarity matrix 
+## Z 
+## 
+## Entropy of communities: 
+##      P006      P018 
+## 0.3945541 0.3934725 
+## Average entropy of the communities: 
+## [1] 0.3940912</code></pre>
 <p>The <span class="math inline">\(\alpha\)</span> functional entropy of the meta-community is the average entropy of communities.</p>
 </div>
 <div id="advanced-tools" class="section level1">
@@ -538,18 +551,18 @@ Average entropy of the communities:
 <p>This example code draws a single community of 1000 individuals according to a log-normal distribution with 300 species. Many species are not observed in the 1000-individual sample: the observed number of species is shown, with an estimation of the actual number (which should be 300). The simulated community is plotted (a Whittaker plot), with its log-normal distribution fitted from the data. Estimated parameters can be compared to the original ones.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/rCommunity.html">rCommunity</a></span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">1000</span>, <span class="dt">S=</span><span class="dv">300</span>, <span class="dt">Distribution =</span> <span class="st">"lnorm"</span>, <span class="dt">sd=</span><span class="dv">1</span>) -&gt;<span class="st"> </span>NsRef
 <span class="kw"><a href="../../reference/Richness.html">Richness</a></span>(<span class="kw"><a href="../../reference/SpeciesDistribution.html">as.ProbaVector</a></span>(NsRef))</code></pre></div>
-<pre><code>None 
- 229 </code></pre>
+<pre><code>## None 
+##  229</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Richness.html">Richness</a></span>(NsRef)</code></pre></div>
-<pre><code>   Chao1 
-279.9604 </code></pre>
+<pre><code>##    Chao1 
+## 279.9604</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(NsRef, <span class="dt">Distribution=</span><span class="st">"lnorm"</span>)</code></pre></div>
 <p><img src="reference_files/figure-html/rCommunityPlot-1.png" width="700"></p>
-<pre><code>$mu
-[1] 1.037855
-
-$sigma
-[1] 0.8901462</code></pre>
+<pre><code>## $mu
+## [1] 1.037855
+## 
+## $sigma
+## [1] 0.8901462</code></pre>
 </div>
 <div id="entropy-of-monte-carlo-simulated-communities" class="section level2">
 <h2 class="hasAnchor">
@@ -558,13 +571,13 @@ $sigma
 <p>The result is a numeric vector containing the entropy value of each simulated community. Entropy can be finally transformed into diversity (but it is not correct to use a diversity function in simulations because the average simulated value must be calculated and only entropy can be averaged).</p>
 <p>This example shows how to use the function. First, the distribution of the <span class="math inline">\(\gamma\)</span> HCDT entropy of order 1 (Shannon entropy) of the Paracou meta-community is calculated and transformed into diversity. Then, the actual diversity is calculated and completed by the 95% confidence interval of the simulated values.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SimulatedDiversity &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/expq.html">expq</a></span>(<span class="kw"><a href="../../reference/EntropyCI.html">EntropyCI</a></span>(<span class="dt">FUN =</span> Tsallis, <span class="dt">Simulations =</span> <span class="dv">100</span>, <span class="dt">Ns =</span> PAbd, <span class="dt">q =</span> <span class="dv">1</span>), <span class="dt">q =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>===========================================================================</code></pre>
+<pre><code>## ===========================================================================</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(PAbd, <span class="dt">q =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code> UnveilJ 
-138.8377 </code></pre>
+<pre><code>##  UnveilJ 
+## 138.8377</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/quantile">quantile</a></span>(SimulatedDiversity, <span class="dt">probs =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</code></pre></div>
-<pre><code>    2.5%    97.5% 
-128.1583 153.7261 </code></pre>
+<pre><code>##     2.5%    97.5% 
+## 128.1583 153.7261</code></pre>
 <p>These results are identical to those of the <code>DivEst</code> function but a single community can be addressed (<code>DivEst</code> requires a <code>MetaCommunity</code>).</p>
 </div>
 <div id="diversity-or-entropy-profile-of-a-community" class="section level2">
@@ -573,7 +586,7 @@ $sigma
 <p>This function is used to calculate diversity or entropy profiles based on community functions such as <code>Tsallis</code> or <code>ChaoPD</code>. It is similar to <code>DivProfile</code> but does not require a <code>Metacommunity</code> for argument. It can compute a bootstrap confidence envelope of the estimation of the profile, like <code>EntropyCI</code>. It returns a <code>CommunityProfile</code> object which can be plotted. Profiles can be added to an existing plot by the <code>CEnvelope</code> function.</p>
 <p>This example evaluates bias correction on the diversity profile of the Paracou dataset. First, diversity profiles are calculated with and without bias correction. The corrected profile is calculated with its confidence envelope:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bcProfile &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/CommunityProfile.html">CommunityProfile</a></span>(Diversity, PAbd, <span class="dt">NumberOfSimulations =</span> <span class="dv">100</span>)</code></pre></div>
-<pre><code>===========================================================================</code></pre>
+<pre><code>## ===========================================================================</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Profile &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/CommunityProfile.html">CommunityProfile</a></span>(Diversity, PProba)</code></pre></div>
 <p>Then, they can be plotted altogether to obtain the <span class="math inline">\(\gamma\)</span> diversity profile of the the meta-community <code>Paracou618.MC</code>, without bias correction (dotted line) and with correction (solid line):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(bcProfile)
@@ -588,20 +601,20 @@ $sigma
 <p>This example shows how to calculate Shannon entropy along the tree containing the taxonomy to obtain species, genus and family entropy:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pa &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/PhyloApply.html">PhyloApply</a></span>(<span class="dt">Tree=</span>Paracou618.Taxonomy, <span class="dt">FUN=</span>bcTsallis, <span class="dt">NorP=</span>PAbd)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(pa)</code></pre></div>
-<pre><code>bcTsallis applied to PAbd along the tree: Paracou618.Taxonomy
-
-Results are normalized
-
-The average value is: 4.021528
-
-Values along the tree are:
-       1        2        3 
-4.933306 4.153251 2.978026 </code></pre>
+<pre><code>## bcTsallis applied to PAbd along the tree: Paracou618.Taxonomy
+## 
+## Results are normalized
+## 
+## The average value is: 4.021528
+## 
+## Values along the tree are:
+##        1        2        3 
+## 4.933306 4.153251 2.978026</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">exp</a></span>(pa<span class="op">$</span>Cuts)</code></pre></div>
-<pre><code>        1         2         3 
-138.83774  63.64057  19.64899 </code></pre>
+<pre><code>##         1         2         3 
+## 138.83774  63.64057  19.64899</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">exp</a></span>(pa<span class="op">$</span>Total)</code></pre></div>
-<pre><code>[1] 55.78626</code></pre>
+<pre><code>## [1] 55.78626</code></pre>
 </div>
 <div id="manipulation-of-meta-communities" class="section level2">
 <h2 class="hasAnchor">
@@ -611,70 +624,70 @@ Values along the tree are:
 <p>This example shows how to do this. A first meta-community is created, weights of communities are proportional to their number of individuals:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">C1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>), <span class="dt">C2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">5</span>),
   <span class="dt">C3 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">25</span>, <span class="dv">15</span>, <span class="dv">0</span>, <span class="dv">2</span>), <span class="dt">row.names =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"sp1"</span>, <span class="st">"sp2"</span>, <span class="st">"sp3"</span>, <span class="st">"sp4"</span>)))</code></pre></div>
-<pre><code>    C1 C2 C3
-sp1 10  0 25
-sp2 10 20 15
-sp3 10 35  0
-sp4 10  5  2</code></pre>
+<pre><code>##     C1 C2 C3
+## sp1 10  0 25
+## sp2 10 20 15
+## sp3 10 35  0
+## sp4 10  5  2</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">w &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colSums">colSums</a></span>(df)
 MC1 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/MetaCommunity.html">MetaCommunity</a></span>(<span class="dt">Abundances =</span> df, <span class="dt">Weights =</span> w)</code></pre></div>
 <p>Then a second one:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">C1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">10</span>, <span class="dv">4</span>), <span class="dt">C2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="dt">row.names =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"sp1"</span>, <span class="st">"sp5"</span>)))</code></pre></div>
-<pre><code>    C1 C2
-sp1 10  3
-sp5  4  4</code></pre>
+<pre><code>##     C1 C2
+## sp1 10  3
+## sp5  4  4</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">w &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colSums">colSums</a></span>(df)
 MC2 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/MetaCommunity.html">MetaCommunity</a></span>(<span class="dt">Abundances =</span> df, <span class="dt">Weights =</span> w)</code></pre></div>
 <p>They can be merged to obtain a single meta-community containing all original communities:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mergedMC1 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/MergeMC.html">MergeC</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(MC1, MC2))
 mergedMC1<span class="op">$</span>Nsi</code></pre></div>
-<pre><code>    MC1.C1 MC1.C2 MC1.C3 MC2.C1 MC2.C2
-sp1     10      0     25     10      3
-sp2     10     20     15      0      0
-sp3     10     35      0      0      0
-sp4     10      5      2      0      0
-sp5      0      0      0      4      4</code></pre>
+<pre><code>##     MC1.C1 MC1.C2 MC1.C3 MC2.C1 MC2.C2
+## sp1     10      0     25     10      3
+## sp2     10     20     15      0      0
+## sp3     10     35      0      0      0
+## sp4     10      5      2      0      0
+## sp5      0      0      0      4      4</code></pre>
 <p>They can also be merged considering each of them as a community of a higher-level meta-community:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mergedMC2 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/MergeMC.html">MergeMC</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(MC1, MC2), <span class="dt">Weights =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">sapply</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(MC1, MC2), <span class="cf">function</span>(x) (x<span class="op">$</span>N)))
 mergedMC2<span class="op">$</span>Nsi</code></pre></div>
-<pre><code>    MC1 MC2
-sp1  35  13
-sp2  45   0
-sp3  45   0
-sp4  17   0
-sp5   0   8</code></pre>
+<pre><code>##     MC1 MC2
+## sp1  35  13
+## sp2  45   0
+## sp3  45   0
+## sp4  17   0
+## sp5   0   8</code></pre>
 <p>Hierarchical diversity partitioning can then be achieved:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dpAll &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/DivPart.html">DivPart</a></span>(<span class="dt">q=</span><span class="dv">1</span>, <span class="dt">MC=</span>mergedMC2)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(dpAll)</code></pre></div>
-<pre><code>HCDT diversity partitioning of order 1 of metaCommunity mergedMC2
-
-Alpha diversity of communities: 
-     MC1      MC2 
-3.772161 1.943574 
-Total alpha diversity of the communities: 
-[1] 3.463277
-Beta diversity of the communities: 
-    None 
-1.236351 
-Gamma diversity of the metacommunity: 
-    None 
-4.281826 </code></pre>
+<pre><code>## HCDT diversity partitioning of order 1 of metaCommunity mergedMC2
+## 
+## Alpha diversity of communities: 
+##      MC1      MC2 
+## 3.772161 1.943574 
+## Total alpha diversity of the communities: 
+## [1] 3.463277
+## Beta diversity of the communities: 
+##     None 
+## 1.236351 
+## Gamma diversity of the metacommunity: 
+##     None 
+## 4.281826</code></pre>
 <p>The <span class="math inline">\(\gamma\)</span> diversity of the top assemblage (MC1 and MC2) is 4.28 effective species, made of 1.24 effective meta-communities of 3.46 effective species. The <span class="math inline">\(\alpha\)</span> diversity of each meta-community of the top assemblage is their <span class="math inline">\(\gamma\)</span> diversity when it is partitioned in turn:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dpMC1 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/DivPart.html">DivPart</a></span>(<span class="dt">q=</span><span class="dv">1</span>, <span class="dt">MC=</span>MC1)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(dpMC1)</code></pre></div>
-<pre><code>HCDT diversity partitioning of order 1 of metaCommunity MC1
-
-Alpha diversity of communities: 
-      C1       C2       C3 
-4.000000 2.429521 2.273918 
-Total alpha diversity of the communities: 
-[1] 2.741671
-Beta diversity of the communities: 
-    None 
-1.375862 
-Gamma diversity of the metacommunity: 
-    None 
-3.772161 </code></pre>
+<pre><code>## HCDT diversity partitioning of order 1 of metaCommunity MC1
+## 
+## Alpha diversity of communities: 
+##       C1       C2       C3 
+## 4.000000 2.429521 2.273918 
+## Total alpha diversity of the communities: 
+## [1] 2.741671
+## Beta diversity of the communities: 
+##     None 
+## 1.375862 
+## Gamma diversity of the metacommunity: 
+##     None 
+## 3.772161</code></pre>
 <p>The <span class="math inline">\(\gamma\)</span> diversity of MC1 is 3.77 effective species, made of 1.38 effective meta-communities of 2.74 effective species. The same decomposition can be applied to MC2.</p>
 </div>
 </div>

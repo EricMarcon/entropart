@@ -142,8 +142,8 @@
 
     <pre class="usage"><span class='fu'>as.AccumCurve</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>low</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 <span class='fu'>is.AccumCurve</span>(<span class='no'>x</span>)
-<span class='fu'>EntAC</span>(<span class='no'>Ns</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>n.seq</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>Ns</span>), <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"Best"</span>,
-      <span class='kw'>Simulations</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>Alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>EntAC</span>(<span class='no'>Ns</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>n.seq</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>Ns</span>), <span class='kw'>Estimator</span> <span class='kw'>=</span> <span class='st'>"Best"</span>,
+      <span class='kw'>NumberOfSimulations</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>Alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='co'># S3 method for AccumCurve</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
          <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Sample Size"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -169,6 +169,14 @@
       <td><p>A numeric vector.</p></td>
     </tr>
     <tr>
+      <th>low</th>
+      <td><p>A numeric vector.</p></td>
+    </tr>
+    <tr>
+      <th>high</th>
+      <td><p>A numeric vector.</p></td>
+    </tr>
+    <tr>
       <th>Ns</th>
       <td><p>A numeric vector containing species abundances.</p></td>
     </tr>
@@ -181,12 +189,12 @@
       <td><p>A sequence of numbers. Accumulation will be calculated at each value.</p></td>
     </tr>
     <tr>
-      <th>Correction</th>
+      <th>Estimator</th>
       <td><p>A string containing one of the possible asymptotic corrections of <code><a href='Tsallis.html'>Tsallis</a></code>: <code>"None"</code> (no correction) and  <code>"Best"</code> are two of them.</p></td>
     </tr>
     <tr>
-      <th>Simulations</th>
-      <td><p>The number of simulations to build confidence intervals.</p></td>
+      <th>NumberOfSimulations</th>
+      <td><p>The number of Simulations to build confidence intervals.</p></td>
     </tr>
     <tr>
       <th>Alpha</th>
@@ -249,9 +257,7 @@ They generalize the classical Species Accumulation Curves (SAC) which are divers
 <span class='co'># Ns is the total number of trees per species</span>
 <span class='no'>Ns</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='SpeciesDistribution.html'>as.AbdVector</a></span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ns</span>)
 <span class='co'># Accumulation curve of Shannon's entropy from 1 to 100 indivuduals</span>
-<span class='fu'>autoplot</span>(<span class='fu'>EntAC</span>(<span class='no'>Ns</span>), <span class='kw'>n.seq</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>100</span>)</div><div class='output co'>#&gt; Simulations cannot be:
-#&gt; [1] 0
-#&gt; Error in  EntAC : Simulations must be at least 1.</div><div class='output co'>#&gt; <span class='error'>Error: Check the function arguments.</span></div></pre>
+<span class='fu'>autoplot</span>(<span class='fu'>EntAC</span>(<span class='no'>Ns</span>), <span class='kw'>n.seq</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>100</span>)</div><div class='img'><img src='Accumulation-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -8,6 +8,13 @@
 
 <title>Diversity or Entropy Profile of a community — CommunityProfile • entropart</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
@@ -104,7 +111,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/EricMarcon/entropart">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -262,8 +274,7 @@ CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", &#
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>Paracou618</span>)
 <span class='co'># Plot diversity estimated without bias correction</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='fu'>CommunityProfile</span>(<span class='no'>Diversity</span>, <span class='no'>Paracou618.MC</span>$<span class='no'>Ps</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>2</span>, <span class='fl'>0.2</span>)),
-<span class='kw'>lty</span><span class='kw'>=</span><span class='fl'>3</span>, <span class='kw'>ylim</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>50</span>, <span class='fl'>350</span>))</div><div class='input'><span class='co'># autoplot(CommunityProfile(Diversity, Paracou618.MC$Ps, seq(0, 2, 0.2)))</span>
-<span class='co'># Estimate diversity, with a condidence envelope </span>
+<span class='kw'>lty</span><span class='kw'>=</span><span class='fl'>3</span>, <span class='kw'>ylim</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>50</span>, <span class='fl'>350</span>))</div><div class='input'><span class='co'># Estimate diversity, with a condidence envelope </span>
 <span class='co'># (only 10 simulations to save time, should be 1000)</span>
 <span class='no'>Profile</span> <span class='kw'>&lt;-</span> <span class='fu'>CommunityProfile</span>(<span class='no'>Diversity</span>, <span class='fu'><a href='SpeciesDistribution.html'>as.AbdVector</a></span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ns</span>),
                   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>2</span>, <span class='fl'>0.2</span>), <span class='kw'>Correction</span><span class='kw'>=</span><span class='st'>"UnveilJ"</span>, <span class='kw'>NumberOfSimulations</span><span class='kw'>=</span><span class='fl'>10</span>)</div><div class='output co'>#&gt; ================================================================================</div><div class='input'><span class='co'># Complete the plot, and add the legend</span>

@@ -95,7 +95,6 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Phylogenies in entropart</h1>
-                        <h4 class="author">Eric Marcon</h4>
             
       
       <small class="dont-index">Source: <a href="https://github.com/EricMarcon/entropart/blob/master/vignettes/articles/phylogenies.Rmd"><code>vignettes/articles/phylogenies.Rmd</code></a></small>
@@ -121,10 +120,10 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dSp &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">0</span>), <span class="dt">nrow=</span><span class="dv">3</span>, <span class="dt">byrow=</span><span class="ot">TRUE</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/row.names">row.names</a></span>(dSp) &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">colnames</a></span>(dSp) &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>)
 dSp</code></pre></div>
-<pre><code>  A B C
-A 0 1 2
-B 1 0 2
-C 2 2 0</code></pre>
+<pre><code>##   A B C
+## A 0 1 2
+## B 1 0 2
+## C 2 2 0</code></pre>
 <div id="hclust" class="section level2">
 <h2 class="hasAnchor">
 <a href="#hclust" class="anchor"></a>hclust</h2>
@@ -135,20 +134,20 @@ C 2 2 0</code></pre>
 <p><img src="phylogenies_files/figure-html/hclust-1.png" width="700"></p>
 <p>Node heights are stored in <code>$height</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hTree<span class="op">$</span>height</code></pre></div>
-<pre><code>[1] 1 2</code></pre>
+<pre><code>## [1] 1 2</code></pre>
 </div>
 <div id="phylo" class="section level2">
 <h2 class="hasAnchor">
 <a href="#phylo" class="anchor"></a>phylo</h2>
 <p>Conversion to a <code>phylo</code> object is straightforward.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(<span class="st">"ape"</span>)</code></pre></div>
-<pre><code>Le chargement a nécessité le package : ape</code></pre>
+<pre><code>## Le chargement a nécessité le package : ape</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(phyloTree &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ape/topics/as.phylo">as.phylo</a></span>(hTree))
 <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/axis">axis</a></span>(<span class="dv">1</span>)</code></pre></div>
 <p><img src="phylogenies_files/figure-html/phylo-1.png" width="700"></p>
 <p>Edge lengths have been divided by 2 during the conversion, as documented in <code><a href="https://www.rdocumentation.org/packages/ape/topics/as.phylo">?as.phylo.hclust</a></code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">phyloTree<span class="op">$</span>edge.length</code></pre></div>
-<pre><code>[1] 1.0 0.5 0.5 0.5</code></pre>
+<pre><code>## [1] 1.0 0.5 0.5 0.5</code></pre>
 <p>That does not suit our needs. In <em>entropart</em>, edge lengths are multiplied by 2 after conversion, so that <code>phylo</code>objects can be identical to other phylogenies.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">phyloTree<span class="op">$</span>edge.length &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span>phyloTree<span class="op">$</span>edge.length
 <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(phyloTree)
@@ -160,18 +159,18 @@ C 2 2 0</code></pre>
 <a href="#phylog" class="anchor"></a>phylog</h2>
 <p>The last conversion is from <code>phylo</code> to <code>phylog</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(<span class="st">"ade4"</span>)</code></pre></div>
-<pre><code>Le chargement a nécessité le package : ade4</code></pre>
+<pre><code>## Le chargement a nécessité le package : ade4</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(phylogTree &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ade4/topics/newick2phylog">hclust2phylog</a></span>(hTree))
 <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/axis">axis</a></span>(<span class="dv">1</span>)</code></pre></div>
 <p><img src="phylogenies_files/figure-html/phylog-1.png" width="700"></p>
 <p>Edge lengths are not stored directly in <code>phylog</code> objects. The <code>$droot</code> component keeps distances from tips to root. The <code>$Wdist</code> component is a <code>dist</code> (half a distance matrix without the zero-diagonal) whose values are <span class="math inline">\(d_{s,t}=\sqrt{2 \delta_{s,t}^2}\)</span>, where <span class="math inline">\(\delta_{s,t}\)</span> is the distance between species <span class="math inline">\(s\)</span> ant <span class="math inline">\(t\)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">phylogTree<span class="op">$</span>droot</code></pre></div>
-<pre><code>   C    A    B Int1 Root 
-   2    2    2    1    0 </code></pre>
+<pre><code>##    C    A    B Int1 Root 
+##    2    2    2    1    0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">phylogTree<span class="op">$</span>Wdist<span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">2</span></code></pre></div>
-<pre><code>  C A
-A 2  
-B 2 1</code></pre>
+<pre><code>##   C A
+## A 2  
+## B 2 1</code></pre>
 </div>
 </div>
 <div id="newick-dendrograms" class="section level1">
