@@ -62,6 +62,50 @@ function (x, ...)
 }
 
 
+# Utilities for as.ProbaVector.numeric. Not exported. ####
+# Solve the theta parameter of Chao et al. (2015)
+theta_solve <- function(theta, Ps, Ns, N, C, CD2){
+  # Code inspired from JADE function DetAbu(), http://esapubs.org/archive/ecol/E096/107/JADE.R
+  lambda <- (1-C) / sum(Ps * exp(-theta*Ns))
+  return(abs(sum((Ps * (1 - lambda * exp(-theta*Ns)))^2) - sum(choose(Ns,2)/choose(N,2)) + CD2))
+}
+# Solve the beta parameter of Chao et al. (2015)
+beta_solve <- function(beta, r, i){
+  # Code inspired from JADE function UndAbu(), http://esapubs.org/archive/ecol/E096/107/JADE.R
+  return(abs(sum(beta^i)^2 / sum((beta^i)^2) - r))
+}
+# Unobserved species distribution
+estimate_Ps0 <- function(Unveiling, PsTuned, S0, C, CD2){
+  Ps0 <- NA
+  if (Unveiling == "geom") {
+    if (S0 == 1) {
+      # A single unobserved species
+      Ps0 <- 1-C
+    } else {
+      r <- (1-C)^2/CD2
+      i <- 1:S0
+      beta <-  tryCatch(stats::optimize(beta_solve, lower=(r-1)/(r+1), upper=1, tol=.Machine$double.eps, r, i)$min, 
+                        error = function(e) {(r-1)/(r+1)})
+      alpha <- (1-C) / sum(beta^i)
+      Ps0 <- alpha * beta^i
+      # Sometimes fails when the distribution is very uneven (sometimes r < 1) 
+      # Then, go back to the uniform distribution
+      if (any(Ps0 <= 0)) Unveiling <- "unif"
+    }
+  }      
+  if (Unveiling == "unif") {
+    # Add S0 unobserved species with equal probabilities
+    Ps0 <- rep((1-sum(PsTuned))/S0, S0)
+  }
+  if (any(is.na(Ps0))) {
+    warning("Unveiling method was not recognized")
+    return(NA)
+  } else {
+    names(Ps0) <- paste("UnobsSp", 1:(length(Ps0)), sep="")
+    return(Ps0)
+  }         
+}
+
 as.ProbaVector.numeric <-
 function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", JackOver = FALSE, CEstimator = "ZhangHuang", ..., CheckArguments = TRUE) 
 {
@@ -116,7 +160,7 @@ function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", Jac
         # Single parameter estimation, Chao et al. (2013)
         denominator <- sum(Ps*(1-Ps)^N)
         if (denominator == 0) {
-          # N too big, denominator equals 0. Just multiply by C.
+          # N is too big so denominator equals 0. Just multiply by C.
           PsTuned <- Ps*C
         } else {
           # General case
@@ -126,14 +170,9 @@ function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", Jac
       } 
       if (Correction == "Chao2015")  {
         # Two parameters, Chao et al. (2015). 
-        # Code inspired from JADE function DetAbu(), http://esapubs.org/archive/ecol/E096/107/JADE.R
-        theta.solve <- function(theta){
-          lambda <- (1-C) / sum(Ps * exp(-theta*Ns))
-          out <- sum((Ps * (1 - lambda * exp(-theta*Ns)))^2) - sum(choose(Ns,2)/choose(N,2)) + CD2
-          abs(out)
-        }
         # Estimate theta. Set it to 1 if impossible
-        theta <- tryCatch(stats::optimize(theta.solve, c(0,1))$min, error = function(e) {1})
+        theta <- tryCatch(stats::optimize(theta_solve, interval=c(0,1), Ps, Ns, N, C, CD2)$min, 
+                          error = function(e) {1})
         lambda <- (1-C) / sum(Ps * exp(-theta*Ns))
         PsTuned <- Ps * (1 - lambda * exp(-theta*Ns))
       }
@@ -149,38 +188,7 @@ function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", Jac
       if (Unveiling == "None") {
         spD <- PsTuned
       } else {
-        Ps0 <- NA
-        if (Unveiling == "geom") {
-          # Code inspired from JADE function UndAbu(), http://esapubs.org/archive/ecol/E096/107/JADE.R
-          if (S0 == 1) {
-            # A single unobserved species
-            Ps0 <- 1-C
-          } else {
-            r <- (1-C)^2/CD2
-            i <- 1:S0
-            beta.solve <- function(beta){
-              out <- sum(beta^i)^2 / sum((beta^i)^2) - r
-              abs(out)
-            }
-            beta <-  tryCatch(stats::optimize(beta.solve, lower=(r-1)/(r+1), upper=1, tol=.Machine$double.eps)$min, error = function(e) {(r-1)/(r+1)})
-            alpha <- (1-C) / sum(beta^i)
-            Ps0 <- alpha * beta^i
-            # Sometimes fails when the distribution is very uneven (sometimes r < 1) 
-            # Then, go back to the uniform distribution
-            if (any(Ps0 <= 0)) Unveiling <- "unif"
-          }
-        }      
-        if (Unveiling == "unif") {
-          # Add S0 unobserved species with equal probabilities
-          Ps0 <- rep((1-sum(PsTuned))/S0, S0)
-        }
-        if (any(is.na(Ps0))) {
-          warning("Unveiling method was not recognized")
-          return(NA)
-        } else {
-          names(Ps0) <- paste("UnobsSp", 1:(length(Ps0)), sep="")
-          spD <- c(PsTuned, Ps0)
-        }         
+        spD <- c(PsTuned, estimate_Ps0(Unveiling, PsTuned, S0, C, CD2))
       }
     } else {
       spD <- PsTuned
