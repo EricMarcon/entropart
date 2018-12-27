@@ -86,26 +86,33 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = T
   } else {
     # Abundances
     if (is.null(Level)) {
-      return(Tsallis.AbdVector(NorP, q=q, Correction=Correction, CheckArguments=CheckArguments))
+      return(bcTsallis(Ns=NorP, q=q, Correction=Correction, CheckArguments=CheckArguments))
     } else {
       if (Level == sum(NorP)) {
         # No interpolation/extrapolation needed: estimate with no correction
         return(Tsallis.ProbaVector(NorP/sum(NorP), q=q, CheckArguments=CheckArguments))
       } else {
-        if (q==1) {
-          return(Shannon.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+        if (q==0) {
+          # Richness-1. Same result as general formula but faster
+          return(Richness.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=CheckArguments)-1)
         } else {
-          if (q==2) {
-            return(Simpson.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+          if (q==1) {
+            # Shannon. General formula is not defined at q=1
+            return(Shannon.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
           } else {
-            # non integer q
-            # If Level is coverage, get size
-            if (Level < 1) Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=CheckArguments)
-            # Obtain Abundance Frequence Count
-            afc <- AbdFreqCount(NorP, Level=Level, Estimator=Correction, CheckArguments=FALSE)
-            entropy <- (1 - sum(((1:Level)/Level)^q * afc[, 2]))/(q-1)
-            names(entropy) <- attr(afc, "Estimator")
-            return (entropy)
+            if (q==2) {
+              # Simpson. Same result as general formula but faster
+              return(Simpson.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+            } else {
+              # non integer q
+              # If Level is coverage, get size
+              if (Level < 1) Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=CheckArguments)
+              # Obtain Abundance Frequence Count
+              afc <- AbdFreqCount(NorP, Level=Level, Estimator=Correction, CheckArguments=FALSE)
+              entropy <- (1 - sum(((1:Level)/Level)^q * afc[, 2]))/(q-1)
+              names(entropy) <- attr(afc, "Estimator")
+              return (entropy)
+            }
           }
         }
       }

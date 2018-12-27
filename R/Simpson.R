@@ -79,7 +79,7 @@ function(NorP, Correction="Lande", Level = NULL, ..., CheckArguments = TRUE, Ps 
   } else {
     # Abundances
     if (is.null(Level)) {
-      return (Simpson.AbdVector(NorP, Correction=Correction, CheckArguments=CheckArguments))
+      return (bcSimpson(Ns=NorP, Correction=Correction, CheckArguments=CheckArguments))
     } else {
       # Eliminate 0
       NorP <- NorP[NorP > 0]
@@ -94,8 +94,9 @@ function(NorP, Correction="Lande", Level = NULL, ..., CheckArguments = TRUE, Ps 
           return(0)
         }
       } else {
+        # Valid interpolation and extrapolation
         entropy <- 1 - 1/Level - (1-1/Level)*sum(NorP*(NorP-1))/N/(N-1)
-        names(entropy) <- "Lande"
+        names(entropy) <- "Chao2014"
         return (entropy)
       }
     } 
