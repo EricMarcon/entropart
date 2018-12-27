@@ -17,7 +17,7 @@ AbdFreqCount(Ns, Level = NULL, Estimator = "Best", CheckArguments = TRUE)
   The level of interpolation or extrapolation. It may be an a chosen sample size (an integer) or a sample coverage (a number between 0 and 1).
   }
   \item{Estimator}{
-  A string containing one of the possible estimators (ignored if \code{Level} is \code{NULL}: \code{"UnveilJ"} only at the moment. \code{"Best"} is for \code{"UnveilJ"}.
+  A string containing one of the possible estimators (ignored if \code{Level} is \code{NULL}). \code{"UnveilJ"} is the only available estimator at the moment so \code{"Best"} is for \code{"UnveilJ"}.
   }
   \item{CheckArguments}{
   Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.

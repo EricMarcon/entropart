@@ -34,7 +34,7 @@ Coverage2Size(Ns, SampleCoverage, CheckArguments = TRUE)
   
   The historical estimator is due to Turing (Good, 1953). It only relies on singletons (species observed only once). Chao's (Chao and Shen, 2010) estimator uses doubletons too and Zhang-Huang's (Chao et al., 1988; Zhang and Huang, 2007) uses the whole distribution.
   
-  If \code{Level} is not null, the sample coverage is interpolated or extrapolated. Interpolation by the Good estimator relies on the equality between sampling deficit and the generalized Simpson entropy (Good, 1953). The Chao(2014) estimator allows extrapolation, reliable up a level equal to the double size of the sample.
+  If \code{Level} is not null, the sample coverage is interpolated or extrapolated. Interpolation by the Good estimator relies on the equality between sampling deficit and the generalized Simpson entropy (Good, 1953). The Chao (2014) estimator allows extrapolation, reliable up a level equal to the double size of the sample.
 }
 \value{
   A named number equal to the calculated sample coverage. The name is that of the estimator used.
