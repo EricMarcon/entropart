@@ -62,7 +62,7 @@ function(Ns, Estimator = "Best", Level = NULL, CheckArguments = TRUE)
     if (Level <=1) stop("Level must be an integer >1.")
 
     if (Estimator == "Best") Estimator <- "Chao"
-    # Faster. Extrapolation allowed.
+    # Extrapolation allowed.
     
     if (Estimator == "Good") {
       if (Level >= SampleSize) stop("The Good estimator only allows interpolation: Level must be less than the observed community size.")
