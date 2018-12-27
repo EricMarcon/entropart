@@ -25,7 +25,7 @@ function(NorP, ..., CheckArguments = TRUE, Ps = NULL)
 
 
 Richness.AbdVector <-
-function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, ..., CheckArguments = TRUE, Ns = NULL)
+function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, Level = NULL, ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -34,12 +34,16 @@ function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, ..., CheckA
       stop("An argument NorP or Ns must be provided.")
     }
   }
-  return(bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=CheckArguments))
+  if (is.null(Level)) {
+    return(bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=CheckArguments))
+  } else {
+    return (Richness.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+  }
 }
 
 
 Richness.integer <-
-function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, ..., CheckArguments = TRUE, Ns = NULL)
+function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, Level = NULL, ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -48,12 +52,16 @@ function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, ..., CheckA
       stop("An argument NorP or Ns must be provided.")
     }
   }
-  return(bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=CheckArguments))
+  if (is.null(Level)) {
+    return(bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=CheckArguments))
+  } else {
+    return (Richness.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+  }
 }
 
 
 Richness.numeric <-
-function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, Level = NULL, ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -71,8 +79,20 @@ function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, ..., CheckA
     # Probabilities sum to 1, allowing rounding error
     return(Richness.ProbaVector(NorP, CheckArguments=CheckArguments))
   } else {
-    # Abundances
-    return(Richness.AbdVector(NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=CheckArguments))
+    if (is.null(Level)) {
+      # Abundances
+      return(bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=CheckArguments))
+    } else {
+      # Eliminate 0
+      NorP <- NorP[NorP > 0]
+      N <- sum(NorP)
+      # If Level is coverage, get size
+      if (Level < 1) Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=CheckArguments)
+      # Interpolation
+      richness <- length(NorP) - sum(exp(lchoose(N-NorP, Level) - lchoose(N, Level)))
+      names(richness) <- "Interp"
+      return (richness)
+    } 
   }
 }
 

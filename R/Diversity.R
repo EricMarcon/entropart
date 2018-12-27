@@ -86,7 +86,7 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = T
       return (Diversity.AbdVector(NorP, q=q, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
     } else {
       Entropy <- Tsallis.numeric(NorP, q=q, Correction=Correction, Level=Level, CheckArguments=CheckArguments)
-      return (expq(Entropy, q))  
+      return (expq(Entropy, q))
     }
   }
 }

@@ -80,10 +80,11 @@ function(NorP, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ps
   } else {
     # Abundances
     if (is.null(Level)) {
-      return (Shannon.AbdVector(NorP, Correction=Correction, CheckArguments=CheckArguments))
+      return (bcShannon(Ns=NorP, Correction=Correction, CheckArguments=CheckArguments))
     } else {
       # If Level is coverage, get size
       if (Level < 1) Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=CheckArguments)
+      # Interpolation
       # Obtain Abundance Frequence Count
       afc <- AbdFreqCount(NorP, Level=Level, Estimator=Correction, CheckArguments=FALSE)
       entropy <- -(sum((1:Level)/Level * log((1:Level)/Level) * afc[, 2]))
