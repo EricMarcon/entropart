@@ -86,12 +86,23 @@ function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, Level = NUL
       # Eliminate 0
       NorP <- NorP[NorP > 0]
       N <- sum(NorP)
+      # Number of observed species
+      Sobs <- length(NorP)
       # If Level is coverage, get size
       if (Level < 1) Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=CheckArguments)
-      # Interpolation
-      richness <- length(NorP) - sum(exp(lchoose(N-NorP, Level) - lchoose(N, Level)))
-      names(richness) <- "Interp"
-      return (richness)
+      if (Level <= N) {
+        # Interpolation
+        richness <- Sobs - sum(exp(lchoose(N-NorP, Level) - lchoose(N, Level)))
+        names(richness) <- "SAC"
+        return (richness)
+      } else {
+        # Extrapolation. Estimate the number of unobserved species
+        S0 <- bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=CheckArguments) - Sobs
+        Singletons <-  sum(NorP == 1)
+        richness <- Sobs + S0*(1 - (1 - Singletons/(N*S0+Singletons))^(Level-N))
+        names(richness) <- "Chao2014"
+        return (richness)  
+      }
     } 
   }
 }
