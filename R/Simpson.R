@@ -72,20 +72,22 @@ function(NorP, Correction="Lande", Level = NULL, ..., CheckArguments = TRUE, Ps 
       }
     }
   }
+  if (CheckArguments)
+    CheckentropartArguments()
   
   if (abs(sum(NorP) - 1) < length(NorP)*.Machine$double.eps) {
     # Probabilities sum to 1, allowing rounding error
-    return (Simpson.ProbaVector(NorP, CheckArguments=CheckArguments))
+    return (Simpson.ProbaVector(NorP, CheckArguments=FALSE))
   } else {
     # Abundances
     if (is.null(Level)) {
-      return (bcSimpson(Ns=NorP, Correction=Correction, CheckArguments=CheckArguments))
+      return (bcSimpson(Ns=NorP, Correction=Correction, CheckArguments=FALSE))
     } else {
       # Eliminate 0
       NorP <- NorP[NorP > 0]
       N <- sum(NorP)
       # If Level is coverage, get size
-      if (Level < 1) Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=CheckArguments)
+      if (Level < 1) Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=FALSE)
       # Exit if Ns contains no or a single species
       if (length(NorP) < 2) {
         if (length(NorP) == 0) {
