@@ -76,16 +76,18 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = T
       }
     }
   }
-
+  if (CheckArguments)
+    CheckentropartArguments()
+  
   if (abs(sum(NorP) - 1) < length(NorP)*.Machine$double.eps) {
     # Probabilities sum to 1, allowing rounding error
     return (Diversity.ProbaVector(NorP, q=q, CheckArguments=CheckArguments))
   } else {
     # Abundances
     if (is.null(Level)) {
-      return (Diversity.AbdVector(NorP, q=q, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+      return (Diversity.AbdVector(NorP, q=q, Correction=Correction, Level=Level, CheckArguments=FALSE))
     } else {
-      Entropy <- Tsallis.numeric(NorP, q=q, Correction=Correction, Level=Level, CheckArguments=CheckArguments)
+      Entropy <- Tsallis.numeric(NorP, q=q, Correction=Correction, Level=Level, CheckArguments=FALSE)
       return (expq(Entropy, q))
     }
   }

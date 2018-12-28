@@ -79,22 +79,24 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = T
       }
     }
   }
+  if (CheckArguments)
+    CheckentropartArguments()
   
   if (abs(sum(NorP) - 1) < length(NorP)*.Machine$double.eps) {
     # Probabilities sum to 1, allowing rounding error
-    return(Tsallis.ProbaVector(NorP, q=q, CheckArguments=CheckArguments))
+    return(Tsallis.ProbaVector(NorP, q=q, CheckArguments=FALSE))
   } else {
     # Abundances
     if (is.null(Level)) {
-      return(bcTsallis(Ns=NorP, q=q, Correction=Correction, CheckArguments=CheckArguments))
+      return(bcTsallis(Ns=NorP, q=q, Correction=Correction, CheckArguments=FALSE))
     } else {
       if (Level == sum(NorP)) {
         # No interpolation/extrapolation needed: estimate with no correction
-        return(Tsallis.ProbaVector(NorP/sum(NorP), q=q, CheckArguments=CheckArguments))
+        return(Tsallis.ProbaVector(NorP/sum(NorP), q=q, CheckArguments=FALSE))
       } else {
         if (q==0) {
           # Richness-1. Same result as general formula but faster
-          return(Richness.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=CheckArguments)-1)
+          return(Richness.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=FALSE)-1)
         } else {
           if (q==1) {
             # Shannon. General formula is not defined at q=1
@@ -102,11 +104,11 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = T
           } else {
             if (q==2) {
               # Simpson. Same result as general formula but faster
-              return(Simpson.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+              return(Simpson.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=FALSE))
             } else {
               # non integer q
               # If Level is coverage, get size
-              if (Level < 1) Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=CheckArguments)
+              if (Level < 1) Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=FALSE)
               # Obtain Abundance Frequence Count
               afc <- AbdFreqCount(NorP, Level=Level, Estimator=Correction, CheckArguments=FALSE)
               entropy <- (1 - sum(((1:Level)/Level)^q * afc[, 2]))/(q-1)

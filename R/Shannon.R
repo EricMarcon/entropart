@@ -73,6 +73,8 @@ function(NorP, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ps
       }
     }
   }
+  if (CheckArguments)
+    CheckentropartArguments()
   
   if (abs(sum(NorP) - 1) < length(NorP)*.Machine$double.eps) {
     # Probabilities sum to 1, allowing rounding error
@@ -80,13 +82,13 @@ function(NorP, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ps
   } else {
     # Abundances
     if (is.null(Level)) {
-      return (bcShannon(Ns=NorP, Correction=Correction, CheckArguments=CheckArguments))
+      return (bcShannon(Ns=NorP, Correction=Correction, CheckArguments=FALSE))
     } else {
       # Eliminate 0
       NorP <- NorP[NorP > 0]
       N <- sum(NorP)
       # If Level is coverage, get size
-      if (Level < 1) Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=CheckArguments)
+      if (Level < 1) Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=FALSE)
       if (Level <= N) {
         # Interpolation
         # Obtain Abundance Frequence Count
@@ -96,7 +98,7 @@ function(NorP, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ps
         return (entropy)
       } else {
         # Extrapolation. Estimate the asymptotic entropy
-        Hinf <- bcShannon(Ns=NorP, Correction=Correction, CheckArguments=CheckArguments)
+        Hinf <- bcShannon(Ns=NorP, Correction=Correction, CheckArguments=FALSE)
         # Estimate observed entropy
         Hn <- Shannon.ProbaVector(NorP/N, CheckArguments=FALSE)
         # Interpolation

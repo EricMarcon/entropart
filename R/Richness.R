@@ -74,14 +74,16 @@ function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, Level = NUL
       }
     }
   }
+  if (CheckArguments)
+    CheckentropartArguments()
   
   if (abs(sum(NorP) - 1) < length(NorP)*.Machine$double.eps) {
     # Probabilities sum to 1, allowing rounding error
-    return(Richness.ProbaVector(NorP, CheckArguments=CheckArguments))
+    return(Richness.ProbaVector(NorP, CheckArguments=FALSE))
   } else {
     if (is.null(Level)) {
       # Abundances
-      return(bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=CheckArguments))
+      return(bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=FALSE))
     } else {
       # Eliminate 0
       NorP <- NorP[NorP > 0]
@@ -89,7 +91,7 @@ function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, Level = NUL
       # Number of observed species
       Sobs <- length(NorP)
       # If Level is coverage, get size
-      if (Level < 1) Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=CheckArguments)
+      if (Level < 1) Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=FALSE)
       if (Level <= N) {
         # Interpolation
         richness <- Sobs - sum(exp(lchoose(N-NorP, Level) - lchoose(N, Level)))
@@ -97,7 +99,7 @@ function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, Level = NUL
         return (richness)
       } else {
         # Extrapolation. Estimate the number of unobserved species
-        S0 <- bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=CheckArguments) - Sobs
+        S0 <- bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=FALSE) - Sobs
         Singletons <-  sum(NorP == 1)
         richness <- Sobs + S0*(1 - (1 - Singletons/(N*S0+Singletons))^(Level-N))
         names(richness) <- "Chao2014"
