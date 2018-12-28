@@ -34,7 +34,7 @@ bcSimpson(Ns, Correction = "Lande", CheckArguments = TRUE)
   A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities.
   }
   \item{Correction}{
-  A string containing one of the possible corrections accepted by \code{\link{bcTsallis}} or \code{"Lande"}, the default value (equivalent to \code{"Best"}). Interpolation and extropolation rely on Lande's asymptotic estimator, so \code{Correction} is ignored if \code{Level} is not \code{NULL}.
+  A string containing one of the possible corrections accepted by \code{\link{bcTsallis}} or \code{"Lande"}, the default value (equivalent to \code{"Best"}). Interpolation and extropolation rely on Lande's asymptotic estimator, so \code{Correction} is ignored if \code{Level} is not \code{NULL}. Ignored by interpolation and extrapolation.
   }
   \item{Level}{
   The level of interpolation or extrapolation. It may be an a chosen sample size (an integer) or a sample coverage (a number between 0 and 1).
@@ -49,9 +49,9 @@ bcSimpson(Ns, Correction = "Lande", CheckArguments = TRUE)
 \details{
   Lande's correction has been derived (Lande, 1996; Good, 1953) especially for Simpson entropy, while other corrections are for generalized Tsallis entropy. It is identical to the unbiased estimator proposed by Simpson, although arguments were different. It equals the plug-in etimator multiplied by n/(n-1) where n is the total number of individuals.
   
-  Bias correction requires the number of individuals to estimate sample \code{\link{Coverage}}. Use \code{bcSimpson} and choose the \code{Correction}.
+  Bias correction requires the number of individuals to estimate sample \code{\link{Coverage}}.
 
-  The functions are designed to be used as simply as possible. \code{Simpson} is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function \code{bcSimpson} is called. Explicit calls to \code{bcSimpson} (with bias correction) or to \code{Simpson.ProbaVector} (without correction) are possible to avoid ambiguity. The \code{.integer} and \code{.numeric} methods accept \code{Ps} or \code{Ns} arguments instead of \code{NorP} for backward compatibility.
+  The functions are designed to be used as simply as possible. \code{Simpson} is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function \code{bcSimpson} is called.
 
   Entropy can be estimated at a specified level of interpolation or extrapolation, either a chosen sample size or sample coverage (Chao et al., 2014), rather than its asymptotic value.
 }

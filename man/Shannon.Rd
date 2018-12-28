@@ -33,10 +33,10 @@ bcShannon(Ns, Correction = "Best", CheckArguments = TRUE)
   A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities.
   }
   \item{Correction}{
-  A string containing one of the possible asymptotic estimators: \code{"None"} (no correction), \code{"ChaoShen"}, \code{"GenCov"}, \code{"Grassberger"}, \code{"Grassberger2003"}, \code{"Schurmann"}, \code{"Holste"}, \code{"Bonachela"}, \code{"Miller"}, \code{"ZhangHz"}, \code{"ChaoJost"}, \code{"Marcon"}, \code{"UnveilC"}, \code{"UnveiliC"}, \code{"UnveilJ"} or \code{"Best"}, the default value. Currently, \code{"Best"} is \code{"ChaoWangJost"}. Interpolation and extrapolation rely on the estimators of \code{\link{AbdFreqCount}}.
+  A string containing one of the possible asymptotic estimators: \code{"None"} (no correction), \code{"ChaoShen"}, \code{"GenCov"}, \code{"Grassberger"}, \code{"Grassberger2003"}, \code{"Schurmann"}, \code{"Holste"}, \code{"Bonachela"}, \code{"Miller"}, \code{"ZhangHz"}, \code{"ChaoJost"}, \code{"Marcon"}, \code{"UnveilC"}, \code{"UnveiliC"}, \code{"UnveilJ"} or \code{"Best"}, the default value. Currently, \code{"Best"} is \code{"ChaoJost"}.
   }
   \item{Level}{
-  The level of interpolation or extrapolation. It may be an a chosen sample size (an integer) or a sample coverage (a number between 0 and 1).
+  The level of interpolation or extrapolation. It may be an a chosen sample size (an integer) or a sample coverage (a number between 0 and 1). Entropy extrapolation require its asymptotic estimation depending on the choice of \code{Correction}. Entropy interpolation relies on the estimation of Abundance Frequence Counts: then, \code{Correction} is passed to \code{\link{AbdFreqCount}} as its \code{Estimator} argument.
   }
   \item{\dots}{
   Additional arguments. Unused.
@@ -46,13 +46,13 @@ bcShannon(Ns, Correction = "Best", CheckArguments = TRUE)
   }
 }
 \details{
-  Bias correction requires the number of individuals to estimate sample \code{\link{Coverage}}. Use \code{bcShannon} and choose the \code{Correction}.
+  Bias correction requires the number of individuals to estimate sample \code{\link{Coverage}}.
   
   Correction techniques are from Miller (1955), Chao and Shen (2003), Grassberger (1988), Grassberger (2003), Schurmann (2003), Holste \emph{et al.} (1998), Bonachela \emph{et al.} (2008), Zhang (2012), Chao, Wang  and Jost (2013). More estimators can be found in the \code{entropy} package.
   
   Using \code{\link{MetaCommunity}} mutual information, Chao, Wang and Jost (2013) calculate reduced-bias Shannon beta entropy (see the last example below) with better results than the Chao and Shen estimator, but community weights cannot be arbitrary: they must be proportional to the number of individuals.
 
-  The functions are designed to be used as simply as possible. \code{Shannon} is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function \code{bcShannon} is called. Explicit calls to \code{bcShannon} (with bias correction) or to \code{Shannon.ProbaVector} (without correction) are possible to avoid ambiguity. The \code{.integer} and \code{.numeric} methods accept \code{Ps} or \code{Ns} arguments instead of \code{NorP} for backward compatibility.
+  The functions are designed to be used as simply as possible. \code{Shannon} is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function \code{bcShannon} is called.
   
   Entropy can be estimated at a specified level of interpolation or extrapolation, either a chosen sample size or sample coverage (Chao et al., 2014), rather than its asymptotic value.
 }
