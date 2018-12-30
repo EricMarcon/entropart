@@ -52,9 +52,9 @@ bcDiversity(Ns, q = 1, Correction = "Best", CheckArguments = TRUE)
 \details{
   \code{Diversity} calls \code{\link{Tsallis}} to calculate entropy and transforms it into diversity by calculating its deformed exponential.
   
-  Bias correction requires the number of individuals to estimate sample \code{\link{Coverage}}. Use \code{bcDiversity} and choose the \code{Correction}.
+  Bias correction requires the number of individuals to estimate sample \code{\link{Coverage}}.
   
-  The functions are designed to be used as simply as possible. \code{Diversity} is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function \code{bcDiversity} is called. Explicit calls to \code{bcDiversity} (with bias correction) or to \code{Diversity.ProbaVector} (without correction) are possible to avoid ambiguity. The \code{.integer} and \code{.numeric} methods accept \code{Ps} or \code{Ns} arguments instead of \code{NorP} for backward compatibility.
+  The functions are designed to be used as simply as possible. \code{Diversity} is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function \code{bcDiversity} is called.
 
   Diversity can be estimated at a specified level of interpolation or extrapolation, either a chosen sample size or sample coverage (Chao et al., 2014), rather than its asymptotic value.
 }
@@ -62,6 +62,8 @@ bcDiversity(Ns, q = 1, Correction = "Best", CheckArguments = TRUE)
   A named number equal to the calculated diversity. The name is that of the bias correction used.
 }
 \references{
+  Chao, A., Gotelli, N. J., Hsieh, T. C., Sander, E. L., Ma, K. H., Colwell, R. K., Ellison, A. M (2014). Rarefaction and extrapolation with Hill numbers: A framework for sampling and estimation in species diversity studies.  \emph{Ecological Monographs}, 84(1): 45-67.
+
   Marcon, E., Scotti, I., Herault, B., Rossi, V. and Lang, G. (2014). Generalization of the partitioning of Shannon diversity. \emph{PLOS One} 9(3): e90289.
 }
 \author{

@@ -13,14 +13,14 @@
 }
 \usage{
 Richness(NorP, \dots)
-bcRichness(Ns, Correction = "Jackknife", Alpha = 0.05, JackOver = FALSE, 
+bcRichness(Ns, Correction = "Best", Alpha = 0.05, JackOver = FALSE, 
               CheckArguments = TRUE)
 \method{Richness}{ProbaVector}(NorP, \dots, CheckArguments = TRUE, Ps = NULL)
-\method{Richness}{AbdVector}(NorP, Correction = "Jackknife", Alpha = 0.05, JackOver = FALSE, 
+\method{Richness}{AbdVector}(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, 
   Level = NULL, \dots, CheckArguments = TRUE, Ns = NULL)
-\method{Richness}{integer}(NorP, Correction = "Jackknife", Alpha = 0.05, JackOver = FALSE, 
+\method{Richness}{integer}(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, 
   Level = NULL, \dots, CheckArguments = TRUE, Ns = NULL)
-\method{Richness}{numeric}(NorP, Correction = "Jackknife", Alpha = 0.05, JackOver = FALSE, 
+\method{Richness}{numeric}(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, 
   Level = NULL, \dots, CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 }
 \arguments{
@@ -34,7 +34,7 @@ bcRichness(Ns, Correction = "Jackknife", Alpha = 0.05, JackOver = FALSE,
   A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities.
   }
   \item{Correction}{
-  A string containing one of the possible corrections: \code{"None"} (no correction), \code{"Jackknife"}, the default value, \code{"iChao1"}, or \code{"Chao1"}. Ignored by richness interpolation.
+  A string containing one of the possible corrections: \code{"None"} (no correction), \code{"Jackknife"}, \code{"iChao1"}, or \code{"Chao1"}. \code{"Best"}, the default value, is currently \code{"Jackknife"}. Ignored by richness interpolation.
   }
   \item{Alpha}{
   The risk level, 5\% by default, used to optimize the jackknife order.
@@ -62,6 +62,7 @@ bcRichness(Ns, Correction = "Jackknife", Alpha = 0.05, JackOver = FALSE,
 }
 \value{
   A named number equal to the estimated number of species.
+  The name is the \code{Correction}, except for "SAC" (Species Accumulation Curve) for interpolation.
 }
 \references{
   Burnham, K. P., and Overton,W. S. (1978), Estimation of the Size of a Closed Population When Capture Probabilities Vary Among Animals. \emph{Biometrika}, 65:625-633.
