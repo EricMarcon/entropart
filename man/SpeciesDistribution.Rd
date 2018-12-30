@@ -38,10 +38,10 @@ is.SpeciesDistribution(x)
 as.ProbaVector(x, \dots)
 \method{as.ProbaVector}{data.frame}(x, \dots)
 \method{as.ProbaVector}{integer}(x, Correction = "None", Unveiling = "None", 
-          RCorrection = "Chao1", JackOver = FALSE, CEstimator = "ZhangHuang", 
+          RCorrection = "Jackknife", JackOver = FALSE, CEstimator = "ZhangHuang", 
           \dots, CheckArguments = TRUE)
 \method{as.ProbaVector}{numeric}(x, Correction = "None", Unveiling = "None", 
-          RCorrection = "Chao1", JackOver = FALSE, CEstimator = "ZhangHuang", 
+          RCorrection = "Jackknife", JackOver = FALSE, CEstimator = "ZhangHuang", 
           \dots, CheckArguments = TRUE)
 is.ProbaVector(x)
 as.AbdVector(x, \dots)
@@ -70,7 +70,7 @@ is.AbdVector(x)
   A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species: \code{"None"} (default, no species is added), \code{"unif"} (uniform: all unobserved species have the same probability) or \code{"geom"} (geometric: the unobserved species distribution is geometric).
   }
   \item{RCorrection}{
-  A string containing a correction recognized by \code{\link{Richness}} to evaluate the total number of species. \code{"Chao1"} is  the default value.
+  A string containing a correction recognized by \code{\link{Richness}} to evaluate the total number of species. \code{"Jackknife"} is  the default value.
   }
   \item{JackOver}{
   If \code{TRUE}, retain the jackknife order immediately superior to the optimal one, usually resulting in the overestimation of the number of species. Default is \code{FALSE}. Ignored if \code{RCorrection} is not \code{"Jackknife"}.

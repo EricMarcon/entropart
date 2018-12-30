@@ -105,9 +105,24 @@ estimate_Ps0 <- function(Unveiling, PsTuned, S0, C, CD2){
     return(Ps0)
   }         
 }
+# Rarefaction bias
+rarefaction_bias <- function(S0, Ns, PsTuned, C, CD2, q, Unveiling, Target) {
+  Ns <- Ns[Ns>0]
+  N <- sum(Ns)
+  # Unobserved species
+  Ps0 <- estimate_Ps0(Unveiling, PsTuned, S0, C, CD2)
+  # Full distribution of probabilities
+  Ps <- c(PsTuned, Ps0)
+  # AbdFreqCount at Level = N
+  Sn <- sapply(1:N, function(nu) sum(exp(lchoose(N, nu) + nu*log(Ps) + (N-nu)*log(1-Ps))))
+  # Get Entropy at Level=N and calculate the bias
+  return(abs((sum(((1:N)/N)^q * Sn) - 1) / (1-q) - Target))
+}
+# end of utilities ####
 
 as.ProbaVector.numeric <-
-function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", JackOver = FALSE, CEstimator = "ZhangHuang", ..., CheckArguments = TRUE) 
+function (x, Correction = "None", Unveiling = "None", RCorrection = "Jackknife", 
+          JackOver = FALSE, CEstimator = "ZhangHuang", q = 0,  ..., CheckArguments = TRUE) 
 {
   if (CheckArguments)
     CheckentropartArguments()
@@ -118,7 +133,7 @@ function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", Jac
   if (length(spNames) == length(spD))
     names(spD) <- spNames
 
-  if (Correction == "None") {
+  if (Correction == "None") { 
     spD <- spD/sum(spD)
   } else {
     # Integer abundances are required
@@ -131,7 +146,7 @@ function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", Jac
     N <- sum(Ns)
     Ps <- Ns/N
     C <- Coverage(Ns, Estimator=CEstimator)
-    if (Correction == "Chao2015" | Unveiling == "Chao2015") {
+    if (Correction == "Chao2015" | Unveiling == "Chao2015" | RCorrection == "Rarefy") {
       Singletons <- sum(Ns==1)
       Doubletons <- sum(Ns==2)
       if (Doubletons==0) {
@@ -142,10 +157,6 @@ function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", Jac
       # 1 minus sample coverage (i.e. Coverage Deficit) of order 2
       CD2 <- Doubletons / choose(N, 2) * ((N-2)*Doubletons / ((N-2)*Doubletons + 3*Tripletons))^2
     }
-    
-    # Estimate the number of unobserved species
-    Sestimate <- ceiling(bcRichness(Ns, Correction=RCorrection, JackOver=JackOver))
-    S0 <- Sestimate - S
     
     # Tune the probabilities of observed species
     if (C == 1) {
@@ -182,8 +193,21 @@ function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", Jac
       }
     }
     names(PsTuned) <- names(spD[spD > 0])
-
-    # Unobserved species
+    
+    # Estimate the number of unobserved species
+    if (RCorrection == "Rarefy") {
+      # Estimation of the number of unobserved species to initialize optimization
+      S0 <- bcRichness(Ns, Correction="Jackknife") - S
+      # Estimate the number of unobserved species by iterations
+      Target <- Tsallis(Ns, q=q, Correction="None", CheckArguments = FALSE)
+      S0 <- round(tryCatch(stats::optimize(rarefaction_bias, interval=c(0, 2*S0), Ns, PsTuned, C, CD2, q, Unveiling, Target)$minimum,
+                           error = function(e) {S0}))
+    } else {
+      Sestimate <- ceiling(bcRichness(Ns, Correction=RCorrection, JackOver=JackOver))
+      S0 <- Sestimate - S
+    }
+    
+    # Distribution of unobserved species
     if (S0) {
       if (Unveiling == "None") {
         spD <- PsTuned
@@ -201,12 +225,14 @@ function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", Jac
 
 
 as.ProbaVector.integer <-
-function (x, Correction = "None", Unveiling = "None", RCorrection = "Chao1", JackOver = FALSE, CEstimator = "ZhangHuang", ..., CheckArguments = TRUE) 
+function (x, Correction = "None", Unveiling = "None", RCorrection = "Jackknife", 
+          JackOver = FALSE, CEstimator = "ZhangHuang", q = 0, ..., CheckArguments = TRUE) 
 {
   if (CheckArguments)
     CheckentropartArguments()
   
-  return(as.ProbaVector.numeric(x, Correction=Correction, Unveiling=Unveiling, RCorrection=RCorrection, JackOver=JackOver, CEstimator=CEstimator, ..., CheckArguments=FALSE))
+  return(as.ProbaVector.numeric(x, Correction=Correction, Unveiling=Unveiling, RCorrection=RCorrection, 
+                                JackOver=JackOver, CEstimator=CEstimator, q=q, ..., CheckArguments=FALSE))
 }
 
 
