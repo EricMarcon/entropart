@@ -113,7 +113,8 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = T
     if (Level <= N) {
       # Obtain Abundance Frequence Count
       afc <- AbdFreqCount(NorP, Level=Level, Estimator=Correction, CheckArguments=FALSE)
-      entropy <- (1 - sum(((1:Level)/Level)^q * afc[, 2]))/(q-1)
+      # Calculate entropy (Chao et al., 2014, eq. 6)
+      entropy <- (sum(((1:Level)/Level)^q * afc[, 2]) - 1)/(1-q)
       names(entropy) <- attr(afc, "Estimator")
       return (entropy)
     } else {

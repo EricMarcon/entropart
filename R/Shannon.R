@@ -79,34 +79,36 @@ function(NorP, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ps
   if (abs(sum(NorP) - 1) < length(NorP)*.Machine$double.eps) {
     # Probabilities sum to 1, allowing rounding error
     return (Shannon.ProbaVector(NorP, CheckArguments=CheckArguments))
+  } 
+  # Abundances
+  if (is.null(Level)) {
+    return (bcShannon(Ns=NorP, Correction=Correction, CheckArguments=FALSE))
+  } 
+  # Eliminate 0
+  NorP <- NorP[NorP > 0]
+  N <- sum(NorP)
+  # If Level is coverage, get size
+  if (Level < 1) 
+    Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=FALSE)
+  if (Level == sum(NorP)) {
+    # No interpolation/extrapolation needed: estimate with no correction
+    return(Shannon.ProbaVector(NorP/N, CheckArguments=FALSE))
+  }
+  if (Level <= N) {
+    # Interpolation. Obtain Abundance Frequence Count
+    afc <- AbdFreqCount(NorP, Level=Level, Estimator=Correction, CheckArguments=FALSE)
+    entropy <- -(sum((1:Level)/Level * log((1:Level)/Level) * afc[, 2]))
+    names(entropy) <- attr(afc, "Estimator")
+    return (entropy)
   } else {
-    # Abundances
-    if (is.null(Level)) {
-      return (bcShannon(Ns=NorP, Correction=Correction, CheckArguments=FALSE))
-    } else {
-      # Eliminate 0
-      NorP <- NorP[NorP > 0]
-      N <- sum(NorP)
-      # If Level is coverage, get size
-      if (Level < 1) Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=FALSE)
-      if (Level <= N) {
-        # Interpolation
-        # Obtain Abundance Frequence Count
-        afc <- AbdFreqCount(NorP, Level=Level, Estimator=Correction, CheckArguments=FALSE)
-        entropy <- -(sum((1:Level)/Level * log((1:Level)/Level) * afc[, 2]))
-        names(entropy) <- attr(afc, "Estimator")
-        return (entropy)
-      } else {
-        # Extrapolation. Estimate the asymptotic entropy
-        Hinf <- bcShannon(Ns=NorP, Correction=Correction, CheckArguments=FALSE)
-        # Estimate observed entropy
-        Hn <- Shannon.ProbaVector(NorP/N, CheckArguments=FALSE)
-        # Interpolation
-        entropy <- N/Level*Hn + (Level-N)/Level*Hinf
-        names(entropy) <- "Chao2014"
-        return (entropy)  
-      }
-    } 
+    # Extrapolation. Estimate the asymptotic entropy
+    Hinf <- bcShannon(Ns=NorP, Correction=Correction, CheckArguments=FALSE)
+    # Estimate observed entropy
+    Hn <- Shannon.ProbaVector(NorP/N, CheckArguments=FALSE)
+    # Interpolation
+    entropy <- N/Level*Hn + (Level-N)/Level*Hinf
+    names(entropy) <- Correction
+    return (entropy)  
   }
 }
 

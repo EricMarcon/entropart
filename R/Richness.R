@@ -25,7 +25,7 @@ function(NorP, ..., CheckArguments = TRUE, Ps = NULL)
 
 
 Richness.AbdVector <-
-function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, Level = NULL, ..., CheckArguments = TRUE, Ns = NULL)
+function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL, ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -43,7 +43,7 @@ function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, Level = NUL
 
 
 Richness.integer <-
-function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, Level = NULL, ..., CheckArguments = TRUE, Ns = NULL)
+function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL, ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -61,7 +61,7 @@ function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, Level = NUL
 
 
 Richness.numeric <-
-function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, Level = NULL, ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL, ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -80,41 +80,46 @@ function(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, Level = NUL
   if (abs(sum(NorP) - 1) < length(NorP)*.Machine$double.eps) {
     # Probabilities sum to 1, allowing rounding error
     return(Richness.ProbaVector(NorP, CheckArguments=FALSE))
+  } 
+  if (is.null(Level)) {
+    # Abundances
+    return(bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=FALSE))
+  }
+  # Eliminate 0
+  NorP <- NorP[NorP > 0]
+  N <- sum(NorP)
+  # Number of observed species
+  Sobs <- length(NorP)
+  # If Level is coverage, get size
+  if (Level < 1) 
+    Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=FALSE)
+  if (Level == sum(NorP)) {
+    # No interpolation/extrapolation needed: estimate with no correction
+    return(Richness.ProbaVector(NorP/N, CheckArguments=FALSE))
+  }
+  if (Level <= N) {
+    # Interpolation
+    richness <- Sobs - sum(exp(lchoose(N-NorP, Level) - lchoose(N, Level)))
+    names(richness) <- "SAC"
+    return (richness)
   } else {
-    if (is.null(Level)) {
-      # Abundances
-      return(bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=FALSE))
-    } else {
-      # Eliminate 0
-      NorP <- NorP[NorP > 0]
-      N <- sum(NorP)
-      # Number of observed species
-      Sobs <- length(NorP)
-      # If Level is coverage, get size
-      if (Level < 1) Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=FALSE)
-      if (Level <= N) {
-        # Interpolation
-        richness <- Sobs - sum(exp(lchoose(N-NorP, Level) - lchoose(N, Level)))
-        names(richness) <- "SAC"
-        return (richness)
-      } else {
-        # Extrapolation. Estimate the number of unobserved species
-        S0 <- bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=FALSE) - Sobs
-        Singletons <-  sum(NorP == 1)
-        richness <- Sobs + S0*(1 - (1 - Singletons/(N*S0+Singletons))^(Level-N))
-        names(richness) <- "Chao2014"
-        return (richness)  
-      }
-    } 
+    # Extrapolation. Estimate the number of unobserved species
+    S0 <- bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=FALSE) - Sobs
+    Singletons <-  sum(NorP == 1)
+    richness <- Sobs + S0*(1 - (1 - Singletons/(N*S0+Singletons))^(Level-N))
+    names(richness) <- Correction
+    return (richness)  
   }
 }
 
 
 bcRichness <- 
-function(Ns, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, CheckArguments = TRUE)
+function(Ns, Correction = "Best", Alpha = 0.05, JackOver = FALSE, CheckArguments = TRUE)
 {
   if (CheckArguments)
     CheckentropartArguments()
+  
+  if (Correction == "Best") Correction <- "Jackknife"
   
   # Eliminate 0
   Ns <- Ns[Ns > 0]
