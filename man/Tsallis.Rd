@@ -56,14 +56,15 @@ bcTsallis(Ns, q = 1, Correction = "Best", SampleCoverage = NULL,
 \details{
   Tsallis (Havrda and Charvat, 1967; Daroczy, 1970; Tsallis, 1988) generalized entropy is a generalized measure of diversity (Jost, 2006).
   
-  Bias correction requires the number of individuals to estimate sample \code{\link{Coverage}}. Use \code{bcTsallis} and choose the \code{Correction}.
+  Bias correction requires the number of individuals to estimate sample \code{\link{Coverage}}.
+  
   Correction techniques are from Chao and Shen (2003), Grassberger (1988), Holste \emph{et al.} (1998), Bonachela \emph{et al.} (2008), (Marcon \emph{et al.}, 2014), which is actually the max value of \code{"ChaoShen"} and \code{"Grassberger"}, Zhang and Grabchak (2014), Chao and Jost (2015) and Marcon (2015).
   
   The \code{"ChaoJost"} (Chao, Wang and Jost, 2013 for \eqn{q=1}; Chao and Jost, 2015) estimator contains an unbiased part concerning observed species, equal to that of Zhang and Grabchak (2014), and a (biased) estimator of the remaining bias based on the estimation of the species-accumulation curve. It is very efficient but very slow if the number of individuals is more than a few hundreds. This estimator was named "ChaoWangJost" in previous versions of the package; its old name is still supported for backward compatibility.
 
   The unveiled estimators rely on Chao \emph{et al.} (2015), completed by Marcon (2015). The actual probabilities of observed species are estimated and completed by a geometric distribution of the probabilities of unobserved species. The number of unobserved species is estimated by the Chao1 estimator (\code{"UnveilC"}), following Chao \emph{et al.} (2015), or by the iChao1 (\code{"UnveiliC"}) or the jacknife (\code{"UnveilJ"}). The \code{"UnveilJ"} correction often has a lower bias but a greater variance (Marcon, 2015). It is a good first choice thanks to the versatility of the jacknife estimator of richness.
   
-  The functions are designed to be used as simply as possible. \code{Tsallis} is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function \code{bcTsallis} is called. Explicit calls to \code{bcTsallis} (with bias correction) or to \code{Tsallis.ProbaVector} (without correction) are possible to avoid ambiguity. The \code{.integer} and \code{.numeric} methods accept \code{Ps} or \code{Ns} arguments instead of \code{NorP} for backward compatibility.
+  The functions are designed to be used as simply as possible. \code{Tsallis} is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function \code{bcTsallis} is called.
   
   The size of a metacommunity (see \code{\link{MetaCommunity}}) is unknown so it has to be set according to a rule which does not ensure that its abundances are integer values. Then, classical bias-correction methods do not apply. Providing the \code{SampleCoverage} argument allows applying the \code{"ChaoShen"} and \code{"Grassberger"} corrections to estimate quite well the entropy. \code{\link{DivPart}} and \code{\link{GammaEntropy}} functions use this tweak.
   
