@@ -33,7 +33,7 @@ bcShannon(Ns, Correction = "Best", CheckArguments = TRUE)
   A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities.
   }
   \item{Correction}{
-  A string containing one of the possible asymptotic estimators: \code{"None"} (no correction), \code{"ChaoShen"}, \code{"GenCov"}, \code{"Grassberger"}, \code{"Grassberger2003"}, \code{"Schurmann"}, \code{"Holste"}, \code{"Bonachela"}, \code{"Miller"}, \code{"ZhangHz"}, \code{"ChaoJost"}, \code{"Marcon"}, \code{"UnveilC"}, \code{"UnveiliC"}, \code{"UnveilJ"} or \code{"Best"}, the default value. Currently, \code{"Best"} is \code{"ChaoJost"}.
+  A string containing one of the possible asymptotic estimators: \code{"None"} (no correction), \code{"ChaoShen"}, \code{"GenCov"}, \code{"Grassberger"}, \code{"Grassberger2003"}, \code{"Schurmann"}, \code{"Holste"}, \code{"Bonachela"}, \code{"Miller"}, \code{"ZhangHz"}, \code{"ChaoJost"}, \code{"Marcon"}, \code{"UnveilC"}, \code{"UnveiliC"}, \code{"UnveilJ"} or \code{"Best"}, the default value. Currently, \code{"Best"} is \code{"UnveilJ"}.
   }
   \item{Level}{
   The level of interpolation or extrapolation. It may be an a chosen sample size (an integer) or a sample coverage (a number between 0 and 1). Entropy extrapolation require its asymptotic estimation depending on the choice of \code{Correction}. Entropy interpolation relies on the estimation of Abundance Frequence Counts: then, \code{Correction} is passed to \code{\link{AbdFreqCount}} as its \code{Estimator} argument.

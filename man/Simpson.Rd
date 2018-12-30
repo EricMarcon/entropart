@@ -13,14 +13,14 @@
 }
 \usage{
 Simpson(NorP, \dots)
-bcSimpson(Ns, Correction = "Lande", CheckArguments = TRUE)
+bcSimpson(Ns, Correction = "Best", CheckArguments = TRUE)
 \method{Simpson}{ProbaVector}(NorP, \dots, CheckArguments = TRUE, 
   Ps = NULL)
-\method{Simpson}{AbdVector}(NorP, Correction="Lande", Level = NULL, \dots, 
+\method{Simpson}{AbdVector}(NorP, Correction="Best", Level = NULL, \dots, 
   CheckArguments = TRUE, Ns = NULL)
-\method{Simpson}{integer}(NorP, Correction="Lande", Level = NULL, \dots, 
+\method{Simpson}{integer}(NorP, Correction="Best", Level = NULL, \dots, 
   CheckArguments = TRUE, Ns = NULL)
-\method{Simpson}{numeric}(NorP, Correction="Lande", Level = NULL, \dots, 
+\method{Simpson}{numeric}(NorP, Correction="Best", Level = NULL, \dots, 
   CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 }
 \arguments{
@@ -34,7 +34,7 @@ bcSimpson(Ns, Correction = "Lande", CheckArguments = TRUE)
   A numeric vector, an integer vector, an abundance vector (\code{\link{AbdVector}}) or a probability vector (\code{\link{ProbaVector}}). Contains either abundances or probabilities.
   }
   \item{Correction}{
-  A string containing one of the possible corrections accepted by \code{\link{bcTsallis}} or \code{"Lande"}, the default value (equivalent to \code{"Best"}). Interpolation and extropolation rely on Lande's asymptotic estimator, so \code{Correction} is ignored if \code{Level} is not \code{NULL}. Ignored by interpolation and extrapolation.
+  A string containing one of the possible corrections accepted by \code{\link{bcTsallis}} or \code{"Lande"}. \code{"Best"}, the default value, is currently \code{"Jackknife"}. Ignored by interpolation and extrapolation.
   }
   \item{Level}{
   The level of interpolation or extrapolation. It may be an a chosen sample size (an integer) or a sample coverage (a number between 0 and 1).
