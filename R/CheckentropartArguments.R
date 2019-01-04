@@ -33,6 +33,12 @@ function() {
     if (!is.character(Correction))
       ErrorMessage("Correction must be a string.", Correction)
   }
+  # PCorrection 
+  if (!is.na(names(Args["PCorrection"]))) {
+    PCorrection <- eval(expression(PCorrection), parent.frame())
+    if (!is.character(PCorrection))
+      ErrorMessage("PCorrection must be a string.", PCorrection)
+  }
   # RCorrection 
   if (!is.na(names(Args["RCorrection"]))) {
     RCorrection <- eval(expression(RCorrection), parent.frame())
@@ -116,7 +122,7 @@ function() {
       if (!is.numeric(Level) | length(Level)!=1)
         ErrorMessage("Level must be a number.", Level)
       if (Level <=0)
-        ErrorMessage("Level must be positive", alpha)
+        ErrorMessage("Level must be positive", Level)
       if (Level > 1)
         # Level is an abundance
         if (as.integer(Level) != Level)
