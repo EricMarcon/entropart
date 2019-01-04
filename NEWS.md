@@ -1,9 +1,11 @@
-# entropart 1.5-3-9006
+# entropart 1.5-3-9008
 
 ## New features
 
+- Estimation of diversity at a chosen level (sample size or coverage).
+- Entropy accumulation functions.
 - ggplot2 supported. `autoplot()` methods added for entropart objects.
-- The "Best" estimator of diversity is now "UnveilJ".
+- The "Best" estimator of diversity is now "UnveilJ" and the default estimator of richness is "Jackknife".
 - The "ChaoWangJost" estimator is renamed "ChaoJost".
 
 ## Improvements
@@ -11,12 +13,8 @@
 - Unit tests added.
 - Vignette by pkgdown.
 
-## Beta
 
-- estimation of diversity at a chosen level (sample size or coverage). Extrapolation is not fully operational.
-- entropy accumulation preversion functions.
 
-  
 # entropart 1.5-3
 
 ## Improvements
