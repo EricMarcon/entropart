@@ -41,7 +41,7 @@ as.ProbaVector(x, \dots)
           RCorrection = "Jackknife", JackOver = FALSE, CEstimator = "ZhangHuang", 
           q = 0, \dots, CheckArguments = TRUE)
 \method{as.ProbaVector}{numeric}(x, Correction = "None", Unveiling = "None", 
-          RCorrection = "Jackknife", JackOver = FALSE, CEstimator = "ZhangHuang", q = 0, 
+          RCorrection = "Jackknife", JackOver = FALSE, CEstimator = "ZhangHuang",
           q = 0, \dots, CheckArguments = TRUE)
 is.ProbaVector(x)
 as.AbdVector(x, \dots)
