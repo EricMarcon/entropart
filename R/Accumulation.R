@@ -1,4 +1,4 @@
-EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), Estimator = "Best", 
+EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", 
                   NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
 {
   if (CheckArguments)
@@ -7,38 +7,66 @@ EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), Estimator = "Best",
     warning("Entropy accumulation requires integer values in argument Ns. Abundances have been rounded.")
     Ns <- round(Ns)
   }
-  Size <- sum(Ns)
+  N <- sum(Ns)
   
-  if (Estimator == "Best") Estimator <- "UnveilJ"
+  # Prepare the vector of results
+  Entropy <- numeric(length(n.seq))
+  ProgressBar <- utils::txtProgressBar(min=0, max=length(n.seq))
   
-  # Calculate entropy. Parallelize. Do not allow more forks.
-  Entropy <- parallel::mclapply(n.seq, function(n) Tsallis(Ns, q=q, Correction=Estimator, Level=n, CheckArguments=FALSE), mc.allow.recursive=FALSE)
-  Entropy <- simplify2array(Entropy)
-  # Simulations
+  # Interpolation
+  n.seqInt <- n.seq[n.seq < N]
+  # Calculate entropy at each level
+  for(Level in n.seqInt) {
+    # Calculate Entropy
+    i <- which(n.seq==Level)
+    Entropy[i] <- Tsallis.numeric(Ns, q=q, Level=Level, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=FALSE)
+    utils::setTxtProgressBar(ProgressBar, i)
+  }
+  # Level == Sample Size
+  if (any(n.seq==N)) {
+    i <- which(n.seq==N)
+    Entropy[i] <- Tsallis.ProbaVector(Ns/N, q=q, CheckArguments=FALSE)
+    utils::setTxtProgressBar(ProgressBar, i)
+  }
+  # Extrapolation
+  n.seqExt <- n.seq[n.seq > N]
+  PsU <- NULL
+  # Don't use Tsallis for speed: unveiled probabilities can be estimated only once
+  if (length(n.seqExt)) {
+    # Unveil the full distribution that rarefies to the observed entropy (or other options)
+    PsU <- as.ProbaVector(Ns, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, q=q, CheckArguments=FALSE)
+  }
+  for(Level in n.seqExt) {
+    # Abundance frequence count at Level (Chao et al., 2014, eq. 5)
+    Snu <- sapply(1:Level, function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))))
+    # Estimate entropy (Chao et al., 2014, eq. 6)
+    i <- which(n.seq==Level)
+    Entropy[i]  <- (sum(((1:Level)/Level)^q * Snu) - 1) / (1-q)
+    utils::setTxtProgressBar(ProgressBar, i)
+  }
+  
+  
+  # Simulations: generate distributions from the unveiled probabilities
   if (NumberOfSimulations > 0) {
-    # Unveil the full distribution
-    PsU <- as.ProbaVector(Ns, RCorrection="Jackknife", Correction="Chao2015", Unveiling="geom", CheckArguments=FALSE)
-    # Create a MetaCommunity made of simulated communities
-    MCSim <- rCommunity(NumberOfSimulations, size=Size, NorP=PsU, CheckArguments=FALSE)
-    ProgressBar <- utils::txtProgressBar(min=0, max=NumberOfSimulations)
-    Sims <- matrix(nrow=NumberOfSimulations, ncol=length(n.seq))
-    # Simulations with a progress bar
-    for (i in 1:NumberOfSimulations) {
-      # Parallelize. Do not allow more forks.
-      ACasaList <- parallel::mclapply(n.seq, function(n) Tsallis(MCSim$Nsi[, i], q=q, Correction=Estimator, Level=n, CheckArguments=FALSE), mc.allow.recursive=FALSE)
-      Sims[i, ] <- simplify2array(ACasaList)
+    # Prepare the result matrix
+    Envelope <- matrix(0.0, nrow = length(n.seq), ncol = 2)
+    if (is.null(PsU)) {
+      # Unveil the full distribution if not done before
+      PsU <- as.ProbaVector(Ns, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, q=q, CheckArguments=FALSE)
+    }
+    for(Level in n.seq) {
+      # Generate simulated communities at each level
+      Communities <- stats::rmultinom(NumberOfSimulations, size=Level, prob=PsU)
+      # Probabilities
+      Communities <- Communities/Level
+      # Calculate entropy
+      Entropies <- apply(Communities, 2, Tsallis.ProbaVector, q=q, CheckArguments=FALSE)
+      i <- which(n.seq==Level)
+      # Store quantiles
+      Envelope[i, ] <- stats::quantile(Entropies, probs = c(Alpha/2, 1-Alpha/2))
       utils::setTxtProgressBar(ProgressBar, i)
     }
-    # Quantiles of simulations for each q
-    EstEnvelope <- apply(Sims, 2, stats::quantile, probs = c(Alpha/2, 1-Alpha/2))
-    # Simulation means to recenter the confidence envelope
-    Means <- apply(Sims, 2, mean)
-    # Prepare the object
-    colnames(EstEnvelope) <- n.seq
-    entAC <- list(x=n.seq,
-                  y=Entropy,
-                  low=EstEnvelope[1,] - Means + Entropy,
-                  high=EstEnvelope[2,] - Means + Entropy)
+    entAC <- list(x=n.seq, y=Entropy, low=Envelope[, 1], high=Envelope[, 2])
   } else {
     entAC <- list(x=n.seq, y=Entropy)
   }
@@ -46,11 +74,32 @@ EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), Estimator = "Best",
   # Format the result
   class(entAC) <- c("EntAC", "AccumCurve", class(entAC))
   # Return actual values as attributes
-  attr(entAC, "Size") <- Size
+  attr(entAC, "Size") <- N
   attr(entAC, "Value") <- Tsallis(Ns, q=q, Correction="None", CheckArguments=FALSE)
   return(entAC)
 }
 
+
+DivAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", 
+                  NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
+{
+  if (CheckArguments)
+    CheckentropartArguments()
+
+  # Estimate entropy
+  Accumulation <- EntAC(Ns=Ns, q=q, n.seq=n.seq, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, NumberOfSimulations=NumberOfSimulations, Alpha=Alpha, CheckArguments=FALSE)
+  # Calculate diversity
+  Accumulation$y <- expq(Accumulation$y, q)
+  if (!is.null(Accumulation$low))
+    Accumulation$low <- expq(Accumulation$low, q)
+  if (!is.null(Accumulation$high))
+    Accumulation$high <- expq(Accumulation$high, q)
+  
+  # Change the class
+  class(Accumulation)[which(class(Accumulation)=="EntAC")] <- "DivAC"
+  attr(Accumulation, "Value") <- expq(attr(Accumulation, "Value"), q)
+  return(Accumulation)
+}
 
 
 as.AccumCurve <-

@@ -1,4 +1,5 @@
 \name{Accumulation}
+\alias{DivAC}
 \alias{EntAC}
 \alias{as.AccumCurve}
 \alias{is.AccumCurve}
@@ -9,13 +10,15 @@
   Diversity accumulation.
 }
 \description{
-  Diversity and entropy Accumulation Curves represent the accumulation of entropy with respect to the sample size.
+  Diversity and Entropy Accumulation Curves represent the accumulation of entropy with respect to the sample size.
 }
 \usage{
 as.AccumCurve(x, y, low = NULL, high = NULL)
 is.AccumCurve(x)
-EntAC(Ns, q = 0, n.seq = 1:sum(Ns), Estimator = "Best", 
-      NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
+EntAC(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveiling="geom",
+  RCorrection="Rarefy", NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
+DivAC(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveiling="geom", 
+  RCorrection="Rarefy", NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
 \method{plot}{AccumCurve}(x, ..., main = NULL, 
          xlab = "Sample Size", ylab = NULL, ylim = NULL,
          LineWidth = 2, ShadeColor = "grey75", BorderColor = "red")
@@ -47,8 +50,14 @@ EntAC(Ns, q = 0, n.seq = 1:sum(Ns), Estimator = "Best",
   \item{n.seq}{
   A sequence of numbers. Accumulation will be calculated at each value.
   }
-  \item{Estimator}{
-  A string containing one of the possible asymptotic corrections of \code{\link{Tsallis}}: \code{"None"} (no correction) and  \code{"Best"} are two of them.
+  \item{PCorrection}{
+  A string containing one of the possible corrections to estimate a probability distribution in \code{\link{as.ProbaVector}}: \code{"Chao2015"} is the default value. Used only for extrapolation.
+  }
+  \item{Unveiling}{
+  A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in \code{\link{as.ProbaVector}}: \code{"geom"} (geometric: the unobserved species distribution is geometric) is the default value. Used only for extrapolation.
+  }
+  \item{RCorrection}{
+  A string containing a correction recognized by \code{\link{Richness}} to evaluate the total number of species in \code{\link{as.ProbaVector}}. \code{"Rarefy"} is the default value to estimate the number of species such that the entropy of the asymptotic distribution rarefied to the observed sample size equals the observed entropy of the data. Used only for extrapolation.
   }
   \item{NumberOfSimulations}{
   The number of Simulations to build confidence intervals.
@@ -88,17 +97,35 @@ EntAC(Ns, q = 0, n.seq = 1:sum(Ns), Estimator = "Best",
   }
 }
 \details{
-  \code{EntAC} estimates the entropy accumulation curve of a distribution.
+  \code{DivAC} or \code{EntAC} estimate the diversity or entropy accumulation curve of a distribution.
+  See \code{\link{Tsallis}} for details about the computation of entropy at each level of interpolation and extrapolation.
 
   \code{AccumCurve} objects include \code{EntAC} and \code{DivAC} objects for entropy and diversity accumulation.
-They generalize the classical Species Accumulation Curves (SAC) which are diversity accumulationof order $q=0$.
+They generalize the classical Species Accumulation Curves (SAC) which are diversity accumulation of order $q=0$.
   
   \code{as.AccumCurve} transforms two vectors (where \code{x} is the sammple size and \code{y} the accumulation) into an object of class \code{AccumCurve}.
 
   \code{AccumCurve} objects can be plotted with either \code{plot} or \code{autoplot methods}.
 }
+\value{
+  A \code{DivAC} or an \code{EntAC} object. Both are \code{AccumCurve} objects, which are a list:
+  \item{x}{The sample size.}
+  \item{y}{The value of entropy or diversity.}
+  \item{low}{The lower bound of the confidence envelope of the estimation.}
+  \item{high}{The upper bound of the confidence envelope of the estimation.}
+ 
+  Attibutes \code{"Size"} and \code{"Value"} contain the actual sample size and the corresponding diversity or entropy.
+  
+  \code{AccumCurve} objects can be summarized and plotted.
+}
+\references{
+  Chao, A., Gotelli, N. J., Hsieh, T. C., Sander, E. L., Ma, K. H., Colwell, R. K., Ellison, A. M (2014). Rarefaction and extrapolation with Hill numbers: A framework for sampling and estimation in species diversity studies.  \emph{Ecological Monographs}, 84(1): 45-67.
+}
 \author{
   Eric Marcon <Eric.Marcon@ecofog.gf>, Bruno Herault <Bruno.Herault@ecofog.gf>
+}
+\seealso{
+  \code{\link{Tsallis}}, \code{\link{Diversity}}
 }
 
 \examples{
@@ -106,6 +133,6 @@ They generalize the classical Species Accumulation Curves (SAC) which are divers
 data(Paracou618)
 # Ns is the total number of trees per species
 Ns <- as.AbdVector(Paracou618.MC$Ns)
-# Accumulation curve of Shannon's entropy from 1 to 100 indivuduals
-autoplot(EntAC(Ns), n.seq = 1:100)
+# Accumulation curve of Shannon's diversity from 1 to 100 indivuduals
+autoplot(DivAC(Ns), n.seq = 1:100)
 }
