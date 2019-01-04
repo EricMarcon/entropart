@@ -25,7 +25,7 @@ function(NorP, q = 1, ..., CheckArguments = TRUE, Ps = NULL)
 
 
 Diversity.AbdVector <-
-function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ns = NULL)
+function(NorP, q = 1, Correction = "Best", Level = NULL, PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -37,14 +37,14 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = T
   if (is.null(Level)) {
     return (bcDiversity(Ns=NorP, q=q, Correction=Correction, CheckArguments=CheckArguments))
   } else {
-    Entropy <- Tsallis.AbdVector(NorP, q=q, Correction=Correction, Level=Level, CheckArguments=CheckArguments)
+    Entropy <- Tsallis.AbdVector(NorP, q=q, Correction=Correction, Level=Level, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=CheckArguments)
     return (expq(Entropy, q))  
   }
 }
 
 
 Diversity.integer <-
-function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ns = NULL)
+function(NorP, q = 1, Correction = "Best", Level = NULL, PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -56,14 +56,14 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = T
   if (is.null(Level)) {
     return (bcDiversity(Ns=NorP, q=q, Correction=Correction, CheckArguments=CheckArguments))
   } else {
-    Entropy <- Tsallis.integer(NorP, q=q, Correction=Correction, Level=Level, CheckArguments=CheckArguments)
+    Entropy <- Tsallis.integer(NorP, q=q, Correction=Correction, Level=Level, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=CheckArguments)
     return (expq(Entropy, q))  
   }
 }
 
 
 Diversity.numeric <-
-function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Correction = "Best", Level = NULL, PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -85,9 +85,9 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = T
   } else {
     # Abundances
     if (is.null(Level)) {
-      return (Diversity.AbdVector(NorP, q=q, Correction=Correction, Level=Level, CheckArguments=FALSE))
+      return (Diversity.AbdVector(NorP, q=q, Correction=Correction, CheckArguments=FALSE))
     } else {
-      Entropy <- Tsallis.numeric(NorP, q=q, Correction=Correction, Level=Level, CheckArguments=FALSE)
+      Entropy <- Tsallis.numeric(NorP, q=q, Correction=Correction, Level=Level, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=FALSE)
       return (expq(Entropy, q))
     }
   }

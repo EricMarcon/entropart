@@ -122,7 +122,7 @@ rarefaction_bias <- function(S0, Ns, PsTuned, C, CD2, q, Unveiling, Target) {
 
 as.ProbaVector.numeric <-
 function (x, Correction = "None", Unveiling = "None", RCorrection = "Jackknife", 
-          JackOver = FALSE, CEstimator = "ZhangHuang", q = 0,  ..., CheckArguments = TRUE) 
+          JackOver = FALSE, CEstimator = "ZhangHuang", q = 0, ..., CheckArguments = TRUE) 
 {
   if (CheckArguments)
     CheckentropartArguments()
@@ -145,8 +145,10 @@ function (x, Correction = "None", Unveiling = "None", RCorrection = "Jackknife",
     S <- length(Ns)
     N <- sum(Ns)
     Ps <- Ns/N
+    # Sample coverage
     C <- Coverage(Ns, Estimator=CEstimator)
     if (Correction == "Chao2015" | Unveiling == "Chao2015" | RCorrection == "Rarefy") {
+      # Sample coverage of order 2 required
       Singletons <- sum(Ns==1)
       Doubletons <- sum(Ns==2)
       if (Doubletons==0) {

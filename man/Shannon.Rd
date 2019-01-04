@@ -48,13 +48,16 @@ bcShannon(Ns, Correction = "Best", CheckArguments = TRUE)
 \details{
   Bias correction requires the number of individuals to estimate sample \code{\link{Coverage}}.
   
-  Correction techniques are from Miller (1955), Chao and Shen (2003), Grassberger (1988), Grassberger (2003), Schurmann (2003), Holste \emph{et al.} (1998), Bonachela \emph{et al.} (2008), Zhang (2012), Chao, Wang  and Jost (2013). More estimators can be found in the \code{entropy} package.
+  Correction techniques are from Miller (1955), Chao and Shen (2003), Grassberger (1988), Grassberger (2003), Schurmann (2003), Holste \emph{et al.} (1998), Bonachela \emph{et al.} (2008), Zhang (2012), Chao, Wang  and Jost (2013). 
+  More estimators can be found in the \code{entropy} package.
   
   Using \code{\link{MetaCommunity}} mutual information, Chao, Wang and Jost (2013) calculate reduced-bias Shannon beta entropy (see the last example below) with better results than the Chao and Shen estimator, but community weights cannot be arbitrary: they must be proportional to the number of individuals.
 
-  The functions are designed to be used as simply as possible. \code{Shannon} is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function \code{bcShannon} is called.
+  The functions are designed to be used as simply as possible. \code{Shannon} is a generic method. 
+  If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function \code{bcShannon} is called.
   
   Entropy can be estimated at a specified level of interpolation or extrapolation, either a chosen sample size or sample coverage (Chao et al., 2014), rather than its asymptotic value.
+  Extrapolation relies on the estimation of the asymptotic entropy based on the choice of \code{Correction}.
 }
 \value{
   A named number equal to the calculated entropy. The name is that of the bias correction used.

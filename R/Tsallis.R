@@ -30,7 +30,7 @@ function(NorP, q = 1, ..., CheckArguments = TRUE, Ps = NULL)
 
 
 Tsallis.AbdVector <-
-function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ns = NULL) 
+function(NorP, q = 1, Correction = "Best", Level = NULL, PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", ..., CheckArguments = TRUE, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -42,13 +42,13 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = T
   if (is.null(Level)) {
     return (bcTsallis(Ns=NorP, q=q, Correction=Correction, CheckArguments=CheckArguments))
   } else {
-    return (Tsallis.numeric(NorP, q=q, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+    return (Tsallis.numeric(NorP, q=q, Correction=Correction, Level=Level, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=CheckArguments))
   }
 }
 
 
 Tsallis.integer <-
-function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ns = NULL)
+function(NorP, q = 1, Correction = "Best", Level = NULL, PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -60,13 +60,13 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = T
   if (is.null(Level)) {
     return(bcTsallis(Ns=NorP, q=q, Correction=Correction, CheckArguments=CheckArguments))
   } else {
-    return (Tsallis.numeric(NorP, q=q, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+    return (Tsallis.numeric(NorP, q=q, Correction=Correction, Level=Level, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=CheckArguments))
   }
 }
 
 
 Tsallis.numeric <-
-function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Correction = "Best", Level = NULL, PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -90,17 +90,21 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = T
     if (is.null(Level)) {
       return(bcTsallis(Ns=NorP, q=q, Correction=Correction, CheckArguments=FALSE))
     }
+    # Eliminate 0
+    NorP <- NorP[NorP > 0]
+    N <- sum(NorP)
     if (Level == sum(NorP)) {
       # No interpolation/extrapolation needed: estimate with no correction
-      return(Tsallis.ProbaVector(NorP/sum(NorP), q=q, CheckArguments=FALSE))
+      return(Tsallis.ProbaVector(NorP/N, q=q, CheckArguments=FALSE))
     }
+    # Interpolation or extrapolation
     if (q==0) {
       # Richness-1. Same result as general formula but faster
       return(Richness.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=FALSE) - 1)
     } 
     if (q==1) {
       # Shannon. General formula is not defined at q=1
-      return(Shannon.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+      return(Shannon.numeric(NorP, Level=Level, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=CheckArguments))
     } 
     if (q==2) {
       # Simpson. Same result as general formula but faster
@@ -112,14 +116,14 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = T
       Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=FALSE)
     if (Level <= N) {
       # Obtain Abundance Frequence Count
-      afc <- AbdFreqCount(NorP, Level=Level, Estimator=Correction, CheckArguments=FALSE)
+      afc <- AbdFreqCount(NorP, Level=Level, CheckArguments=FALSE)
       # Calculate entropy (Chao et al., 2014, eq. 6)
       entropy <- (sum(((1:Level)/Level)^q * afc[, 2]) - 1)/(1-q)
       names(entropy) <- attr(afc, "Estimator")
       return (entropy)
     } else {
       # Extrapolation. Unveil the full distribution that rarefies to the observed entropy
-      PsU <- as.ProbaVector(NorP, Correction="Chao2015", Unveiling="geom", RCorrection="Rarefy", q=q, CheckArguments=FALSE)
+      PsU <- as.ProbaVector(NorP, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, q=q, CheckArguments=FALSE)
       # AbdFreqCount at Level (Chao et al., 2014, eq. 5)
       Slevel <- sapply(1:Level, function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))))
       # Estimate entropy (Chao et al., 2014, eq. 6)

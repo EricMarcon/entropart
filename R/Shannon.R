@@ -87,16 +87,16 @@ function(NorP, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ps
   # Eliminate 0
   NorP <- NorP[NorP > 0]
   N <- sum(NorP)
-  # If Level is coverage, get size
-  if (Level < 1) 
-    Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=FALSE)
   if (Level == sum(NorP)) {
     # No interpolation/extrapolation needed: estimate with no correction
     return(Shannon.ProbaVector(NorP/N, CheckArguments=FALSE))
   }
+  # If Level is coverage, get size
+  if (Level < 1) 
+    Level <- Coverage2Size(NorP, SampleCoverage=Level, CheckArguments=FALSE)
   if (Level <= N) {
     # Interpolation. Obtain Abundance Frequence Count
-    afc <- AbdFreqCount(NorP, Level=Level, Estimator=Correction, CheckArguments=FALSE)
+    afc <- AbdFreqCount(NorP, Level=Level, CheckArguments=FALSE)
     entropy <- -(sum((1:Level)/Level * log((1:Level)/Level) * afc[, 2]))
     names(entropy) <- attr(afc, "Estimator")
     return (entropy)

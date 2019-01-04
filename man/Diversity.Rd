@@ -16,11 +16,14 @@ Diversity(NorP, q = 1, \dots)
 bcDiversity(Ns, q = 1, Correction = "Best", CheckArguments = TRUE)
 \method{Diversity}{ProbaVector}(NorP, q = 1, \dots, 
   CheckArguments = TRUE, Ps = NULL)
-\method{Diversity}{AbdVector}(NorP, q = 1, Correction = "Best", Level = NULL, \dots,
+\method{Diversity}{AbdVector}(NorP, q = 1, Correction = "Best", Level = NULL,
+  PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", \dots,
   CheckArguments = TRUE, Ns = NULL)
-\method{Diversity}{integer}(NorP, q = 1, Correction = "Best", Level = NULL, \dots, 
+\method{Diversity}{integer}(NorP, q = 1, Correction = "Best", Level = NULL,
+  PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", \dots, 
   CheckArguments = TRUE, Ns = NULL)
-\method{Diversity}{numeric}(NorP, q = 1, Correction = "Best", Level = NULL, \dots, 
+\method{Diversity}{numeric}(NorP, q = 1, Correction = "Best", Level = NULL,
+  PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", \dots, 
   CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 }
 \arguments{
@@ -42,6 +45,15 @@ bcDiversity(Ns, q = 1, Correction = "Best", CheckArguments = TRUE)
   \item{Level}{
   The level of interpolation or extrapolation. It may be an a chosen sample size (an integer) or a sample coverage (a number between 0 and 1).
   }
+  \item{PCorrection}{
+  A string containing one of the possible corrections to estimate a probability distribution in \code{\link{as.ProbaVector}}: \code{"Chao2015"} is the default value. Used only for extrapolation.
+  }
+  \item{Unveiling}{
+  A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in \code{\link{as.ProbaVector}}: \code{"geom"} (geometric: the unobserved species distribution is geometric) is the default value. Used only for extrapolation.
+  }
+  \item{RCorrection}{
+  A string containing a correction recognized by \code{\link{Richness}} to evaluate the total number of species in \code{\link{as.ProbaVector}}. \code{"Rarefy"} is the default value to estimate the number of species such that the diversity of the asymptotic distribution rarefied to the observed sample size equals the observed diversity of the data. Used only for extrapolation.
+  }
   \item{\dots}{
   Additional arguments. Unused.
   }
@@ -52,11 +64,15 @@ bcDiversity(Ns, q = 1, Correction = "Best", CheckArguments = TRUE)
 \details{
   \code{Diversity} calls \code{\link{Tsallis}} to calculate entropy and transforms it into diversity by calculating its deformed exponential.
   
-  Bias correction requires the number of individuals to estimate sample \code{\link{Coverage}}.
+  Bias correction requires the number of individuals to estimate sample \code{\link{Coverage}}. 
+  See \code{\link{Tsallis}} for details.
   
-  The functions are designed to be used as simply as possible. \code{Diversity} is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function \code{bcDiversity} is called.
+  The functions are designed to be used as simply as possible. 
+  \code{Diversity} is a generic method. 
+  If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function \code{bcDiversity} is called.
 
   Diversity can be estimated at a specified level of interpolation or extrapolation, either a chosen sample size or sample coverage (Chao et al., 2014), rather than its asymptotic value.
+  See \code{\link{Tsallis}} for details.
 }
 \value{
   A named number equal to the calculated diversity. The name is that of the bias correction used.

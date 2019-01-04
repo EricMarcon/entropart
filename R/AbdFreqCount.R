@@ -1,5 +1,5 @@
 AbdFreqCount <- 
-function (Ns, Level = NULL, Estimator = "Best", CheckArguments = TRUE)
+function (Ns, Level = NULL, PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", CheckArguments = TRUE)
 {
   if (CheckArguments)
     CheckentropartArguments()
@@ -30,21 +30,14 @@ function (Ns, Level = NULL, Estimator = "Best", CheckArguments = TRUE)
       # Return the estimator as an attribute
       attr(afc, "Estimator") <- "Interp"
     } else {
-      # Extrapolation. Unveiled estimator currently the best.
-      if (Estimator == "Best") Estimator <- "UnveilJ"
-      if (Estimator == "UnveilJ") {
-        # Unveil the full distribution
-        PsU <- as.ProbaVector(Ns, RCorrection="Jackknife", Correction="Chao2015", Unveiling="geom", CheckArguments = FALSE)
-        # Extrapolate
-        Snu <- sapply(1:Level, function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))))
-        # Make a matrix with all possible abundances
-        afc <- cbind(1:Level, Snu)
-        # Return the estimator as an attribute
-        attr(afc, "Estimator") <- Estimator
-      } else {
-        warning("Estimator was not recognized")
-        return(NA)
-      }
+      # Extrapolation. Unveil the full distribution
+      PsU <- as.ProbaVector(Ns, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=FALSE)
+      # Extrapolate
+      Snu <- sapply(1:Level, function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))))
+      # Make a matrix with all possible abundances
+      afc <- cbind(1:Level, Snu)
+      # Return the estimator as an attribute
+      attr(afc, "Estimator") <- "Extrap"
     }
   }
   colnames(afc) <- c("Abundance", "NbSpecies")
