@@ -121,9 +121,9 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, ..., CheckArguments = T
       # Extrapolation. Unveil the full distribution that rarefies to the observed entropy
       PsU <- as.ProbaVector(NorP, Correction="Chao2015", Unveiling="geom", RCorrection="Rarefy", q=q, CheckArguments=FALSE)
       # AbdFreqCount at Level (Chao et al., 2014, eq. 5)
-      Slevel <- sapply(1:N, function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))))
+      Slevel <- sapply(1:Level, function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))))
       # Estimate entropy (Chao et al., 2014, eq. 6)
-      entropy <- (sum(((1:N)/N)^q * Slevel) - 1) / (1-q)
+      entropy <- (sum(((1:Level)/Level)^q * Slevel) - 1) / (1-q)
       names(entropy) <- "Rarefy"
       return (entropy)
     }
