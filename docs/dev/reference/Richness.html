@@ -8,6 +8,13 @@
 
 <title>Number of species of a community — Richness • entropart</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
@@ -65,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9006</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9008</span>
       </span>
     </div>
 
@@ -104,7 +111,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/EricMarcon/entropart">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -129,19 +141,19 @@
     </div>
 
     <pre class="usage">Richness(NorP, &#8230;)
-bcRichness(Ns, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, 
+bcRichness(Ns, Correction = "Best", Alpha = 0.05, JackOver = FALSE, 
               CheckArguments = TRUE)
 # S3 method for ProbaVector
 Richness(NorP, &#8230;, CheckArguments = TRUE, Ps = NULL)
 # S3 method for AbdVector
-Richness(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, 
-  &#8230;, CheckArguments = TRUE, Ns = NULL)
+Richness(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, 
+  Level = NULL, &#8230;, CheckArguments = TRUE, Ns = NULL)
 # S3 method for integer
-Richness(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, 
-  &#8230;, CheckArguments = TRUE, Ns = NULL)
+Richness(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, 
+  Level = NULL, &#8230;, CheckArguments = TRUE, Ns = NULL)
 # S3 method for numeric
-Richness(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE, 
-  &#8230;, CheckArguments = TRUE, Ps = NULL, Ns = NULL)</pre>
+Richness(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, 
+  Level = NULL, &#8230;, CheckArguments = TRUE, Ps = NULL, Ns = NULL)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,7 +172,7 @@ Richness(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE,
     </tr>
     <tr>
       <th>Correction</th>
-      <td><p>A string containing one of the possible corrections: <code>"None"</code> (no correction), <code>"Jackknife"</code>, <code>"iChao1"</code>, or <code>"Chao1"</code>, the default value.</p></td>
+      <td><p>A string containing one of the possible corrections: <code>"None"</code> (no correction), <code>"Jackknife"</code>, <code>"iChao1"</code>, or <code>"Chao1"</code>. <code>"Best"</code>, the default value, is currently <code>"Jackknife"</code>. Ignored by richness interpolation.</p></td>
     </tr>
     <tr>
       <th>Alpha</th>
@@ -169,6 +181,10 @@ Richness(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE,
     <tr>
       <th>JackOver</th>
       <td><p>If <code>TRUE</code>, retain the jackknife order immediately superior to the optimal one, usually resulting in the overestimation of the number of species. Default is <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>Level</th>
+      <td><p>The level of interpolation or extrapolation. It may be an a chosen sample size (an integer) or a sample coverage (a number between 0 and 1). Richness extrapolation require its asymptotic estimation depending on the choice of <code>Correction</code>.</p></td>
     </tr>
     <tr>
       <th>&#8230;</th>
@@ -183,19 +199,21 @@ Richness(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE,
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Bias correction requires the number of individuals. Use <code>bcRichness</code> and choose the <code>Correction</code>.</p>  
-<p>Chao correction techniques are from Chao (1984) and Chiu <em>et al.</em> (2015). The Jackknife estimator is calculating by a straight adaptation of the code by Ji-Ping Wang (<code><a href='https://www.rdocumentation.org/packages/SPECIES/topics/jackknife'>jackknife</a></code> in package <code>SPECIES</code>). The optimal order is selected according to Burnham and Overton (1978; 1979). The argument <code>JackOver</code> allows selecting one order over the optimal one.
+<p>Chao correction techniques are from Chao (1984) and Chiu <em>et al.</em> (2015). The Jackknife estimator is calculated by a straight adaptation of the code by Ji-Ping Wang (<code><a href='https://www.rdocumentation.org/packages/SPECIES/topics/jackknife'>jackknife</a></code> in package <code>SPECIES</code>). The optimal order is selected according to Burnham and Overton (1978; 1979). The argument <code>JackOver</code> allows selecting one order over the optimal one.
   Many other estimators are available elsewhere, the ones implemented here are necessary for other entropy estimations.</p>
-<p>The functions are designed to be used as simply as possible. <code>Richness</code> is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function <code>bcRichness</code> is called. Explicit calls to <code>bcRichness</code> (with bias correction) or to <code>Richness.ProbaVector</code> (without correction) are possible to avoid ambiguity. The <code>.integer</code> and <code>.numeric</code> methods accept <code>Ps</code> or <code>Ns</code> arguments instead of <code>NorP</code> for backward compatibility.</p>
+<p>The functions are designed to be used as simply as possible. <code>Richness</code> is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function <code>bcRichness</code> is called.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A named number equal to the estimated number of species.</p>
+    <p>A named number equal to the estimated number of species.
+  The name is the <code>Correction</code>, except for "SAC" (Species Accumulation Curve) for interpolation.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Burnham, K. P., and Overton,W. S. (1978), Estimation of the Size of a Closed Population When Capture Probabilities Vary Among Animals. <em>Biometrika</em>, 65:625-633.</p>
 <p>Burnham, K. P., and Overton,W. S. (1979), Robust Estimation of Population Size When Capture Probabilities Vary Among Animals. <em>Ecology</em> 60:927-936.</p>
 <p>Chao, A. (1984) Nonparametric estimation of the number of classes in a population. <em>Scandinavian Journal of Statistics</em> 11:265-270.</p>  
+<p>Chao, A., Gotelli, N. J., Hsieh, T. C., Sander, E. L., Ma, K. H., Colwell, R. K., Ellison, A. M (2014). Rarefaction and extrapolation with Hill numbers: A framework for sampling and estimation in species diversity studies.  <em>Ecological Monographs</em>, 84(1): 45-67.</p>
 <p>Chiu, C.-H., Wang, Y.-T., Walther, B. A., Chao, A. (2014) An Improved Nonparametric Lower Bound of Species Richness via a Modified Good-Turing Frequency Formula. <em>Biometrics</em> 70(3):671-682.</p>
     
 
@@ -242,7 +260,7 @@ Richness(NorP, Correction = "Chao1", Alpha = 0.05, JackOver = FALSE,
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
    </div>

@@ -8,6 +8,13 @@
 
 <title>Tsallis (HCDT) Entropy of a community — Tsallis • entropart</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
@@ -65,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9006</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9008</span>
       </span>
     </div>
 
@@ -104,7 +111,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/EricMarcon/entropart">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -135,13 +147,16 @@ bcTsallis(Ns, q = 1, Correction = "Best", SampleCoverage = NULL,
 Tsallis(NorP, q = 1, &#8230;, 
   CheckArguments = TRUE, Ps = NULL)
 # S3 method for AbdVector
-Tsallis(NorP, q = 1, Correction = "Best", Level = NULL, &#8230;, 
+Tsallis(NorP, q = 1, Correction = "Best", Level = NULL,
+  PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", &#8230;, 
   CheckArguments = TRUE, Ns = NULL)
 # S3 method for integer
-Tsallis(NorP, q = 1, Correction = "Best", Level = NULL, &#8230;, 
+Tsallis(NorP, q = 1, Correction = "Best", Level = NULL,
+  PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", &#8230;, 
   CheckArguments = TRUE, Ns = NULL)
 # S3 method for numeric
-Tsallis(NorP, q = 1, Correction = "Best", Level = NULL, &#8230;, 
+Tsallis(NorP, q = 1, Correction = "Best", Level = NULL,
+  PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", &#8230;, 
   CheckArguments = TRUE, Ps = NULL, Ns = NULL)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -172,6 +187,18 @@ Tsallis(NorP, q = 1, Correction = "Best", Level = NULL, &#8230;,
       <td><p>The level of interpolation or extrapolation. It may be an a chosen sample size (an integer) or a sample coverage (a number between 0 and 1).</p></td>
     </tr>
     <tr>
+      <th>PCorrection</th>
+      <td><p>A string containing one of the possible corrections to estimate a probability distribution in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"Chao2015"</code> is the default value. Used only for extrapolation.</p></td>
+    </tr>
+    <tr>
+      <th>Unveiling</th>
+      <td><p>A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"geom"</code> (geometric: the unobserved species distribution is geometric) is the default value. Used only for extrapolation.</p></td>
+    </tr>
+    <tr>
+      <th>RCorrection</th>
+      <td><p>A string containing a correction recognized by <code><a href='Richness.html'>Richness</a></code> to evaluate the total number of species in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>. <code>"Rarefy"</code> is the default value to estimate the number of species such that the entropy of the asymptotic distribution rarefied to the observed sample size equals the observed entropy of the data. Used only for extrapolation.</p></td>
+    </tr>
+    <tr>
       <th>SampleCoverage</th>
       <td><p>The sample coverage of <code>Ns</code> calculated elsewhere. Used to calculate the gamma diversity of meta-communities, see details.</p></td>
     </tr>
@@ -188,13 +215,26 @@ Tsallis(NorP, q = 1, Correction = "Best", Level = NULL, &#8230;,
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Tsallis (Havrda and Charvat, 1967; Daroczy, 1970; Tsallis, 1988) generalized entropy is a generalized measure of diversity (Jost, 2006).</p>  
-<p>Bias correction requires the number of individuals to estimate sample <code><a href='Coverage.html'>Coverage</a></code>. Use <code>bcTsallis</code> and choose the <code>Correction</code>.
-  Correction techniques are from Chao and Shen (2003), Grassberger (1988), Holste <em>et al.</em> (1998), Bonachela <em>et al.</em> (2008), (Marcon <em>et al.</em>, 2014), which is actually the max value of <code>"ChaoShen"</code> and <code>"Grassberger"</code>, Zhang and Grabchak (2014), Chao and Jost (2015) and Marcon (2015).</p>  
-<p>The <code>"ChaoJost"</code> (Chao, Wang and Jost, 2013 for \(q=1\); Chao and Jost, 2015) estimator contains an unbiased part concerning observed species, equal to that of Zhang and Grabchak (2014), and a (biased) estimator of the remaining bias based on the estimation of the species-accumulation curve. It is very efficient but very slow if the number of individuals is more than a few hundreds. This estimator was named "ChaoWangJost" in previous versions of the package; its old name is still supported for backward compatibility.</p>
-<p>The unveiled estimators rely on Chao <em>et al.</em> (2015), completed by Marcon (2015). The actual probabilities of observed species are estimated and completed by a geometric distribution of the probabilities of unobserved species. The number of unobserved species is estimated by the Chao1 estimator (<code>"UnveilC"</code>), following Chao <em>et al.</em> (2015), or by the iChao1 (<code>"UnveiliC"</code>) or the jacknife (<code>"UnveilJ"</code>). The <code>"UnveilJ"</code> correction often has a lower bias but a greater variance (Marcon, 2015). It is a good first choice thanks to the versatility of the jacknife estimator of richness.</p>  
-<p>The functions are designed to be used as simply as possible. <code>Tsallis</code> is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function <code>bcTsallis</code> is called. Explicit calls to <code>bcTsallis</code> (with bias correction) or to <code>Tsallis.ProbaVector</code> (without correction) are possible to avoid ambiguity. The <code>.integer</code> and <code>.numeric</code> methods accept <code>Ps</code> or <code>Ns</code> arguments instead of <code>NorP</code> for backward compatibility.</p>  
-<p>The size of a metacommunity (see <code><a href='MetaCommunity.html'>MetaCommunity</a></code>) is unknown so it has to be set according to a rule which does not ensure that its abundances are integer values. Then, classical bias-correction methods do not apply. Providing the <code>SampleCoverage</code> argument allows applying the <code>"ChaoShen"</code> and <code>"Grassberger"</code> corrections to estimate quite well the entropy. <code><a href='DivPart.html'>DivPart</a></code> and <code><a href='GammaEntropy.html'>GammaEntropy</a></code> functions use this tweak.</p>  
-<p>Entropy can be estimated at a specified level of interpolation or extrapolation, either a chosen sample size or sample coverage (Chao et al., 2014), rather than its asymptotic value.</p>
+<p>Bias correction requires the number of individuals to estimate sample <code><a href='Coverage.html'>Coverage</a></code>.</p>  
+<p>Correction techniques are from Chao and Shen (2003), Grassberger (1988), Holste <em>et al.</em> (1998), Bonachela <em>et al.</em> (2008), (Marcon <em>et al.</em>, 2014), which is actually the max value of <code>"ChaoShen"</code> and <code>"Grassberger"</code>, Zhang and Grabchak (2014), Chao and Jost (2015) and Marcon (2015).</p>  
+<p>The <code>"ChaoJost"</code> (Chao, Wang and Jost, 2013 for \(q=1\); Chao and Jost, 2015) estimator contains an unbiased part concerning observed species, equal to that of Zhang and Grabchak (2014), and a (biased) estimator of the remaining bias based on the estimation of the species-accumulation curve. 
+  It is very efficient but very slow if the number of individuals is more than a few hundreds. 
+  This estimator was named "ChaoWangJost" in previous versions of the package; its old name is still supported for backward compatibility.</p>
+<p>The unveiled estimators rely on Chao <em>et al.</em> (2015), completed by Marcon (2015). 
+  The actual probabilities of observed species are estimated and completed by a geometric distribution of the probabilities of unobserved species. 
+  The number of unobserved species is estimated by the Chao1 estimator (<code>"UnveilC"</code>), following Chao <em>et al.</em> (2015), or by the iChao1 (<code>"UnveiliC"</code>) or the jacknife (<code>"UnveilJ"</code>). 
+  The <code>"UnveilJ"</code> correction often has a lower bias but a greater variance (Marcon, 2015). 
+  It is a good first choice thanks to the versatility of the jacknife estimator of richness.</p>  
+<p>The functions are designed to be used as simply as possible. 
+  <code>Tsallis</code> is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function <code>bcTsallis</code> is called.</p>  
+<p>The size of a metacommunity (see <code><a href='MetaCommunity.html'>MetaCommunity</a></code>) is unknown so it has to be set according to a rule which does not ensure that its abundances are integer values. 
+  Then, classical bias-correction methods do not apply. 
+  Providing the <code>SampleCoverage</code> argument allows applying the <code>"ChaoShen"</code> and <code>"Grassberger"</code> corrections to estimate quite well the entropy. 
+  <code><a href='DivPart.html'>DivPart</a></code> and <code><a href='GammaEntropy.html'>GammaEntropy</a></code> functions use this tweak.</p>  
+<p>Entropy can be estimated at a specified level of interpolation or extrapolation, either a chosen sample size or sample coverage (Chao et al., 2014), rather than its asymptotic value.
+  Special cases $q$ equals 0, 1 or 2 are treated by <code><a href='Richness.html'>Richness</a></code>, <code><a href='Shannon.html'>Shannon</a></code> and <code><a href='Simpson.html'>Simpson</a></code> functions.
+  For extrapolation of entropy of other values of $q$, the asymptotic distribution of the community must be estimated by <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>.
+  The default arguments allow joining smoothly the extrapolated entropy and the observed entropy by estimating the number of unobserved species so that the entropy of the observed distribution equals the entropy of the asymptotic distribution rarefied to the actual sample size.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
@@ -228,7 +268,7 @@ Tsallis(NorP, q = 1, Correction = "Best", Level = NULL, &#8230;,
 <span class='fu'>Tsallis</span>(<span class='no'>Ps</span>, <span class='fl'>1</span>)</div><div class='output co'>#&gt;     None 
 #&gt; 4.736023 </div><div class='input'><span class='co'># Calculate it with estimation bias correction</span>
 <span class='fu'>Tsallis</span>(<span class='no'>Ns</span>, <span class='fl'>1</span>)</div><div class='output co'>#&gt;  UnveilJ 
-#&gt; 4.933306 </div></pre>
+#&gt; 4.928035 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -255,7 +295,7 @@ Tsallis(NorP, q = 1, Correction = "Best", Level = NULL, &#8230;,
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
    </div>

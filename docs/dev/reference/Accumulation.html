@@ -39,7 +39,7 @@
 
 <meta property="og:title" content="Diversity accumulation. — Accumulation" />
 
-<meta property="og:description" content="Diversity and entropy Accumulation Curves represent the accumulation of entropy with respect to the sample size." />
+<meta property="og:description" content="Diversity and Entropy Accumulation Curves represent the accumulation of entropy with respect to the sample size." />
 
 <meta property="og:image" content="https://ericmarcon.github.io/entropart/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9006</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9008</span>
       </span>
     </div>
 
@@ -136,14 +136,16 @@
 
     <div class="ref-description">
     
-    <p>Diversity and entropy Accumulation Curves represent the accumulation of entropy with respect to the sample size.</p>
+    <p>Diversity and Entropy Accumulation Curves represent the accumulation of entropy with respect to the sample size.</p>
     
     </div>
 
     <pre class="usage"><span class='fu'>as.AccumCurve</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>low</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 <span class='fu'>is.AccumCurve</span>(<span class='no'>x</span>)
-<span class='fu'>EntAC</span>(<span class='no'>Ns</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>n.seq</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>Ns</span>), <span class='kw'>Estimator</span> <span class='kw'>=</span> <span class='st'>"Best"</span>,
-      <span class='kw'>NumberOfSimulations</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>Alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>EntAC</span>(<span class='no'>Ns</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>n.seq</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>Ns</span>), <span class='kw'>PCorrection</span><span class='kw'>=</span><span class='st'>"Chao2015"</span>, <span class='kw'>Unveiling</span><span class='kw'>=</span><span class='st'>"geom"</span>,
+  <span class='kw'>RCorrection</span><span class='kw'>=</span><span class='st'>"Rarefy"</span>, <span class='kw'>NumberOfSimulations</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>Alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>DivAC</span>(<span class='no'>Ns</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>n.seq</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>Ns</span>), <span class='kw'>PCorrection</span><span class='kw'>=</span><span class='st'>"Chao2015"</span>, <span class='kw'>Unveiling</span><span class='kw'>=</span><span class='st'>"geom"</span>,
+  <span class='kw'>RCorrection</span><span class='kw'>=</span><span class='st'>"Rarefy"</span>, <span class='kw'>NumberOfSimulations</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>Alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='co'># S3 method for AccumCurve</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
          <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Sample Size"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -189,8 +191,16 @@
       <td><p>A sequence of numbers. Accumulation will be calculated at each value.</p></td>
     </tr>
     <tr>
-      <th>Estimator</th>
-      <td><p>A string containing one of the possible asymptotic corrections of <code><a href='Tsallis.html'>Tsallis</a></code>: <code>"None"</code> (no correction) and  <code>"Best"</code> are two of them.</p></td>
+      <th>PCorrection</th>
+      <td><p>A string containing one of the possible corrections to estimate a probability distribution in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"Chao2015"</code> is the default value. Used only for extrapolation.</p></td>
+    </tr>
+    <tr>
+      <th>Unveiling</th>
+      <td><p>A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"geom"</code> (geometric: the unobserved species distribution is geometric) is the default value. Used only for extrapolation.</p></td>
+    </tr>
+    <tr>
+      <th>RCorrection</th>
+      <td><p>A string containing a correction recognized by <code><a href='Richness.html'>Richness</a></code> to evaluate the total number of species in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>. <code>"Rarefy"</code> is the default value to estimate the number of species such that the entropy of the asymptotic distribution rarefied to the observed sample size equals the observed entropy of the data. Used only for extrapolation.</p></td>
     </tr>
     <tr>
       <th>NumberOfSimulations</th>
@@ -244,11 +254,33 @@
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>EntAC</code> estimates the entropy accumulation curve of a distribution.</p>
+    <p><code>DivAC</code> or <code>EntAC</code> estimate the diversity or entropy accumulation curve of a distribution.
+  See <code><a href='Tsallis.html'>Tsallis</a></code> for details about the computation of entropy at each level of interpolation and extrapolation.</p>
 <p><code>AccumCurve</code> objects include <code>EntAC</code> and <code>DivAC</code> objects for entropy and diversity accumulation.
-They generalize the classical Species Accumulation Curves (SAC) which are diversity accumulationof order $q=0$.</p>  
+They generalize the classical Species Accumulation Curves (SAC) which are diversity accumulation of order $q=0$.</p>  
 <p><code>as.AccumCurve</code> transforms two vectors (where <code>x</code> is the sammple size and <code>y</code> the accumulation) into an object of class <code>AccumCurve</code>.</p>
 <p><code>AccumCurve</code> objects can be plotted with either <code>plot</code> or <code>autoplot methods</code>.</p>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A <code>DivAC</code> or an <code>EntAC</code> object. Both are <code>AccumCurve</code> objects, which are a list:</p>
+<dt>x</dt><dd><p>The sample size.</p></dd>
+  <dt>y</dt><dd><p>The value of entropy or diversity.</p></dd>
+  <dt>low</dt><dd><p>The lower bound of the confidence envelope of the estimation.</p></dd>
+  <dt>high</dt><dd><p>The upper bound of the confidence envelope of the estimation.</p></dd>
+ 
+  Attibutes "Size" and "Value" contain the actual sample size and the corresponding diversity or entropy.
+  
+  AccumCurve objects can be summarized and plotted.
+
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Chao, A., Gotelli, N. J., Hsieh, T. C., Sander, E. L., Ma, K. H., Colwell, R. K., Ellison, A. M (2014). Rarefaction and extrapolation with Hill numbers: A framework for sampling and estimation in species diversity studies.  <em>Ecological Monographs</em>, 84(1): 45-67.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='Tsallis.html'>Tsallis</a></code>, <code><a href='Diversity.html'>Diversity</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -256,8 +288,8 @@ They generalize the classical Species Accumulation Curves (SAC) which are divers
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>Paracou618</span>)
 <span class='co'># Ns is the total number of trees per species</span>
 <span class='no'>Ns</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='SpeciesDistribution.html'>as.AbdVector</a></span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ns</span>)
-<span class='co'># Accumulation curve of Shannon's entropy from 1 to 100 indivuduals</span>
-<span class='fu'>autoplot</span>(<span class='fu'>EntAC</span>(<span class='no'>Ns</span>), <span class='kw'>n.seq</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>100</span>)</div><div class='img'><img src='Accumulation-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='co'># Accumulation curve of Shannon's diversity from 1 to 100 indivuduals</span>
+<span class='fu'>autoplot</span>(<span class='fu'>DivAC</span>(<span class='no'>Ns</span>), <span class='kw'>n.seq</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>100</span>)</div><div class='output co'>#&gt; ================================================================================</div><div class='img'><img src='Accumulation-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -265,6 +297,12 @@ They generalize the classical Species Accumulation Curves (SAC) which are divers
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#references">References</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
@@ -280,7 +318,7 @@ They generalize the classical Species Accumulation Curves (SAC) which are divers
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
    </div>

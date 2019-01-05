@@ -8,6 +8,13 @@
 
 <title>Abundance Frequency Count of a Community — AbdFreqCount • entropart</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
@@ -65,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9006</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9008</span>
       </span>
     </div>
 
@@ -104,7 +111,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/EricMarcon/entropart">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -128,7 +140,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>AbdFreqCount</span>(<span class='no'>Ns</span>, <span class='kw'>Level</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>Estimator</span> <span class='kw'>=</span> <span class='st'>"Best"</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>AbdFreqCount</span>(<span class='no'>Ns</span>, <span class='kw'>Level</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>PCorrection</span><span class='kw'>=</span><span class='st'>"Chao2015"</span>, <span class='kw'>Unveiling</span><span class='kw'>=</span><span class='st'>"geom"</span>,
+  <span class='kw'>RCorrection</span><span class='kw'>=</span><span class='st'>"Rarefy"</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -139,11 +152,19 @@
     </tr>
     <tr>
       <th>Level</th>
-      <td><p>The level of interpolation or extrapolation. It may be an a chosen sample size (an integer) or a sample coverage (a number between 0 and 1).</p></td>
+      <td><p>The level of interpolation or extrapolation. It may be an an arbitrary sample size (an integer) or a sample coverage (a number between 0 and 1).</p></td>
     </tr>
     <tr>
-      <th>Estimator</th>
-      <td><p>A string containing one of the possible estimators (ignored if <code>Level</code> is <code>NULL</code>: <code>"UnveilJ"</code> only at the moment. <code>"Best"</code> is for <code>"UnveilJ"</code>.</p></td>
+      <th>PCorrection</th>
+      <td><p>A string containing one of the possible corrections to estimate a probability distribution in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"Chao2015"</code> is the default value. Used only for extrapolation.</p></td>
+    </tr>
+    <tr>
+      <th>Unveiling</th>
+      <td><p>A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"geom"</code> (geometric: the unobserved species distribution is geometric) is the default value. Used only for extrapolation.</p></td>
+    </tr>
+    <tr>
+      <th>RCorrection</th>
+      <td><p>A string containing a correction recognized by <code><a href='Richness.html'>Richness</a></code> to evaluate the total number of species in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>. <code>"Rarefy"</code> is the default value to estimate the number of species such that the richness of the asymptotic distribution rarefied to the observed sample size equals the observed number of species in the data. Used only for extrapolation.</p></td>
     </tr>
     <tr>
       <th>CheckArguments</th>
@@ -155,7 +176,8 @@
 
     <p>The Abundance Frequency Count (Chao <em>et al.</em>, 2015) is the number of species observed each number of times.</p>  
 <p>It is a way to summarize the species distribution.</p>  
-<p>It can be estimated at a specified level of interpolation or extrapolation. Extrapolation relies on the estimation of eq. (5) of Chao et al. (2014). The <code>"UnveilJ"</code> estimator builds the full distribution (Chao et al., 2015) of probabilities.</p>
+<p>It can be estimated at a specified level of interpolation or extrapolation.
+  Extrapolation relies on the estimation of the estimation of the asymptotic distribution of the community by <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code> and eq. (5) of Chao et al. (2014).</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
@@ -232,7 +254,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
    </div>
