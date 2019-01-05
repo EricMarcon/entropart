@@ -219,33 +219,23 @@
 ## New Features
 
 - `Paracou618.dist` distance matrix between species of `Paracou618.MC` added. 
-
-# Improvements
-
-- `Imports` directive rather than `Depends` for _ade4_.
-- `mergeandlabel` does not return warnings any longer (column names are better addressed).
-
-## Bug Correction
-
-- Legend was not displayed in `plot.DivProfile(..., Which="Communities")`. Corrected.
-
-
-
-# entropart 1.1.2
-
-## New Features
-  
 - Chao, Wang and Jost (2013) bias correction for Shannon entropy added.
 - `EntropyCI` function added: Entropy of Monte-Carlo simulated communities.
 - Tools to manipulate MetaCommunity objects added (see `?MergeMC`).
 - `SimTest` class added to test a value against a simulated distribution (see `?SimTest`).
 - Vignette added.
 
+## Improvements
+
+- `Imports` directive rather than `Depends` for _ade4_.
+- `mergeandlabel` does not return warnings any longer (column names are better addressed).
+
 ## Bug Correction 
 
 - `Hqz()` was erroneous for q<>1. Corrected.
 - `bcPhyloEntropy()` and `bcPhyloDiversity()` returned an incorrect `$Distribution` component. Corrected.
 - `summary.MCentropy()` did not return the name of the tree. Corrected.
+- Legend was not displayed in `plot.DivProfile(..., Which="Communities")`. Corrected.
 
 
 # entropart 1.1.1
