@@ -194,61 +194,67 @@ function(Ns, Correction = "Best", Alpha = 0.05, JackOver = FALSE, CheckArguments
     # Adapted from jackknife in SPECIES
     # Max possible order
     k <- min(nrow(AFC) - 1, 10)
-    # Max number of individuals
-    m <- max(AFC[, 1])
-    # Complete the abundance frequency count for all counts between 1 and m
-    ntemp <- cbind(c(1:m), rep(0, m))
-    ntemp[AFC[, 1], 2] <- AFC[, 2]
-    AFC <- ntemp
-    # Prepare a matrix with k+1 rows and 5 columns
-    gene <- matrix(0, nrow=k + 1, ncol=5)
-    gene[1, 1] <- S
-    for (i in 1:k) {
-      gene[i + 1, 1] <- S
-      gene[i + 1, 4] <- S
-      for (j in 1:i) {
-        gene[i + 1, 1] <- gene[i + 1, 1] + (-1)^(j + 1) * 2^i * stats::dbinom(j, i, 0.5) * AFC[j, 2]
-        gene[i + 1, 4] <- gene[i + 1, 4] + (-1)^(j + 1) * 2^i * stats::dbinom(j, i, 0.5) * AFC[j, 2] * prod(1:j)
-      }
-      gene[i + 1, 2] <- -gene[i + 1, 1]
-      for (j in 1:i) {
-        gene[i + 1, 2] <- gene[i + 1, 2] + ((-1)^(j + 1) * 2^i * stats::dbinom(j, i, 0.5) + 1)^2 * AFC[j, 2]
-      }
-      gene[i + 1, 2] <- gene[i + 1, 2] + sum(AFC[(i + 1):nrow(AFC), 2])
-      gene[i + 1, 2] <- sqrt(gene[i + 1, 2])
-    }
-    if (k > 1) {
-      for (i in 2:k) {
-        gene[i, 3] <- -(gene[i + 1, 1] - gene[i, 1])^2/(S - 1)
-        for (j in 1:(i - 1)) {
-          gene[i, 3] <- gene[i, 3] + ((-1)^(j + 1) * 2^(i) * stats::dbinom(j, i, 0.5) - (-1)^(j + 1) * 2^(i - 1) * stats::dbinom(j, i - 1, 0.5))^2 * AFC[j, 2] * S/(S - 1)
+    if (k == 0) {
+      # No optimisation possible. Return "jackknife of order 0".
+      Smallestk <- 1
+      jackest <- S
+    } else {
+      # Max number of individuals
+      m <- max(AFC[, 1])
+      # Complete the abundance frequency count for all counts between 1 and m
+      ntemp <- cbind(c(1:m), rep(0, m))
+      ntemp[AFC[, 1], 2] <- AFC[, 2]
+      AFC <- ntemp
+      # Prepare a matrix with k+1 rows and 5 columns
+      gene <- matrix(0, nrow=k + 1, ncol=5)
+      gene[1, 1] <- S
+      for (i in 1:k) {
+        gene[i + 1, 1] <- S
+        gene[i + 1, 4] <- S
+        for (j in 1:i) {
+          gene[i + 1, 1] <- gene[i + 1, 1] + (-1)^(j + 1) * 2^i * stats::dbinom(j, i, 0.5) * AFC[j, 2]
+          gene[i + 1, 4] <- gene[i + 1, 4] + (-1)^(j + 1) * 2^i * stats::dbinom(j, i, 0.5) * AFC[j, 2] * prod(1:j)
         }
-        gene[i, 3] <- gene[i, 3] + AFC[i, 2] * S/(S - 1)
-        gene[i, 3] <- sqrt(gene[i, 3])
-        gene[i, 5] <- (gene[i + 1, 1] - gene[i, 1])/gene[i, 3]
+        gene[i + 1, 2] <- -gene[i + 1, 1]
+        for (j in 1:i) {
+          gene[i + 1, 2] <- gene[i + 1, 2] + ((-1)^(j + 1) * 2^i * stats::dbinom(j, i, 0.5) + 1)^2 * AFC[j, 2]
+        }
+        gene[i + 1, 2] <- gene[i + 1, 2] + sum(AFC[(i + 1):nrow(AFC), 2])
+        gene[i + 1, 2] <- sqrt(gene[i + 1, 2])
       }
-    }
-    # Threshold for Burnham and Overton's test
-    coe <- stats::qnorm(1 - Alpha/2, 0, 1)
-    # Which orders pass the test?
-    x <- (gene[2:(k + 1), 5] < coe)
-    if (sum(x, na.rm=TRUE) == 0) {
-      # If none, keep the max value of k
-      Smallestk <- k + 1
-      jackest <- gene[Smallestk, 1]
-      # Estimated standard error
-      sej <- gene[Smallestk, 2]
-    }
-    else {
-      # Else, keep the smallest value (+1 because jack1 is in line 2)
-      Smallestk <- which(x)[1] + 1
-      if (JackOver & (Smallestk < k+1))
-        # Add 1 if overestimation is requested
-        Smallestk <- Smallestk +1
-      # Estimated value
-      jackest <- gene[Smallestk, 1]
-      # Estimated standard error
-      sej <- gene[Smallestk, 2]
+      if (k > 1) {
+        for (i in 2:k) {
+          gene[i, 3] <- -(gene[i + 1, 1] - gene[i, 1])^2/(S - 1)
+          for (j in 1:(i - 1)) {
+            gene[i, 3] <- gene[i, 3] + ((-1)^(j + 1) * 2^(i) * stats::dbinom(j, i, 0.5) - (-1)^(j + 1) * 2^(i - 1) * stats::dbinom(j, i - 1, 0.5))^2 * AFC[j, 2] * S/(S - 1)
+          }
+          gene[i, 3] <- gene[i, 3] + AFC[i, 2] * S/(S - 1)
+          gene[i, 3] <- sqrt(gene[i, 3])
+          gene[i, 5] <- (gene[i + 1, 1] - gene[i, 1])/gene[i, 3]
+        }
+      }
+      # Threshold for Burnham and Overton's test
+      coe <- stats::qnorm(1 - Alpha/2, 0, 1)
+      # Which orders pass the test?
+      x <- (gene[2:(k + 1), 5] < coe)
+      if (sum(x, na.rm=TRUE) == 0) {
+        # If none, keep the max value of k
+        Smallestk <- k + 1
+        jackest <- gene[Smallestk, 1]
+        # Estimated standard error
+        sej <- gene[Smallestk, 2]
+      }
+      else {
+        # Else, keep the smallest value (+1 because jack1 is in line 2)
+        Smallestk <- which(x)[1] + 1
+        if (JackOver & (Smallestk < k+1))
+          # Add 1 if overestimation is requested
+          Smallestk <- Smallestk +1
+        # Estimated value
+        jackest <- gene[Smallestk, 1]
+        # Estimated standard error
+        sej <- gene[Smallestk, 2]
+      }
     }
     names(jackest) <- paste("Jackknife", Smallestk-1)
     return(jackest) 
