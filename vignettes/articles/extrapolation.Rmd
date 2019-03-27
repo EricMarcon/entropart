@@ -1,0 +1,107 @@
+---
+title: "Asymptotic Estimation, Interpolation and Extrapolation "
+output:
+  rmarkdown::html_document:
+    toc: yes
+    toc_float: yes
+bibliography: ../entropart.bib
+vignette: >
+  %\VignetteIndexEntry{Asymptotic Estimation, Interpolation and Extrapolation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r global_options, include=FALSE}
+set.seed(97310)
+```
+
+Estimation of diversity in _entropart_ relies on classical assumptions that are recalled here.
+The observed data is a sample of a community (or several communities if data is a meta-community).
+All "reduced-bias estimator" are asymptotic estimators of the community diversity: if the sample size could be extended infinitely, its diversity would tend to the diversity of the whole (asymptotic) community.
+In hyperdiverse ecosystems such as evergreen forests, the asymptotic community generally does not exist in the field because of environmental variations: increasing the size of the sample implies sampling in different communities.
+Thus, the asymptotic estimators of diversity correspond to theoretical aymptotic communities that do not necessarily exist.
+In other words, the asymptotic diversity is that of a community that would provide the observed sample.
+
+Diversity is accumulated as a function of sample size.
+HCDT entropy (thus Hill numbers and phylodiversity) can be estimated at any sample size, by interpolation down from the actual sample size and by extrapolation up to infinite sample size, i.e. the asymptotic estimator.
+Alternatively, sample size may be replaced by sample coverage, by interpolation from arbitrary small sample coverages to that of the actual sample, and by extrapolation up to the asymptotic estimator whose sample coverage is 1.
+
+
+# Choosing the estimation level
+
+If community data is a vector of probabilities, sample size is unknown so the only available estimation is that of the actual sample.
+
+```{r LoadParacou18}
+library("entropart")
+data("Paracou618")
+# 1 ha of tropical forest, distribution of probabilities
+P18 <- Paracou618.MC$Psi[, "P018"]
+# Diversity of order 1, no reduce-bias estimator used.
+Diversity(P18, q=1)
+```
+
+Further estimation requires abundance vectors, i.e. the number of individuals per species.
+Then, the default estimator is the asymptotic one.
+```{r}
+# 1 ha of tropical forest, distribution of abundances
+N18 <- Paracou618.MC$Nsi[, "P018"]
+# Diversity of order 1, best asymptotic estimator used.
+Diversity(N18, q=1)
+```
+
+Several asymptotic estimators are available in the literature and implemented in _entropart_.
+For consistency, _entropart_ uses the jackknife estimator of richness and the unveiled jackknife estimator for entropy.
+The advantage of these estimators is that they provide reliable estimations even though the sampling effort is low: then, the estimation variance increases but its bias remains acceptable because the order of the jackknife estimator is chosen according to the data.
+Poorly-sampled communities will be estimated by a higher-order jackknife, resulting in higher estimation variance.
+
+For well-sampled communities, i.e. in the domain of validity of the jacknife of order 1, The Chao1 estimator of diversity and the Chao-Jost estimator of entropy are the best choices because they have the best mathematical support, but they will severely underestimate the diversity of poorly-sampled communities.
+They also are more computer-intensive.
+```{r}
+# Estimation of richness relies on jackknife 3 (very poor sampling)
+Richness(N18)
+# Richness is underestimated by Chao1 estimator
+Richness(N18, Correction="Chao1")
+# Diversity of order 1underestimated by Chao-Jost estimator
+Diversity(N18, q=1, Correction="ChaoJost")
+```
+
+
+# Choosing the estimation level
+
+Asymptotic estimation is not always the best choice, for example when comparing the diversity of poorly-sampled communities: a lower sampe coverage can be chosen to limit the uncertainty of estimation.
+```{r}
+# Actual sample coverage
+Coverage(N18)
+```
+
+The estimation level may be a sample size or a sample coverage that is converted internally into a sample size.
+```{r}
+# Diversity at half the sample size (interpolated)
+Diversity(N18, q=1, Level=round(sum(N18)/2))
+# Sample size corresponding to 90% coverage
+Coverage2Size(N18, SampleCoverage=0.9)
+# Diversity at 90% sample coverage
+Diversity(N18, q=1, Level=0.9)
+# Equal to 
+Diversity(N18, q=1, Level=Coverage2Size(N18, SampleCoverage=0.9))
+```
+
+If the sample size is smaller than the actual sample, entropy is interpolated.
+
+If it is higher, entropy must be extrapolated. For diversity orders equal to 0 (richness), 1 (Shannon) or 2 (Simpson), explicit, almost unbiased estimators are used. 
+Continuity of the estimation of diversity around the actual sample size is guaranted.
+```{r}
+# Simpson diversity at levels from 0.9 to 1.1 times the sample size
+Accumulation2 <- DivAC(N18, q=2, n.seq=round(0.9*sum(N18)):round(1.1*sum(N18)))
+autoplot(Accumulation2)
+```
+
+For non-integer orders, things get more complicated. In _entropart_, asymptotic entropy is estimated by the unveiled jackknife estimator and rarefied down to the actual sample size. 
+There is no reason for it to correspond exactly to the observed entropy.
+The asymptotic richness is the less robust part of the estimation thus it is adjusted iteratively until the rarefied entropy equals the actual sample's entropy, ensuring continuity between interpolation and extrapolation.
+```{r}
+# Diversity at levels from 1 to twice the sample size
+Accumulation <- DivAC(N18, q=1.5, n.seq=1:(2*sum(N18)))
+autoplot(Accumulation)
+```
+
