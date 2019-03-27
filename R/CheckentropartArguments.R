@@ -23,7 +23,7 @@ function() {
   ErrorMessage <- function(Message, Argument) {
     cat(deparse(substitute(Argument)), "cannot be:\n")
     print(utils::head(Argument))
-    cat(paste(ErrorFunction, Message))
+    cat(paste(ErrorFunction, Message, "\n"))
     stop("Check the function arguments.", call. = FALSE)
   }
 
