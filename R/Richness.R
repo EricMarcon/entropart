@@ -103,10 +103,16 @@ function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL
     names(richness) <- "SAC"
     return (richness)
   } else {
-    # Extrapolation. Estimate the number of unobserved species
-    S0 <- bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=FALSE) - Sobs
+    # Extrapolation. 
     Singletons <-  sum(NorP == 1)
-    richness <- Sobs + S0*(1 - (1 - Singletons/(N*S0+Singletons))^(Level-N))
+    if (Singletons) {
+      # Estimate the number of unobserved species
+      S0 <- bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=FALSE) - Sobs
+      richness <- Sobs + S0*(1 - (1 - Singletons/(N*S0+Singletons))^(Level-N))
+    } else {
+      # No singleton
+      richness <- Sobs
+    }
     names(richness) <- Correction
     return (richness)  
   }
@@ -131,9 +137,9 @@ function(Ns, Correction = "Best", Alpha = 0.05, JackOver = FALSE, CheckArguments
       names(entropy) <- "No Species"
       return (entropy)
     } else {
-      entropy <- 0
-      names(entropy) <- "Single Species"
-      return (entropy)
+      S <- 1
+      names(S) <- "Single Species"
+      return (S)
     }
   } else {
     # Probabilities instead of abundances

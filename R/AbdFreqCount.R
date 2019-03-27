@@ -5,7 +5,12 @@ function (Ns, Level = NULL, PCorrection="Chao2015", Unveiling="geom", RCorrectio
     CheckentropartArguments()
   
   # Convert into integers
-  NsInt <- as.integer(round(Ns))
+  if (length(Ns) == 0) {
+    # Ns may contain no speices. Return NA
+    return(NA)
+  } else {
+    NsInt <- as.integer(round(Ns))    
+  }
   if (any(abs(NsInt-Ns) > sum(Ns)*.Machine$double.eps))
     warning ("The abundance frequency count requires integer abundances. Abundances have been rounded.")
   
@@ -18,7 +23,6 @@ function (Ns, Level = NULL, PCorrection="Chao2015", Unveiling="geom", RCorrectio
     # No extrapolation. Prepare a two-column matrix
     afc <- matrix(c(as.integer(names(DistNs)), DistNs), ncol = 2)
   } else {
-    Singletons <- DistNs["1"]
     SampleSize <- sum(Ns)
     # If Level is coverage, get size
     if (Level < 1) Level <- Coverage2Size(Ns, SampleCoverage=Level, CheckArguments=FALSE)
@@ -30,10 +34,16 @@ function (Ns, Level = NULL, PCorrection="Chao2015", Unveiling="geom", RCorrectio
       # Return the estimator as an attribute
       attr(afc, "Estimator") <- "Interp"
     } else {
-      # Extrapolation. Unveil the full distribution
-      PsU <- as.ProbaVector(Ns, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=FALSE)
-      # Extrapolate
-      Snu <- sapply(1:Level, function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))))
+      # Extrapolation. 
+      if (length(Ns) == 1) {
+        # Single species: general formula won't work: log(1-PsU)
+        Snu <- c(rep(0, Level-1), 1)
+      } else {
+        # Unveil the full distribution
+        PsU <- as.ProbaVector(Ns, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=FALSE)
+        # Extrapolate
+        Snu <- sapply(1:Level, function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))))
+      }  
       # Make a matrix with all possible abundances
       afc <- cbind(1:Level, Snu)
       # Return the estimator as an attribute

@@ -122,13 +122,20 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, PCorrection="Chao2015",
       names(entropy) <- attr(afc, "Estimator")
       return (entropy)
     } else {
-      # Extrapolation. Unveil the full distribution that rarefies to the observed entropy
-      PsU <- as.ProbaVector(NorP, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, q=q, CheckArguments=FALSE)
-      # AbdFreqCount at Level (Chao et al., 2014, eq. 5)
-      Slevel <- sapply(1:Level, function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))))
-      # Estimate entropy (Chao et al., 2014, eq. 6)
-      entropy <- (sum(((1:Level)/Level)^q * Slevel) - 1) / (1-q)
-      names(entropy) <- "Rarefy"
+      # Extrapolation.
+      if (length(NorP) == 1) {
+        # Single species: general formula won't work: log(1-PsU)
+        entropy <- 0
+        names(entropy) <- "Single Species"
+      } else {
+        # Unveil the full distribution that rarefies to the observed entropy
+        PsU <- as.ProbaVector(NorP, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, q=q, CheckArguments=FALSE)
+        # AbdFreqCount at Level (Chao et al., 2014, eq. 5)
+        Slevel <- sapply(1:Level, function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))))
+        # Estimate entropy (Chao et al., 2014, eq. 6)
+        entropy <- (sum(((1:Level)/Level)^q * Slevel) - 1) / (1-q)
+        names(entropy) <- "Rarefy"
+      }
       return (entropy)
     }
   }

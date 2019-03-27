@@ -161,8 +161,8 @@ function (x, Correction = "None", Unveiling = "None", RCorrection = "Jackknife",
     }
     
     # Tune the probabilities of observed species
-    if (C == 1) {
-      # Sample coverage equal to 1: do not tune
+    if (C == 0 | C == 1) {
+      # Sample coverage equal to 1: do not tune. If 0, unable to tune.
       PsTuned <- Ps
     } else {
       PsTuned <- NA
