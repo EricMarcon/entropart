@@ -6,7 +6,7 @@
 \alias{Diversity.integer}
 \alias{Diversity.numeric}
 \title{
-  HCDT diversity of a community
+  Hill number of a community
 }
 \description{
   Calculates the HCDT (generalized) diversity of order \eqn{q} of a probability vector.
@@ -98,7 +98,11 @@ Ps <- as.ProbaVector(Paracou618.MC$Ns)
 # Whittaker plot
 plot(Ns)
 # Calculate diversity of order 1, i.e. Shannon's diversity
-Diversity(Ps, 1)
-# Calculate it with estimation bias correction
-Diversity(Ns, 1)
+Diversity(Ps, q=1)
+# Calculate it with estimation bias correction (asymptotic estimator)
+Diversity(Ns, q=1)
+# Extrapolate it up to 99.9\% sample coverage (close to the asymptotic estimator)
+Diversity(Ns, q=1, Level=0.999)
+# Rarefy it to half the sample size
+Diversity(Ns, q=1, Level=sum(Ns)/2)
 }

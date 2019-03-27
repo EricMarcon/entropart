@@ -37,7 +37,8 @@ Coverage2Size(Ns, SampleCoverage, CheckArguments = TRUE)
   If \code{Level} is not null, the sample coverage is interpolated or extrapolated. Interpolation by the Good estimator relies on the equality between sampling deficit and the generalized Simpson entropy (Good, 1953). The Chao (2014) estimator allows extrapolation, reliable up a level equal to the double size of the sample.
 }
 \value{
-  A named number equal to the calculated sample coverage. The name is that of the estimator used.
+  \code{"Coverage"} returns a named number equal to the calculated sample coverage. The name is that of the estimator used.
+  \code{"Coverage2Size"} returns a number equal to the sample size corresponding to the chosen sample coverage.
 }
 \references{
   Chao, A., Lee, S.-M. and Chen, T.-C. (1988). A generalized Good's nonparametric coverage estimator. \emph{Chinese Journal of Mathematics} 16: 189-199.
