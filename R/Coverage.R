@@ -10,7 +10,8 @@ function(Ns, Estimator = "Best", Level = NULL, CheckArguments = TRUE)
   Ns <- Ns[Ns>0]
   # Calculate abundance distribution
   DistN <- tapply(Ns, Ns, length)
-  Singletons <- DistN["1"]
+  # Singletons. Convert named number to number.
+  Singletons <- as.numeric(DistN["1"])
   SampleSize <- sum(Ns)
   
   if (is.null(Level)) {
@@ -49,6 +50,7 @@ function(Ns, Estimator = "Best", Level = NULL, CheckArguments = TRUE)
     }
     if (Estimator == "Chao") {
       coverage <- 1 - Singletons / SampleSize * (1-ChaoA(Ns))
+      names(coverage) <- Estimator
       return(coverage)
     }
     if (Estimator == "Turing") {
@@ -67,7 +69,7 @@ function(Ns, Estimator = "Best", Level = NULL, CheckArguments = TRUE)
     if (Estimator == "Good") {
       if (Level >= SampleSize) stop("The Good estimator only allows interpolation: Level must be less than the observed community size.")
       coverage <- 1 - EntropyEstimation::GenSimp.z(Ns, Level)
-      names(coverage) <- "Good"
+      names(coverage) <- Estimator
       return(coverage)
     }
     if (Estimator == "Chao") {
@@ -87,7 +89,7 @@ function(Ns, Estimator = "Best", Level = NULL, CheckArguments = TRUE)
           coverage <- 1 - Singletons / SampleSize * (1 - ChaoA(Ns))^(Level - SampleSize + 1)
         }
       }
-      names(coverage) <- "Chao"
+      names(coverage) <- Estimator
       return(coverage)
     }
   }
@@ -104,8 +106,8 @@ function(Ns, Estimator = "Best", Level = NULL, CheckArguments = TRUE)
 ChaoA <- function(Ns) {
   # Calculate abundance distribution
   DistN <- tapply(Ns, Ns, length)
-  Singletons <- DistN["1"]
-  Doubletons <- DistN["2"]
+  Singletons <- as.numeric(DistN["1"])
+  Doubletons <- as.numeric(DistN["2"])
   SampleSize <- sum(Ns)
   
   if (is.na(Singletons)) {
@@ -136,7 +138,8 @@ function(Ns, SampleCoverage, CheckArguments = TRUE)
   Ns <- Ns[Ns>0]
   # Calculate abundance distribution
   DistN <- tapply(Ns, Ns, length)
-  Singletons <- DistN["1"]
+  # Singletons. Convert named number to number.
+  Singletons <- as.numeric(DistN["1"])
   SampleSize <- sum(Ns)
   
   # Singletons only
@@ -145,7 +148,7 @@ function(Ns, SampleCoverage, CheckArguments = TRUE)
   }
   
   # Actual coverage
-  C <- Coverage(Ns, Estimator = "Chao", CheckArguments = FALSE)
+  C <- Coverage(Ns, CheckArguments = FALSE)
   
   if (SampleCoverage >= C) {
     # Extrapolation
