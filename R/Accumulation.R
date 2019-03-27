@@ -1,5 +1,5 @@
 EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", 
-                  RAlpha = 0.05, JackOver=FALSE, HCorrection= "UnveilJ",
+                  RAlpha = 0.05, JackOver=FALSE, HCorrection= "Best",
                   NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
 {
   if (CheckArguments)
@@ -124,13 +124,14 @@ EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveilin
 
 
 DivAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", 
+                  RAlpha = 0.05, JackOver=FALSE, HCorrection= "Best",
                   NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
 {
   if (CheckArguments)
     CheckentropartArguments()
 
   # Estimate entropy
-  Accumulation <- EntAC(Ns=Ns, q=q, n.seq=n.seq, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, NumberOfSimulations=NumberOfSimulations, Alpha=Alpha, CheckArguments=FALSE)
+  Accumulation <- EntAC(Ns=Ns, q=q, n.seq=n.seq, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, RAlpha=RAlpha, JackOver=JackOver, HCorrection= "UnveilJ", NumberOfSimulations=NumberOfSimulations, Alpha=Alpha, CheckArguments=FALSE)
   # Calculate diversity
   Accumulation$y <- expq(Accumulation$y, q)
   if (!is.null(Accumulation$low))
