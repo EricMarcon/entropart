@@ -1,4 +1,5 @@
 EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", 
+                  RAlpha = 0.05, JackOver=FALSE, HCorrection= "UnveilJ",
                   NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
 {
   if (CheckArguments)
@@ -28,23 +29,65 @@ EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveilin
     Entropy[i] <- Tsallis.ProbaVector(Ns/N, q=q, CheckArguments=FALSE)
     utils::setTxtProgressBar(ProgressBar, i)
   }
-  # Extrapolation
+  # Extrapolation. Don't use Tsallis for speed.
   n.seqExt <- n.seq[n.seq > N]
-  PsU <- NULL
-  # Don't use Tsallis for speed: unveiled probabilities can be estimated only once
   if (length(n.seqExt)) {
-    # Unveil the full distribution that rarefies to the observed entropy (or other options)
-    PsU <- as.ProbaVector(Ns, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, q=q, CheckArguments=FALSE)
+    # Richness
+    if (q == 0) {
+      Singletons <-  sum(Ns == 1)
+      if (Singletons) {
+        # Estimate the number of unobserved species
+        Sobs <- sum(Ns > 0)
+        S0 <- bcRichness(Ns, Correction=ifelse(RCorrection=="Rarefy", "Jackknife", RCorrection), Alpha=RAlpha, JackOver=JackOver, CheckArguments=FALSE) - Sobs
+        # Extrapolate richness (the vector is n.seqExt)
+        Entropy[(i+1):length(n.seq)] <- Sobs + S0*(1 - (1 - Singletons/(N*S0+Singletons))^(n.seqExt-N))
+      } else {
+        # No singleton
+        Entropy[(i+1):length(n.seq)] <- Sobs
+      }
+      utils::setTxtProgressBar(ProgressBar, length(n.seq))
+    } else {
+      # Shannon
+      if (q == 1) {
+        # Estimate the asymptotic entropy
+        Hinf <- bcShannon(Ns, Correction=HCorrection, CheckArguments=FALSE)
+        # Estimate observed entropy
+        Hn <- Shannon.ProbaVector(Ns/N, CheckArguments=FALSE)
+        # Interpolation (the vector is n.seqExt)
+        Entropy[(i+1):length(n.seq)] <- N/n.seqExt*Hn + (n.seqExt-N)/n.seqExt*Hinf
+        utils::setTxtProgressBar(ProgressBar, length(n.seq))
+      } else {
+        # Simpson
+        if (q == 2) {
+          # Exit if Ns contains no or a single species
+          if (length(Ns) < 2) {
+            if (length(Ns) == 0) {
+              Entropy[(i+1):length(n.seq)] <- NA
+            } else {
+              Entropy[(i+1):length(n.seq)] <- 0
+            }
+          } else {
+            # Valid extrapolation (the vector is n.seqExt)
+            Entropy[(i+1):length(n.seq)] <- 1 - 1/n.seqExt - (1-1/n.seqExt)*sum(Ns*(Ns-1))/N/(N-1)
+          }
+          utils::setTxtProgressBar(ProgressBar, length(n.seq))
+        } else {
+          # General case: q is not 0, 1 or 2 
+          # Unveil the full distribution that rarefies to the observed entropy (or other options)
+          PsU <- as.ProbaVector.numeric(Ns, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, q=q, CheckArguments=FALSE)
+          for(Level in n.seqExt) {
+            # Abundance frequence count at Level (Chao et al., 2014, eq. 5)
+            Snu <- sapply(1:Level, function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))))
+            # Estimate entropy (Chao et al., 2014, eq. 6)
+            i <- which(n.seq==Level)
+            Entropy[i]  <- (sum(((1:Level)/Level)^q * Snu) - 1) / (1-q)
+            utils::setTxtProgressBar(ProgressBar, i)
+          }
+        }
+      }
+    }
   }
-  for(Level in n.seqExt) {
-    # Abundance frequence count at Level (Chao et al., 2014, eq. 5)
-    Snu <- sapply(1:Level, function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))))
-    # Estimate entropy (Chao et al., 2014, eq. 6)
-    i <- which(n.seq==Level)
-    Entropy[i]  <- (sum(((1:Level)/Level)^q * Snu) - 1) / (1-q)
-    utils::setTxtProgressBar(ProgressBar, i)
-  }
-  
+
   
   # Simulations: generate distributions from the unveiled probabilities
   if (NumberOfSimulations > 0) {
