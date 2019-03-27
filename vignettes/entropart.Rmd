@@ -96,13 +96,13 @@ The best available estimator is chosen by default: its name is returned.
 Those indices are special cases of the Tsallis entropy [-@Tsallis1988] or order $q$ (respectively $q=0,1,2$ for richness, Shannon, Simpson):
 
 ```{r Tsallis}
-Tsallis(Abd18,q=1)
+Tsallis(Abd18, q=1)
 ```
 
 Entropy should be converted to its effective number of species, i.e. the number of species with equal probabilities that would yield the observed entropy, called @Hill1973 numbers or simply diversity [@Jost2006].
 
 ```{r Diversity}
-Diversity(Abd18,q=1)
+Diversity(Abd18, q=1)
 ```
 
 Diversity is the deformed exponential of order $q$ of entropy, and entropy is the deformed logarithm of of order $q$ of diversity:
