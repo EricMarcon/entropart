@@ -16,10 +16,8 @@
 as.AccumCurve(x, y, low = NULL, high = NULL)
 is.AccumCurve(x)
 EntAC(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveiling="geom",
-  RAlpha = 0.05, JackOver=FALSE, HCorrection= "Best",
   RCorrection="Rarefy", NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
 DivAC(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveiling="geom",
-  RAlpha = 0.05, JackOver=FALSE, HCorrection= "Best",
   RCorrection="Rarefy", NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
 \method{plot}{AccumCurve}(x, ..., main = NULL, 
          xlab = "Sample Size", ylab = NULL, ylim = NULL,
@@ -60,15 +58,6 @@ DivAC(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveiling="geom",
   }
   \item{RCorrection}{
   A string containing a correction recognized by \code{\link{Richness}} to evaluate the total number of species in \code{\link{as.ProbaVector}}. \code{"Rarefy"} is the default value to estimate the number of species such that the entropy of the asymptotic distribution rarefied to the observed sample size equals the observed entropy of the data. Used only for extrapolation and \code{q} different from 0, 1, 2. If \code{q} is 0 (extrapolation of richness), \code{"Rarefy"} is taken for \code{"Jackknife"}.
-  }
-  \item{RAlpha}{
-  The risk level, 5\% by default, used to optimize the jackknife order. Used only to extrapolate richness when \code{q} is 0 and \code{RCorrection} is \code{"Jackknife"}.
-  }
-  \item{JackOver}{
-  If \code{TRUE}, retain the jackknife order immediately superior to the optimal one, usually resulting in the overestimation of the number of species. Default is \code{FALSE}. Used only to extrapolate richness when \code{q} is 0 and \code{RCorrection} is \code{"Jackknife"}.
-  }
-  \item{HCorrection}{
-  A string containing one of the possible asymptotic estimators recognized by \code{\link{Shannon}}. Used only for extrapolation when \code{q} is 1.
   }
   \item{NumberOfSimulations}{
   The number of Simulations to build confidence intervals.
@@ -144,6 +133,6 @@ They generalize the classical Species Accumulation Curves (SAC) which are divers
 data(Paracou618)
 # Ns is the total number of trees per species
 Ns <- as.AbdVector(Paracou618.MC$Ns)
-# Accumulation curve of Shannon's diversity from 1 to 100 indivuduals
+# Accumulation curve of Shannon's diversity from 1 to 100 individuals
 autoplot(DivAC(Ns), n.seq = 1:100)
 }
