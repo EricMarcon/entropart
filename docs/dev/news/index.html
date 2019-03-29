@@ -70,7 +70,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9008</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9010</span>
       </span>
     </div>
 
@@ -95,6 +95,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/articles/extrapolation.html">Asymptotic Estimation, Interpolation and Extrapolation </a>
+    </li>
     <li>
       <a href="../articles/articles/phylogenies.html">Phylogenies in entropart</a>
     </li>
@@ -131,15 +134,15 @@
       <small>Source: <a href='https://github.com/EricMarcon/entropart/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="entropart-1-5-3-9008" class="section level1">
+    <div id="entropart-1-5-3-9010" class="section level1">
 <h1 class="page-header">
-<a href="#entropart-1-5-3-9008" class="anchor"></a>entropart 1.5-3-9008<small> Unreleased </small>
+<a href="#entropart-1-5-3-9010" class="anchor"></a>entropart 1.5-3-9010<small> Unreleased </small>
 </h1>
 <div id="new-features" class="section level2">
 <h2 class="hasAnchor">
 <a href="#new-features" class="anchor"></a>New features</h2>
 <ul>
-<li>Estimation of diversity at a chosen level (sample size or coverage).</li>
+<li>Estimation of diversity at a chosen level (sample size or coverage). <code>DivAccum()</code> function.</li>
 <li>Entropy accumulation functions.</li>
 <li>ggplot2 supported. <code>autoplot()</code> methods added for entropart objects.</li>
 <li>The “Best” estimator of diversity is now “UnveilJ” and the default estimator of richness is “Jackknife”.</li>
@@ -152,6 +155,15 @@
 <ul>
 <li>Unit tests added.</li>
 <li>Vignette by pkgdown.</li>
+</ul>
+</div>
+<div id="bug-correction" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-correction" class="anchor"></a>Bug correction</h2>
+<ul>
+<li>The jaccknife estimator of richness returned an error for communities where all species had the same abundance.</li>
+<li>
+<code>Richness</code> returned 0 instead of 1 for a community with a single species.</li>
 </ul>
 </div>
 </div>
@@ -169,9 +181,9 @@
 <li>Generic function arguments cleaned up.</li>
 </ul>
 </div>
-<div id="bug-correction" class="section level2">
+<div id="bug-correction-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-1" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>Very large metacommunities returned an integer overflow error.</li>
 </ul>
@@ -181,9 +193,9 @@
 <h1 class="page-header">
 <a href="#entropart-1-4-8" class="anchor"></a>entropart 1.4-8<small> 2017-11-22 </small>
 </h1>
-<div id="bug-correction-1" class="section level2">
+<div id="bug-correction-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-1" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-2" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>
 <code><a href="../reference/HqzBeta.html">HqzBeta()</a></code> returned erroneous values if a species probability was equal to zero.</li>
@@ -204,9 +216,9 @@
 <h1 class="page-header">
 <a href="#entropart-1-4-7" class="anchor"></a>entropart 1.4-7<small> 2017-03-29 </small>
 </h1>
-<div id="bug-correction-2" class="section level2">
+<div id="bug-correction-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-2" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-3" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>Argument checking (<code>CheckArguments = TRUE</code>) is not possible when the package is not loaded and a function is called by <code>entropart::function()</code>. An error was returned. It is replaced by a warning.</li>
 </ul>
@@ -262,9 +274,9 @@
 <code><a href="../reference/DivProfile.html">DivProfile()</a></code> now allows computing bootstrap confidence intervals.</li>
 </ul>
 </div>
-<div id="bug-correction-4" class="section level2">
+<div id="bug-correction-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-4" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-5" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>The entropy estimation (of order different from 1) of a distribution with no singleton returned <code>NA</code> with <code>ChaoWangJost</code> correction. Reported by Zach Marion. Only partly corrected in Version 1.4-1. Corrected.</li>
 <li>
@@ -302,9 +314,9 @@
 <li>Updated <em>CITATION</em>: the paper about this package has been published: Eric Marcon, Bruno Herault (2015). entropart: An R Package to Measure and Partition Diversity. <em>Journal of Statistical Software</em>, 67(8), 1-26.</li>
 </ul>
 </div>
-<div id="bug-correction-6" class="section level2">
+<div id="bug-correction-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-6" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-7" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>The entropy estimation of a distribution with no singleton returned <code>NA</code> with <code>ChaoWangJost</code> correction. Corrected.</li>
 <li>Entropy or diversity of a vector of zeros returned 0. It now returns <code>NA</code>.</li>
@@ -332,9 +344,9 @@
 <li>Random Communities. See <code><a href="../reference/rCommunity.html">?rCommunity</a></code>.</li>
 </ul>
 </div>
-<div id="bug-correction-7" class="section level2">
+<div id="bug-correction-8" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-7" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-8" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>Applying <code>bcTsallis</code> and similar functions with a probability vector instead of abundance values could cause errors depending in the correction. Correction is now forced to <code>None</code> with a warning.</li>
 <li>Allowed rounding error was too small on some systems (typically r-patched-solaris-sparc) to recognize probability vectors. The difference between their sum and 1 had to be less than 3 times <code>.Machine$double.eps</code>. Now set to S times (where S is the number of species, i.e the vector’s length).</li>
@@ -353,9 +365,9 @@
 <li>Unbiased estimator of Rao’s entropy added (<code>bcRao</code>).</li>
 </ul>
 </div>
-<div id="bug-correction-8" class="section level2">
+<div id="bug-correction-9" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-8" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-9" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>
 <code>DqZ()</code> and <code><a href="../reference/Hqz.html">Hqz()</a></code> returned an error if all probability values were 0 except one.</li>
@@ -377,9 +389,9 @@
 <h1 class="page-header">
 <a href="#entropart-1-2-0" class="anchor"></a>entropart 1.2.0<small> 2014-05-17 </small>
 </h1>
-<div id="bug-correction-9" class="section level2">
+<div id="bug-correction-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-9" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-10" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>
 <code><a href="../reference/ChaoPD.html">ChaoPD()</a></code> returned an incorrect value when q=0 and some probabilities =0.</li>
@@ -417,9 +429,9 @@
 <li>Zhang and Grabchak (2014) bias correction for Tsallis entropy added.</li>
 </ul>
 </div>
-<div id="bug-correction-10" class="section level2">
+<div id="bug-correction-11" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-10" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-11" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>
 <code>Divest()</code> always calculated neutral diversity of simulated communities so the confidence interval was erroneous for phylodiversity. Corrected.</li>
@@ -436,17 +448,6 @@
 <ul>
 <li>
 <code>Paracou618.dist</code> distance matrix between species of <code>Paracou618.MC</code> added.</li>
-</ul>
-</div>
-</div>
-    <div id="entropart-1-1-2" class="section level1">
-<h1 class="page-header">
-<a href="#entropart-1-1-2" class="anchor"></a>entropart 1.1.2<small> Unreleased </small>
-</h1>
-<div id="new-features-7" class="section level2">
-<h2 class="hasAnchor">
-<a href="#new-features-7" class="anchor"></a>New Features</h2>
-<ul>
 <li>Chao, Wang and Jost (2013) bias correction for Shannon entropy added.</li>
 <li>
 <code>EntropyCI</code> function added: Entropy of Monte-Carlo simulated communities.</li>
@@ -454,6 +455,16 @@
 <li>
 <code>SimTest</code> class added to test a value against a simulated distribution (see <code><a href="../reference/SimTest.html">?SimTest</a></code>).</li>
 <li>Vignette added.</li>
+</ul>
+</div>
+<div id="improvements-9" class="section level2">
+<h2 class="hasAnchor">
+<a href="#improvements-9" class="anchor"></a>Improvements</h2>
+<ul>
+<li>
+<code>Imports</code> directive rather than <code>Depends</code> for <em>ade4</em>.</li>
+<li>
+<code>mergeandlabel</code> does not return warnings any longer (column names are better addressed).</li>
 </ul>
 </div>
 <div id="bug-correction-12" class="section level2">
@@ -466,6 +477,7 @@
 <code><a href="../reference/PhyloEntropy.html">bcPhyloEntropy()</a></code> and <code><a href="../reference/PhyloDiversity.html">bcPhyloDiversity()</a></code> returned an incorrect <code>$Distribution</code> component. Corrected.</li>
 <li>
 <code><a href="../reference/MCentropy.html">summary.MCentropy()</a></code> did not return the name of the tree. Corrected.</li>
+<li>Legend was not displayed in <code><a href="../reference/DivProfile.html">plot.DivProfile(..., Which="Communities")</a></code>. Corrected.</li>
 </ul>
 </div>
 </div>
@@ -483,7 +495,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#entropart-1-5-3-9008">1.5-3-9008</a></li>
+        <li><a href="#entropart-1-5-3-9010">1.5-3-9010</a></li>
         <li><a href="#entropart-1-5-3">1.5-3</a></li>
         <li><a href="#entropart-1-4-8">1.4-8</a></li>
         <li><a href="#entropart-1-4-7">1.4-7</a></li>
@@ -498,7 +510,6 @@
         <li><a href="#entropart-1-2-0-1">1.2.0</a></li>
         <li><a href="#entropart-1-1-4">1.1.4</a></li>
         <li><a href="#entropart-1-1-3">1.1.3</a></li>
-        <li><a href="#entropart-1-1-2">1.1.2</a></li>
         <li><a href="#entropart-1-1-1">1.1.1</a></li>
       </ul>
     </div>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>HCDT diversity of a community — Diversity • entropart</title>
+<title>Hill number of a community — Diversity • entropart</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,7 +37,7 @@
 
 
 
-<meta property="og:title" content="HCDT diversity of a community — Diversity" />
+<meta property="og:title" content="Hill number of a community — Diversity" />
 
 <meta property="og:description" content="Calculates the HCDT (generalized) diversity of order \(q\) of a probability vector." />
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9008</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9010</span>
       </span>
     </div>
 
@@ -97,6 +97,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/articles/extrapolation.html">Asymptotic Estimation, Interpolation and Extrapolation </a>
+    </li>
     <li>
       <a href="../articles/articles/phylogenies.html">Phylogenies in entropart</a>
     </li>
@@ -129,7 +132,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>HCDT diversity of a community</h1>
+    <h1>Hill number of a community</h1>
     
     <div class="hidden name"><code>Diversity.Rd</code></div>
     </div>
@@ -241,10 +244,14 @@ Diversity(NorP, q = 1, Correction = "Best", Level = NULL,
 <span class='no'>Ps</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='SpeciesDistribution.html'>as.ProbaVector</a></span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ns</span>)
 <span class='co'># Whittaker plot</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>Ns</span>)</div><div class='img'><img src='Diversity-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Calculate diversity of order 1, i.e. Shannon's diversity</span>
-<span class='fu'>Diversity</span>(<span class='no'>Ps</span>, <span class='fl'>1</span>)</div><div class='output co'>#&gt;   None 
-#&gt; 113.98 </div><div class='input'><span class='co'># Calculate it with estimation bias correction</span>
-<span class='fu'>Diversity</span>(<span class='no'>Ns</span>, <span class='fl'>1</span>)</div><div class='output co'>#&gt;  UnveilJ 
-#&gt; 138.1078 </div></pre>
+<span class='fu'>Diversity</span>(<span class='no'>Ps</span>, <span class='kw'>q</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='output co'>#&gt;   None 
+#&gt; 113.98 </div><div class='input'><span class='co'># Calculate it with estimation bias correction (asymptotic estimator)</span>
+<span class='fu'>Diversity</span>(<span class='no'>Ns</span>, <span class='kw'>q</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='output co'>#&gt;  UnveilJ 
+#&gt; 138.1078 </div><div class='input'><span class='co'># Extrapolate it up to 99.9% sample coverage (close to the asymptotic estimator)</span>
+<span class='fu'>Diversity</span>(<span class='no'>Ns</span>, <span class='kw'>q</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>Level</span><span class='kw'>=</span><span class='fl'>0.999</span>)</div><div class='output co'>#&gt;     Best 
+#&gt; 133.1913 </div><div class='input'><span class='co'># Rarefy it to half the sample size</span>
+<span class='fu'>Diversity</span>(<span class='no'>Ns</span>, <span class='kw'>q</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>Level</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>Ns</span>)/<span class='fl'>2</span>)</div><div class='output co'>#&gt;  Interp 
+#&gt; 100.016 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

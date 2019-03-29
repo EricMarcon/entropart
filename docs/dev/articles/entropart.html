@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9006</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9010</span>
       </span>
     </div>
 
@@ -64,6 +64,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/articles/extrapolation.html">Asymptotic Estimation, Interpolation and Extrapolation </a>
+    </li>
+    <li>
       <a href="../articles/articles/phylogenies.html">Phylogenies in entropart</a>
     </li>
     <li>
@@ -151,36 +154,36 @@ N18 &lt;-<span class="st"> </span>Paracou618.MC<span class="op">$</span>Nsi[, <s
 <p>When applied to a probability vector (created with <code>as.ProbaVector</code> or a numeric vector summing to 1), no estimation-bias correction is applied: this means that indices are just calculated by applying their definition function to the probabilities (that is the plugin estimator).</p>
 <p>When abundances are available (a numeric vector of integer values or an object created by <code>as.ProbaVector</code>), several estimators are available <span class="citation">(Marcon 2015)</span> to address unobserved species and the non-linearity of the indices:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/Richness.html">Richness</a></span>(Abd18)</code></pre></div>
-<pre><code>##    Chao1 
-## 254.0888</code></pre>
+<pre><code>## Jackknife 3 
+##         309</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/Shannon.html">Shannon</a></span>(Abd18)</code></pre></div>
 <pre><code>##  UnveilJ 
-## 4.783384</code></pre>
+## 4.772981</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/Simpson.html">Simpson</a></span>(Abd18)</code></pre></div>
 <pre><code>##     Lande 
 ## 0.9814969</code></pre>
 <p>The best available estimator is chosen by default: its name is returned.</p>
 <p>Those indices are special cases of the Tsallis entropy <span class="citation">(1988)</span> or order <span class="math inline">\(q\)</span> (respectively <span class="math inline">\(q=0,1,2\)</span> for richness, Shannon, Simpson):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/Tsallis.html">Tsallis</a></span>(Abd18,<span class="dt">q=</span><span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/Tsallis.html">Tsallis</a></span>(Abd18, <span class="dt">q=</span><span class="dv">1</span>)</code></pre></div>
 <pre><code>##  UnveilJ 
-## 4.783384</code></pre>
+## 4.772981</code></pre>
 <p>Entropy should be converted to its effective number of species, i.e. the number of species with equal probabilities that would yield the observed entropy, called <span class="citation">Hill (1973)</span> numbers or simply diversity <span class="citation">(Jost 2006)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/Diversity.html">Diversity</a></span>(Abd18,<span class="dt">q=</span><span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/Diversity.html">Diversity</a></span>(Abd18, <span class="dt">q=</span><span class="dv">1</span>)</code></pre></div>
 <pre><code>##  UnveilJ 
-## 119.5081</code></pre>
+## 118.2713</code></pre>
 <p>Diversity is the deformed exponential of order <span class="math inline">\(q\)</span> of entropy, and entropy is the deformed logarithm of of order <span class="math inline">\(q\)</span> of diversity:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(d2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Diversity.html">Diversity</a></span>(Abd18,<span class="dt">q=</span><span class="dv">2</span>))</code></pre></div>
 <pre><code>##  UnveilJ 
-## 54.04457</code></pre>
+## 53.97842</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/lnq.html">lnq</a></span>(d2, <span class="dt">q=</span><span class="dv">2</span>)</code></pre></div>
 <pre><code>##   UnveilJ 
-## 0.9814968</code></pre>
+## 0.9814741</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(e2 &lt;-<span class="kw"><a href="../reference/Tsallis.html">Tsallis</a></span>(Abd18,<span class="dt">q=</span><span class="dv">2</span>))</code></pre></div>
 <pre><code>##   UnveilJ 
-## 0.9814968</code></pre>
+## 0.9814741</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/expq.html">expq</a></span>(e2, <span class="dt">q=</span><span class="dv">2</span>)</code></pre></div>
 <pre><code>##  UnveilJ 
-## 54.04457</code></pre>
+## 53.97842</code></pre>
 <p>Diversity can be plotted against its order to provide a diversity profile. Order 0 corresponds to richness, 1 to Shannon’s and 2 to Simpson’s diversities:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DP &lt;-<span class="st"> </span><span class="kw"><a href="../reference/CommunityProfile.html">CommunityProfile</a></span>(Diversity, Abd18)
 <span class="kw">autoplot</span>(DP)</code></pre></div>
@@ -195,7 +198,7 @@ N18 &lt;-<span class="st"> </span>Paracou618.MC<span class="op">$</span>Nsi[, <s
 ## 
 ## Diversity is normalized
 ## 
-## Diversity equals: 54.08534</code></pre>
+## Diversity equals: 53.73643</code></pre>
 <p>With a Euclidian distance matrix between species, similarity-based diversity <span class="citation">(Leinster and Cobbold 2012; Marcon, Zhang, and Hérault 2014)</span> is available:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Prepare the similarity matrix</span>
 DistanceMatrix &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(Paracou618.dist)
@@ -377,7 +380,7 @@ pDP &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Communi
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
 </div>
