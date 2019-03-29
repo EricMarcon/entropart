@@ -25,7 +25,7 @@ function(NorP, ..., CheckArguments = TRUE, Ps = NULL)
 
 
 Richness.AbdVector <-
-function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL, ..., CheckArguments = TRUE, Ns = NULL)
+function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL, PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy", ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -37,13 +37,13 @@ function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL
   if (is.null(Level)) {
     return(bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=CheckArguments))
   } else {
-    return (Richness.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+    return (Richness.numeric(NorP, Correction=Correction, Level=Level, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=CheckArguments))
   }
 }
 
 
 Richness.integer <-
-function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL, ..., CheckArguments = TRUE, Ns = NULL)
+function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL, PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy", ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -55,13 +55,13 @@ function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL
   if (is.null(Level)) {
     return(bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=CheckArguments))
   } else {
-    return (Richness.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+    return (Richness.numeric(NorP, Correction=Correction, Level=Level, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=CheckArguments))
   }
 }
 
 
 Richness.numeric <-
-function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL, ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL, PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -107,7 +107,14 @@ function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL
     Singletons <-  sum(NorP == 1)
     if (Singletons) {
       # Estimate the number of unobserved species
-      S0 <- bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=FALSE) - Sobs
+      if (PCorrection == "None") {
+        # Don't unveil the asymptotic distribution, use the asymptotic estimator
+        S0 <- bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=FALSE) - Sobs
+      } else {
+        # Unveil so that the estimation of H is similar to that of non-integer entropy
+        PsU <- as.ProbaVector.numeric(NorP, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, q=1, CheckArguments=FALSE)
+        S0 <- length(PsU) - Sobs
+      }
       richness <- Sobs + S0*(1 - (1 - Singletons/(N*S0+Singletons))^(Level-N))
     } else {
       # No singleton

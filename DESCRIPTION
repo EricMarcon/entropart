@@ -1,7 +1,7 @@
 Package: entropart
 Type: Package
 Title: Entropy Partitioning to Measure Diversity
-Version: 1.5-3-9010
+Version: 1.5-3-9011
 Authors@R: c(
     person("Eric", "Marcon", email="eric.marcon@ecofog.gf", role=c("aut", "cre"), comment = c(ORCID = "0000-0002-5249-321X")),
     person("Bruno", "Herault", email="bruno.herault@cirad.fr", role="aut", comment = c(ORCID = "0000-0002-6950-7286"))

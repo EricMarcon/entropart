@@ -24,7 +24,7 @@ function(NorP, ..., CheckArguments = TRUE, Ps = NULL)
 
 
 Shannon.AbdVector <-
-function(NorP, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ns = NULL) 
+function(NorP, Correction = "Best", Level = NULL, PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy", ..., CheckArguments = TRUE, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -36,13 +36,13 @@ function(NorP, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ns
   if (is.null(Level)) {
     return (bcShannon(Ns=NorP, Correction=Correction, CheckArguments=CheckArguments))
   } else {
-    return (Shannon.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+    return (Shannon.numeric(NorP, Correction=Correction, Level=Level, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=CheckArguments))
   }
 }
 
 
 Shannon.integer <-
-function(NorP, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ns = NULL)
+function(NorP, Correction = "Best", Level = NULL, PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy", ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -54,13 +54,13 @@ function(NorP, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ns
   if (is.null(Level)) {
     return (bcShannon(Ns=NorP, Correction=Correction, CheckArguments=CheckArguments))
   } else {
-    return (Shannon.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=CheckArguments))
+    return (Shannon.numeric(NorP, Correction=Correction, Level=Level, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=CheckArguments))
   }
 }
 
 
 Shannon.numeric <-
-function(NorP, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, Correction = "Best", Level = NULL, PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -102,7 +102,14 @@ function(NorP, Correction = "Best", Level = NULL, ..., CheckArguments = TRUE, Ps
     return (entropy)
   } else {
     # Extrapolation. Estimate the asymptotic entropy
-    Hinf <- bcShannon(Ns=NorP, Correction=Correction, CheckArguments=FALSE)
+    if (PCorrection == "None") {
+      # Don't unveil the asymptotic distribution, use the asymptotic estimator
+      Hinf <- bcShannon(Ns=NorP, Correction=Correction, CheckArguments=FALSE)
+    } else {
+      # Unveil so that the estimation of H is similar to that of non-integer entropy
+      PsU <- as.ProbaVector.numeric(NorP, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, q=1, CheckArguments=FALSE)
+      Hinf <- Shannon.ProbaVector(PsU, CheckArguments=FALSE)
+    }
     # Estimate observed entropy
     Hn <- Shannon.ProbaVector(NorP/N, CheckArguments=FALSE)
     # Interpolation

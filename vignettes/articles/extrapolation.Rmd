@@ -11,7 +11,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r global_options, include=FALSE}
+```{r global_options, include=FALSE, cache=TRUE}
 set.seed(97310)
 ```
 
@@ -31,22 +31,22 @@ Alternatively, sample size may be replaced by sample coverage, by interpolation 
 
 If community data is a vector of probabilities, sample size is unknown so the only available estimation is that of the actual sample.
 
-```{r LoadParacou18}
+```{r LoadParacou}
 library("entropart")
 data("Paracou618")
-# 1 ha of tropical forest, distribution of probabilities
-P18 <- Paracou618.MC$Psi[, "P018"]
+# 2 ha of tropical forest, distribution of probabilities
+ParacouP <- Paracou618.MC$Ps
 # Diversity of order 1, no reduce-bias estimator used.
-Diversity(P18, q=1)
+Diversity(ParacouP, q=1)
 ```
 
 Further estimation requires abundance vectors, i.e. the number of individuals per species.
 Then, the default estimator is the asymptotic one.
 ```{r}
-# 1 ha of tropical forest, distribution of abundances
-N18 <- Paracou618.MC$Nsi[, "P018"]
+# 2 ha of tropical forest, distribution of abundances
+ParacouN <- Paracou618.MC$Ns
 # Diversity of order 1, best asymptotic estimator used.
-Diversity(N18, q=1)
+Diversity(ParacouN, q=1)
 ```
 
 Several asymptotic estimators are available in the literature and implemented in _entropart_.
@@ -57,12 +57,12 @@ Poorly-sampled communities are estimated by a higher-order jackknife, resulting 
 For well-sampled communities, i.e. in the domain of validity of the jacknife of order 1, The Chao1 estimator of diversity and the Chao-Jost estimator of entropy are the best choices because they have the best mathematical support, but they will severely underestimate the diversity of poorly-sampled communities.
 They also are more computer-intensive.
 ```{r}
-# Estimation of richness relies on jackknife 3 (very poor sampling)
-Richness(N18)
+# Estimation of richness relies on jackknife 2 (poor sampling)
+Richness(ParacouN)
 # Richness is underestimated by Chao1 estimator
-Richness(N18, Correction="Chao1")
+Richness(ParacouN, Correction="Chao1")
 # Diversity of order 1 underestimated by Chao-Jost estimator
-Diversity(N18, q=1, Correction="ChaoJost")
+Diversity(ParacouN, q=1, Correction="ChaoJost")
 ```
 
 
@@ -71,19 +71,19 @@ Diversity(N18, q=1, Correction="ChaoJost")
 Asymptotic estimation is not always the best choice, for example when comparing the diversity of poorly-sampled communities: a lower sampe coverage can be chosen to limit the uncertainty of estimation.
 ```{r}
 # Actual sample coverage
-Coverage(N18)
+Coverage(ParacouN)
 ```
 
 The estimation level may be a sample size or a sample coverage that is converted internally into a sample size.
 ```{r}
 # Diversity at half the sample size (interpolated)
-Diversity(N18, q=1, Level=round(sum(N18)/2))
+Diversity(ParacouN, q=1, Level=round(sum(ParacouN)/2))
 # Sample size corresponding to 90% coverage
-Coverage2Size(N18, SampleCoverage=0.9)
+Coverage2Size(ParacouN, SampleCoverage=0.9)
 # Diversity at 90% sample coverage
-Diversity(N18, q=1, Level=0.9)
+Diversity(ParacouN, q=1, Level=0.9)
 # Equal to 
-Diversity(N18, q=1, Level=Coverage2Size(N18, SampleCoverage=0.9))
+Diversity(ParacouN, q=1, Level=Coverage2Size(ParacouN, SampleCoverage=0.9))
 ```
 
 If the sample size is smaller than the actual sample, entropy is interpolated.
@@ -92,16 +92,48 @@ If it is higher, entropy must be extrapolated. For diversity orders equal to 0 (
 Continuity of the estimation of diversity around the actual sample size is guaranted.
 ```{r}
 # Simpson diversity at levels from 0.9 to 1.1 times the sample size
-Accumulation2 <- DivAC(N18, q=2, n.seq=round(0.9*sum(N18)):round(1.1*sum(N18)))
+Accumulation2 <- DivAC(ParacouN, q=2, n.seq=round(0.9*sum(ParacouN)):round(1.1*sum(ParacouN)))
 autoplot(Accumulation2)
 ```
 
 For non-integer orders, things get more complicated. In _entropart_, asymptotic entropy is estimated by the unveiled jackknife estimator and rarefied down to the actual sample size. 
 There is no reason for it to correspond exactly to the observed entropy.
 The asymptotic richness is the less robust part of the estimation thus it is adjusted iteratively until the rarefied entropy equals the actual sample's entropy, ensuring continuity between interpolation and extrapolation.
+
+
+# Diversity accumulation
+
+Diversity Accumulation Curves (DAC) are a generalization of the well-known Species Accumumulation Curves (SAC).
+They represent diversity as a function of sample size.
+
+The `DivAc()`function allows to build them.
+A bootstrap confindence interval can be calculated around the estimated DAC by simulating random multinomial draws of the asymtpotic distribution at each sample size.
 ```{r}
 # Diversity at levels from 1 to twice the sample size
-Accumulation <- DivAC(N18, q=1.5, n.seq=1:(2*sum(N18)))
+Accumulation <- DivAC(ParacouN, q=1, n.seq=1:(1.1*sum(ParacouN)), NumberOfSimulations = 1000)
 autoplot(Accumulation)
 ```
 
+To ensure continuity of the DAC around the actual sample, the asymptotic diversity is estimated by unveiling the aysmptotic distribution, choosing the number of species such that the rarefied diversity at the observed sample size is the observed diversity.
+This means that the extrapolated diversity at a high sample coverage will differ from the best asymptotic estimation, sometimes quite much if sampling level is poor.
+```{r}
+# Extrapolation at 99.99% sample coverage
+Diversity(ParacouN, q=1, Level=0.9999)
+# Unveiled Jaccknife asymptotic estimator
+Diversity(ParacouN, q=1)
+# Chao-Jost estimator
+Diversity(ParacouN, q=1, Correction="ChaoJost")
+```
+
+
+
+# Diversity profiles at a sampling level
+
+Diversity profiles are usually asymptotic but they can be calculated at any coverage of sampling level.
+```{r}
+# Diversity at levels from 1 to twice the sample size
+Profile <- CommunityProfile(Diversity, ParacouN, Level=sum(ParacouN)*1.5)
+autoplot(Profile)
+```
+
+Extrapolated diversity is estimated at each order such that it is continuous at the observed sample size.

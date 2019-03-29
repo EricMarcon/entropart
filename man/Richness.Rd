@@ -17,11 +17,14 @@ bcRichness(Ns, Correction = "Best", Alpha = 0.05, JackOver = FALSE,
               CheckArguments = TRUE)
 \method{Richness}{ProbaVector}(NorP, \dots, CheckArguments = TRUE, Ps = NULL)
 \method{Richness}{AbdVector}(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, 
-  Level = NULL, \dots, CheckArguments = TRUE, Ns = NULL)
+  Level = NULL, PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy",
+  \dots, CheckArguments = TRUE, Ns = NULL)
 \method{Richness}{integer}(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, 
-  Level = NULL, \dots, CheckArguments = TRUE, Ns = NULL)
+  Level = NULL, PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy",
+  \dots, CheckArguments = TRUE, Ns = NULL)
 \method{Richness}{numeric}(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, 
-  Level = NULL, \dots, CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+  Level = NULL, PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy",
+  \dots, CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 }
 \arguments{
   \item{Ps}{
@@ -44,6 +47,15 @@ bcRichness(Ns, Correction = "Best", Alpha = 0.05, JackOver = FALSE,
   }
   \item{Level}{
   The level of interpolation or extrapolation. It may be an a chosen sample size (an integer) or a sample coverage (a number between 0 and 1). Richness extrapolation require its asymptotic estimation depending on the choice of \code{Correction}.
+  }
+  \item{PCorrection}{
+  A string containing one of the possible corrections to estimate a probability distribution in \code{\link{as.ProbaVector}}: \code{"Chao2015"} is the default value. Used only for extrapolation.
+  }
+  \item{Unveiling}{
+  A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in \code{\link{as.ProbaVector}}: \code{"geom"} (the unobserved species distribution is geometric) is the default value. Used only for extrapolation.
+  }
+  \item{RCorrection}{
+  A string containing a correction recognized by \code{\link{Richness}} to evaluate the total number of species in \code{\link{as.ProbaVector}}. \code{"Rarefy"} is the default value to estimate the number of species such that the entropy of the asymptotic distribution rarefied to the observed sample size equals the observed entropy of the data. Used only for extrapolation.
   }
   \item{\dots}{
   Additional arguments. Unused.

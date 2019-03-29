@@ -66,7 +66,7 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, PCorrection="Chao2015",
 
 
 Tsallis.numeric <-
-function(NorP, q = 1, Correction = "Best", Level = NULL, PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
+function(NorP, q = 1, Correction = "Best", Level = NULL, PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL) 
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -134,7 +134,7 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, PCorrection="Chao2015",
         Slevel <- sapply(1:Level, function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))))
         # Estimate entropy (Chao et al., 2014, eq. 6)
         entropy <- (sum(((1:Level)/Level)^q * Slevel) - 1) / (1-q)
-        names(entropy) <- "Rarefy"
+        names(entropy) <- RCorrection
       }
       return (entropy)
     }
