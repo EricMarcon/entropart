@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9010</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9011</span>
       </span>
     </div>
 
@@ -116,71 +116,102 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"entropart"</span>)</code></pre></div>
 <pre><code>## Le chargement a nécessité le package : ggplot2</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"Paracou618"</span>)
-<span class="co"># 1 ha of tropical forest, distribution of probabilities</span>
-P18 &lt;-<span class="st"> </span>Paracou618.MC<span class="op">$</span>Psi[, <span class="st">"P018"</span>]
+<span class="co"># 2 ha of tropical forest, distribution of probabilities</span>
+ParacouP &lt;-<span class="st"> </span>Paracou618.MC<span class="op">$</span>Ps
 <span class="co"># Diversity of order 1, no reduce-bias estimator used.</span>
-<span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(P18, <span class="dt">q=</span><span class="dv">1</span>)</code></pre></div>
-<pre><code>##     None 
-## 83.20917</code></pre>
+<span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(ParacouP, <span class="dt">q=</span><span class="dv">1</span>)</code></pre></div>
+<pre><code>##   None 
+## 113.98</code></pre>
 <p>Further estimation requires abundance vectors, i.e. the number of individuals per species. Then, the default estimator is the asymptotic one.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 1 ha of tropical forest, distribution of abundances</span>
-N18 &lt;-<span class="st"> </span>Paracou618.MC<span class="op">$</span>Nsi[, <span class="st">"P018"</span>]
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 2 ha of tropical forest, distribution of abundances</span>
+ParacouN &lt;-<span class="st"> </span>Paracou618.MC<span class="op">$</span>Ns
 <span class="co"># Diversity of order 1, best asymptotic estimator used.</span>
-<span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(N18, <span class="dt">q=</span><span class="dv">1</span>)</code></pre></div>
+<span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(ParacouN, <span class="dt">q=</span><span class="dv">1</span>)</code></pre></div>
 <pre><code>##  UnveilJ 
-## 118.2713</code></pre>
+## 138.1078</code></pre>
 <p>Several asymptotic estimators are available in the literature and implemented in <em>entropart</em>. For consistency, <em>entropart</em> uses the jackknife estimator of richness and the unveiled jackknife estimator for entropy. The advantage of these estimators is that they provide reliable estimations even though the sampling effort is low: then, the estimation variance increases but its bias remains acceptable because the order of the jackknife estimator is chosen according to the data. Poorly-sampled communities are estimated by a higher-order jackknife, resulting in higher estimation variance.</p>
 <p>For well-sampled communities, i.e. in the domain of validity of the jacknife of order 1, The Chao1 estimator of diversity and the Chao-Jost estimator of entropy are the best choices because they have the best mathematical support, but they will severely underestimate the diversity of poorly-sampled communities. They also are more computer-intensive.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Estimation of richness relies on jackknife 3 (very poor sampling)</span>
-<span class="kw"><a href="../../reference/Richness.html">Richness</a></span>(N18)</code></pre></div>
-<pre><code>## Jackknife 3 
-##         309</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Estimation of richness relies on jackknife 2 (poor sampling)</span>
+<span class="kw"><a href="../../reference/Richness.html">Richness</a></span>(ParacouN)</code></pre></div>
+<pre><code>## Jackknife 2 
+##         359</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Richness is underestimated by Chao1 estimator</span>
-<span class="kw"><a href="../../reference/Richness.html">Richness</a></span>(N18, <span class="dt">Correction=</span><span class="st">"Chao1"</span>)</code></pre></div>
+<span class="kw"><a href="../../reference/Richness.html">Richness</a></span>(ParacouN, <span class="dt">Correction=</span><span class="st">"Chao1"</span>)</code></pre></div>
 <pre><code>##    Chao1 
-## 254.0888</code></pre>
+## 314.9348</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Diversity of order 1 underestimated by Chao-Jost estimator</span>
-<span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(N18, <span class="dt">q=</span><span class="dv">1</span>, <span class="dt">Correction=</span><span class="st">"ChaoJost"</span>)</code></pre></div>
+<span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(ParacouN, <span class="dt">q=</span><span class="dv">1</span>, <span class="dt">Correction=</span><span class="st">"ChaoJost"</span>)</code></pre></div>
 <pre><code>## ChaoJost 
-## 110.6652</code></pre>
+## 133.2409</code></pre>
 </div>
 <div id="choosing-the-estimation-level" class="section level1">
 <h1 class="hasAnchor">
 <a href="#choosing-the-estimation-level" class="anchor"></a>Choosing the estimation level</h1>
 <p>Asymptotic estimation is not always the best choice, for example when comparing the diversity of poorly-sampled communities: a lower sampe coverage can be chosen to limit the uncertainty of estimation.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Actual sample coverage</span>
-<span class="kw"><a href="../../reference/Coverage.html">Coverage</a></span>(N18)</code></pre></div>
+<span class="kw"><a href="../../reference/Coverage.html">Coverage</a></span>(ParacouN)</code></pre></div>
 <pre><code>## ZhangHuang 
-##  0.8463782</code></pre>
+##  0.9226675</code></pre>
 <p>The estimation level may be a sample size or a sample coverage that is converted internally into a sample size.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Diversity at half the sample size (interpolated)</span>
-<span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(N18, <span class="dt">q=</span><span class="dv">1</span>, <span class="dt">Level=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(N18)<span class="op">/</span><span class="dv">2</span>))</code></pre></div>
-<pre><code>##   Interp 
-## 67.84872</code></pre>
+<span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(ParacouN, <span class="dt">q=</span><span class="dv">1</span>, <span class="dt">Level=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(ParacouN)<span class="op">/</span><span class="dv">2</span>))</code></pre></div>
+<pre><code>##  Interp 
+## 100.016</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Sample size corresponding to 90% coverage</span>
-<span class="kw"><a href="../../reference/Coverage.html">Coverage2Size</a></span>(N18, <span class="dt">SampleCoverage=</span><span class="fl">0.9</span>)</code></pre></div>
-<pre><code>## [1] 774</code></pre>
+<span class="kw"><a href="../../reference/Coverage.html">Coverage2Size</a></span>(ParacouN, <span class="dt">SampleCoverage=</span><span class="fl">0.9</span>)</code></pre></div>
+<pre><code>## [1] 861</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Diversity at 90% sample coverage</span>
-<span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(N18, <span class="dt">q=</span><span class="dv">1</span>, <span class="dt">Level=</span><span class="fl">0.9</span>)</code></pre></div>
-<pre><code>##     Best 
-## 95.05594</code></pre>
+<span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(ParacouN, <span class="dt">q=</span><span class="dv">1</span>, <span class="dt">Level=</span><span class="fl">0.9</span>)</code></pre></div>
+<pre><code>##   Interp 
+## 109.1493</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Equal to </span>
-<span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(N18, <span class="dt">q=</span><span class="dv">1</span>, <span class="dt">Level=</span><span class="kw"><a href="../../reference/Coverage.html">Coverage2Size</a></span>(N18, <span class="dt">SampleCoverage=</span><span class="fl">0.9</span>))</code></pre></div>
-<pre><code>##     Best 
-## 95.05594</code></pre>
+<span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(ParacouN, <span class="dt">q=</span><span class="dv">1</span>, <span class="dt">Level=</span><span class="kw"><a href="../../reference/Coverage.html">Coverage2Size</a></span>(ParacouN, <span class="dt">SampleCoverage=</span><span class="fl">0.9</span>))</code></pre></div>
+<pre><code>##   Interp 
+## 109.1493</code></pre>
 <p>If the sample size is smaller than the actual sample, entropy is interpolated.</p>
 <p>If it is higher, entropy must be extrapolated. For diversity orders equal to 0 (richness), 1 (Shannon) or 2 (Simpson), explicit, almost unbiased estimators are used. Continuity of the estimation of diversity around the actual sample size is guaranted.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Simpson diversity at levels from 0.9 to 1.1 times the sample size</span>
-Accumulation2 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Accumulation.html">DivAC</a></span>(N18, <span class="dt">q=</span><span class="dv">2</span>, <span class="dt">n.seq=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="fl">0.9</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(N18))<span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="fl">1.1</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(N18)))</code></pre></div>
+Accumulation2 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Accumulation.html">DivAC</a></span>(ParacouN, <span class="dt">q=</span><span class="dv">2</span>, <span class="dt">n.seq=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="fl">0.9</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(ParacouN))<span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="fl">1.1</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(ParacouN)))</code></pre></div>
 <pre><code>## ===========================================================================</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>(Accumulation2)</code></pre></div>
 <p><img src="extrapolation_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <p>For non-integer orders, things get more complicated. In <em>entropart</em>, asymptotic entropy is estimated by the unveiled jackknife estimator and rarefied down to the actual sample size. There is no reason for it to correspond exactly to the observed entropy. The asymptotic richness is the less robust part of the estimation thus it is adjusted iteratively until the rarefied entropy equals the actual sample’s entropy, ensuring continuity between interpolation and extrapolation.</p>
+</div>
+<div id="diversity-accumulation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#diversity-accumulation" class="anchor"></a>Diversity accumulation</h1>
+<p>Diversity Accumulation Curves (DAC) are a generalization of the well-known Species Accumumulation Curves (SAC). They represent diversity as a function of sample size.</p>
+<p>The <code>DivAc()</code>function allows to build them. A bootstrap confindence interval can be calculated around the estimated DAC by simulating random multinomial draws of the asymtpotic distribution at each sample size.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Diversity at levels from 1 to twice the sample size</span>
-Accumulation &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Accumulation.html">DivAC</a></span>(N18, <span class="dt">q=</span><span class="fl">1.5</span>, <span class="dt">n.seq=</span><span class="dv">1</span><span class="op">:</span>(<span class="dv">2</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(N18)))</code></pre></div>
-<pre><code>## ===========================================================================</code></pre>
+Accumulation &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Accumulation.html">DivAC</a></span>(ParacouN, <span class="dt">q=</span><span class="dv">1</span>, <span class="dt">n.seq=</span><span class="dv">1</span><span class="op">:</span>(<span class="fl">1.1</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(ParacouN)), <span class="dt">NumberOfSimulations =</span> <span class="dv">1000</span>)</code></pre></div>
+<pre><code>## ===========================================================================
+                                                                           
+===========================================================================</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>(Accumulation)</code></pre></div>
 <p><img src="extrapolation_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p>To ensure continuity of the DAC around the actual sample, the asymptotic diversity is estimated by unveiling the aysmptotic distribution, choosing the number of species such that the rarefied diversity at the observed sample size is the observed diversity. This means that the extrapolated diversity at a high sample coverage will differ from the best asymptotic estimation, sometimes quite much if sampling level is poor.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extrapolation at 99.99% sample coverage</span>
+<span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(ParacouN, <span class="dt">q=</span><span class="dv">1</span>, <span class="dt">Level=</span><span class="fl">0.9999</span>)</code></pre></div>
+<pre><code>##     Best 
+## 128.3196</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Unveiled Jaccknife asymptotic estimator</span>
+<span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(ParacouN, <span class="dt">q=</span><span class="dv">1</span>)</code></pre></div>
+<pre><code>##  UnveilJ 
+## 138.1078</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Chao-Jost estimator</span>
+<span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(ParacouN, <span class="dt">q=</span><span class="dv">1</span>, <span class="dt">Correction=</span><span class="st">"ChaoJost"</span>)</code></pre></div>
+<pre><code>## ChaoJost 
+## 133.2409</code></pre>
+</div>
+<div id="diversity-profiles-at-a-sampling-level" class="section level1">
+<h1 class="hasAnchor">
+<a href="#diversity-profiles-at-a-sampling-level" class="anchor"></a>Diversity profiles at a sampling level</h1>
+<p>Diversity profiles are usually asymptotic but they can be calculated at any coverage of sampling level.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Diversity at levels from 1 to twice the sample size</span>
+Profile &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/CommunityProfile.html">CommunityProfile</a></span>(Diversity, ParacouN, <span class="dt">Level=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(ParacouN)<span class="op">*</span><span class="fl">1.5</span>)
+<span class="kw">autoplot</span>(Profile)</code></pre></div>
+<p><img src="extrapolation_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
+<p>Extrapolated diversity is estimated at each order such that it is continuous at the observed sample size.</p>
 </div>
   </div>
 
@@ -191,6 +222,8 @@ Accumulation &lt;-<span class="st"> </span><span class="kw"><a href="../../refer
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#asymptotic-estimation">Asymptotic estimation</a></li>
       <li><a href="#choosing-the-estimation-level">Choosing the estimation level</a></li>
+      <li><a href="#diversity-accumulation">Diversity accumulation</a></li>
+      <li><a href="#diversity-profiles-at-a-sampling-level">Diversity profiles at a sampling level</a></li>
       </ul>
 </div>
       </div>

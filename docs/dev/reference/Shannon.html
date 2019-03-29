@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9008</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9011</span>
       </span>
     </div>
 
@@ -97,6 +97,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/articles/extrapolation.html">Asymptotic Estimation, Interpolation and Extrapolation </a>
+    </li>
     <li>
       <a href="../articles/articles/phylogenies.html">Phylogenies in entropart</a>
     </li>
@@ -145,13 +148,16 @@ bcShannon(Ns, Correction = "Best", CheckArguments = TRUE)
 # S3 method for ProbaVector
 Shannon(NorP, &#8230;, CheckArguments = TRUE, Ps = NULL)
 # S3 method for AbdVector
-Shannon(NorP, Correction = "Best", Level = NULL, &#8230;, 
+Shannon(NorP, Correction = "Best", Level = NULL,
+  PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy", &#8230;, 
   CheckArguments = TRUE, Ns = NULL)
 # S3 method for integer
-Shannon(NorP, Correction = "Best", Level = NULL, &#8230;, 
+Shannon(NorP, Correction = "Best", Level = NULL,
+  PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy", &#8230;, 
   CheckArguments = TRUE, Ns = NULL)
 # S3 method for numeric
-Shannon(NorP, Correction = "Best", Level = NULL, &#8230;, 
+Shannon(NorP, Correction = "Best", Level = NULL, 
+  PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy", &#8230;, 
   CheckArguments = TRUE, Ps = NULL, Ns = NULL)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -176,6 +182,18 @@ Shannon(NorP, Correction = "Best", Level = NULL, &#8230;,
     <tr>
       <th>Level</th>
       <td><p>The level of interpolation or extrapolation. It may be an a chosen sample size (an integer) or a sample coverage (a number between 0 and 1). Entropy extrapolation require its asymptotic estimation depending on the choice of <code>Correction</code>. Entropy interpolation relies on the estimation of Abundance Frequence Counts: then, <code>Correction</code> is passed to <code><a href='AbdFreqCount.html'>AbdFreqCount</a></code> as its <code>Estimator</code> argument.</p></td>
+    </tr>
+    <tr>
+      <th>PCorrection</th>
+      <td><p>A string containing one of the possible corrections to estimate a probability distribution in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"Chao2015"</code> is the default value. Used only for extrapolation.</p></td>
+    </tr>
+    <tr>
+      <th>Unveiling</th>
+      <td><p>A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"geom"</code> (the unobserved species distribution is geometric) is the default value. Used only for extrapolation.</p></td>
+    </tr>
+    <tr>
+      <th>RCorrection</th>
+      <td><p>A string containing a correction recognized by <code><a href='Richness.html'>Richness</a></code> to evaluate the total number of species in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>. <code>"Rarefy"</code> is the default value to estimate the number of species such that the entropy of the asymptotic distribution rarefied to the observed sample size equals the observed entropy of the data. Used only for extrapolation.</p></td>
     </tr>
     <tr>
       <th>&#8230;</th>
