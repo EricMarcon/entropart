@@ -1,5 +1,4 @@
-EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", 
-                  RAlpha = 0.05, JackOver=FALSE, HCorrection= "Best",
+EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy", 
                   NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
 {
   if (CheckArguments)
@@ -13,6 +12,8 @@ EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveilin
   # Prepare the vector of results
   Entropy <- numeric(length(n.seq))
   ProgressBar <- utils::txtProgressBar(min=0, max=length(n.seq))
+  # i must be initialized if the accumulation contains extrapolation only
+  i <- 0
   
   # Interpolation
   n.seqInt <- n.seq[n.seq < N]
@@ -31,26 +32,29 @@ EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveilin
   }
   # Extrapolation. Don't use Tsallis for speed.
   n.seqExt <- n.seq[n.seq > N]
+  PsU <- NULL
   if (length(n.seqExt)) {
+    # Unveil the full distribution that rarefies to the observed entropy (or other options)
+    PsU <- as.ProbaVector.numeric(Ns, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, q=q, CheckArguments=FALSE)
     # Richness
     if (q == 0) {
       Singletons <-  sum(Ns == 1)
       if (Singletons) {
         # Estimate the number of unobserved species
         Sobs <- sum(Ns > 0)
-        S0 <- bcRichness(Ns, Correction=ifelse(RCorrection=="Rarefy", "Jackknife", RCorrection), Alpha=RAlpha, JackOver=JackOver, CheckArguments=FALSE) - Sobs
+        S0 <- length(PsU) - Sobs
         # Extrapolate richness (the vector is n.seqExt)
-        Entropy[(i+1):length(n.seq)] <- Sobs + S0*(1 - (1 - Singletons/(N*S0+Singletons))^(n.seqExt-N))
+        Entropy[(i+1):length(n.seq)] <- Sobs + S0*(1 - (1 - Singletons/(N*S0+Singletons))^(n.seqExt-N)) -1
       } else {
         # No singleton
-        Entropy[(i+1):length(n.seq)] <- Sobs
+        Entropy[(i+1):length(n.seq)] <- Sobs -1
       }
       utils::setTxtProgressBar(ProgressBar, length(n.seq))
     } else {
       # Shannon
       if (q == 1) {
         # Estimate the asymptotic entropy
-        Hinf <- bcShannon(Ns, Correction=HCorrection, CheckArguments=FALSE)
+        Hinf <- Shannon.ProbaVector(PsU, CheckArguments=FALSE)
         # Estimate observed entropy
         Hn <- Shannon.ProbaVector(Ns/N, CheckArguments=FALSE)
         # Interpolation (the vector is n.seqExt)
@@ -73,8 +77,6 @@ EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveilin
           utils::setTxtProgressBar(ProgressBar, length(n.seq))
         } else {
           # General case: q is not 0, 1 or 2 
-          # Unveil the full distribution that rarefies to the observed entropy (or other options)
-          PsU <- as.ProbaVector.numeric(Ns, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, q=q, CheckArguments=FALSE)
           for(Level in n.seqExt) {
             # Abundance frequence count at Level (Chao et al., 2014, eq. 5)
             Snu <- sapply(1:Level, function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))))
@@ -95,7 +97,7 @@ EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveilin
     Envelope <- matrix(0.0, nrow = length(n.seq), ncol = 2)
     if (is.null(PsU)) {
       # Unveil the full distribution if not done before
-      PsU <- as.ProbaVector(Ns, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, q=q, CheckArguments=FALSE)
+      PsU <- as.ProbaVector.numeric(Ns, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, q=q, CheckArguments=FALSE)
     }
     for(Level in n.seq) {
       # Generate simulated communities at each level
@@ -123,8 +125,7 @@ EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveilin
 }
 
 
-DivAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveiling="geom", RCorrection="Rarefy", 
-                  RAlpha = 0.05, JackOver=FALSE, HCorrection= "Best",
+DivAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy", 
                   NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
 {
   if (CheckArguments)

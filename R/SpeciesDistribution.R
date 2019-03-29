@@ -116,7 +116,12 @@ rarefaction_bias <- function(S0, Ns, PsTuned, C, CD2, q, Unveiling, Target) {
   # AbdFreqCount at Level = N
   Sn <- sapply(1:N, function(nu) sum(exp(lchoose(N, nu) + nu*log(Ps) + (N-nu)*log(1-Ps))))
   # Get Entropy at Level=N and calculate the bias
-  return(abs((sum(((1:N)/N)^q * Sn) - 1) / (1-q) - Target))
+  if (q == 1) {
+    Bias <- abs(sum(-(1:N)/N * log((1:N)/N) * Sn) - Target)
+  } else {
+    Bias <- abs((sum(((1:N)/N)^q * Sn) - 1) / (1-q) - Target)
+  }
+  return(Bias)
 }
 # end of utilities ####
 
