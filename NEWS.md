@@ -1,8 +1,8 @@
-# entropart 1.5-3-9008
+# entropart 1.5-3-9010
 
 ## New features
 
-- Estimation of diversity at a chosen level (sample size or coverage).
+- Estimation of diversity at a chosen level (sample size or coverage). `DivAccum()` function.
 - Entropy accumulation functions.
 - ggplot2 supported. `autoplot()` methods added for entropart objects.
 - The "Best" estimator of diversity is now "UnveilJ" and the default estimator of richness is "Jackknife".
@@ -12,6 +12,11 @@
 
 - Unit tests added.
 - Vignette by pkgdown.
+
+## Bug correction
+
+- The jaccknife estimator of richness returned an error for communities where all species had the same abundance.
+- `Richness` returned 0 instead of 1 for a community with a single species.
 
 
 
