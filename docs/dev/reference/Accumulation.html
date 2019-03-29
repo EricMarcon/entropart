@@ -291,8 +291,8 @@ They generalize the classical Species Accumulation Curves (SAC) which are divers
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>Paracou618</span>)
 <span class='co'># Ns is the total number of trees per species</span>
 <span class='no'>Ns</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='SpeciesDistribution.html'>as.AbdVector</a></span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ns</span>)
-<span class='co'># Accumulation curve of Shannon's diversity from 1 to 100 individuals</span>
-<span class='fu'>autoplot</span>(<span class='fu'>DivAC</span>(<span class='no'>Ns</span>), <span class='kw'>n.seq</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>100</span>)</div><div class='output co'>#&gt; <span class='error'>Error in EntAC(Ns = Ns, q = q, n.seq = n.seq, PCorrection = PCorrection,     Unveiling = Unveiling, RCorrection = RCorrection, RAlpha = RAlpha,     JackOver = JackOver, HCorrection = "UnveilJ", NumberOfSimulations = NumberOfSimulations,     Alpha = Alpha, CheckArguments = FALSE): arguments inutilisés (RAlpha = RAlpha, JackOver = JackOver, HCorrection = "UnveilJ")</span></div></pre>
+<span class='co'># Accumulation curve of Simpson's diversity</span>
+<span class='fu'>autoplot</span>(<span class='fu'>DivAC</span>(<span class='no'>Ns</span>, <span class='kw'>q</span><span class='kw'>=</span><span class='fl'>2</span>))</div><div class='output co'>#&gt; ================================================================================</div><div class='img'><img src='Accumulation-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

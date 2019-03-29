@@ -107,11 +107,11 @@
 
     
     
-<p>Estimation of diversity in <em>entropart</em> relies on classical assumptions that are recalled here. The observed data is a sample of a community (or several communities if data is a meta-community). All “reduced-bias estimator” are asymptotic estimators of the community diversity: if the sample size could be extended infinitely, its diversity would tend to the diversity of the whole (asymptotic) community. In hyperdiverse ecosystems such as evergreen forests, the asymptotic community generally does not exist in the field because of environmental variations: increasing the size of the sample implies sampling in different communities. Thus, the asymptotic estimators of diversity correspond to theoretical aymptotic communities that do not necessarily exist. In other words, the asymptotic diversity is that of a community that would provide the observed sample.</p>
+<p>Estimation of diversity in <em>entropart</em> relies on classical assumptions that are recalled here. The observed data is a sample of a community (or several communities if data is a meta-community). All “reduced-bias estimator” are asymptotic estimators of the community diversity: if the sample size could be extended infinitely, diversity would tend to the diversity of the whole (asymptotic) community. In hyperdiverse ecosystems such as evergreen forests, the asymptotic community generally does not exist in the field because of environmental variations: increasing the size of the sample results in sampling in different communities. Thus, the asymptotic estimators of diversity correspond to theoretical aymptotic communities that do not necessarily exist. In other words, the asymptotic diversity is that of a community that would provide the observed sample.</p>
 <p>Diversity is accumulated as a function of sample size. HCDT entropy (thus Hill numbers and phylodiversity) can be estimated at any sample size, by interpolation down from the actual sample size and by extrapolation up to infinite sample size, i.e. the asymptotic estimator. Alternatively, sample size may be replaced by sample coverage, by interpolation from arbitrary small sample coverages to that of the actual sample, and by extrapolation up to the asymptotic estimator whose sample coverage is 1.</p>
-<div id="choosing-the-estimation-level" class="section level1">
+<div id="asymptotic-estimation" class="section level1">
 <h1 class="hasAnchor">
-<a href="#choosing-the-estimation-level" class="anchor"></a>Choosing the estimation level</h1>
+<a href="#asymptotic-estimation" class="anchor"></a>Asymptotic estimation</h1>
 <p>If community data is a vector of probabilities, sample size is unknown so the only available estimation is that of the actual sample.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"entropart"</span>)</code></pre></div>
 <pre><code>## Le chargement a nécessité le package : ggplot2</code></pre>
@@ -129,7 +129,7 @@ N18 &lt;-<span class="st"> </span>Paracou618.MC<span class="op">$</span>Nsi[, <s
 <span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(N18, <span class="dt">q=</span><span class="dv">1</span>)</code></pre></div>
 <pre><code>##  UnveilJ 
 ## 118.2713</code></pre>
-<p>Several asymptotic estimators are available in the literature and implemented in <em>entropart</em>. For consistency, <em>entropart</em> uses the jackknife estimator of richness and the unveiled jackknife estimator for entropy. The advantage of these estimators is that they provide reliable estimations even though the sampling effort is low: then, the estimation variance increases but its bias remains acceptable because the order of the jackknife estimator is chosen according to the data. Poorly-sampled communities will be estimated by a higher-order jackknife, resulting in higher estimation variance.</p>
+<p>Several asymptotic estimators are available in the literature and implemented in <em>entropart</em>. For consistency, <em>entropart</em> uses the jackknife estimator of richness and the unveiled jackknife estimator for entropy. The advantage of these estimators is that they provide reliable estimations even though the sampling effort is low: then, the estimation variance increases but its bias remains acceptable because the order of the jackknife estimator is chosen according to the data. Poorly-sampled communities are estimated by a higher-order jackknife, resulting in higher estimation variance.</p>
 <p>For well-sampled communities, i.e. in the domain of validity of the jacknife of order 1, The Chao1 estimator of diversity and the Chao-Jost estimator of entropy are the best choices because they have the best mathematical support, but they will severely underestimate the diversity of poorly-sampled communities. They also are more computer-intensive.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Estimation of richness relies on jackknife 3 (very poor sampling)</span>
 <span class="kw"><a href="../../reference/Richness.html">Richness</a></span>(N18)</code></pre></div>
@@ -139,14 +139,14 @@ N18 &lt;-<span class="st"> </span>Paracou618.MC<span class="op">$</span>Nsi[, <s
 <span class="kw"><a href="../../reference/Richness.html">Richness</a></span>(N18, <span class="dt">Correction=</span><span class="st">"Chao1"</span>)</code></pre></div>
 <pre><code>##    Chao1 
 ## 254.0888</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Diversity of order 1underestimated by Chao-Jost estimator</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Diversity of order 1 underestimated by Chao-Jost estimator</span>
 <span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(N18, <span class="dt">q=</span><span class="dv">1</span>, <span class="dt">Correction=</span><span class="st">"ChaoJost"</span>)</code></pre></div>
 <pre><code>## ChaoJost 
 ## 110.6652</code></pre>
 </div>
-<div id="choosing-the-estimation-level-1" class="section level1">
+<div id="choosing-the-estimation-level" class="section level1">
 <h1 class="hasAnchor">
-<a href="#choosing-the-estimation-level-1" class="anchor"></a>Choosing the estimation level</h1>
+<a href="#choosing-the-estimation-level" class="anchor"></a>Choosing the estimation level</h1>
 <p>Asymptotic estimation is not always the best choice, for example when comparing the diversity of poorly-sampled communities: a lower sampe coverage can be chosen to limit the uncertainty of estimation.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Actual sample coverage</span>
 <span class="kw"><a href="../../reference/Coverage.html">Coverage</a></span>(N18)</code></pre></div>
@@ -189,8 +189,8 @@ Accumulation &lt;-<span class="st"> </span><span class="kw"><a href="../../refer
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#choosing-the-estimation-level">Choosing the estimation level</a></li>
-      <li><a href="#choosing-the-estimation-level-1">Choosing the estimation level</a></li>
+<li><a href="#asymptotic-estimation">Asymptotic estimation</a></li>
+      <li><a href="#choosing-the-estimation-level">Choosing the estimation level</a></li>
       </ul>
 </div>
       </div>

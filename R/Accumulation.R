@@ -132,7 +132,7 @@ DivAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection = "Chao2015", Unveil
     CheckentropartArguments()
 
   # Estimate entropy
-  Accumulation <- EntAC(Ns=Ns, q=q, n.seq=n.seq, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, RAlpha=RAlpha, JackOver=JackOver, HCorrection= "UnveilJ", NumberOfSimulations=NumberOfSimulations, Alpha=Alpha, CheckArguments=FALSE)
+  Accumulation <- EntAC(Ns=Ns, q=q, n.seq=n.seq, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, NumberOfSimulations=NumberOfSimulations, Alpha=Alpha, CheckArguments=FALSE)
   # Calculate diversity
   Accumulation$y <- expq(Accumulation$y, q)
   if (!is.null(Accumulation$low))
