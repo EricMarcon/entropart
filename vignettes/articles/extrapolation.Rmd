@@ -17,8 +17,8 @@ set.seed(97310)
 
 Estimation of diversity in _entropart_ relies on classical assumptions that are recalled here.
 The observed data is a sample of a community (or several communities if data is a meta-community).
-All "reduced-bias estimator" are asymptotic estimators of the community diversity: if the sample size could be extended infinitely, its diversity would tend to the diversity of the whole (asymptotic) community.
-In hyperdiverse ecosystems such as evergreen forests, the asymptotic community generally does not exist in the field because of environmental variations: increasing the size of the sample implies sampling in different communities.
+All "reduced-bias estimator" are asymptotic estimators of the community diversity: if the sample size could be extended infinitely, diversity would tend to the diversity of the whole (asymptotic) community.
+In hyperdiverse ecosystems such as evergreen forests, the asymptotic community generally does not exist in the field because of environmental variations: increasing the size of the sample results in sampling in different communities.
 Thus, the asymptotic estimators of diversity correspond to theoretical aymptotic communities that do not necessarily exist.
 In other words, the asymptotic diversity is that of a community that would provide the observed sample.
 
@@ -27,7 +27,7 @@ HCDT entropy (thus Hill numbers and phylodiversity) can be estimated at any samp
 Alternatively, sample size may be replaced by sample coverage, by interpolation from arbitrary small sample coverages to that of the actual sample, and by extrapolation up to the asymptotic estimator whose sample coverage is 1.
 
 
-# Choosing the estimation level
+# Asymptotic estimation
 
 If community data is a vector of probabilities, sample size is unknown so the only available estimation is that of the actual sample.
 
@@ -52,7 +52,7 @@ Diversity(N18, q=1)
 Several asymptotic estimators are available in the literature and implemented in _entropart_.
 For consistency, _entropart_ uses the jackknife estimator of richness and the unveiled jackknife estimator for entropy.
 The advantage of these estimators is that they provide reliable estimations even though the sampling effort is low: then, the estimation variance increases but its bias remains acceptable because the order of the jackknife estimator is chosen according to the data.
-Poorly-sampled communities will be estimated by a higher-order jackknife, resulting in higher estimation variance.
+Poorly-sampled communities are estimated by a higher-order jackknife, resulting in higher estimation variance.
 
 For well-sampled communities, i.e. in the domain of validity of the jacknife of order 1, The Chao1 estimator of diversity and the Chao-Jost estimator of entropy are the best choices because they have the best mathematical support, but they will severely underestimate the diversity of poorly-sampled communities.
 They also are more computer-intensive.
@@ -61,7 +61,7 @@ They also are more computer-intensive.
 Richness(N18)
 # Richness is underestimated by Chao1 estimator
 Richness(N18, Correction="Chao1")
-# Diversity of order 1underestimated by Chao-Jost estimator
+# Diversity of order 1 underestimated by Chao-Jost estimator
 Diversity(N18, q=1, Correction="ChaoJost")
 ```
 

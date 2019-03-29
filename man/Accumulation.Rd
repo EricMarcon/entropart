@@ -133,6 +133,6 @@ They generalize the classical Species Accumulation Curves (SAC) which are divers
 data(Paracou618)
 # Ns is the total number of trees per species
 Ns <- as.AbdVector(Paracou618.MC$Ns)
-# Accumulation curve of Shannon's diversity from 1 to 100 individuals
-autoplot(DivAC(Ns), n.seq = 1:100)
+# Accumulation curve of Simpson's diversity
+autoplot(DivAC(Ns, q=2))
 }
