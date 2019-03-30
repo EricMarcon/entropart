@@ -9,6 +9,13 @@ testthat::test_that("Diversity is 1 with a single species", {
   testthat::expect_equal(as.numeric(Tsallis(2, q=0.5)), 0)
   testthat::expect_equal(as.numeric(Shannon(2)), 0)
   testthat::expect_equal(as.numeric(Simpson(2)), 0)
+  
+  # Phylogeny
+  NewickAB <- "(A:1,B:1);"
+  phyloAB <- ape::read.tree(text=NewickAB)
+  Ns <- 2
+  names(Ns) <- "A"
+  testthat::expect_equal(as.numeric(Rao(Ns, Tree = phyloAB)), 0)
 })
 
 # 0 species
@@ -29,6 +36,8 @@ testthat::test_that("Diversity is NA with species", {
   testthat::expect_true(is.na(bcDiversity(c0, q=1)))
   testthat::expect_true(is.na(bcDiversity(c0, q=2)))
   testthat::expect_true(is.na(AbdFreqCount(c0)))
+  data("Paracou618")
+  testthat::expect_true(is.na(Rao(c0, Tree=Paracou618.Taxonomy)))
 })
 
 # Singletons only
