@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9008</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9014</span>
       </span>
     </div>
 
@@ -97,6 +97,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/articles/extrapolation.html">Asymptotic Estimation, Interpolation and Extrapolation </a>
+    </li>
     <li>
       <a href="../articles/articles/phylogenies.html">Phylogenies in entropart</a>
     </li>
@@ -193,7 +196,7 @@ Simpson(NorP, Correction="Best", Level = NULL, &#8230;,
     <p>Lande's correction has been derived (Lande, 1996; Good, 1953) especially for Simpson entropy, while other corrections are for generalized Tsallis entropy. It is identical to the unbiased estimator proposed by Simpson, although arguments were different. It equals the plug-in etimator multiplied by n/(n-1) where n is the total number of individuals.</p>  
 <p>Bias correction requires the number of individuals to estimate sample <code><a href='Coverage.html'>Coverage</a></code>.</p>
 <p>The functions are designed to be used as simply as possible. <code>Simpson</code> is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function <code>bcSimpson</code> is called.</p>
-<p>Entropy can be estimated at a specified level of interpolation or extrapolation, either a chosen sample size or sample coverage (Chao et al., 2014), rather than its asymptotic value.</p>
+<p>Entropy can be estimated at a specified level of interpolation or extrapolation, either a chosen sample size or sample coverage (Chao et al., 2014), rather than its asymptotic value. Simpson's extrapolated entropy estimator does not rely on the estimation of the asymptotic distribution.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 

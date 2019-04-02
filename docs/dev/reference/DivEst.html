@@ -8,6 +8,13 @@
 
 <title>Diversity Estimation of a metacommunity — DivEst • entropart</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
@@ -65,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9006</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9014</span>
       </span>
     </div>
 
@@ -91,6 +98,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/articles/extrapolation.html">Asymptotic Estimation, Interpolation and Extrapolation </a>
+    </li>
+    <li>
       <a href="../articles/articles/phylogenies.html">Phylogenies in entropart</a>
     </li>
     <li>
@@ -104,7 +114,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/EricMarcon/entropart">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -242,29 +257,29 @@ summary(object, &#8230;)</pre>
 <span class='kw'>Simulations</span> <span class='kw'>=</span> <span class='fl'>20</span>)</div><div class='output co'>#&gt; ================================================================================</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>Estimation</span>)</div><div class='img'><img src='DivEst-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>Estimation</span>)</div><div class='output co'>#&gt; Diversity partitioning of order 1 of MetaCommunity Paracou618.MC
 #&gt;  with correction: UnveilJ
 #&gt; Alpha diversity of communities: 
-#&gt;      P006      P018 
-#&gt;  84.52352 119.50807 
+#&gt;     P006     P018 
+#&gt;  83.7268 118.2713 
 #&gt; Total alpha diversity of the communities: 
-#&gt; [1] 98.02742
+#&gt; [1] 97.06467
 #&gt; Beta diversity of the communities: 
 #&gt;  UnveilJ 
-#&gt; 1.416315 
+#&gt; 1.422843 
 #&gt; Gamma diversity of the metacommunity: 
 #&gt;  UnveilJ 
-#&gt; 138.8377 
+#&gt; 138.1078 
 #&gt; Quantiles of simulations (alpha, beta and gamma diversity):
 #&gt;        0%        1%      2.5%        5%       10%       25%       50%       75% 
-#&gt;  91.56354  91.65221  91.78521  92.00689  93.73078  95.52320  97.50205 100.34473 
+#&gt;  89.64103  90.10350  90.79720  91.95337  92.86043  93.85074  96.91485  98.49928 
 #&gt;       90%       95%     97.5%       99%      100% 
-#&gt; 102.30286 103.04059 104.61791 105.56430 106.19523 
+#&gt; 104.11466 104.28565 105.25133 105.83074 106.21701 
 #&gt;       0%       1%     2.5%       5%      10%      25%      50%      75% 
-#&gt; 1.358271 1.358320 1.358394 1.358518 1.362570 1.386258 1.421568 1.442152 
+#&gt; 1.347289 1.354156 1.364457 1.381624 1.384839 1.407170 1.433999 1.442474 
 #&gt;      90%      95%    97.5%      99%     100% 
-#&gt; 1.464833 1.467916 1.468157 1.468302 1.468398 
+#&gt; 1.450413 1.459604 1.466567 1.470745 1.473531 
 #&gt;       0%       1%     2.5%       5%      10%      25%      50%      75% 
-#&gt; 129.2997 129.8988 130.7975 132.2952 132.5017 135.0817 137.6745 142.2866 
+#&gt; 129.3010 129.7963 130.5392 131.7774 133.6159 134.6326 138.3291 141.3829 
 #&gt;      90%      95%    97.5%      99%     100% 
-#&gt; 147.1379 149.8118 150.6005 151.0737 151.3892 </div></pre>
+#&gt; 143.4091 146.1764 146.4703 146.6466 146.7641 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -293,7 +308,7 @@ summary(object, &#8230;)</pre>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
    </div>

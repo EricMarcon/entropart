@@ -8,6 +8,13 @@
 
 <title>Diversity Profile of a metacommunity — DivProfile • entropart</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
@@ -65,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9006</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9014</span>
       </span>
     </div>
 
@@ -91,6 +98,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/articles/extrapolation.html">Asymptotic Estimation, Interpolation and Extrapolation </a>
+    </li>
+    <li>
       <a href="../articles/articles/phylogenies.html">Phylogenies in entropart</a>
     </li>
     <li>
@@ -104,7 +114,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/EricMarcon/entropart">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -295,26 +310,26 @@ summary(object, &#8230;)</pre>
 #&gt; Diversity against its order:
 #&gt;         Order Alpha Diversity Beta Diversity Gamma Diversity
 #&gt; UnveilJ   0.0       277.53648       1.293524       359.00000
-#&gt; UnveilJ   0.1       254.47730       1.290819       328.48413
-#&gt; UnveilJ   0.2       232.16042       1.290650       299.63787
-#&gt; UnveilJ   0.3       210.73204       1.293490       272.57969
-#&gt; UnveilJ   0.4       190.35593       1.299783       247.42149
-#&gt; UnveilJ   0.5       171.20164       1.309892       224.25559
-#&gt; UnveilJ   0.6       153.42839       1.324017       203.14186
-#&gt; UnveilJ   0.7       137.16691       1.342141       184.09739
-#&gt; UnveilJ   0.8       122.50295       1.363976       167.09113
-#&gt; UnveilJ   0.9       109.46617       1.388963       152.04448
-#&gt; UnveilJ   1.0        98.02742       1.416315       138.83774
-#&gt; UnveilJ   1.1        88.10457       1.445108       127.32060
-#&gt; UnveilJ   1.2        79.57516       1.474386       117.32449
-#&gt; UnveilJ   1.3        72.29195       1.503273       108.67455
-#&gt; UnveilJ   1.4        66.09814       1.531048       101.19945
-#&gt; UnveilJ   1.5        60.83964       1.557184        94.73849
-#&gt; UnveilJ   1.6        56.37334       1.581349        89.14592
-#&gt; UnveilJ   1.7        52.57175       1.603387        84.29284
-#&gt; UnveilJ   1.8        49.32460       1.623276        80.06741
-#&gt; UnveilJ   1.9        46.53854       1.641090        76.37394
-#&gt; UnveilJ   2.0        44.13571       1.656966        73.13138</div></pre>
+#&gt; UnveilJ   0.1       253.43317       1.292524       327.56839
+#&gt; UnveilJ   0.2       230.43524       1.293933       298.16776
+#&gt; UnveilJ   0.3       208.62940       1.298170       270.83648
+#&gt; UnveilJ   0.4       188.11846       1.305629       245.61294
+#&gt; UnveilJ   0.5       169.01163       1.316623       222.52453
+#&gt; UnveilJ   0.6       151.41091       1.331320       201.57635
+#&gt; UnveilJ   0.7       135.39585       1.349686       182.74194
+#&gt; UnveilJ   0.8       121.00956       1.371445       165.95797
+#&gt; UnveilJ   0.9       108.24942       1.396073       151.12409
+#&gt; UnveilJ   1.0        97.06467       1.422843       138.10783
+#&gt; UnveilJ   1.1        87.36143       1.450904       126.75305
+#&gt; UnveilJ   1.2        79.01317       1.479377       116.89026
+#&gt; UnveilJ   1.3        71.87395       1.507453       108.34662
+#&gt; UnveilJ   1.4        65.79132       1.534463       100.95435
+#&gt; UnveilJ   1.5        60.61669       1.559914        94.55679
+#&gt; UnveilJ   1.6        56.21256       1.583490        89.01206
+#&gt; UnveilJ   1.7        52.45645       1.605040        84.19469
+#&gt; UnveilJ   1.8        49.24224       1.624534        79.99569
+#&gt; UnveilJ   1.9        46.47987       1.642037        76.32167
+#&gt; UnveilJ   2.0        44.09399       1.657672        73.09335</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -343,7 +358,7 @@ summary(object, &#8230;)</pre>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
    </div>

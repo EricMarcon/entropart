@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9011</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9014</span>
       </span>
     </div>
 
@@ -189,7 +189,7 @@ Shannon(NorP, Correction = "Best", Level = NULL,
     </tr>
     <tr>
       <th>Unveiling</th>
-      <td><p>A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"geom"</code> (the unobserved species distribution is geometric) is the default value. Used only for extrapolation.</p></td>
+      <td><p>A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"geom"</code> (the unobserved species distribution is geometric) is the default value. If <code>"None"</code>, the asymptotic distribution is not unveiled and only the asymptotic estimator is used. Used only for extrapolation.</p></td>
     </tr>
     <tr>
       <th>RCorrection</th>
@@ -214,7 +214,7 @@ Shannon(NorP, Correction = "Best", Level = NULL,
 <p>The functions are designed to be used as simply as possible. <code>Shannon</code> is a generic method. 
   If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function <code>bcShannon</code> is called.</p>  
 <p>Entropy can be estimated at a specified level of interpolation or extrapolation, either a chosen sample size or sample coverage (Chao et al., 2014), rather than its asymptotic value.
-  Extrapolation relies on the estimation of the asymptotic entropy based on the choice of <code>Correction</code>.</p>
+  Extrapolation relies on the estimation of the asymptotic entropy. If <code>Unveiling</code> is "None", then the asymptotic estimation of entropy is made using the chosen <code>Correction</code>, else the asymtpotic distribution of the community is derived and its estimated richness adjusted so that the entropy of a sample of this distribution of the size of the actual sample has the entropy of the actual sample.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 

@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9006</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9014</span>
       </span>
     </div>
 
@@ -64,6 +64,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../../articles/articles/extrapolation.html">Asymptotic Estimation, Interpolation and Extrapolation </a>
+    </li>
+    <li>
       <a href="../../articles/articles/phylogenies.html">Phylogenies in entropart</a>
     </li>
     <li>
@@ -228,13 +231,13 @@ PAbd &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Spe
 <p>Correction of estimation bias is used to improve the estimation of entropy despite unobserved species and also mathematical issues <span class="citation">(Bonachela, Hinrichsen, and Muñoz 2008)</span>. Bias-corrected estimators (often relying on sample coverage) are returned by functions whose names are prefixed by <code>bc</code>, such as <code>bcTsallis</code>. They are similar to the non-corrected ones but they use abundance data and propose several bias-correction techniques to select in the <code>Correction</code> argument. A <em>Best</em> correction is calculated by default, detailed in the help file of each function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Tsallis.html">bcTsallis</a></span>(PAbd, <span class="dt">q =</span> <span class="dv">1</span>)</code></pre></div>
 <pre><code>##  UnveilJ 
-## 4.933306</code></pre>
+## 4.928035</code></pre>
 <p>The best correction for Tsallis entropy follows <span class="citation">Chao and Jost (2015)</span>. It combines an unbiased estimator previously derived by <span class="citation">Zhang and Grabchak (2016)</span> and an estimate of the remaining bias.</p>
 <p>All community functions such as <code>Tsallis</code> are actually generic methods that can handle several types of data the appropriate way: if the first argument of the function is a <code>ProbaVector</code> (or a numeric vector summing to 1), no bias correction is applied. If it is an <code>AbdVector</code> (or an integer vector), the bias-corrected estimator is used (e.g. <code>bcTsallis</code>). Numeric vectors summing to more than 2 are considered as abundances but most bias corrections do not allow non-integer values and return a warning.</p>
 <p>The different ways to use the functions are a matter of personal preference. <code>bcTsallis</code> is equivalent to <code>Tsallis</code> with an abundance vector:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Tsallis.html">Tsallis</a></span>(PAbd, <span class="dt">q =</span> <span class="dv">1</span>)</code></pre></div>
 <pre><code>##  UnveilJ 
-## 4.933306</code></pre>
+## 4.928035</code></pre>
 <p>whilst <code>Tsallis</code> with a probability vector does not allow bias correction:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Tsallis.html">Tsallis</a></span>(PProba, <span class="dt">q =</span> <span class="dv">1</span>)</code></pre></div>
 <pre><code>##     None 
@@ -249,10 +252,10 @@ PAbd &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Spe
 <p>This can be done by the deformed exponential function, or using directly the <code>Diversity</code> or <code>bcDiversity</code> functions (equal to the deformed exponential of order <span class="math inline">\(q\)</span> of <code>Tsallis</code> or <code>bcTsallis</code>)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/expq.html">expq</a></span>(<span class="kw"><a href="../../reference/Tsallis.html">Tsallis</a></span>(PAbd, <span class="dt">q =</span> <span class="dv">2</span>), <span class="dt">q =</span> <span class="dv">2</span>)</code></pre></div>
 <pre><code>##  UnveilJ 
-## 73.13138</code></pre>
+## 73.09335</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(PAbd, <span class="dt">q =</span> <span class="dv">2</span>)</code></pre></div>
 <pre><code>##  UnveilJ 
-## 73.13138</code></pre>
+## 73.09335</code></pre>
 <p>The effective number of species of the Paracou dataset is estimated to be 73 after bias correction (rather than 69 without it). It means that a community made of 73 equally-frequent species has the same Simpson entropy as the actual one. This is much less than the actual 425 sampled species. Simpson’s entropy focuses on dominant species.</p>
 </div>
 <div id="hurlberts-diversity" class="section level3">
@@ -300,10 +303,10 @@ PAbd &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Spe
 ## 
 ## Entropy of communities: 
 ##     P006     P018 
-## 4.437030 4.783384 
+## 4.427559 4.772981 
 ## Average entropy of the communities: 
-## [1] 4.585247</code></pre>
-<p>The Shannon <span class="math inline">\(\alpha\)</span> entropy of the meta-community is 4.59. It is the weighted average entropy of communities.</p>
+## [1] 4.575378</code></pre>
+<p>The Shannon <span class="math inline">\(\alpha\)</span> entropy of the meta-community is 4.58. It is the weighted average entropy of communities.</p>
 <p>The estimation of the diversity of a meta-community whose numbers of individuals<code>$Ns</code> are not integer values can’t be done with most corrections, which do require integers. The Grassberger correction can be used. Community data is pooled to obtain a global inventory whose sample coverage is estimated. The Chao-Shen correction can also be applied based on this sample coverage and the actual <code>$Ps</code> values of the meta-community. Finally, the <em>Best</em> correction is the greater of the two values obtained by Chao-Shen and Grassberger <span class="citation">(Marcon et al. 2014)</span>.</p>
 </div>
 <div id="diversity-partition-of-a-metacommunity" class="section level3">
@@ -315,23 +318,23 @@ PAbd &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Spe
 <pre><code>## HCDT diversity partitioning of order 1 of metaCommunity Paracou618.MC
 ##  with correction: UnveilJ
 ## Alpha diversity of communities: 
-##      P006      P018 
-##  84.52352 119.50807 
+##     P006     P018 
+##  83.7268 118.2713 
 ## Total alpha diversity of the communities: 
-## [1] 98.02742
+## [1] 97.06467
 ## Beta diversity of the communities: 
 ##  UnveilJ 
-## 1.416315 
+## 1.422843 
 ## Gamma diversity of the metacommunity: 
 ##  UnveilJ 
-## 138.8377</code></pre>
+## 138.1078</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p<span class="op">$</span>CommunityAlphaEntropies</code></pre></div>
 <pre><code>##     P006     P018 
-## 4.437030 4.783384</code></pre>
+## 4.427559 4.772981</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(p)</code></pre></div>
 <p><img src="reference_files/figure-html/DivPartPlot-1.png" width="700"></p>
-<p>The <span class="math inline">\(\alpha\)</span> diversity of communities is 98 effective species (it is the exponential of the entropy calculated previously). This is more than Simpson’s diversity 73 species, calculated above) because less frequent species are taken into account. <span class="math inline">\(\gamma\)</span> diversity of the meta-community is 139 effective species. <span class="math inline">\(\beta\)</span> diversity is 1.42 effective communities, i.e. the two actual communities are as different from each other as 1.42 ones with equal weights and no species in common.</p>
-<p>The figure is the plot of the diversity partition of the meta-community <code>Paracou618.MC</code>. The long rectangle of height 1 represents <span class="math inline">\(\gamma\)</span> diversity, equal to 139 effective species. The narrower and higher rectangle has the same area: its horizontal size is <span class="math inline">\(\alpha\)</span> diversity (98 effective species) and its height is <span class="math inline">\(\beta\)</span> diversity (1.42 effective communities).}</p>
+<p>The <span class="math inline">\(\alpha\)</span> diversity of communities is 97 effective species (it is the exponential of the entropy calculated previously). This is more than Simpson’s diversity 73 species, calculated above) because less frequent species are taken into account. <span class="math inline">\(\gamma\)</span> diversity of the meta-community is 138 effective species. <span class="math inline">\(\beta\)</span> diversity is 1.42 effective communities, i.e. the two actual communities are as different from each other as 1.42 ones with equal weights and no species in common.</p>
+<p>The figure is the plot of the diversity partition of the meta-community <code>Paracou618.MC</code>. The long rectangle of height 1 represents <span class="math inline">\(\gamma\)</span> diversity, equal to 138 effective species. The narrower and higher rectangle has the same area: its horizontal size is <span class="math inline">\(\alpha\)</span> diversity (97 effective species) and its height is <span class="math inline">\(\beta\)</span> diversity (1.42 effective communities).}</p>
 </div>
 <div id="diversity-estimation-of-a-metacommunity" class="section level3">
 <h3 class="hasAnchor">
@@ -343,29 +346,29 @@ PAbd &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Spe
 <pre><code>## Diversity partitioning of order 1 of MetaCommunity Paracou618.MC
 ##  with correction: UnveilJ
 ## Alpha diversity of communities: 
-##      P006      P018 
-##  84.52352 119.50807 
+##     P006     P018 
+##  83.7268 118.2713 
 ## Total alpha diversity of the communities: 
-## [1] 98.02742
+## [1] 97.06467
 ## Beta diversity of the communities: 
 ##  UnveilJ 
-## 1.416315 
+## 1.422843 
 ## Gamma diversity of the metacommunity: 
 ##  UnveilJ 
-## 138.8377 
+## 138.1078 
 ## Quantiles of simulations (alpha, beta and gamma diversity):
 ##        0%        1%      2.5%        5%       10%       25%       50% 
-##  87.53434  88.94890  89.97727  90.98349  91.73358  95.70958  98.29179 
+##  86.49128  88.18629  88.93663  90.15146  91.07337  94.77914  97.21186 
 ##       75%       90%       95%     97.5%       99%      100% 
-## 100.74141 103.21183 104.43606 105.67126 107.59586 108.46870 
+##  99.67938 102.11207 103.56567 104.54711 106.68339 107.40263 
 ##       0%       1%     2.5%       5%      10%      25%      50%      75% 
-## 1.366916 1.368766 1.371854 1.384775 1.387309 1.403464 1.415551 1.431029 
+## 1.373889 1.376268 1.378873 1.389720 1.392941 1.408992 1.420861 1.438186 
 ##      90%      95%    97.5%      99%     100% 
-## 1.444131 1.464233 1.466195 1.468060 1.469985 
+## 1.450181 1.471407 1.472561 1.473149 1.475502 
 ##       0%       1%     2.5%       5%      10%      25%      50%      75% 
-## 128.1078 128.2453 129.1272 130.1883 130.8159 135.5112 139.6024 142.1396 
+## 127.4125 127.6255 128.4695 129.4677 130.1285 134.8554 138.8269 141.3669 
 ##      90%      95%    97.5%      99%     100% 
-## 146.0946 148.6270 149.6144 151.0420 154.4869</code></pre>
+## 145.0758 148.1377 148.8794 150.2797 153.6684</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(de)</code></pre></div>
 <p><img src="reference_files/figure-html/DivEstPlot-1.png" width="700"></p>
 <p>The result is a <code>Divest</code> object which can be summarized and plotted. On the figure of the diversity estimation of the meta-community <code>Paracou618.MC</code>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\gamma\)</span> diversity probability densities are plotted, with a 95% confidence interval.</p>
@@ -383,16 +386,16 @@ PAbd &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Spe
 ## Diversity against its order:
 ##         Order Alpha Diversity Beta Diversity Gamma Diversity
 ## UnveilJ   0.0       277.53648       1.293524       359.00000
-## UnveilJ   0.2       232.16042       1.290650       299.63787
-## UnveilJ   0.4       190.35593       1.299783       247.42149
-## UnveilJ   0.6       153.42839       1.324017       203.14186
-## UnveilJ   0.8       122.50295       1.363976       167.09113
-## UnveilJ   1.0        98.02742       1.416315       138.83774
-## UnveilJ   1.2        79.57516       1.474386       117.32449
-## UnveilJ   1.4        66.09814       1.531048       101.19945
-## UnveilJ   1.6        56.37334       1.581349        89.14592
-## UnveilJ   1.8        49.32460       1.623276        80.06741
-## UnveilJ   2.0        44.13571       1.656966        73.13138</code></pre>
+## UnveilJ   0.2       230.43524       1.293933       298.16776
+## UnveilJ   0.4       188.11846       1.305629       245.61294
+## UnveilJ   0.6       151.41091       1.331320       201.57635
+## UnveilJ   0.8       121.00956       1.371445       165.95797
+## UnveilJ   1.0        97.06467       1.422843       138.10783
+## UnveilJ   1.2        79.01317       1.479377       116.89026
+## UnveilJ   1.4        65.79132       1.534463       100.95435
+## UnveilJ   1.6        56.21256       1.583490        89.01206
+## UnveilJ   1.8        49.24224       1.624534        79.99569
+## UnveilJ   2.0        44.09399       1.657672        73.09335</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(dp)</code></pre></div>
 <p><img src="reference_files/figure-html/DivProfilePlot-1.png" width="700"></p>
 <p>The figure shows the diversity profile of the meta-community <code>Paracou618.MC</code>. Values are the number of effective species (<span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\gamma\)</span> diversity) and the effective number of communities (<span class="math inline">\(\beta\)</span> diversity). Community P006 is represented by the solid line and community P018 by the dotted line. <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\gamma\)</span> diversity decrease from <span class="math inline">\(q=0\)</span> (number of species) to <span class="math inline">\(q=2\)</span> (Simpson diversity) by construction.}</p>
@@ -441,11 +444,11 @@ PAbd &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Spe
 ## 
 ## Diversity is normalized
 ## 
-## Diversity equals: 55.78626</code></pre>
+## Diversity equals: 55.64502</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(phd, <span class="dt">main =</span> <span class="st">""</span>)</code></pre></div>
 <p><img src="reference_files/figure-html/PhyloDiversityPlot-1.png" width="700"></p>
 <p>The figure shows the <span class="math inline">\(\gamma\)</span> phylodiversity estimation of the meta-community <code>Paracou618.MC</code>. The effective number of taxa of Shannon diversity is plotted against the distance from the leaves of the phylogenetic tree. Here, the tree is based on a rough taxonomy, so diversity of species, genera and families are the three levels of the curve. The dotted line represents the value of phylodiversity.</p>
-<p>The phylogenetic diversity of order 1 of the Paracou dataset is 56 effective species: 56 totally different species (only connected by the root of the tree) with equal probabilities would have the same entropy. It can be compared to its species-neutral diversity: 139 species. The latter is the diversity of the first slice of the tree. When going up the tree, diversity decreases because species collapse. On the figure, the diversity of the second slice, between <span class="math inline">\(T=1\)</span> and <span class="math inline">\(T=2\)</span>, is that of genera (64 effective genera) and the last slice contains20 effective families. The phylogenetic entropy of the community is the average of the entropy along slices, weighted by the slice lengths. Diversity can not be averaged the same way.</p>
+<p>The phylogenetic diversity of order 1 of the Paracou dataset is 56 effective species: 56 totally different species (only connected by the root of the tree) with equal probabilities would have the same entropy. It can be compared to its species-neutral diversity: 138 species. The latter is the diversity of the first slice of the tree. When going up the tree, diversity decreases because species collapse. On the figure, the diversity of the second slice, between <span class="math inline">\(T=1\)</span> and <span class="math inline">\(T=2\)</span>, is that of genera (64 effective genera) and the last slice contains20 effective families. The phylogenetic entropy of the community is the average of the entropy along slices, weighted by the slice lengths. Diversity can not be averaged the same way.</p>
 <p>A less trivial phylogeny would contain many slices, resulting in as many diversity levels with respect to <span class="math inline">\(T\)</span>.</p>
 <p>The <code>AllenH</code> function is close to <code>PhyloEntropy</code>: it also calculates phyloentropy but the algorithm is that of <span class="citation">Allen, Kon, and Bar-Yam (2009)</span> for <span class="math inline">\(q=1\)</span> and that of <span class="citation">Leinster and Cobbold (2012)</span> for <span class="math inline">\(q \ne 1\)</span>. It is much faster since it does not require calculating entropy for each slice of the tree but it does not allow estimation-bias correction. <code>ChaoPD</code> calculates phylodiversity according to <span class="citation">Chao, Chiu, and Jost (2010)</span>, with the same advantages and limits compared to <code>PhyloDiversity</code>.</p>
 <p>For convenience, <code>PDFD</code> and <code>Rao</code> functions are provided to calculate unnormalized phyloentropy of order 0 and 2.</p>
@@ -466,13 +469,13 @@ PAbd &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Spe
 ## 
 ## Alpha diversity of communities: 
 ##     P006     P018 
-## 37.58366 54.08534 
+## 37.42057 53.73643 
 ## Total alpha diversity of the communities: 
-## [1] 43.91849
+## [1] 43.6882
 ## Beta diversity of the communities: 
-## [1] 1.270223
+## [1] 1.273686
 ## Gamma diversity of the metacommunity: 
-## [1] 55.78626</code></pre>
+## [1] 55.64502</code></pre>
 <p>The decomposition is interpreted as the species-neutral one: <span class="math inline">\(\gamma\)</span> diversity is 56 effective species, made of 1.3 effective communities of 44 effective species.</p>
 <p>Other meta-community functions, such as <code>AlphaEntropy</code> behave the same way:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(<span class="kw"><a href="../../reference/BetaEntropy.html">BetaEntropy</a></span>(Paracou618.MC, <span class="dt">q =</span> <span class="dv">2</span>, <span class="dt">Tree =</span> Paracou618.Taxonomy, <span class="dt">Correction =</span> <span class="st">"None"</span>, <span class="dt">Normalize =</span> <span class="ot">FALSE</span>))</code></pre></div>
@@ -554,8 +557,8 @@ Z &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</sp
 <pre><code>## None 
 ##  229</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Richness.html">Richness</a></span>(NsRef)</code></pre></div>
-<pre><code>##    Chao1 
-## 279.9604</code></pre>
+<pre><code>## Jackknife 2 
+##         319</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(NsRef, <span class="dt">Distribution=</span><span class="st">"lnorm"</span>)</code></pre></div>
 <p><img src="reference_files/figure-html/rCommunityPlot-1.png" width="700"></p>
 <pre><code>## $mu
@@ -574,10 +577,10 @@ Z &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</sp
 <pre><code>## ===========================================================================</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(PAbd, <span class="dt">q =</span> <span class="dv">1</span>)</code></pre></div>
 <pre><code>##  UnveilJ 
-## 138.8377</code></pre>
+## 138.1078</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/quantile">quantile</a></span>(SimulatedDiversity, <span class="dt">probs =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</code></pre></div>
 <pre><code>##     2.5%    97.5% 
-## 128.1583 153.7261</code></pre>
+## 127.8719 149.0098</code></pre>
 <p>These results are identical to those of the <code>DivEst</code> function but a single community can be addressed (<code>DivEst</code> requires a <code>MetaCommunity</code>).</p>
 </div>
 <div id="diversity-or-entropy-profile-of-a-community" class="section level2">
@@ -605,16 +608,16 @@ Z &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</sp
 ## 
 ## Results are normalized
 ## 
-## The average value is: 4.021528
+## The average value is: 4.018993
 ## 
 ## Values along the tree are:
 ##        1        2        3 
-## 4.933306 4.153251 2.978026</code></pre>
+## 4.928035 4.151312 2.977631</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">exp</a></span>(pa<span class="op">$</span>Cuts)</code></pre></div>
 <pre><code>##         1         2         3 
-## 138.83774  63.64057  19.64899</code></pre>
+## 138.10783  63.51727  19.64124</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">exp</a></span>(pa<span class="op">$</span>Total)</code></pre></div>
-<pre><code>## [1] 55.78626</code></pre>
+<pre><code>## [1] 55.64502</code></pre>
 </div>
 <div id="manipulation-of-meta-communities" class="section level2">
 <h2 class="hasAnchor">
@@ -883,7 +886,7 @@ mergedMC2<span class="op">$</span>Nsi</code></pre></div>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
 </div>
