@@ -90,7 +90,7 @@ estimate_Ps0 <- function(Unveiling, PsTuned, S0, C, CD2){
       Ps0 <- alpha * beta^i
       # Sometimes fails when the distribution is very uneven (sometimes r < 1) 
       # Then, go back to the uniform distribution
-      if (any(Ps0 <= 0)) Unveiling <- "unif"
+      if (any(is.na(Ps0)) | any(Ps0 <= 0)) Unveiling <- "unif"
     }
   }      
   if (Unveiling == "unif") {

@@ -52,7 +52,7 @@ bcRichness(Ns, Correction = "Best", Alpha = 0.05, JackOver = FALSE,
   A string containing one of the possible corrections to estimate a probability distribution in \code{\link{as.ProbaVector}}: \code{"Chao2015"} is the default value. Used only for extrapolation.
   }
   \item{Unveiling}{
-  A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in \code{\link{as.ProbaVector}}: \code{"geom"} (the unobserved species distribution is geometric) is the default value. Used only for extrapolation.
+  A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in \code{\link{as.ProbaVector}}: \code{"geom"} (the unobserved species distribution is geometric) is the default value. If \code{"None"}, the asymptotic distribution is not unveiled and only the asymptotic estimator is used. Used only for extrapolation.
   }
   \item{RCorrection}{
   A string containing a correction recognized by \code{\link{Richness}} to evaluate the total number of species in \code{\link{as.ProbaVector}}. \code{"Rarefy"} is the default value to estimate the number of species such that the entropy of the asymptotic distribution rarefied to the observed sample size equals the observed entropy of the data. Used only for extrapolation.
@@ -71,6 +71,9 @@ bcRichness(Ns, Correction = "Best", Alpha = 0.05, JackOver = FALSE,
   Many other estimators are available elsewhere, the ones implemented here are necessary for other entropy estimations.
 
   The functions are designed to be used as simply as possible. \code{Richness} is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function \code{bcRichness} is called.
+  
+  Richness can be estimated at a specified level of interpolation or extrapolation, either a chosen sample size or sample coverage (Chao et al., 2014), rather than its asymptotic value.
+  Extrapolation relies on the estimation of the asymptotic richness. If \code{Unveiling} is "None", then the asymptotic estimation of richness is made using the chosen \code{Correction}, else the asymtpotic distribution of the community is derived and its estimated richness adjusted so that the entropy of a sample of this distribution of the size of the actual sample has the entropy of the actual sample.
 }
 \value{
   A named number equal to the estimated number of species.
