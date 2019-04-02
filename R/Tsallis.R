@@ -100,15 +100,15 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, PCorrection = "Chao2015
     # Interpolation or extrapolation
     if (q==0) {
       # Richness-1. Same result as general formula but faster
-      return(Richness.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=FALSE) - 1)
+      return(Richness.numeric(NorP, Correction=Correction, Level=Level, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=FALSE) - 1)
     } 
     if (q==1) {
       # Shannon. General formula is not defined at q=1
-      return(Shannon.numeric(NorP, Level=Level, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=CheckArguments))
+      return(Shannon.numeric(NorP, Correction=Correction, Level=Level, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=CheckArguments))
     } 
     if (q==2) {
-      # Simpson. Same result as general formula but faster
-      return(Simpson.numeric(NorP, Correction=Correction, Level=Level, CheckArguments=FALSE))
+      # Simpson. No optional estimator: the uniased estimator is used.
+      return(Simpson.numeric(NorP, Level=Level, CheckArguments=FALSE))
     }
     # non integer q
     # If Level is coverage, get size

@@ -53,7 +53,7 @@ bcSimpson(Ns, Correction = "Best", CheckArguments = TRUE)
 
   The functions are designed to be used as simply as possible. \code{Simpson} is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function \code{bcSimpson} is called.
 
-  Entropy can be estimated at a specified level of interpolation or extrapolation, either a chosen sample size or sample coverage (Chao et al., 2014), rather than its asymptotic value.
+  Entropy can be estimated at a specified level of interpolation or extrapolation, either a chosen sample size or sample coverage (Chao et al., 2014), rather than its asymptotic value. Simpson's extrapolated entropy estimator does not rely on the estimation of the asymptotic distribution.
 }
 \value{
   A named number equal to the calculated entropy. The name is that of the bias correction used.

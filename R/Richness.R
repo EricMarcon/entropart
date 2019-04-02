@@ -111,8 +111,8 @@ function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL
         # Don't unveil the asymptotic distribution, use the asymptotic estimator
         S0 <- bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=FALSE) - Sobs
       } else {
-        # Unveil so that the estimation of H is similar to that of non-integer entropy
-        PsU <- as.ProbaVector.numeric(NorP, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, q=1, CheckArguments=FALSE)
+        # Unveil so that the estimation of richness is similar to that of non-integer entropy
+        PsU <- as.ProbaVector.numeric(NorP, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, q=0, CheckArguments=FALSE)
         S0 <- length(PsU) - Sobs
       }
       richness <- Sobs + S0*(1 - (1 - Singletons/(N*S0+Singletons))^(Level-N))
