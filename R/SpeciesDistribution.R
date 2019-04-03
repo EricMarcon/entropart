@@ -203,6 +203,8 @@ function (x, Correction = "None", Unveiling = "None", RCorrection = "Jackknife",
     
     # Estimate the number of unobserved species
     if (RCorrection == "Rarefy") {
+      if (Unveiling == "None")
+        stop("Arguments RCorrection='Rarefy' and Unveiling='None' are not compatible")
       # Estimation of the number of unobserved species to initialize optimization
       S0 <- bcRichness(Ns, Correction="Jackknife") - S
       # Estimate the number of unobserved species by iterations

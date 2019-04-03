@@ -92,6 +92,10 @@ EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection = "Chao2015", Unveil
 
   
   # Simulations: generate distributions from the unveiled probabilities
+  if (NumberOfSimulations > 0 & (PCorrection=="None" | Unveiling=="None")) {
+    warning("Accumulation confidence interval can't be estimated without unveiling the asymptotic distribution. Neither PCorrection nor Unveiling can be 'None'")
+    NumberOfSimulations <- 0
+  }
   if (NumberOfSimulations > 0) {
     # Prepare the result matrix
     Envelope <- matrix(0.0, nrow = length(n.seq), ncol = 2)
