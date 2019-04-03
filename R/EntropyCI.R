@@ -14,7 +14,7 @@ function(FUN, Simulations = 100, Ns, BootstrapMethod = "Chao2015", ..., CheckArg
     # FUN(simulated data)
     NewSim <- FUN(SimNs, ..., CheckArguments = FALSE)
     # update progress bar
-    utils::setTxtProgressBar(ProgressBar, Progress)
+    if(interactive()) utils::setTxtProgressBar(ProgressBar, Progress)
     return(NewSim)
   }
   
@@ -22,7 +22,8 @@ function(FUN, Simulations = 100, Ns, BootstrapMethod = "Chao2015", ..., CheckArg
   ProgressBar <- utils::txtProgressBar(min=0, max=Simulations)
   # Simulated values
   RawSimulatedEntropy <- sapply(1:Simulations, SimulateEntropy)
+  close(ProgressBar)
+  
   # Recenter entropy
   return(RawSimulatedEntropy + RealEst - mean(RawSimulatedEntropy))
-  
 }

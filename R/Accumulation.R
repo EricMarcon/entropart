@@ -22,13 +22,13 @@ EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection = "Chao2015", Unveil
     # Calculate Entropy
     i <- which(n.seq==Level)
     Entropy[i] <- Tsallis.numeric(Ns, q=q, Level=Level, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=FALSE)
-    utils::setTxtProgressBar(ProgressBar, i)
+    if(interactive()) utils::setTxtProgressBar(ProgressBar, i)
   }
   # Level == Sample Size
   if (any(n.seq==N)) {
     i <- which(n.seq==N)
     Entropy[i] <- Tsallis.ProbaVector(Ns/N, q=q, CheckArguments=FALSE)
-    utils::setTxtProgressBar(ProgressBar, i)
+    if(interactive()) utils::setTxtProgressBar(ProgressBar, i)
   }
   # Extrapolation. Don't use Tsallis for speed.
   n.seqExt <- n.seq[n.seq > N]
@@ -49,7 +49,7 @@ EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection = "Chao2015", Unveil
         # No singleton
         Entropy[(i+1):length(n.seq)] <- Sobs -1
       }
-      utils::setTxtProgressBar(ProgressBar, length(n.seq))
+      if(interactive()) utils::setTxtProgressBar(ProgressBar, length(n.seq))
     } else {
       # Shannon
       if (q == 1) {
@@ -59,7 +59,7 @@ EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection = "Chao2015", Unveil
         Hn <- Shannon.ProbaVector(Ns/N, CheckArguments=FALSE)
         # Interpolation (the vector is n.seqExt)
         Entropy[(i+1):length(n.seq)] <- N/n.seqExt*Hn + (n.seqExt-N)/n.seqExt*Hinf
-        utils::setTxtProgressBar(ProgressBar, length(n.seq))
+        if(interactive()) utils::setTxtProgressBar(ProgressBar, length(n.seq))
       } else {
         # Simpson
         if (q == 2) {
@@ -74,7 +74,7 @@ EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection = "Chao2015", Unveil
             # Valid extrapolation (the vector is n.seqExt)
             Entropy[(i+1):length(n.seq)] <- 1 - 1/n.seqExt - (1-1/n.seqExt)*sum(Ns*(Ns-1))/N/(N-1)
           }
-          utils::setTxtProgressBar(ProgressBar, length(n.seq))
+          if(interactive()) utils::setTxtProgressBar(ProgressBar, length(n.seq))
         } else {
           # General case: q is not 0, 1 or 2 
           for(Level in n.seqExt) {
@@ -83,7 +83,7 @@ EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection = "Chao2015", Unveil
             # Estimate entropy (Chao et al., 2014, eq. 6)
             i <- which(n.seq==Level)
             Entropy[i]  <- (sum(((1:Level)/Level)^q * Snu) - 1) / (1-q)
-            utils::setTxtProgressBar(ProgressBar, i)
+            if(interactive()) utils::setTxtProgressBar(ProgressBar, i)
           }
         }
       }
@@ -113,13 +113,14 @@ EntAC <- function(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection = "Chao2015", Unveil
       i <- which(n.seq==Level)
       # Store quantiles
       Envelope[i, ] <- stats::quantile(Entropies, probs = c(Alpha/2, 1-Alpha/2))
-      utils::setTxtProgressBar(ProgressBar, i)
+      if(interactive()) utils::setTxtProgressBar(ProgressBar, i)
     }
     entAC <- list(x=n.seq, y=Entropy, low=Envelope[, 1], high=Envelope[, 2])
   } else {
     entAC <- list(x=n.seq, y=Entropy)
   }
   
+  close(ProgressBar)
   # Format the result
   class(entAC) <- c("EntAC", "AccumCurve", class(entAC))
   # Return actual values as attributes
