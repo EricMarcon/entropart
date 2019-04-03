@@ -99,6 +99,7 @@ DivAC(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveiling="geom",
 \details{
   \code{DivAC} or \code{EntAC} estimate the diversity or entropy accumulation curve of a distribution.
   See \code{\link{Tsallis}} for details about the computation of entropy at each level of interpolation and extrapolation.
+  In accumulation curves, extrapolation if done by estimating the asymptotic distribution of the community and estimating entropy at different levels by interpolation. The asymptotic richess is adjusted so that the extrapolated part of the accumulation joins the observed value at the sample size.
 
   \code{AccumCurve} objects include \code{EntAC} and \code{DivAC} objects for entropy and diversity accumulation.
 They generalize the classical Species Accumulation Curves (SAC) which are diversity accumulation of order $q=0$.

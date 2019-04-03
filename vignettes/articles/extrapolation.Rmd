@@ -13,13 +13,21 @@ vignette: >
 
 ```{r global_options, include=FALSE, cache=TRUE}
 set.seed(97310)
+Library <- function(Packages) {
+  InstallAndLoad <- function(Package) {
+    if (!Package %in% installed.packages()[, 1]) {install.packages(Package, repos="https://cran.rstudio.com/")}
+    require(Package, character.only = TRUE)
+  }
+  invisible(sapply(Packages, InstallAndLoad))
+}
+Library(c("iNEXT"))
 ```
 
 Estimation of diversity in _entropart_ relies on classical assumptions that are recalled here.
 The observed data is a sample of a community (or several communities if data is a meta-community).
 All "reduced-bias estimator" are asymptotic estimators of the community diversity: if the sample size could be extended infinitely, diversity would tend to the diversity of the whole (asymptotic) community.
 In hyperdiverse ecosystems such as evergreen forests, the asymptotic community generally does not exist in the field because of environmental variations: increasing the size of the sample results in sampling in different communities.
-Thus, the asymptotic estimators of diversity correspond to theoretical aymptotic communities that do not necessarily exist.
+Thus, the asymptotic estimators of diversity correspond to theoretical asymptotic communities that do not necessarily exist.
 In other words, the asymptotic diversity is that of a community that would provide the observed sample.
 
 Diversity is accumulated as a function of sample size.
@@ -68,7 +76,7 @@ Diversity(ParacouN, q=1, Correction="ChaoJost")
 
 # Choosing the estimation level
 
-Asymptotic estimation is not always the best choice, for example when comparing the diversity of poorly-sampled communities: a lower sampe coverage can be chosen to limit the uncertainty of estimation.
+Asymptotic estimation is not always the best choice, for example when comparing the diversity of poorly-sampled communities: a lower sample coverage can be chosen to limit the uncertainty of estimation.
 ```{r}
 # Actual sample coverage
 Coverage(ParacouN)
@@ -107,18 +115,18 @@ Richness and Shannon's diversities can be extrapolated up to their asymptotic es
 
 # Diversity accumulation
 
-Diversity Accumulation Curves (DAC) are a generalization of the well-known Species Accumumulation Curves (SAC).
+Diversity Accumulation Curves (DAC) are a generalization of the well-known Species Accumulation Curves (SAC).
 They represent diversity as a function of sample size.
 
 The `DivAc()`function allows to build them.
-A bootstrap confindence interval can be calculated around the estimated DAC by simulating random multinomial draws of the asymtpotic distribution at each sample size.
+A bootstrap confidence interval can be calculated around the estimated DAC by simulating random multinomial draws of the asymptotic distribution at each sample size.
 ```{r}
 # Diversity at levels from 1 to twice the sample size
 Accumulation <- DivAC(ParacouN, q=1, n.seq=1:(1.1*sum(ParacouN)), NumberOfSimulations = 1000)
 autoplot(Accumulation)
 ```
 
-To ensure continuity of the DAC around the actual sample, the asymptotic diversity is estimated by unveiling the aysmptotic distribution, choosing the number of species such that the rarefied diversity at the observed sample size is the observed diversity.
+To ensure continuity of the DAC around the actual sample, the asymptotic diversity is estimated by unveiling the asymptotic distribution, choosing the number of species such that the rarefied diversity at the observed sample size is the observed diversity.
 This means that the extrapolated diversity at a high sample coverage will differ from the best asymptotic estimation, sometimes quite much if sampling level is poor.
 ```{r}
 # Extrapolation at 99.99% sample coverage
@@ -141,3 +149,43 @@ autoplot(Profile)
 ```
 
 Extrapolated diversity is estimated at each order such that it is continuous at the observed sample size.
+
+
+# Differences with the iNEXT package
+
+_iNEXT_ [@Hsieh2014] is designed primarily to interpolate or extrapolate diversity of integer orders.
+Extrapolation of diversity of order 0 relies on the Chao1 estimator of richness and that of order 1 uses the Chao-Jost estimator.
+In _entropart_, extrapolation relies on the estimation of the asymptotic distribution of the community with asymptotic richness such that the entropy of the asymptotic distribution rarefied to the observed sample size equals the observed entropy of the data.
+This approach allows consistent estimation of extrapolated diversity at integer and non-integer orders, thus allowing consistent diversity profiles without discontinuities at $q=0$ and $q=1$.
+The results of _iNEXT_ can be obtained by forcing argument `PCorrection = "None"` to avoid estimating the asymptotic distribution and `Correction="Chao1"` for richness or `Correction="ChaoJost"` for Shannon's diversity.
+```{r}
+library("iNEXT")
+data(spider)
+# Extrapolated diversity of an example dataset
+estimateD(spider$Girdled, level=300)
+# Similar estimation by entropart
+Diversity(spider$Girdled, q=0, Level=300, Correction="Chao1", PCorrection = "None")
+Diversity(spider$Girdled, q=1, Level=300, Correction="ChaoJost", PCorrection = "None")
+# Estimation at order 2 is explicit, with no optional choice
+Diversity(spider$Girdled, q=2, Level=300)
+# Default estimation of entropart
+Diversity(spider$Girdled, q=0, Level=300)
+Diversity(spider$Girdled, q=1, Level=300)
+```
+
+Small differences are due to different estimators of sample coverage: _entropart_ uses the more acurate `ZhangHuang` estimator by default.
+
+At non-integer orders of diversity, _iNEXT_ estimates the extrapolated diversity as a sum of factors of the probabilities of the communities [@Chao2014, Appendix E, last equation of page 2].
+The same technique of estimation as that of the Chao-Shen estimator of diversity is used but it does not work very well close to $q=1$ for instance and seems to overestimate diversity at higher orders.
+```{r}
+# Non-continuous estimation of diversity by iNext
+ggiNEXT(iNEXT(spider$Girdled, q=1.01))
+# Same estimation by entropart 
+autoplot(DivAC(spider$Girdled, q=1.01, n.seq=1:(2*sum(spider$Girdled)), NumberOfSimulations = 1000))
+```
+
+Last, confidence intervals of diversity accumulation assume normality in _iNEXT_: estimation variance is estimated by bootstrap and the confidence interval is defined as $\pm 1.96$ times the standard deviation.
+In _entropart_, confidence intervals are built directly from the quantiles of bootstrapped estimations.
+
+# References
+
