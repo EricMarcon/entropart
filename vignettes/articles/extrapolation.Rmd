@@ -39,7 +39,7 @@ Alternatively, sample size may be replaced by sample coverage, by interpolation 
 
 If community data is a vector of probabilities, sample size is unknown so the only available estimation is that of the actual sample.
 
-```{r LoadParacou}
+```{r LoadParacou, message=FALSE}
 library("entropart")
 data("Paracou618")
 # 2 ha of tropical forest, distribution of probabilities
