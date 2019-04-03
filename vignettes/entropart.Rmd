@@ -17,6 +17,7 @@ _entropart_ is a package for _R_ designed to estimate diversity based on HCDT en
 This is a short introduction to its use.
 
 The _entropart_ package allows estimating biodiversity according to the framework based on HCDT entropy, the correction of its estimation-bias [@Grassberger1988; @Chao2003; @Chao2015] and its transformation into equivalent numbers of species [@Hill1973; @Jost2006; @Marcon2014a].
+Estimation of diversity at arbitrary levels of sampling, requiring interpolation or extrapolation [@Chao2014] is available
 
 Phylogenetic or functional diversity [@Marcon2014b] can be estimated, considering phyloentropy as the average species-neutral diversity over slices of a phylogenetic or functional tree [@Pavoine2009]. 
 
@@ -24,7 +25,7 @@ Similarity-based diversity [@Leinster2012] can be used to estimate [@Marcon2014e
 
 The classical diversity estimators (Shannon and Simpson entropy) can be found in many R packages. 
 _vegetarian_ [@Charney2009] allows calculating Hill numbers and partitioning them according to Jost's framework. 
-Bias correction is never available except in the _EntropyEstimation_ [@Cao2014] package which provides the Zhang and Grabchak's estimators of entropy and diversity and their asymptotic variance (not included in _entropart_). 
+Bias correction is never available except in the _EntropyEstimation_ [@Cao2014] package which provides the Zhang and Grabchak's estimators of entropy and diversity and their asymptotic variance (not included in _entropart_).
 
 
 # Estimating the diversity of a community
