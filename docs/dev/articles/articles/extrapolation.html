@@ -176,7 +176,7 @@ Accumulation2 &lt;-<span class="st"> </span><span class="kw"><a href="../../refe
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>(Accumulation2)</code></pre></div>
 <p><img src="extrapolation_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <p>For non-integer orders, things get more complicated. In <em>entropart</em>, asymptotic entropy is estimated by the unveiled jackknife estimator and rarefied down to the actual sample size. There is no reason for it to correspond exactly to the observed entropy. The asymptotic richness is the less robust part of the estimation thus it is adjusted iteratively until the rarefied entropy equals the actual sample’s entropy, ensuring continuity between interpolation and extrapolation.</p>
-<p>The default arguments of all functions apply this strategy, except for Simpson’s diversity (<span class="math inline">\(q=2\)</span>) that is estimated directly without bias. Richness and Shannon’s diversities can be extrapolated up to their asymptotic estimator choosing <code>Unveil = "None"</code>.</p>
+<p>The default arguments of all functions apply this strategy, except for Simpson’s diversity (<span class="math inline">\(q=2\)</span>) that is estimated directly without bias.</p>
 </div>
 <div id="diversity-accumulation" class="section level1">
 <h1 class="hasAnchor">

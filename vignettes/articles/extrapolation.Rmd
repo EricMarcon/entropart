@@ -109,7 +109,6 @@ There is no reason for it to correspond exactly to the observed entropy.
 The asymptotic richness is the less robust part of the estimation thus it is adjusted iteratively until the rarefied entropy equals the actual sample's entropy, ensuring continuity between interpolation and extrapolation.
 
 The default arguments of all functions apply this strategy, except for Simpson's diversity ($q=2$) that is estimated directly without bias.
-Richness and Shannon's diversities can be extrapolated up to their asymptotic estimator choosing `Unveil = "None"`. 
 
 
 
