@@ -1,5 +1,5 @@
 EntropyCI <-
-function(FUN, Simulations = 100, Ns, BootstrapMethod = "Chao2015", ..., CheckArguments = TRUE) 
+function(FUN, Simulations = 100, Ns, BootstrapMethod = "Chao2015", ShowProgressBar = TRUE, ..., CheckArguments = TRUE) 
 {
   if (CheckArguments) {
     CheckentropartArguments()
@@ -14,7 +14,8 @@ function(FUN, Simulations = 100, Ns, BootstrapMethod = "Chao2015", ..., CheckArg
     # FUN(simulated data)
     NewSim <- FUN(SimNs, ..., CheckArguments = FALSE)
     # update progress bar
-    if(interactive()) utils::setTxtProgressBar(ProgressBar, Progress)
+    if(ShowProgressBar & interactive()) 
+      utils::setTxtProgressBar(ProgressBar, Progress)
     return(NewSim)
   }
   

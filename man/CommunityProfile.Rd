@@ -14,7 +14,7 @@
 \usage{
 CommunityProfile(FUN, NorP, q.seq = seq(0, 2, 0.1), 
     NumberOfSimulations = 0, Alpha = 0.05, BootstrapMethod = "Chao2015", 
-    size = 1, \dots, CheckArguments = TRUE)
+    size = 1, \dots, ShowProgressBar = TRUE, CheckArguments = TRUE)
 as.CommunityProfile(x, y, low = NULL, high = NULL)
 is.CommunityProfile(x)
 \method{plot}{CommunityProfile}(x, \dots, main = NULL, 
@@ -91,6 +91,9 @@ CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", \d
   }
   \item{alpha}{
   Opacity of the confidence enveloppe, between 0 and 1.
+  }
+  \item{ShowProgressBar}{
+  If \code{TRUE} (default), a progress bar is shown.
   }
   \item{CheckArguments}{
   Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.

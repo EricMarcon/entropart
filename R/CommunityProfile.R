@@ -1,7 +1,7 @@
 CommunityProfile <-
 function(FUN, NorP, q.seq = seq(0, 2, 0.1), 
          NumberOfSimulations = 0, Alpha = 0.05, BootstrapMethod = "Chao2015", 
-         size = 1, ..., CheckArguments = TRUE) 
+         size = 1, ..., ShowProgressBar = TRUE, CheckArguments = TRUE) 
 {
   if (CheckArguments) {
     CheckentropartArguments()
@@ -27,7 +27,8 @@ function(FUN, NorP, q.seq = seq(0, 2, 0.1),
       # Parallelize. Do not allow more forks in PhyloApply()
       ProfileAsaList <- parallel::mclapply(q.seq, function(q) FUN(MCSim$Nsi[, i], q, ..., CheckArguments=FALSE), mc.allow.recursive=FALSE)
       Sims[i, ] <- simplify2array(ProfileAsaList)
-      if(interactive()) utils::setTxtProgressBar(ProgressBar, i)
+      if(ShowProgressBar & interactive()) 
+        utils::setTxtProgressBar(ProgressBar, i)
     }
     close(ProgressBar)
     # Recenter simulated values

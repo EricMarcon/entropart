@@ -1,5 +1,5 @@
 DivEst <-
-function(q = 0, MC, Biased = TRUE, Correction = "Best", Tree = NULL, Normalize = TRUE, Z = NULL, Simulations = 100, CheckArguments = TRUE) 
+function(q = 0, MC, Biased = TRUE, Correction = "Best", Tree = NULL, Normalize = TRUE, Z = NULL, Simulations = 100, ShowProgressBar = TRUE, CheckArguments = TRUE) 
 {
   if (CheckArguments)
     CheckentropartArguments()
@@ -28,7 +28,8 @@ function(q = 0, MC, Biased = TRUE, Correction = "Best", Tree = NULL, Normalize =
     SimMC <- Preprocess.MC(SimNsi, MC$Wi)
     NewSim <- DivPart(q, SimMC, Biased, Correction, Tree, Normalize, Z, CheckArguments=FALSE)
     # update progress bar
-    if(interactive()) utils::setTxtProgressBar(ProgressBar, Progression)
+    if(ShowProgressBar & interactive()) 
+      utils::setTxtProgressBar(ProgressBar, Progression)
     c(NewSim$TotalAlphaEntropy, NewSim$TotalBetaEntropy, NewSim$GammaEntropy)
   }
   
