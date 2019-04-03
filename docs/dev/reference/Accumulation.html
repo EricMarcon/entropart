@@ -258,7 +258,8 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>DivAC</code> or <code>EntAC</code> estimate the diversity or entropy accumulation curve of a distribution.
-  See <code><a href='Tsallis.html'>Tsallis</a></code> for details about the computation of entropy at each level of interpolation and extrapolation.</p>
+  See <code><a href='Tsallis.html'>Tsallis</a></code> for details about the computation of entropy at each level of interpolation and extrapolation.
+  In accumulation curves, extrapolation if done by estimating the asymptotic distribution of the community and estimating entropy at different levels by interpolation. The asymptotic richess is adjusted so that the extrapolated part of the accumulation joins the observed value at the sample size.</p>
 <p><code>AccumCurve</code> objects include <code>EntAC</code> and <code>DivAC</code> objects for entropy and diversity accumulation.
 They generalize the classical Species Accumulation Curves (SAC) which are diversity accumulation of order $q=0$.</p>  
 <p><code>as.AccumCurve</code> transforms two vectors (where <code>x</code> is the sammple size and <code>y</code> the accumulation) into an object of class <code>AccumCurve</code>.</p>

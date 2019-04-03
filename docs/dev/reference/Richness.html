@@ -178,7 +178,7 @@ Richness(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE,
     </tr>
     <tr>
       <th>Correction</th>
-      <td><p>A string containing one of the possible corrections: <code>"None"</code> (no correction), <code>"Jackknife"</code>, <code>"iChao1"</code>, or <code>"Chao1"</code>. <code>"Best"</code>, the default value, is currently <code>"Jackknife"</code>. Ignored by richness interpolation.</p></td>
+      <td><p>A string containing one of the possible corrections: <code>"None"</code> (no correction), <code>"Jackknife"</code>, <code>"iChao1"</code>, or <code>"Chao1"</code>. <code>"Best"</code>, the default value, is currently <code>"Jackknife"</code>. Ignored by richness interpolation, and by extrapolation if <code>PCorrection</code> is not "None".</p></td>
     </tr>
     <tr>
       <th>Alpha</th>
@@ -194,11 +194,11 @@ Richness(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE,
     </tr>
     <tr>
       <th>PCorrection</th>
-      <td><p>A string containing one of the possible corrections to estimate a probability distribution in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"Chao2015"</code> is the default value. Used only for extrapolation.</p></td>
+      <td><p>A string containing one of the possible corrections to estimate a probability distribution in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"Chao2015"</code> is the default value. If "None", the asymptotic distribution is not estimated and extrapolation relies only on the asymptotic estimator of richness. Used only for extrapolation.</p></td>
     </tr>
     <tr>
       <th>Unveiling</th>
-      <td><p>A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"geom"</code> (the unobserved species distribution is geometric) is the default value. If <code>"None"</code>, the asymptotic distribution is not unveiled and only the asymptotic estimator is used. Used only for extrapolation.</p></td>
+      <td><p>A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"geom"</code> (the unobserved species distribution is geometric) is the default value. Used only for extrapolation.</p></td>
     </tr>
     <tr>
       <th>RCorrection</th>
@@ -221,7 +221,7 @@ Richness(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE,
   Many other estimators are available elsewhere, the ones implemented here are necessary for other entropy estimations.</p>
 <p>The functions are designed to be used as simply as possible. <code>Richness</code> is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function <code>bcRichness</code> is called.</p>  
 <p>Richness can be estimated at a specified level of interpolation or extrapolation, either a chosen sample size or sample coverage (Chao et al., 2014), rather than its asymptotic value.
-  Extrapolation relies on the estimation of the asymptotic richness. If <code>Unveiling</code> is "None", then the asymptotic estimation of richness is made using the chosen <code>Correction</code>, else the asymtpotic distribution of the community is derived and its estimated richness adjusted so that the entropy of a sample of this distribution of the size of the actual sample has the entropy of the actual sample.</p>
+  Extrapolation relies on the estimation of the asymptotic richness. If <code>PCorrection</code> is "None", then the asymptotic estimation of richness is made using the chosen <code>Correction</code>, else the asymtpotic distribution of the community is derived and its estimated richness adjusted so that the entropy of a sample of this distribution of the size of the actual sample has the entropy of the actual sample.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 

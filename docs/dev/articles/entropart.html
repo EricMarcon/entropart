@@ -109,7 +109,7 @@
     
     
 <p><em>entropart</em> is a package for <em>R</em> designed to estimate diversity based on HCDT entropy or similarity-based entropy. This is a short introduction to its use.</p>
-<p>The <em>entropart</em> package allows estimating biodiversity according to the framework based on HCDT entropy, the correction of its estimation-bias <span class="citation">(Grassberger 1988; Chao and Shen 2003; Chao and Jost 2015)</span> and its transformation into equivalent numbers of species <span class="citation">(Hill 1973; Jost 2006; Marcon et al. 2014)</span>.</p>
+<p>The <em>entropart</em> package allows estimating biodiversity according to the framework based on HCDT entropy, the correction of its estimation-bias <span class="citation">(Grassberger 1988; Chao and Shen 2003; Chao and Jost 2015)</span> and its transformation into equivalent numbers of species <span class="citation">(Hill 1973; Jost 2006; Marcon et al. 2014)</span>. Estimation of diversity at arbitrary levels of sampling, requiring interpolation or extrapolation <span class="citation">(Chao et al. 2014)</span> is available</p>
 <p>Phylogenetic or functional diversity <span class="citation">(Marcon and Hérault 2015)</span> can be estimated, considering phyloentropy as the average species-neutral diversity over slices of a phylogenetic or functional tree <span class="citation">(S. Pavoine, Love, and Bonsall 2009)</span>.</p>
 <p>Similarity-based diversity <span class="citation">(Leinster and Cobbold 2012)</span> can be used to estimate <span class="citation">(Marcon, Zhang, and Hérault 2014)</span> functional diversity from a similarity or dissimilarity matrix between species without requiring building a dendrogram and thus preserving the topology of species <span class="citation">(Sandrine Pavoine, Ollier, and Dufour 2005; Podani and Schmera 2007)</span>.</p>
 <p>The classical diversity estimators (Shannon and Simpson entropy) can be found in many R packages. <em>vegetarian</em> <span class="citation">(Charney and Record 2009)</span> allows calculating Hill numbers and partitioning them according to Jost’s framework. Bias correction is never available except in the <em>EntropyEstimation</em> <span class="citation">(Cao and Grabchak 2014)</span> package which provides the Zhang and Grabchak’s estimators of entropy and diversity and their asymptotic variance (not included in <em>entropart</em>).</p>
@@ -293,6 +293,9 @@ pDP &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Communi
 </div>
 <div id="ref-Chao2003">
 <p>Chao, Anne, and T. J. Shen. 2003. “Nonparametric Estimation of Shannon’s Index of Diversity When There Are Unseen Species in Sample.” <em>Environmental and Ecological Statistics</em> 10 (4): 429–43.</p>
+</div>
+<div id="ref-Chao2014">
+<p>Chao, Anne, Nicholas J. Gotelli, T. C. Hsieh, Elizabeth L. Sander, K. H. Ma, Robert K. Colwell, and Aaron M. Ellison. 2014. “Rarefaction and extrapolation with Hill numbers: A framework for sampling and estimation in species diversity studies.” <em>Ecological Monographs</em> 84 (1): 45–67. doi:<a href="https://doi.org/10.1890/13-0133.1">10.1890/13-0133.1</a>.</p>
 </div>
 <div id="ref-Charney2009">
 <p>Charney, Noah, and Sydne Record. 2009. “Vegetarian: Jost Diversity Measures for Community Data.” <a href="http://cran.r-project.org/package=vegetarian" class="uri">http://cran.r-project.org/package=vegetarian</a>.</p>
