@@ -45,6 +45,9 @@ is.DivEst(x)
   \item{Simulations}{
   The number of simulations to build confidence intervals.
   }
+  \item{ShowProgressBar}{
+  If \code{TRUE} (default), a progress bar is shown.
+  }
   \item{CheckArguments}{
   Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
   }

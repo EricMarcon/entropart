@@ -13,7 +13,8 @@
 \usage{
 DivProfile(q.seq = seq(0, 2, 0.1), MC, Biased = TRUE, Correction = "Best", 
   Tree = NULL, Normalize = TRUE, Z = NULL, 
-  NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
+  NumberOfSimulations = 0, Alpha = 0.05, 
+  ShowProgressBar = TRUE, CheckArguments = TRUE)
 is.DivProfile(x)
 \method{plot}{DivProfile}(x, \dots, main = NULL, xlab = "Order of Diversity",
   ylab = NULL, Which = "All", 
@@ -53,6 +54,9 @@ is.DivProfile(x)
   }
   \item{Alpha}{
   The risk level, 5\% by default.
+  }
+  \item{ShowProgressBar}{
+  If \code{TRUE} (default), a progress bar is shown.
   }
   \item{CheckArguments}{
   Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.

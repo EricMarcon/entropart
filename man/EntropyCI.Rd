@@ -8,7 +8,7 @@
 }
 \usage{
 EntropyCI(FUN, Simulations = 100, Ns, BootstrapMethod = "Chao2015", 
-    \dots, CheckArguments = TRUE)
+    ShowProgressBar = TRUE, \dots, CheckArguments = TRUE)
 }
 \arguments{
   \item{FUN}{
@@ -25,6 +25,9 @@ EntropyCI(FUN, Simulations = 100, Ns, BootstrapMethod = "Chao2015",
   }
   \item{\dots}{
   Additional arguments to be passed to \code{FUN}.
+  }
+  \item{ShowProgressBar}{
+  If \code{TRUE} (default), a progress bar is shown.
   }
   \item{CheckArguments}{
   Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.

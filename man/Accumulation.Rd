@@ -16,9 +16,11 @@
 as.AccumCurve(x, y, low = NULL, high = NULL)
 is.AccumCurve(x)
 EntAC(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveiling="geom",
-  RCorrection="Rarefy", NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
+  RCorrection="Rarefy", NumberOfSimulations = 0, Alpha = 0.05, 
+  ShowProgressBar = TRUE, CheckArguments = TRUE)
 DivAC(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveiling="geom",
-  RCorrection="Rarefy", NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
+  RCorrection="Rarefy", NumberOfSimulations = 0, Alpha = 0.05, 
+  ShowProgressBar = TRUE, CheckArguments = TRUE)
 \method{plot}{AccumCurve}(x, ..., main = NULL, 
          xlab = "Sample Size", ylab = NULL, ylim = NULL,
          LineWidth = 2, ShadeColor = "grey75", BorderColor = "red")
@@ -91,6 +93,9 @@ DivAC(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveiling="geom",
   }
   \item{alpha}{
   Opacity of the confidence enveloppe, between 0 and 1.
+  }
+  \item{ShowProgressBar}{
+  If \code{TRUE} (default), a progress bar is shown.
   }
   \item{CheckArguments}{
   Logical; if \code{TRUE}, the function arguments are verified. Should be set to \code{FALSE} to save time when the arguments have been checked elsewhere.
