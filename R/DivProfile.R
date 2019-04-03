@@ -67,14 +67,14 @@ function(q.seq = seq(0, 2, .1), MC, Biased = TRUE, Correction = "Best", Tree = N
       # Very simplified (for speed) version of rCommunity with BootstrapMethod="Marcon"
       MetaCommunity(stats::rmultinom(NumberOfSimulations, sum(SpeciesAbundances), SpeciesAbundances))
     }
-    utils::setTxtProgressBar(ProgressBar, -2)
+    if(interactive()) utils::setTxtProgressBar(ProgressBar, -2)
     # Resample each community according to species abundances
     ResampledCs <- apply(MC$Nsi, 2, function(Ns) RedrawSpecies(SpeciesAbundances=Ns))
-    utils::setTxtProgressBar(ProgressBar, -1)
+    if(interactive()) utils::setTxtProgressBar(ProgressBar, -1)
     # Each MC of this list is a simulation set of each original community
     # Build simulated MCs by picking simulated communities
     SimMC <- lapply(1:NumberOfSimulations, function(i) MetaCommunity(sapply(ResampledCs, function(mc) mc$Nsi[, i]), Weights=MC$Wi))
-    utils::setTxtProgressBar(ProgressBar, -0)
+    if(interactive()) utils::setTxtProgressBar(ProgressBar, -0)
     
     ## Calculate alpha, beta and gamma of each simulated MC, at each q
     # Prepare a matrix to store envelopes.
@@ -113,8 +113,9 @@ function(q.seq = seq(0, 2, .1), MC, Biased = TRUE, Correction = "Best", Tree = N
       Envelopes["GammaDiversityLow", qi] <- stats::quantile(GammaDiversity, probs=Alpha, na.rm=TRUE)
       Envelopes["GammaDiversityHigh", qi] <- stats::quantile(GammaDiversity, probs=1-Alpha, na.rm=TRUE)
       # Progressbar
-      utils::setTxtProgressBar(ProgressBar, qi)
+      if(interactive()) utils::setTxtProgressBar(ProgressBar, qi)
     }
+    close(ProgressBar)
     
     # Integrate the envelopes into the object
     DivProfile$TotalAlphaEntropyLow <- Envelopes["TotalAlphaEntropyLow", ]
