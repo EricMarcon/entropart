@@ -12,7 +12,8 @@
 }
 \usage{
 DivEst(q = 0, MC, Biased = TRUE, Correction = "Best", Tree = NULL, 
-  Normalize = TRUE, Z = NULL, Simulations = 100, CheckArguments = TRUE)
+  Normalize = TRUE, Z = NULL, Simulations = 100, 
+  ShowProgressBar = TRUE, CheckArguments = TRUE)
 is.DivEst(x)
 \method{plot}{DivEst}(x, \dots, main = NULL, Which = "All")
 \method{autoplot}{DivEst}(object, \dots, main = NULL, Which = "All",
