@@ -1,4 +1,4 @@
-# entropart 1.5-3-9015
+# entropart 1.6-0
 
 ## New features
 

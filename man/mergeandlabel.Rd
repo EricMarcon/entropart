@@ -18,7 +18,7 @@ mergeandlabel(x, y)
   }
 }
 \details{
-  Row names must contain species. The new dataframes keeps all species with abundance zero for species that were not found in orfginal communities. 
+  Row names must contain species. The new dataframe keeps all species with abundance zero for species that were not found in original communities.
 }
 \value{
   A dataframe containing all lines and columns of the merged dataframes.
