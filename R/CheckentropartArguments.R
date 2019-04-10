@@ -386,6 +386,14 @@ function() {
     }
   }
   
+  # ShowProgressBar 
+  if (!is.na(names(Args["ShowProgressBar"]))) {
+    ShowProgressBar <- eval(expression(ShowProgressBar), parent.frame())
+    if (!is.logical(ShowProgressBar))
+      ErrorMessage("ShowProgressBar must be TRUE or FALSE.", ShowProgressBar)
+  }
+  
+  
   # SimulatedValues
   if (!is.na(names(Args["SimulatedValues"]))) {
     SimulatedValues <- eval(expression(SimulatedValues), parent.frame())
@@ -403,6 +411,14 @@ function() {
     if (as.integer(size) != size)
       ErrorMessage("size must be an integer.", size)
   }
+  
+  # Unveiling 
+  if (!is.na(names(Args["Unveiling"]))) {
+    Unveiling <- eval(expression(Unveiling), parent.frame())
+    if (!is.character(Unveiling))
+      ErrorMessage("Unveiling must be a string.", Unveiling)
+  }
+  
   
   # Weights
   if (!is.na(names(Args["Weights"]))) {
