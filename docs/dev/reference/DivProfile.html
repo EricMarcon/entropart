@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9014</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9015</span>
       </span>
     </div>
 
@@ -145,7 +145,8 @@
 
     <pre class="usage">DivProfile(q.seq = seq(0, 2, 0.1), MC, Biased = TRUE, Correction = "Best", 
   Tree = NULL, Normalize = TRUE, Z = NULL, 
-  NumberOfSimulations = 0, Alpha = 0.05, CheckArguments = TRUE)
+  NumberOfSimulations = 0, Alpha = 0.05, 
+  ShowProgressBar = TRUE, CheckArguments = TRUE)
 is.DivProfile(x)
 # S3 method for DivProfile
 plot(x, &#8230;, main = NULL, xlab = "Order of Diversity",
@@ -198,6 +199,10 @@ summary(object, &#8230;)</pre>
     <tr>
       <th>Alpha</th>
       <td><p>The risk level, 5% by default.</p></td>
+    </tr>
+    <tr>
+      <th>ShowProgressBar</th>
+      <td><p>If <code>TRUE</code> (default), a progress bar is shown.</p></td>
     </tr>
     <tr>
       <th>CheckArguments</th>

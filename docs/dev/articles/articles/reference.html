@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9014</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9015</span>
       </span>
     </div>
 
@@ -341,7 +341,6 @@ PAbd &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Spe
 <a href="#diversity-estimation-of-a-metacommunity" class="anchor"></a>Diversity Estimation of a metacommunity</h3>
 <p>The <code>DivEst</code> function decomposes diversity and estimates confidence interval of <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\gamma\)</span> diversity following <span class="citation">Marcon et al. (2012)</span>. If the observed species frequencies of a community are assumed to be a realization of a multinomial distribution, they can be drawn again to obtain a distribution of entropy.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">de &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/DivEst.html">DivEst</a></span>(<span class="dt">q =</span> <span class="dv">1</span>, Paracou618.MC, <span class="dt">Biased =</span> <span class="ot">FALSE</span>, <span class="dt">Correction =</span> <span class="st">"Best"</span>, <span class="dt">Simulations =</span> <span class="dv">100</span>)</code></pre></div>
-<pre><code>## ===========================================================================</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(de)</code></pre></div>
 <pre><code>## Diversity partitioning of order 1 of MetaCommunity Paracou618.MC
 ##  with correction: UnveilJ
@@ -379,7 +378,6 @@ PAbd &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Spe
 <a href="#diversity-profile-of-a-metacommunity" class="anchor"></a>Diversity Profile of a metacommunity</h3>
 <p><code>DivProfile</code> calculates diversity profiles, i.e. the value of diversity against its order. The result is a <code>DivProfile</code> object which can be summarized and plotted.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dp &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/DivProfile.html">DivProfile</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.2</span>), Paracou618.MC, <span class="dt">Biased =</span> <span class="ot">FALSE</span>, <span class="dt">NumberOfSimulations =</span> <span class="dv">20</span>)</code></pre></div>
-<pre><code>## ===========================================================================</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(dp)</code></pre></div>
 <pre><code>## Diversity profile of MetaCommunity Paracou618.MC
 ##  with correction: UnveilJ
@@ -574,7 +572,6 @@ Z &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</sp
 <p>The result is a numeric vector containing the entropy value of each simulated community. Entropy can be finally transformed into diversity (but it is not correct to use a diversity function in simulations because the average simulated value must be calculated and only entropy can be averaged).</p>
 <p>This example shows how to use the function. First, the distribution of the <span class="math inline">\(\gamma\)</span> HCDT entropy of order 1 (Shannon entropy) of the Paracou meta-community is calculated and transformed into diversity. Then, the actual diversity is calculated and completed by the 95% confidence interval of the simulated values.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SimulatedDiversity &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/expq.html">expq</a></span>(<span class="kw"><a href="../../reference/EntropyCI.html">EntropyCI</a></span>(<span class="dt">FUN =</span> Tsallis, <span class="dt">Simulations =</span> <span class="dv">100</span>, <span class="dt">Ns =</span> PAbd, <span class="dt">q =</span> <span class="dv">1</span>), <span class="dt">q =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## ===========================================================================</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/Diversity.html">Diversity</a></span>(PAbd, <span class="dt">q =</span> <span class="dv">1</span>)</code></pre></div>
 <pre><code>##  UnveilJ 
 ## 138.1078</code></pre>
@@ -589,7 +586,6 @@ Z &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</sp
 <p>This function is used to calculate diversity or entropy profiles based on community functions such as <code>Tsallis</code> or <code>ChaoPD</code>. It is similar to <code>DivProfile</code> but does not require a <code>Metacommunity</code> for argument. It can compute a bootstrap confidence envelope of the estimation of the profile, like <code>EntropyCI</code>. It returns a <code>CommunityProfile</code> object which can be plotted. Profiles can be added to an existing plot by the <code>CEnvelope</code> function.</p>
 <p>This example evaluates bias correction on the diversity profile of the Paracou dataset. First, diversity profiles are calculated with and without bias correction. The corrected profile is calculated with its confidence envelope:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bcProfile &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/CommunityProfile.html">CommunityProfile</a></span>(Diversity, PAbd, <span class="dt">NumberOfSimulations =</span> <span class="dv">100</span>)</code></pre></div>
-<pre><code>## ===========================================================================</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Profile &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/CommunityProfile.html">CommunityProfile</a></span>(Diversity, PProba)</code></pre></div>
 <p>Then, they can be plotted altogether to obtain the <span class="math inline">\(\gamma\)</span> diversity profile of the the meta-community <code>Paracou618.MC</code>, without bias correction (dotted line) and with correction (solid line):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(bcProfile)

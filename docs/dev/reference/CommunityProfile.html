@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9014</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9015</span>
       </span>
     </div>
 
@@ -145,7 +145,7 @@
 
     <pre class="usage">CommunityProfile(FUN, NorP, q.seq = seq(0, 2, 0.1), 
     NumberOfSimulations = 0, Alpha = 0.05, BootstrapMethod = "Chao2015", 
-    size = 1, &#8230;, CheckArguments = TRUE)
+    size = 1, &#8230;, ShowProgressBar = TRUE, CheckArguments = TRUE)
 as.CommunityProfile(x, y, low = NULL, high = NULL)
 is.CommunityProfile(x)
 # S3 method for CommunityProfile
@@ -250,6 +250,10 @@ CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", &#
       <td><p>Opacity of the confidence enveloppe, between 0 and 1.</p></td>
     </tr>
     <tr>
+      <th>ShowProgressBar</th>
+      <td><p>If <code>TRUE</code> (default), a progress bar is shown.</p></td>
+    </tr>
+    <tr>
       <th>CheckArguments</th>
       <td><p>Logical; if <code>TRUE</code>, the function arguments are verified. Should be set to <code>FALSE</code> to save time when the arguments have been checked elsewhere.</p></td>
     </tr>
@@ -280,7 +284,7 @@ CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", &#
 <span class='kw'>lty</span><span class='kw'>=</span><span class='fl'>3</span>, <span class='kw'>ylim</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>50</span>, <span class='fl'>350</span>))</div><div class='input'><span class='co'># Estimate diversity, with a condidence envelope </span>
 <span class='co'># (only 10 simulations to save time, should be 1000)</span>
 <span class='no'>Profile</span> <span class='kw'>&lt;-</span> <span class='fu'>CommunityProfile</span>(<span class='no'>Diversity</span>, <span class='fu'><a href='SpeciesDistribution.html'>as.AbdVector</a></span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ns</span>),
-                  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>2</span>, <span class='fl'>0.2</span>), <span class='kw'>Correction</span><span class='kw'>=</span><span class='st'>"UnveilJ"</span>, <span class='kw'>NumberOfSimulations</span><span class='kw'>=</span><span class='fl'>10</span>)</div><div class='output co'>#&gt; ================================================================================</div><div class='input'><span class='co'># Complete the plot, and add the legend</span>
+                  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>2</span>, <span class='fl'>0.2</span>), <span class='kw'>Correction</span><span class='kw'>=</span><span class='st'>"UnveilJ"</span>, <span class='kw'>NumberOfSimulations</span><span class='kw'>=</span><span class='fl'>10</span>)</div><div class='output co'>#&gt; </div><div class='input'><span class='co'># Complete the plot, and add the legend</span>
 <span class='fu'>CEnvelope</span>(<span class='no'>Profile</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>"Paracou Plots Diversity"</span>)</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/legend'>legend</a></span>(<span class='st'>"topright"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Bias Corrected"</span>, <span class='st'>"Biased"</span>), <span class='kw'>lty</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>3</span>), <span class='kw'>inset</span><span class='kw'>=</span><span class='fl'>0.01</span>)</div><div class='img'><img src='CommunityProfile-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Advanced use with beta-diversity functions :</span>
 <span class='co'># Profile of the beta entropy of the first community of Paracou618.</span>

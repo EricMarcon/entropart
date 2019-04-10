@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9014</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9015</span>
       </span>
     </div>
 
@@ -191,6 +191,10 @@ summary(object, &#8230;)</pre>
       <td><p>The number of simulations to build confidence intervals.</p></td>
     </tr>
     <tr>
+      <th>ShowProgressBar</th>
+      <td><p>If <code>TRUE</code> (default), a progress bar is shown.</p></td>
+    </tr>
+    <tr>
       <th>CheckArguments</th>
       <td><p>Logical; if <code>TRUE</code>, the function arguments are verified. Should be set to <code>FALSE</code> to save time when the arguments have been checked elsewhere.</p></td>
     </tr>
@@ -254,7 +258,7 @@ summary(object, &#8230;)</pre>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>Paracou618</span>)
 <span class='co'># Estimate Shannon diversity.</span>
 <span class='no'>Estimation</span> <span class='kw'>&lt;-</span> <span class='fu'>DivEst</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>Paracou618.MC</span>, <span class='kw'>Biased</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"UnveilJ"</span>,
-<span class='kw'>Simulations</span> <span class='kw'>=</span> <span class='fl'>20</span>)</div><div class='output co'>#&gt; ================================================================================</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>Estimation</span>)</div><div class='img'><img src='DivEst-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>Estimation</span>)</div><div class='output co'>#&gt; Diversity partitioning of order 1 of MetaCommunity Paracou618.MC
+<span class='kw'>Simulations</span> <span class='kw'>=</span> <span class='fl'>20</span>)</div><div class='output co'>#&gt; </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>Estimation</span>)</div><div class='img'><img src='DivEst-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>Estimation</span>)</div><div class='output co'>#&gt; Diversity partitioning of order 1 of MetaCommunity Paracou618.MC
 #&gt;  with correction: UnveilJ
 #&gt; Alpha diversity of communities: 
 #&gt;     P006     P018 

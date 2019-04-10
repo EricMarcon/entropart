@@ -113,9 +113,8 @@
 <h1 class="hasAnchor">
 <a href="#asymptotic-estimation" class="anchor"></a>Asymptotic estimation</h1>
 <p>If community data is a vector of probabilities, sample size is unknown so the only available estimation is that of the actual sample.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"entropart"</span>)</code></pre></div>
-<pre><code>## Le chargement a nécessité le package : ggplot2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"Paracou618"</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"entropart"</span>)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"Paracou618"</span>)
 <span class="co"># 2 ha of tropical forest, distribution of probabilities</span>
 ParacouP &lt;-<span class="st"> </span>Paracou618.MC<span class="op">$</span>Ps
 <span class="co"># Diversity of order 1, no reduce-bias estimator used.</span>
@@ -172,7 +171,6 @@ ParacouN &lt;-<span class="st"> </span>Paracou618.MC<span class="op">$</span>Ns
 <p>If it is higher, entropy must be extrapolated. For diversity orders equal to 0 (richness), 1 (Shannon) or 2 (Simpson), explicit, almost unbiased estimators are used. Continuity of the estimation of diversity around the actual sample size is guaranted.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Simpson diversity at levels from 0.9 to 1.1 times the sample size</span>
 Accumulation2 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Accumulation.html">DivAC</a></span>(ParacouN, <span class="dt">q=</span><span class="dv">2</span>, <span class="dt">n.seq=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="fl">0.9</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(ParacouN))<span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="fl">1.1</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(ParacouN)))</code></pre></div>
-<pre><code>## ===========================================================================</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>(Accumulation2)</code></pre></div>
 <p><img src="extrapolation_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <p>For non-integer orders, things get more complicated. In <em>entropart</em>, asymptotic entropy is estimated by the unveiled jackknife estimator and rarefied down to the actual sample size. There is no reason for it to correspond exactly to the observed entropy. The asymptotic richness is the less robust part of the estimation thus it is adjusted iteratively until the rarefied entropy equals the actual sample’s entropy, ensuring continuity between interpolation and extrapolation.</p>
@@ -185,9 +183,6 @@ Accumulation2 &lt;-<span class="st"> </span><span class="kw"><a href="../../refe
 <p>The <code>DivAc()</code>function allows to build them. A bootstrap confidence interval can be calculated around the estimated DAC by simulating random multinomial draws of the asymptotic distribution at each sample size.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Diversity at levels from 1 to twice the sample size</span>
 Accumulation &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/Accumulation.html">DivAC</a></span>(ParacouN, <span class="dt">q=</span><span class="dv">1</span>, <span class="dt">n.seq=</span><span class="dv">1</span><span class="op">:</span>(<span class="fl">1.1</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(ParacouN)), <span class="dt">NumberOfSimulations =</span> <span class="dv">1000</span>)</code></pre></div>
-<pre><code>## ===========================================================================
-                                                                           
-===========================================================================</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>(Accumulation)</code></pre></div>
 <p><img src="extrapolation_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 <p>To ensure continuity of the DAC around the actual sample, the asymptotic diversity is estimated by unveiling the asymptotic distribution, choosing the number of species such that the rarefied diversity at the observed sample size is the observed diversity. This means that the extrapolated diversity at a high sample coverage will differ from the best asymptotic estimation, sometimes quite much if sampling level is poor.</p>
@@ -251,9 +246,6 @@ Profile &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/
 <p><img src="extrapolation_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Same estimation by entropart </span>
 <span class="kw">autoplot</span>(<span class="kw"><a href="../../reference/Accumulation.html">DivAC</a></span>(spider<span class="op">$</span>Girdled, <span class="dt">q=</span><span class="fl">1.01</span>, <span class="dt">n.seq=</span><span class="dv">1</span><span class="op">:</span>(<span class="dv">2</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(spider<span class="op">$</span>Girdled)), <span class="dt">NumberOfSimulations =</span> <span class="dv">1000</span>))</code></pre></div>
-<pre><code>## ===========================================================================
-                                                                           
-===========================================================================</code></pre>
 <p><img src="extrapolation_files/figure-html/unnamed-chunk-10-2.png" width="700"></p>
 <p>Last, confidence intervals of diversity accumulation assume normality in <em>iNEXT</em>: estimation variance is estimated by bootstrap and the confidence interval is defined as <span class="math inline">\(\pm 1.96\)</span> times the standard deviation. In <em>entropart</em>, confidence intervals are built directly from the quantiles of bootstrapped estimations.</p>
 </div>

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9014</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9015</span>
       </span>
     </div>
 
@@ -146,9 +146,11 @@
     <pre class="usage"><span class='fu'>as.AccumCurve</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>low</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 <span class='fu'>is.AccumCurve</span>(<span class='no'>x</span>)
 <span class='fu'>EntAC</span>(<span class='no'>Ns</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>n.seq</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>Ns</span>), <span class='kw'>PCorrection</span><span class='kw'>=</span><span class='st'>"Chao2015"</span>, <span class='kw'>Unveiling</span><span class='kw'>=</span><span class='st'>"geom"</span>,
-  <span class='kw'>RCorrection</span><span class='kw'>=</span><span class='st'>"Rarefy"</span>, <span class='kw'>NumberOfSimulations</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>Alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+  <span class='kw'>RCorrection</span><span class='kw'>=</span><span class='st'>"Rarefy"</span>, <span class='kw'>NumberOfSimulations</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>Alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>ShowProgressBar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='fu'>DivAC</span>(<span class='no'>Ns</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>n.seq</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>Ns</span>), <span class='kw'>PCorrection</span><span class='kw'>=</span><span class='st'>"Chao2015"</span>, <span class='kw'>Unveiling</span><span class='kw'>=</span><span class='st'>"geom"</span>,
-  <span class='kw'>RCorrection</span><span class='kw'>=</span><span class='st'>"Rarefy"</span>, <span class='kw'>NumberOfSimulations</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>Alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+  <span class='kw'>RCorrection</span><span class='kw'>=</span><span class='st'>"Rarefy"</span>, <span class='kw'>NumberOfSimulations</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>Alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>ShowProgressBar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='co'># S3 method for AccumCurve</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
          <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Sample Size"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -250,6 +252,10 @@
       <td><p>Opacity of the confidence enveloppe, between 0 and 1.</p></td>
     </tr>
     <tr>
+      <th>ShowProgressBar</th>
+      <td><p>If <code>TRUE</code> (default), a progress bar is shown.</p></td>
+    </tr>
+    <tr>
       <th>CheckArguments</th>
       <td><p>Logical; if <code>TRUE</code>, the function arguments are verified. Should be set to <code>FALSE</code> to save time when the arguments have been checked elsewhere.</p></td>
     </tr>
@@ -293,7 +299,7 @@ They generalize the classical Species Accumulation Curves (SAC) which are divers
 <span class='co'># Ns is the total number of trees per species</span>
 <span class='no'>Ns</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='SpeciesDistribution.html'>as.AbdVector</a></span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ns</span>)
 <span class='co'># Accumulation curve of Simpson's diversity</span>
-<span class='fu'>autoplot</span>(<span class='fu'>DivAC</span>(<span class='no'>Ns</span>, <span class='kw'>q</span><span class='kw'>=</span><span class='fl'>2</span>))</div><div class='output co'>#&gt; ================================================================================</div><div class='img'><img src='Accumulation-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'>autoplot</span>(<span class='fu'>DivAC</span>(<span class='no'>Ns</span>, <span class='kw'>q</span><span class='kw'>=</span><span class='fl'>2</span>))</div><div class='output co'>#&gt; </div><div class='img'><img src='Accumulation-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

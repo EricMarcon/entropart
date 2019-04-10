@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9014</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9015</span>
       </span>
     </div>
 
@@ -261,7 +261,6 @@ pDP &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Communi
 <p>The <span class="math inline">\(\alpha\)</span> diversity of communities is 73 effective species. <span class="math inline">\(\gamma\)</span> diversity of the meta-community is 114 effective species. <span class="math inline">\(\beta\)</span> diversity is 1.56 effective communities, i.e. the two actual communities are as different from each other as 1.56 ones with equal weights and no species in common.</p>
 <p>The <code>DivEst</code> function decomposes diversity and estimates confidence interval of <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\gamma\)</span> diversity following <span class="citation">Marcon et al. (2012)</span>. If the observed species frequencies of a community are assumed to be a realization of a multinomial distribution, they can be drawn again to obtain a distribution of entropy.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">de &lt;-<span class="st"> </span><span class="kw"><a href="../reference/DivEst.html">DivEst</a></span>(<span class="dt">q =</span> <span class="dv">1</span>, Paracou618.MC, <span class="dt">Simulations =</span> <span class="dv">50</span>)</code></pre></div>
-<pre><code>## ===========================================================================</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Margin adjustment required for this vignette html output</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">mar=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="fl">2.2</span>,<span class="dv">1</span>))
 <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(de)</code></pre></div>
