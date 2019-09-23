@@ -353,12 +353,12 @@ function(x, ..., Distribution = NULL,
       return(list(prob = FittedRAC$prob))
     }
     if (Distribution == "lseries") {
-      FittedRAC <- RACgeom(Ns)
+      FittedRAC <- RAClseries(Ns)
       graphics::lines(FittedRAC$Rank, FittedRAC$Abundance, col = "red")
       return(list(alpha = FittedRAC$alpha))
     }
     if (Distribution == "bstick") {
-      FittedRAC <- RACgeom(Ns)
+      FittedRAC <- RACbstick(Ns)
       graphics::lines(FittedRAC$Rank, FittedRAC$Abundance, col = "red")
       return(list(max = FittedRAC$max))
     }
