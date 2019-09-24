@@ -1,3 +1,11 @@
+# entropart 1.6-1.9901
+
+## Bug correction
+
+- plot.SpeciesDistribution did not fit the logseries and the broken stick distributions correctly.
+- autoplot.DivProfile did not produce appropriate labels in the local communities profile.
+
+
 # entropart 1.6-1
 
 ## New features
