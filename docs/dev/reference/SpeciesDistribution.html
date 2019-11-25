@@ -15,34 +15,44 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+
+
 
 <meta property="og:title" content="Species Distributions. — SpeciesDistribution" />
-
 <meta property="og:description" content="A Species Distribution is a (preferably named) vector containing species abundances or probabilities." />
-
 <meta property="og:image" content="https://ericmarcon.github.io/entropart/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 <meta name="robots" content="noindex">
 
@@ -54,6 +64,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -72,7 +83,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.3.9015</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6.1.9901</span>
       </span>
     </div>
 
@@ -80,7 +91,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -112,21 +123,27 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/EricMarcon/entropart">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
       </ul>
+      
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -138,46 +155,44 @@
     </div>
 
     <div class="ref-description">
-    
     <p>A Species Distribution is a (preferably named) vector containing species abundances or probabilities.</p>
-    
     </div>
 
-    <pre class="usage">as.SpeciesDistribution(x, &#8230;)
-# S3 method for data.frame
-as.SpeciesDistribution(x, &#8230;)
-# S3 method for integer
-as.SpeciesDistribution(x, &#8230;)
-# S3 method for numeric
-as.SpeciesDistribution(x, &#8230;)
-# S3 method for SpeciesDistribution
-autoplot(object, &#8230;, Distribution = NULL, 
-         ylog = TRUE, main = NULL, xlab = "Rank", ylab = NULL)
-# S3 method for SpeciesDistribution
-plot(x, &#8230;, Distribution = NULL, 
-         type = "b", log = "y", main = NULL, xlab = "Rank", ylab = NULL)
-is.SpeciesDistribution(x)
-as.ProbaVector(x, &#8230;)
-# S3 method for data.frame
-as.ProbaVector(x, &#8230;)
-# S3 method for integer
-as.ProbaVector(x, Correction = "None", Unveiling = "None", 
-          RCorrection = "Jackknife", JackOver = FALSE, CEstimator = "ZhangHuang", 
-          q = 0, &#8230;, CheckArguments = TRUE)
-# S3 method for numeric
-as.ProbaVector(x, Correction = "None", Unveiling = "None", 
-          RCorrection = "Jackknife", JackOver = FALSE, CEstimator = "ZhangHuang",
-          q = 0, &#8230;, CheckArguments = TRUE)
-is.ProbaVector(x)
-as.AbdVector(x, &#8230;)
-# S3 method for data.frame
-as.AbdVector(x, Round = TRUE, &#8230;)
-# S3 method for integer
-as.AbdVector(x, &#8230;)
-# S3 method for numeric
-as.AbdVector(x, Round = TRUE, &#8230;)
-is.AbdVector(x)</pre>
-    
+    <pre class="usage"><span class='fu'>as.SpeciesDistribution</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='co'># S3 method for data.frame</span>
+<span class='fu'>as.SpeciesDistribution</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='co'># S3 method for integer</span>
+<span class='fu'>as.SpeciesDistribution</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='co'># S3 method for numeric</span>
+<span class='fu'>as.SpeciesDistribution</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='co'># S3 method for SpeciesDistribution</span>
+<span class='fu'>autoplot</span>(<span class='no'>object</span>, <span class='no'>...</span>, <span class='kw'>Distribution</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+         <span class='kw'>ylog</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Rank"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='co'># S3 method for SpeciesDistribution</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>Distribution</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+         <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"b"</span>, <span class='kw'>log</span> <span class='kw'>=</span> <span class='st'>"y"</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Rank"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>is.SpeciesDistribution</span>(<span class='no'>x</span>)
+<span class='fu'>as.ProbaVector</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='co'># S3 method for data.frame</span>
+<span class='fu'>as.ProbaVector</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='co'># S3 method for integer</span>
+<span class='fu'>as.ProbaVector</span>(<span class='no'>x</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"None"</span>, <span class='kw'>Unveiling</span> <span class='kw'>=</span> <span class='st'>"None"</span>,
+          <span class='kw'>RCorrection</span> <span class='kw'>=</span> <span class='st'>"Jackknife"</span>, <span class='kw'>JackOver</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>CEstimator</span> <span class='kw'>=</span> <span class='st'>"ZhangHuang"</span>,
+          <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'># S3 method for numeric</span>
+<span class='fu'>as.ProbaVector</span>(<span class='no'>x</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"None"</span>, <span class='kw'>Unveiling</span> <span class='kw'>=</span> <span class='st'>"None"</span>,
+          <span class='kw'>RCorrection</span> <span class='kw'>=</span> <span class='st'>"Jackknife"</span>, <span class='kw'>JackOver</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>CEstimator</span> <span class='kw'>=</span> <span class='st'>"ZhangHuang"</span>,
+          <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>is.ProbaVector</span>(<span class='no'>x</span>)
+<span class='fu'>as.AbdVector</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='co'># S3 method for data.frame</span>
+<span class='fu'>as.AbdVector</span>(<span class='no'>x</span>, <span class='kw'>Round</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+<span class='co'># S3 method for integer</span>
+<span class='fu'>as.AbdVector</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='co'># S3 method for numeric</span>
+<span class='fu'>as.AbdVector</span>(<span class='no'>x</span>, <span class='kw'>Round</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+<span class='fu'>is.AbdVector</span>(<span class='no'>x</span>)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -223,7 +238,7 @@ is.AbdVector(x)</pre>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>The plot type, see <code><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></code>.</p></td>
+      <td><p>The plot type, see <code><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></code>.</p></td>
     </tr>
     <tr>
       <th>log</th>
@@ -246,15 +261,15 @@ is.AbdVector(x)</pre>
       <td><p>Logical; if <code>TRUE</code> (by default), the Y-axis of the plot is log scaled.</p></td>
     </tr>
     <tr>
-      <th>&#8230;</th>
-      <td><p>Additional arguments to be passed to <code><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></code>. Unused elsewhere.</p></td>
+      <th>...</th>
+      <td><p>Additional arguments to be passed to <code><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></code>. Unused elsewhere.</p></td>
     </tr>
     <tr>
       <th>CheckArguments</th>
       <td><p>Logical; if <code>TRUE</code>, the function arguments are verified. Should be set to <code>FALSE</code> to save time when the arguments have been checked elsewhere.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>SpeciesDistribution</code> objects include <code>AbdVector</code> and <code>ProbaVector</code> objects.</p>  
@@ -262,11 +277,9 @@ is.AbdVector(x)</pre>
 <p><code>as.ProbaVector</code> normalizes the vector so that it sums to 1. If <code>Correction</code> is not <code>"None"</code>, the observed abundance distribution is used to estimate the actual species distribution. The list of species will be changed: zero-abundance species will be cleared, and some unobserved species will be added. First, observed species probabilities are estimated folllowing Chao and Shen (2003), <em>i.e.</em> input probabilities are multiplied by the sample coverage, or according to more sophisticated models: Chao <em>et al.</em> (2013, single-parameter model), or Chao <em>et al.</em> (2015, two-parameter model). The total probability of observed species equals the sample coverage. Then, the distribution of unobserved species can be unveiled: their number is estimated according to <code>RCorrection</code> (if the Jackknife estimator is chosen, the <code>JackOver</code> argument allows using the order immediately over the optimal one). The coverage deficit (1 minus the sample coverage) is shared by the unobserved species equally (<code>Unveiling = "unif"</code>, Chao <em>et al.</em>, 2013) or according to a geometric distribution (<code>Unveiling = "geom"</code>, Chao <em>et al.</em>, 2015).</p>  
 <p>These functions can be applied to data frames to calculate the joint diversity (Gregorius, 2010).</p>  
 <p><code>SpeciesDistribution</code> objects can be plotted. The <code>plot</code> method returns the estimated parameters of the fitted distribution. The broken stick has no parameter, so the maximum abundance is returned.</p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Fisher's alpha (Fisher <em>et al.</em>, 1943) is estimated to fit the log-series distribution. The estimation is done by the <code>fisher.alpha</code> function of package <code>vegan</code>. It may differ substantially from the estimation returned by <code>optimal.theta</code> from package <code>untb</code>.</p>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Chao, A. and Shen, T. J. (2003). Nonparametric estimation of Shannon's index of diversity when there are unseen species in sample. <em>Environmental and Ecological Statistics</em> 10(4): 429-443.</p>
@@ -274,19 +287,17 @@ is.AbdVector(x)</pre>
 <p>Chao, A., Hsieh, T. C., Chazdon, R. L., Colwell, R. K., Gotelli, N. J. (2015) Unveiling the Species-Rank Abundance Distribution by Generalizing Good-Turing Sample Coverage Theory. <em>Ecology</em> 96(5): 1189-1201.</p>
 <p>Fisher R.A., Corbet A.S., Williams C.B. (1943) The Relation Between the Number of Species and the Number of Individuals in a Random Sample of an Animal Population. <em>Journal of Animal Ecology</em> 12: 42-58.</p>
 <p>Gregorius H.-R. (2010) Linking Diversity and Differentiation. <em>Diversity</em> 2(3): 370-394.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/stats/topics/Geometric'>rgeom</a></code>, <code><a href='https://www.rdocumentation.org/packages/stats/topics/Lognormal'>rlnorm</a></code>, <code><a href='rCommunity.html'>rCommunity</a></code>, <code><a href='RAC.html'>RAClnorm</a></code></p></div>
-    
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/Geometric.html'>rgeom</a></code>, <code><a href='https://rdrr.io/r/stats/Lognormal.html'>rlnorm</a></code>, <code><a href='rCommunity.html'>rCommunity</a></code>, <code><a href='RAC.html'>RAClnorm</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>Paracou618</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Paracou618</span>)
 <span class='co'># Ns is the total number of trees per species</span>
 <span class='no'>Ns</span> <span class='kw'>&lt;-</span> <span class='fu'>as.AbdVector</span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ns</span>)
 <span class='co'># Whittaker plot, poorly fitted by a log-normal distribution</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>Ns</span>, <span class='kw'>Distribution</span> <span class='kw'>=</span> <span class='st'>"lnorm"</span>)</div><div class='img'><img src='SpeciesDistribution-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $mu
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>Ns</span>, <span class='kw'>Distribution</span> <span class='kw'>=</span> <span class='st'>"lnorm"</span>)</div><div class='img'><img src='SpeciesDistribution-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $mu
 #&gt; [1] 0.9519812
 #&gt; 
 #&gt; $sigma
@@ -298,15 +309,10 @@ is.AbdVector(x)</pre>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#details">Details</a></li>
-
       <li><a href="#note">Note</a></li>
-
       <li><a href="#references">References</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -315,19 +321,40 @@ is.AbdVector(x)</pre>
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by Eric Marcon, Bruno Herault.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '79705a6445f5394f4452e7f3a3858244',
+    indexName: 'entropart',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
+
 
   </body>
 </html>
+
 
