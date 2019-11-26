@@ -1,9 +1,14 @@
-# entropart 1.6-1.9901
+# entropart 1.6-1.9902
+
+## New features
+
+- Argument `JackMax` to limit the order of the jacknife estimator, whatever the data.
 
 ## Bug correction
 
 - plot.SpeciesDistribution did not fit the logseries and the broken stick distributions correctly.
 - autoplot.DivProfile did not produce appropriate labels in the local communities profile.
+
 
 
 # entropart 1.6-1

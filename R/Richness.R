@@ -25,7 +25,7 @@ function(NorP, ..., CheckArguments = TRUE, Ps = NULL)
 
 
 Richness.AbdVector <-
-function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL, PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy", ..., CheckArguments = TRUE, Ns = NULL)
+function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, JackMax = 10, Level = NULL, PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy", ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -35,7 +35,7 @@ function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL
     }
   }
   if (is.null(Level)) {
-    return(bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=CheckArguments))
+    return(bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, JackMax=JackMax, CheckArguments=CheckArguments))
   } else {
     return (Richness.numeric(NorP, Correction=Correction, Level=Level, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=CheckArguments))
   }
@@ -43,7 +43,7 @@ function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL
 
 
 Richness.integer <-
-function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL, PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy", ..., CheckArguments = TRUE, Ns = NULL)
+function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, JackMax = 10, Level = NULL, PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy", ..., CheckArguments = TRUE, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ns)) {
@@ -53,7 +53,7 @@ function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL
     }
   }
   if (is.null(Level)) {
-    return(bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=CheckArguments))
+    return(bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, JackMax=JackMax, CheckArguments=CheckArguments))
   } else {
     return (Richness.numeric(NorP, Correction=Correction, Level=Level, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=CheckArguments))
   }
@@ -61,7 +61,7 @@ function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL
 
 
 Richness.numeric <-
-function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL, PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL)
+function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, JackMax = 10, Level = NULL, PCorrection = "Chao2015", Unveiling = "geom", RCorrection = "Rarefy", ..., CheckArguments = TRUE, Ps = NULL, Ns = NULL)
 {
   if (missing(NorP)){
     if (!missing(Ps)) {
@@ -83,7 +83,7 @@ function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL
   } 
   if (is.null(Level)) {
     # Abundances
-    return(bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=FALSE))
+    return(bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, JackMax=JackMax, CheckArguments=FALSE))
   }
   # Eliminate 0
   NorP <- NorP[NorP > 0]
@@ -109,7 +109,7 @@ function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL
       # Estimate the number of unobserved species
       if (PCorrection == "None") {
         # Don't unveil the asymptotic distribution, use the asymptotic estimator
-        S0 <- bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, CheckArguments=FALSE) - Sobs
+        S0 <- bcRichness(Ns=NorP, Correction=Correction, Alpha=Alpha, JackOver=JackOver, JackMax=JackMax, CheckArguments=FALSE) - Sobs
       } else {
         # Unveil so that the estimation of richness is similar to that of non-integer entropy
         PsU <- as.ProbaVector.numeric(NorP, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, q=0, CheckArguments=FALSE)
@@ -127,7 +127,7 @@ function(NorP, Correction = "Best", Alpha = 0.05, JackOver = FALSE, Level = NULL
 
 
 bcRichness <- 
-function(Ns, Correction = "Best", Alpha = 0.05, JackOver = FALSE, CheckArguments = TRUE)
+function(Ns, Correction = "Best", Alpha = 0.05, JackOver = FALSE, JackMax = 10, CheckArguments = TRUE)
 {
   if (CheckArguments)
     CheckentropartArguments()
@@ -206,7 +206,7 @@ function(Ns, Correction = "Best", Alpha = 0.05, JackOver = FALSE, CheckArguments
   if (Correction == "Jackknife") {
     # Adapted from jackknife in SPECIES
     # Max possible order
-    k <- min(nrow(AFC) - 1, 10)
+    k <- min(nrow(AFC) - 1, JackMax)
     if (k == 0) {
       # No optimisation possible. Return "jackknife of order 0".
       Smallestk <- 1

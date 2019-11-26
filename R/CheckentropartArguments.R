@@ -115,6 +115,28 @@ function() {
       ErrorMessage("CEstimator must be a string.", CEstimator)
   }
   
+  # JackMax
+  if (!is.na(names(Args["JackMax"]))) {
+    JackMax <- eval(expression(JackMax), parent.frame())
+    if (!is.numeric(JackMax) | length(JackMax)!=1)
+      ErrorMessage("JackMax must be a number.", JackMax)
+    if (JackMax < 1)
+      ErrorMessage("JackMaxmust be at least 1.", JackMax)
+    if (JackMax > 10)
+      ErrorMessage("JackMaxmust be at most 10.", JackMax)
+    if (as.integer(JackMax) != JackMax)
+      ErrorMessage("JackMax must be an integer.", JackMax)
+  }
+  
+  
+  # JackOver 
+  if (!is.na(names(Args["JackOver"]))) {
+    JackOver <- eval(expression(JackOver), parent.frame())
+    if (!is.logical(JackOver))
+      ErrorMessage("JackOver must be TRUE or FALSE.", JackOver)
+  }
+  
+  
   # Level
   if (!is.na(names(Args["Level"]))) {
     Level <- eval(expression(Level), parent.frame())

@@ -38,11 +38,11 @@ is.SpeciesDistribution(x)
 as.ProbaVector(x, \dots)
 \method{as.ProbaVector}{data.frame}(x, \dots)
 \method{as.ProbaVector}{integer}(x, Correction = "None", Unveiling = "None", 
-          RCorrection = "Jackknife", JackOver = FALSE, CEstimator = "ZhangHuang", 
-          q = 0, \dots, CheckArguments = TRUE)
+          RCorrection = "Jackknife", JackOver = FALSE, JackMax = 10, 
+          CEstimator = "ZhangHuang", q = 0, \dots, CheckArguments = TRUE)
 \method{as.ProbaVector}{numeric}(x, Correction = "None", Unveiling = "None", 
-          RCorrection = "Jackknife", JackOver = FALSE, CEstimator = "ZhangHuang",
-          q = 0, \dots, CheckArguments = TRUE)
+          RCorrection = "Jackknife", JackOver = FALSE, JackMax = 10, 
+          CEstimator = "ZhangHuang", q = 0, \dots, CheckArguments = TRUE)
 is.ProbaVector(x)
 as.AbdVector(x, \dots)
 \method{as.AbdVector}{data.frame}(x, Round = TRUE, \dots)
@@ -74,6 +74,9 @@ is.AbdVector(x)
   }
   \item{JackOver}{
   If \code{TRUE}, retain the jackknife order immediately superior to the optimal one, usually resulting in the overestimation of the number of species. Default is \code{FALSE}. Ignored if \code{RCorrection} is not \code{"Jackknife"}.
+  }
+  \item{JackMax}{
+  The highest jackknife order allowed. Default is 10. Allowed values are between 1 and 9.
   }
   \item{CEstimator}{
   A string containing an estimator recognized by \code{\link{Coverage}} to evaluate the sample coverage. \code{"ZhangHuang"} is the default value.
