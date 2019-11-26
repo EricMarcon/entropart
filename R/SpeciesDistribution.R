@@ -127,7 +127,7 @@ rarefaction_bias <- function(S0, Ns, PsTuned, C, CD2, q, Unveiling, Target) {
 
 as.ProbaVector.numeric <-
 function (x, Correction = "None", Unveiling = "None", RCorrection = "Jackknife", 
-          JackOver = FALSE, CEstimator = "ZhangHuang", q = 0, ..., CheckArguments = TRUE) 
+          JackOver = FALSE, JackMax = 10, CEstimator = "ZhangHuang", q = 0, ..., CheckArguments = TRUE) 
 {
   if (CheckArguments)
     CheckentropartArguments()
@@ -212,7 +212,7 @@ function (x, Correction = "None", Unveiling = "None", RCorrection = "Jackknife",
       S0 <- round(tryCatch(stats::optimize(rarefaction_bias, interval=c(0, 2*S0), Ns, PsTuned, C, CD2, q, Unveiling, Target)$minimum,
                            error = function(e) {S0}))
     } else {
-      Sestimate <- ceiling(bcRichness(Ns, Correction=RCorrection, JackOver=JackOver))
+      Sestimate <- ceiling(bcRichness(Ns, Correction=RCorrection, JackOver=JackOver, JackMax=JackMax))
       S0 <- Sestimate - S
     }
     
@@ -235,13 +235,13 @@ function (x, Correction = "None", Unveiling = "None", RCorrection = "Jackknife",
 
 as.ProbaVector.integer <-
 function (x, Correction = "None", Unveiling = "None", RCorrection = "Jackknife", 
-          JackOver = FALSE, CEstimator = "ZhangHuang", q = 0, ..., CheckArguments = TRUE) 
+          JackOver = FALSE, JackMax = 10, CEstimator = "ZhangHuang", q = 0, ..., CheckArguments = TRUE) 
 {
   if (CheckArguments)
     CheckentropartArguments()
   
   return(as.ProbaVector.numeric(x, Correction=Correction, Unveiling=Unveiling, RCorrection=RCorrection, 
-                                JackOver=JackOver, CEstimator=CEstimator, q=q, ..., CheckArguments=FALSE))
+                                JackOver=JackOver, JackMax=JackMax, CEstimator=CEstimator, q=q, ..., CheckArguments=FALSE))
 }
 
 
