@@ -1,8 +1,8 @@
-# entropart 1.6-1.9902
+# entropart 1.6-2
 
 ## New features
 
-- Argument `JackMax` to limit the order of the jacknife estimator, whatever the data.
+- Argument `JackMax` to limit the order of the jacknife estimator in `Richness()`, whatever the data.
 
 ## Bug correction
 
