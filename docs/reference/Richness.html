@@ -83,7 +83,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.3</span>
       </span>
     </div>
 
@@ -272,7 +272,23 @@
 #&gt; 314.9348 </div><div class='input'><span class='fu'>bcRichness</span>(<span class='no'>Ns</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"iChao1"</span>)</div><div class='output co'>#&gt;   iChao1 
 #&gt; 333.7466 </div><div class='input'><span class='fu'>bcRichness</span>(<span class='no'>Ns</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"Jackknife"</span>)</div><div class='output co'>#&gt; Jackknife 2 
 #&gt;         359 </div><div class='input'><span class='fu'>bcRichness</span>(<span class='no'>Ns</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"Jackknife"</span>, <span class='kw'>JackOver</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Jackknife 3 
-#&gt;         381 </div></pre>
+#&gt;         381 </div><div class='input'><span class='co'># Jackknife estimation is package SPECIES provides confidence interval</span>
+<span class='kw pkg'>SPECIES</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/SPECIES/man/jackknife.html'>jackknife</a></span>(<span class='fu'><a href='AbdFreqCount.html'>AbdFreqCount</a></span>(<span class='no'>Ns</span>))</div><div class='output co'>#&gt; 
+#&gt; Your specified order is larger than that determined by the test, 
+#&gt; Therefore the order from the test is used. 
+#&gt; </div><div class='output co'>#&gt; $JackknifeOrder
+#&gt; [1] 2
+#&gt; 
+#&gt; $Nhat
+#&gt; [1] 359
+#&gt; 
+#&gt; $SE
+#&gt; [1] 22.84732
+#&gt; 
+#&gt; $CI
+#&gt;       lb  ub
+#&gt; [1,] 314 404
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
