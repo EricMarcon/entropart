@@ -49,4 +49,6 @@ ppt <- Preprocess.Tree(EightSpTree)
 is.PPtree(ppt)
 # Plot it
 plot(ppt, hang=-1)
+# Alternative plot
+ade4::radial.phylog(EightSpTree)
 }
