@@ -83,7 +83,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.4</span>
       </span>
     </div>
 
@@ -216,9 +216,7 @@
 <span class='no'>Ps</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='SpeciesDistribution.html'>as.ProbaVector</a></span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ns</span>)
 
 <span class='co'># Calculate the phylogenetic Shannon diversity of the plot</span>
-<span class='fu'>AllenH</span>(<span class='no'>Ps</span>, <span class='fl'>1</span>, <span class='no'>Paracou618.Taxonomy</span>, <span class='kw'>Normalize</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Registered S3 method overwritten by 'geiger':</span>
-#&gt; <span class='message'>  method            from</span>
-#&gt; <span class='message'>  unique.multiPhylo ape </span></div><div class='output co'>#&gt;     None 
+<span class='fu'>AllenH</span>(<span class='no'>Ps</span>, <span class='fl'>1</span>, <span class='no'>Paracou618.Taxonomy</span>, <span class='kw'>Normalize</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;     None 
 #&gt; 3.919941 </div><div class='input'>
 <span class='co'># Calculate it using PhyloEntropy: more powerful but much slower is the tree has many periods</span>
 <span class='fu'><a href='PhyloEntropy.html'>PhyloEntropy</a></span>(<span class='no'>Ps</span>, <span class='fl'>1</span>, <span class='no'>Paracou618.Taxonomy</span>, <span class='kw'>Normalize</span><span class='kw'>=</span><span class='fl'>TRUE</span>) <span class='kw'>-&gt;</span> <span class='no'>phyE</span>
