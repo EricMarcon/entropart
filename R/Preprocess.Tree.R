@@ -57,3 +57,21 @@ function(Tree)
   class(ppTree) <- "PPtree"
   return (ppTree)
 }
+
+
+# Internal function tips mimics geiger::tips (geiger is no longer maintained)
+# Much slower than the geiger::tips
+# Arguments are 
+# Tree : a phylo object
+# node : an internal node number of the phylo object
+# Returns a character vector : the names of the tips descending from the node
+tips <- function(Tree, node) 
+{
+  nTips <- length(Tree$tip.label)
+  if (node > nTips) {
+    # internal node numbers start after the last tip
+    return(ape::extract.clade(Tree, node)$tip.label)
+  } else {
+    return(Tree$tip.label[node])
+  }
+}
