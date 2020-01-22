@@ -1,3 +1,11 @@
+# entropart 1.6-4
+
+## Improvements
+
+- No longer imports geiger package (required by CRAN).
+
+
+
 # entropart 1.6-3
 
 ## New features

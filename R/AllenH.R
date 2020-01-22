@@ -54,10 +54,10 @@ function(Ps, q = 1, PhyloTree, Normalize = TRUE, Prune = FALSE, CheckArguments =
     }
   }
 
-    # Branch lengths
+  # Branch lengths
   Lengths <- Tree$edge.length
   # Get unnormalized probabilities p(b)
-  ltips <- sapply(Tree$edge[, 2], function(node) geiger::tips(Tree, node))
+  ltips <- sapply(Tree$edge[, 2], function(node) tips(Tree, node))
   Branches <- unlist(lapply(ltips, function(VectorOfTips) sum(Ps[VectorOfTips])))
   # Calculate Tbar but do not normalize l(b)
   Tbar <- sum(Lengths*Branches)
