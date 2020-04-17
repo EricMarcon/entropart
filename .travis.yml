@@ -20,7 +20,8 @@ jobs:
         - touch docs/.nojekyll
       deploy:
         provider: pages
-        cleanup: false
+        deploy.skip_cleanup: true
+        keep_history: true
         token: $GITHUB_TOKEN
         on:
           branch: master
