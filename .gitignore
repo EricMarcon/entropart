@@ -34,8 +34,5 @@ vignettes/articles/*_files/
 src/*.o
 src/*.so
 src/*.dll
-# Extras
-.#Extra
-.Rproj.user
 # pkgdown by Travis
 docs/
