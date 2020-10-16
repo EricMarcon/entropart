@@ -1,3 +1,11 @@
+# entropart 1.6-4.9000
+
+## Bug correction
+
+- argument `main` in `autoplot()` was ignored.
+
+
+
 # entropart 1.6-4
 
 ## Improvements

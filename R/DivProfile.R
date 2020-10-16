@@ -238,7 +238,7 @@ function (object, ..., main = NULL, xlab = "Order of Diversity", ylab = NULL, Wh
     }
     AlphaPlot <- AlphaPlot +
       ggplot2::geom_line() +
-      ggplot2::labs(main=main, x=xlab, y=ylab)
+      ggplot2::labs(title=main, x=xlab, y=ylab)
   }
   if (Which == "Alpha")
     return(AlphaPlot)
@@ -249,7 +249,7 @@ function (object, ..., main = NULL, xlab = "Order of Diversity", ylab = NULL, Wh
     theData <- reshape2::melt(cbind(data.frame(object$Order), object$CommunityAlphaDiversities), id.vars="object.Order", variable.name = "Community")
     CommunitiesPlot <- ggplot2::ggplot(theData, ggplot2::aes_(x=~object.Order, y=~value, colour=~Community)) +
       ggplot2::geom_line() +
-      ggplot2::labs(main=main, x=xlab, y=ylab)
+      ggplot2::labs(title=main, x=xlab, y=ylab)
   }
   if (Which == "Communities")
     return(CommunitiesPlot)
@@ -272,7 +272,7 @@ function (object, ..., main = NULL, xlab = "Order of Diversity", ylab = NULL, Wh
     }
     BetaPlot <- BetaPlot +
       ggplot2::geom_line() +
-      ggplot2::labs(main=main, x=xlab, y=ylab)
+      ggplot2::labs(title=main, x=xlab, y=ylab)
   }
   if (Which == "Beta")
     return(BetaPlot)
@@ -295,7 +295,7 @@ function (object, ..., main = NULL, xlab = "Order of Diversity", ylab = NULL, Wh
     }
     GammaPlot <- GammaPlot +
       ggplot2::geom_line() +
-      ggplot2::labs(main=main, x=xlab, y=ylab)
+      ggplot2::labs(title=main, x=xlab, y=ylab)
   }
   if (Which == "Gamma")
     return(GammaPlot)

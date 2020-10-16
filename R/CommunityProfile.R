@@ -128,7 +128,7 @@ autoplot.CommunityProfile <-
   }
   thePlot <- thePlot +
     ggplot2::geom_line() +
-    ggplot2::labs(main=main, x=xlab, y=ylab)
+    ggplot2::labs(title=main, x=xlab, y=ylab)
   
   return(thePlot)
 }
