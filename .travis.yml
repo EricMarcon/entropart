@@ -8,6 +8,8 @@ jobs:
       os: linux
       dist: xenial
       r: release
+      r_binary_packages:
+        - ragg
       r_packages:
         - covr
         - pkgdown
