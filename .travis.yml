@@ -8,16 +8,19 @@ jobs:
       os: linux
       dist: xenial
       r: release
-      install:
-        - Rscript -e 'remotes::install("r-lib/ragg@bc501c9951c5934afa55da6d36cdf03c2705d99f")'
       r_packages:
         - covr
-        - pkgdown
+#       - pkgdown  # Won't install because of ragg
+        - remotes  # delete when ragg is OK
       after_success:
         - Rscript -e 'covr::codecov(type ="all")'
         - mkdir docs
         - git fetch origin gh-pages:gh-pages                 # Comment out for release
         - git --work-tree=docs checkout gh-pages -- .        # Comment out for release
+        # Install pkgdown despite ragg issue
+        - Rscript -e 'remotes::install("r-lib/ragg@bc501c9951c5934afa55da6d36cdf03c2705d99f")'
+        - Rscript -e 'install.packages("pkgdown")'
+        # The end: delete when ragg is OK
         - travis_wait 60 Rscript -e 'pkgdown::build_site()'
         - touch docs/.nojekyll
       deploy:
