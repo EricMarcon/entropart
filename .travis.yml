@@ -8,8 +8,8 @@ jobs:
       os: linux
       dist: xenial
       r: release
-      r_binary_packages:
-        - ragg
+      install:
+        - Rscript -e 'remotes::install("r-lib/ragg@bc501c9951c5934afa55da6d36cdf03c2705d99f")'
       r_packages:
         - covr
         - pkgdown
