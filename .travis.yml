@@ -2,6 +2,12 @@ language: r
 warnings_are_errors: true
 cache: packages
 
+# Packages binaires à partir de RStudio
+before_install:
+  - echo "options(repos = c(CRAN = 'https://packagemanager.rstudio.com/all/__linux__/xenial/latest'))" >> ~/.Rprofile.site
+  - echo "options(HTTPUserAgent = paste0('R/', getRversion(), ' R (',
+       paste(getRversion(), R.version['platform'], R.version['arch'], R.version['os']),
+       ')'))" >> ~/.Rprofile.site
 jobs:
   include:
     - stage: Check package, code coverage and deploy pkgdown website
@@ -10,17 +16,12 @@ jobs:
       r: release
       r_packages:
         - covr
-#       - pkgdown  # Won't install because of ragg
-        - remotes  # delete when ragg is OK
+        - pkgdown
       after_success:
         - Rscript -e 'covr::codecov(type ="all")'
         - mkdir docs
         - git fetch origin gh-pages:gh-pages                 # Comment out for release
         - git --work-tree=docs checkout gh-pages -- .        # Comment out for release
-        # Install pkgdown despite ragg issue
-        - Rscript -e 'remotes::install("r-lib/ragg@bc501c9951c5934afa55da6d36cdf03c2705d99f")'
-        - Rscript -e 'install.packages("pkgdown")'
-        # The end: delete when ragg is OK
         - travis_wait 60 Rscript -e 'pkgdown::build_site()'
         - touch docs/.nojekyll
       deploy:
