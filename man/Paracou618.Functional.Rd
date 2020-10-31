@@ -5,7 +5,7 @@
   Functional tree of species of Paracou field station plots 6 and 18, two 1-ha plots inventoried by the Bridge project.
 }
 \description{
-  This dataset is from Paracou field station, French Guiana, managed by \href{http://www.cirad.fr}{Cirad}. Traits are detailed in Marcon and Herault (2014), the tree was built following Paine et al. (2011), based on \code{\link{Paracou618.dist}}.
+  This dataset is from Paracou field station, French Guiana, managed by \href{https://www.cirad.fr}{Cirad}. Traits are detailed in Marcon and Herault (2014), the tree was built following Paine et al. (2011), based on \code{\link{Paracou618.dist}}.
 }
 \usage{
 data(Paracou618)

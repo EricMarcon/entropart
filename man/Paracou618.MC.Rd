@@ -5,7 +5,7 @@
   Paracou field station plots 6 and 18, two 1-ha plots inventoried by the Bridge project.
 }
 \description{
-  This dataset is from Paracou field station, French Guiana, managed by \href{http://www.cirad.fr}{Cirad}.
+  This dataset is from Paracou field station, French Guiana, managed by \href{https://www.cirad.fr}{Cirad}.
 }
 \usage{
 data(Paracou618)
