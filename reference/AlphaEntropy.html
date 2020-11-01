@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -161,15 +161,15 @@
     <p>Calculates the reduced-bias total alpha entropy of order \(q\) of communities.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>AlphaEntropy</span>(<span class='no'>MC</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"Best"</span>, <span class='kw'>Tree</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>Normalize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>Z</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>AlphaEntropy</span><span class='op'>(</span><span class='va'>MC</span>, q <span class='op'>=</span> <span class='fl'>1</span>, Correction <span class='op'>=</span> <span class='st'>"Best"</span>, Tree <span class='op'>=</span> <span class='cn'>NULL</span>, Normalize <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  Z <span class='op'>=</span> <span class='cn'>NULL</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>MC</th>
-      <td><p>A <code>MetaCommunity</code> object.</p></td>
+      <td><p>A <code><a href='MetaCommunity.html'>MetaCommunity</a></code> object.</p></td>
     </tr>
     <tr>
       <th>q</th>
@@ -181,7 +181,7 @@
     </tr>
     <tr>
       <th>Tree</th>
-      <td><p>An object of class <code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code>, <code>phylo</code>, <code>phylog</code> or <code>PPtree</code>. The tree must be ultrametric.</p></td>
+      <td><p>An object of class <code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code>, <code>phylo</code>, <code>phylog</code> or <code><a href='PPtree.html'>PPtree</a></code>. The tree must be ultrametric.</p></td>
     </tr>
     <tr>
       <th>Normalize</th>
@@ -200,26 +200,30 @@
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>If <code>Tree</code> is not <code>NULL</code>, then phylogenetic entropy is calculated by <code>bcPhyloEntropy</code>; else, if <code>Z</code> is not <code>NULL</code>, then similarity-based entropy is calculated by <code>bcHqz</code>; else, neutral entropy is calculated by <code>bcTsallis</code>.</p>  
+    <p>If <code>Tree</code> is not <code>NULL</code>, then phylogenetic entropy is calculated by <code><a href='PhyloEntropy.html'>bcPhyloEntropy</a></code>; else, if <code>Z</code> is not <code>NULL</code>, then similarity-based entropy is calculated by <code><a href='Hqz.html'>bcHqz</a></code>; else, neutral entropy is calculated by <code><a href='Tsallis.html'>bcTsallis</a></code>.</p>  
 <p>The alpha entropy of each community is calculated and summed according to community weights.</p>  
-<p>The possible corrections are detailed in <code>Tsallis</code>.</p>
+<p>The possible corrections are detailed in <code><a href='Tsallis.html'>Tsallis</a></code>.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An <code>MCentropy</code> object containing entropy values of each community and of the metacommunity.</p>
+    <p>An <code><a href='MCentropy.html'>MCentropy</a></code> object containing entropy values of each community and of the metacommunity.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Marcon, E., Scotti, I., Herault, B., Rossi, V. and Lang, G. (2014). Generalization of the partitioning of Shannon diversity. <em>PLOS One</em> 9(3): e90289.</p>  
 <p>Marcon, E., Herault, B. (2015). Decomposing  Phylodiversity. <em>Methods in Ecology and Evolution</em> 6(3): 333-339.</p>
 <p>Marcon, E., Zhang, Z. and Herault, B. (2014). The decomposition of similarity-based diversity and its bias correction. <em>HAL</em> hal-00989454(version 3).</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Eric Marcon &lt;Eric.Marcon@ecofog.gf&gt;</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>bcTsallis</code></p></div>
+    <div class='dont-index'><p><code><a href='Tsallis.html'>bcTsallis</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Paracou618</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Paracou618</span><span class='op'>)</span>
 <span class='co'># Calculate Simpson alpha entropy</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'>AlphaEntropy</span>(<span class='no'>Paracou618.MC</span>, <span class='fl'>2</span>))</div><div class='output co'>#&gt; Neutral alpha entropy of order 2 of metaCommunity Paracou618.MC 
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'>AlphaEntropy</span><span class='op'>(</span><span class='va'>Paracou618.MC</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Neutral alpha entropy of order 2 of metaCommunity Paracou618.MC 
 #&gt; with correction: Best 
 #&gt; 
 #&gt; Entropy of communities: 
@@ -227,7 +231,8 @@
 #&gt; 0.9742146 0.9814741 
 #&gt; Average entropy of the communities: 
 #&gt; [1] 0.9773212</div><div class='input'><span class='co'># Compare without correction</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'>AlphaEntropy</span>(<span class='no'>Paracou618.MC</span>, <span class='fl'>2</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"None"</span>))</div><div class='output co'>#&gt; Neutral alpha entropy of order 2 of metaCommunity Paracou618.MC 
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'>AlphaEntropy</span><span class='op'>(</span><span class='va'>Paracou618.MC</span>, <span class='fl'>2</span>, Correction <span class='op'>=</span> <span class='st'>"None"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Neutral alpha entropy of order 2 of metaCommunity Paracou618.MC 
 #&gt; with correction: None 
 #&gt; 
 #&gt; Entropy of communities: 
@@ -235,7 +240,8 @@
 #&gt; 0.9727197 0.9794563 
 #&gt; Average entropy of the communities: 
 #&gt; [1] 0.9756026</div><div class='input'><span class='co'># Estimate phylogenetic Simpson alpha entropy</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'>AlphaEntropy</span>(<span class='no'>Paracou618.MC</span>, <span class='fl'>2</span>, <span class='kw'>Tree</span> <span class='kw'>=</span> <span class='no'>Paracou618.Taxonomy</span>) <span class='kw'>-&gt;</span> <span class='no'>e</span>)</div><div class='output co'>#&gt; HCDT alpha entropy of order 2 of metaCommunity Paracou618.MC with correction: 
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'>AlphaEntropy</span><span class='op'>(</span><span class='va'>Paracou618.MC</span>, <span class='fl'>2</span>, Tree <span class='op'>=</span> <span class='va'>Paracou618.Taxonomy</span><span class='op'>)</span> <span class='op'>-&gt;</span> <span class='va'>e</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; HCDT alpha entropy of order 2 of metaCommunity Paracou618.MC with correction: 
 #&gt; Best 
 #&gt; 
 #&gt; Phylogenetic or functional entropy was calculated according to the tree 
@@ -246,7 +252,8 @@
 #&gt;      P006      P018 
 #&gt; 0.9417393 0.9607787 
 #&gt; Average entropy of the communities: 
-#&gt; [1] 0.9498869</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>e</span>)</div><div class='img'><img src='AlphaEntropy-1.png' alt='' width='700' height='433' /></div></pre>
+#&gt; [1] 0.9498869</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>e</span><span class='op'>)</span>
+</div><div class='img'><img src='AlphaEntropy-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -262,7 +269,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

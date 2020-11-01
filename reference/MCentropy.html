@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -161,13 +161,13 @@
     <p>Methods for objects of type "<code>MCentropy</code>".</p>
     </div>
 
-    <pre class="usage"><span class='fu'>is.MCentropy</span>(<span class='no'>x</span>)
+    <pre class="usage"><span class='fu'>is.MCentropy</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 <span class='co'># S3 method for MCentropy</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 <span class='co'># S3 method for MCentropy</span>
-<span class='fu'>autoplot</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+<span class='fu'>autoplot</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 <span class='co'># S3 method for MCentropy</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -189,7 +189,7 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Meta-community entropy objects are lists containing:</p>
-<dt>MetaCommunity</dt><dd><p>The name of the <code>MetaCommunity</code> object containing inventory data.</p></dd>
+<dt>MetaCommunity</dt><dd><p>The name of the <code><a href='MetaCommunity.html'>MetaCommunity</a></code> object containing inventory data.</p></dd>
   <dt>Method</dt><dd><p>The method used to calculate entropy ("HCDT", "Similarity-based").</p></dd>
   <dt>Type</dt><dd><p>The type of entropy ("alpha", "beta" or "gamma").</p></dd>
   <dt>Order</dt><dd><p>The order of entropy \(q\).</p></dd>
@@ -205,6 +205,9 @@
 
   summary.MCentropy returns a summary of the object's value.
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Eric Marcon &lt;Eric.Marcon@ecofog.gf&gt;</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -221,7 +224,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

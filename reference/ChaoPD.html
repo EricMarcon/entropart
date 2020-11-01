@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -161,7 +161,7 @@
     <p>Calculates the phylogenetic diversity of order \(q\) of a probability vector.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ChaoPD</span>(<span class='no'>Ps</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>PhyloTree</span>, <span class='kw'>Normalize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Prune</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>ChaoPD</span><span class='op'>(</span><span class='va'>Ps</span>, q <span class='op'>=</span> <span class='fl'>1</span>, <span class='va'>PhyloTree</span>, Normalize <span class='op'>=</span> <span class='cn'>TRUE</span>, Prune <span class='op'>=</span> <span class='cn'>FALSE</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -176,7 +176,7 @@
     </tr>
     <tr>
       <th>PhyloTree</th>
-      <td><p>An object of class <code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code>, <code>phylo</code>, <code>phylog</code> or <code>PPtree</code>. The tree is not necessarily ultrametric.</p></td>
+      <td><p>An object of class <code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code>, <code>phylo</code>, <code>phylog</code> or <code><a href='PPtree.html'>PPtree</a></code>. The tree is not necessarily ultrametric.</p></td>
     </tr>
     <tr>
       <th>Normalize</th>
@@ -197,7 +197,7 @@
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The phylogenetic diversity is calculated following Chao <em>et al.</em> (2010). The result is identical to the total diversity calculated by <code>PhyloDiversity</code> but it is much faster. A single value is returned instead of a <code>PhyloDiversity</code> object, and no bias correction is available.</p>  
+    <p>The phylogenetic diversity is calculated following Chao <em>et al.</em> (2010). The result is identical to the total diversity calculated by <code><a href='PhyloDiversity.html'>PhyloDiversity</a></code> but it is much faster. A single value is returned instead of a <code><a href='PhyloDiversity.html'>PhyloDiversity</a></code> object, and no bias correction is available.</p>  
 <p>The <code>Normalize</code> arguments allows calculating either \(^{q}\bar{D}(T)\) (if <code>TRUE</code>) or \(^{q}PD(T)\) if <code>FALSE</code>.</p>
 <p>Diversity can be calculated for non ultrametric trees following Chao <em>et al.</em> (2010) even though the meaning of the result is not so clear (Leinster and Cobold, 2011).</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -207,24 +207,29 @@
 
     <p>Chao, A., Chiu, C.-H. and Jost, L. (2010). Phylogenetic diversity measures based on Hill numbers. <em>Philosophical Transactions of the Royal Society B</em> 365(1558): 3599-609.</p>  
 <p>Leinster, T. and Cobbold, C. (2011). Measuring diversity: the importance of species similarity. <em>Ecology</em> 93(3): 477-489.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Eric Marcon &lt;Eric.Marcon@ecofog.gf&gt;</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>PhyloDiversity</code>, <code>AllenH</code></p></div>
+    <div class='dont-index'><p><code><a href='PhyloDiversity.html'>PhyloDiversity</a></code>, <code><a href='AllenH.html'>AllenH</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest</span>
 <span class='co'>#      and their taxonomy)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Paracou618</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Paracou618</span><span class='op'>)</span>
 <span class='co'># Ps is the vector of probabilities</span>
-<span class='no'>Ps</span> <span class='kw'>&lt;-</span> <span class='no'>Paracou618.MC</span>$<span class='no'>Ps</span>
+<span class='va'>Ps</span> <span class='op'>&lt;-</span> <span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Ps</span>
 
 <span class='co'># Calculate the phylogenetic Simpson diversity of the plot</span>
-(<span class='fu'>ChaoPD</span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ps</span>, <span class='fl'>2</span>, <span class='no'>Paracou618.Taxonomy</span>, <span class='kw'>Normalize</span><span class='kw'>=</span><span class='fl'>TRUE</span>))</div><div class='output co'>#&gt;     None 
+<span class='op'>(</span><span class='fu'>ChaoPD</span><span class='op'>(</span><span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Ps</span>, <span class='fl'>2</span>, <span class='va'>Paracou618.Taxonomy</span>, Normalize<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     None 
 #&gt; 24.61698 </div><div class='input'>
 <span class='co'># Calculate it using PhyloDiversity</span>
 <span class='co'># (more powerful but much slower if the tree has many periods)</span>
-<span class='fu'>PhyloDiversity</span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ps</span>, <span class='fl'>2</span>, <span class='no'>Paracou618.Taxonomy</span>, <span class='kw'>Normalize</span><span class='kw'>=</span><span class='fl'>TRUE</span>) <span class='kw'>-&gt;</span> <span class='no'>phyD</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>phyD</span>)</div><div class='output co'>#&gt; alpha or gamma phylogenetic or functional diversity of order 2 of distribution 
+<span class='fu'><a href='PhyloDiversity.html'>PhyloDiversity</a></span><span class='op'>(</span><span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Ps</span>, <span class='fl'>2</span>, <span class='va'>Paracou618.Taxonomy</span>, Normalize<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>-&gt;</span> <span class='va'>phyD</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>phyD</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; alpha or gamma phylogenetic or functional diversity of order 2 of distribution 
 #&gt; -
 #&gt;  with correction: None
 #&gt; Phylogenetic or functional diversity was calculated according to the tree 
@@ -248,7 +253,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

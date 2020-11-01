@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -161,19 +161,19 @@
     <p>Methods for objects of type "<code>SimTest</code>", used to test a value against its distribution under a simulated null hypothesis.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>as.SimTest</span>(<span class='no'>RealValue</span>, <span class='no'>SimulatedValues</span>)
-<span class='fu'>is.SimTest</span>(<span class='no'>x</span>)
+    <pre class="usage"><span class='fu'>as.SimTest</span><span class='op'>(</span><span class='va'>RealValue</span>, <span class='va'>SimulatedValues</span><span class='op'>)</span>
+<span class='fu'>is.SimTest</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 <span class='co'># S3 method for SimTest</span>
-<span class='fu'>autoplot</span>(<span class='no'>object</span>, <span class='kw'>Quantiles</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.025</span>, <span class='fl'>0.975</span>), <span class='no'>...</span>,
-  <span class='kw'>colValue</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>colQuantiles</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>ltyQuantiles</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Simulated Values"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Density"</span>)
+<span class='fu'>autoplot</span><span class='op'>(</span><span class='va'>object</span>, Quantiles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.025</span>, <span class='fl'>0.975</span><span class='op'>)</span>, <span class='va'>...</span>,
+  colValue <span class='op'>=</span> <span class='st'>"red"</span>, colQuantiles <span class='op'>=</span> <span class='st'>"black"</span>, ltyQuantiles <span class='op'>=</span> <span class='fl'>2</span>,
+  main <span class='op'>=</span> <span class='cn'>NULL</span>, xlab <span class='op'>=</span> <span class='st'>"Simulated Values"</span>, ylab <span class='op'>=</span> <span class='st'>"Density"</span><span class='op'>)</span>
 <span class='co'># S3 method for SimTest</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>Quantiles</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.025</span>, <span class='fl'>0.975</span>), <span class='no'>...</span>,
-  <span class='kw'>colValue</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>lwdValue</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>ltyValue</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>colQuantiles</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>lwdQuantiles</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>ltyQuantiles</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Simulated Values"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Density"</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span>, Quantiles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.025</span>, <span class='fl'>0.975</span><span class='op'>)</span>, <span class='va'>...</span>,
+  colValue <span class='op'>=</span> <span class='st'>"red"</span>, lwdValue <span class='op'>=</span> <span class='fl'>2</span>, ltyValue <span class='op'>=</span> <span class='fl'>2</span>,
+  colQuantiles <span class='op'>=</span> <span class='st'>"black"</span>, lwdQuantiles <span class='op'>=</span> <span class='fl'>1</span>, ltyQuantiles <span class='op'>=</span> <span class='fl'>2</span>,
+  main <span class='op'>=</span> <span class='cn'>NULL</span>, xlab <span class='op'>=</span> <span class='st'>"Simulated Values"</span>, ylab <span class='op'>=</span> <span class='st'>"Density"</span><span class='op'>)</span>
 <span class='co'># S3 method for SimTest</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='kw'>Quantiles</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.025</span>, <span class='fl'>0.975</span>), <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>object</span>, Quantiles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.025</span>, <span class='fl'>0.975</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -254,22 +254,28 @@
   summary.SimTest returns a summary of the object, including the empirical quantile of the real value in the simulated distributon.
 
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Eric Marcon &lt;Eric.Marcon@ecofog.gf&gt;</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Set the value to test</span>
-<span class='no'>Real</span> <span class='kw'>&lt;-</span> <span class='fl'>0.8</span>
+<span class='va'>Real</span> <span class='op'>&lt;-</span> <span class='fl'>0.8</span>
 <span class='co'># Is it a realization of a Gaussian distribution?</span>
-<span class='no'>Sims</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>1000</span>)
+<span class='va'>Sims</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>1000</span><span class='op'>)</span>
 <span class='co'># Make a Simtest object</span>
-<span class='no'>st</span> <span class='kw'>&lt;-</span> <span class='fu'>as.SimTest</span>(<span class='no'>Real</span>, <span class='no'>Sims</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>st</span>)</div><div class='output co'>#&gt; Real value:  0.8 
+<span class='va'>st</span> <span class='op'>&lt;-</span> <span class='fu'>as.SimTest</span><span class='op'>(</span><span class='va'>Real</span>, <span class='va'>Sims</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>st</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Real value:  0.8 
 #&gt; Quantile in the simulated distribution:  0.782 
 #&gt; Quantiles of simulations:
 #&gt; 2.50% :  -2.140066 
 #&gt; 97.50% :  2.177345 
 #&gt; Mean simulated value:  0.006135806</div><div class='input'><span class='co'># Plot</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>st</span>)</div><div class='img'><img src='SimTest-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># ggplot</span>
-<span class='fu'>autoplot</span>(<span class='no'>st</span>)</div><div class='img'><img src='SimTest-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>st</span><span class='op'>)</span>
+</div><div class='img'><img src='SimTest-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># ggplot</span>
+<span class='fu'>autoplot</span><span class='op'>(</span><span class='va'>st</span><span class='op'>)</span>
+</div><div class='img'><img src='SimTest-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -286,7 +292,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

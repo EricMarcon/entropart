@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -161,22 +161,22 @@
     <p>Calculates the Shannon entropy of a probability vector.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>Shannon</span>(<span class='no'>NorP</span>, <span class='no'>...</span>)
-<span class='fu'>bcShannon</span>(<span class='no'>Ns</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"Best"</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+    <pre class="usage"><span class='fu'>Shannon</span><span class='op'>(</span><span class='va'>NorP</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='fu'>bcShannon</span><span class='op'>(</span><span class='va'>Ns</span>, Correction <span class='op'>=</span> <span class='st'>"Best"</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='co'># S3 method for ProbaVector</span>
-<span class='fu'>Shannon</span>(<span class='no'>NorP</span>, <span class='no'>...</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Ps</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>Shannon</span><span class='op'>(</span><span class='va'>NorP</span>, <span class='va'>...</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span>, Ps <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 <span class='co'># S3 method for AbdVector</span>
-<span class='fu'>Shannon</span>(<span class='no'>NorP</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"Best"</span>, <span class='kw'>Level</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>PCorrection</span> <span class='kw'>=</span> <span class='st'>"Chao2015"</span>, <span class='kw'>Unveiling</span> <span class='kw'>=</span> <span class='st'>"geom"</span>, <span class='kw'>RCorrection</span> <span class='kw'>=</span> <span class='st'>"Rarefy"</span>, <span class='no'>...</span>,
-  <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Ns</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>Shannon</span><span class='op'>(</span><span class='va'>NorP</span>, Correction <span class='op'>=</span> <span class='st'>"Best"</span>, Level <span class='op'>=</span> <span class='cn'>NULL</span>,
+  PCorrection <span class='op'>=</span> <span class='st'>"Chao2015"</span>, Unveiling <span class='op'>=</span> <span class='st'>"geom"</span>, RCorrection <span class='op'>=</span> <span class='st'>"Rarefy"</span>, <span class='va'>...</span>, 
+  CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span>, Ns <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 <span class='co'># S3 method for integer</span>
-<span class='fu'>Shannon</span>(<span class='no'>NorP</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"Best"</span>, <span class='kw'>Level</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>PCorrection</span> <span class='kw'>=</span> <span class='st'>"Chao2015"</span>, <span class='kw'>Unveiling</span> <span class='kw'>=</span> <span class='st'>"geom"</span>, <span class='kw'>RCorrection</span> <span class='kw'>=</span> <span class='st'>"Rarefy"</span>, <span class='no'>...</span>,
-  <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Ns</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>Shannon</span><span class='op'>(</span><span class='va'>NorP</span>, Correction <span class='op'>=</span> <span class='st'>"Best"</span>, Level <span class='op'>=</span> <span class='cn'>NULL</span>,
+  PCorrection <span class='op'>=</span> <span class='st'>"Chao2015"</span>, Unveiling <span class='op'>=</span> <span class='st'>"geom"</span>, RCorrection <span class='op'>=</span> <span class='st'>"Rarefy"</span>, <span class='va'>...</span>, 
+  CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span>, Ns <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 <span class='co'># S3 method for numeric</span>
-<span class='fu'>Shannon</span>(<span class='no'>NorP</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"Best"</span>, <span class='kw'>Level</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>PCorrection</span> <span class='kw'>=</span> <span class='st'>"Chao2015"</span>, <span class='kw'>Unveiling</span> <span class='kw'>=</span> <span class='st'>"geom"</span>, <span class='kw'>RCorrection</span> <span class='kw'>=</span> <span class='st'>"Rarefy"</span>, <span class='no'>...</span>,
-  <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Ps</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>Ns</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>Shannon</span><span class='op'>(</span><span class='va'>NorP</span>, Correction <span class='op'>=</span> <span class='st'>"Best"</span>, Level <span class='op'>=</span> <span class='cn'>NULL</span>, 
+  PCorrection <span class='op'>=</span> <span class='st'>"Chao2015"</span>, Unveiling <span class='op'>=</span> <span class='st'>"geom"</span>, RCorrection <span class='op'>=</span> <span class='st'>"Rarefy"</span>, <span class='va'>...</span>, 
+  CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span>, Ps <span class='op'>=</span> <span class='cn'>NULL</span>, Ns <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -191,7 +191,7 @@
     </tr>
     <tr>
       <th>NorP</th>
-      <td><p>A numeric vector, an integer vector, an abundance vector (<code>AbdVector</code>) or a probability vector (<code>ProbaVector</code>). Contains either abundances or probabilities.</p></td>
+      <td><p>A numeric vector, an integer vector, an abundance vector (<code><a href='SpeciesDistribution.html'>AbdVector</a></code>) or a probability vector (<code><a href='SpeciesDistribution.html'>ProbaVector</a></code>). Contains either abundances or probabilities.</p></td>
     </tr>
     <tr>
       <th>Correction</th>
@@ -199,19 +199,19 @@
     </tr>
     <tr>
       <th>Level</th>
-      <td><p>The level of interpolation or extrapolation. It may be an a chosen sample size (an integer) or a sample coverage (a number between 0 and 1). Entropy extrapolation require its asymptotic estimation depending on the choice of <code>Correction</code>. Entropy interpolation relies on the estimation of Abundance Frequence Counts: then, <code>Correction</code> is passed to <code>AbdFreqCount</code> as its <code>Estimator</code> argument.</p></td>
+      <td><p>The level of interpolation or extrapolation. It may be an a chosen sample size (an integer) or a sample coverage (a number between 0 and 1). Entropy extrapolation require its asymptotic estimation depending on the choice of <code>Correction</code>. Entropy interpolation relies on the estimation of Abundance Frequence Counts: then, <code>Correction</code> is passed to <code><a href='AbdFreqCount.html'>AbdFreqCount</a></code> as its <code>Estimator</code> argument.</p></td>
     </tr>
     <tr>
       <th>PCorrection</th>
-      <td><p>A string containing one of the possible corrections to estimate a probability distribution in <code>as.ProbaVector</code>: <code>"Chao2015"</code> is the default value. Used only for extrapolation.</p></td>
+      <td><p>A string containing one of the possible corrections to estimate a probability distribution in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"Chao2015"</code> is the default value. Used only for extrapolation.</p></td>
     </tr>
     <tr>
       <th>Unveiling</th>
-      <td><p>A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in <code>as.ProbaVector</code>: <code>"geom"</code> (the unobserved species distribution is geometric) is the default value. If <code>"None"</code>, the asymptotic distribution is not unveiled and only the asymptotic estimator is used. Used only for extrapolation.</p></td>
+      <td><p>A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"geom"</code> (the unobserved species distribution is geometric) is the default value. If <code>"None"</code>, the asymptotic distribution is not unveiled and only the asymptotic estimator is used. Used only for extrapolation.</p></td>
     </tr>
     <tr>
       <th>RCorrection</th>
-      <td><p>A string containing a correction recognized by <code>Richness</code> to evaluate the total number of species in <code>as.ProbaVector</code>. <code>"Rarefy"</code> is the default value to estimate the number of species such that the entropy of the asymptotic distribution rarefied to the observed sample size equals the observed entropy of the data. Used only for extrapolation.</p></td>
+      <td><p>A string containing a correction recognized by <code><a href='Richness.html'>Richness</a></code> to evaluate the total number of species in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>. <code>"Rarefy"</code> is the default value to estimate the number of species such that the entropy of the asymptotic distribution rarefied to the observed sample size equals the observed entropy of the data. Used only for extrapolation.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -225,10 +225,10 @@
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Bias correction requires the number of individuals to estimate sample <code>Coverage</code>.</p>  
+    <p>Bias correction requires the number of individuals to estimate sample <code><a href='Coverage.html'>Coverage</a></code>.</p>  
 <p>Correction techniques are from Miller (1955), Chao and Shen (2003), Grassberger (1988), Grassberger (2003), Schurmann (2003), Holste <em>et al.</em> (1998), Bonachela <em>et al.</em> (2008), Zhang (2012), Chao, Wang  and Jost (2013). 
   More estimators can be found in the <code>entropy</code> package.</p>  
-<p>Using <code>MetaCommunity</code> mutual information, Chao, Wang and Jost (2013) calculate reduced-bias Shannon beta entropy (see the last example below) with better results than the Chao and Shen estimator, but community weights cannot be arbitrary: they must be proportional to the number of individuals.</p>
+<p>Using <code><a href='MetaCommunity.html'>MetaCommunity</a></code> mutual information, Chao, Wang and Jost (2013) calculate reduced-bias Shannon beta entropy (see the last example below) with better results than the Chao and Shen estimator, but community weights cannot be arbitrary: they must be proportional to the number of individuals.</p>
 <p>The functions are designed to be used as simply as possible. <code>Shannon</code> is a generic method. 
   If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function <code>bcShannon</code> is called.</p>  
 <p>Entropy can be estimated at a specified level of interpolation or extrapolation, either a chosen sample size or sample coverage (Chao et al., 2014), rather than its asymptotic value.
@@ -250,28 +250,35 @@
 <p>Schurmann, T. (2004). Bias analysis in entropy estimation. <em>Journal of Physics A: Mathematical and Theoretical</em> 37(27): L295-L301.</p>  
 <p>Tsallis, C. (1988). Possible generalization of Boltzmann-Gibbs statistics. <em>Journal of Statistical Physics</em> 52(1): 479-487.</p>  
 <p>Zhang, Z. (2012). Entropy Estimation in Turing's Perspective. <em>Neural Computation</em> 24(5): 1368-1389.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Eric Marcon &lt;Eric.Marcon@ecofog.gf&gt;</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>bcShannon</code>, <code>Tsallis</code></p></div>
+    <div class='dont-index'><p><code>bcShannon</code>, <code><a href='Tsallis.html'>Tsallis</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Paracou618</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Paracou618</span><span class='op'>)</span>
 <span class='co'># Ns is the total number of trees per species</span>
-<span class='no'>Ns</span> <span class='kw'>&lt;-</span> <span class='fu'>as.AbdVector</span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ns</span>)
+<span class='va'>Ns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='SpeciesDistribution.html'>as.AbdVector</a></span><span class='op'>(</span><span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Ns</span><span class='op'>)</span>
 <span class='co'># Species probabilities</span>
-<span class='no'>Ps</span> <span class='kw'>&lt;-</span> <span class='fu'>as.ProbaVector</span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ns</span>)
+<span class='va'>Ps</span> <span class='op'>&lt;-</span> <span class='fu'><a href='SpeciesDistribution.html'>as.ProbaVector</a></span><span class='op'>(</span><span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Ns</span><span class='op'>)</span>
 <span class='co'># Whittaker plot</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>Ns</span>)</div><div class='img'><img src='Shannon-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>Ns</span><span class='op'>)</span>
+</div><div class='img'><img src='Shannon-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Calculate Shannon entropy</span>
-<span class='fu'>Shannon</span>(<span class='no'>Ps</span>)</div><div class='output co'>#&gt;     None 
+<span class='fu'>Shannon</span><span class='op'>(</span><span class='va'>Ps</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     None 
 #&gt; 4.736023 </div><div class='input'>
 <span class='co'># Calculate the best estimator of Shannon entropy</span>
-<span class='fu'>Shannon</span>(<span class='no'>Ns</span>)</div><div class='output co'>#&gt;  UnveilJ 
+<span class='fu'>Shannon</span><span class='op'>(</span><span class='va'>Ns</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  UnveilJ 
 #&gt; 4.928035 </div><div class='input'>
 <span class='co'># Use metacommunity data to calculate reduced-bias Shannon beta as mutual information</span>
-(<span class='fu'>bcShannon</span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ns</span>) + <span class='fu'>bcShannon</span>(<span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colSums</a></span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Nsi</span>))
-- <span class='fu'>bcShannon</span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Nsi</span>))</div><div class='output co'>#&gt;   UnveilJ 
+<span class='op'>(</span><span class='fu'>bcShannon</span><span class='op'>(</span><span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Ns</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>bcShannon</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colSums</a></span><span class='op'>(</span><span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Nsi</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>-</span> <span class='fu'>bcShannon</span><span class='op'>(</span><span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Nsi</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   UnveilJ 
 #&gt; 0.3439827 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -288,7 +295,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

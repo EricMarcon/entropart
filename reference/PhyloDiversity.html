@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -161,24 +161,24 @@
     <p>Calculates the phylogenetic diversity of order \(q\) of a probability vector.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>PhyloDiversity</span>(<span class='no'>NorP</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>Tree</span>, <span class='kw'>Normalize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-<span class='fu'>bcPhyloDiversity</span>(<span class='no'>Ns</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>Tree</span>, <span class='kw'>Normalize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"Best"</span>,
-  <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+    <pre class="usage"><span class='fu'>PhyloDiversity</span><span class='op'>(</span><span class='va'>NorP</span>, q <span class='op'>=</span> <span class='fl'>1</span>, <span class='va'>Tree</span>, Normalize <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='fu'>bcPhyloDiversity</span><span class='op'>(</span><span class='va'>Ns</span>, q <span class='op'>=</span> <span class='fl'>1</span>, <span class='va'>Tree</span>, Normalize <span class='op'>=</span> <span class='cn'>TRUE</span>, Correction <span class='op'>=</span> <span class='st'>"Best"</span>,
+  CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='co'># S3 method for ProbaVector</span>
-<span class='fu'>PhyloDiversity</span>(<span class='no'>NorP</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>Tree</span>, <span class='kw'>Normalize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Ps</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>PhyloDiversity</span><span class='op'>(</span><span class='va'>NorP</span>, q <span class='op'>=</span> <span class='fl'>1</span>, <span class='va'>Tree</span>, Normalize <span class='op'>=</span> <span class='cn'>TRUE</span>,  
+  <span class='va'>...</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span>, Ps <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 <span class='co'># S3 method for AbdVector</span>
-<span class='fu'>PhyloDiversity</span>(<span class='no'>NorP</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>Tree</span>, <span class='kw'>Normalize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"Best"</span>, <span class='no'>...</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Ns</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>PhyloDiversity</span><span class='op'>(</span><span class='va'>NorP</span>, q <span class='op'>=</span> <span class='fl'>1</span>, <span class='va'>Tree</span>, Normalize <span class='op'>=</span> <span class='cn'>TRUE</span>, 
+  Correction <span class='op'>=</span> <span class='st'>"Best"</span>, <span class='va'>...</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span>, Ns <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 <span class='co'># S3 method for integer</span>
-<span class='fu'>PhyloDiversity</span>(<span class='no'>NorP</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>Tree</span>, <span class='kw'>Normalize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"Best"</span>, <span class='no'>...</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Ns</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>PhyloDiversity</span><span class='op'>(</span><span class='va'>NorP</span>, q <span class='op'>=</span> <span class='fl'>1</span>, <span class='va'>Tree</span>, Normalize <span class='op'>=</span> <span class='cn'>TRUE</span>, 
+  Correction <span class='op'>=</span> <span class='st'>"Best"</span>, <span class='va'>...</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span>, Ns <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 <span class='co'># S3 method for numeric</span>
-<span class='fu'>PhyloDiversity</span>(<span class='no'>NorP</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>Tree</span>, <span class='kw'>Normalize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"Best"</span>, <span class='no'>...</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Ps</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>Ns</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-<span class='fu'>is.PhyloDiversity</span>(<span class='no'>x</span>)
+<span class='fu'>PhyloDiversity</span><span class='op'>(</span><span class='va'>NorP</span>, q <span class='op'>=</span> <span class='fl'>1</span>, <span class='va'>Tree</span>, Normalize <span class='op'>=</span> <span class='cn'>TRUE</span>, 
+  Correction <span class='op'>=</span> <span class='st'>"Best"</span>, <span class='va'>...</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span>, Ps <span class='op'>=</span> <span class='cn'>NULL</span>, Ns <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span> 
+<span class='fu'>is.PhyloDiversity</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 <span class='co'># S3 method for PhyloDiversity</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -193,7 +193,7 @@
     </tr>
     <tr>
       <th>NorP</th>
-      <td><p>A numeric vector, an integer vector, an abundance vector (<code>AbdVector</code>) or a probability vector (<code>ProbaVector</code>). Contains either abundances or probabilities.</p></td>
+      <td><p>A numeric vector, an integer vector, an abundance vector (<code><a href='SpeciesDistribution.html'>AbdVector</a></code>) or a probability vector (<code><a href='SpeciesDistribution.html'>ProbaVector</a></code>). Contains either abundances or probabilities.</p></td>
     </tr>
     <tr>
       <th>q</th>
@@ -201,7 +201,7 @@
     </tr>
     <tr>
       <th>Tree</th>
-      <td><p>An object of class <code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code>, <code>phylo</code>, <code>phylog</code> or <code>PPtree</code>. The tree must be ultrametric.</p></td>
+      <td><p>An object of class <code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code>, <code>phylo</code>, <code>phylog</code> or <code><a href='PPtree.html'>PPtree</a></code>. The tree must be ultrametric.</p></td>
     </tr>
     <tr>
       <th>Normalize</th>
@@ -234,7 +234,7 @@
 
     <p>The phylogenetic entropy is its generalization of HCDT entropy to unequal species distances (Pavoine et al., 2009).</p>  
 <p>Diversity is obtained by transforming generalized entropy.</p>  
-<p>Bias correction requires the number of individuals to estimate sample <code>Coverage</code>. Use <code>bcPhyloDiversity</code> and choose the <code>Correction</code>.</p>
+<p>Bias correction requires the number of individuals to estimate sample <code><a href='Coverage.html'>Coverage</a></code>. Use <code>bcPhyloDiversity</code> and choose the <code>Correction</code>.</p>
 <p>The functions are designed to be used as simply as possible. <code>PhyloDiversity</code> is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function <code>bcPhyloDiversity</code> is called. Explicit calls to <code>bcPhyloDiversity</code> (with bias correction) or to <code>PhyloDiversity.ProbaVector</code> (without correction) are possible to avoid ambiguity. The <code>.integer</code> and <code>.numeric</code> methods accept <code>Ps</code> or <code>Ns</code> arguments instead of <code>NorP</code> for backward compatibility.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
@@ -255,25 +255,29 @@
   
   summary.PhyloDiversity returns a summary of the object's value.
 
-  PhyloDiversity objects can be plotted by plot.PhyloValue because PhyloDiversity objects are also of class PhyloValue.
+  PhyloDiversity objects can be plotted by <a href='PhyloValue.html'>plot.PhyloValue</a> because PhyloDiversity objects are also of class PhyloValue.
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Chao, A., Chiu, C.-H. and Jost, L. (2010). Phylogenetic diversity measures based on Hill numbers. <em>Philosophical Transactions of the Royal Society B</em> 365(1558): 3599-609.</p>  
 <p>Marcon, E., Herault, B. (2015). Decomposing  Phylodiversity. <em>Methods in Ecology and Evolution</em> 6(3): 333-339.</p>  
 <p>Pavoine, S., Love, M. S. and Bonsall, M. B. (2009). Hierarchical partitioning of evolutionary and ecological patterns in the organization of phylogenetically-structured species assemblages: Application to rockfish (genus: Sebastes) in the Southern California Bight. <em>Ecology Letters</em> 12(9): 898-908.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Eric Marcon &lt;Eric.Marcon@ecofog.gf&gt;</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>PhyloEntropy</code>, <code>Diversity</code></p></div>
+    <div class='dont-index'><p><code><a href='PhyloEntropy.html'>PhyloEntropy</a></code>, <code><a href='Diversity.html'>Diversity</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest</span>
 <span class='co'>#      and their taxonomy)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Paracou618</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Paracou618</span><span class='op'>)</span>
 <span class='co'># Ps is the vector of probabilities</span>
-<span class='no'>Ps</span> <span class='kw'>&lt;-</span> <span class='fu'>as.ProbaVector</span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ps</span>)
+<span class='va'>Ps</span> <span class='op'>&lt;-</span> <span class='fu'><a href='SpeciesDistribution.html'>as.ProbaVector</a></span><span class='op'>(</span><span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Ps</span><span class='op'>)</span>
 <span class='co'># Calculate the phylogenetic Shannon diversity of the plot</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'>PhyloDiversity</span>(<span class='no'>Ps</span>, <span class='fl'>1</span>, <span class='no'>Paracou618.Taxonomy</span>) <span class='kw'>-&gt;</span> <span class='no'>d</span>)</div><div class='output co'>#&gt; alpha or gamma phylogenetic or functional diversity of order 1 of distribution 
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'>PhyloDiversity</span><span class='op'>(</span><span class='va'>Ps</span>, <span class='fl'>1</span>, <span class='va'>Paracou618.Taxonomy</span><span class='op'>)</span> <span class='op'>-&gt;</span> <span class='va'>d</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; alpha or gamma phylogenetic or functional diversity of order 1 of distribution 
 #&gt; -
 #&gt;  with correction: None
 #&gt; Phylogenetic or functional diversity was calculated according to the tree 
@@ -281,11 +285,13 @@
 #&gt; 
 #&gt; Diversity is normalized
 #&gt; 
-#&gt; Diversity equals: 50.39747</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>d</span>)</div><div class='img'><img src='PhyloDiversity-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; Diversity equals: 50.39747</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>)</span>
+</div><div class='img'><img src='PhyloDiversity-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Ns is the vector of abundances of the metacommunity</span>
-<span class='no'>Ns</span> <span class='kw'>&lt;-</span> <span class='fu'>as.AbdVector</span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ns</span>)
+<span class='va'>Ns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='SpeciesDistribution.html'>as.AbdVector</a></span><span class='op'>(</span><span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Ns</span><span class='op'>)</span>
 <span class='co'># Calculate the phylogenetic Shannon diversity of the plot</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'>bcPhyloDiversity</span>(<span class='no'>Ns</span>, <span class='fl'>1</span>, <span class='no'>Paracou618.Taxonomy</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"Best"</span>) <span class='kw'>-&gt;</span> <span class='no'>d</span>)</div><div class='output co'>#&gt; alpha or gamma phylogenetic or functional diversity of order 1 of distribution 
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'>bcPhyloDiversity</span><span class='op'>(</span><span class='va'>Ns</span>, <span class='fl'>1</span>, <span class='va'>Paracou618.Taxonomy</span>, Correction <span class='op'>=</span> <span class='st'>"Best"</span><span class='op'>)</span> <span class='op'>-&gt;</span> <span class='va'>d</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; alpha or gamma phylogenetic or functional diversity of order 1 of distribution 
 #&gt; -
 #&gt;  with correction: Best
 #&gt; Phylogenetic or functional diversity was calculated according to the tree 
@@ -293,7 +299,8 @@
 #&gt; 
 #&gt; Diversity is normalized
 #&gt; 
-#&gt; Diversity equals: 55.64502</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>d</span>)</div><div class='img'><img src='PhyloDiversity-2.png' alt='' width='700' height='433' /></div></pre>
+#&gt; Diversity equals: 55.64502</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>)</span>
+</div><div class='img'><img src='PhyloDiversity-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -309,7 +316,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

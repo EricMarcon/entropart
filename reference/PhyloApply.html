@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -161,15 +161,15 @@
     <p>Cuts the tree into slices separated by nodes, applies the function to each slice and returns the weighted (by slice lengths) sum of the results.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>PhyloApply</span>(<span class='no'>Tree</span>, <span class='no'>FUN</span>, <span class='no'>NorP</span>, <span class='kw'>Normalize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>dfArgs</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-           <span class='no'>...</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>PhyloApply</span><span class='op'>(</span><span class='va'>Tree</span>, <span class='va'>FUN</span>, <span class='va'>NorP</span>, Normalize <span class='op'>=</span> <span class='cn'>TRUE</span>, dfArgs <span class='op'>=</span> <span class='cn'>NULL</span>,
+           <span class='va'>...</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>Tree</th>
-      <td><p>An object of class <code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code>, <code>phylo</code>, <code>phylog</code> or <code>PPtree</code>. The tree must be ultrametric.</p></td>
+      <td><p>An object of class <code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code>, <code>phylo</code>, <code>phylog</code> or <code><a href='PPtree.html'>PPtree</a></code>. The tree must be ultrametric.</p></td>
     </tr>
     <tr>
       <th>FUN</th>
@@ -200,9 +200,9 @@
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This funtion is generally not used directly. It is a tool to calculate <code>PhyloEntropy</code> and <code>PhyloDiversity</code>.</p>  
+    <p>This funtion is generally not used directly. It is a tool to calculate <code><a href='PhyloEntropy.html'>PhyloEntropy</a></code> and <code><a href='PhyloDiversity.html'>PhyloDiversity</a></code>.</p>  
 <p>Intervals (slices) separate two cuts (nodes) in a tree: no node is found at heights contained in an interval.</p>  
-<p>Objects of class <strong>PPtree</strong> are returned by <code>Preprocess.Tree</code>.</p>  
+<p>Objects of class <strong>PPtree</strong> are returned by <code><a href='Preprocess.Tree.html'>Preprocess.Tree</a></code>.</p>  
 <p>... allow passing arguments to the function but they can't change along the tree. If necessary, <code>dfArgs</code> allow passing a different value for each slice of the tree.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
@@ -218,18 +218,23 @@
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Marcon, E., Herault, B. (2015). Decomposing  Phylodiversity. <em>Methods in Ecology and Evolution</em> 6(3): 333-339.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Eric Marcon &lt;Eric.Marcon@ecofog.gf&gt;</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>Preprocess.Tree</code></p></div>
+    <div class='dont-index'><p><code><a href='Preprocess.Tree.html'>Preprocess.Tree</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest</span>
 <span class='co'>#      and their taxonomy)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Paracou618</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Paracou618</span><span class='op'>)</span>
 <span class='co'># Plot the taxonomy</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>Paracou618.Taxonomy</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"fan"</span>, <span class='kw'>show.tip.label</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='img'><img src='PhyloApply-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Calculate the mean number of trees (individuals) per species </span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>Paracou618.Taxonomy</span>, type<span class='op'>=</span><span class='st'>"fan"</span>, show.tip.label<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='img'><img src='PhyloApply-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Calculate the mean number of trees (individuals) per species </span>
 <span class='co'># (Cuts are 1=species, 2=genus, 3=family)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'>PhyloApply</span>(<span class='no'>Paracou618.Taxonomy</span>, <span class='no'>mean</span>, <span class='no'>Paracou618.MC</span>$<span class='no'>Ns</span>, <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; mean applied to Paracou618.MC$Ns along the tree: Paracou618.Taxonomy
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'>PhyloApply</span><span class='op'>(</span><span class='va'>Paracou618.Taxonomy</span>, <span class='va'>mean</span>, <span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Ns</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; mean applied to Paracou618.MC$Ns along the tree: Paracou618.Taxonomy
 #&gt; 
 #&gt; Results are normalized
 #&gt; 
@@ -253,7 +258,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

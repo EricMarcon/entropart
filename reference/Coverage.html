@@ -87,7 +87,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -163,8 +163,8 @@
   <code>"Coverage2Size"</code> estimates the sample size corresponding to the chosen sample coverage.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>Coverage</span>(<span class='no'>Ns</span>, <span class='kw'>Estimator</span> <span class='kw'>=</span> <span class='st'>"Best"</span>, <span class='kw'>Level</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'>Coverage2Size</span>(<span class='no'>Ns</span>, <span class='no'>SampleCoverage</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>Coverage</span><span class='op'>(</span><span class='va'>Ns</span>, Estimator <span class='op'>=</span> <span class='st'>"Best"</span>, Level <span class='op'>=</span> <span class='cn'>NULL</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'>Coverage2Size</span><span class='op'>(</span><span class='va'>Ns</span>, <span class='va'>SampleCoverage</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -207,14 +207,18 @@
 <p>Chao, A., Gotelli, N. J., Hsieh, T. C., Sander, E. L., Ma, K. H., Colwell, R. K., Ellison, A. M (2014). Rarefaction and extrapolation with Hill numbers: A framework for sampling and estimation in species diversity studies.  <em>Ecological Monographs</em>, 84(1): 45-67.</p>  
 <p>Good, I. J. (1953). On the Population Frequency of Species and the Estimation of Population Parameters. <em>Biometrika</em> 40(3/4): 237-264.</p>  
 <p>Zhang, Z. and Huang, H. (2007). Turing's formula revisited. <em>Journal of Quantitative Linguistics</em> 14(2-3): 222-241.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Eric Marcon &lt;Eric.Marcon@ecofog.gf&gt;</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Paracou618</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Paracou618</span><span class='op'>)</span>
 <span class='co'># Ns is the vector of abundances of the metacommunity</span>
-<span class='no'>Ns</span> <span class='kw'>&lt;-</span> <span class='no'>Paracou618.MC</span>$<span class='no'>Ns</span>
+<span class='va'>Ns</span> <span class='op'>&lt;-</span> <span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Ns</span>
 <span class='co'># Calculate the sample coverage of the metacommunity</span>
-<span class='fu'>Coverage</span>(<span class='no'>Ns</span>)    <span class='co'># Stored in Paracou618.SampleCoverage</span></div><div class='output co'>#&gt; ZhangHuang 
+<span class='fu'>Coverage</span><span class='op'>(</span><span class='va'>Ns</span><span class='op'>)</span>    <span class='co'># Stored in Paracou618.SampleCoverage</span>
+</div><div class='output co'>#&gt; ZhangHuang 
 #&gt;  0.9226675 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -231,7 +235,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -161,15 +161,15 @@
     <p>Resamples a community by Monte-Carlo simulations of a multinomial distribution and returns a vector of entropy values to calculate confidence intervals.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>EntropyCI</span>(<span class='no'>FUN</span>, <span class='kw'>Simulations</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='no'>Ns</span>, <span class='kw'>BootstrapMethod</span> <span class='kw'>=</span> <span class='st'>"Chao2015"</span>,
-    <span class='kw'>ShowProgressBar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>EntropyCI</span><span class='op'>(</span><span class='va'>FUN</span>, Simulations <span class='op'>=</span> <span class='fl'>100</span>, <span class='va'>Ns</span>, BootstrapMethod <span class='op'>=</span> <span class='st'>"Chao2015"</span>, 
+    ShowProgressBar <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>FUN</th>
-      <td><p>The entropy function to be applied to each simulated community. May be any entropy function accepting a vector of species abundances, such as <code>bcTsallis</code>, <code>bcShannon</code>, <code>bcSimpson</code> or <code>bcPhyloEntropy</code>.</p></td>
+      <td><p>The entropy function to be applied to each simulated community. May be any entropy function accepting a vector of species abundances, such as <code><a href='Tsallis.html'>bcTsallis</a></code>, <code><a href='Shannon.html'>bcShannon</a></code>, <code><a href='Simpson.html'>bcSimpson</a></code> or <code><a href='PhyloEntropy.html'>bcPhyloEntropy</a></code>.</p></td>
     </tr>
     <tr>
       <th>Simulations</th>
@@ -181,7 +181,7 @@
     </tr>
     <tr>
       <th>BootstrapMethod</th>
-      <td><p>The method used to obtain the probabilities to generate bootstrapped communities from observed abundances. See <code>rCommunity</code>.</p></td>
+      <td><p>The method used to obtain the probabilities to generate bootstrapped communities from observed abundances. See <code><a href='rCommunity.html'>rCommunity</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -207,20 +207,31 @@
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Marcon, E., Herault, B., Baraloto, C. and Lang, G. (2012). The Decomposition of Shannon's Entropy and a Confidence Interval for Beta Diversity. <em>Oikos</em> 121(4): 516-522.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Eric Marcon &lt;Eric.Marcon@ecofog.gf&gt;</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Paracou618</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Paracou618</span><span class='op'>)</span>
 <span class='co'># Abundance (all estimators will include bias corrrection)</span>
-<span class='no'>Ns</span> <span class='kw'>&lt;-</span> <span class='fu'>as.AbdVector</span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ns</span>)
-<span class='no'>q</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>
+<span class='va'>Ns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='SpeciesDistribution.html'>as.AbdVector</a></span><span class='op'>(</span><span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Ns</span><span class='op'>)</span>
+<span class='va'>q</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
 <span class='co'># Estimate entropy and transform it into diversity</span>
-<span class='no'>RealEst</span> <span class='kw'>&lt;-</span> <span class='fu'>expq</span>(<span class='fu'>Tsallis</span>(<span class='no'>Ns</span>, <span class='no'>q</span>), <span class='no'>q</span>)
+<span class='va'>RealEst</span> <span class='op'>&lt;-</span> <span class='fu'><a href='expq.html'>expq</a></span><span class='op'>(</span><span class='fu'><a href='Tsallis.html'>Tsallis</a></span><span class='op'>(</span><span class='va'>Ns</span>, <span class='va'>q</span><span class='op'>)</span>, <span class='va'>q</span><span class='op'>)</span>
 <span class='co'># Transform the distribution of Tsallis entropy into diversity</span>
-<span class='no'>SimulatedDiversity</span> <span class='kw'>&lt;-</span> <span class='fu'>expq</span>(<span class='fu'>EntropyCI</span>(<span class='no'>Tsallis</span>, <span class='kw'>Simulations</span><span class='kw'>=</span><span class='fl'>50</span>, <span class='no'>Ns</span>, <span class='kw'>q</span><span class='kw'>=</span><span class='no'>q</span>), <span class='no'>q</span>)</div><div class='output co'>#&gt; </div><div class='input'><span class='co'># Figure</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span>(<span class='no'>SimulatedDiversity</span>), <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"black"</span>, <span class='kw'>lwd</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>""</span>, <span class='kw'>xlab</span> <span class='kw'>=</span><span class='st'>"Diversity"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span>(<span class='kw'>v</span><span class='kw'>=</span><span class='no'>RealEst</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"red"</span>, <span class='kw'>lwd</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>lty</span><span class='kw'>=</span><span class='fl'>2</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span>(<span class='kw'>v</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span>(<span class='no'>SimulatedDiversity</span>, <span class='kw'>probs</span> <span class='kw'>=</span> <span class='fl'>0.025</span>), <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"black"</span>, <span class='kw'>lwd</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>lty</span><span class='kw'>=</span><span class='fl'>3</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span>(<span class='kw'>v</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span>(<span class='no'>SimulatedDiversity</span>, <span class='kw'>probs</span> <span class='kw'>=</span> <span class='fl'>0.975</span>), <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"black"</span>, <span class='kw'>lwd</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>lty</span><span class='kw'>=</span><span class='fl'>3</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/legend.html'>legend</a></span>(<span class='st'>"topright"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Real value"</span>, <span class='st'>"Confidence interval"</span>), <span class='kw'>lty</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>3</span>),
-<span class='kw'>col</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"red"</span>, <span class='st'>"black"</span>), <span class='kw'>inset</span><span class='kw'>=</span><span class='fl'>0.01</span>)</div><div class='img'><img src='EntropyCI-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Print results</span>
-<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='st'>"Estimated Diversity:"</span>, <span class='no'>RealEst</span>)</div><div class='output co'>#&gt; Estimated Diversity: 138.1078</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span>(<span class='no'>SimulatedDiversity</span>, <span class='kw'>probs</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.025</span>, <span class='fl'>0.975</span>))</div><div class='output co'>#&gt;     2.5%    97.5% 
+<span class='va'>SimulatedDiversity</span> <span class='op'>&lt;-</span> <span class='fu'><a href='expq.html'>expq</a></span><span class='op'>(</span><span class='fu'>EntropyCI</span><span class='op'>(</span><span class='va'>Tsallis</span>, Simulations<span class='op'>=</span><span class='fl'>50</span>, <span class='va'>Ns</span>, q<span class='op'>=</span><span class='va'>q</span><span class='op'>)</span>, <span class='va'>q</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </div><div class='input'><span class='co'># Figure</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>SimulatedDiversity</span><span class='op'>)</span>, col<span class='op'>=</span><span class='st'>"black"</span>, lwd<span class='op'>=</span><span class='fl'>2</span>, main<span class='op'>=</span><span class='st'>""</span>, xlab <span class='op'>=</span><span class='st'>"Diversity"</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>v<span class='op'>=</span><span class='va'>RealEst</span>, col<span class='op'>=</span><span class='st'>"red"</span>, lwd<span class='op'>=</span><span class='fl'>2</span>, lty<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>v<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>SimulatedDiversity</span>, probs <span class='op'>=</span> <span class='fl'>0.025</span><span class='op'>)</span>, col<span class='op'>=</span><span class='st'>"black"</span>, lwd<span class='op'>=</span><span class='fl'>1</span>, lty<span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>v<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>SimulatedDiversity</span>, probs <span class='op'>=</span> <span class='fl'>0.975</span><span class='op'>)</span>, col<span class='op'>=</span><span class='st'>"black"</span>, lwd<span class='op'>=</span><span class='fl'>1</span>, lty<span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/legend.html'>legend</a></span><span class='op'>(</span><span class='st'>"topright"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Real value"</span>, <span class='st'>"Confidence interval"</span><span class='op'>)</span>, lty<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>3</span><span class='op'>)</span>,
+col<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"red"</span>, <span class='st'>"black"</span><span class='op'>)</span>, inset<span class='op'>=</span><span class='fl'>0.01</span><span class='op'>)</span>
+</div><div class='img'><img src='EntropyCI-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Print results</span>
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"Estimated Diversity:"</span>, <span class='va'>RealEst</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Estimated Diversity: 138.1078</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>SimulatedDiversity</span>, probs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.025</span>, <span class='fl'>0.975</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     2.5%    97.5% 
 #&gt; 127.1415 151.7458 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -237,7 +248,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

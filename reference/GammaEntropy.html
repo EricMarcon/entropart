@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -161,15 +161,15 @@
     <p>Calculates the reduced-bias Tsallis entropy of order \(q\) of a metacommunity.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>GammaEntropy</span>(<span class='no'>MC</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"Best"</span>, <span class='kw'>Tree</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>Normalize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>Z</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>PhyloDetails</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>GammaEntropy</span><span class='op'>(</span><span class='va'>MC</span>, q <span class='op'>=</span> <span class='fl'>1</span>, Correction <span class='op'>=</span> <span class='st'>"Best"</span>, Tree <span class='op'>=</span> <span class='cn'>NULL</span>, Normalize <span class='op'>=</span> <span class='cn'>TRUE</span>, 
+  Z <span class='op'>=</span> <span class='cn'>NULL</span>, PhyloDetails <span class='op'>=</span> <span class='cn'>FALSE</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>MC</th>
-      <td><p>A <code>MetaCommunity</code> object.</p></td>
+      <td><p>A <code><a href='MetaCommunity.html'>MetaCommunity</a></code> object.</p></td>
     </tr>
     <tr>
       <th>q</th>
@@ -181,7 +181,7 @@
     </tr>
     <tr>
       <th>Tree</th>
-      <td><p>An object of class <code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code>, <code>phylo</code>, <code>phylog</code> or <code>PPtree</code>. The tree must be ultrametric.</p></td>
+      <td><p>An object of class <code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code>, <code>phylo</code>, <code>phylog</code> or <code><a href='PPtree.html'>PPtree</a></code>. The tree must be ultrametric.</p></td>
     </tr>
     <tr>
       <th>Normalize</th>
@@ -194,7 +194,7 @@
     </tr>
     <tr>
       <th>PhyloDetails</th>
-      <td><p>If <code>FALSE</code> (default), the function always returns a number. If <code>TRUE</code> and <code>Tree</code> is not Tree is not <code>NULL</code> then a <code>PhyloValue</code> object is returned with all details. That is used internally by <code>DivPart</code> to obtain the corrections used to estimate gamma entropy along the tree and apply them to the estimation of alpha diversity.</p></td>
+      <td><p>If <code>FALSE</code> (default), the function always returns a number. If <code>TRUE</code> and <code>Tree</code> is not Tree is not <code>NULL</code> then a <code><a href='PhyloValue.html'>PhyloValue</a></code> object is returned with all details. That is used internally by <code><a href='DivPart.html'>DivPart</a></code> to obtain the corrections used to estimate gamma entropy along the tree and apply them to the estimation of alpha diversity.</p></td>
     </tr>
     <tr>
       <th>CheckArguments</th>
@@ -204,9 +204,9 @@
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>If <code>Tree</code> is not <code>NULL</code>, then phylogenetic entropy is calculated by <code>bcPhyloEntropy</code>.</p>  
-<p>Else, if <code>Z</code> is not <code>NULL</code>, then similarity-based entropy is calculated by <code>bcHqz</code>.</p>  
-<p>Else, neutral entropy is calculated by <code>bcTsallis</code>.</p>
+    <p>If <code>Tree</code> is not <code>NULL</code>, then phylogenetic entropy is calculated by <code><a href='PhyloEntropy.html'>bcPhyloEntropy</a></code>.</p>  
+<p>Else, if <code>Z</code> is not <code>NULL</code>, then similarity-based entropy is calculated by <code><a href='Hqz.html'>bcHqz</a></code>.</p>  
+<p>Else, neutral entropy is calculated by <code><a href='Tsallis.html'>bcTsallis</a></code>.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A number equal to the calculated entropy.</p>
@@ -215,19 +215,25 @@
     <p>Marcon, E., Scotti, I., Herault, B., Rossi, V. and Lang, G. (2014). Generalization of the partitioning of Shannon diversity. <em>PLOS One</em> 9(3): e90289.</p>  
 <p>Marcon, E., Herault, B. (2015). Decomposing  Phylodiversity. <em>Methods in Ecology and Evolution</em> 6(3): 333-339.</p>
 <p>Marcon, E., Zhang, Z. and Herault, B. (2014). The decomposition of similarity-based diversity and its bias correction. <em>HAL</em> hal-00989454(version 3).</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Eric Marcon &lt;Eric.Marcon@ecofog.gf&gt;</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>bcTsallis</code>, <code>bcPhyloEntropy</code></p></div>
+    <div class='dont-index'><p><code><a href='Tsallis.html'>bcTsallis</a></code>, <code><a href='PhyloEntropy.html'>bcPhyloEntropy</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Paracou618</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Paracou618</span><span class='op'>)</span>
 <span class='co'># Calculate Simpson gamma entropy</span>
-<span class='fu'>GammaEntropy</span>(<span class='no'>Paracou618.MC</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt;   UnveilJ 
+<span class='fu'>GammaEntropy</span><span class='op'>(</span><span class='va'>Paracou618.MC</span>, <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   UnveilJ 
 #&gt; 0.9863189 </div><div class='input'><span class='co'># Compare without correction</span>
-<span class='fu'>GammaEntropy</span>(<span class='no'>Paracou618.MC</span>, <span class='fl'>2</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"None"</span>)</div><div class='output co'>#&gt;      None 
+<span class='fu'>GammaEntropy</span><span class='op'>(</span><span class='va'>Paracou618.MC</span>, <span class='fl'>2</span>, Correction <span class='op'>=</span> <span class='st'>"None"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      None 
 #&gt; 0.9854485 </div><div class='input'><span class='co'># Estimate phylogenetic Simpson gamma entropy</span>
-<span class='fu'>GammaEntropy</span>(<span class='no'>Paracou618.MC</span>, <span class='fl'>2</span>, <span class='kw'>Tree</span> <span class='kw'>=</span> <span class='no'>Paracou618.Taxonomy</span>)</div><div class='output co'>#&gt; [1] 0.9601824</div></pre>
+<span class='fu'>GammaEntropy</span><span class='op'>(</span><span class='va'>Paracou618.MC</span>, <span class='fl'>2</span>, Tree <span class='op'>=</span> <span class='va'>Paracou618.Taxonomy</span><span class='op'>)</span>   
+</div><div class='output co'>#&gt; [1] 0.9601824</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -243,7 +249,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

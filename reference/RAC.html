@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -161,10 +161,10 @@
     <p>Observed distributions are fitted to classical RAC's.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>RAClnorm</span>(<span class='no'>Ns</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'>RACgeom</span>(<span class='no'>Ns</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'>RAClseries</span>(<span class='no'>Ns</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'>RACbstick</span>(<span class='no'>Ns</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>RAClnorm</span><span class='op'>(</span><span class='va'>Ns</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'>RACgeom</span><span class='op'>(</span><span class='va'>Ns</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'>RAClseries</span><span class='op'>(</span><span class='va'>Ns</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'>RACbstick</span><span class='op'>(</span><span class='va'>Ns</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -185,7 +185,7 @@
   method returns the estimated parameters of the fitted distribution. The broken stick has no parameter, so the maximum abundance is returned.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Fisher's alpha is estimated to fit the log-series distribution. The estimation is done by the <code>fisher.alpha</code> function of package <code>vegan</code>. It may differ substantially from the estimation returned by <code>optimal.theta</code> from package <code>untb</code>.</p>
+    <p>Fisher's alpha is estimated to fit the log-series distribution. The estimation is done by the <code><a href='https://rdrr.io/pkg/vegan/man/diversity.html'>fisher.alpha</a></code> function of package <code>vegan</code>. It may differ substantially from the estimation returned by <code>optimal.theta</code> from package <code>untb</code>.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list (the parameters of distributions are returned only if the distribution has been fit):</p>
@@ -197,6 +197,9 @@
   <dt>prob</dt><dd><p>The proportion of ressources taken by successive species in the geometric distribution</p></dd>
   <dt>max</dt><dd><p>The maximum abundance in the broken-stick distribution</p></dd>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Eric Marcon &lt;Eric.Marcon@ecofog.gf&gt;, Bruno Herault &lt;Bruno.Herault@ecofog.gf&gt;</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Fisher R.A., Corbet A.S., Williams C.B. (1943) The Relation Between the Number of Species and the Number of Individuals in a Random Sample of an Animal Population. <em>Journal of Animal Ecology</em> 12: 42-58.</p>
@@ -205,16 +208,21 @@
 <p>Preston, F.W. (1948). The commonness, and rarity, of species. <em>Ecology</em> 29(3): 254-283.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/Geometric.html'>rgeom</a></code>, <code><a href='https://rdrr.io/r/stats/Lognormal.html'>rlnorm</a></code>, <code>rCommunity</code>, <code>plot.SpeciesDistribution</code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/Geometric.html'>rgeom</a></code>, <code><a href='https://rdrr.io/r/stats/Lognormal.html'>rlnorm</a></code>, <code><a href='rCommunity.html'>rCommunity</a></code>, <code><a href='SpeciesDistribution.html'>plot.SpeciesDistribution</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Paracou618</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Paracou618</span><span class='op'>)</span>
 <span class='co'># Ns is the total number of trees per species</span>
-<span class='no'>Ns</span> <span class='kw'>&lt;-</span> <span class='fu'>as.AbdVector</span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ns</span>)
+<span class='va'>Ns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='SpeciesDistribution.html'>as.AbdVector</a></span><span class='op'>(</span><span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Ns</span><span class='op'>)</span>
 <span class='co'># Fitted parameters</span>
-<span class='no'>RACln</span> <span class='kw'>&lt;-</span> <span class='fu'>RAClnorm</span>(<span class='no'>Ns</span>)
-<span class='no'>RACln</span>$<span class='no'>mu</span></div><div class='output co'>#&gt; [1] 0.9519812</div><div class='input'><span class='no'>RACln</span>$<span class='no'>sigma</span></div><div class='output co'>#&gt; [1] 1.011383</div><div class='input'><span class='fu'>RACgeom</span>(<span class='no'>Ns</span>)$<span class='no'>prob</span></div><div class='output co'>#&gt; [1] 0.01417454</div><div class='input'><span class='fu'>RAClseries</span>(<span class='no'>Ns</span>)$<span class='no'>alpha</span></div><div class='output co'>#&gt; [1] 86.94339</div><div class='input'><span class='fu'>RACbstick</span>(<span class='no'>Ns</span>)$<span class='no'>max</span></div><div class='output co'>#&gt; [1] 29.51418</div></pre>
+<span class='va'>RACln</span> <span class='op'>&lt;-</span> <span class='fu'>RAClnorm</span><span class='op'>(</span><span class='va'>Ns</span><span class='op'>)</span>
+<span class='va'>RACln</span><span class='op'>$</span><span class='va'>mu</span>
+</div><div class='output co'>#&gt; [1] 0.9519812</div><div class='input'><span class='va'>RACln</span><span class='op'>$</span><span class='va'>sigma</span>
+</div><div class='output co'>#&gt; [1] 1.011383</div><div class='input'><span class='fu'>RACgeom</span><span class='op'>(</span><span class='va'>Ns</span><span class='op'>)</span><span class='op'>$</span><span class='va'>prob</span>
+</div><div class='output co'>#&gt; [1] 0.01417454</div><div class='input'><span class='fu'>RAClseries</span><span class='op'>(</span><span class='va'>Ns</span><span class='op'>)</span><span class='op'>$</span><span class='va'>alpha</span>
+</div><div class='output co'>#&gt; [1] 86.94339</div><div class='input'><span class='fu'>RACbstick</span><span class='op'>(</span><span class='va'>Ns</span><span class='op'>)</span><span class='op'>$</span><span class='va'>max</span>
+</div><div class='output co'>#&gt; [1] 29.51418</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -230,7 +238,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

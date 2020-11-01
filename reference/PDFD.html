@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -161,7 +161,7 @@
     <p>Calculates Faith's PD / Petchey and Gaston' FD of a community described by a probability vector and a phylogenetic / functional tree.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>PDFD</span>(<span class='no'>Ps</span>, <span class='no'>Tree</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>PDFD</span><span class='op'>(</span><span class='va'>Ps</span>, <span class='va'>Tree</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -172,7 +172,7 @@
     </tr>
     <tr>
       <th>Tree</th>
-      <td><p>An object of class <code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code>, <code>phylo</code>, <code>phylog</code> or <code>PPtree</code>. The tree must be ultrametric.</p></td>
+      <td><p>An object of class <code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code>, <code>phylo</code>, <code>phylog</code> or <code><a href='PPtree.html'>PPtree</a></code>. The tree must be ultrametric.</p></td>
     </tr>
     <tr>
       <th>CheckArguments</th>
@@ -184,8 +184,8 @@
 
     <p>PD and FD are defined as the total legth of the branches of the tree.</p>  
 <p>The probability vector is used to select branches: branches with probability 0 are eliminated.</p>  
-<p>Bias correction requires the number of individuals to estimate sample <code>Coverage</code>.</p>  
-<p>Use <code>bcPhyloDiversity</code><code>(Ps, 0, Tree)</code> and choose the <code>Correction</code>.</p>
+<p>Bias correction requires the number of individuals to estimate sample <code><a href='Coverage.html'>Coverage</a></code>.</p>  
+<p>Use <code><a href='PhyloDiversity.html'>bcPhyloDiversity</a></code><code>(Ps, 0, Tree)</code> and choose the <code>Correction</code>.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A named number equal to the calculated diversity. The name is that of the bias correction used.</p>
@@ -193,18 +193,22 @@
 
     <p>Faith, D. P. (1992). Conservation evaluation and phylogenetic diversity. <em>Biological Conservation</em> 61(1): 1-10.</p>  
 <p>Petchey, O. L. and Gaston, K. J. (2002). Functional diversity (FD), species richness and community composition. <em>Ecology Letters</em> 5: 402-411.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Eric Marcon &lt;Eric.Marcon@ecofog.gf&gt;</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>bcPhyloDiversity</code></p></div>
+    <div class='dont-index'><p><code><a href='PhyloDiversity.html'>bcPhyloDiversity</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest</span>
 <span class='co'>#      and their taxonomy)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Paracou618</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Paracou618</span><span class='op'>)</span>
 <span class='co'># Ps is the vector of probabilities</span>
-<span class='no'>Ps</span> <span class='kw'>&lt;-</span> <span class='no'>Paracou618.MC</span>$<span class='no'>Ps</span>
+<span class='va'>Ps</span> <span class='op'>&lt;-</span> <span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Ps</span>
 <span class='co'># Calculate the phylogenetic Shannon diversity of the plot</span>
-<span class='fu'>PDFD</span>(<span class='no'>Ps</span>, <span class='no'>Paracou618.Taxonomy</span>)</div><div class='output co'>#&gt; None 
+<span class='fu'>PDFD</span><span class='op'>(</span><span class='va'>Ps</span>, <span class='va'>Paracou618.Taxonomy</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; None 
 #&gt;  395 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -221,7 +225,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

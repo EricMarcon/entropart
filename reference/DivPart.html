@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -161,15 +161,15 @@
     <p>Partitions the diversity of a metacommunity into alpha and beta components.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>DivPart</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>MC</span>, <span class='kw'>Biased</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"Best"</span>, <span class='kw'>Tree</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>Normalize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Z</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'>is.DivPart</span>(<span class='no'>x</span>)
+    <pre class="usage"><span class='fu'>DivPart</span><span class='op'>(</span>q <span class='op'>=</span> <span class='fl'>1</span>, <span class='va'>MC</span>, Biased <span class='op'>=</span> <span class='cn'>TRUE</span>, Correction <span class='op'>=</span> <span class='st'>"Best"</span>, Tree <span class='op'>=</span> <span class='cn'>NULL</span>,
+  Normalize <span class='op'>=</span> <span class='cn'>TRUE</span>, Z <span class='op'>=</span> <span class='cn'>NULL</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'>is.DivPart</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 <span class='co'># S3 method for DivPart</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 <span class='co'># S3 method for DivPart</span>
-<span class='fu'>autoplot</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+<span class='fu'>autoplot</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 <span class='co'># S3 method for DivPart</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -180,7 +180,7 @@
     </tr>
     <tr>
       <th>MC</th>
-      <td><p>A <code>MetaCommunity</code> object.</p></td>
+      <td><p>A <code><a href='MetaCommunity.html'>MetaCommunity</a></code> object.</p></td>
     </tr>
     <tr>
       <th>Biased</th>
@@ -189,11 +189,11 @@
     <tr>
       <th>Correction</th>
       <td><p>A string containing one of the possible corrections.</p>	
-<p>The correction must be accepted by <code>AlphaEntropy</code>, <code>BetaEntropy</code> and <code>GammaEntropy</code>. <code>"Best"</code> is the default value.</p></td>
+<p>The correction must be accepted by <code><a href='AlphaEntropy.html'>AlphaEntropy</a></code>, <code><a href='BetaEntropy.html'>BetaEntropy</a></code> and <code><a href='GammaEntropy.html'>GammaEntropy</a></code>. <code>"Best"</code> is the default value.</p></td>
     </tr>
     <tr>
       <th>Tree</th>
-      <td><p>An object of class <code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code>, <code>phylo</code>, <code>phylog</code> or <code>PPtree</code>. The tree must be ultrametric.</p></td>
+      <td><p>An object of class <code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code>, <code>phylo</code>, <code>phylog</code> or <code><a href='PPtree.html'>PPtree</a></code>. The tree must be ultrametric.</p></td>
     </tr>
     <tr>
       <th>Normalize</th>
@@ -230,7 +230,7 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code>DivPart</code> object. It is a list:</p>
-<dt>MetaCommunity</dt><dd><p>The name of the <code>MetaCommunity</code> object containing inventory data.</p></dd>
+<dt>MetaCommunity</dt><dd><p>The name of the <code><a href='MetaCommunity.html'>MetaCommunity</a></code> object containing inventory data.</p></dd>
   <dt>Order</dt><dd><p>The value of <code>q</code>.</p></dd>
   <dt>Biased</dt><dd><p>Logical. If <code>FALSE</code>, bias corrected values of diversity have been computed.</p></dd>
   <dt>Correction</dt><dd><p>The estimation bias correction used to calculate diversity.</p></dd>
@@ -255,15 +255,19 @@
 <p>Marcon, E., Scotti, I., Herault, B., Rossi, V. and Lang, G. (2014). Generalization of the partitioning of Shannon diversity. <em>PLOS One</em> 9(3): e90289.</p>  
 <p>Marcon, E., Herault, B. (2015). Decomposing  Phylodiversity. <em>Methods in Ecology and Evolution</em> 6(3): 333-339.</p>
 <p>Marcon, E., Zhang, Z. and Herault, B. (2014). The decomposition of similarity-based diversity and its bias correction. <em>HAL</em> hal-00989454(version 3).</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Eric Marcon &lt;Eric.Marcon@ecofog.gf&gt; and Bruno Herault &lt;Bruno.Herault@ecofog.gf&gt;</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>DivProfile</code></p></div>
+    <div class='dont-index'><p><code><a href='DivProfile.html'>DivProfile</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Paracou618</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Paracou618</span><span class='op'>)</span>
 <span class='co'># Estimate Shannon diversity.</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'>DivPart</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>Paracou618.MC</span>, <span class='kw'>Biased</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>-&gt;</span> <span class='no'>dp</span>)</div><div class='output co'>#&gt; HCDT diversity partitioning of order 1 of metaCommunity Paracou618.MC
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'>DivPart</span><span class='op'>(</span>q <span class='op'>=</span> <span class='fl'>1</span>, <span class='va'>Paracou618.MC</span>, Biased <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>-&gt;</span> <span class='va'>dp</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; HCDT diversity partitioning of order 1 of metaCommunity Paracou618.MC
 #&gt;  with correction: UnveilJ
 #&gt; Alpha diversity of communities: 
 #&gt;     P006     P018 
@@ -275,7 +279,8 @@
 #&gt; 1.422843 
 #&gt; Gamma diversity of the metacommunity: 
 #&gt;  UnveilJ 
-#&gt; 138.1078 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dp</span>)</div><div class='img'><img src='DivPart-1.png' alt='' width='700' height='433' /></div></pre>
+#&gt; 138.1078 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>dp</span><span class='op'>)</span>
+</div><div class='img'><img src='DivPart-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -291,7 +296,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

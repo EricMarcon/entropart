@@ -1,8 +1,12 @@
 pandoc: '2.2'
-pkgdown: 1.5.1
+pkgdown: 1.6.1
 pkgdown_sha: ~
-articles: []
-last_built: 2020-04-18T21:35Z
+articles:
+  articles/extrapolation: extrapolation.html
+  articles/phylogenies: phylogenies.html
+  articles/reference: reference.html
+  entropart: entropart.html
+last_built: 2020-11-01T18:20Z
 urls:
   reference: https://ericmarcon.github.io/entropart/reference
   article: https://ericmarcon.github.io/entropart/articles

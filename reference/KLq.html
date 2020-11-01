@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -161,7 +161,7 @@
     <p>Calculates the generalized Kullback-Leibler divergence between an observed and an expected probability distribution.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>KLq</span>(<span class='no'>Ps</span>, <span class='no'>Pexp</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>KLq</span><span class='op'>(</span><span class='va'>Ps</span>, <span class='va'>Pexp</span>, q <span class='op'>=</span> <span class='fl'>1</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -196,19 +196,23 @@
     <p>Borland, L., Plastino, A. R. and Tsallis, C. (1998). Information gain within nonextensive thermostatistics. <em>Journal of Mathematical Physics</em> 39(12): 6490-6501.</p>  
 <p>Kullback, S. and Leibler, R. A. (1951). On Information and Sufficiency. The Annals of Mathematical <em>Statistics</em> 22(1): 79-86.</p>  
 <p>Marcon, E., Scotti, I., Herault, B., Rossi, V. and Lang, G. (2014). Generalization of the partitioning of Shannon diversity. <em>PLOS One</em> 9(3): e90289.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Eric Marcon &lt;Eric.Marcon@ecofog.gf&gt;</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>TsallisBeta</code></p></div>
+    <div class='dont-index'><p><code><a href='TsallisBeta.html'>TsallisBeta</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Paracou618</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Paracou618</span><span class='op'>)</span>
 <span class='co'># Ps is the vector of probabilities</span>
-<span class='no'>Ps</span> <span class='kw'>&lt;-</span> <span class='no'>Paracou618.MC</span>$<span class='no'>Ps</span>
+<span class='va'>Ps</span> <span class='op'>&lt;-</span> <span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Ps</span>
 <span class='co'># Probability distribution of the first plot</span>
-<span class='no'>Ps1</span> <span class='kw'>&lt;-</span> <span class='no'>Paracou618.MC</span>$<span class='no'>Psi</span>[, <span class='fl'>1</span>]
+<span class='va'>Ps1</span> <span class='op'>&lt;-</span> <span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Psi</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>]</span>
 <span class='co'># Divergence of order 2 between the first plot and the whole forest</span>
-<span class='fu'>KLq</span>(<span class='no'>Ps1</span>, <span class='no'>Ps</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] 0.01004705</div></pre>
+<span class='fu'>KLq</span><span class='op'>(</span><span class='va'>Ps1</span>, <span class='va'>Ps</span>, <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 0.01004705</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -224,7 +228,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

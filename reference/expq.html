@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -161,8 +161,8 @@
     <p>Calculates the deformed exponential of order \(q\).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>expq</span>(<span class='no'>x</span>, <span class='no'>q</span>)
-<span class='fu'>expq.CommunityProfile</span>(<span class='no'>Profile</span>)</pre>
+    <pre class="usage"><span class='fu'>expq</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>q</span><span class='op'>)</span>
+<span class='fu'>expq.CommunityProfile</span><span class='op'>(</span><span class='va'>Profile</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -173,7 +173,7 @@
     </tr>
     <tr>
       <th>Profile</th>
-      <td><p>A <code>CommunityProfile</code>.</p></td>
+      <td><p>A <code><a href='CommunityProfile.html'>CommunityProfile</a></code>.</p></td>
     </tr>
     <tr>
       <th>q</th>
@@ -185,20 +185,27 @@
 
     <p>The deformed exponential is defined as \((x(1-q)+1)^{\frac{1}{(1-q)}}\).</p>  
 <p>For \(q&gt;1\), \(\ln_q{(+\infty)}=\frac{1}{(q-1)}\) so \(\exp_q{(x)}\) is not defined for \(x&gt;\frac{1}{(q-1)}\).</p>
-<p><code>expq.CommunityProfile</code> calculates the deformed exponential of a <code>CommunityProfile</code>. Its <code>$x</code> item (the order of dversity) is kept unchanged whilst other items are set to their exponential of order <code>$x</code>. Thus, an entropy profile is transformed into a diversity profile.</p>
+<p><code>expq.CommunityProfile</code> calculates the deformed exponential of a <code><a href='CommunityProfile.html'>CommunityProfile</a></code>. Its <code>$x</code> item (the order of dversity) is kept unchanged whilst other items are set to their exponential of order <code>$x</code>. Thus, an entropy profile is transformed into a diversity profile.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A vector of the same length as <code>x</code> containing the transformed values or a <code>CommunityProfile</code>.</p>
+    <p>A vector of the same length as <code>x</code> containing the transformed values or a <code><a href='CommunityProfile.html'>CommunityProfile</a></code>.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Marcon, E., Scotti, I., Herault, B., Rossi, V. and Lang, G. (2014). Generalization of the partitioning of Shannon diversity. <em>PLOS One</em> 9(3): e90289.</p>  
 <p>Tsallis, C. (1994). What are the numbers that experiments provide? <em>Quimica Nova</em> 17(6): 468-471.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Eric Marcon &lt;Eric.Marcon@ecofog.gf&gt;</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code>expq</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span>(<span class='no'>x</span>), -<span class='fl'>5</span>, <span class='fl'>0</span>, <span class='kw'>lty</span><span class='kw'>=</span><span class='fl'>3</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span>(<span class='fu'>expq</span>(<span class='no'>x</span>, <span class='fl'>2</span>), -<span class='fl'>5</span>, <span class='fl'>0</span>, <span class='kw'>lty</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span>(<span class='fu'>expq</span>(<span class='no'>x</span>, <span class='fl'>3</span>), -<span class='fl'>5</span>, <span class='fl'>0</span>, <span class='kw'>lty</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/legend.html'>legend</a></span>(<span class='st'>"topleft"</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"exp(x)"</span>, <span class='st'>"exp2(x)"</span>, <span class='st'>"exp3(x)"</span>), <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>inset</span><span class='kw'>=</span><span class='fl'>0.02</span>)</div><div class='img'><img src='expq-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>, <span class='op'>-</span><span class='fl'>5</span>, <span class='fl'>0</span>, lty<span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span>  
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'>expq</span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>2</span><span class='op'>)</span>, <span class='op'>-</span><span class='fl'>5</span>, <span class='fl'>0</span>, lty<span class='op'>=</span><span class='fl'>2</span>, add<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'>expq</span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>3</span><span class='op'>)</span>, <span class='op'>-</span><span class='fl'>5</span>, <span class='fl'>0</span>, lty<span class='op'>=</span><span class='fl'>1</span>, add<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/legend.html'>legend</a></span><span class='op'>(</span><span class='st'>"topleft"</span>, legend <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"exp(x)"</span>, <span class='st'>"exp2(x)"</span>, <span class='st'>"exp3(x)"</span><span class='op'>)</span>, lty <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>)</span>, inset<span class='op'>=</span><span class='fl'>0.02</span><span class='op'>)</span>
+</div><div class='img'><img src='expq-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -214,7 +221,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -161,9 +161,9 @@
     <p>Draws random communities according to a probability distribution.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rCommunity</span>(<span class='no'>n</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='no'>NorP</span>), <span class='kw'>NorP</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>BootstrapMethod</span> <span class='kw'>=</span> <span class='st'>"Chao2015"</span>, <span class='kw'>S</span> <span class='kw'>=</span> <span class='fl'>300</span>,
-    <span class='kw'>Distribution</span> <span class='kw'>=</span> <span class='st'>"lnorm"</span>,  <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>40</span>,
-    <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>rCommunity</span><span class='op'>(</span><span class='va'>n</span>, size <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>NorP</span><span class='op'>)</span>, NorP <span class='op'>=</span> <span class='fl'>1</span>, BootstrapMethod <span class='op'>=</span> <span class='st'>"Chao2015"</span>, S <span class='op'>=</span> <span class='fl'>300</span>, 
+    Distribution <span class='op'>=</span> <span class='st'>"lnorm"</span>,  sd <span class='op'>=</span> <span class='fl'>1</span>, prob <span class='op'>=</span> <span class='fl'>0.1</span>, alpha <span class='op'>=</span> <span class='fl'>40</span>,
+    CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -178,7 +178,7 @@
     </tr>
     <tr>
       <th>BootstrapMethod</th>
-      <td><p>The method used to obtain the probabilities to generate bootstrapped communities from observed abundances. If <code>"Marcon"</code>, the probabilities are simply the abundances divided by the total number of individuals (Marcon <em>et al.</em>, 2012). If <code>"Chao2013"</code> or <code>"Chao2015"</code> (by default), a more sophisticated approach is used (see <code>as.ProbaVector</code>) following Chao <em>et al.</em> (2013) or Chao <em>et al.</em> (2015).</p></td>
+      <td><p>The method used to obtain the probabilities to generate bootstrapped communities from observed abundances. If <code>"Marcon"</code>, the probabilities are simply the abundances divided by the total number of individuals (Marcon <em>et al.</em>, 2012). If <code>"Chao2013"</code> or <code>"Chao2015"</code> (by default), a more sophisticated approach is used (see <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>) following Chao <em>et al.</em> (2013) or Chao <em>et al.</em> (2015).</p></td>
     </tr>
     <tr>
       <th>NorP</th>
@@ -213,12 +213,12 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Communities of fixed <code>size</code> are drawn in a multinomial distribution according to the distribution of probabilities provided by <code>NorP</code>.</p>  
-<p>An abundance vector may be used instead of probabilities, then <code>size</code> is by default the total number of individuals in the vector. Random communities are built by drawing in a multinomial law following Marcon <em>et al.</em> (2012), or trying to estimate the distribution of the actual community with <code>as.ProbaVector</code>. If <code>BootstrapMethod =  "Chao2013"</code>, the distribution is estimated by a single parameter model and unobserved species are given equal probabilities. If <code>BootstrapMethod =  "Chao2015"</code>, a two-parameter model is used and unobserved species follow a geometric distribution.</p>  
+<p>An abundance vector may be used instead of probabilities, then <code>size</code> is by default the total number of individuals in the vector. Random communities are built by drawing in a multinomial law following Marcon <em>et al.</em> (2012), or trying to estimate the distribution of the actual community with <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>. If <code>BootstrapMethod =  "Chao2013"</code>, the distribution is estimated by a single parameter model and unobserved species are given equal probabilities. If <code>BootstrapMethod =  "Chao2015"</code>, a two-parameter model is used and unobserved species follow a geometric distribution.</p>  
 <p>Alternatively, the probabilities may be drawn following a classical distribution: either a lognormal (<code>"lnorm"</code>) one (Preston, 1948) with given standard deviation (<code>sd</code>; note that the mean is actually a normalizing constant. Its values is set equal to 0 for the simulation of the normal distribution of unnormalized log-abundances), a log-series (<code>"lseries"</code>) one (Fisher <em>et al.</em>, 1943) with parameter <code>alpha</code>, a geometric (<code>"geom"</code>) one (Motomura, 1932) with parameter <code>prob</code>, or a broken stick (<code>"bstick"</code>) one (MacArthur, 1957). The number of simulated species is fixed by <code>S</code>, except for <code>"lseries"</code> where it is obtained from <code>alpha</code> and <code>size</code>: \(S=\alpha \ln(1 + \frac{size}{\alpha})\).</p>  
 <p>Log-normal, log-series and broken-stick distributions are stochastic. The geometric distribution is completely determined by its parameters.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A vector of species abundances (<code>AbdVector</code>) if a single community has been drawn, or a <code>MetaCommunity</code> containing simulated communities.</p>
+    <p>A vector of species abundances (<code><a href='SpeciesDistribution.html'>AbdVector</a></code>) if a single community has been drawn, or a <code><a href='MetaCommunity.html'>MetaCommunity</a></code> containing simulated communities.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Chao, A., Wang, Y. T. and Jost, L. (2013). Entropy and the species accumulation curve: a novel entropy estimator via discovery rates of new species. <em>Methods in Ecology and Evolution</em> 4(11): 1091-1100.</p>
@@ -229,17 +229,21 @@
 <p>Motomura I. (1932) On the statistical treatment of communities. <em>Zoological Magazine</em> 44: 379-383.</p>  
 <p>Preston, F.W. (1948). The commonness, and rarity, of species. <em>Ecology</em> 29(3): 254-283.</p>  
 <p>Reese G. C., Wilson K. R., Flather C. H. (2013) Program SimAssem: Software for simulating species assemblages and estimating species richness. <em>Methods in Ecology and  Evolution</em> 4: 891-896.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Eric Marcon &lt;Eric.Marcon@ecofog.gf&gt;</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>SpeciesDistribution</code> and the program <code>SimAssem</code> (Reese <em>et al.</em>, 2013; not an R package) for more distributions.</p></div>
+    <div class='dont-index'><p><code><a href='SpeciesDistribution.html'>SpeciesDistribution</a></code> and the program <code>SimAssem</code> (Reese <em>et al.</em>, 2013; not an R package) for more distributions.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Generate communities made of 100000 individuals among 300 species and fit them</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>2</span>))
-<span class='kw'>for</span> (<span class='no'>d</span> <span class='kw'>in</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"lnorm"</span>, <span class='st'>"lseries"</span>, <span class='st'>"geom"</span>, <span class='st'>"bstick"</span>)) {
-<span class='fu'>rCommunity</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1E5</span>, <span class='kw'>S</span> <span class='kw'>=</span> <span class='fl'>300</span>, <span class='kw'>Distribution</span> <span class='kw'>=</span> <span class='no'>d</span>) <span class='kw'>-&gt;</span> <span class='no'>AbdVec</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>AbdVec</span>, <span class='kw'>Distribution</span> <span class='kw'>=</span> <span class='no'>d</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>d</span>)
-}</div><div class='img'><img src='rCommunity-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mfrow <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='kw'>for</span> <span class='op'>(</span><span class='va'>d</span> <span class='kw'>in</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"lnorm"</span>, <span class='st'>"lseries"</span>, <span class='st'>"geom"</span>, <span class='st'>"bstick"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>  
+<span class='fu'>rCommunity</span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>1</span>, size <span class='op'>=</span> <span class='fl'>1E5</span>, S <span class='op'>=</span> <span class='fl'>300</span>, Distribution <span class='op'>=</span> <span class='va'>d</span><span class='op'>)</span> <span class='op'>-&gt;</span> <span class='va'>AbdVec</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>AbdVec</span>, Distribution <span class='op'>=</span> <span class='va'>d</span>, main <span class='op'>=</span> <span class='va'>d</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='img'><img src='rCommunity-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -255,7 +259,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

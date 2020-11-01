@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -103,7 +103,8 @@
 
       
 
-      </header><div class="row">
+      </header><link href="reference_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="reference_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>entropart Package Reference</h1>
@@ -133,31 +134,36 @@
 <a href="#data" class="anchor"></a>Data</h2>
 <p>Most functions of the package calculate entropy or diversity of a community or of an assemblage of communities called a <em>meta-community</em>. Community functions accept a vector of probabilities or of abundances for species data. Each element of the vector contains the probability or the number of occurrences of a species in a given community. Meta-community functions require a particular data organization in a <code>MetaCommunity</code> object described here.</p>
 <p>A <code>MetaCommunity</code> is basically a list. Its main components are <code>$Nsi</code>, a matrix containing the species abundances whose lines are species, columns are communities and <code>$Wi</code>, a vector containing community weights. Creating a <code>MetaCommunity</code> object is the purpose of the <code>MetaCommunity</code> function. Arguments are a dataframe containing the number of individuals per species (lines) in each community (columns), and a vector containing the community weights. The following example creates a <code>MetaCommunity</code> made of three communities of unequal weights with 4 species. The weighted average probabilities of occurrence of species and the total number of individuals define the meta-community as the assemblage of communities.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"entropart"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/EricMarcon/entropart">"entropart"</a></span><span class="op">)</span></pre></div>
 <pre><code>## Loading required package: ggplot2</code></pre>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">C1</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span>), <span class="kw">C2</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">20</span>, <span class="fl">35</span>, <span class="fl">5</span>), <span class="kw">C3</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">25</span>, <span class="fl">15</span>, <span class="fl">0</span>, <span class="fl">2</span>))
-<span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span>(<span class="no">df</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sp1"</span>, <span class="st">"sp2"</span>, <span class="st">"sp3"</span>, <span class="st">"sp4"</span>)
-<span class="no">df</span></pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>C1<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span>, C2<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">20</span>, <span class="fl">35</span>, <span class="fl">5</span><span class="op">)</span>, C3<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">15</span>, <span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sp1"</span>, <span class="st">"sp2"</span>, <span class="st">"sp3"</span>, <span class="st">"sp4"</span><span class="op">)</span>
+<span class="va">df</span></pre></div>
 <pre><code>##     C1 C2 C3
 ## sp1 10  0 25
 ## sp2 10 20 15
 ## sp3 10 35  0
 ## sp4 10  5  2</code></pre>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">w</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span>)
-<span class="no">MC</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/MetaCommunity.html">MetaCommunity</a></span>(<span class="kw">Abundances</span><span class="kw">=</span><span class="no">df</span>, <span class="kw">Weights</span><span class="kw">=</span><span class="no">w</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">MC</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>
+<span class="va">MC</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/MetaCommunity.html">MetaCommunity</a></span><span class="op">(</span>Abundances<span class="op">=</span><span class="va">df</span>, Weights<span class="op">=</span><span class="va">w</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">MC</span><span class="op">)</span></pre></div>
 <p><img src="reference_files/figure-html/MetaCommunity-1.png" width="700"></p>
 <p>Communities (named C1, C2 ad C3) are represented in the left part of the figure, the metacommunity to the right. Bar widths are proportional to community weights. Species abundances are represented vertically (4 species are present in the meta-community, only 3 of them in communities C2 and C3).</p>
 <p>A meta-community is partitioned into several local communities (indexed by <span class="math inline">\(i=1, 2,\dots, I\)</span>). <span class="math inline">\(n_i\)</span> individuals are sampled in community <span class="math inline">\(i\)</span>. Let <span class="math inline">\(s=1,\ 2,\dots ,S\)</span> denote the species that compose the meta-community, <span class="math inline">\(n_{s,i}\)</span> the number of individuals of species <span class="math inline">\(s\)</span> sampled in the local community <span class="math inline">\(i\)</span>, <span class="math inline">\(n_s=\sum_i{n_{s,i}}\)</span> the total number of individuals of species <span class="math inline">\(s\)</span>, <span class="math inline">\(n=\sum_s{\sum_i{n_{s,i}}}\)</span> the total number of sampled individuals. Within each community <span class="math inline">\(i\)</span>, the probability <span class="math inline">\(p_{s,i}\)</span> for an individual to belong to species <span class="math inline">\(s\)</span> is estimated by <span class="math inline">\(\hat{p}_{s,i}=n_{s,i}/{n_i}\)</span>. The same probability for the meta-community is <span class="math inline">\(p_s\)</span>.</p>
 <p>Communities have a weight <span class="math inline">\(w_i\)</span>, satisfying <span class="math inline">\(p_s=\sum_i{w_i p_{s,i}}\)</span>. The commonly-used <span class="math inline">\(w_i=n_i/n\)</span> is a possible weight, but the weighting may be arbitrary (e.g. the sampled areas). The component <code>$Ps</code> of a <code>MetaCommunity</code> object contains the probability of occurrence of each species in the meta-community, calculated this way:</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">MC</span>$<span class="no">Ps</span></pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="va">MC</span><span class="op">$</span><span class="va">Ps</span></pre></div>
 <pre><code>##       sp1       sp2       sp3       sp4 
 ## 0.2113095 0.3184524 0.3541667 0.1160714</code></pre>
 <p>The number of individuals <code>$Ns</code> of a <code>MetaCommunity</code> is theoretically unknown, since communities are just samples of it. The total number of individuals is <code>$N</code>. For simplicity, it is set to the total number of individuals of all communities. If community weights are their number of individuals, <code>$Ns</code> is just the sum of the numbers of individuals per species of communities. Else, <code>$Ns</code> may contain non-integer values, respecting the probabilities <code>$Ps</code> and summing to <code>$N</code>.</p>
 <p>A <code>MetaCommunity</code> can be summarized and plotted.</p>
 <p>The package contains an example dataset containing the inventory of two 1-ha tropical forest plots in Paracou, French Guiana <span class="citation">(Marcon et al. 2012)</span>:</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"Paracou618"</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">Paracou618.MC</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"Paracou618"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">)</span></pre></div>
 <pre><code>## Meta-community (class 'MetaCommunity') made of 1124 individuals in 2 
 ## communities and 425 species. 
 ## 
@@ -174,13 +180,15 @@
 <p><code>Paracou618.MC</code> is a meta-community made of two communities named <em>P006</em> and <em>P018</em>, containing 425 species (their name is <em>Family_Genus_Species</em>, abbreviated to 4 characters). The values of the abundance matrix are the number of individuals of each species in each community. Sample coverage will be explained later.</p>
 <p>The dataset also contains a taxonomy and a functional tree. <code>Paracou618.Taxonomy</code> is an object of class <code>phylo</code>, defined in the package <em>ape</em> <span class="citation">(Paradis, Claude, and Strimmer 2004)</span>, namely a phylogenetic tree. This example data is only a taxonomy, containing family, genus and species levels for the sake of simplicity. <code>Paracou618.Functional</code> is an object of class <code>hclust</code> containing a functional tree based on leaf, height, stem and seed functional traits <span class="citation">(Hérault and Honnay 2007; Marcon and Hérault 2015)</span>. The package also accepts any ultrametric tree of class <code>phylog</code>, from <em>ade4</em> <span class="citation">(Dray and Dufour 2007)</span> or <code>hclust</code>. <code>Paracou618.dist</code> is the distance matrix (actually a <code>dist</code> object) used to build the functional tree.</p>
 <p>Numeric vectors containing species abundances (such as the <code>$Ns</code> component of <code>MetaCommunity</code>) or probabilities (such as <code>$Ps</code>) may be converted to abundance vectors (<code>AbdVector</code>) or probability vectors (<code>ProbaVector</code>) to clarify their content. By default, the <code>as.AbdVector</code> function transforms abundance values into integer if they are not (the <code>$Ns</code> components of a <code>MetaCommunity</code> is typically not an integer vector if community weights are not proportional to their numbers of individuals):</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"Paracou618"</span>)
-<span class="no">PAbd</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/SpeciesDistribution.html">as.AbdVector</a></span>(<span class="no">Paracou618.MC</span>$<span class="no">Ns</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">PAbd</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"Paracou618"</span><span class="op">)</span>
+<span class="va">PAbd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/SpeciesDistribution.html">as.AbdVector</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">PAbd</span><span class="op">)</span></pre></div>
 <p><img src="reference_files/figure-html/AbdVector-1.png" width="700"></p>
 <p>the Paracou species distribution is plotted as a Rank-Abundance Curve (Whittaker plot).</p>
 <p>The <code>as.ProbaVector</code> function transforms abundances to probabilities if necessary:</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">PProba</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/SpeciesDistribution.html">as.ProbaVector</a></span>(<span class="no">Paracou618.MC</span>$<span class="no">Ps</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="va">PProba</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/SpeciesDistribution.html">as.ProbaVector</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ps</span><span class="op">)</span></pre></div>
 <p><code>AbdVector</code> and <code>ProbaVector</code> objects both are <code>SpeciesDistribution</code> objects which can be plotted.</p>
 </div>
 <div id="utilities" class="section level2">
@@ -189,16 +197,17 @@
 <p>The deformed logarithm formalism <span class="citation">(Tsallis 1994)</span> is very convenient to manipulate entropies. The deformed logarithm of order <span class="math inline">\(q\)</span> is defined as:</p>
 <p><span class="math display">\[\ln_q{x}=\frac{x^{1-q}-1}{1-q}\]</span></p>
 <p>It converges to <span class="math inline">\(\ln\)</span> when <span class="math inline">\(q\to 1\)</span>.</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="no">x</span>), <span class="fl">0</span>, <span class="fl">1</span>, <span class="kw">lty</span><span class="kw">=</span><span class="fl">1</span>, <span class="kw">ylab</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="no">ln</span>[<span class="no">q</span>](<span class="no">x</span>)))
-<span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/entropart/man/lnq.html">lnq</a></span>(<span class="no">x</span>, <span class="fl">0</span>), <span class="fl">0</span>, <span class="fl">1</span>, <span class="kw">lty</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">add</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/entropart/man/lnq.html">lnq</a></span>(<span class="no">x</span>, <span class="fl">2</span>), <span class="fl">0</span>, <span class="fl">1</span>, <span class="kw">lty</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">add</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/entropart/man/lnq.html">lnq</a></span>(<span class="no">x</span>, <span class="fl">3</span>), <span class="fl">0</span>, <span class="fl">1</span>, <span class="kw">lty</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">add</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span>(<span class="st">"bottomright"</span>, <span class="kw">legend</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="no">ln</span>[<span class="fl">0</span>](<span class="no">x</span>)), <span class="st">"ln(x)"</span>, <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="no">ln</span>[<span class="fl">2</span>](<span class="no">x</span>)), <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="no">ln</span>[<span class="fl">3</span>](<span class="no">x</span>))), <span class="kw">lty</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span>), <span class="kw">inset</span><span class="kw">=</span>  <span class="fl">0.02</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">1</span>, lty<span class="op">=</span><span class="fl">1</span>, ylab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="va">ln</span><span class="op">[</span><span class="va">q</span><span class="op">]</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span><span class="op">(</span><span class="fu"><a href="../../reference/lnq.html">lnq</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">0</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">1</span>, lty <span class="op">=</span> <span class="fl">2</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span><span class="op">(</span><span class="fu"><a href="../../reference/lnq.html">lnq</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">1</span>, lty <span class="op">=</span> <span class="fl">3</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span><span class="op">(</span><span class="fu"><a href="../../reference/lnq.html">lnq</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">1</span>, lty <span class="op">=</span> <span class="fl">4</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>  
+<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"bottomright"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="va">ln</span><span class="op">[</span><span class="fl">0</span><span class="op">]</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>, <span class="st">"ln(x)"</span>, <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="va">ln</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="va">ln</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>, inset<span class="op">=</span>  <span class="fl">0.02</span><span class="op">)</span></pre></div>
 <p><img src="reference_files/figure-html/lnqCurve-1.png" width="700"></p>
 <p>The figure shows the curves of <span class="math inline">\(\ln_q{x}\)</span> for different values of <span class="math inline">\(q\)</span> between 0 and 4 (<span class="math inline">\(\ln_1{x}=\ln{x}\)</span>).</p>
 <p>The inverse function of <span class="math inline">\(\ln_q{x}\)</span> is the deformed exponential:</p>
 <p><span class="math display">\[e^x_q=[1+(1-q)x]^{\frac{1}{1-q}}\]</span></p>
-<p>Functions of the package are <code><a href="https://rdrr.io/pkg/entropart/man/lnq.html">lnq(x, q)</a></code> and <code><a href="https://rdrr.io/pkg/entropart/man/expq.html">expq(x, q)</a></code>.</p>
+<p>Functions of the package are <code><a href="../../reference/lnq.html">lnq(x, q)</a></code> and <code><a href="../../reference/expq.html">expq(x, q)</a></code>.</p>
 </div>
 </div>
 <div id="species-neutral-diversity" class="section level1">
@@ -213,11 +222,13 @@
 <p>Species-neutral HCDT entropy of order <span class="math inline">\(q\)</span> of a community is defined as:</p>
 <p><span class="math display">\[^q\!H=\frac{1-\sum_s{p^q_s}}{q-1}=-\sum_s{p^q_s}\ln_q{p_s}=\sum_s{p_s}\ln_q{\frac{1}{p_s}}\]</span></p>
 <p><span class="math inline">\(q\)</span> is the order of diversity (e.g.: 1 for Shannon). Entropy can be calculated by the <code>Tsallis</code> function. Paracou meta-community entropy of order 1 is:</p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/entropart/man/Tsallis.html">Tsallis</a></span>(<span class="no">PProba</span>, <span class="kw">q</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="fu"><a href="../../reference/Tsallis.html">Tsallis</a></span><span class="op">(</span><span class="va">PProba</span>, q <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></pre></div>
 <pre><code>##     None 
 ## 4.736023</code></pre>
 <p>For convenience, special cases of entropy of order <span class="math inline">\(q\)</span> have a clear-name function: <code>Richess</code> for <span class="math inline">\(q=0\)</span>, <code>Shannon</code> for <span class="math inline">\(q=1\)</span>, <code>Simpson</code> for <span class="math inline">\(q=2\)</span>.</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/entropart/man/Shannon.html">Shannon</a></span>(<span class="no">PProba</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="fu"><a href="../../reference/Shannon.html">Shannon</a></span><span class="op">(</span><span class="va">PProba</span><span class="op">)</span></pre></div>
 <pre><code>##     None 
 ## 4.736023</code></pre>
 <p>Entropy values have no intuitive interpretation in general, except for the number of species <span class="math inline">\(^0\!H\)</span> and Simpson entropy <span class="math inline">\(^2\!H\)</span> which is the probability for two randomly chosen individuals to belong to different species.</p>
@@ -228,7 +239,8 @@
 <p>A useful indicator of sampling quality is the sample coverage <span class="citation">(Good 1953; Chao, Lee, and Chen 1988; Zhang and Huang 2007)</span>, that is to say the probability for a species of the community to be observed in the actual sample. It equals the sum of the probability of occurrences of all observed species. Its historical estimator is <span class="citation">(Good 1953)</span>:</p>
 <p><span class="math display">\[\hat{C}=1-\frac{S^1}{n}\]</span></p>
 <p><span class="math inline">\(S^1\)</span> is the number of singletons (species observed once) of the sample, and <span class="math inline">\(n\)</span> is its size. The estimator has been improved by taking into account the whole distribution of species <span class="citation">(Zhang and Huang 2007)</span>. The <code>Coverage</code> function calculates it, allowing to choose the estimator:</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/entropart/man/Coverage.html">Coverage</a></span>(<span class="no">PAbd</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="fu"><a href="../../reference/Coverage.html">Coverage</a></span><span class="op">(</span><span class="va">PAbd</span><span class="op">)</span></pre></div>
 <pre><code>## ZhangHuang 
 ##  0.9226675</code></pre>
 <p>The sample coverage cannot be estimated from probability data: abundances are required.</p>
@@ -238,17 +250,20 @@
 <h3 class="hasAnchor">
 <a href="#bias-corrected-estimators" class="anchor"></a>Bias corrected estimators</h3>
 <p>Correction of estimation bias is used to improve the estimation of entropy despite unobserved species and also mathematical issues <span class="citation">(Bonachela, Hinrichsen, and Muñoz 2008)</span>. Bias-corrected estimators (often relying on sample coverage) are returned by functions whose names are prefixed by <code>bc</code>, such as <code>bcTsallis</code>. They are similar to the non-corrected ones but they use abundance data and propose several bias-correction techniques to select in the <code>Correction</code> argument. A <em>Best</em> correction is calculated by default, detailed in the help file of each function.</p>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/entropart/man/Tsallis.html">bcTsallis</a></span>(<span class="no">PAbd</span>, <span class="kw">q</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb19"><pre class="downlit">
+<span class="fu"><a href="../../reference/Tsallis.html">bcTsallis</a></span><span class="op">(</span><span class="va">PAbd</span>, q <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></pre></div>
 <pre><code>##  UnveilJ 
 ## 4.928035</code></pre>
 <p>The best correction for Tsallis entropy follows <span class="citation">Chao and Jost (2015)</span>. It combines an unbiased estimator previously derived by <span class="citation">Zhang and Grabchak (2016)</span> and an estimate of the remaining bias.</p>
 <p>All community functions such as <code>Tsallis</code> are actually generic methods that can handle several types of data the appropriate way: if the first argument of the function is a <code>ProbaVector</code> (or a numeric vector summing to 1), no bias correction is applied. If it is an <code>AbdVector</code> (or an integer vector), the bias-corrected estimator is used (e.g. <code>bcTsallis</code>). Numeric vectors summing to more than 2 are considered as abundances but most bias corrections do not allow non-integer values and return a warning.</p>
 <p>The different ways to use the functions are a matter of personal preference. <code>bcTsallis</code> is equivalent to <code>Tsallis</code> with an abundance vector:</p>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/entropart/man/Tsallis.html">Tsallis</a></span>(<span class="no">PAbd</span>, <span class="kw">q</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb21"><pre class="downlit">
+<span class="fu"><a href="../../reference/Tsallis.html">Tsallis</a></span><span class="op">(</span><span class="va">PAbd</span>, q <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></pre></div>
 <pre><code>##  UnveilJ 
 ## 4.928035</code></pre>
 <p>whilst <code>Tsallis</code> with a probability vector does not allow bias correction:</p>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/entropart/man/Tsallis.html">Tsallis</a></span>(<span class="no">PProba</span>, <span class="kw">q</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb23"><pre class="downlit">
+<span class="fu"><a href="../../reference/Tsallis.html">Tsallis</a></span><span class="op">(</span><span class="va">PProba</span>, q <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></pre></div>
 <pre><code>##     None 
 ## 4.736023</code></pre>
 <p>Bias-corrected entropy is ready to be transformed into explicit diversity.</p>
@@ -259,10 +274,12 @@
 <p>Entropy should be converted into <em>true diversity</em> <span class="citation">(Jost 2007)</span>, i.e. effective number of species equal to <span class="citation">Hill (1973)</span> numbers:</p>
 <p><span class="math display">\[^q\!D={\left(\sum_s{p^q_s}\right)}^{\frac{1}{1-q}}\]</span></p>
 <p>This can be done by the deformed exponential function, or using directly the <code>Diversity</code> or <code>bcDiversity</code> functions (equal to the deformed exponential of order <span class="math inline">\(q\)</span> of <code>Tsallis</code> or <code>bcTsallis</code>)</p>
-<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/entropart/man/expq.html">expq</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/entropart/man/Tsallis.html">Tsallis</a></span>(<span class="no">PAbd</span>, <span class="kw">q</span> <span class="kw">=</span> <span class="fl">2</span>), <span class="kw">q</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb25"><pre class="downlit">
+<span class="fu"><a href="../../reference/expq.html">expq</a></span><span class="op">(</span><span class="fu"><a href="../../reference/Tsallis.html">Tsallis</a></span><span class="op">(</span><span class="va">PAbd</span>, q <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, q <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></pre></div>
 <pre><code>##  UnveilJ 
 ## 73.09335</code></pre>
-<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/entropart/man/Diversity.html">Diversity</a></span>(<span class="no">PAbd</span>, <span class="kw">q</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb27"><pre class="downlit">
+<span class="fu"><a href="../../reference/Diversity.html">Diversity</a></span><span class="op">(</span><span class="va">PAbd</span>, q <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></pre></div>
 <pre><code>##  UnveilJ 
 ## 73.09335</code></pre>
 <p>The effective number of species of the Paracou dataset is estimated to be 73 after bias correction (rather than 69 without it). It means that a community made of 73 equally-frequent species has the same Simpson entropy as the actual one. This is much less than the actual 425 sampled species. Simpson’s entropy focuses on dominant species.</p>
@@ -278,13 +295,16 @@
 <p>The effective number of species <span class="math inline">\(_k\!D\)</span> can be found by solving the following equation <span class="citation">(Dauby and Hardy 2012)</span>:</p>
 <p><span class="math display">\[_k\!S  = {_k\!D} \left[1-{\left(1-\frac{1}{_k\!D}\right)}^k\right]\]</span></p>
 <p>Hurlbert’s index is calculated by the <code>Hurlbert</code> function. Its unbiased estimator is obtained by <code>bcHurlbert</code> (implicitly if an abundance vector is used). Its effective number of species is caclulated by <code>HurlbertD</code> or <code>bcHurlbertD</code>.</p>
-<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/entropart/man/Hurlbert.html">Hurlbert</a></span>(<span class="no">PProba</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb29"><pre class="downlit">
+<span class="fu"><a href="../../reference/Hurlbert.html">Hurlbert</a></span><span class="op">(</span><span class="va">PProba</span>, k <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></pre></div>
 <pre><code>##   Biased 
 ## 1.985449</code></pre>
-<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/entropart/man/Hurlbert.html">Hurlbert</a></span>(<span class="no">PAbd</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb31"><pre class="downlit">
+<span class="fu"><a href="../../reference/Hurlbert.html">Hurlbert</a></span><span class="op">(</span><span class="va">PAbd</span>, k <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></pre></div>
 <pre><code>## Unbiased 
 ## 1.986326</code></pre>
-<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/entropart/man/Hurlbert.html">HurlbertD</a></span>(<span class="no">PAbd</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb33"><pre class="downlit">
+<span class="fu"><a href="../../reference/Hurlbert.html">HurlbertD</a></span><span class="op">(</span><span class="va">PAbd</span>, k <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></pre></div>
 <pre><code>## Unbiased 
 ## 73.13163</code></pre>
 <p>Hurlbert’s diversity of order 2 is identical to Simpson’s diversity.</p>
@@ -305,8 +325,9 @@
 <h3 class="hasAnchor">
 <a href="#basic-meta-community-functions" class="anchor"></a>Basic meta-community functions</h3>
 <p>These values can be estimated by the meta-community functions named <code>AlphaEntropy</code>, <code>AlphaDiversity</code>, <code>BetaEntropy</code>, <code>BetaDiversity</code>. They accept a <code>Metacommunity</code> and an order of diversity <span class="math inline">\(q\)</span> as arguments, and return an <code>MCentropy</code> or <code>MCdiversity</code> object which can be summarized and plotted. <code>GammaEntropy</code> and <code>GammaDiversity</code> return a number. Estimation-bias corrections are applied by default:</p>
-<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="no">e</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/AlphaEntropy.html">AlphaEntropy</a></span>(<span class="no">Paracou618.MC</span>, <span class="kw">q</span> <span class="kw">=</span> <span class="fl">1</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">e</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb35"><pre class="downlit">
+<span class="va">e</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/AlphaEntropy.html">AlphaEntropy</a></span><span class="op">(</span><span class="va">Paracou618.MC</span>, q <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">e</span><span class="op">)</span></pre></div>
 <pre><code>## Neutral alpha entropy of order 1 of metaCommunity Paracou618.MC 
 ## with correction: Best 
 ## 
@@ -322,8 +343,9 @@
 <h3 class="hasAnchor">
 <a href="#diversity-partition-of-a-metacommunity" class="anchor"></a>Diversity Partition of a metacommunity</h3>
 <p>The <code>DivPart</code> function calculates everything at once. Its arguments are the same but bias correction is not applied by default. It can be, using the argument <code>Biased = FALSE</code>, and the correction chosen by the argument<code>Correction</code>. It returns a <code>DivPart</code> object which can be summarized (entropy is not printed by <code>summary</code>) and plotted:</p>
-<div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="no">p</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/DivPart.html">DivPart</a></span>(<span class="kw">q</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">MC</span> <span class="kw">=</span> <span class="no">Paracou618.MC</span>, <span class="kw">Biased</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">p</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb37"><pre class="downlit">
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/DivPart.html">DivPart</a></span><span class="op">(</span>q <span class="op">=</span> <span class="fl">1</span>, MC <span class="op">=</span> <span class="va">Paracou618.MC</span>, Biased <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></pre></div>
 <pre><code>## HCDT diversity partitioning of order 1 of metaCommunity Paracou618.MC
 ##  with correction: UnveilJ
 ## Alpha diversity of communities: 
@@ -337,10 +359,12 @@
 ## Gamma diversity of the metacommunity: 
 ##  UnveilJ 
 ## 138.1078</code></pre>
-<div class="sourceCode" id="cb39"><html><body><pre class="r"><span class="no">p</span>$<span class="no">CommunityAlphaEntropies</span></pre></body></html></div>
+<div class="sourceCode" id="cb39"><pre class="downlit">
+<span class="va">p</span><span class="op">$</span><span class="va">CommunityAlphaEntropies</span></pre></div>
 <pre><code>##     P006     P018 
 ## 4.427559 4.772981</code></pre>
-<div class="sourceCode" id="cb41"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">p</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb41"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></pre></div>
 <p><img src="reference_files/figure-html/DivPartPlot-1.png" width="700"></p>
 <p>The <span class="math inline">\(\alpha\)</span> diversity of communities is 97 effective species (it is the exponential of the entropy calculated previously). This is more than Simpson’s diversity 73 species, calculated above) because less frequent species are taken into account. <span class="math inline">\(\gamma\)</span> diversity of the meta-community is 138 effective species. <span class="math inline">\(\beta\)</span> diversity is 1.42 effective communities, i.e. the two actual communities are as different from each other as 1.42 ones with equal weights and no species in common.</p>
 <p>The figure is the plot of the diversity partition of the meta-community <code>Paracou618.MC</code>. The long rectangle of height 1 represents <span class="math inline">\(\gamma\)</span> diversity, equal to 138 effective species. The narrower and higher rectangle has the same area: its horizontal size is <span class="math inline">\(\alpha\)</span> diversity (97 effective species) and its height is <span class="math inline">\(\beta\)</span> diversity (1.42 effective communities).}</p>
@@ -349,8 +373,10 @@
 <h3 class="hasAnchor">
 <a href="#diversity-estimation-of-a-metacommunity" class="anchor"></a>Diversity Estimation of a metacommunity</h3>
 <p>The <code>DivEst</code> function decomposes diversity and estimates confidence interval of <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\gamma\)</span> diversity following <span class="citation">Marcon et al. (2012)</span>. If the observed species frequencies of a community are assumed to be a realization of a multinomial distribution, they can be drawn again to obtain a distribution of entropy.</p>
-<div class="sourceCode" id="cb42"><html><body><pre class="r"><span class="no">de</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/DivEst.html">DivEst</a></span>(<span class="kw">q</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="no">Paracou618.MC</span>, <span class="kw">Biased</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">Correction</span> <span class="kw">=</span> <span class="st">"Best"</span>, <span class="kw">Simulations</span> <span class="kw">=</span> <span class="fl">100</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb43"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">de</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb42"><pre class="downlit">
+<span class="va">de</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/DivEst.html">DivEst</a></span><span class="op">(</span>q <span class="op">=</span> <span class="fl">1</span>, <span class="va">Paracou618.MC</span>, Biased <span class="op">=</span> <span class="cn">FALSE</span>, Correction <span class="op">=</span> <span class="st">"Best"</span>, Simulations <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb43"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">de</span><span class="op">)</span></pre></div>
 <pre><code>## Diversity partitioning of order 1 of MetaCommunity Paracou618.MC
 ##  with correction: UnveilJ
 ## Alpha diversity of communities: 
@@ -377,7 +403,8 @@
 ## 127.4125 127.6255 128.4695 129.4677 130.1285 134.8554 138.8269 141.3669 
 ##      90%      95%    97.5%      99%     100% 
 ## 145.0758 148.1377 148.8794 150.2797 153.6684</code></pre>
-<div class="sourceCode" id="cb45"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">de</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb45"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">de</span><span class="op">)</span></pre></div>
 <p><img src="reference_files/figure-html/DivEstPlot-1.png" width="700"></p>
 <p>The result is a <code>Divest</code> object which can be summarized and plotted. On the figure of the diversity estimation of the meta-community <code>Paracou618.MC</code>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\gamma\)</span> diversity probability densities are plotted, with a 95% confidence interval.</p>
 <p>The uncertainty of estimation is due to sampling: the distribution of the estimators corresponds to the simulated repetitions of sampling in the original multinomial distribution of species. It ignores the remaining bias of the estimator, which is unknown. Yet, except for <span class="math inline">\(q=2\)</span>, the corrected estimators <em>are</em> biased (even though much less than the non-corrected ones), especially when <span class="math inline">\(q\)</span> is small. New estimators to reduce the bias are included in the package regularly.</p>
@@ -386,8 +413,10 @@
 <h3 class="hasAnchor">
 <a href="#diversity-profile-of-a-metacommunity" class="anchor"></a>Diversity Profile of a metacommunity</h3>
 <p><code>DivProfile</code> calculates diversity profiles, i.e. the value of diversity against its order. The result is a <code>DivProfile</code> object which can be summarized and plotted.</p>
-<div class="sourceCode" id="cb46"><html><body><pre class="r"><span class="no">dp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/DivProfile.html">DivProfile</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">0.2</span>), <span class="no">Paracou618.MC</span>, <span class="kw">Biased</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">NumberOfSimulations</span> <span class="kw">=</span> <span class="fl">20</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb47"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">dp</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb46"><pre class="downlit">
+<span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/DivProfile.html">DivProfile</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">0.2</span><span class="op">)</span>, <span class="va">Paracou618.MC</span>, Biased <span class="op">=</span> <span class="cn">FALSE</span>, NumberOfSimulations <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb47"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dp</span><span class="op">)</span></pre></div>
 <pre><code>## Diversity profile of MetaCommunity Paracou618.MC
 ##  with correction: UnveilJ
 ## Diversity against its order:
@@ -403,7 +432,8 @@
 ## UnveilJ   1.6        56.21256       1.583490        89.01206
 ## UnveilJ   1.8        49.24224       1.624534        79.99569
 ## UnveilJ   2.0        44.09399       1.657672        73.09335</code></pre>
-<div class="sourceCode" id="cb49"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dp</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb49"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">dp</span><span class="op">)</span></pre></div>
 <p><img src="reference_files/figure-html/DivProfilePlot-1.png" width="700"></p>
 <p>The figure shows the diversity profile of the meta-community <code>Paracou618.MC</code>. Values are the number of effective species (<span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\gamma\)</span> diversity) and the effective number of communities (<span class="math inline">\(\beta\)</span> diversity). Community P006 is represented by the solid line and community P018 by the dotted line. <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\gamma\)</span> diversity decrease from <span class="math inline">\(q=0\)</span> (number of species) to <span class="math inline">\(q=2\)</span> (Simpson diversity) by construction.}</p>
 <p>Small orders of diversity give more weight to rare species. P018 can be considered more diverse than P006 because their profiles (top right of the figure) do not cross <span class="citation">(Tothmeresz 1995)</span>: its diversity is systematically higher. The shape of the <span class="math inline">\(\beta\)</span> diversity profile shows that the communities are more diverse when their dominant species are considered.</p>
@@ -413,7 +443,8 @@
 <h3 class="hasAnchor">
 <a href="#alternative-functions" class="anchor"></a>Alternative functions</h3>
 <p>Beta entropy can also be calculated by a set of functions named after the community functions, such as <code>TsallisBeta</code>, <code>bcTsallisBeta</code>, <code>SimpsonBeta</code>, etc. which require two vectors of abundances or probabilities instead of a <code>MetaCommunity</code> object: that of the community and the expected one (usually that of the meta-community). Bias correction is currently limited to Chao and Shen’s correction. The example below calculates the Shannon <span class="math inline">\(\beta\)</span> entropy of the first community of Paracou618 and the meta-community.</p>
-<div class="sourceCode" id="cb50"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/entropart/man/ShannonBeta.html">ShannonBeta</a></span>(<span class="no">Paracou618.MC</span>$<span class="no">Psi</span>[, <span class="fl">1</span>], <span class="no">PProba</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb50"><pre class="downlit">
+<span class="fu"><a href="../../reference/ShannonBeta.html">ShannonBeta</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Psi</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>, <span class="va">PProba</span><span class="op">)</span></pre></div>
 <pre><code>##      None 
 ## 0.3499358</code></pre>
 <p>These functions are available for particular uses, when a <code>MetaCommunity</code> is not available or not convenient to use (e.g. simulations). Meta-community functions are preferred in general.</p>
@@ -441,8 +472,9 @@
 <p><code>PhyloEntropy</code> and the estimation-bias-corrected <code>bcPhyloEntropy</code> are the phylogenetic analogs of <code>Tsallis</code> and <code>bcTsallis</code>. They accept the same arguments plus an ultrametric tree of class <code>phylo</code>, <code>hclust</code> or <code>phylog</code> and <code>Normalize</code> a boolean to normalize the tree height to 1 (by default).</p>
 <p>Phylogenetic diversity is calculated by <code>PhyloDiversity</code> or <code>bcPhyloDiversity</code> analogous to the species-neutral diversity functions <code>Diversity</code> and <code>bcDiversity</code>.</p>
 <p>Results are either a <code>PhyloDiversity</code> or a <code>PhyloEntropy</code> object, which can be plotted and summarized.</p>
-<div class="sourceCode" id="cb52"><html><body><pre class="r"><span class="no">phd</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/PhyloDiversity.html">bcPhyloDiversity</a></span>(<span class="no">PAbd</span>, <span class="kw">q</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">Tree</span> <span class="kw">=</span> <span class="no">Paracou618.Taxonomy</span>, <span class="kw">Normalize</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">phd</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb52"><pre class="downlit">
+<span class="va">phd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/PhyloDiversity.html">bcPhyloDiversity</a></span><span class="op">(</span><span class="va">PAbd</span>, q <span class="op">=</span> <span class="fl">1</span>, Tree <span class="op">=</span> <span class="va">Paracou618.Taxonomy</span>, Normalize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">phd</span><span class="op">)</span></pre></div>
 <pre><code>## alpha or gamma phylogenetic or functional diversity of order 1 of distribution 
 ## PAbd
 ##  with correction: Best
@@ -452,7 +484,8 @@
 ## Diversity is normalized
 ## 
 ## Diversity equals: 55.64502</code></pre>
-<div class="sourceCode" id="cb54"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">phd</span>, <span class="kw">main</span> <span class="kw">=</span> <span class="st">""</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb54"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">phd</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span></pre></div>
 <p><img src="reference_files/figure-html/PhyloDiversityPlot-1.png" width="700"></p>
 <p>The figure shows the <span class="math inline">\(\gamma\)</span> phylodiversity estimation of the meta-community <code>Paracou618.MC</code>. The effective number of taxa of Shannon diversity is plotted against the distance from the leaves of the phylogenetic tree. Here, the tree is based on a rough taxonomy, so diversity of species, genera and families are the three levels of the curve. The dotted line represents the value of phylodiversity.</p>
 <p>The phylogenetic diversity of order 1 of the Paracou dataset is 56 effective species: 56 totally different species (only connected by the root of the tree) with equal probabilities would have the same entropy. It can be compared to its species-neutral diversity: 138 species. The latter is the diversity of the first slice of the tree. When going up the tree, diversity decreases because species collapse. On the figure, the diversity of the second slice, between <span class="math inline">\(T=1\)</span> and <span class="math inline">\(T=2\)</span>, is that of genera (64 effective genera) and the last slice contains20 effective families. The phylogenetic entropy of the community is the average of the entropy along slices, weighted by the slice lengths. Diversity can not be averaged the same way.</p>
@@ -464,8 +497,9 @@
 <h2 class="hasAnchor">
 <a href="#meta-community-functions-1" class="anchor"></a>Meta-community functions</h2>
 <p><code>DivPart</code>, <code>DivEst</code> and <code>DivProfile</code> functions return phylogenetic entropy and diversity values instead of species-neutral ones if a tree is provided in the arguments.</p>
-<div class="sourceCode" id="cb55"><html><body><pre class="r"><span class="no">dp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/DivPart.html">DivPart</a></span>(<span class="kw">q</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="no">Paracou618.MC</span>, <span class="kw">Biased</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">Correction</span> <span class="kw">=</span> <span class="st">"Best"</span>, <span class="kw">Tree</span> <span class="kw">=</span> <span class="no">Paracou618.Taxonomy</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">dp</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb55"><pre class="downlit">
+<span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/DivPart.html">DivPart</a></span><span class="op">(</span>q <span class="op">=</span> <span class="fl">1</span>, <span class="va">Paracou618.MC</span>, Biased <span class="op">=</span> <span class="cn">FALSE</span>, Correction <span class="op">=</span> <span class="st">"Best"</span>, Tree <span class="op">=</span> <span class="va">Paracou618.Taxonomy</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dp</span><span class="op">)</span></pre></div>
 <pre><code>## HCDT diversity partitioning of order 1 of metaCommunity Paracou618.MC
 ##  with correction: UnveilJ UnveilJ UnveilJ
 ## Phylogenetic or functional diversity was calculated
@@ -485,7 +519,8 @@
 ## [1] 55.64502</code></pre>
 <p>The decomposition is interpreted as the species-neutral one: <span class="math inline">\(\gamma\)</span> diversity is 56 effective species, made of 1.3 effective communities of 44 effective species.</p>
 <p>Other meta-community functions, such as <code>AlphaEntropy</code> behave the same way:</p>
-<div class="sourceCode" id="cb57"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/entropart/man/BetaEntropy.html">BetaEntropy</a></span>(<span class="no">Paracou618.MC</span>, <span class="kw">q</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">Tree</span> <span class="kw">=</span> <span class="no">Paracou618.Taxonomy</span>, <span class="kw">Correction</span> <span class="kw">=</span> <span class="st">"None"</span>, <span class="kw">Normalize</span> <span class="kw">=</span> <span class="fl">FALSE</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb57"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="../../reference/BetaEntropy.html">BetaEntropy</a></span><span class="op">(</span><span class="va">Paracou618.MC</span>, q <span class="op">=</span> <span class="fl">2</span>, Tree <span class="op">=</span> <span class="va">Paracou618.Taxonomy</span>, Correction <span class="op">=</span> <span class="st">"None"</span>, Normalize <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></pre></div>
 <pre><code>## HCDT beta entropy of order 2 of metaCommunity Paracou618.MC with correction: 
 ## None 
 ## 
@@ -499,8 +534,11 @@
 ## Average entropy of the communities: 
 ## [1] 0.03350547</code></pre>
 <p>Compare with Rao’s <code>divc</code> computed by <em>ade4</em>:</p>
-<div class="sourceCode" id="cb59"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"ade4"</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/ade4/man/divc.html">divc</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="no">Paracou618.MC</span>$<span class="no">Wi</span>), <span class="fu"><a href="https://rdrr.io/pkg/ade4/man/disc.html">disc</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="no">Paracou618.MC</span>$<span class="no">Nsi</span>), <span class="no">Paracou618.Taxonomy</span>$<span class="no">Wdist</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb59"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://pbil.univ-lyon1.fr/ADE-4/">"ade4"</a></span><span class="op">)</span></pre></div>
+<pre><code>## Warning: package 'ade4' was built under R version 4.0.3</code></pre>
+<div class="sourceCode" id="cb61"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/pkg/ade4/man/divc.html">divc</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Wi</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/pkg/ade4/man/disc.html">disc</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Nsi</span><span class="op">)</span>, <span class="va">Paracou618.Taxonomy</span><span class="op">$</span><span class="va">Wdist</span><span class="op">)</span><span class="op">)</span></pre></div>
 <pre><code>##                    diversity
 ## Paracou618.MC$Wi 0.009845941</code></pre>
 <p>The decomposition of the diversity of meta-communities with non integer <code>$Ns</code> starts with the estimation of <span class="math inline">\(\gamma\)</span> diversity. The best estimator is found for each slice of the tree. It is then used to estimate <span class="math inline">\(\alpha\)</span> diversity.</p>
@@ -512,30 +550,36 @@
 <p><span class="citation">Leinster and Cobbold (2012)</span> introduced similarity-based diversity of a community <span class="math inline">\(^qD^Z\)</span>. A matrix <span class="math inline">\(\mathbf{Z}\)</span> describes the similarity between pairs of species, defined between 0 and 1. A species ordinariness is its average similarity with all species (weighted by species frequencies), including similarity with itself (equal to 1). Similarity-based diversity is the reciprocal of the generalized average of order <span class="math inline">\(q\)</span> <span class="citation">(Hardy, Littlewood, and Pólya 1952)</span> of the community species ordinariness.</p>
 <p>The <code>Dqz</code> function calculates similarity-based diversity. Its arguments are the vector of probabilities of occurrences of the species, the order of diversity and the similarity matrix <span class="math inline">\(\mathbf{Z}\)</span>. The <code>bcDqz</code> function allows estimation-bias correction <span class="citation">(Marcon, Zhang, and Hérault 2014)</span>.</p>
 <p>This example calculates the <span class="math inline">\(\gamma\)</span> diversity of the meta-community Paracou. First, the similarity matrix is calculated from the distance matrix between all pairs of species as 1 minus normalized dissimilarity.</p>
-<div class="sourceCode" id="cb61"><html><body><pre class="r"><span class="no">DistanceMatrix</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span>(<span class="no">Paracou618.dist</span>)
-<span class="no">Z</span> <span class="kw">&lt;-</span> <span class="fl">1</span> - <span class="no">DistanceMatrix</span>/<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="no">DistanceMatrix</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/entropart/man/Dqz.html">bcDqz</a></span>(<span class="no">PAbd</span>, <span class="kw">q</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="no">Z</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb63"><pre class="downlit">
+<span class="va">DistanceMatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">Paracou618.dist</span><span class="op">)</span>
+<span class="va">Z</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">DistanceMatrix</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">DistanceMatrix</span><span class="op">)</span>
+<span class="fu"><a href="../../reference/Dqz.html">bcDqz</a></span><span class="op">(</span><span class="va">PAbd</span>, q <span class="op">=</span> <span class="fl">2</span>, <span class="va">Z</span><span class="op">)</span></pre></div>
 <pre><code>##    Best 
 ## 1.48295</code></pre>
 <p>If <span class="math inline">\(\mathbf{Z}\)</span> is the identity matrix, similarity-based diversity equals HCDT diversity:</p>
-<div class="sourceCode" id="cb63"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/entropart/man/Dqz.html">Dqz</a></span>(<span class="no">PProba</span>, <span class="kw">q</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">Z</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">PProba</span>)))</pre></body></html></div>
+<div class="sourceCode" id="cb65"><pre class="downlit">
+<span class="fu"><a href="../../reference/Dqz.html">Dqz</a></span><span class="op">(</span><span class="va">PProba</span>, q <span class="op">=</span> <span class="fl">2</span>, Z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">PProba</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
 <pre><code>##    None 
 ## 68.7215</code></pre>
-<div class="sourceCode" id="cb65"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/entropart/man/Diversity.html">Diversity</a></span>(<span class="no">PProba</span>, <span class="kw">q</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb67"><pre class="downlit">
+<span class="fu"><a href="../../reference/Diversity.html">Diversity</a></span><span class="op">(</span><span class="va">PProba</span>, q <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></pre></div>
 <pre><code>##    None 
 ## 68.7215</code></pre>
 <p>Functional diversity of order 2 is only 1.48 effective species, which is very small compared to 69 effective species for Simpson diversity. 1.48 equally-frequent species with similarity equal to 0 would have the same functional diversity as the actual community (made of 425 species). This means that species are very similar from a functional point of view. The very low values returned by <span class="math inline">\(^qD^Z\)</span> are questioned by <span class="citation">Chao, Chiu, and Jost (2014)</span> and discussed in depth by <span class="citation">Marcon, Zhang, and Hérault (2014)</span>: the choice of the similarity matrix is not trivial.</p>
 <p>The similarity-based entropy of a community <span class="math inline">\(^qH^Z\)</span> [<span class="citation">Leinster and Cobbold (2012)</span>; Ricotta2006] has the same relations with diversity as HCDT entropy and Hill numbers. The <code>Hqz</code> function calculates it:</p>
-<div class="sourceCode" id="cb67"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/entropart/man/Hqz.html">Hqz</a></span>(<span class="no">PProba</span>, <span class="kw">q</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="no">Z</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb69"><pre class="downlit">
+<span class="fu"><a href="../../reference/Hqz.html">Hqz</a></span><span class="op">(</span><span class="va">PProba</span>, q <span class="op">=</span> <span class="fl">2</span>, <span class="va">Z</span><span class="op">)</span></pre></div>
 <pre><code>##      None 
 ## 0.3208152</code></pre>
-<div class="sourceCode" id="cb69"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/entropart/man/lnq.html">lnq</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/entropart/man/Dqz.html">Dqz</a></span>(<span class="no">PProba</span>, <span class="kw">q</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="no">Z</span>), <span class="kw">q</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb71"><pre class="downlit">
+<span class="fu"><a href="../../reference/lnq.html">lnq</a></span><span class="op">(</span><span class="fu"><a href="../../reference/Dqz.html">Dqz</a></span><span class="op">(</span><span class="va">PProba</span>, q <span class="op">=</span> <span class="fl">2</span>, <span class="va">Z</span><span class="op">)</span>, q <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></pre></div>
 <pre><code>##      None 
 ## 0.3208152</code></pre>
 <p>As species-neutral entropy, <span class="math inline">\(^qH^Z\)</span> has no straightforward interpretation beyond the average surprise of a community.</p>
 <p>All meta-community functions can be used to estimate similarity-based diversity: argument <code>Z</code> must be provided:</p>
-<div class="sourceCode" id="cb71"><html><body><pre class="r"><span class="no">e</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/AlphaEntropy.html">AlphaEntropy</a></span>(<span class="no">Paracou618.MC</span>, <span class="kw">q</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">Z</span> <span class="kw">=</span> <span class="no">Z</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">e</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb73"><pre class="downlit">
+<span class="va">e</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/AlphaEntropy.html">AlphaEntropy</a></span><span class="op">(</span><span class="va">Paracou618.MC</span>, q <span class="op">=</span> <span class="fl">1</span>, Z <span class="op">=</span> <span class="va">Z</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">e</span><span class="op">)</span></pre></div>
 <pre><code>## Similarity-based alpha entropy of order 1 of metaCommunity Paracou618.MC 
 ## with correction: Best 
 ## 
@@ -559,14 +603,17 @@
 <p>The <code>rCommunity</code> function allows creating random communities. Their species probability distribution can be drawn in a well-known distribution (such as a log-normal one) or obtained from the data, just by dividing abundances by the total number of individuals <span class="citation">(Marcon et al. 2012)</span>, or derived from a more sophisticated model by <span class="citation">Chao and Jost (2015)</span>. Finally, the specified number of communities are drawn in a multinomial distribution.</p>
 <p>The log-normal <span class="citation">(Preston 1948)</span>, the log-series <span class="citation">(Fisher, Corbet, and Williams 1943)</span>, the geometric <span class="citation">(Motomura 1932)</span>, and the broken-stick <span class="citation">(MacArthur 1957)</span> distributions can be simulated.</p>
 <p>This example code draws a single community of 1000 individuals according to a log-normal distribution with 300 species. Many species are not observed in the 1000-individual sample: the observed number of species is shown, with an estimation of the actual number (which should be 300). The simulated community is plotted (a Whittaker plot), with its log-normal distribution fitted from the data. Estimated parameters can be compared to the original ones.</p>
-<div class="sourceCode" id="cb73"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/entropart/man/rCommunity.html">rCommunity</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">1000</span>, <span class="kw">S</span><span class="kw">=</span><span class="fl">300</span>, <span class="kw">Distribution</span> <span class="kw">=</span> <span class="st">"lnorm"</span>, <span class="kw">sd</span><span class="kw">=</span><span class="fl">1</span>) <span class="kw">-&gt;</span> <span class="no">NsRef</span>
-<span class="fu"><a href="https://rdrr.io/pkg/entropart/man/Richness.html">Richness</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/entropart/man/SpeciesDistribution.html">as.ProbaVector</a></span>(<span class="no">NsRef</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb75"><pre class="downlit">
+<span class="fu"><a href="../../reference/rCommunity.html">rCommunity</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, size <span class="op">=</span> <span class="fl">1000</span>, S<span class="op">=</span><span class="fl">300</span>, Distribution <span class="op">=</span> <span class="st">"lnorm"</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">NsRef</span>
+<span class="fu"><a href="../../reference/Richness.html">Richness</a></span><span class="op">(</span><span class="fu"><a href="../../reference/SpeciesDistribution.html">as.ProbaVector</a></span><span class="op">(</span><span class="va">NsRef</span><span class="op">)</span><span class="op">)</span></pre></div>
 <pre><code>## None 
 ##  229</code></pre>
-<div class="sourceCode" id="cb75"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/entropart/man/Richness.html">Richness</a></span>(<span class="no">NsRef</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb77"><pre class="downlit">
+<span class="fu"><a href="../../reference/Richness.html">Richness</a></span><span class="op">(</span><span class="va">NsRef</span><span class="op">)</span></pre></div>
 <pre><code>## Jackknife 2 
 ##         319</code></pre>
-<div class="sourceCode" id="cb77"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">NsRef</span>, <span class="kw">Distribution</span><span class="kw">=</span><span class="st">"lnorm"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb79"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">NsRef</span>, Distribution<span class="op">=</span><span class="st">"lnorm"</span><span class="op">)</span></pre></div>
 <p><img src="reference_files/figure-html/rCommunityPlot-1.png" width="700"></p>
 <pre><code>## $mu
 ## [1] 1.037855
@@ -580,11 +627,14 @@
 <p>The <code>EntropyCI</code> function is a versatile tool to simplify simulations. Simulated communities are obtained by random draws in a multinomial distribution of species and their entropy is calculated. The arguments of <code>EntropyCI</code> are an entropy function (any entropy function of the package accepting a vector of species abundances, such as <code>bcTsallis</code>), the number of simulations to run, the observed species frequencies and the method to obtain probabilities for the multinomial distribution (the same as that of <code>rCommunity</code>).</p>
 <p>The result is a numeric vector containing the entropy value of each simulated community. Entropy can be finally transformed into diversity (but it is not correct to use a diversity function in simulations because the average simulated value must be calculated and only entropy can be averaged).</p>
 <p>This example shows how to use the function. First, the distribution of the <span class="math inline">\(\gamma\)</span> HCDT entropy of order 1 (Shannon entropy) of the Paracou meta-community is calculated and transformed into diversity. Then, the actual diversity is calculated and completed by the 95% confidence interval of the simulated values.</p>
-<div class="sourceCode" id="cb79"><html><body><pre class="r"><span class="no">SimulatedDiversity</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/expq.html">expq</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/entropart/man/EntropyCI.html">EntropyCI</a></span>(<span class="kw">FUN</span> <span class="kw">=</span> <span class="no">Tsallis</span>, <span class="kw">Simulations</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="kw">Ns</span> <span class="kw">=</span> <span class="no">PAbd</span>, <span class="kw">q</span> <span class="kw">=</span> <span class="fl">1</span>), <span class="kw">q</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb80"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/entropart/man/Diversity.html">Diversity</a></span>(<span class="no">PAbd</span>, <span class="kw">q</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb81"><pre class="downlit">
+<span class="va">SimulatedDiversity</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/expq.html">expq</a></span><span class="op">(</span><span class="fu"><a href="../../reference/EntropyCI.html">EntropyCI</a></span><span class="op">(</span>FUN <span class="op">=</span> <span class="va">Tsallis</span>, Simulations <span class="op">=</span> <span class="fl">100</span>, Ns <span class="op">=</span> <span class="va">PAbd</span>, q <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, q <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb82"><pre class="downlit">
+<span class="fu"><a href="../../reference/Diversity.html">Diversity</a></span><span class="op">(</span><span class="va">PAbd</span>, q <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></pre></div>
 <pre><code>##  UnveilJ 
 ## 138.1078</code></pre>
-<div class="sourceCode" id="cb82"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span>(<span class="no">SimulatedDiversity</span>, <span class="kw">probs</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb84"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">SimulatedDiversity</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></pre></div>
 <pre><code>##     2.5%    97.5% 
 ## 127.8719 149.0098</code></pre>
 <p>These results are identical to those of the <code>DivEst</code> function but a single community can be addressed (<code>DivEst</code> requires a <code>MetaCommunity</code>).</p>
@@ -594,12 +644,15 @@
 <a href="#diversity-or-entropy-profile-of-a-community" class="anchor"></a>Diversity or Entropy Profile of a community</h2>
 <p>This function is used to calculate diversity or entropy profiles based on community functions such as <code>Tsallis</code> or <code>ChaoPD</code>. It is similar to <code>DivProfile</code> but does not require a <code>Metacommunity</code> for argument. It can compute a bootstrap confidence envelope of the estimation of the profile, like <code>EntropyCI</code>. It returns a <code>CommunityProfile</code> object which can be plotted. Profiles can be added to an existing plot by the <code>CEnvelope</code> function.</p>
 <p>This example evaluates bias correction on the diversity profile of the Paracou dataset. First, diversity profiles are calculated with and without bias correction. The corrected profile is calculated with its confidence envelope:</p>
-<div class="sourceCode" id="cb84"><html><body><pre class="r"><span class="no">bcProfile</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/CommunityProfile.html">CommunityProfile</a></span>(<span class="no">Diversity</span>, <span class="no">PAbd</span>, <span class="kw">NumberOfSimulations</span> <span class="kw">=</span> <span class="fl">100</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb85"><html><body><pre class="r"><span class="no">Profile</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/CommunityProfile.html">CommunityProfile</a></span>(<span class="no">Diversity</span>, <span class="no">PProba</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb86"><pre class="downlit">
+<span class="va">bcProfile</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/CommunityProfile.html">CommunityProfile</a></span><span class="op">(</span><span class="va">Diversity</span>, <span class="va">PAbd</span>, NumberOfSimulations <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb87"><pre class="downlit">
+<span class="va">Profile</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/CommunityProfile.html">CommunityProfile</a></span><span class="op">(</span><span class="va">Diversity</span>, <span class="va">PProba</span><span class="op">)</span></pre></div>
 <p>Then, they can be plotted altogether to obtain the <span class="math inline">\(\gamma\)</span> diversity profile of the the meta-community <code>Paracou618.MC</code>, without bias correction (dotted line) and with correction (solid line):</p>
-<div class="sourceCode" id="cb86"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">bcProfile</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/entropart/man/CommunityProfile.html">CEnvelope</a></span>(<span class="no">Profile</span>, <span class="kw">lty</span><span class="kw">=</span><span class="fl">3</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span>(<span class="st">"topright"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Bias Corrected"</span>, <span class="st">"Biased"</span>), <span class="kw">lty</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">3</span>), <span class="kw">inset</span><span class="kw">=</span><span class="fl">0.02</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb88"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">bcProfile</span><span class="op">)</span>
+<span class="fu"><a href="../../reference/CommunityProfile.html">CEnvelope</a></span><span class="op">(</span><span class="va">Profile</span>, lty<span class="op">=</span><span class="fl">3</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"topright"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Bias Corrected"</span>, <span class="st">"Biased"</span><span class="op">)</span>, lty<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span>, inset<span class="op">=</span><span class="fl">0.02</span><span class="op">)</span></pre></div>
 <p><img src="reference_files/figure-html/CommunityProfileFig-1.png" width="700"></p>
 </div>
 <div id="applying-a-function-over-a-phylogenetic-tree" class="section level2">
@@ -607,8 +660,9 @@
 <a href="#applying-a-function-over-a-phylogenetic-tree" class="anchor"></a>Applying a Function over a Phylogenetic Tree</h2>
 <p>The <code>PhyloApply</code> function is used to apply an entropy community function (generally <code>bcTsallis</code>) along a tree, the same way <code>lapply</code> works with a list.</p>
 <p>This example shows how to calculate Shannon entropy along the tree containing the taxonomy to obtain species, genus and family entropy:</p>
-<div class="sourceCode" id="cb87"><html><body><pre class="r"><span class="no">pa</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/PhyloApply.html">PhyloApply</a></span>(<span class="kw">Tree</span><span class="kw">=</span><span class="no">Paracou618.Taxonomy</span>, <span class="kw">FUN</span><span class="kw">=</span><span class="no">bcTsallis</span>, <span class="kw">NorP</span><span class="kw">=</span><span class="no">PAbd</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">pa</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb89"><pre class="downlit">
+<span class="va">pa</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/PhyloApply.html">PhyloApply</a></span><span class="op">(</span>Tree<span class="op">=</span><span class="va">Paracou618.Taxonomy</span>, FUN<span class="op">=</span><span class="va">bcTsallis</span>, NorP<span class="op">=</span><span class="va">PAbd</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">pa</span><span class="op">)</span></pre></div>
 <pre><code>## bcTsallis applied to PAbd along the tree: Paracou618.Taxonomy
 ## 
 ## Results are normalized
@@ -618,10 +672,12 @@
 ## Values along the tree are:
 ##        1        2        3 
 ## 4.928035 4.151312 2.977631</code></pre>
-<div class="sourceCode" id="cb89"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span>(<span class="no">pa</span>$<span class="no">Cuts</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb91"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">pa</span><span class="op">$</span><span class="va">Cuts</span><span class="op">)</span></pre></div>
 <pre><code>##         1         2         3 
 ## 138.10783  63.51727  19.64124</code></pre>
-<div class="sourceCode" id="cb91"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span>(<span class="no">pa</span>$<span class="no">Total</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb93"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">pa</span><span class="op">$</span><span class="va">Total</span><span class="op">)</span></pre></div>
 <pre><code>## [1] 55.64502</code></pre>
 </div>
 <div id="manipulation-of-meta-communities" class="section level2">
@@ -630,25 +686,30 @@
 <p>Several meta-communities, combined in a list, can be merged two different ways. The <code>MergeMC</code> function simplifies hierarchical partitioning of diversity: it considers the aggregated data of each meta-community as a community and builds an upper-level meta-community with them. The <span class="math inline">\(\alpha\)</span> entropy of the new meta-community is the weighted average <span class="math inline">\(\gamma\)</span> entropy of the original meta-communities.</p>
 <p><code>MergeC</code> combines the communities of several meta-communities to create a single meta-community containing them all. Last, <code>ShuffleMC</code> randomly shuffles communities accross meta-communities to allow simulations to test differences between meta-communities.</p>
 <p>This example shows how to do this. A first meta-community is created, weights of communities are proportional to their number of individuals:</p>
-<div class="sourceCode" id="cb93"><html><body><pre class="r">(<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">C1</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span>), <span class="kw">C2</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">20</span>, <span class="fl">35</span>, <span class="fl">5</span>),
-  <span class="kw">C3</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">25</span>, <span class="fl">15</span>, <span class="fl">0</span>, <span class="fl">2</span>), <span class="kw">row.names</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sp1"</span>, <span class="st">"sp2"</span>, <span class="st">"sp3"</span>, <span class="st">"sp4"</span>)))</pre></body></html></div>
+<div class="sourceCode" id="cb95"><pre class="downlit">
+<span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>C1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span>, C2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">20</span>, <span class="fl">35</span>, <span class="fl">5</span><span class="op">)</span>,
+  C3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">15</span>, <span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sp1"</span>, <span class="st">"sp2"</span>, <span class="st">"sp3"</span>, <span class="st">"sp4"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
 <pre><code>##     C1 C2 C3
 ## sp1 10  0 25
 ## sp2 10 20 15
 ## sp3 10 35  0
 ## sp4 10  5  2</code></pre>
-<div class="sourceCode" id="cb95"><html><body><pre class="r"><span class="no">w</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span>(<span class="no">df</span>)
-<span class="no">MC1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/MetaCommunity.html">MetaCommunity</a></span>(<span class="kw">Abundances</span> <span class="kw">=</span> <span class="no">df</span>, <span class="kw">Weights</span> <span class="kw">=</span> <span class="no">w</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb97"><pre class="downlit">
+<span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
+<span class="va">MC1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/MetaCommunity.html">MetaCommunity</a></span><span class="op">(</span>Abundances <span class="op">=</span> <span class="va">df</span>, Weights <span class="op">=</span> <span class="va">w</span><span class="op">)</span></pre></div>
 <p>Then a second one:</p>
-<div class="sourceCode" id="cb96"><html><body><pre class="r">(<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">C1</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">10</span>, <span class="fl">4</span>), <span class="kw">C2</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>, <span class="fl">4</span>), <span class="kw">row.names</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sp1"</span>, <span class="st">"sp5"</span>)))</pre></body></html></div>
+<div class="sourceCode" id="cb98"><pre class="downlit">
+<span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>C1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">4</span><span class="op">)</span>, C2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sp1"</span>, <span class="st">"sp5"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
 <pre><code>##     C1 C2
 ## sp1 10  3
 ## sp5  4  4</code></pre>
-<div class="sourceCode" id="cb98"><html><body><pre class="r"><span class="no">w</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span>(<span class="no">df</span>)
-<span class="no">MC2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/MetaCommunity.html">MetaCommunity</a></span>(<span class="kw">Abundances</span> <span class="kw">=</span> <span class="no">df</span>, <span class="kw">Weights</span> <span class="kw">=</span> <span class="no">w</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb100"><pre class="downlit">
+<span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
+<span class="va">MC2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/MetaCommunity.html">MetaCommunity</a></span><span class="op">(</span>Abundances <span class="op">=</span> <span class="va">df</span>, Weights <span class="op">=</span> <span class="va">w</span><span class="op">)</span></pre></div>
 <p>They can be merged to obtain a single meta-community containing all original communities:</p>
-<div class="sourceCode" id="cb99"><html><body><pre class="r"><span class="no">mergedMC1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/MergeMC.html">MergeC</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">MC1</span>, <span class="no">MC2</span>))
-<span class="no">mergedMC1</span>$<span class="no">Nsi</span></pre></body></html></div>
+<div class="sourceCode" id="cb101"><pre class="downlit">
+<span class="va">mergedMC1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/MC%20Utilities.html">MergeC</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">MC1</span>, <span class="va">MC2</span><span class="op">)</span><span class="op">)</span>
+<span class="va">mergedMC1</span><span class="op">$</span><span class="va">Nsi</span></pre></div>
 <pre><code>##     MC1.C1 MC1.C2 MC1.C3 MC2.C1 MC2.C2
 ## sp1     10      0     25     10      3
 ## sp2     10     20     15      0      0
@@ -656,8 +717,9 @@
 ## sp4     10      5      2      0      0
 ## sp5      0      0      0      4      4</code></pre>
 <p>They can also be merged considering each of them as a community of a higher-level meta-community:</p>
-<div class="sourceCode" id="cb101"><html><body><pre class="r"><span class="no">mergedMC2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/MergeMC.html">MergeMC</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">MC1</span>, <span class="no">MC2</span>), <span class="kw">Weights</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">MC1</span>, <span class="no">MC2</span>), <span class="kw">function</span>(<span class="no">x</span>) (<span class="no">x</span>$<span class="no">N</span>)))
-<span class="no">mergedMC2</span>$<span class="no">Nsi</span></pre></body></html></div>
+<div class="sourceCode" id="cb103"><pre class="downlit">
+<span class="va">mergedMC2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/MC%20Utilities.html">MergeMC</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">MC1</span>, <span class="va">MC2</span><span class="op">)</span>, Weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">MC1</span>, <span class="va">MC2</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">N</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">mergedMC2</span><span class="op">$</span><span class="va">Nsi</span></pre></div>
 <pre><code>##     MC1 MC2
 ## sp1  35  13
 ## sp2  45   0
@@ -665,8 +727,9 @@
 ## sp4  17   0
 ## sp5   0   8</code></pre>
 <p>Hierarchical diversity partitioning can then be achieved:</p>
-<div class="sourceCode" id="cb103"><html><body><pre class="r"><span class="no">dpAll</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/DivPart.html">DivPart</a></span>(<span class="kw">q</span><span class="kw">=</span><span class="fl">1</span>, <span class="kw">MC</span><span class="kw">=</span><span class="no">mergedMC2</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">dpAll</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb105"><pre class="downlit">
+<span class="va">dpAll</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/DivPart.html">DivPart</a></span><span class="op">(</span>q<span class="op">=</span><span class="fl">1</span>, MC<span class="op">=</span><span class="va">mergedMC2</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dpAll</span><span class="op">)</span></pre></div>
 <pre><code>## HCDT diversity partitioning of order 1 of metaCommunity mergedMC2
 ## 
 ## Alpha diversity of communities: 
@@ -681,8 +744,9 @@
 ##     None 
 ## 4.281826</code></pre>
 <p>The <span class="math inline">\(\gamma\)</span> diversity of the top assemblage (MC1 and MC2) is 4.28 effective species, made of 1.24 effective meta-communities of 3.46 effective species. The <span class="math inline">\(\alpha\)</span> diversity of each meta-community of the top assemblage is their <span class="math inline">\(\gamma\)</span> diversity when it is partitioned in turn:</p>
-<div class="sourceCode" id="cb105"><html><body><pre class="r"><span class="no">dpMC1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/entropart/man/DivPart.html">DivPart</a></span>(<span class="kw">q</span><span class="kw">=</span><span class="fl">1</span>, <span class="kw">MC</span><span class="kw">=</span><span class="no">MC1</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">dpMC1</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb107"><pre class="downlit">
+<span class="va">dpMC1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/DivPart.html">DivPart</a></span><span class="op">(</span>q<span class="op">=</span><span class="fl">1</span>, MC<span class="op">=</span><span class="va">MC1</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dpMC1</span><span class="op">)</span></pre></div>
 <pre><code>## HCDT diversity partitioning of order 1 of metaCommunity MC1
 ## 
 ## Alpha diversity of communities: 
@@ -860,7 +924,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

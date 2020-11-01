@@ -87,7 +87,7 @@ Estimation-bias corrections are available." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -170,19 +170,24 @@ Estimation-bias corrections are available." />
     
 
 <p>In the entropart package, individuals of different "species" are counted in several "communities" which may (or not) be agregated to define a "metacommunity". In the metacommunity, the probability to find a species in the weighted average of probabilities in communities. This is a naming convention, which may correspond to plots in a forest inventory or any data organized the same way.</p>
-<p>Basic functions allow computing diversity of a community. Data is simply a vector of probabilities (summing up to 1) or of abundances (integer values that are numbers of individuals). Calculate entropy with functions such as <code>Tsallis</code>, <code>Shannon</code>, <code>Simpson</code>, <code>Hurlbert</code> or <code>GenSimpson</code> and explicit diversity (i.e. effective number of species) with <code>Diversity</code> and others. By default, the best available estimator of diversity will be used, according to the data.</p>  
-<p>Communities can be simulated by <code>rCommunity</code>, explicitely declared as a species distribution (<code>as.AbdVector</code> or <code>as.ProbaVector</code>), and plotted.</p>  
-<p>Phylogenetic entropy and diversity can be calculated if a phylogenetic (or functional), ultrametric tree is provided. See <code>PhyloEntropy</code>, <code>Rao</code> for examples of entropy and <code>PhyloDiversity</code> to calculate phylodiversity, with the state-of-the-art estimation-bias correction. Similarity-based diversity is calculated with <code>Dqz</code>, based on a similarity matrix.</p>
+<p>Basic functions allow computing diversity of a community. Data is simply a vector of probabilities (summing up to 1) or of abundances (integer values that are numbers of individuals). Calculate entropy with functions such as <code><a href='Tsallis.html'>Tsallis</a></code>, <code><a href='Shannon.html'>Shannon</a></code>, <code><a href='Simpson.html'>Simpson</a></code>, <code><a href='Hurlbert.html'>Hurlbert</a></code> or <code><a href='GenSimpson.html'>GenSimpson</a></code> and explicit diversity (i.e. effective number of species) with <code><a href='Diversity.html'>Diversity</a></code> and others. By default, the best available estimator of diversity will be used, according to the data.</p>  
+<p>Communities can be simulated by <code><a href='rCommunity.html'>rCommunity</a></code>, explicitely declared as a species distribution (<code><a href='SpeciesDistribution.html'>as.AbdVector</a></code> or <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>), and plotted.</p>  
+<p>Phylogenetic entropy and diversity can be calculated if a phylogenetic (or functional), ultrametric tree is provided. See <code><a href='PhyloEntropy.html'>PhyloEntropy</a></code>, <code><a href='Rao.html'>Rao</a></code> for examples of entropy and <code><a href='PhyloDiversity.html'>PhyloDiversity</a></code> to calculate phylodiversity, with the state-of-the-art estimation-bias correction. Similarity-based diversity is calculated with <code><a href='Dqz.html'>Dqz</a></code>, based on a similarity matrix.</p>
 <p>The simplest way to import data is to organize it into two text files. The first file should contain abundance data: the first column named <code>Species</code> for species names, and a column for each community.</p>
 <p>The second file should contain the community weights in two columns. The first one, named <code>Communities</code> should contain their names and the second one, named <code>Weights</code>, their weights.</p>  
 <p>Files can be read and data imported by code such as:</p>  
 <pre>
-<span class='no'>Abundances</span> <span class='kw'>&amp;</span><span class='no'>lt</span>;- <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='kw'>file</span><span class='kw'>=</span><span class='st'>"Abundances.csv"</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='no'>Weights</span> <span class='kw'>&amp;</span><span class='no'>lt</span>;- <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='kw'>file</span><span class='kw'>=</span><span class='st'>"Weights.csv"</span>)
-<span class='no'>MC</span> <span class='kw'>&amp;</span><span class='no'>lt</span>;- <span class='fu'>MetaCommunity</span>(<span class='no'>Abundances</span>, <span class='no'>Weights</span>)</pre>
+<span class='va'>Abundances</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span>file<span class='op'>=</span><span class='st'>"Abundances.csv"</span>, row.names <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+<span class='va'>Weights</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span>file<span class='op'>=</span><span class='st'>"Weights.csv"</span><span class='op'>)</span>
+<span class='va'>MC</span> <span class='op'>&lt;-</span> <span class='fu'><a href='MetaCommunity.html'>MetaCommunity</a></span><span class='op'>(</span><span class='va'>Abundances</span>, <span class='va'>Weights</span><span class='op'>)</span>
+</pre>
 
-<p>The last line of the code calls the <code>MetaCommunity</code> function to create an object that will be used by all metacommunity functions, such as <code>DivPart</code> (to partition diversity), <code>DivEst</code> (to partition diversity and calculate confidence interval of its estimation) or <code>DivProfile</code> (to compute diversity profiles).</p>  
-<p>A full documentation is available in the vignette. Type: <code>vignette("entropart")</code>. A quick introuction is in <code>vignette("introduction", "entropart")</code>.</p>
+<p>The last line of the code calls the <code><a href='MetaCommunity.html'>MetaCommunity</a></code> function to create an object that will be used by all metacommunity functions, such as <code><a href='DivPart.html'>DivPart</a></code> (to partition diversity), <code><a href='DivEst.html'>DivEst</a></code> (to partition diversity and calculate confidence interval of its estimation) or <code><a href='DivProfile.html'>DivProfile</a></code> (to compute diversity profiles).</p>  
+<p>A full documentation is available in the vignette. Type: <code><a href='../articles/entropart.html'>vignette("entropart")</a></code>. A quick introuction is in <code>vignette("introduction", "entropart")</code>.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Eric Marcon,
+  Bruno Herault</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Grabchak, M., Marcon, E., Lang, G., and Zhang, Z. (2017). The Generalized Simpson's Entropy is a Measure of Biodiversity. <em>Plos One</em>, 12(3): e0173305.</p>
@@ -208,7 +213,7 @@ Estimation-bias corrections are available." />
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

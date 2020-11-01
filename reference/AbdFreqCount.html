@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -161,8 +161,8 @@
     <p>Counts the number of species observed the same number of times.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>AbdFreqCount</span>(<span class='no'>Ns</span>, <span class='kw'>Level</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>PCorrection</span><span class='kw'>=</span><span class='st'>"Chao2015"</span>, <span class='kw'>Unveiling</span><span class='kw'>=</span><span class='st'>"geom"</span>,
-  <span class='kw'>RCorrection</span><span class='kw'>=</span><span class='st'>"Rarefy"</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>AbdFreqCount</span><span class='op'>(</span><span class='va'>Ns</span>, Level <span class='op'>=</span> <span class='cn'>NULL</span>, PCorrection<span class='op'>=</span><span class='st'>"Chao2015"</span>, Unveiling<span class='op'>=</span><span class='st'>"geom"</span>, 
+  RCorrection<span class='op'>=</span><span class='st'>"Rarefy"</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -177,15 +177,15 @@
     </tr>
     <tr>
       <th>PCorrection</th>
-      <td><p>A string containing one of the possible corrections to estimate a probability distribution in <code>as.ProbaVector</code>: <code>"Chao2015"</code> is the default value. Used only for extrapolation.</p></td>
+      <td><p>A string containing one of the possible corrections to estimate a probability distribution in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"Chao2015"</code> is the default value. Used only for extrapolation.</p></td>
     </tr>
     <tr>
       <th>Unveiling</th>
-      <td><p>A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in <code>as.ProbaVector</code>: <code>"geom"</code> (geometric: the unobserved species distribution is geometric) is the default value. Used only for extrapolation.</p></td>
+      <td><p>A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"geom"</code> (geometric: the unobserved species distribution is geometric) is the default value. Used only for extrapolation.</p></td>
     </tr>
     <tr>
       <th>RCorrection</th>
-      <td><p>A string containing a correction recognized by <code>Richness</code> to evaluate the total number of species in <code>as.ProbaVector</code>. <code>"Rarefy"</code> is the default value to estimate the number of species such that the richness of the asymptotic distribution rarefied to the observed sample size equals the observed number of species in the data. Used only for extrapolation.</p></td>
+      <td><p>A string containing a correction recognized by <code><a href='Richness.html'>Richness</a></code> to evaluate the total number of species in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>. <code>"Rarefy"</code> is the default value to estimate the number of species such that the richness of the asymptotic distribution rarefied to the observed sample size equals the observed number of species in the data. Used only for extrapolation.</p></td>
     </tr>
     <tr>
       <th>CheckArguments</th>
@@ -198,7 +198,7 @@
     <p>The Abundance Frequency Count (Chao <em>et al.</em>, 2015) is the number of species observed each number of times.</p>  
 <p>It is a way to summarize the species distribution.</p>  
 <p>It can be estimated at a specified level of interpolation or extrapolation.
-  Extrapolation relies on the estimation of the estimation of the asymptotic distribution of the community by <code>as.ProbaVector</code> and eq. (5) of Chao et al. (2014).</p>
+  Extrapolation relies on the estimation of the estimation of the asymptotic distribution of the community by <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code> and eq. (5) of Chao et al. (2014).</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A two-column matrix. The first column contains the number of observations, the second one the number of species observed this number of times.</p>
@@ -206,19 +206,23 @@
 
     <p>Chao, A., Gotelli, N. J., Hsieh, T. C., Sander, E. L., Ma, K. H., Colwell, R. K., Ellison, A. M (2014). Rarefaction and extrapolation with Hill numbers: A framework for sampling and estimation in species diversity studies.  <em>Ecological Monographs</em>, 84(1): 45-67.</p>
 <p>Chao, A., Hsieh, T. C., Chazdon, R. L., Colwell, R. K., Gotelli, N. J. (2015) Unveiling the Species-Rank Abundance Distribution by Generalizing Good-Turing Sample Coverage Theory. <em>Ecology</em> 96(5): 1189-1201.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Eric Marcon &lt;Eric.Marcon@ecofog.gf&gt;</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>PhyloEntropy</code>, <code>ChaoPD</code></p></div>
+    <div class='dont-index'><p><code><a href='PhyloEntropy.html'>PhyloEntropy</a></code>, <code><a href='ChaoPD.html'>ChaoPD</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest</span>
 <span class='co'>#      and their taxonomy)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Paracou618</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Paracou618</span><span class='op'>)</span>
 <span class='co'># Ns is the vector of abundances of the first plot</span>
-<span class='no'>Ns</span> <span class='kw'>&lt;-</span> <span class='no'>Paracou618.MC</span>$<span class='no'>Nsi</span>[, <span class='fl'>1</span>]
+<span class='va'>Ns</span> <span class='op'>&lt;-</span> <span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Nsi</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>]</span>
 
 <span class='co'># Return the abundance frequency count</span>
-(<span class='fu'>AbdFreqCount</span>(<span class='no'>Ns</span>) <span class='kw'>-&gt;</span> <span class='no'>afc</span>)</div><div class='output co'>#&gt;       Abundance NbSpecies
+<span class='op'>(</span><span class='fu'>AbdFreqCount</span><span class='op'>(</span><span class='va'>Ns</span><span class='op'>)</span> <span class='op'>-&gt;</span> <span class='va'>afc</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;       Abundance NbSpecies
 #&gt;  [1,]         1        68
 #&gt;  [2,]         2        29
 #&gt;  [3,]         3        14
@@ -242,7 +246,9 @@
 #&gt; [21,]        39         1
 #&gt; [22,]        45         1
 #&gt; attr(,"class")
-#&gt; [1] "AbdFreqCount" "matrix"      </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>afc</span>, <span class='kw'>xlab</span><span class='kw'>=</span><span class='st'>"Number of observations"</span>, <span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"Number of species"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='no'>afc</span>)</div><div class='img'><img src='AbdFreqCount-1.png' alt='' width='700' height='433' /></div></pre>
+#&gt; [1] "AbdFreqCount" "matrix"       "array"       </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>afc</span>, xlab<span class='op'>=</span><span class='st'>"Number of observations"</span>, ylab<span class='op'>=</span><span class='st'>"Number of species"</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span><span class='op'>(</span><span class='va'>afc</span><span class='op'>)</span>
+</div><div class='img'><img src='AbdFreqCount-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -258,7 +264,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

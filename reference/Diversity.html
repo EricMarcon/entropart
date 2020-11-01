@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -161,23 +161,23 @@
     <p>Calculates the HCDT (generalized) diversity of order \(q\) of a probability vector.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>Diversity</span>(<span class='no'>NorP</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>...</span>)
-<span class='fu'>bcDiversity</span>(<span class='no'>Ns</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"Best"</span>, <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+    <pre class="usage"><span class='fu'>Diversity</span><span class='op'>(</span><span class='va'>NorP</span>, q <span class='op'>=</span> <span class='fl'>1</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='fu'>bcDiversity</span><span class='op'>(</span><span class='va'>Ns</span>, q <span class='op'>=</span> <span class='fl'>1</span>, Correction <span class='op'>=</span> <span class='st'>"Best"</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='co'># S3 method for ProbaVector</span>
-<span class='fu'>Diversity</span>(<span class='no'>NorP</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>...</span>,
-  <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Ps</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>Diversity</span><span class='op'>(</span><span class='va'>NorP</span>, q <span class='op'>=</span> <span class='fl'>1</span>, <span class='va'>...</span>, 
+  CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span>, Ps <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 <span class='co'># S3 method for AbdVector</span>
-<span class='fu'>Diversity</span>(<span class='no'>NorP</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"Best"</span>, <span class='kw'>Level</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>PCorrection</span><span class='kw'>=</span><span class='st'>"Chao2015"</span>, <span class='kw'>Unveiling</span><span class='kw'>=</span><span class='st'>"geom"</span>, <span class='kw'>RCorrection</span><span class='kw'>=</span><span class='st'>"Rarefy"</span>, <span class='no'>...</span>,
-  <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Ns</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>Diversity</span><span class='op'>(</span><span class='va'>NorP</span>, q <span class='op'>=</span> <span class='fl'>1</span>, Correction <span class='op'>=</span> <span class='st'>"Best"</span>, Level <span class='op'>=</span> <span class='cn'>NULL</span>,
+  PCorrection<span class='op'>=</span><span class='st'>"Chao2015"</span>, Unveiling<span class='op'>=</span><span class='st'>"geom"</span>, RCorrection<span class='op'>=</span><span class='st'>"Rarefy"</span>, <span class='va'>...</span>,
+  CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span>, Ns <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 <span class='co'># S3 method for integer</span>
-<span class='fu'>Diversity</span>(<span class='no'>NorP</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"Best"</span>, <span class='kw'>Level</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>PCorrection</span><span class='kw'>=</span><span class='st'>"Chao2015"</span>, <span class='kw'>Unveiling</span><span class='kw'>=</span><span class='st'>"geom"</span>, <span class='kw'>RCorrection</span><span class='kw'>=</span><span class='st'>"Rarefy"</span>, <span class='no'>...</span>,
-  <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Ns</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>Diversity</span><span class='op'>(</span><span class='va'>NorP</span>, q <span class='op'>=</span> <span class='fl'>1</span>, Correction <span class='op'>=</span> <span class='st'>"Best"</span>, Level <span class='op'>=</span> <span class='cn'>NULL</span>,
+  PCorrection<span class='op'>=</span><span class='st'>"Chao2015"</span>, Unveiling<span class='op'>=</span><span class='st'>"geom"</span>, RCorrection<span class='op'>=</span><span class='st'>"Rarefy"</span>, <span class='va'>...</span>, 
+  CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span>, Ns <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 <span class='co'># S3 method for numeric</span>
-<span class='fu'>Diversity</span>(<span class='no'>NorP</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>Correction</span> <span class='kw'>=</span> <span class='st'>"Best"</span>, <span class='kw'>Level</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>PCorrection</span><span class='kw'>=</span><span class='st'>"Chao2015"</span>, <span class='kw'>Unveiling</span><span class='kw'>=</span><span class='st'>"geom"</span>, <span class='kw'>RCorrection</span><span class='kw'>=</span><span class='st'>"Rarefy"</span>, <span class='no'>...</span>,
-  <span class='kw'>CheckArguments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Ps</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>Ns</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>Diversity</span><span class='op'>(</span><span class='va'>NorP</span>, q <span class='op'>=</span> <span class='fl'>1</span>, Correction <span class='op'>=</span> <span class='st'>"Best"</span>, Level <span class='op'>=</span> <span class='cn'>NULL</span>,
+  PCorrection<span class='op'>=</span><span class='st'>"Chao2015"</span>, Unveiling<span class='op'>=</span><span class='st'>"geom"</span>, RCorrection<span class='op'>=</span><span class='st'>"Rarefy"</span>, <span class='va'>...</span>, 
+  CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span>, Ps <span class='op'>=</span> <span class='cn'>NULL</span>, Ns <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -192,7 +192,7 @@
     </tr>
     <tr>
       <th>NorP</th>
-      <td><p>A numeric vector, an integer vector, an abundance vector (<code>AbdVector</code>) or a probability vector (<code>ProbaVector</code>). Contains either abundances or probabilities.</p></td>
+      <td><p>A numeric vector, an integer vector, an abundance vector (<code><a href='SpeciesDistribution.html'>AbdVector</a></code>) or a probability vector (<code><a href='SpeciesDistribution.html'>ProbaVector</a></code>). Contains either abundances or probabilities.</p></td>
     </tr>
     <tr>
       <th>q</th>
@@ -208,15 +208,15 @@
     </tr>
     <tr>
       <th>PCorrection</th>
-      <td><p>A string containing one of the possible corrections to estimate a probability distribution in <code>as.ProbaVector</code>: <code>"Chao2015"</code> is the default value. Used only for extrapolation.</p></td>
+      <td><p>A string containing one of the possible corrections to estimate a probability distribution in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"Chao2015"</code> is the default value. Used only for extrapolation.</p></td>
     </tr>
     <tr>
       <th>Unveiling</th>
-      <td><p>A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in <code>as.ProbaVector</code>: <code>"geom"</code> (the unobserved species distribution is geometric) is the default value. Used only for extrapolation.</p></td>
+      <td><p>A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>: <code>"geom"</code> (the unobserved species distribution is geometric) is the default value. Used only for extrapolation.</p></td>
     </tr>
     <tr>
       <th>RCorrection</th>
-      <td><p>A string containing a correction recognized by <code>Richness</code> to evaluate the total number of species in <code>as.ProbaVector</code>. <code>"Rarefy"</code> is the default value to estimate the number of species such that the diversity of the asymptotic distribution rarefied to the observed sample size equals the observed diversity of the data. Used only for extrapolation.</p></td>
+      <td><p>A string containing a correction recognized by <code><a href='Richness.html'>Richness</a></code> to evaluate the total number of species in <code><a href='SpeciesDistribution.html'>as.ProbaVector</a></code>. <code>"Rarefy"</code> is the default value to estimate the number of species such that the diversity of the asymptotic distribution rarefied to the observed sample size equals the observed diversity of the data. Used only for extrapolation.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -230,14 +230,14 @@
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>Diversity</code> calls <code>Tsallis</code> to calculate entropy and transforms it into diversity by calculating its deformed exponential.</p>  
-<p>Bias correction requires the number of individuals to estimate sample <code>Coverage</code>. 
-  See <code>Tsallis</code> for details.</p>  
+    <p><code>Diversity</code> calls <code><a href='Tsallis.html'>Tsallis</a></code> to calculate entropy and transforms it into diversity by calculating its deformed exponential.</p>  
+<p>Bias correction requires the number of individuals to estimate sample <code><a href='Coverage.html'>Coverage</a></code>. 
+  See <code><a href='Tsallis.html'>Tsallis</a></code> for details.</p>  
 <p>The functions are designed to be used as simply as possible. 
   <code>Diversity</code> is a generic method. 
   If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function <code>bcDiversity</code> is called.</p>
 <p>Diversity can be estimated at a specified level of interpolation or extrapolation, either a chosen sample size or sample coverage (Chao et al., 2014), rather than its asymptotic value.
-  See <code>Tsallis</code> for details.</p>
+  See <code><a href='Tsallis.html'>Tsallis</a></code> for details.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A named number equal to the calculated diversity. The name is that of the bias correction used.</p>
@@ -245,26 +245,34 @@
 
     <p>Chao, A., Gotelli, N. J., Hsieh, T. C., Sander, E. L., Ma, K. H., Colwell, R. K., Ellison, A. M (2014). Rarefaction and extrapolation with Hill numbers: A framework for sampling and estimation in species diversity studies.  <em>Ecological Monographs</em>, 84(1): 45-67.</p>
 <p>Marcon, E., Scotti, I., Herault, B., Rossi, V. and Lang, G. (2014). Generalization of the partitioning of Shannon diversity. <em>PLOS One</em> 9(3): e90289.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Eric Marcon &lt;Eric.Marcon@ecofog.gf&gt;</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>Tsallis</code>, <code>expq</code>, <code>AbdVector</code>, <code>ProbaVector</code></p></div>
+    <div class='dont-index'><p><code><a href='Tsallis.html'>Tsallis</a></code>, <code><a href='expq.html'>expq</a></code>, <code><a href='SpeciesDistribution.html'>AbdVector</a></code>, <code><a href='SpeciesDistribution.html'>ProbaVector</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Paracou618</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Paracou618</span><span class='op'>)</span>
 <span class='co'># Ns is the total number of trees per species</span>
-<span class='no'>Ns</span> <span class='kw'>&lt;-</span> <span class='fu'>as.AbdVector</span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ns</span>)
+<span class='va'>Ns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='SpeciesDistribution.html'>as.AbdVector</a></span><span class='op'>(</span><span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Ns</span><span class='op'>)</span>
 <span class='co'># Species probabilities</span>
-<span class='no'>Ps</span> <span class='kw'>&lt;-</span> <span class='fu'>as.ProbaVector</span>(<span class='no'>Paracou618.MC</span>$<span class='no'>Ns</span>)
+<span class='va'>Ps</span> <span class='op'>&lt;-</span> <span class='fu'><a href='SpeciesDistribution.html'>as.ProbaVector</a></span><span class='op'>(</span><span class='va'>Paracou618.MC</span><span class='op'>$</span><span class='va'>Ns</span><span class='op'>)</span>
 <span class='co'># Whittaker plot</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>Ns</span>)</div><div class='img'><img src='Diversity-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Calculate diversity of order 1, i.e. Shannon's diversity</span>
-<span class='fu'>Diversity</span>(<span class='no'>Ps</span>, <span class='kw'>q</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='output co'>#&gt;   None 
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>Ns</span><span class='op'>)</span>
+</div><div class='img'><img src='Diversity-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Calculate diversity of order 1, i.e. Shannon's diversity</span>
+<span class='fu'>Diversity</span><span class='op'>(</span><span class='va'>Ps</span>, q<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   None 
 #&gt; 113.98 </div><div class='input'><span class='co'># Calculate it with estimation bias correction (asymptotic estimator)</span>
-<span class='fu'>Diversity</span>(<span class='no'>Ns</span>, <span class='kw'>q</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='output co'>#&gt;  UnveilJ 
+<span class='fu'>Diversity</span><span class='op'>(</span><span class='va'>Ns</span>, q<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  UnveilJ 
 #&gt; 138.1078 </div><div class='input'><span class='co'># Extrapolate it up to 99.9% sample coverage (close to the asymptotic estimator)</span>
-<span class='fu'>Diversity</span>(<span class='no'>Ns</span>, <span class='kw'>q</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>Level</span><span class='kw'>=</span><span class='fl'>0.999</span>)</div><div class='output co'>#&gt;     Best 
+<span class='fu'>Diversity</span><span class='op'>(</span><span class='va'>Ns</span>, q<span class='op'>=</span><span class='fl'>1</span>, Level<span class='op'>=</span><span class='fl'>0.999</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     Best 
 #&gt; 127.3298 </div><div class='input'><span class='co'># Rarefy it to half the sample size</span>
-<span class='fu'>Diversity</span>(<span class='no'>Ns</span>, <span class='kw'>q</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>Level</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='no'>Ns</span>)/<span class='fl'>2</span>)</div><div class='output co'>#&gt;  Interp 
+<span class='fu'>Diversity</span><span class='op'>(</span><span class='va'>Ns</span>, q<span class='op'>=</span><span class='fl'>1</span>, Level<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Ns</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  Interp 
 #&gt; 100.016 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -281,7 +289,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -85,7 +85,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
       </span>
     </div>
 
@@ -155,6 +155,18 @@
       <small>Source: <a href='https://github.com/EricMarcon/entropart/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="entropart-1-6-6" class="section level1">
+<h1 class="page-header" data-toc-text="1.6-6">
+<a href="#entropart-1-6-6" class="anchor"></a>entropart 1.6-6<small> Unreleased </small>
+</h1>
+<div id="bug-correction" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-correction" class="anchor"></a>Bug correction</h2>
+<ul>
+<li>argument <code>main</code> in <code>autoplot()</code> was ignored.</li>
+</ul>
+</div>
+</div>
     <div id="entropart-1-6-4" class="section level1">
 <h1 class="page-header" data-toc-text="1.6-4">
 <a href="#entropart-1-6-4" class="anchor"></a>entropart 1.6-4<small> 2020-01-22 </small>
@@ -175,12 +187,12 @@
 <h2 class="hasAnchor">
 <a href="#new-features" class="anchor"></a>New features</h2>
 <ul>
-<li>Argument <code>JackMax</code> to limit the order of the jacknife estimator in <code>Richness()</code>, whatever the data.</li>
+<li>Argument <code>JackMax</code> to limit the order of the jacknife estimator in <code><a href="../reference/Richness.html">Richness()</a></code>, whatever the data.</li>
 </ul>
 </div>
-<div id="bug-correction" class="section level2">
+<div id="bug-correction-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction" class="anchor"></a>Bug correction</h2>
+<a href="#bug-correction-1" class="anchor"></a>Bug correction</h2>
 <ul>
 <li>plot.SpeciesDistribution did not fit the logseries and the broken stick distributions correctly.</li>
 <li>autoplot.DivProfile did not produce appropriate labels in the local communities profile.</li>
@@ -210,9 +222,9 @@
 <li>Vignette by pkgdown.</li>
 </ul>
 </div>
-<div id="bug-correction-1" class="section level2">
+<div id="bug-correction-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-1" class="anchor"></a>Bug correction</h2>
+<a href="#bug-correction-2" class="anchor"></a>Bug correction</h2>
 <ul>
 <li>The jaccknife estimator of richness returned an error for communities where all species had the same abundance.</li>
 <li>
@@ -234,9 +246,9 @@
 <li>Generic function arguments cleaned up.</li>
 </ul>
 </div>
-<div id="bug-correction-2" class="section level2">
+<div id="bug-correction-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-2" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-3" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>Very large metacommunities returned an integer overflow error.</li>
 </ul>
@@ -246,12 +258,12 @@
 <h1 class="page-header" data-toc-text="1.4-8">
 <a href="#entropart-1-4-8" class="anchor"></a>entropart 1.4-8<small> 2017-11-22 </small>
 </h1>
-<div id="bug-correction-3" class="section level2">
+<div id="bug-correction-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-3" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-4" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>
-<code>HqzBeta()</code> returned erroneous values if a species probability was equal to zero.</li>
+<code><a href="../reference/HqzBeta.html">HqzBeta()</a></code> returned erroneous values if a species probability was equal to zero.</li>
 </ul>
 </div>
 <div id="improvements-3" class="section level2">
@@ -269,9 +281,9 @@
 <h1 class="page-header" data-toc-text="1.4-7">
 <a href="#entropart-1-4-7" class="anchor"></a>entropart 1.4-7<small> 2017-03-29 </small>
 </h1>
-<div id="bug-correction-4" class="section level2">
+<div id="bug-correction-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-4" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-5" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>Argument checking (<code>CheckArguments = TRUE</code>) is not possible when the package is not loaded and a function is called by <code>entropart::function()</code>. An error was returned. It is replaced by a warning.</li>
 </ul>
@@ -283,7 +295,7 @@
 <li>Explicit export of all non-internal functions instead of <code>exportPattern("^[[:alpha:]]+")</code>
 </li>
 <li>Updated references to published articles.</li>
-<li>Updated <code>help("entropart")</code>.</li>
+<li>Updated <code><a href="../reference/entropart-package.html">help("entropart")</a></code>.</li>
 <li>New introduction vignette.</li>
 <li>Vignettes compiled with <em>knitr</em> instead of <em>Sweave</em>.</li>
 </ul>
@@ -311,7 +323,7 @@
 <h2 class="hasAnchor">
 <a href="#improvements-6" class="anchor"></a>Improvements</h2>
 <ul>
-<li>ZhangGrabchak estimator of entropy is now calculated by the C code of <code><a href="https://rdrr.io/pkg/EntropyEstimation/man/Tsallis.z.html">EntropyEstimation::Tsallis.z</a></code>/<code>Entropy.z</code> rather than the R code of <code>bcTsallis()</code>. This is much faster when the number of individual is high. Applies to <code>ChaoWangJost</code> (Best) estimator too.</li>
+<li>ZhangGrabchak estimator of entropy is now calculated by the C code of <code><a href="https://rdrr.io/pkg/EntropyEstimation/man/Tsallis.z.html">EntropyEstimation::Tsallis.z</a></code>/<code>Entropy.z</code> rather than the R code of <code><a href="../reference/Tsallis.html">bcTsallis()</a></code>. This is much faster when the number of individual is high. Applies to <code>ChaoWangJost</code> (Best) estimator too.</li>
 </ul>
 </div>
 </div>
@@ -324,12 +336,12 @@
 <a href="#user-visible-changes-1" class="anchor"></a>User-visible changes</h2>
 <ul>
 <li>
-<code>DivProfile()</code> now allows computing bootstrap confidence intervals.</li>
+<code><a href="../reference/DivProfile.html">DivProfile()</a></code> now allows computing bootstrap confidence intervals.</li>
 </ul>
 </div>
-<div id="bug-correction-6" class="section level2">
+<div id="bug-correction-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-6" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-7" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>The entropy estimation (of order different from 1) of a distribution with no singleton returned <code>NA</code> with <code>ChaoWangJost</code> correction. Reported by Zach Marion. Only partly corrected in Version 1.4-1. Corrected.</li>
 <li>
@@ -346,7 +358,7 @@
 <a href="#user-visible-changes-2" class="anchor"></a>User-visible changes</h2>
 <ul>
 <li>All scalar values of diversity or entropy are now named. Their name is the bias correction used to obtain them.</li>
-<li>The <code>Unveiled</code> estimator is more versatile. <code>Correction = "Unveil"</code> is deprecated and replaced by <code>UnveilC</code>, <code>UnveiliC</code> or <code>UnveilJ</code> in functions such as <code>Tsallis()</code> or <code>Diversity()</code>.</li>
+<li>The <code>Unveiled</code> estimator is more versatile. <code>Correction = "Unveil"</code> is deprecated and replaced by <code>UnveilC</code>, <code>UnveiliC</code> or <code>UnveilJ</code> in functions such as <code><a href="../reference/Tsallis.html">Tsallis()</a></code> or <code><a href="../reference/Diversity.html">Diversity()</a></code>.</li>
 </ul>
 </div>
 </div>
@@ -361,15 +373,15 @@
 <li>
 <code>phylog</code> objects (deprecated in <em>ade4</em>) are replaced by <code>phylo</code> trees from package <em>ape</em> in the definition of the <code>PPtree</code> class. Issues caused by <code>phylog</code> such as replacing <code>.</code> and <code><a href="https://rdrr.io/r/base/Arithmetic.html">-</a></code> by <code>_</code> in species names do not occur any longer. <code>phylog</code> trees are still accepted for compatibility.</li>
 <li>
-<code>ChaoPD()</code> and <code>AllenH()</code> now accept <code>phylo</code> trees.</li>
+<code><a href="../reference/ChaoPD.html">ChaoPD()</a></code> and <code><a href="../reference/AllenH.html">AllenH()</a></code> now accept <code>phylo</code> trees.</li>
 <li>
 <code>Richness</code> now returns a named value. The name contains the estimator used.</li>
 <li>Updated <em>CITATION</em>: the paper about this package has been published: Eric Marcon, Bruno Herault (2015). entropart: An R Package to Measure and Partition Diversity. <em>Journal of Statistical Software</em>, 67(8), 1-26.</li>
 </ul>
 </div>
-<div id="bug-correction-8" class="section level2">
+<div id="bug-correction-9" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-8" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-9" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>The entropy estimation of a distribution with no singleton returned <code>NA</code> with <code>ChaoWangJost</code> correction. Corrected.</li>
 <li>Entropy or diversity of a vector of zeros returned 0. It now returns <code>NA</code>.</li>
@@ -384,22 +396,22 @@
 <h2 class="hasAnchor">
 <a href="#new-features-3" class="anchor"></a>New Features</h2>
 <ul>
-<li>Abundance and probability vector objects. See <code>?SpeciesDistribution</code>.</li>
-<li>Hurlbert diversity. See <code>?Hurlbert</code>.</li>
+<li>Abundance and probability vector objects. See <code><a href="../reference/SpeciesDistribution.html">?SpeciesDistribution</a></code>.</li>
+<li>Hurlbert diversity. See <code><a href="../reference/Hurlbert.html">?Hurlbert</a></code>.</li>
 <li>
 <code>Optimal.Similarity</code>.</li>
-<li>Miller-Madow estimator of entropy (Miller, 1955) added in <code>bcShannon()</code>.</li>
-<li>Chao and Jost (2015) estimator of diversity added in <code>bcTsallis()</code> and <code>bcDiversity()</code>. New “best” estimator.</li>
+<li>Miller-Madow estimator of entropy (Miller, 1955) added in <code><a href="../reference/Shannon.html">bcShannon()</a></code>.</li>
+<li>Chao and Jost (2015) estimator of diversity added in <code><a href="../reference/Tsallis.html">bcTsallis()</a></code> and <code><a href="../reference/Diversity.html">bcDiversity()</a></code>. New “best” estimator.</li>
 <li>Chao et al. (2015) probability estimation of observed species. See <code>?TunedPs</code>.</li>
-<li>Estimators of the number of species. See <code>?Richness</code>.</li>
-<li>Abundance Frequency Count of species. See <code>?AbdFreqCount</code>.</li>
-<li>Community profiles can be calculated with confidence intervals. See <code>?CommunityProfile</code>.</li>
-<li>Random Communities. See <code>?rCommunity</code>.</li>
+<li>Estimators of the number of species. See <code><a href="../reference/Richness.html">?Richness</a></code>.</li>
+<li>Abundance Frequency Count of species. See <code><a href="../reference/AbdFreqCount.html">?AbdFreqCount</a></code>.</li>
+<li>Community profiles can be calculated with confidence intervals. See <code><a href="../reference/CommunityProfile.html">?CommunityProfile</a></code>.</li>
+<li>Random Communities. See <code><a href="../reference/rCommunity.html">?rCommunity</a></code>.</li>
 </ul>
 </div>
-<div id="bug-correction-9" class="section level2">
+<div id="bug-correction-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-9" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-10" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>Applying <code>bcTsallis</code> and similar functions with a probability vector instead of abundance values could cause errors depending in the correction. Correction is now forced to <code>None</code> with a warning.</li>
 <li>Allowed rounding error was too small on some systems (typically r-patched-solaris-sparc) to recognize probability vectors. The difference between their sum and 1 had to be less than 3 times <code>.Machine$double.eps</code>. Now set to S times (where S is the number of species, i.e the vector’s length).</li>
@@ -418,12 +430,12 @@
 <li>Unbiased estimator of Rao’s entropy added (<code>bcRao</code>).</li>
 </ul>
 </div>
-<div id="bug-correction-10" class="section level2">
+<div id="bug-correction-11" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-10" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-11" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>
-<code>DqZ()</code> and <code>Hqz()</code> returned an error if all probability values were 0 except one.</li>
+<code>DqZ()</code> and <code><a href="../reference/Hqz.html">Hqz()</a></code> returned an error if all probability values were 0 except one.</li>
 </ul>
 </div>
 <div id="improvements-8" class="section level2">
@@ -442,12 +454,12 @@
 <h1 class="page-header" data-toc-text="1.2.0">
 <a href="#entropart-1-2-0" class="anchor"></a>entropart 1.2.0<small> 2014-05-17 </small>
 </h1>
-<div id="bug-correction-11" class="section level2">
+<div id="bug-correction-12" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-11" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-12" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>
-<code>ChaoPD()</code> returned an incorrect value when q=0 and some probabilities =0.</li>
+<code><a href="../reference/ChaoPD.html">ChaoPD()</a></code> returned an incorrect value when q=0 and some probabilities =0.</li>
 </ul>
 </div>
 </div>
@@ -482,9 +494,9 @@
 <li>Zhang and Grabchak (2014) bias correction for Tsallis entropy added.</li>
 </ul>
 </div>
-<div id="bug-correction-12" class="section level2">
+<div id="bug-correction-13" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-12" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-13" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>
 <code>Divest()</code> always calculated neutral diversity of simulated communities so the confidence interval was erroneous for phylodiversity. Corrected.</li>
@@ -504,9 +516,9 @@
 <li>Chao, Wang and Jost (2013) bias correction for Shannon entropy added.</li>
 <li>
 <code>EntropyCI</code> function added: Entropy of Monte-Carlo simulated communities.</li>
-<li>Tools to manipulate MetaCommunity objects added (see <code>?MergeMC</code>).</li>
+<li>Tools to manipulate MetaCommunity objects added (see <code><a href="../reference/MC%20Utilities.html">?MergeMC</a></code>).</li>
 <li>
-<code>SimTest</code> class added to test a value against a simulated distribution (see <code>?SimTest</code>).</li>
+<code>SimTest</code> class added to test a value against a simulated distribution (see <code><a href="../reference/SimTest.html">?SimTest</a></code>).</li>
 <li>Vignette added.</li>
 </ul>
 </div>
@@ -520,17 +532,17 @@
 <code>mergeandlabel</code> does not return warnings any longer (column names are better addressed).</li>
 </ul>
 </div>
-<div id="bug-correction-13" class="section level2">
+<div id="bug-correction-14" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-13" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-14" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>
-<code>Hqz()</code> was erroneous for q&lt;&gt;1. Corrected.</li>
+<code><a href="../reference/Hqz.html">Hqz()</a></code> was erroneous for q&lt;&gt;1. Corrected.</li>
 <li>
-<code>bcPhyloEntropy()</code> and <code>bcPhyloDiversity()</code> returned an incorrect <code>$Distribution</code> component. Corrected.</li>
+<code><a href="../reference/PhyloEntropy.html">bcPhyloEntropy()</a></code> and <code><a href="../reference/PhyloDiversity.html">bcPhyloDiversity()</a></code> returned an incorrect <code>$Distribution</code> component. Corrected.</li>
 <li>
-<code>summary.MCentropy()</code> did not return the name of the tree. Corrected.</li>
-<li>Legend was not displayed in <code>plot.DivProfile(..., Which="Communities")</code>. Corrected.</li>
+<code><a href="../reference/MCentropy.html">summary.MCentropy()</a></code> did not return the name of the tree. Corrected.</li>
+<li>Legend was not displayed in <code><a href="../reference/DivProfile.html">plot.DivProfile(..., Which="Communities")</a></code>. Corrected.</li>
 </ul>
 </div>
 </div>
@@ -559,7 +571,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
