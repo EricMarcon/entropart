@@ -54,8 +54,6 @@ Abd18 <- as.AbdVector(N18)
 autoplot(Abd18, Distribution="lnorm")
 ```
 
-The parameters of the fitted distribution (here: mean and standard deviation) are returned by the function.
-
 Abundance vectors can also be converted to probability vectors, summing to 1:
 
 ```{r PN18}
