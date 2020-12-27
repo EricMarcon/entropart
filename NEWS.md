@@ -1,8 +1,12 @@
-# entropart 1.6-6.9000
+# entropart 1.6-6.9001
 
 ## Bug correction
 
 - argument `main` in `autoplot()` was ignored.
+
+## Bug correction
+
+- Continuous integration by GitHub Actions.
 
 
 
