@@ -2,8 +2,7 @@
 
 [![CRAN version](http://www.r-pkg.org/badges/version/entropart)](https://cran.r-project.org/package=entropart)
 [![](http://cranlogs.r-pkg.org/badges/entropart)](https://cran.r-project.org/package=entropart)
-[![Research software impact](http://depsy.org/api/package/cran/entropart/badge.svg)](http://depsy.org/package/r/entropart)
-[![Build Status](https://travis-ci.org/EricMarcon/entropart.svg?branch=master)](https://travis-ci.org/EricMarcon/entropart)
+![R-CMD-check](https://github.com/EricMarcon/entropart/workflows/R-CMD-check/badge.svg)
 [![codecov](https://codecov.io/github/EricMarcon/entropart/branch/master/graphs/badge.svg)](https://codecov.io/github/EricMarcon/entropart) 
 
 entropart is an R package that provides functions to calculate alpha, beta and gamma diversity of communities, 
