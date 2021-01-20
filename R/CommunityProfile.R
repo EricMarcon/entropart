@@ -14,7 +14,12 @@ function(FUN, NorP, q.seq = seq(0, 2, 0.1),
     if (!is.IntValues(NorP)) warning("Evaluation of the confidence interval of community profiles requires integer abundances in argument NorP. Abundances have been rounded.")
     NsInt <- round(NorP)
     # Create a MetaCommunity made of simulated communities
-    if (size == 1) size <- sum(NsInt)
+    if (size == 1) {
+      rencenter <- FALSE
+    } else {
+      rencenter <- TRUE
+      size <- sum(NsInt)
+    }
     # The simulated communities may be of arbitrary size to obtain the confidence interval of the diversity of a smaller community
     MCSim <- rCommunity(NumberOfSimulations, size=size, NorP=NsInt, BootstrapMethod=BootstrapMethod, CheckArguments = FALSE)
     # May return NA if the bootstrap method is not recognized
@@ -31,17 +36,22 @@ function(FUN, NorP, q.seq = seq(0, 2, 0.1),
         utils::setTxtProgressBar(ProgressBar, i)
     }
     close(ProgressBar)
-    # Recenter simulated values
+    # Recenter simulated values if size is that of the community
     Means <- apply(Sims, 2, mean)
-    Sims <- t(t(Sims)-Means+Values)
-    
+    if (rencenter) {
+      Sims <- t(t(Sims)-Means+Values)
+    }
+
     # Quantiles of simulations for each q
     EstEnvelope <- apply(Sims, 2, stats::quantile, probs = c(Alpha/2, 1-Alpha/2))
     colnames(EstEnvelope) <- q.seq
     Profile <- list(x=q.seq,
                     y=Values,
-                    low=EstEnvelope[1,],
-                    high=EstEnvelope[2,])
+                    low=EstEnvelope[1, ],
+                    high=EstEnvelope[2, ])
+    if (!rencenter) {
+      Profile$mid <- Means
+    }
   } else {
     Profile <- list(x=q.seq,
                     y=Values)
@@ -53,7 +63,7 @@ function(FUN, NorP, q.seq = seq(0, 2, 0.1),
 
 
 as.CommunityProfile <-
-function (x, y, low = NULL, high = NULL) 
+function (x, y, low = NULL, high = NULL, mid = NULL) 
 {
   if (!is.numeric(x))
     stop("x must be a numeric vector")
@@ -72,6 +82,11 @@ function (x, y, low = NULL, high = NULL)
     if (length(x) != length(high))
       stop("x and high must have the same length")
     Profile$high <- high
+  }
+  if (!is.null(mid)) {
+    if (length(x) != length(mid))
+      stop("x and mid must have the same length")
+    Profile$mid <- mid
   }
   class(Profile) <- "CommunityProfile"
   return(Profile)
@@ -125,6 +140,11 @@ autoplot.CommunityProfile <-
       # Add red lines on borders of polygon
       ggplot2::geom_line(ggplot2::aes_(y=~low), colour=BorderColor, linetype=2) +
       ggplot2::geom_line(ggplot2::aes_(y=~high), colour=BorderColor, linetype=2)
+  }
+  if (!is.null(object$mid)) {
+    thePlot <- thePlot +
+      # Add dotted line for the mid value
+      ggplot2::geom_line(ggplot2::aes_(y=~mid), linetype=2)
   }
   thePlot <- thePlot +
     ggplot2::geom_line() +

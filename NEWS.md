@@ -1,13 +1,13 @@
-# entropart 1.6-6.9001
+# entropart 1.6-6.9002
 
 ## Bug correction
 
 - argument `main` in `autoplot()` was ignored.
 
-## Bug correction
+## Improvements
 
 - Continuous integration by GitHub Actions.
-
+- `CommunityProfile()` does not recenter simulated diversity values if simulated community size is not that of the actual community. `$mid` can store mean simulated values.
 
 
 # entropart 1.6-6
