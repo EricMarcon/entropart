@@ -111,7 +111,8 @@ CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", \d
   If \code{NumberOfSimulations} is greater than 0, a bootstrap confidence interval is produced by simulating communities with \code{\link{rCommunity}} and calculating their profiles. 
   The size of those communities may be that of the actual community or specified by \code{size}.
   Simulating communities implies a downward bias in the estimation: rare species of the actual community may have abundance zero in simulated communities.
-  Simulated diversity values are recentered so that their mean is that of the actual community except if \code{size} is not that of the actual community: then, it is assumed that the bias is of interest and must not be corrected.
+  Simulated diversity values are recentered if `size = 1` so that their mean is that of the actual community.
+  Else, it is assumed that the bias is of interest and must not be corrected.
   
   \code{CommunityProfile} objects can be plotted. 
   They can also be added to the current plot by \code{CEnvelope}.

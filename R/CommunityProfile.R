@@ -15,10 +15,10 @@ function(FUN, NorP, q.seq = seq(0, 2, 0.1),
     NsInt <- round(NorP)
     # Create a MetaCommunity made of simulated communities
     if (size == 1) {
-      rencenter <- FALSE
-    } else {
       rencenter <- TRUE
       size <- sum(NsInt)
+    } else {
+      rencenter <- FALSE
     }
     # The simulated communities may be of arbitrary size to obtain the confidence interval of the diversity of a smaller community
     MCSim <- rCommunity(NumberOfSimulations, size=size, NorP=NsInt, BootstrapMethod=BootstrapMethod, CheckArguments = FALSE)
