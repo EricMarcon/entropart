@@ -62,7 +62,7 @@ For consistency, _entropart_ uses the jackknife estimator of richness and the un
 The advantage of these estimators is that they provide reliable estimations even though the sampling effort is low: then, the estimation variance increases but its bias remains acceptable because the order of the jackknife estimator is chosen according to the data.
 Poorly-sampled communities are estimated by a higher-order jackknife, resulting in higher estimation variance.
 
-For well-sampled communities, i.e. in the domain of validity of the jacknife of order 1, The Chao1 estimator of diversity and the Chao-Jost estimator of entropy are the best choices because they have the best mathematical support, but they will severely underestimate the diversity of poorly-sampled communities.
+For well-sampled communities, i.e. in the domain of validity of the jacknife of order 1, the Chao1 estimator of diversity and the Chao-Jost estimator of entropy are the best choices because they have the best mathematical support, but they will severely underestimate the diversity of poorly-sampled communities.
 They also are more computer-intensive.
 ```{r}
 # Estimation of richness relies on jackknife 2 (poor sampling)
