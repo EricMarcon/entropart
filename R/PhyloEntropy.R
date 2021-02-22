@@ -151,6 +151,6 @@ function(object, ...)
     cat("\nPhylogenetic or functional entropy was calculated according to the tree", object$Tree, "\n", fill=TRUE)
     cat("Entropy is", ifelse(object$Normalized, "normalized", "not normalized"), fill=TRUE)
   }
-  cat("\nEntropy equals:", object$Total)
+  cat("\nEntropy equals:", object$Total, "\n")
   return(invisible(NULL))
 }

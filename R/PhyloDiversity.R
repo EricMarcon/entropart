@@ -147,6 +147,6 @@ function(object, ...)
     cat("\nPhylogenetic or functional diversity was calculated according to the tree", object$Tree, "\n", fill=TRUE)
     cat("Diversity is", ifelse(object$Normalized, "normalized", "not normalized"), fill=TRUE)
   }
-  cat("\nDiversity equals:", object$Total)
+  cat("\nDiversity equals:", object$Total, "\n")
   return(invisible(NULL))
 }
