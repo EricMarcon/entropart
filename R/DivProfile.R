@@ -74,7 +74,7 @@ function(q.seq = seq(0, 2, .1), MC, Biased = TRUE, Correction = "Best", Tree = N
     if(interactive()) utils::setTxtProgressBar(ProgressBar, -1)
     # Each MC of this list is a simulation set of each original community
     # Build simulated MCs by picking simulated communities
-    SimMC <- lapply(seq_len(NumberOfSimulations), function(i) MetaCommunity(sapply(ResampledCs, function(mc) mc$Nsi[, i]), Weights=MC$Wi))
+    SimMC <- lapply(seq_len(NumberOfSimulations), function(i) MetaCommunity(vapply(ResampledCs, function(mc) mc$Nsi[, i], FUN.VALUE=rep(0, MC$Nspecies)), Weights=MC$Wi))
     if(ShowProgressBar & interactive()) 
       utils::setTxtProgressBar(ProgressBar, -0)
     
