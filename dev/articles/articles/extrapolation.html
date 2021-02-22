@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-6.9003</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-6.9004</span>
       </span>
     </div>
 
@@ -205,7 +205,7 @@
 <p>The <code>DivAc()</code>function allows to build them. A bootstrap confidence interval can be calculated around the estimated DAC by simulating random multinomial draws of the asymptotic distribution at each sample size.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Diversity at levels from 1 to twice the sample size</span>
-<span class="va">Accumulation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/Accumulation.html">DivAC</a></span><span class="op">(</span><span class="va">ParacouN</span>, q<span class="op">=</span><span class="fl">1</span>, n.seq<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="fl">1.1</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">ParacouN</span><span class="op">)</span><span class="op">)</span>, NumberOfSimulations <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
+<span class="va">Accumulation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/Accumulation.html">DivAC</a></span><span class="op">(</span><span class="va">ParacouN</span>, q<span class="op">=</span><span class="fl">1</span>, n.seq<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fl">1.1</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">ParacouN</span><span class="op">)</span><span class="op">)</span>, NumberOfSimulations <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">autoplot</span><span class="op">(</span><span class="va">Accumulation</span><span class="op">)</span></code></pre></div>
 <p><img src="extrapolation_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
@@ -281,7 +281,7 @@
 <p><img src="extrapolation_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Same estimation by entropart </span>
-<span class="fu">autoplot</span><span class="op">(</span><span class="fu"><a href="../../reference/Accumulation.html">DivAC</a></span><span class="op">(</span><span class="va">spider</span><span class="op">$</span><span class="va">Girdled</span>, q<span class="op">=</span><span class="fl">1.01</span>, n.seq<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">spider</span><span class="op">$</span><span class="va">Girdled</span><span class="op">)</span><span class="op">)</span>, NumberOfSimulations <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu">autoplot</span><span class="op">(</span><span class="fu"><a href="../../reference/Accumulation.html">DivAC</a></span><span class="op">(</span><span class="va">spider</span><span class="op">$</span><span class="va">Girdled</span>, q<span class="op">=</span><span class="fl">1.01</span>, n.seq<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">spider</span><span class="op">$</span><span class="va">Girdled</span><span class="op">)</span><span class="op">)</span>, NumberOfSimulations <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="extrapolation_files/figure-html/unnamed-chunk-10-2.png" width="700"></p>
 <p>Last, confidence intervals of diversity accumulation assume normality in <em>iNEXT</em>: estimation variance is estimated by bootstrap and the confidence interval is defined as <span class="math inline">\(\pm 1.96\)</span> times the standard deviation. In <em>entropart</em>, confidence intervals are built directly from the quantiles of bootstrapped estimations.</p>
 </div>

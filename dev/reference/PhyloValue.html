@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-6.9003</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-6.9004</span>
       </span>
     </div>
 
@@ -163,7 +163,11 @@
 
     <pre class="usage"><span class='fu'>is.PhyloValue</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 <span class='co'># S3 method for PhyloValue</span>
-<span class='fu'>autoplot</span><span class='op'>(</span><span class='va'>object</span>, xlab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/grDevices/plotmath.html'>italic</a></span><span class='op'>(</span><span class='st'>"T"</span><span class='op'>)</span><span class='op'>)</span>, ylab <span class='op'>=</span> <span class='cn'>NULL</span>, main <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='fu'>autoplot</span><span class='op'>(</span><span class='va'>object</span>, xlab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/grDevices/plotmath.html'>italic</a></span><span class='op'>(</span><span class='st'>"T"</span><span class='op'>)</span><span class='op'>)</span>, ylab <span class='op'>=</span> <span class='cn'>NULL</span>, main <span class='op'>=</span> <span class='cn'>NULL</span>,
+          col <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html'>GeomLine</a></span><span class='op'>$</span><span class='va'>default_aes</span><span class='op'>$</span><span class='va'>colour</span>,
+          lty <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html'>GeomLine</a></span><span class='op'>$</span><span class='va'>default_aes</span><span class='op'>$</span><span class='va'>linetype</span>,
+          lwd <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html'>GeomLine</a></span><span class='op'>$</span><span class='va'>default_aes</span><span class='op'>$</span><span class='va'>size</span>,
+          <span class='va'>...</span><span class='op'>)</span>
 <span class='co'># S3 method for PhyloValue</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span>, xlab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/grDevices/plotmath.html'>italic</a></span><span class='op'>(</span><span class='st'>"T"</span><span class='op'>)</span><span class='op'>)</span>, ylab <span class='op'>=</span> <span class='cn'>NULL</span>, main <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span>
 <span class='co'># S3 method for PhyloValue</span>
@@ -191,6 +195,18 @@
     <tr>
       <th>object</th>
       <td><p>A <code>PhyloValue</code> object to be summarized.</p></td>
+    </tr>
+    <tr>
+      <th>col</th>
+      <td><p>The color of the geom objects. See "Color Specification" in <code><a href='https://rdrr.io/r/graphics/par.html'>par</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>lty</th>
+      <td><p>The type of the lines. See <code><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>lwd</th>
+      <td><p>The width of the lines. See <code><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>

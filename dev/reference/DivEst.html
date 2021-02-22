@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-6.9003</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-6.9004</span>
       </span>
     </div>
 
@@ -166,10 +166,14 @@
   ShowProgressBar <span class='op'>=</span> <span class='cn'>TRUE</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='fu'>is.DivEst</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 <span class='co'># S3 method for DivEst</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span>, main <span class='op'>=</span> <span class='cn'>NULL</span>, Which <span class='op'>=</span> <span class='st'>"All"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span>, main <span class='op'>=</span> <span class='cn'>NULL</span>, Which <span class='op'>=</span> <span class='st'>"All"</span>,
+  Quantiles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.025</span>, <span class='fl'>0.975</span><span class='op'>)</span>, colValue <span class='op'>=</span> <span class='st'>"red"</span>, lwdValue <span class='op'>=</span> <span class='fl'>2</span>, ltyValue <span class='op'>=</span> <span class='fl'>2</span>,
+  colQuantiles <span class='op'>=</span> <span class='st'>"black"</span>, lwdQuantiles <span class='op'>=</span> <span class='fl'>1</span>, ltyQuantiles <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 <span class='co'># S3 method for DivEst</span>
 <span class='fu'>autoplot</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span>, main <span class='op'>=</span> <span class='cn'>NULL</span>, Which <span class='op'>=</span> <span class='st'>"All"</span>,
-  labels <span class='op'>=</span> <span class='cn'>NULL</span>, font.label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>11</span>, face<span class='op'>=</span><span class='st'>"plain"</span><span class='op'>)</span><span class='op'>)</span>
+  labels <span class='op'>=</span> <span class='cn'>NULL</span>, font.label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>11</span>, face<span class='op'>=</span><span class='st'>"plain"</span><span class='op'>)</span>,
+          Quantiles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.025</span>, <span class='fl'>0.975</span><span class='op'>)</span>, colValue <span class='op'>=</span> <span class='st'>"red"</span>, 
+          colQuantiles <span class='op'>=</span> <span class='st'>"black"</span>, ltyQuantiles <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 <span class='co'># S3 method for DivEst</span>
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
@@ -242,6 +246,34 @@
       <td><p>A <code>MCdiversity</code> object to be summarized or plotted.</p></td>
     </tr>
     <tr>
+      <th>Quantiles</th>
+      <td><p>A vector containing the quantiles of interest.</p></td>
+    </tr>
+    <tr>
+      <th>colValue</th>
+      <td><p>The color of the line representing the real value on the plot.</p></td>
+    </tr>
+    <tr>
+      <th>lwdValue</th>
+      <td><p>The width of the line representing the real value on the plot.</p></td>
+    </tr>
+    <tr>
+      <th>ltyValue</th>
+      <td><p>The line type of the line representing the real value on the plot.</p></td>
+    </tr>
+    <tr>
+      <th>colQuantiles</th>
+      <td><p>The color of the lines representing the quantiles on the plot.</p></td>
+    </tr>
+    <tr>
+      <th>lwdQuantiles</th>
+      <td><p>The width of the lines representing the quantiles on the plot.</p></td>
+    </tr>
+    <tr>
+      <th>ltyQuantiles</th>
+      <td><p>The line type of the lines representing the quantiles on the plot.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Additional arguments to be passed to the generic methods.</p></td>
     </tr>
@@ -278,7 +310,7 @@
 <span class='va'>Estimation</span> <span class='op'>&lt;-</span> <span class='fu'>DivEst</span><span class='op'>(</span>q <span class='op'>=</span> <span class='fl'>1</span>, <span class='va'>Paracou618.MC</span>, Biased <span class='op'>=</span> <span class='cn'>FALSE</span>, Correction <span class='op'>=</span> <span class='st'>"UnveilJ"</span>, 
 Simulations <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>Estimation</span><span class='op'>)</span>
-</div><div class='img'><img src='DivEst-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>Estimation</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: NAs introduced by coercion</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NAs introduced by coercion</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NAs introduced by coercion</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NAs introduced by coercion</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NAs introduced by coercion</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NAs introduced by coercion</span></div><div class='img'><img src='DivEst-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>Estimation</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Diversity partitioning of order 1 of MetaCommunity Paracou618.MC
 #&gt;  with correction: UnveilJ
 #&gt; Alpha diversity of communities: 

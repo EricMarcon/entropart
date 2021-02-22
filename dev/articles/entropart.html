@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-6.9003</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-6.9004</span>
       </span>
     </div>
 
@@ -300,10 +300,27 @@
 <code class="sourceCode R"><span class="co"># Margin adjustment required for this vignette html output</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2.2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">de</span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): NAs
+## introduced by coercion
+
+## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): NAs
+## introduced by coercion
+
+## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): NAs
+## introduced by coercion
+
+## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): NAs
+## introduced by coercion
+
+## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): NAs
+## introduced by coercion
+
+## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): NAs
+## introduced by coercion</code></pre>
 <p><img src="entropart_files/figure-html/DivEst-1.png" width="576"></p>
 <p>The result is a <code>Divest</code> object which can be summarized and plotted.</p>
 <p><code>DivProfile</code> calculates diversity profiles. The result is a <code>DivProfile</code> object which can be summarized and plotted.</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/DivProfile.html">DivProfile</a></span><span class="op">(</span>, <span class="va">Paracou618.MC</span><span class="op">)</span>
 <span class="fu">autoplot</span><span class="op">(</span><span class="va">dp</span><span class="op">)</span></code></pre></div>
 <p><img src="entropart_files/figure-html/DivProfile-1.png" width="576"></p>
