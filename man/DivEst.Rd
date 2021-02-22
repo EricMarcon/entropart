@@ -15,9 +15,13 @@ DivEst(q = 0, MC, Biased = TRUE, Correction = "Best", Tree = NULL,
   Normalize = TRUE, Z = NULL, Simulations = 100, 
   ShowProgressBar = TRUE, CheckArguments = TRUE)
 is.DivEst(x)
-\method{plot}{DivEst}(x, \dots, main = NULL, Which = "All")
+\method{plot}{DivEst}(x, \dots, main = NULL, Which = "All",
+  Quantiles = c(0.025, 0.975), colValue = "red", lwdValue = 2, ltyValue = 2,
+  colQuantiles = "black", lwdQuantiles = 1, ltyQuantiles = 2)
 \method{autoplot}{DivEst}(object, \dots, main = NULL, Which = "All",
-  labels = NULL, font.label = list(size=11, face="plain"))
+  labels = NULL, font.label = list(size=11, face="plain"),
+          Quantiles = c(0.025, 0.975), colValue = "red", 
+          colQuantiles = "black", ltyQuantiles = 2)
 \method{summary}{DivEst}(object, \dots)
 }
 \arguments{
@@ -69,6 +73,27 @@ is.DivEst(x)
   }
   \item{object}{
   A \code{MCdiversity} object to be summarized or plotted.
+  }
+  \item{Quantiles}{
+  A vector containing the quantiles of interest.
+  }
+  \item{colValue}{
+  The color of the line representing the real value on the plot.
+  }
+  \item{lwdValue}{
+  The width of the line representing the real value on the plot.
+  }
+  \item{ltyValue}{
+  The line type of the line representing the real value on the plot.
+  }
+  \item{colQuantiles}{
+  The color of the lines representing the quantiles on the plot.
+  }
+  \item{lwdQuantiles}{
+  The width of the lines representing the quantiles on the plot.
+  }
+  \item{ltyQuantiles}{
+  The line type of the lines representing the quantiles on the plot.
   }
   \item{\dots}{
   Additional arguments to be passed to the generic methods.

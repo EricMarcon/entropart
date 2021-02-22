@@ -26,7 +26,11 @@ DivAC(Ns, q = 0, n.seq = seq_len(sum(Ns)), PCorrection="Chao2015", Unveiling="ge
          LineWidth = 2, ShadeColor = "grey75", BorderColor = "red")
 \method{autoplot}{AccumCurve}(object, ..., main = NULL, 
          xlab = "Sample Size", ylab = NULL, 
-         ShadeColor = "grey75", alpha = 0.3, BorderColor = "red")}
+         ShadeColor = "grey75", alpha = 0.3, BorderColor = "red",
+         col = ggplot2::GeomLine$default_aes$colour,
+         lty = ggplot2::GeomLine$default_aes$linetype,
+         lwd = ggplot2::GeomLine$default_aes$size)
+}
 \arguments{
   \item{x}{
   An object. A numeric vector in \code{as.AccumCurve}.
@@ -93,6 +97,15 @@ DivAC(Ns, q = 0, n.seq = seq_len(sum(Ns)), PCorrection="Chao2015", Unveiling="ge
   }
   \item{alpha}{
   Opacity of the confidence enveloppe, between 0 and 1.
+  }
+  \item{col}{
+  The color of the geom objects. See "Color Specification" in \code{\link{par}}.
+  }
+  \item{lty}{
+  The type of the lines. See \code{\link{lines}}.
+  }
+  \item{lwd}{
+  The width of the lines. See \code{\link{lines}}.
   }
   \item{ShowProgressBar}{
   If \code{TRUE} (default), a progress bar is shown.

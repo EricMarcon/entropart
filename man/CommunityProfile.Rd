@@ -22,7 +22,10 @@ is.CommunityProfile(x)
           LineWidth = 2, ShadeColor = "grey75", BorderColor = "red")
 \method{autoplot}{CommunityProfile}(object, \dots, main = NULL, 
           xlab = "Order of Diversity", ylab = "Diversity",
-          ShadeColor = "grey75", alpha = 0.3, BorderColor = "red")
+          ShadeColor = "grey75", alpha = 0.3, BorderColor = "red",
+          col = ggplot2::GeomLine$default_aes$colour,
+          lty = ggplot2::GeomLine$default_aes$linetype,
+          lwd = ggplot2::GeomLine$default_aes$size)
 CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", \dots)
 }
 \arguments{
@@ -94,6 +97,15 @@ CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", \d
   }
   \item{alpha}{
   Opacity of the confidence enveloppe, between 0 and 1.
+  }
+  \item{col}{
+  The color of the geom objects. See "Color Specification" in \code{\link{par}}.
+  }
+  \item{lty}{
+  The type of the lines. See \code{\link{lines}}.
+  }
+  \item{lwd}{
+  The width of the lines. See \code{\link{lines}}.
   }
   \item{ShowProgressBar}{
   If \code{TRUE} (default), a progress bar is shown.

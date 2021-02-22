@@ -8,7 +8,8 @@
 
 - Continuous integration by GitHub Actions.
 - `CommunityProfile()` does not recenter simulated diversity values if simulated community size is not that of the actual community. `$mid` can store mean simulated values.
-- CodeFactor recommendations
+- CodeFactor recommendations applied.
+- `col`, `pch`, `cex` and `lty` arguments in `autoplot`s.
 
 
 # entropart 1.6-6

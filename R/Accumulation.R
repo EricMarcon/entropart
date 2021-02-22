@@ -236,7 +236,10 @@ function(x, ..., main = NULL,
 autoplot.AccumCurve <- 
 function(object, ..., main = NULL, 
          xlab = "Sample Size", ylab = NULL, 
-         ShadeColor = "grey75", alpha = 0.3, BorderColor = "red")
+         ShadeColor = "grey75", alpha = 0.3, BorderColor = "red",
+         col = ggplot2::GeomLine$default_aes$colour,
+         lty = ggplot2::GeomLine$default_aes$linetype,
+         lwd = ggplot2::GeomLine$default_aes$size)
 {  
   thePlot <- ggplot2::ggplot(as.data.frame.list(object), ggplot2::aes_(x=~x, y=~y))
   if (!(is.null(object$high) | is.null(object$low))) {
@@ -256,7 +259,7 @@ function(object, ..., main = NULL,
     }
   }
   thePlot <- thePlot +
-    ggplot2::geom_line() +
+    ggplot2::geom_line(colour=col, linetype=lty, size=lwd) +
     ggplot2::labs(title=main, x=xlab, y=ylab)
   
   # Actual value

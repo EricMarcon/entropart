@@ -371,7 +371,9 @@ function(x, ..., Distribution = NULL,
 autoplot.SpeciesDistribution <-
 function(object, ..., Distribution = NULL, 
          ylog = TRUE, main = NULL, xlab = "Rank", ylab = NULL, 
-         col=GeomPoint$default_aes$colour) 
+         pch = ggplot2::GeomPoint$default_aes$shape,
+         col = ggplot2::GeomPoint$default_aes$colour,
+         cex = ggplot2::GeomPoint$default_aes$size) 
 {
   # Eliminate zeros and sort
   Ns <- sort(object[object > 0], decreasing = TRUE)
@@ -392,7 +394,8 @@ function(object, ..., Distribution = NULL,
 
   # Plot. X-axis starts at 0.01 to avoid the 0 X-label.
   thePlot <- ggplot2::ggplot() +
-    ggplot2::geom_point(data=df, mapping=ggplot2::aes_(x=~Rank, y=~Ns), color=col) +
+    ggplot2::geom_point(data=df, mapping=ggplot2::aes_(x=~Rank, y=~Ns), 
+                        shape=pch, color=col, size=cex) +
     ggplot2::scale_x_continuous(limits=c(0.01, S), expand=c(0, 0)) +
     ggplot2::labs(title=main, x=xlab, y=ylab)
   

@@ -21,7 +21,10 @@ is.DivProfile(x)
   LineWidth = 2, ShadeColor = "grey75", BorderColor = "red")
 \method{autoplot}{DivProfile}(object, \dots, main = NULL, xlab = "Order of Diversity",
   ylab = NULL, Which = "All", ShadeColor = "grey75", alpha = 0.3, BorderColor = "red", 
-  labels = NULL, font.label = list(size=11, face="plain"))
+  labels = NULL, font.label = list(size=11, face="plain"),
+  col = ggplot2::GeomLine$default_aes$colour,
+  lty = ggplot2::GeomLine$default_aes$linetype,
+  lwd = ggplot2::GeomLine$default_aes$size)
 \method{summary}{DivProfile}(object, \dots)
 }
 \arguments{
@@ -93,6 +96,15 @@ is.DivProfile(x)
   }
   \item{font.label}{
   A list of arguments to customize labels. See \code{\link{ggarrange}}.
+  }
+  \item{col}{
+  The color of the geom objects. See "Color Specification" in \code{\link{par}}.
+  }
+  \item{lty}{
+  The type of the lines. See \code{\link{lines}}.
+  }
+  \item{lwd}{
+  The width of the lines. See \code{\link{lines}}.
   }
   \item{object}{
   A \code{MCdiversity} object to be summarized or plotted.

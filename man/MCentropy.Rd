@@ -13,7 +13,8 @@
 \usage{
 is.MCentropy(x)
 \method{plot}{MCentropy}(x, \dots)
-\method{autoplot}{MCentropy}(object, \dots)
+\method{autoplot}{MCentropy}(object, col = ggplot2::GeomCol$default_aes$fill,
+          border = ggplot2::GeomCol$default_aes$colour, \dots)
 \method{summary}{MCentropy}(object, \dots)
 }
 \arguments{
@@ -22,6 +23,12 @@ is.MCentropy(x)
   }
   \item{object}{
   A \code{MCentropy} object to be summarized or plotted.
+  }
+  \item{col}{
+  The color used to fill the bars. See "Color Specification" in \code{\link{par}}.
+  }
+  \item{border}{
+  The color of the borders around the bars. See \code{\link{hist}}.
   }
   \item{\dots}{
   Additional arguments to be passed to the generic methods.

@@ -13,7 +13,8 @@
 \usage{
 is.MCdiversity(x)
 \method{plot}{MCdiversity}(x, \dots)
-\method{autoplot}{MCdiversity}(object, \dots)
+\method{autoplot}{MCdiversity}(object, col = ggplot2::GeomCol$default_aes$fill,
+          border = ggplot2::GeomCol$default_aes$colour, \dots)
 \method{summary}{MCdiversity}(object, \dots)
 }
 \arguments{
@@ -22,6 +23,12 @@ is.MCdiversity(x)
   }
   \item{object}{
   A \code{MCdiversity} object to be summarized or plotted.
+  }
+  \item{col}{
+  The color used to fill the bars. See "Color Specification" in \code{\link{par}}.
+  }
+  \item{border}{
+  The color of the borders around the bars. See \code{\link{hist}}.
   }
   \item{\dots}{
   Additional arguments to be passed to the generic methods.

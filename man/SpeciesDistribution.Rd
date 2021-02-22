@@ -32,7 +32,9 @@ as.SpeciesDistribution(x, \dots)
 \method{as.SpeciesDistribution}{numeric}(x, \dots)
 \method{autoplot}{SpeciesDistribution}(object, \dots, Distribution = NULL, 
          ylog = TRUE, main = NULL, xlab = "Rank", ylab = NULL, 
-         col=GeomPoint$default_aes$colour)
+         pch = ggplot2::GeomPoint$default_aes$shape,
+         col = ggplot2::GeomPoint$default_aes$colour,
+         cex = ggplot2::GeomPoint$default_aes$size) 
 \method{plot}{SpeciesDistribution}(x, \dots, Distribution = NULL, 
          type = "b", log = "y", main = NULL, xlab = "Rank", ylab = NULL)
 is.SpeciesDistribution(x)
@@ -102,6 +104,15 @@ is.AbdVector(x)
   }
   \item{ylog}{
   Logical; if \code{TRUE} (by default), the Y-axis of the plot is log scaled.
+  }
+  \item{pch}{
+  The plotting characters. See \code{\link{points}}.
+  }
+  \item{col}{
+  The color of the geom objects. See "Color Specification" in \code{\link{par}}.
+  }
+  \item{cex}{
+  The character expansion (size) of the points. See \code{\link{points}}.
   }
   \item{\dots}{
   Additional arguments to be passed to \code{\link{plot}}. Unused elsewhere.

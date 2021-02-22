@@ -32,7 +32,11 @@ function (x, xlab = expression(italic("T")), ylab = NULL, main = NULL, ...)
 
 
 autoplot.PhyloValue <- 
-function (object, xlab = expression(italic("T")), ylab = NULL, main = NULL, ...) 
+function (object, xlab = expression(italic("T")), ylab = NULL, main = NULL, 
+          col = ggplot2::GeomLine$default_aes$colour,
+          lty = ggplot2::GeomLine$default_aes$linetype,
+          lwd = ggplot2::GeomLine$default_aes$size,
+          ...) 
 {
   Entity <- ""
   # Entity
@@ -57,9 +61,9 @@ function (object, xlab = expression(italic("T")), ylab = NULL, main = NULL, ...)
   
   # Plot
   thePlot <- ggplot2::ggplot(data=df, ggplot2::aes_(x=~Time, y=~Value)) +
-    ggplot2::geom_line() +
+    ggplot2::geom_line(colour=col, linetype=lty, size=lwd) +
     ggplot2::labs(title=main, x=xlab, y=ylab) +
-    ggplot2::geom_hline(yintercept=object$Total, , linetype=2)
+    ggplot2::geom_hline(yintercept=object$Total, linetype=2)
   
   return(thePlot)
 }

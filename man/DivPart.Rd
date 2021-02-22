@@ -15,7 +15,8 @@ DivPart(q = 1, MC, Biased = TRUE, Correction = "Best", Tree = NULL,
   Normalize = TRUE, Z = NULL, CheckArguments = TRUE)
 is.DivPart(x)
 \method{plot}{DivPart}(x, \dots)
-\method{autoplot}{DivPart}(object, \dots)
+\method{autoplot}{DivPart}(object, col = ggplot2::GeomRect$default_aes$fill, 
+  border = ggplot2::GeomRect$default_aes$colour, \dots)
 \method{summary}{DivPart}(object, \dots)
 }
 \arguments{
@@ -51,6 +52,12 @@ is.DivPart(x)
   }
   \item{object}{
   A \code{MCdiversity} object to be summarized or plotted.
+  }
+  \item{col}{
+  The color used to fill the bars. See "Color Specification" in \code{\link{par}}.
+  }
+  \item{border}{
+  The color of the borders around the bars. See \code{\link{rect}}.
   }
   \item{\dots}{
   Additional arguments to be passed to the generic methods.

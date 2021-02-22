@@ -19,21 +19,20 @@ function (x, ...)
 }
 
 
-
 autoplot.MCdiversity <- 
-function (object, ...) 
+function (object, col = ggplot2::GeomCol$default_aes$fill,
+          border = ggplot2::GeomCol$default_aes$colour, ...) 
 {
   theData <- data.frame(x=c(names(object$Communities), "", "Metacommunity"), y=c(object$Communities, 0, object$Total))
   # Factors to keep the order of bars (avoid sort by name)
   theData$x <- factor(theData$x, levels=theData$x)
                       
   thePlot <- ggplot2::ggplot(theData, ggplot2::aes_(x=~x, y=~y)) + 
-    ggplot2::geom_col(width=c(object$Weights, .5, .1)) +
+    ggplot2::geom_col(width=c(object$Weights, .5, .1), fill=col, colour=border) +
     ggplot2::labs(y="Diversity")
   
   return(thePlot)
 }
-
 
 
 summary.MCdiversity <-

@@ -12,7 +12,11 @@
 }
 \usage{
 is.PhyloValue(x)
-\method{autoplot}{PhyloValue}(object, xlab = expression(italic("T")), ylab = NULL, main = NULL, \dots)
+\method{autoplot}{PhyloValue}(object, xlab = expression(italic("T")), ylab = NULL, main = NULL,
+          col = ggplot2::GeomLine$default_aes$colour,
+          lty = ggplot2::GeomLine$default_aes$linetype,
+          lwd = ggplot2::GeomLine$default_aes$size,
+          \dots)
 \method{plot}{PhyloValue}(x, xlab = expression(italic("T")), ylab = NULL, main = NULL, \dots)
 \method{summary}{PhyloValue}(object, \dots)
 }
@@ -31,6 +35,15 @@ is.PhyloValue(x)
   }
   \item{object}{
   A \code{PhyloValue} object to be summarized.
+  }
+  \item{col}{
+  The color of the geom objects. See "Color Specification" in \code{\link{par}}.
+  }
+  \item{lty}{
+  The type of the lines. See \code{\link{lines}}.
+  }
+  \item{lwd}{
+  The width of the lines. See \code{\link{lines}}.
   }
   \item{\dots}{
   Additional arguments to be passed to \code{\link{plot}}.

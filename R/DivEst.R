@@ -70,7 +70,9 @@ function (x)
 
 
 plot.DivEst <- 
-  function (x, ..., main = NULL, Which = "All") 
+  function (x, ..., main = NULL, Which = "All", 
+            Quantiles = c(0.025, 0.975), colValue = "red", lwdValue = 2, ltyValue = 2,
+            colQuantiles = "black", lwdQuantiles = 1, ltyQuantiles = 2) 
   {
     # Save graphical parameters
     op <- graphics::par(no.readonly = TRUE)
@@ -78,15 +80,21 @@ plot.DivEst <-
     
     if (Which == "All" | (Which == "Alpha" & is.null(main))) main <- "Alpha Diversity"
     if (Which == "All" | Which == "Alpha") {
-      graphics::plot(as.SimTest(x$TotalAlphaDiversity, x$SimulatedDiversity["Alpha",]), main=main, ...)
+      graphics::plot(as.SimTest(x$TotalAlphaDiversity, x$SimulatedDiversity["Alpha",]), main=main, 
+                     Quantiles=Quantiles, ..., colValue=colValue, lwdValue=lwdValue, ltyValue=ltyValue,
+                     colQuantiles=colQuantiles, lwdQuantiles=colQuantiles, ltyQuantiles=ltyQuantiles) 
     }
     if (Which == "All" | (Which == "Beta" & is.null(main))) main <- "Beta Diversity"
     if (Which == "All" | Which == "Beta") {
-      graphics::plot(as.SimTest(x$TotalBetaDiversity, x$SimulatedDiversity["Beta",]), main=main, ...)
+      graphics::plot(as.SimTest(x$TotalBetaDiversity, x$SimulatedDiversity["Beta",]), main=main, 
+                     Quantiles=Quantiles, ..., colValue=colValue, lwdValue=lwdValue, ltyValue=ltyValue,
+                     colQuantiles=colQuantiles, lwdQuantiles=colQuantiles, ltyQuantiles=ltyQuantiles)
     }
     if (Which == "All" | (Which == "Gamma" & is.null(main))) main <- "Gamma Diversity"
     if (Which == "All" | Which == "Gamma") {
-      graphics::plot(as.SimTest(x$GammaDiversity, x$SimulatedDiversity["Gamma",]), main=main, ...)
+      graphics::plot(as.SimTest(x$GammaDiversity, x$SimulatedDiversity["Gamma",]), main=main, 
+                     Quantiles=Quantiles, ..., colValue=colValue, lwdValue=lwdValue, ltyValue=ltyValue,
+                     colQuantiles=colQuantiles, lwdQuantiles=colQuantiles, ltyQuantiles=ltyQuantiles)
     }
     
     # Legend and restore parameters
@@ -101,25 +109,29 @@ plot.DivEst <-
 
 
 autoplot.DivEst <- 
-function (object, ..., main = NULL, Which = "All", labels = NULL, font.label = list(size=11, face="plain")) 
+function (object, ..., main = NULL, Which = "All", labels = NULL, font.label = list(size=11, face="plain"),
+          Quantiles = c(0.025, 0.975), colValue = "red", colQuantiles = "black", ltyQuantiles = 2) 
 {
   if (Which == "All" | (Which == "Alpha" & is.null(main))) main <- "Alpha Diversity"
   if (Which == "All" | Which == "Alpha") {
-    AlphaPlot <- autoplot(as.SimTest(object$TotalAlphaDiversity, object$SimulatedDiversity["Alpha",]), main=main, ...)
+    AlphaPlot <- autoplot(as.SimTest(object$TotalAlphaDiversity, object$SimulatedDiversity["Alpha",]), main=main, 
+                          Quantiles=Quantiles, ..., colValue=colValue, colQuantiles=colQuantiles, ltyQuantiles=ltyQuantiles)
   }
   if (Which == "Alpha")
     return(AlphaPlot)
 
   if (Which == "All" | (Which == "Beta" & is.null(main))) main <- "Beta Diversity"
   if (Which == "All" | Which == "Beta") {
-    BetaPlot <- autoplot(as.SimTest(c$TotalBetaDiversity, object$SimulatedDiversity["Beta",]), main=main, ...)
+    BetaPlot <- autoplot(as.SimTest(object$TotalBetaDiversity, object$SimulatedDiversity["Beta",]), main=main, 
+                         Quantiles=Quantiles, ..., colValue=colValue, colQuantiles=colQuantiles, ltyQuantiles=ltyQuantiles)
   }
   if (Which == "Beta")
     return(BetaPlot)
   
   if (Which == "All" | (Which == "Gamma" & is.null(main))) main <- "Gamma Diversity"
   if (Which == "All" | Which == "Gamma") {
-    GammaPlot <- autoplot(as.SimTest(object$GammaDiversity, object$SimulatedDiversity["Gamma",]), main=main, ...)
+    GammaPlot <- autoplot(as.SimTest(object$GammaDiversity, object$SimulatedDiversity["Gamma",]), main=main, 
+                          Quantiles=Quantiles, ..., colValue=colValue, colQuantiles=colQuantiles, ltyQuantiles=ltyQuantiles)
   }
   if (Which == "Gamma")
     return(GammaPlot)
