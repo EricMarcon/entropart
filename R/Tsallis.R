@@ -118,7 +118,7 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, PCorrection = "Chao2015
       # Obtain Abundance Frequence Count
       afc <- AbdFreqCount(NorP, Level=Level, CheckArguments=FALSE)
       # Calculate entropy (Chao et al., 2014, eq. 6)
-      entropy <- (sum(((1:Level)/Level)^q * afc[, 2]) - 1)/(1-q)
+      entropy <- (sum(((seq_len(Level))/Level)^q * afc[, 2]) - 1)/(1-q)
       names(entropy) <- attr(afc, "Estimator")
       return (entropy)
     } else {
@@ -131,9 +131,9 @@ function(NorP, q = 1, Correction = "Best", Level = NULL, PCorrection = "Chao2015
         # Unveil the full distribution that rarefies to the observed entropy
         PsU <- as.ProbaVector(NorP, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, q=q, CheckArguments=FALSE)
         # AbdFreqCount at Level (Chao et al., 2014, eq. 5)
-        Slevel <- sapply(1:Level, function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))))
+        Slevel <- vapply(seq_len(Level), function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))), FUN.VALUE=0.0)
         # Estimate entropy (Chao et al., 2014, eq. 6)
-        entropy <- (sum(((1:Level)/Level)^q * Slevel) - 1) / (1-q)
+        entropy <- (sum((seq_len(Level)/Level)^q * Slevel) - 1) / (1-q)
         names(entropy) <- RCorrection
       }
       return (entropy)
@@ -206,14 +206,14 @@ function(Ns, q = 1, Correction = "Best", SampleCoverage = NULL, CheckArguments =
   # Common code for ZhangGrabchak. Useless if EntropyEstimation is used.
   # if (Correction == "ZhangGrabchak" | Correction == "ChaoWangJost" | Correction == "ChaoJost") {
   #   Ps <- Ns/N
-  #   V <- 1:(N-1)
+  #   V <- seq_len(N-1)
   #   # p_V_Ns is an array, containing (1 - (n_s-1)/(n-j)) for each species (lines) and all j from 1 to n-1
   #   p_V_Ns <- outer(Ns, V, function(Ns, j) 1- (Ns-1)/(N-j))
   #   # Useful values are products from j=1 to v, so prepare cumulative products
   #   p_V_Ns <- t(apply(p_V_Ns, 1, cumprod))
   #   # Sum of products weighted by w_v
   #   S_v <- function(s) {
-  #     Usedv <- 1:(N-Ns[s])
+  #     Usedv <- seq_len(N-Ns[s])
   #     return(sum(w_v[Usedv]*p_V_Ns[s, Usedv]))
   #   }
   # }
@@ -235,7 +235,7 @@ function(Ns, q = 1, Correction = "Best", SampleCoverage = NULL, CheckArguments =
       if (Correction == "ZhangGrabchak") {
         # Weights. Useless if EntropyEstimation is used.
         # w_v <- 1/V
-        # entropy <- sum(Ps*vapply(1:length(Ns), S_v, 0))
+        # entropy <- sum(Ps*vapply(seq_along(Ns), S_v, 0))
         # Use EntropyEstimation instead
         entropy <- EntropyEstimation::Entropy.z(Ns)
         names(entropy) <- Correction
@@ -249,10 +249,10 @@ function(Ns, q = 1, Correction = "Best", SampleCoverage = NULL, CheckArguments =
   # Not Shannon
   if (Correction == "ZhangGrabchak" | Correction == "ChaoWangJost" | Correction == "ChaoJost") {
     # Weights. Useless here if EntropyEstimation is used, but weights are necessary for ChaoWangJost
-    # i <- 1:N
+    # i <- seq_len(N)
     # w_vi <- (i-q)/i
     # w_v <- cumprod(w_vi)
-    # ZhangGrabchak <- sum(Ps*vapply(1:length(Ns), S_v, 0))/(1-q)
+    # ZhangGrabchak <- sum(Ps*vapply(seq_along(Ns), S_v, 0))/(1-q)
     # Use EntropyEstimation instead
     if (q==0) ZhangGrabchak <- length(Ns)-1 else ZhangGrabchak <- EntropyEstimation::Tsallis.z(Ns, q)
     # ZhangGrabchak stops here, but ChaoWangJost adds an estimator of the bias
@@ -276,8 +276,8 @@ function(Ns, q = 1, Correction = "Best", SampleCoverage = NULL, CheckArguments =
         A <- 1
       }
     }
-    # Eq 7d in Chao & Jost (2015). Terms for r in 1:(N-1) equal (-1)^r * w_v[r] * (A-1)^r. w_v is already available from ZhangGrabchak
-    i <- 1:N
+    # Eq 7d in Chao & Jost (2015). Terms for r in seq_len(N-1) equal (-1)^r * w_v[r] * (A-1)^r. w_v is already available from ZhangGrabchak
+    i <- seq_len(N)
     # Weights: here only if EntropyEstimation is used. Else, they have been calculated above.
     w_vi <- (i-q)/i
     w_v <- cumprod(w_vi)
@@ -285,7 +285,7 @@ function(Ns, q = 1, Correction = "Best", SampleCoverage = NULL, CheckArguments =
       # The general formula of Eq 7d has a 0/0 part that must be forced to 0
       ChaoJostBias <- 0
     } else {
-      Eq7dSum <- vapply(1:(N-1), function(r) w_v[r]*(1-A)^r, 0)
+      Eq7dSum <- vapply(seq_len(N-1), function(r) w_v[r]*(1-A)^r, 0)
       # Calculate the estimator of the bias. Eq7dSum contains all terms of the sum except for r=0: the missing term equals 1.
       # The bias in Chao & Jost (2015) is that of the Hill number. It must be divided by 1-q to be applied to entropy.
       ChaoJostBias <- (Singletons/N*(1-A)^(1-N) * (A^(q-1) - sum(Eq7dSum) - 1))/(1-q)

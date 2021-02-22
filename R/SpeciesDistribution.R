@@ -83,7 +83,7 @@ estimate_Ps0 <- function(Unveiling, PsTuned, S0, C, CD2){
       Ps0 <- 1-C
     } else {
       r <- (1-C)^2/CD2
-      i <- 1:S0
+      i <- seq_len(S0)
       beta <-  tryCatch(stats::optimize(beta_solve, lower=(r-1)/(r+1), upper=1, tol=.Machine$double.eps, r, i)$min, 
                         error = function(e) {(r-1)/(r+1)})
       alpha <- (1-C) / sum(beta^i)
@@ -101,7 +101,7 @@ estimate_Ps0 <- function(Unveiling, PsTuned, S0, C, CD2){
     warning("Unveiling method was not recognized")
     return(NA)
   } else {
-    names(Ps0) <- paste("UnobsSp", 1:(length(Ps0)), sep="")
+    names(Ps0) <- paste("UnobsSp", seq_along(length(Ps0)), sep="")
     return(Ps0)
   }         
 }
@@ -114,12 +114,12 @@ rarefaction_bias <- function(S0, Ns, PsTuned, C, CD2, q, Unveiling, Target) {
   # Full distribution of probabilities
   Ps <- c(PsTuned, Ps0)
   # AbdFreqCount at Level = N
-  Sn <- sapply(1:N, function(nu) sum(exp(lchoose(N, nu) + nu*log(Ps) + (N-nu)*log(1-Ps))))
+  Sn <- vapply(seq_len(N), function(nu) sum(exp(lchoose(N, nu) + nu*log(Ps) + (N-nu)*log(1-Ps))), FUN.VALUE=0.0)
   # Get Entropy at Level=N and calculate the bias
   if (q == 1) {
-    Bias <- abs(sum(-(1:N)/N * log((1:N)/N) * Sn) - Target)
+    Bias <- abs(sum(-seq_len(N)/N * log(seq_len(N)/N) * Sn) - Target)
   } else {
-    Bias <- abs((sum(((1:N)/N)^q * Sn) - 1) / (1-q) - Target)
+    Bias <- abs((sum((seq_len(N)/N)^q * Sn) - 1) / (1-q) - Target)
   }
   return(Bias)
 }
@@ -167,7 +167,7 @@ function (x, Correction = "None", Unveiling = "None", RCorrection = "Jackknife",
     
     # Tune the probabilities of observed species
     if (C == 0 | C == 1) {
-      # Sample coverage equal to 1: do not tune. If 0, unable to tune.
+      # Sample coverage equal to 1, do not tune. If 0, unable to tune.
       PsTuned <- Ps
     } else {
       PsTuned <- NA
@@ -370,7 +370,8 @@ function(x, ..., Distribution = NULL,
 
 autoplot.SpeciesDistribution <-
 function(object, ..., Distribution = NULL, 
-         ylog = TRUE, main = NULL, xlab = "Rank", ylab = NULL) 
+         ylog = TRUE, main = NULL, xlab = "Rank", ylab = NULL, 
+         col=GeomPoint$default_aes$colour) 
 {
   # Eliminate zeros and sort
   Ns <- sort(object[object > 0], decreasing = TRUE)
@@ -378,7 +379,7 @@ function(object, ..., Distribution = NULL,
   S <- length(Ns)
   
   # Transform data into df
-  df <- data.frame(Rank=1:S, Ns)
+  df <- data.frame(Rank=seq_len(S), Ns)
   
   # Prepare ylab
   if (is.null(ylab)) {
@@ -391,7 +392,7 @@ function(object, ..., Distribution = NULL,
 
   # Plot. X-axis starts at 0.01 to avoid the 0 X-label.
   thePlot <- ggplot2::ggplot() +
-    ggplot2::geom_point(data=df, mapping=ggplot2::aes_(x=~Rank, y=~Ns)) +
+    ggplot2::geom_point(data=df, mapping=ggplot2::aes_(x=~Rank, y=~Ns), color=col) +
     ggplot2::scale_x_continuous(limits=c(0.01, S), expand=c(0, 0)) +
     ggplot2::labs(title=main, x=xlab, y=ylab)
   
@@ -486,7 +487,7 @@ function (Ns, CheckArguments = TRUE)
   
   # Fit a geometric distribution
   lNs <- log(Ns)
-  Rank <- 1:S
+  Rank <- seq_len(S)
   reg <- stats::lm(lNs~Rank)
   
   return(list(Rank=Rank, Abundance=exp(reg$coefficients[1]+reg$coefficients[2]*Rank), prob=as.numeric(-reg$coefficients[2])))
@@ -525,7 +526,7 @@ function (Ns, CheckArguments = TRUE)
   
   # Fit a broken stick
   f1 <- sort(cumsum(1/(S:1)), decreasing = TRUE)
-  Rank <- 1:S
+  Rank <- seq_len(S)
   Abundance <- N*f1/sum(f1)
   
   return(list(Rank=Rank, Abundance=Abundance, max=max(Abundance)))

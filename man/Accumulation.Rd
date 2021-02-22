@@ -15,10 +15,10 @@
 \usage{
 as.AccumCurve(x, y, low = NULL, high = NULL)
 is.AccumCurve(x)
-EntAC(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveiling="geom",
+EntAC(Ns, q = 0, n.seq = seq_len(sum(Ns)), PCorrection="Chao2015", Unveiling="geom",
   RCorrection="Rarefy", NumberOfSimulations = 0, Alpha = 0.05, 
   ShowProgressBar = TRUE, CheckArguments = TRUE)
-DivAC(Ns, q = 0, n.seq = 1:sum(Ns), PCorrection="Chao2015", Unveiling="geom",
+DivAC(Ns, q = 0, n.seq = seq_len(sum(Ns)), PCorrection="Chao2015", Unveiling="geom",
   RCorrection="Rarefy", NumberOfSimulations = 0, Alpha = 0.05, 
   ShowProgressBar = TRUE, CheckArguments = TRUE)
 \method{plot}{AccumCurve}(x, ..., main = NULL, 

@@ -692,7 +692,7 @@ mergedMC1$Nsi
 They can also be merged considering each of them as a community of a higher-level meta-community:
 
 ```{r MCMergeMC}
-mergedMC2 <- MergeMC(list(MC1, MC2), Weights = sapply(list(MC1, MC2), function(x) (x$N)))
+mergedMC2 <- MergeMC(list(MC1, MC2), Weights = vapply(list(MC1, MC2), function(x) (x$N), FUN.VALUE=0.0))
 mergedMC2$Nsi
 ```
 

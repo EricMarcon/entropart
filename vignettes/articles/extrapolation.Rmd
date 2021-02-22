@@ -18,7 +18,7 @@ Library <- function(Packages) {
     if (!Package %in% installed.packages()[, 1]) {install.packages(Package, repos="https://cran.rstudio.com/")}
     require(Package, character.only = TRUE)
   }
-  invisible(sapply(Packages, InstallAndLoad))
+  invisible(vapply(Packages, InstallAndLoad, FUN.VALUE=TRUE))
 }
 Library(c("iNEXT"))
 ```
@@ -121,7 +121,7 @@ The `DivAc()`function allows to build them.
 A bootstrap confidence interval can be calculated around the estimated DAC by simulating random multinomial draws of the asymptotic distribution at each sample size.
 ```{r}
 # Diversity at levels from 1 to twice the sample size
-Accumulation <- DivAC(ParacouN, q=1, n.seq=1:(1.1*sum(ParacouN)), NumberOfSimulations = 1000)
+Accumulation <- DivAC(ParacouN, q=1, n.seq=seq_len(1.1*sum(ParacouN)), NumberOfSimulations = 1000)
 autoplot(Accumulation)
 ```
 
@@ -180,7 +180,7 @@ The same technique of estimation as that of the Chao-Shen estimator of diversity
 # Non-continuous estimation of diversity by iNext
 ggiNEXT(iNEXT(spider$Girdled, q=1.01))
 # Same estimation by entropart 
-autoplot(DivAC(spider$Girdled, q=1.01, n.seq=1:(2*sum(spider$Girdled)), NumberOfSimulations = 1000))
+autoplot(DivAC(spider$Girdled, q=1.01, n.seq=seq_len(2*sum(spider$Girdled)), NumberOfSimulations = 1000))
 ```
 
 Last, confidence intervals of diversity accumulation assume normality in _iNEXT_: estimation variance is estimated by bootstrap and the confidence interval is defined as $\pm 1.96$ times the standard deviation.

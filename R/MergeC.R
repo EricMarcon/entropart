@@ -6,7 +6,7 @@ function(MClist, Weights = rep(1, length(MClist)), CheckArguments = TRUE)
   
   # Metacommunities must have names
   if (is.null(names(MClist)))
-      names(MClist) <- paste("MC", 1:length(MClist), sep="")
+      names(MClist) <- paste("MC", seq_along(MClist), sep="")
   
   CommunityNames <- function(MClist) {
     MCnames <- rep(names(MClist), unlist(lapply(MClist, function(x) length(x$Ni))))

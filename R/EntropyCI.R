@@ -22,7 +22,7 @@ function(FUN, Simulations = 100, Ns, BootstrapMethod = "Chao2015", ShowProgressB
   # Simulate entropy
   ProgressBar <- utils::txtProgressBar(min=0, max=Simulations)
   # Simulated values
-  RawSimulatedEntropy <- sapply(1:Simulations, SimulateEntropy)
+  RawSimulatedEntropy <- vapply(seq_len(Simulations), SimulateEntropy, FUN.VALUE=0.0)
   close(ProgressBar)
   
   # Recenter entropy

@@ -28,9 +28,9 @@ function (Ns, Level = NULL, PCorrection="Chao2015", Unveiling="geom", RCorrectio
     if (Level < 1) Level <- Coverage2Size(Ns, SampleCoverage=Level, CheckArguments=FALSE)
     if (Level <= SampleSize) {
       # Interpolation
-      Snu <- sapply(1:Level, function(nu) sum(exp(lchoose(Ns, nu) + lchoose(SampleSize-Ns, Level-nu) - lchoose(SampleSize, Level))))
+      Snu <- vapply(seq_len(Level), function(nu) sum(exp(lchoose(Ns, nu) + lchoose(SampleSize-Ns, Level-nu) - lchoose(SampleSize, Level))), FUN.VALUE=0.0)
       # Make a matrix with all possible abundances
-      afc <- cbind(1:Level, Snu)
+      afc <- cbind(seq_len(Level), Snu)
       # Return the estimator as an attribute
       attr(afc, "Estimator") <- "Interp"
     } else {
@@ -42,10 +42,10 @@ function (Ns, Level = NULL, PCorrection="Chao2015", Unveiling="geom", RCorrectio
         # Unveil the full distribution
         PsU <- as.ProbaVector(Ns, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=FALSE)
         # Extrapolate
-        Snu <- sapply(1:Level, function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))))
+        Snu <- vapply(seq_len(Level), function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))), FUN.VALUE=0.0)
       }  
       # Make a matrix with all possible abundances
-      afc <- cbind(1:Level, Snu)
+      afc <- cbind(seq_len(Level), Snu)
       # Return the estimator as an attribute
       attr(afc, "Estimator") <- "Extrap"
     }

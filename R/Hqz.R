@@ -170,14 +170,14 @@ function (Ns, q = 1, Z = diag(length(Ns)), Correction = "Best", SampleCoverage =
   CPs <- C*Ns /N
   
   if (Correction == "MarconZhang" | Correction == "Best") {
-    V <- 1:(N-1)
+    V <- seq_len(N-1)
     # p_V_Ns is an array, containing (1 - (n_s-1)/(n-j)) for each species (lines) and all j from 1 to n-1
     p_V_Ns <- outer(Ns, V, function(Ns, j) 1- (Ns-1)/(N-j))
     # Useful values are products from j=1 to v, so prepare cumulative products
     p_V_Ns <- apply(p_V_Ns, 1, cumprod)
     # Sum of products weighted by w_v
     S_v <- function(s) {
-      Usedv <- 1:(N-Ns[s])
+      Usedv <- seq_len(N-Ns[s])
       return (sum(w_v[Usedv]*p_V_Ns[Usedv, s]))
     }
   }
@@ -204,10 +204,10 @@ function (Ns, q = 1, Z = diag(length(Ns)), Correction = "Best", SampleCoverage =
     Zpqm1[Zp == 0] <- 0
     K <- sum(CPs * Zpqm1)
     # Weights
-    i <- 1:N
+    i <- seq_len(N)
     w_vi <- (1-AverageZ)*(i-q)/i
     w_v <- cumprod(w_vi)
-    Taylor <- 1 + sum(Ns/N*vapply(1:length(Ns), S_v, 0))
+    Taylor <- 1 + sum(Ns/N*vapply(seq_len(length(Ns)), S_v, 0))
     FirstTerms <- CPs*(AverageZ+(1-AverageZ)*CPs)^(q-1)
     U <- Taylor-sum(FirstTerms)
     MZ <- ((K+U-1)/(1-q))
@@ -217,7 +217,7 @@ function (Ns, q = 1, Z = diag(length(Ns)), Correction = "Best", SampleCoverage =
     L <- -sum(CPs*log(Zp))
     # Weights
     w_v <- ((1-AverageZ)^V)/V
-    Taylor <- sum(Ns/N*vapply(1:length(Ns), S_v, 0))
+    Taylor <- sum(Ns/N*vapply(seq_len(length(Ns)), S_v, 0))
     FirstTerms <- -CPs*log(AverageZ+(1-AverageZ)*CPs)
     X <- Taylor-sum(FirstTerms)
     # MZ <- -sum(CPs*log(Zp)) -(1-C)*log(AverageZ)

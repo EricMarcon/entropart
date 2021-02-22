@@ -8,6 +8,6 @@ function (x, y) {
   # Replace NA's by zeros
   Merged[is.na(Merged)] <- 0
   # Set unique names to avoid warnings when Reduce() is used
-  names(Merged) <- paste("C", 1:ncol(Merged), sep="")
+  names(Merged) <- paste("C", seq_len(ncol(Merged)), sep="")
   return(Merged)
 }

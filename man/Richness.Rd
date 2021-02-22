@@ -86,15 +86,15 @@ bcRichness(Ns, Correction = "Best", Alpha = 0.05, JackOver = FALSE, JackMax = 10
   The name is the \code{Correction}, except for "SAC" (Species Accumulation Curve) for interpolation.
 }
 \references{
-  Burnham, K. P., and Overton,W. S. (1978), Estimation of the Size of a Closed Population When Capture Probabilities Vary Among Animals. \emph{Biometrika}, 65:625-633.
+  Burnham, K. P., and Overton,W. S. (1978), Estimation of the Size of a Closed Population When Capture Probabilities Vary Among Animals. \emph{Biometrika}, 65: 625-633.
 
   Burnham, K. P., and Overton,W. S. (1979), Robust Estimation of Population Size When Capture Probabilities Vary Among Animals. \emph{Ecology} 60:927-936.
 
-  Chao, A. (1984) Nonparametric estimation of the number of classes in a population. \emph{Scandinavian Journal of Statistics} 11:265-270.
+  Chao, A. (1984) Nonparametric estimation of the number of classes in a population. \emph{Scandinavian Journal of Statistics} 11: 265-270.
   
   Chao, A., Gotelli, N. J., Hsieh, T. C., Sander, E. L., Ma, K. H., Colwell, R. K., Ellison, A. M (2014). Rarefaction and extrapolation with Hill numbers: A framework for sampling and estimation in species diversity studies.  \emph{Ecological Monographs}, 84(1): 45-67.
 
-  Chiu, C.-H., Wang, Y.-T., Walther, B. A., Chao, A. (2014) An Improved Nonparametric Lower Bound of Species Richness via a Modified Good-Turing Frequency Formula. \emph{Biometrics} 70(3):671-682.
+  Chiu, C.-H., Wang, Y.-T., Walther, B. A., Chao, A. (2014) An Improved Nonparametric Lower Bound of Species Richness via a Modified Good-Turing Frequency Formula. \emph{Biometrics} 70(3): 671-682.
 }
 \author{
   Eric Marcon <Eric.Marcon@ecofog.gf>

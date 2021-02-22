@@ -97,7 +97,7 @@ function(NorP, Correction = "Best", Level = NULL, PCorrection = "Chao2015", Unve
   if (Level <= N) {
     # Interpolation. Obtain Abundance Frequence Count
     afc <- AbdFreqCount(NorP, Level=Level, CheckArguments=FALSE)
-    entropy <- -(sum((1:Level)/Level * log((1:Level)/Level) * afc[, 2]))
+    entropy <- -(sum(seq_len(Level)/Level * log(seq_len(Level)/Level) * afc[, 2]))
     names(entropy) <- attr(afc, "Estimator")
     return (entropy)
   } else {
@@ -188,14 +188,14 @@ function(Ns, Correction = "Best", CheckArguments = TRUE)
     return (entropy)
   }
   if (Correction == "Grassberger2003" | Correction == "Schurmann") {
-    # Define a function to calculate the integral in the bias formuma for each value of N
+    # Define a function to calculate the integral in the bias formula for each value of N
     Integral <- function(n, upper) stats::integrate(function(t, n) t^(n-1)/(1+t), 0, upper, n) 
   }
   if (Correction == "Grassberger2003") {
-    Integral.V <- unlist(sapply(Ns, Integral, upper = 1)["value",])
+    Integral.V <- unlist(vapply(Ns, Integral, FUN.VALUE=list(0.0, 0.0, 0, "", call("Integral", 0,0)), upper=1)["value",])
   }
   if (Correction == "Schurmann") {
-    Integral.V <- unlist(sapply(Ns, Integral, upper = exp(-1/2))["value",])
+    Integral.V <- unlist(vapply(Ns, Integral, FUN.VALUE=list(0.0, 0.0, 0, "", call("Integral", 0,0)), upper=exp(-1/2))["value",])
   }
   if (Correction == "Grassberger2003" | Correction == "Schurmann") {
     entropy <- sum(Ns/N*(digamma(N)-digamma(Ns)-(1-Ns%%2*2)*Integral.V))
@@ -203,7 +203,7 @@ function(Ns, Correction = "Best", CheckArguments = TRUE)
     return (entropy)
   }
   if (Correction == "Holste" | Correction == "Bonachela") {
-    seql <- 1:(length(Ns)+N)
+    seql <- seq_len(length(Ns)+N)
     invl <- 1/seql
     cumul <- function(n) {sum(invl[n:length(invl)])}
     suminvl <- vapply(seql, cumul, 0) 
@@ -238,7 +238,7 @@ function(Ns, Correction = "Best", CheckArguments = TRUE)
     ChaoWangJost <- sum(Ns/N*(digamma(N)-digamma(Ns)))
     # Add Chao-Jost correction to that of Zhang-Grabchak
     if (A != 1) {
-      Part2 <- vapply(1:(N-1), function(r) 1/r*(1-A)^r, 0) 
+      Part2 <- vapply(seq_len(N-1), function(r) 1/r*(1-A)^r, 0) 
       ChaoWangJost <- as.numeric(ChaoWangJost + Singletons/N*(1-A)^(1-N)*(-log(A)-sum(Part2)))
     }
     names(ChaoWangJost) <- "ChaoJost"
@@ -246,7 +246,7 @@ function(Ns, Correction = "Best", CheckArguments = TRUE)
   }
   if (Correction == "ZhangHz") {
     # Values of v
-    V <- 1:(N-1)
+    V <- seq_len(N-1)
     Ps <- Ns/N
     # Weight part. Taken in log or goes to Inf for v > 1000; gamma cannot be used for large n, lgamma is preferred.
     lnw_v <- ((V+1)*log(N)+lgamma(N-V)-lgamma(N+1)-log(V))
@@ -256,7 +256,7 @@ function(Ns, Correction = "Best", CheckArguments = TRUE)
     p_V_Ps <- t(apply(p_V_Ps, 1, cumprod))
     # Sum of products, weighted by p_s
     S_s <- function(v) {
-      sum(Ps*p_V_Ps[1:length(Ps), v])
+      sum(Ps*p_V_Ps[seq_along(Ps), v])
     }
     # Apply S_s to all values of v. Use logs or w_v goes to Inf.
     entropy <- sum(exp(lnw_v + log(vapply(V, S_s, 0))))

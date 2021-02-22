@@ -6,7 +6,7 @@ function(MClist, Weights = rep(1, length(MClist)), CheckArguments = TRUE)
   
   # Metacommunities must have names
   if (is.null(names(MClist)))
-    names(MClist) <- paste("MC", 1:length(MClist), sep="")
+    names(MClist) <- paste("MC", seq_along(MClist), sep="")
 
   # Merge metacommunities Ns
   Reduce(function(...) mergeandlabel(...), lapply(MClist, function(x) x$Ns)) -> Gabundances

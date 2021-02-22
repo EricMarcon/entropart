@@ -57,7 +57,7 @@ function(Ps, q = 1, PhyloTree, Normalize = TRUE, Prune = FALSE, CheckArguments =
   # Branch lengths
   Lengths <- Tree$edge.length
   # Get unnormalized probabilities p(b)
-  ltips <- sapply(Tree$edge[, 2], function(node) tips(Tree, node))
+  ltips <- lapply(Tree$edge[, 2], function(node) tips(Tree, node))
   Branches <- unlist(lapply(ltips, function(VectorOfTips) sum(Ps[VectorOfTips])))
   # Normalize to get l(b)
   Tbar <- sum(Lengths*Branches)

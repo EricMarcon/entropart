@@ -92,7 +92,6 @@ function (x, ...)
 }
 
 
-
 autoplot.DivPart <- 
 function (object, ...) 
 {

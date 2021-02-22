@@ -35,11 +35,13 @@ function(q = 0, MC, Biased = TRUE, Correction = "Best", Tree = NULL, Normalize =
   
   # Simulate entropy
   ProgressBar <- utils::txtProgressBar(min=0, max=Simulations)
-  RawSimulatedEntropy <- sapply(1:Simulations, SimulateEntropy)
+  RawSimulatedEntropy <- vapply(seq_len(Simulations), SimulateEntropy, FUN.VALUE=rep(0.0, 3))
   close(ProgressBar)
   
   # Recenter entropy
-  SimulatedEntropy <- RawSimulatedEntropy+with(RealEst, c(TotalAlphaEntropy, TotalBetaEntropy, GammaEntropy))-apply(RawSimulatedEntropy, 1, mean)
+  SimulatedEntropy <- RawSimulatedEntropy + 
+    with(RealEst, c(TotalAlphaEntropy, TotalBetaEntropy, GammaEntropy)) - 
+    apply(RawSimulatedEntropy, 1, mean)
   # Transform entropy to diversity
   if (q == 1) { 
     SimulatedDiversity <- exp(SimulatedEntropy)

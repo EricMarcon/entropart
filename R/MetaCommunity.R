@@ -10,7 +10,7 @@ function(Abundances, Weights = rep(1, ncol(Abundances)))
     FirstColumnOfData <- 1
     if (is.null(rownames(Abundances))) {
       # Create species names
-      SpeciesNames <- as.factor(paste("sp", 1:(nrow(Abundances)), sep=""))
+      SpeciesNames <- as.factor(paste("sp", seq_len(nrow(Abundances)), sep=""))
     } else {
       # Read species names
       SpeciesNames <- as.factor(rownames(Abundances))
@@ -21,7 +21,7 @@ function(Abundances, Weights = rep(1, ncol(Abundances)))
   # Community names
   if (is.null(colnames(Abundances))) {
     # Create community names
-    colnames(Abundances) <- paste("P", 1:(ncol(Abundances)), sep="")
+    colnames(Abundances) <- paste("P", seq_len(ncol(Abundances)), sep="")
   }
   
   # Matrix containing n_si

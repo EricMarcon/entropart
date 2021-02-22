@@ -28,7 +28,7 @@ function(FUN, NorP, q.seq = seq(0, 2, 0.1),
     Sims <- matrix(nrow=NumberOfSimulations, ncol=length(q.seq))
     # Loops are required for the progress bar, instead of:
     # Sims <- apply(MCSim$Nsi, 2, function(Nsi) CommunityProfile(FUN, Nsi, q.seq, ...)$y)
-    for (i in 1:NumberOfSimulations) {
+    for (i in seq_len(NumberOfSimulations)) {
       # Parallelize. Do not allow more forks in PhyloApply()
       ProfileAsaList <- parallel::mclapply(q.seq, function(q) FUN(MCSim$Nsi[, i], q, ..., CheckArguments=FALSE), mc.allow.recursive=FALSE)
       Sims[i, ] <- simplify2array(ProfileAsaList)

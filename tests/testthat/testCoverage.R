@@ -17,7 +17,7 @@ testthat::test_that("Warning is returned", {
 testthat::test_that("Coverage is estimated", {
   testthat::skip_on_cran()
   # Chao
-  testthat::expect_lt(abs(Coverage(1:5, Estimator="Chao")-Coverage(1:5)), 1/1000)
+  testthat::expect_lt(abs(Coverage(seq_len(5), Estimator="Chao")-Coverage(seq_len(5))), 1/1000)
   # Turing
-  testthat::expect_lt(abs(Coverage(1:5, Estimator="Turing")-Coverage(1:5)), 1/100)
+  testthat::expect_lt(abs(Coverage(seq_len(5), Estimator="Turing")-Coverage(seq_len(5))), 1/100)
 })

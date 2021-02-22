@@ -1,4 +1,4 @@
-# entropart 1.6-6.9003
+# entropart 1.6-6.9004
 
 ## Bug correction
 
@@ -8,6 +8,7 @@
 
 - Continuous integration by GitHub Actions.
 - `CommunityProfile()` does not recenter simulated diversity values if simulated community size is not that of the actual community. `$mid` can store mean simulated values.
+- CodeFactor recommendations
 
 
 # entropart 1.6-6

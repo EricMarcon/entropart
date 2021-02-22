@@ -31,7 +31,8 @@ as.SpeciesDistribution(x, \dots)
 \method{as.SpeciesDistribution}{integer}(x, \dots)
 \method{as.SpeciesDistribution}{numeric}(x, \dots)
 \method{autoplot}{SpeciesDistribution}(object, \dots, Distribution = NULL, 
-         ylog = TRUE, main = NULL, xlab = "Rank", ylab = NULL)
+         ylog = TRUE, main = NULL, xlab = "Rank", ylab = NULL, 
+         col=GeomPoint$default_aes$colour)
 \method{plot}{SpeciesDistribution}(x, \dots, Distribution = NULL, 
          type = "b", log = "y", main = NULL, xlab = "Rank", ylab = NULL)
 is.SpeciesDistribution(x)

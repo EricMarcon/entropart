@@ -86,15 +86,16 @@ function(Tree, FUN, NorP, Normalize = TRUE, dfArgs = NULL, ..., CheckArguments =
       # Arguments passed by dfArgs. Named.
       FUNdfArgs <- dfArgs[i, ]
       names(FUNdfArgs) <- colnames(dfArgs)
-      # Make a list of all arguments, includings the ...
+      # Make a list of all arguments, including the ...
       return(c(list(FUNNorP), as.list(FUNdfArgs), ..., list(CheckArguments=FALSE)))
     }
-    DatedResult <- parallel::mclapply(1:length(DatedN), function(i) do.call(FUN, FUNArglist(i, ...)))
+    DatedResult <- parallel::mclapply(seq_along(DatedN), function(i) do.call(FUN, FUNArglist(i, ...)))
     # Debug: print the arguments instead of doing the call
-    # sapply(1:length(DatedN), function(i) print(FUNArglist(i, ...))); stop("Code not run, calls are printed.")
+    # sapply(seq_along(DatedN), function(i) print(FUNArglist(i, ...))); stop("Code not run, calls are printed.")
   }
   # Read the corrections
-  Corrections <- sapply(DatedResult, function(x) names(x))
+  Corrections <- lapply(DatedResult, function(x) names(x))
+  Corrections <- unlist(Corrections)
   # Unlist DatedResult to a vector
   DatedResult <- unlist(DatedResult)
   # Names of slices should be the cut time, without the rounding error

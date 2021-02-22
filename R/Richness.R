@@ -215,21 +215,21 @@ function(Ns, Correction = "Best", Alpha = 0.05, JackOver = FALSE, JackMax = 10, 
       # Max number of individuals
       m <- max(AFC[, 1])
       # Complete the abundance frequency count for all counts between 1 and m
-      ntemp <- cbind(c(1:m), rep(0, m))
+      ntemp <- cbind(seq_len(m), rep(0, m))
       ntemp[AFC[, 1], 2] <- AFC[, 2]
       AFC <- ntemp
       # Prepare a matrix with k+1 rows and 5 columns
       gene <- matrix(0, nrow=k + 1, ncol=5)
       gene[1, 1] <- S
-      for (i in 1:k) {
+      for (i in seq_len(k)) {
         gene[i + 1, 1] <- S
         gene[i + 1, 4] <- S
-        for (j in 1:i) {
+        for (j in seq_len(i)) {
           gene[i + 1, 1] <- gene[i + 1, 1] + (-1)^(j + 1) * 2^i * stats::dbinom(j, i, 0.5) * AFC[j, 2]
-          gene[i + 1, 4] <- gene[i + 1, 4] + (-1)^(j + 1) * 2^i * stats::dbinom(j, i, 0.5) * AFC[j, 2] * prod(1:j)
+          gene[i + 1, 4] <- gene[i + 1, 4] + (-1)^(j + 1) * 2^i * stats::dbinom(j, i, 0.5) * AFC[j, 2] * prod(seq_len(j))
         }
         gene[i + 1, 2] <- -gene[i + 1, 1]
-        for (j in 1:i) {
+        for (j in seq_len(i)) {
           gene[i + 1, 2] <- gene[i + 1, 2] + ((-1)^(j + 1) * 2^i * stats::dbinom(j, i, 0.5) + 1)^2 * AFC[j, 2]
         }
         gene[i + 1, 2] <- gene[i + 1, 2] + sum(AFC[(i + 1):nrow(AFC), 2])
@@ -238,7 +238,7 @@ function(Ns, Correction = "Best", Alpha = 0.05, JackOver = FALSE, JackMax = 10, 
       if (k > 1) {
         for (i in 2:k) {
           gene[i, 3] <- -(gene[i + 1, 1] - gene[i, 1])^2/(S - 1)
-          for (j in 1:(i - 1)) {
+          for (j in seq_len(i - 1)) {
             gene[i, 3] <- gene[i, 3] + ((-1)^(j + 1) * 2^(i) * stats::dbinom(j, i, 0.5) - (-1)^(j + 1) * 2^(i - 1) * stats::dbinom(j, i - 1, 0.5))^2 * AFC[j, 2] * S/(S - 1)
           }
           gene[i, 3] <- gene[i, 3] + AFC[i, 2] * S/(S - 1)
