@@ -15,11 +15,11 @@ reference:
     - starts_with("entropart")
   - title: Datasets
     contents:
-    - starts_with("Paracou618")    
+    - starts_with("Paracou618")
     - starts_with("EightSp")
   - title: Generate data
     contents:
-    - starts_with("rCommunity")    
+    - starts_with("rCommunity")
   - title: Community diversity
     contents:
     - AllenH
