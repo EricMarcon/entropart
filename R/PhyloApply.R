@@ -95,7 +95,6 @@ function(Tree, FUN, NorP, Normalize = TRUE, dfArgs = NULL, ..., CheckArguments =
   }
   # Read the corrections
   Corrections <- lapply(DatedResult, function(x) names(x))
-  Corrections <- unlist(Corrections)
   # Unlist DatedResult to a vector
   DatedResult <- unlist(DatedResult)
   # Names of slices should be the cut time, without the rounding error
@@ -113,7 +112,7 @@ function(Tree, FUN, NorP, Normalize = TRUE, dfArgs = NULL, ..., CheckArguments =
     Tree = deparse(substitute(Tree)),
     Normalized = Normalize,
     Cuts = DatedResult,
-    Corrections = Corrections,
+    Corrections = unlist(Corrections),
     Total = sum(DatedResult * ppTree$Intervals / Normalization)
   )
   class(Value) <- "PhyloValue"
