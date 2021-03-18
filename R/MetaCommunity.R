@@ -1,11 +1,20 @@
 MetaCommunity <-
 function(Abundances, Weights = rep(1, ncol(Abundances)))
 {
+  # Check the data
+  if (!is.data.frame(Abundances))
+    stop("The data used to create a MetaCommunity must be a dataframe.")
+  if (tibble::is_tibble(Abundances)) # Tibbles must be coerced to data.frames or is.factor/numeric below won't work.
+    Abundances <- as.data.frame(Abundances)
+  
   Nspecies <- length(Abundances[, 1])
-  if (is.factor(Abundances[,1])) {
+  if (is.factor(Abundances[, 1]) | is.character(Abundances[, 1])) {
     FirstColumnOfData <- 2
-    SpeciesNames <- Abundances[,1]
-    Ncommunities <- length(Abundances[1, ])-1
+    SpeciesNames <- Abundances[, 1]
+    Ncommunities <- length(Abundances[1, ]) - 1
+    # Adjust Weights length
+    if (length(Weights) == Ncommunities +1)
+      Weights <- Weights[-1]
   } else {
     FirstColumnOfData <- 1
     if (is.null(rownames(Abundances))) {

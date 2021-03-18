@@ -1,4 +1,4 @@
-# entropart 1.6-6.9005
+# entropart 1.6-6.9006
 
 ## Bug correction
 
@@ -10,6 +10,8 @@
 - `CommunityProfile()` does not recenter simulated diversity values if simulated community size is not that of the actual community. `$mid` can store mean simulated values.
 - CodeFactor recommendations applied.
 - `col`, `pch`, `cex` and `lty` arguments in `autoplot`s.
+- The first column of a dataframe passed to `MetaCommunity()` with species names may be characters instead of factors.
+- tibbles are accepted by `MetaCommunity()`.
 
 
 # entropart 1.6-6
