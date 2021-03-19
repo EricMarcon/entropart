@@ -2,8 +2,6 @@ MetaCommunity <-
 function(Abundances, Weights = rep(1, ncol(Abundances)))
 {
   # Check the data
-  if (!is.data.frame(Abundances))
-    stop("The data used to create a MetaCommunity must be a dataframe.")
   if (tibble::is_tibble(Abundances)) # Tibbles must be coerced to data.frames or is.factor/numeric below won't work.
     Abundances <- as.data.frame(Abundances)
   
