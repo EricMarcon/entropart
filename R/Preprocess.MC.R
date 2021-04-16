@@ -3,6 +3,8 @@ function(Nsi, Wi)
 {
   # n_i
   Ni <- colSums(Nsi)
+  if (any(Ni == 0))
+    stop("All communities must contain at least one individual. Remove empty communities before attempting to build a metacommunity.")
   # p_si
   Psi <- Nsi %*% diag(1/Ni) 
   dimnames(Psi) <- dimnames(Nsi)
