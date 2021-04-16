@@ -85,7 +85,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-7</span>
       </span>
     </div>
 
@@ -93,7 +93,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -128,7 +128,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/EricMarcon/entropart/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -155,9 +155,9 @@
       <small>Source: <a href='https://github.com/EricMarcon/entropart/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="entropart-1-6-6" class="section level1">
-<h1 class="page-header" data-toc-text="1.6-6">
-<a href="#entropart-1-6-6" class="anchor"></a>entropart 1.6-6<small> Unreleased </small>
+    <div id="entropart-16-7" class="section level1">
+<h1 class="page-header" data-toc-text="1.6-7">
+<a href="#entropart-16-7" class="anchor"></a>entropart 1.6-7<small> Unreleased </small>
 </h1>
 <div id="bug-correction" class="section level2">
 <h2 class="hasAnchor">
@@ -166,22 +166,50 @@
 <li>argument <code>main</code> in <code>autoplot()</code> was ignored.</li>
 </ul>
 </div>
-</div>
-    <div id="entropart-1-6-4" class="section level1">
-<h1 class="page-header" data-toc-text="1.6-4">
-<a href="#entropart-1-6-4" class="anchor"></a>entropart 1.6-4<small> 2020-01-22 </small>
-</h1>
 <div id="improvements" class="section level2">
 <h2 class="hasAnchor">
 <a href="#improvements" class="anchor"></a>Improvements</h2>
+<ul>
+<li>Continuous integration by GitHub Actions.</li>
+<li>
+<code><a href="../reference/CommunityProfile.html">CommunityProfile()</a></code> does not recenter simulated diversity values if simulated community size is not that of the actual community. <code>$mid</code> can store mean simulated values.</li>
+<li>CodeFactor recommendations applied.</li>
+<li>
+<code>col</code>, <code>pch</code>, <code>cex</code> and <code>lty</code> arguments in <code>autoplot</code>s.</li>
+<li>The first column of a dataframe passed to <code><a href="../reference/MetaCommunity.html">MetaCommunity()</a></code> with species names may be characters instead of factors.</li>
+<li>tibbles are accepted by <code><a href="../reference/MetaCommunity.html">MetaCommunity()</a></code>.</li>
+<li>Empty communities are detected by <code>Metacommunity()</code> and raise an error with an explicit message rather than returning obscure error messages when used by <code><a href="../reference/DivPart.html">DivPart()</a></code> and others.</li>
+<li>Suggests rmarkdown (<a href="https://github.com/yihui/knitr/issues/1864" class="uri">https://github.com/yihui/knitr/issues/1864</a>)</li>
+</ul>
+</div>
+</div>
+    <div id="entropart-16-6" class="section level1">
+<h1 class="page-header" data-toc-text="1.6-6">
+<a href="#entropart-16-6" class="anchor"></a>entropart 1.6-6<small> 2020-11-03 </small>
+</h1>
+<div id="bug-correction-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-correction-1" class="anchor"></a>Bug correction</h2>
+<ul>
+<li>argument <code>main</code> in <code>autoplot()</code> was ignored.</li>
+</ul>
+</div>
+</div>
+    <div id="entropart-16-4" class="section level1">
+<h1 class="page-header" data-toc-text="1.6-4">
+<a href="#entropart-16-4" class="anchor"></a>entropart 1.6-4<small> 2020-01-22 </small>
+</h1>
+<div id="improvements-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#improvements-1" class="anchor"></a>Improvements</h2>
 <ul>
 <li>No longer imports geiger package (required by CRAN).</li>
 </ul>
 </div>
 </div>
-    <div id="entropart-1-6-3" class="section level1">
+    <div id="entropart-16-3" class="section level1">
 <h1 class="page-header" data-toc-text="1.6-3">
-<a href="#entropart-1-6-3" class="anchor"></a>entropart 1.6-3<small> 2020-01-08 </small>
+<a href="#entropart-16-3" class="anchor"></a>entropart 1.6-3<small> 2020-01-08 </small>
 </h1>
 <div id="new-features" class="section level2">
 <h2 class="hasAnchor">
@@ -190,18 +218,18 @@
 <li>Argument <code>JackMax</code> to limit the order of the jacknife estimator in <code><a href="../reference/Richness.html">Richness()</a></code>, whatever the data.</li>
 </ul>
 </div>
-<div id="bug-correction-1" class="section level2">
+<div id="bug-correction-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-1" class="anchor"></a>Bug correction</h2>
+<a href="#bug-correction-2" class="anchor"></a>Bug correction</h2>
 <ul>
 <li>plot.SpeciesDistribution did not fit the logseries and the broken stick distributions correctly.</li>
 <li>autoplot.DivProfile did not produce appropriate labels in the local communities profile.</li>
 </ul>
 </div>
 </div>
-    <div id="entropart-1-6-1" class="section level1">
+    <div id="entropart-16-1" class="section level1">
 <h1 class="page-header" data-toc-text="1.6-1">
-<a href="#entropart-1-6-1" class="anchor"></a>entropart 1.6-1<small> 2019-04-11 </small>
+<a href="#entropart-16-1" class="anchor"></a>entropart 1.6-1<small> 2019-04-11 </small>
 </h1>
 <div id="new-features-1" class="section level2">
 <h2 class="hasAnchor">
@@ -214,17 +242,17 @@
 <li>The “ChaoWangJost” estimator is renamed “ChaoJost”.</li>
 </ul>
 </div>
-<div id="improvements-1" class="section level2">
+<div id="improvements-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#improvements-1" class="anchor"></a>Improvements</h2>
+<a href="#improvements-2" class="anchor"></a>Improvements</h2>
 <ul>
 <li>Unit tests added.</li>
 <li>Vignette by pkgdown.</li>
 </ul>
 </div>
-<div id="bug-correction-2" class="section level2">
+<div id="bug-correction-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-2" class="anchor"></a>Bug correction</h2>
+<a href="#bug-correction-3" class="anchor"></a>Bug correction</h2>
 <ul>
 <li>The jaccknife estimator of richness returned an error for communities where all species had the same abundance.</li>
 <li>
@@ -232,13 +260,13 @@
 </ul>
 </div>
 </div>
-    <div id="entropart-1-5-3" class="section level1">
+    <div id="entropart-15-3" class="section level1">
 <h1 class="page-header" data-toc-text="1.5-3">
-<a href="#entropart-1-5-3" class="anchor"></a>entropart 1.5-3<small> 2018-02-05 </small>
+<a href="#entropart-15-3" class="anchor"></a>entropart 1.5-3<small> 2018-02-05 </small>
 </h1>
-<div id="improvements-2" class="section level2">
+<div id="improvements-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#improvements-2" class="anchor"></a>Improvements</h2>
+<a href="#improvements-3" class="anchor"></a>Improvements</h2>
 <ul>
 <li>On Travis now.</li>
 <li>Reduced package size.</li>
@@ -246,29 +274,29 @@
 <li>Generic function arguments cleaned up.</li>
 </ul>
 </div>
-<div id="bug-correction-3" class="section level2">
+<div id="bug-correction-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-3" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-4" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>Very large metacommunities returned an integer overflow error.</li>
 </ul>
 </div>
 </div>
-    <div id="entropart-1-4-8" class="section level1">
+    <div id="entropart-14-8" class="section level1">
 <h1 class="page-header" data-toc-text="1.4-8">
-<a href="#entropart-1-4-8" class="anchor"></a>entropart 1.4-8<small> 2017-11-22 </small>
+<a href="#entropart-14-8" class="anchor"></a>entropart 1.4-8<small> 2017-11-22 </small>
 </h1>
-<div id="bug-correction-4" class="section level2">
+<div id="bug-correction-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-4" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-5" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>
 <code><a href="../reference/HqzBeta.html">HqzBeta()</a></code> returned erroneous values if a species probability was equal to zero.</li>
 </ul>
 </div>
-<div id="improvements-3" class="section level2">
+<div id="improvements-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#improvements-3" class="anchor"></a>Improvements</h2>
+<a href="#improvements-4" class="anchor"></a>Improvements</h2>
 <ul>
 <li>On GitHub now.</li>
 <li>Documentation updated: phylogenetic dendrograms can be of class <code>phylo</code>, <code>phylog</code>, <code>hclust</code> or <code>PPtree</code> whatever the function.</li>
@@ -277,20 +305,20 @@
 </ul>
 </div>
 </div>
-    <div id="entropart-1-4-7" class="section level1">
+    <div id="entropart-14-7" class="section level1">
 <h1 class="page-header" data-toc-text="1.4-7">
-<a href="#entropart-1-4-7" class="anchor"></a>entropart 1.4-7<small> 2017-03-29 </small>
+<a href="#entropart-14-7" class="anchor"></a>entropart 1.4-7<small> 2017-03-29 </small>
 </h1>
-<div id="bug-correction-5" class="section level2">
+<div id="bug-correction-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-5" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-6" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>Argument checking (<code>CheckArguments = TRUE</code>) is not possible when the package is not loaded and a function is called by <code>entropart::function()</code>. An error was returned. It is replaced by a warning.</li>
 </ul>
 </div>
-<div id="improvements-4" class="section level2">
+<div id="improvements-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#improvements-4" class="anchor"></a>Improvements</h2>
+<a href="#improvements-5" class="anchor"></a>Improvements</h2>
 <ul>
 <li>Explicit export of all non-internal functions instead of <code>exportPattern("^[[:alpha:]]+")</code>
 </li>
@@ -301,14 +329,14 @@
 </ul>
 </div>
 </div>
-    <div id="entropart-1-4-6" class="section level1">
+    <div id="entropart-14-6" class="section level1">
 <h1 class="page-header" data-toc-text="1.4-6">
-<a href="#entropart-1-4-6" class="anchor"></a>entropart 1.4-6<small> 2016-12-09 </small>
+<a href="#entropart-14-6" class="anchor"></a>entropart 1.4-6<small> 2016-12-09 </small>
 </h1>
 </div>
-    <div id="entropart-1-4-5" class="section level1">
+    <div id="entropart-14-5" class="section level1">
 <h1 class="page-header" data-toc-text="1.4-5">
-<a href="#entropart-1-4-5" class="anchor"></a>entropart 1.4-5<small> 2016-02-17 </small>
+<a href="#entropart-14-5" class="anchor"></a>entropart 1.4-5<small> 2016-02-17 </small>
 </h1>
 <div id="user-visible-changes" class="section level2">
 <h2 class="hasAnchor">
@@ -319,17 +347,17 @@
 <code>Originality.Species()</code> is deprecated because it is pointless. <code><a href="https://rdrr.io/pkg/ade4/man/originality.html">ade4::originality()</a></code> allows calculating it for q=2. Leinster (2009) and Leinster and Meckes (2015) showed that <code>Originality.Species()</code> does not depend on the order of diversity.</li>
 </ul>
 </div>
-<div id="improvements-6" class="section level2">
+<div id="improvements-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#improvements-6" class="anchor"></a>Improvements</h2>
+<a href="#improvements-7" class="anchor"></a>Improvements</h2>
 <ul>
 <li>ZhangGrabchak estimator of entropy is now calculated by the C code of <code><a href="https://rdrr.io/pkg/EntropyEstimation/man/Tsallis.z.html">EntropyEstimation::Tsallis.z</a></code>/<code>Entropy.z</code> rather than the R code of <code><a href="../reference/Tsallis.html">bcTsallis()</a></code>. This is much faster when the number of individual is high. Applies to <code>ChaoWangJost</code> (Best) estimator too.</li>
 </ul>
 </div>
 </div>
-    <div id="entropart-1-4-4" class="section level1">
+    <div id="entropart-14-4" class="section level1">
 <h1 class="page-header" data-toc-text="1.4-4">
-<a href="#entropart-1-4-4" class="anchor"></a>entropart 1.4-4<small> 2016-01-13 </small>
+<a href="#entropart-14-4" class="anchor"></a>entropart 1.4-4<small> 2016-01-13 </small>
 </h1>
 <div id="user-visible-changes-1" class="section level2">
 <h2 class="hasAnchor">
@@ -339,9 +367,9 @@
 <code><a href="../reference/DivProfile.html">DivProfile()</a></code> now allows computing bootstrap confidence intervals.</li>
 </ul>
 </div>
-<div id="bug-correction-7" class="section level2">
+<div id="bug-correction-8" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-7" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-8" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>The entropy estimation (of order different from 1) of a distribution with no singleton returned <code>NA</code> with <code>ChaoWangJost</code> correction. Reported by Zach Marion. Only partly corrected in Version 1.4-1. Corrected.</li>
 <li>
@@ -349,9 +377,9 @@
 </ul>
 </div>
 </div>
-    <div id="entropart-1-4-3" class="section level1">
+    <div id="entropart-14-3" class="section level1">
 <h1 class="page-header" data-toc-text="1.4-3">
-<a href="#entropart-1-4-3" class="anchor"></a>entropart 1.4-3<small> 2015-12-07 </small>
+<a href="#entropart-14-3" class="anchor"></a>entropart 1.4-3<small> 2015-12-07 </small>
 </h1>
 <div id="user-visible-changes-2" class="section level2">
 <h2 class="hasAnchor">
@@ -362,9 +390,9 @@
 </ul>
 </div>
 </div>
-    <div id="entropart-1-4-1" class="section level1">
+    <div id="entropart-141" class="section level1">
 <h1 class="page-header" data-toc-text="1.4.1">
-<a href="#entropart-1-4-1" class="anchor"></a>entropart 1.4.1<small> 2015-09-29 </small>
+<a href="#entropart-141" class="anchor"></a>entropart 1.4.1<small> 2015-09-29 </small>
 </h1>
 <div id="new-features-2" class="section level2">
 <h2 class="hasAnchor">
@@ -379,18 +407,18 @@
 <li>Updated <em>CITATION</em>: the paper about this package has been published: Eric Marcon, Bruno Herault (2015). entropart: An R Package to Measure and Partition Diversity. <em>Journal of Statistical Software</em>, 67(8), 1-26.</li>
 </ul>
 </div>
-<div id="bug-correction-9" class="section level2">
+<div id="bug-correction-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-9" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-10" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>The entropy estimation of a distribution with no singleton returned <code>NA</code> with <code>ChaoWangJost</code> correction. Corrected.</li>
 <li>Entropy or diversity of a vector of zeros returned 0. It now returns <code>NA</code>.</li>
 </ul>
 </div>
 </div>
-    <div id="entropart-1-3-3" class="section level1">
+    <div id="entropart-133" class="section level1">
 <h1 class="page-header" data-toc-text="1.3.3">
-<a href="#entropart-1-3-3" class="anchor"></a>entropart 1.3.3<small> 2015-09-08 </small>
+<a href="#entropart-133" class="anchor"></a>entropart 1.3.3<small> 2015-09-08 </small>
 </h1>
 <div id="new-features-3" class="section level2">
 <h2 class="hasAnchor">
@@ -402,25 +430,25 @@
 <code>Optimal.Similarity</code>.</li>
 <li>Miller-Madow estimator of entropy (Miller, 1955) added in <code><a href="../reference/Shannon.html">bcShannon()</a></code>.</li>
 <li>Chao and Jost (2015) estimator of diversity added in <code><a href="../reference/Tsallis.html">bcTsallis()</a></code> and <code><a href="../reference/Diversity.html">bcDiversity()</a></code>. New “best” estimator.</li>
-<li>Chao et al. (2015) probability estimation of observed species. See <code>?TunedPs</code>.</li>
+<li>Chao et al. (2015) probability estimation of observed species. See <code>?TunedPs</code>.</li>
 <li>Estimators of the number of species. See <code><a href="../reference/Richness.html">?Richness</a></code>.</li>
 <li>Abundance Frequency Count of species. See <code><a href="../reference/AbdFreqCount.html">?AbdFreqCount</a></code>.</li>
 <li>Community profiles can be calculated with confidence intervals. See <code><a href="../reference/CommunityProfile.html">?CommunityProfile</a></code>.</li>
 <li>Random Communities. See <code><a href="../reference/rCommunity.html">?rCommunity</a></code>.</li>
 </ul>
 </div>
-<div id="bug-correction-10" class="section level2">
+<div id="bug-correction-11" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-10" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-11" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>Applying <code>bcTsallis</code> and similar functions with a probability vector instead of abundance values could cause errors depending in the correction. Correction is now forced to <code>None</code> with a warning.</li>
 <li>Allowed rounding error was too small on some systems (typically r-patched-solaris-sparc) to recognize probability vectors. The difference between their sum and 1 had to be less than 3 times <code>.Machine$double.eps</code>. Now set to S times (where S is the number of species, i.e the vector’s length).</li>
 </ul>
 </div>
 </div>
-    <div id="entropart-1-2-1" class="section level1">
+    <div id="entropart-121" class="section level1">
 <h1 class="page-header" data-toc-text="1.2.1">
-<a href="#entropart-1-2-1" class="anchor"></a>entropart 1.2.1<small> 2014-11-13 </small>
+<a href="#entropart-121" class="anchor"></a>entropart 1.2.1<small> 2014-11-13 </small>
 </h1>
 <div id="new-features-4" class="section level2">
 <h2 class="hasAnchor">
@@ -430,17 +458,17 @@
 <li>Unbiased estimator of Rao’s entropy added (<code>bcRao</code>).</li>
 </ul>
 </div>
-<div id="bug-correction-11" class="section level2">
+<div id="bug-correction-12" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-11" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-12" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>
 <code>DqZ()</code> and <code><a href="../reference/Hqz.html">Hqz()</a></code> returned an error if all probability values were 0 except one.</li>
 </ul>
 </div>
-<div id="improvements-8" class="section level2">
+<div id="improvements-9" class="section level2">
 <h2 class="hasAnchor">
-<a href="#improvements-8" class="anchor"></a>Improvements</h2>
+<a href="#improvements-9" class="anchor"></a>Improvements</h2>
 <ul>
 <li>Improved readability of error messages for bad arguments.</li>
 <li>Improved formating of <code>summmary.DivPart()</code>. Lines were too long.</li>
@@ -450,22 +478,22 @@
 </ul>
 </div>
 </div>
-    <div id="entropart-1-2-0" class="section level1">
+    <div id="entropart-120" class="section level1">
 <h1 class="page-header" data-toc-text="1.2.0">
-<a href="#entropart-1-2-0" class="anchor"></a>entropart 1.2.0<small> 2014-05-17 </small>
+<a href="#entropart-120" class="anchor"></a>entropart 1.2.0<small> 2014-05-17 </small>
 </h1>
-<div id="bug-correction-12" class="section level2">
+<div id="bug-correction-13" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-12" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-13" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>
 <code><a href="../reference/ChaoPD.html">ChaoPD()</a></code> returned an incorrect value when q=0 and some probabilities =0.</li>
 </ul>
 </div>
 </div>
-    <div id="entropart-1-2-0-1" class="section level1">
+    <div id="entropart-120-1" class="section level1">
 <h1 class="page-header" data-toc-text="1.2.0">
-<a href="#entropart-1-2-0-1" class="anchor"></a>entropart 1.2.0<small> 2014-05-17 </small>
+<a href="#entropart-120-1" class="anchor"></a>entropart 1.2.0<small> 2014-05-17 </small>
 </h1>
 <div id="new-features-5" class="section level2">
 <h2 class="hasAnchor">
@@ -474,17 +502,17 @@
 <li>Full support of similarity-based diversity added</li>
 </ul>
 </div>
-<div id="improvements-9" class="section level2">
+<div id="improvements-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#improvements-9" class="anchor"></a>Improvements</h2>
+<a href="#improvements-10" class="anchor"></a>Improvements</h2>
 <ul>
 <li>Default values for arguments added whenever possible.</li>
 </ul>
 </div>
 </div>
-    <div id="entropart-1-1-4" class="section level1">
+    <div id="entropart-114" class="section level1">
 <h1 class="page-header" data-toc-text="1.1.4">
-<a href="#entropart-1-1-4" class="anchor"></a>entropart 1.1.4<small> Unreleased </small>
+<a href="#entropart-114" class="anchor"></a>entropart 1.1.4<small> Unreleased </small>
 </h1>
 <div id="new-features-6" class="section level2">
 <h2 class="hasAnchor">
@@ -494,18 +522,18 @@
 <li>Zhang and Grabchak (2014) bias correction for Tsallis entropy added.</li>
 </ul>
 </div>
-<div id="bug-correction-13" class="section level2">
+<div id="bug-correction-14" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-13" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-14" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>
 <code>Divest()</code> always calculated neutral diversity of simulated communities so the confidence interval was erroneous for phylodiversity. Corrected.</li>
 </ul>
 </div>
 </div>
-    <div id="entropart-1-1-3" class="section level1">
+    <div id="entropart-113" class="section level1">
 <h1 class="page-header" data-toc-text="1.1.3">
-<a href="#entropart-1-1-3" class="anchor"></a>entropart 1.1.3<small> 2014-03-22 </small>
+<a href="#entropart-113" class="anchor"></a>entropart 1.1.3<small> 2014-03-22 </small>
 </h1>
 <div id="new-features-7" class="section level2">
 <h2 class="hasAnchor">
@@ -522,9 +550,9 @@
 <li>Vignette added.</li>
 </ul>
 </div>
-<div id="improvements-10" class="section level2">
+<div id="improvements-11" class="section level2">
 <h2 class="hasAnchor">
-<a href="#improvements-10" class="anchor"></a>Improvements</h2>
+<a href="#improvements-11" class="anchor"></a>Improvements</h2>
 <ul>
 <li>
 <code>Imports</code> directive rather than <code>Depends</code> for <em>ade4</em>.</li>
@@ -532,9 +560,9 @@
 <code>mergeandlabel</code> does not return warnings any longer (column names are better addressed).</li>
 </ul>
 </div>
-<div id="bug-correction-14" class="section level2">
+<div id="bug-correction-15" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-14" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-15" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>
 <code><a href="../reference/Hqz.html">Hqz()</a></code> was erroneous for q&lt;&gt;1. Corrected.</li>
@@ -546,9 +574,9 @@
 </ul>
 </div>
 </div>
-    <div id="entropart-1-1-1" class="section level1">
+    <div id="entropart-111" class="section level1">
 <h1 class="page-header" data-toc-text="1.1.1">
-<a href="#entropart-1-1-1" class="anchor"></a>entropart 1.1.1<small> 2013-09-10 </small>
+<a href="#entropart-111" class="anchor"></a>entropart 1.1.1<small> 2013-09-10 </small>
 </h1>
 <ul>
 <li>First Version.</li>

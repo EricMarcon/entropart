@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-7</span>
       </span>
     </div>
 
@@ -94,7 +94,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -129,7 +129,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/EricMarcon/entropart/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -164,7 +164,7 @@
     <pre class="usage"><span class='fu'>CommunityProfile</span><span class='op'>(</span><span class='va'>FUN</span>, <span class='va'>NorP</span>, q.seq <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>2</span>, <span class='fl'>0.1</span><span class='op'>)</span>, 
     NumberOfSimulations <span class='op'>=</span> <span class='fl'>0</span>, Alpha <span class='op'>=</span> <span class='fl'>0.05</span>, BootstrapMethod <span class='op'>=</span> <span class='st'>"Chao2015"</span>, 
     size <span class='op'>=</span> <span class='fl'>1</span>, <span class='va'>...</span>, ShowProgressBar <span class='op'>=</span> <span class='cn'>TRUE</span>, CheckArguments <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='fu'>as.CommunityProfile</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span>, low <span class='op'>=</span> <span class='cn'>NULL</span>, high <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+<span class='fu'>as.CommunityProfile</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span>, low <span class='op'>=</span> <span class='cn'>NULL</span>, high <span class='op'>=</span> <span class='cn'>NULL</span>, mid <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 <span class='fu'>is.CommunityProfile</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 <span class='co'># S3 method for CommunityProfile</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span>, main <span class='op'>=</span> <span class='cn'>NULL</span>, 
@@ -173,7 +173,10 @@
 <span class='co'># S3 method for CommunityProfile</span>
 <span class='fu'>autoplot</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span>, main <span class='op'>=</span> <span class='cn'>NULL</span>, 
           xlab <span class='op'>=</span> <span class='st'>"Order of Diversity"</span>, ylab <span class='op'>=</span> <span class='st'>"Diversity"</span>,
-          ShadeColor <span class='op'>=</span> <span class='st'>"grey75"</span>, alpha <span class='op'>=</span> <span class='fl'>0.3</span>, BorderColor <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
+          ShadeColor <span class='op'>=</span> <span class='st'>"grey75"</span>, alpha <span class='op'>=</span> <span class='fl'>0.3</span>, BorderColor <span class='op'>=</span> <span class='st'>"red"</span>,
+          col <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html'>GeomLine</a></span><span class='op'>$</span><span class='va'>default_aes</span><span class='op'>$</span><span class='va'>colour</span>,
+          lty <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html'>GeomLine</a></span><span class='op'>$</span><span class='va'>default_aes</span><span class='op'>$</span><span class='va'>linetype</span>,
+          lwd <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html'>GeomLine</a></span><span class='op'>$</span><span class='va'>default_aes</span><span class='op'>$</span><span class='va'>size</span><span class='op'>)</span>
 <span class='fu'>CEnvelope</span><span class='op'>(</span><span class='va'>Profile</span>, LineWidth <span class='op'>=</span> <span class='fl'>2</span>, ShadeColor <span class='op'>=</span> <span class='st'>"grey75"</span>, BorderColor <span class='op'>=</span> <span class='st'>"red"</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -228,6 +231,10 @@
       <td><p>Entropy or diversity higher bound of the confidence envelope, corresponding to <code>x</code> values.</p></td>
     </tr>
     <tr>
+      <th>mid</th>
+      <td><p>Entropy or diversity center value (usually the mean) of the confidence envelope, corresponding to <code>x</code> values.</p></td>
+    </tr>
+    <tr>
       <th>Profile</th>
       <td><p>An <code>CommunityProfile</code> to be plotted.</p></td>
     </tr>
@@ -268,6 +275,18 @@
       <td><p>Opacity of the confidence enveloppe, between 0 and 1.</p></td>
     </tr>
     <tr>
+      <th>col</th>
+      <td><p>The color of the geom objects. See "Color Specification" in <code><a href='https://rdrr.io/r/graphics/par.html'>par</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>lty</th>
+      <td><p>The type of the lines. See <code><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>lwd</th>
+      <td><p>The width of the lines. See <code><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></code>.</p></td>
+    </tr>
+    <tr>
       <th>ShowProgressBar</th>
       <td><p>If <code>TRUE</code> (default), a progress bar is shown.</p></td>
     </tr>
@@ -279,10 +298,17 @@
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The function <code>CommunityProfile</code> is used to calculate diversity or entropy profiles based on community functions such as <code><a href='Tsallis.html'>Tsallis</a></code> or <code><a href='ChaoPD.html'>ChaoPD</a></code>. The first two arguments of the function must be a probability or abundance vector and a number (\(q\)).
-  Additional arguments cannot be checked. Unexpected results may be returned if <code>FUN</code> is not used properly.</p>  
-<p>If <code>NumberOfSimulations</code> is greater than 0, a bootstrap confidence interval is produced by simulating communities with <code><a href='rCommunity.html'>rCommunity</a></code> and calculating their profiles. The size of those communities may be that of the actual community or specified by <code>size</code>.</p>  
-<p><code>CommunityProfile</code> objects can be plotted. They can also be added to the current plot by <code>CEnvelope</code>.</p>
+    <p>The function <code>CommunityProfile</code> is used to calculate diversity or entropy profiles based on community functions such as <code><a href='Tsallis.html'>Tsallis</a></code> or <code><a href='ChaoPD.html'>ChaoPD</a></code>. 
+  The first two arguments of the function must be a probability or abundance vector and a number (\(q\)).
+  Additional arguments cannot be checked. 
+  Unexpected results may be returned if <code>FUN</code> is not used properly.</p>  
+<p>If <code>NumberOfSimulations</code> is greater than 0, a bootstrap confidence interval is produced by simulating communities with <code><a href='rCommunity.html'>rCommunity</a></code> and calculating their profiles. 
+  The size of those communities may be that of the actual community or specified by <code>size</code>.
+  Simulating communities implies a downward bias in the estimation: rare species of the actual community may have abundance zero in simulated communities.
+  Simulated diversity values are recentered if `size = 1` so that their mean is that of the actual community.
+  Else, it is assumed that the bias is of interest and must not be corrected.</p>  
+<p><code>CommunityProfile</code> objects can be plotted. 
+  They can also be added to the current plot by <code>CEnvelope</code>.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code>CommunityProfile</code>, which is a list:</p>
