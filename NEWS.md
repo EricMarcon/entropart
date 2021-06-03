@@ -1,3 +1,10 @@
+# entropart 1.6-7.9000
+
+## Bug correction
+
+- An error occured when a function was called with `entopart::` prefix and `CheckArguments = TRUE` and entropart was loaded. 
+
+
 # entropart 1.6-7
 
 ## Bug correction

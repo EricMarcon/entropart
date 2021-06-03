@@ -14,12 +14,14 @@ function() {
     return (TRUE)
   }
   
-  ErrorFunction <- paste("Error in ", ParentFunction, ":")
-  
   # Find the arguments. match.fun does not work with entropart::function
-  ParentFunctionNoNS <- as.name(gsub("entropart::", "", as.character(ParentFunction)))
+  # as.character creates a vector. The name of the function is the last item
+  ParentFunction_split <- as.character(ParentFunction)
+  ParentFunctionNoNS <- ParentFunction_split[length(ParentFunction_split)]
   Args <- formals(match.fun(ParentFunctionNoNS))
-
+  
+  ErrorFunction <- paste("Error in ", ParentFunctionNoNS, ":")
+  
   ErrorMessage <- function(Message, Argument) {
     cat(deparse(substitute(Argument)), "cannot be:\n")
     print(utils::head(Argument))
