@@ -8,9 +8,6 @@ function(NorP, ...)
 Shannon.ProbaVector <-
 function(NorP, ..., CheckArguments = TRUE, Ps = NULL) 
 {
-  if (CheckArguments)
-    CheckentropartArguments()
-
   if (missing(NorP)){
     if (!missing(Ps)) {
       NorP <- Ps

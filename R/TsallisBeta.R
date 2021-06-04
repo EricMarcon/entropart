@@ -8,9 +8,6 @@ function(NorP, NorPexp = NULL, q = 1, ...)
 TsallisBeta.ProbaVector <-
 function(NorP, NorPexp = NULL, q = 1, ..., CheckArguments = TRUE, Ps = NULL, Pexp = NULL) 
 {
-  if (CheckArguments)
-    CheckentropartArguments()
-  
   if (missing(NorP)){
     if (!missing(Ps)) {
       NorP <- Ps
@@ -27,7 +24,10 @@ function(NorP, NorPexp = NULL, q = 1, ..., CheckArguments = TRUE, Ps = NULL, Pex
   }
   if (length(NorP) != length(NorPexp)) {
     stop("NorP and NorPexp should have the same length.")
-  }  
+  }
+  
+  if (CheckArguments)
+    CheckentropartArguments()
   
   dataBeta <- NorP^q * lnq(NorP/NorPexp, q)
   dataBeta[NorP == 0] <- 0

@@ -8,9 +8,6 @@ function(NorP, NorPexp = NULL, q = 1, Z = diag(length(NorP)), ...)
 HqzBeta.ProbaVector <-
 function(NorP, NorPexp = NULL, q = 1, Z = diag(length(NorP)), ..., CheckArguments = TRUE, Ps = NULL, Pexp = NULL) 
 {
-  if (CheckArguments)
-    CheckentropartArguments()
-  
   if (missing(NorP)){
     if (!missing(Ps)) {
       NorP <- Ps
@@ -26,6 +23,8 @@ function(NorP, NorPexp = NULL, q = 1, Z = diag(length(NorP)), ..., CheckArgument
     }
   }
   
+  if (CheckArguments)
+    CheckentropartArguments()
   
   if (length(NorP) != length(NorPexp)) {
     stop("NorP and NorPexp should have the same length.")

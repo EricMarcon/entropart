@@ -8,9 +8,6 @@ function(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, ...)
 PhyloBetaEntropy.ProbaVector <-
 function(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, ..., CheckArguments = TRUE, Ps = NULL, Pexp = NULL) 
 {
-  if (CheckArguments)
-    CheckentropartArguments()
-  
   if (missing(NorP)){
     if (!missing(Ps)) {
       NorP <- Ps
@@ -25,6 +22,9 @@ function(NorP, NorPexp = NULL, q = 1, Tree, Normalize = TRUE, ..., CheckArgument
       stop("An argument NorPexp or Pexp must be provided.")
     }
   }
+
+  if (CheckArguments)
+    CheckentropartArguments()
   
   # Prepare NorP
   PandPexp <- matrix(c(NorP, NorPexp), nrow = length(NorP), ncol = 2, dimnames = list(names(NorP), c("Ps", "Pexp")))
