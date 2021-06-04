@@ -85,7 +85,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-6.9007</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-7.9001</span>
       </span>
     </div>
 
@@ -155,13 +155,25 @@
       <small>Source: <a href='https://github.com/EricMarcon/entropart/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="entropart-16-69007" class="section level1">
-<h1 class="page-header" data-toc-text="1.6-6.9007">
-<a href="#entropart-16-69007" class="anchor"></a>entropart 1.6-6.9007<small> Unreleased </small>
+    <div id="entropart-16-79001" class="section level1">
+<h1 class="page-header" data-toc-text="1.6-7.9001">
+<a href="#entropart-16-79001" class="anchor"></a>entropart 1.6-7.9001<small> Unreleased </small>
 </h1>
 <div id="bug-correction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bug-correction" class="anchor"></a>Bug correction</h2>
+<ul>
+<li>An error occured when a function was called with <code>entopart::</code> prefix and <code>CheckArguments = TRUE</code> and entropart was loaded.</li>
+</ul>
+</div>
+</div>
+    <div id="entropart-16-7" class="section level1">
+<h1 class="page-header" data-toc-text="1.6-7">
+<a href="#entropart-16-7" class="anchor"></a>entropart 1.6-7<small> 2021-04-16 </small>
+</h1>
+<div id="bug-correction-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-correction-1" class="anchor"></a>Bug correction</h2>
 <ul>
 <li>argument <code>main</code> in <code>autoplot()</code> was ignored.</li>
 </ul>
@@ -178,6 +190,8 @@
 <code>col</code>, <code>pch</code>, <code>cex</code> and <code>lty</code> arguments in <code>autoplot</code>s.</li>
 <li>The first column of a dataframe passed to <code><a href="../reference/MetaCommunity.html">MetaCommunity()</a></code> with species names may be characters instead of factors.</li>
 <li>tibbles are accepted by <code><a href="../reference/MetaCommunity.html">MetaCommunity()</a></code>.</li>
+<li>Empty communities are detected by <code>Metacommunity()</code> and raise an error with an explicit message rather than returning obscure error messages when used by <code><a href="../reference/DivPart.html">DivPart()</a></code> and others.</li>
+<li>Suggests rmarkdown (<a href="https://github.com/yihui/knitr/issues/1864" class="uri">https://github.com/yihui/knitr/issues/1864</a>)</li>
 </ul>
 </div>
 </div>
@@ -185,9 +199,9 @@
 <h1 class="page-header" data-toc-text="1.6-6">
 <a href="#entropart-16-6" class="anchor"></a>entropart 1.6-6<small> 2020-11-03 </small>
 </h1>
-<div id="bug-correction-1" class="section level2">
+<div id="bug-correction-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-1" class="anchor"></a>Bug correction</h2>
+<a href="#bug-correction-2" class="anchor"></a>Bug correction</h2>
 <ul>
 <li>argument <code>main</code> in <code>autoplot()</code> was ignored.</li>
 </ul>
@@ -216,9 +230,9 @@
 <li>Argument <code>JackMax</code> to limit the order of the jacknife estimator in <code><a href="../reference/Richness.html">Richness()</a></code>, whatever the data.</li>
 </ul>
 </div>
-<div id="bug-correction-2" class="section level2">
+<div id="bug-correction-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-2" class="anchor"></a>Bug correction</h2>
+<a href="#bug-correction-3" class="anchor"></a>Bug correction</h2>
 <ul>
 <li>plot.SpeciesDistribution did not fit the logseries and the broken stick distributions correctly.</li>
 <li>autoplot.DivProfile did not produce appropriate labels in the local communities profile.</li>
@@ -248,9 +262,9 @@
 <li>Vignette by pkgdown.</li>
 </ul>
 </div>
-<div id="bug-correction-3" class="section level2">
+<div id="bug-correction-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-3" class="anchor"></a>Bug correction</h2>
+<a href="#bug-correction-4" class="anchor"></a>Bug correction</h2>
 <ul>
 <li>The jaccknife estimator of richness returned an error for communities where all species had the same abundance.</li>
 <li>
@@ -272,9 +286,9 @@
 <li>Generic function arguments cleaned up.</li>
 </ul>
 </div>
-<div id="bug-correction-4" class="section level2">
+<div id="bug-correction-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-4" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-5" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>Very large metacommunities returned an integer overflow error.</li>
 </ul>
@@ -284,9 +298,9 @@
 <h1 class="page-header" data-toc-text="1.4-8">
 <a href="#entropart-14-8" class="anchor"></a>entropart 1.4-8<small> 2017-11-22 </small>
 </h1>
-<div id="bug-correction-5" class="section level2">
+<div id="bug-correction-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-5" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-6" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>
 <code><a href="../reference/HqzBeta.html">HqzBeta()</a></code> returned erroneous values if a species probability was equal to zero.</li>
@@ -307,9 +321,9 @@
 <h1 class="page-header" data-toc-text="1.4-7">
 <a href="#entropart-14-7" class="anchor"></a>entropart 1.4-7<small> 2017-03-29 </small>
 </h1>
-<div id="bug-correction-6" class="section level2">
+<div id="bug-correction-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-6" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-7" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>Argument checking (<code>CheckArguments = TRUE</code>) is not possible when the package is not loaded and a function is called by <code>entropart::function()</code>. An error was returned. It is replaced by a warning.</li>
 </ul>
@@ -365,9 +379,9 @@
 <code><a href="../reference/DivProfile.html">DivProfile()</a></code> now allows computing bootstrap confidence intervals.</li>
 </ul>
 </div>
-<div id="bug-correction-8" class="section level2">
+<div id="bug-correction-9" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-8" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-9" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>The entropy estimation (of order different from 1) of a distribution with no singleton returned <code>NA</code> with <code>ChaoWangJost</code> correction. Reported by Zach Marion. Only partly corrected in Version 1.4-1. Corrected.</li>
 <li>
@@ -405,9 +419,9 @@
 <li>Updated <em>CITATION</em>: the paper about this package has been published: Eric Marcon, Bruno Herault (2015). entropart: An R Package to Measure and Partition Diversity. <em>Journal of Statistical Software</em>, 67(8), 1-26.</li>
 </ul>
 </div>
-<div id="bug-correction-10" class="section level2">
+<div id="bug-correction-11" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-10" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-11" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>The entropy estimation of a distribution with no singleton returned <code>NA</code> with <code>ChaoWangJost</code> correction. Corrected.</li>
 <li>Entropy or diversity of a vector of zeros returned 0. It now returns <code>NA</code>.</li>
@@ -435,9 +449,9 @@
 <li>Random Communities. See <code><a href="../reference/rCommunity.html">?rCommunity</a></code>.</li>
 </ul>
 </div>
-<div id="bug-correction-11" class="section level2">
+<div id="bug-correction-12" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-11" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-12" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>Applying <code>bcTsallis</code> and similar functions with a probability vector instead of abundance values could cause errors depending in the correction. Correction is now forced to <code>None</code> with a warning.</li>
 <li>Allowed rounding error was too small on some systems (typically r-patched-solaris-sparc) to recognize probability vectors. The difference between their sum and 1 had to be less than 3 times <code>.Machine$double.eps</code>. Now set to S times (where S is the number of species, i.e the vector’s length).</li>
@@ -456,9 +470,9 @@
 <li>Unbiased estimator of Rao’s entropy added (<code>bcRao</code>).</li>
 </ul>
 </div>
-<div id="bug-correction-12" class="section level2">
+<div id="bug-correction-13" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-12" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-13" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>
 <code>DqZ()</code> and <code><a href="../reference/Hqz.html">Hqz()</a></code> returned an error if all probability values were 0 except one.</li>
@@ -480,9 +494,9 @@
 <h1 class="page-header" data-toc-text="1.2.0">
 <a href="#entropart-120" class="anchor"></a>entropart 1.2.0<small> 2014-05-17 </small>
 </h1>
-<div id="bug-correction-13" class="section level2">
+<div id="bug-correction-14" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-13" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-14" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>
 <code><a href="../reference/ChaoPD.html">ChaoPD()</a></code> returned an incorrect value when q=0 and some probabilities =0.</li>
@@ -520,9 +534,9 @@
 <li>Zhang and Grabchak (2014) bias correction for Tsallis entropy added.</li>
 </ul>
 </div>
-<div id="bug-correction-14" class="section level2">
+<div id="bug-correction-15" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-14" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-15" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>
 <code>Divest()</code> always calculated neutral diversity of simulated communities so the confidence interval was erroneous for phylodiversity. Corrected.</li>
@@ -558,9 +572,9 @@
 <code>mergeandlabel</code> does not return warnings any longer (column names are better addressed).</li>
 </ul>
 </div>
-<div id="bug-correction-15" class="section level2">
+<div id="bug-correction-16" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-correction-15" class="anchor"></a>Bug Correction</h2>
+<a href="#bug-correction-16" class="anchor"></a>Bug Correction</h2>
 <ul>
 <li>
 <code><a href="../reference/Hqz.html">Hqz()</a></code> was erroneous for q&lt;&gt;1. Corrected.</li>
