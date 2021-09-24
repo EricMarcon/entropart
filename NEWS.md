@@ -1,4 +1,4 @@
-# entropart 1.6-7.9001
+# entropart 1.6-8
 
 ## Bug correction
 
