@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://ericmarcon.github.io/entropart/404.html</loc>
+  </url>
+  <url>
+    <loc>https://ericmarcon.github.io/entropart/articles/entropart.html</loc>
+  </url>
+  <url>
+    <loc>https://ericmarcon.github.io/entropart/articles/extrapolation.html</loc>
+  </url>
+  <url>
+    <loc>https://ericmarcon.github.io/entropart/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://ericmarcon.github.io/entropart/articles/phylogenies.html</loc>
+  </url>
+  <url>
+    <loc>https://ericmarcon.github.io/entropart/articles/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://ericmarcon.github.io/entropart/authors.html</loc>
+  </url>
+  <url>
     <loc>https://ericmarcon.github.io/entropart/index.html</loc>
+  </url>
+  <url>
+    <loc>https://ericmarcon.github.io/entropart/news/index.html</loc>
   </url>
   <url>
     <loc>https://ericmarcon.github.io/entropart/reference/AbdFreqCount.html</loc>
@@ -181,6 +205,9 @@
     <loc>https://ericmarcon.github.io/entropart/reference/expq.html</loc>
   </url>
   <url>
+    <loc>https://ericmarcon.github.io/entropart/reference/index.html</loc>
+  </url>
+  <url>
     <loc>https://ericmarcon.github.io/entropart/reference/lnq.html</loc>
   </url>
   <url>
@@ -188,17 +215,5 @@
   </url>
   <url>
     <loc>https://ericmarcon.github.io/entropart/reference/rCommunity.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/articles/articles/extrapolation.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/articles/articles/phylogenies.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/articles/articles/reference.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/articles/entropart.html</loc>
   </url>
 </urlset>
