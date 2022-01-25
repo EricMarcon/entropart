@@ -1,7 +1,7 @@
 # Entropy Partitioning to Measure Diversity <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
 [![CRAN version](http://www.r-pkg.org/badges/version/entropart)](https://cran.r-project.org/package=entropart)
-[![](http://cranlogs.r-pkg.org/badges/grand-total/entropart)](https://cran.r-project.org/grand-total/package=entropart)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/entropart)](https://cran.r-project.org/package=entropart)
 [![](http://cranlogs.r-pkg.org/badges/entropart)](https://cran.r-project.org/package=entropart)
 ![R-CMD-check](https://github.com/EricMarcon/entropart/workflows/R-CMD-check/badge.svg)
 [![codecov](https://codecov.io/github/EricMarcon/entropart/branch/master/graphs/badge.svg)](https://codecov.io/github/EricMarcon/entropart)
