@@ -118,12 +118,12 @@
 <p>Phylogenetic or functional diversity <span class="citation">(Marcon and Hérault 2015)</span> can be estimated, considering phyloentropy as the average species-neutral diversity over slices of a phylogenetic or functional tree <span class="citation">(Pavoine, Love, and Bonsall 2009)</span>.</p>
 <p>Similarity-based diversity <span class="citation">(Leinster and Cobbold 2012)</span> can be used to estimate <span class="citation">(Marcon, Zhang, and Hérault 2014)</span> functional diversity from a similarity or dissimilarity matrix between species without requiring building a dendrogram and thus preserving the topology of species <span class="citation">(Pavoine, Ollier, and Dufour 2005; Podani and Schmera 2007)</span>.</p>
 <p>The classical diversity estimators (Shannon and Simpson entropy) can be found in many R packages. <em>vegetarian</em> <span class="citation">(Charney and Record 2009)</span> allows calculating Hill numbers and partitioning them according to Jost’s framework. Bias correction is rarely available except in the <em>EntropyEstimation</em> <span class="citation">(Cao and Grabchak 2014)</span> package which provides the Zhang and Grabchak’s estimators of entropy and diversity and their asymptotic variance (not included in <em>entropart</em>).</p>
-<div class="section level1">
-<h1 id="estimating-the-diversity-of-a-community">Estimating the diversity of a community<a class="anchor" aria-label="anchor" href="#estimating-the-diversity-of-a-community"></a>
-</h1>
 <div class="section level2">
-<h2 id="community-data">Community data<a class="anchor" aria-label="anchor" href="#community-data"></a>
+<h2 id="estimating-the-diversity-of-a-community">Estimating the diversity of a community<a class="anchor" aria-label="anchor" href="#estimating-the-diversity-of-a-community"></a>
 </h2>
+<div class="section level3">
+<h3 id="community-data">Community data<a class="anchor" aria-label="anchor" href="#community-data"></a>
+</h3>
 <p>Community data is a numeric vector containing abundances of species (the number of individual of each species) or their probabilities (the proportion of individuals of each species, summing to 1).</p>
 <p>Example data is provided in the dataset <code>paracou618</code>. Let’s get the abundances of tree species in the 1-ha tropical forest plot #18 from Paracou forest station in French Guiana:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -147,9 +147,9 @@
 <p><img src="entropart_files/figure-html/rCommunity-1.png" width="700"></p>
 <p>The Whittaker plot of a random log-series <span class="citation">(Fisher, Corbet, and Williams 1943)</span> distribution of 10000 individuals simulated with parameter <span class="math inline">\(\alpha=30\)</span> is produced.</p>
 </div>
-<div class="section level2">
-<h2 id="diversity-estimation">Diversity estimation<a class="anchor" aria-label="anchor" href="#diversity-estimation"></a>
-</h2>
+<div class="section level3">
+<h3 id="diversity-estimation">Diversity estimation<a class="anchor" aria-label="anchor" href="#diversity-estimation"></a>
+</h3>
 <p>The classical indices of diversity are richness (the number of species), Shannon’s and Simpson’s entropies:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/Richness.html">Richness</a></span><span class="op">(</span><span class="va">P18</span><span class="op">)</span></code></pre></div>
@@ -240,12 +240,12 @@
 <p><img src="entropart_files/figure-html/PDiversityProfile-1.png" width="700"></p>
 </div>
 </div>
-<div class="section level1">
-<h1 id="estimating-the-diversity-of-a-meta-community">Estimating the diversity of a meta-community<a class="anchor" aria-label="anchor" href="#estimating-the-diversity-of-a-meta-community"></a>
-</h1>
 <div class="section level2">
-<h2 id="meta-community-data">Meta-community data<a class="anchor" aria-label="anchor" href="#meta-community-data"></a>
+<h2 id="estimating-the-diversity-of-a-meta-community">Estimating the diversity of a meta-community<a class="anchor" aria-label="anchor" href="#estimating-the-diversity-of-a-meta-community"></a>
 </h2>
+<div class="section level3">
+<h3 id="meta-community-data">Meta-community data<a class="anchor" aria-label="anchor" href="#meta-community-data"></a>
+</h3>
 <p>A meta-community is an object defined by the package. It is a set of communities, each of them decribed by the abundance of their species and their weight. Species probabilities in the meta-community are by definition the weighted average of their probabilities in the communities.</p>
 <p>The easiest way to build a meta-community consists of preparing a dataframe whose columns are communities and lines are species, and define weights in a vector (by default, all weights are equal):</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
@@ -266,9 +266,9 @@
 <p>Each shade of grey represents a species. Heights correspond to the probability of species and the width of each community is its weight.</p>
 <p><code>Paracou618.MC</code> is an example meta-community provided by the package. It is made of two 1-ha communities (plots #6 and #18) of tropical forest.</p>
 </div>
-<div class="section level2">
-<h2 id="diversity-estimation-1">Diversity estimation<a class="anchor" aria-label="anchor" href="#diversity-estimation-1"></a>
-</h2>
+<div class="section level3">
+<h3 id="diversity-estimation-1">Diversity estimation<a class="anchor" aria-label="anchor" href="#diversity-estimation-1"></a>
+</h3>
 <p>High level functions allow computing diversity of all communities (<span class="math inline">\(\alpha\)</span> diversity), of the meta-community (<span class="math inline">\(\gamma\)</span> diversity), and <span class="math inline">\(\beta\)</span> diversity, i.e. the number of effective communities (the number of communities with equal weights and no common species that would yield the observed <span class="math inline">\(\beta\)</span> diversity).</p>
 <p>The <code>DivPart</code> function calculates everything at once, for a given order of diversity <span class="math inline">\(q\)</span>:</p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
@@ -324,14 +324,14 @@
 <p><code>DivPart</code>, <code>DivEst</code> and <code>DivProfile</code> use plugin estimators by default. To force them to apply the same estimators as community functions, the argument <code>Biased = FALSE</code> must be entered. They compute Tsallis entropy and Hill numbers by default. A dendrogram in the argument <code>Tree</code> or a similarity matrix in the argument <code>Z</code> will make them calculate phylogenetic diversity or similarity-based diversity.</p>
 </div>
 </div>
-<div class="section level1">
-<h1 id="full-documentation">Full documentation<a class="anchor" aria-label="anchor" href="#full-documentation"></a>
-</h1>
+<div class="section level2">
+<h2 id="full-documentation">Full documentation<a class="anchor" aria-label="anchor" href="#full-documentation"></a>
+</h2>
 <p><a href="https://ericmarcon.github.io/entropart/" class="uri">https://ericmarcon.github.io/entropart/</a></p>
 </div>
-<div class="section level1 unnumbered">
-<h1 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
-</h1>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <div id="refs" class="references">
 <div id="ref-Cao2014">
 <p>Cao, Lijuan, and Michael Grabchak. 2014. “EntropyEstimation.” <a href="https://cran.r-project.org/package=EntropyEstimation" class="external-link">https://cran.r-project.org/package=EntropyEstimation</a>.</p>
@@ -417,7 +417,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
