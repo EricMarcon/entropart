@@ -21,8 +21,8 @@
 <link href="docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Entropy Partitioning to Measure Diversity">
 <meta property="og:description" content="Measurement and partitioning of diversity, based on Tsallis entropy, following Marcon and Herault (2015) &lt;doi:10.18637/jss.v067.i08&gt;.
-             entropart provides functions to calculate alpha, beta and gamma diversity of communities, including phylogenetic and functional diversity.
-             Estimation-bias corrections are available.">
+  entropart provides functions to calculate alpha, beta and gamma diversity of communities, including phylogenetic and functional diversity.
+  Estimation-bias corrections are available.">
 <meta property="og:image" content="https://ericmarcon.github.io/entropart/logo.png">
 <meta name="robots" content="noindex">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -31,6 +31,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -43,18 +45,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-7.9001</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-8.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="articles/entropart.html">Get started</a>
 </li>
@@ -69,13 +65,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/articles/extrapolation.html">Asymptotic Estimation, Interpolation and Extrapolation </a>
+      <a href="articles/extrapolation.html">Asymptotic Estimation, Interpolation and Extrapolation </a>
     </li>
     <li>
-      <a href="articles/articles/phylogenies.html">Phylogenies in entropart</a>
+      <a href="articles/phylogenies.html">Phylogenies in entropart</a>
     </li>
     <li>
-      <a href="articles/articles/reference.html">entropart Package Reference</a>
+      <a href="articles/reference.html">entropart Package Reference</a>
     </li>
   </ul>
 </li>
@@ -85,7 +81,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/EricMarcon/entropart/">
+  <a href="https://github.com/EricMarcon/entropart/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -109,31 +105,30 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div id="entropy-partitioning-to-measure-diversity-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#entropy-partitioning-to-measure-diversity-" class="anchor"></a>Entropy Partitioning to Measure Diversity <img src="reference/figures/logo.png" align="right" alt="" width="120">
+<div class="section level1">
+<div class="page-header"><h1 id="entropy-partitioning-to-measure-diversity-">Entropy Partitioning to Measure Diversity <img src="reference/figures/logo.png" align="right" alt="" width="120"><a class="anchor" aria-label="anchor" href="#entropy-partitioning-to-measure-diversity-"></a>
 </h1></div>
 
 <p>entropart is an R package that provides functions to calculate alpha, beta and gamma diversity of communities, including phylogenetic and functional diversity.</p>
 <p>Estimation-bias corrections are available.</p>
-<div id="details" class="section level2">
-<h2 class="hasAnchor">
-<a href="#details" class="anchor"></a>Details</h2>
+<div class="section level2">
+<h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a>
+</h2>
 <p>In the entropart package, individuals of different <em>species</em> are counted in several <em>communities</em> which may (or not) be agregated to define a <em>metacommunity</em>. In the metacommunity, the probability to find a species in the weighted average of probabilities in communities. This is a naming convention, which may correspond to plots in a forest inventory or any data organized the same way.</p>
 <p>Basic functions allow computing diversity of a community. Data is simply a vector of probabilities (summing up to 1) or of abundances (integer values that are numbers of individuals). Calculate entropy with functions such as <em>Tsallis</em>, <em>Shannon</em>, <em>Simpson</em>, <em>Hurlbert</em> or <em>GenSimpson</em> and explicit diversity (i.e. effective number of species) with <em>Diversity</em> and others. By default, the best available estimator of diversity will be used, according to the data.</p>
 <p>Communities can be simulated by <em>rCommunity</em>, explicitely declared as a species distribution (<em>as.AbdVector</em> or <em>as.ProbaVector</em>), and plotted.</p>
 <p>Phylogenetic entropy and diversity can be calculated if a phylogenetic (or functional), ultrametric tree is provided. See <em>PhyloEntropy</em>, <em>Rao</em> for examples of entropy and <em>PhyloDiversity</em> to calculate phylodiversity, with the state-of-the-art estimation-bias correction. Similarity-based diversity is calculated with <em>Dqz</em>, based on a similarity matrix.</p>
 </div>
 </div>
-<div id="vignettes" class="section level1">
-<h1 class="hasAnchor">
-<a href="#vignettes" class="anchor"></a>Vignettes</h1>
+<div class="section level1">
+<h1 id="vignettes">Vignettes<a class="anchor" aria-label="anchor" href="#vignettes"></a>
+</h1>
 <p>A quick <a href="https://ericmarcon.github.io/entropart/articles/entropart.html">introduction</a> is in <code><a href="articles/entropart.html">vignette("entropart")</a></code>.</p>
-<p>A full documentation is available online, in the “Articles” section of the web site of the vignette. It is a continuous update of the paper published in the Journal of Statistical Software (<a href="https://www.jstatsoft.org/article/view/v067i08">Marcon &amp; Hérault, 2015</a>).</p>
-<p>The <a href="https://EricMarcon.github.io/entropart/dev/">development version documentation</a> is also available.</p>
-<div id="reference" class="section level2">
-<h2 class="hasAnchor">
-<a href="#reference" class="anchor"></a>Reference</h2>
+<p>A full documentation is available online, in the “Articles” section of the web site of the vignette. It is a continuous update of the paper published in the Journal of Statistical Software (<a href="https://doi.org/10.18637/jss.v067.i08" class="external-link">Marcon &amp; Hérault, 2015</a>).</p>
+<p>The <a href="https://EricMarcon.github.io/entropart/dev/" class="external-link">development version documentation</a> is also available.</p>
+<div class="section level2">
+<h2 id="reference">Reference<a class="anchor" aria-label="anchor" href="#reference"></a>
+</h2>
 <p>Marcon, E. and Herault, B. (2015). entropart: An R Package to Measure and Partition Diversity. <em>Journal of Statistical Software</em>. 67(8): 1-26.</p>
 </div>
 </div>
@@ -142,55 +137,60 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=entropart">https://​cloud.r-project.org/​package=entropart</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/EricMarcon/entropart/">https://​github.com/​EricMarcon/​entropart/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/EricMarcon/entropart/issues">https://​github.com/​EricMarcon/​entropart/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=entropart" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/EricMarcon/entropart/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/EricMarcon/entropart/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>GNU General Public License</li>
 </ul>
 </div>
+
+
 <div class="citation">
-<h2>Citation</h2>
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html">Citing entropart</a></li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>Eric Marcon <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-5249-321X" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Bruno Herault <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-6950-7286" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html#citation">Citing entropart</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li><a href="https://cran.r-project.org/package=entropart"><img src="http://www.r-pkg.org/badges/version/entropart" alt="CRAN version"></a></li>
-<li><a href="https://cran.r-project.org/package=entropart"><img src="http://cranlogs.r-pkg.org/badges/entropart"></a></li>
-<li><a href="https://codecov.io/github/EricMarcon/entropart"><img src="https://codecov.io/github/EricMarcon/entropart/branch/master/graphs/badge.svg" alt="codecov"></a></li>
-<li><a href="https://www.codefactor.io/repository/github/ericmarcon/entropart/overview/master"><img src="https://www.codefactor.io/repository/github/ericmarcon/entropart/badge/master" alt="CodeFactor"></a></li>
+<li>Eric Marcon <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-5249-321X" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Bruno Herault <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-6950-7286" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://cran.r-project.org/package=entropart" class="external-link"><img src="http://www.r-pkg.org/badges/version/entropart" alt="CRAN version"></a></li>
+<li><a href="https://cran.r-project.org/package=entropart" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/grand-total/entropart"></a></li>
+<li><a href="https://cran.r-project.org/package=entropart" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/entropart"></a></li>
+<li><a href="https://codecov.io/github/EricMarcon/entropart" class="external-link"><img src="https://codecov.io/github/EricMarcon/entropart/branch/master/graphs/badge.svg" alt="codecov"></a></li>
+<li><a href="https://www.codefactor.io/repository/github/ericmarcon/entropart/overview/master" class="external-link"><img src="https://www.codefactor.io/repository/github/ericmarcon/entropart/badge/master" alt="CodeFactor"></a></li>
+</ul>
 </div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Eric Marcon, Bruno Herault.</p>
+  <p></p>
+<p>Developed by Eric Marcon, Bruno Herault.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
