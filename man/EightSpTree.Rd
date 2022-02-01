@@ -11,7 +11,7 @@
 data(Paracou618)
 }
 \format{
-  An object of class \code{\link{phylog}} containing a functional tree.
+  An object of class \code{\link[ade4]{phylog}} containing a functional tree.
 }
 
 \examples{

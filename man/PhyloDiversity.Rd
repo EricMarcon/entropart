@@ -42,7 +42,7 @@ is.PhyloDiversity(x)
   A number: the order of diversity. Default is 1.
   }
   \item{Tree}{
-  An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
+  An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link[ade4]{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
   }
   \item{Normalize}{
   If \code{TRUE} (default), the \code{Total} diversity is not affected by the height of the tree.\cr

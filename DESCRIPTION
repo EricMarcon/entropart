@@ -13,7 +13,6 @@ URL: https://github.com/EricMarcon/entropart
 BugReports: https://github.com/EricMarcon/entropart/issues
 License: GNU General Public License
 Imports: 
-  ade4, 
   ape, 
   EntropyEstimation, 
   ggplot2, 
@@ -22,16 +21,17 @@ Imports:
   grDevices, 
   parallel, 
   reshape2, 
-  SPECIES, 
   stats, 
   tibble, 
   utils, 
   vegan
 Suggests: 
-  testthat, 
+  ade4, 
   knitr, 
   pkgdown, 
-  rmarkdown
+  rmarkdown, 
+  SPECIES, 
+  testthat
 LazyData: true
 VignetteBuilder: knitr
 SystemRequirements: pandoc

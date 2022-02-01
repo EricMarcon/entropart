@@ -33,7 +33,7 @@ is.PPtree(x)
   \code{plot.PPtree} plots it.
 }
 \note{
-  Versions up to 1.3 contained a \code{\link{phylog}} tree, now deprecated in \code{ade4}. A \code{\link{phylo}} tree is now used.
+  Versions up to 1.3 contained a \code{\link[ade4]{phylog}} tree, now deprecated in \code{ade4}. A \code{\link{phylo}} tree is now used.
   
   See the dedicated vignette (\code{vignette("Phylogenies", package="entropart")}) for more details.
 }

@@ -117,5 +117,7 @@ bcRichness(Ns, Correction = "iChao1")
 bcRichness(Ns, Correction = "Jackknife")
 bcRichness(Ns, Correction = "Jackknife", JackOver=TRUE)
 # Jackknife estimation is package SPECIES provides confidence interval
-SPECIES::jackknife(AbdFreqCount(Ns))
+if(require("SPECIES", quietly=TRUE)) {
+  SPECIES::jackknife(AbdFreqCount(Ns))
+}
 }

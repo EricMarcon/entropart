@@ -12,7 +12,7 @@ PhyloApply(Tree, FUN, NorP, Normalize = TRUE, dfArgs = NULL,
 }
 \arguments{
   \item{Tree}{
-  An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
+  An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link[ade4]{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
   }
   \item{FUN}{
   The function to be applied to each interval of the tree. 
