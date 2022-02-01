@@ -1,3 +1,10 @@
+# entropart 1.6-8.9000
+
+## Improvements
+
+- entropart no longer depends on ggplot2.
+
+
 # entropart 1.6-8
 
 ## Bug correction

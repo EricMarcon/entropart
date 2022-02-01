@@ -1,20 +1,37 @@
 Package: entropart
 Type: Package
 Title: Entropy Partitioning to Measure Diversity
-Version: 1.6-8
+Version: 1.6-8.9000
 Authors@R: c(
-    person("Eric", "Marcon", email="eric.marcon@agroparistech.fr", role=c("aut", "cre"), comment = c(ORCID = "0000-0002-5249-321X")),
-    person("Bruno", "Herault", email="bruno.herault@cirad.fr", role="aut", comment = c(ORCID = "0000-0002-6950-7286"))
+    person("Eric", "Marcon", email="eric.marcon@agroparistech.fr", role=c("aut", "cre"), comment=c(ORCID="0000-0002-5249-321X")),
+    person("Bruno", "Herault", email="bruno.herault@cirad.fr", role="aut", comment=c(ORCID="0000-0002-6950-7286"))
     )
 Description: Measurement and partitioning of diversity, based on Tsallis entropy, following Marcon and Herault (2015) <doi:10.18637/jss.v067.i08>.
-             'entropart' provides functions to calculate alpha, beta and gamma diversity of communities, including phylogenetic and functional diversity.
-             Estimation-bias corrections are available.
+  'entropart' provides functions to calculate alpha, beta and gamma diversity of communities, including phylogenetic and functional diversity.
+  Estimation-bias corrections are available.
 URL: https://github.com/EricMarcon/entropart
 BugReports: https://github.com/EricMarcon/entropart/issues
 License: GNU General Public License
-Depends: ggplot2
-Imports: ade4, ape, EntropyEstimation, ggpubr, graphics, grDevices, parallel, reshape2, SPECIES, stats, tibble, utils, vegan
-Suggests: testthat, knitr, pkgdown, rmarkdown
+Imports: 
+  ade4, 
+  ape, 
+  EntropyEstimation, 
+  ggplot2, 
+  ggpubr, 
+  graphics, 
+  grDevices, 
+  parallel, 
+  reshape2, 
+  SPECIES, 
+  stats, 
+  tibble, 
+  utils, 
+  vegan
+Suggests: 
+  testthat, 
+  knitr, 
+  pkgdown, 
+  rmarkdown
 LazyData: true
 VignetteBuilder: knitr
 SystemRequirements: pandoc
