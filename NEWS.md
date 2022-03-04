@@ -1,4 +1,8 @@
-# entropart 1.6-8.9000
+# entropart 1.6-8.9001
+
+## Bug correction
+
+- `Coverage2Size` raised an error when the distribution had no singletons. 
 
 ## Improvements
 
