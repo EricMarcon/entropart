@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-9</span>
       </span>
     </div>
 
@@ -108,7 +108,7 @@
 <dt>q</dt>
 <dd><p>A number: the order of entropy. Default is 1.</p></dd>
 <dt>Tree</dt>
-<dd><p>An object of class <code><a href="https://rdrr.io/r/stats/hclust.html" class="external-link">hclust</a></code>, <code>phylo</code>, <code>phylog</code> or <code><a href="PPtree.html">PPtree</a></code>. The tree must be ultrametric.</p></dd>
+<dd><p>An object of class <code><a href="https://rdrr.io/r/stats/hclust.html" class="external-link">hclust</a></code>, <code>phylo</code>, <code><a href="https://rdrr.io/pkg/ade4/man/phylog.html" class="external-link">phylog</a></code> or <code><a href="PPtree.html">PPtree</a></code>. The tree must be ultrametric.</p></dd>
 <dt>Normalize</dt>
 <dd><p>If <code>TRUE</code> (default), the <code>Total</code> entropy returned by the function is normalized by the height of the tree (it is the weighted average value of the entropy in each slice).<br>
   If <code>FALSE</code>, it is the unnormalized weighted sum of the results.</p></dd>
@@ -192,7 +192,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Entropy is normalized</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Entropy equals: 3.919941 </span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">e</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">e</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="PhyloEntropy-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Ns is the vector of abundances of the metacommunity</span></span>
@@ -207,7 +207,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Entropy is normalized</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Entropy equals: 4.018993 </span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">e</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">e</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="PhyloEntropy-2.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>

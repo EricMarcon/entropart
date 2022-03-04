@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-9</span>
       </span>
     </div>
 
@@ -85,13 +85,13 @@
 <span class="co"># S3 method for numeric</span>
 <span class="fu">as.SpeciesDistribution</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span>
 <span class="co"># S3 method for SpeciesDistribution</span>
-<span class="fu">autoplot</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span>, Distribution <span class="op">=</span> <span class="cn">NULL</span>, 
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span>, Distribution <span class="op">=</span> <span class="cn">NULL</span>, 
          ylog <span class="op">=</span> <span class="cn">TRUE</span>, main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="st">"Rank"</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, 
          pch <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomPoint</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">shape</span>,
          col <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomPoint</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">colour</span>,
          cex <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomPoint</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">size</span><span class="op">)</span> 
 <span class="co"># S3 method for SpeciesDistribution</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, Distribution <span class="op">=</span> <span class="cn">NULL</span>, 
+<span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, Distribution <span class="op">=</span> <span class="cn">NULL</span>, 
          type <span class="op">=</span> <span class="st">"b"</span>, log <span class="op">=</span> <span class="st">"y"</span>, main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="st">"Rank"</span>, ylab <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
 <span class="fu">is.SpeciesDistribution</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
 <span class="fu">as.ProbaVector</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span>
@@ -141,7 +141,7 @@
 <dt>q</dt>
 <dd><p>A number: the order of entropy. Default is 0 for richness. Used only to estimate asymptotic probability distributions with <code>RCorrection</code> equal to <code>"Rarefy"</code>. Then, the number of unobserved species is fitted so that the entropy of order <code>q</code> of the asymptotic probability distribution at the observed sample size equals the actual entropy of the data.</p></dd>
 <dt>type</dt>
-<dd><p>The plot type, see <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></code>.</p></dd>
+<dd><p>The plot type, see <code><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></code>.</p></dd>
 <dt>log</dt>
 <dd><p>The axis to plot in log scale, <em>e.g.</em> <code>"xy"</code> for both axes. Default is <code>"y"</code>.</p></dd>
 <dt>main</dt>
@@ -159,7 +159,7 @@
 <dt>cex</dt>
 <dd><p>The character expansion (size) of the points. See <code><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></code>.</p></dd>
 <dt>...</dt>
-<dd><p>Additional arguments to be passed to <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></code>. Unused elsewhere.</p></dd>
+<dd><p>Additional arguments to be passed to <code><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></code>. Unused elsewhere.</p></dd>
 <dt>CheckArguments</dt>
 <dd><p>Logical; if <code>TRUE</code>, the function arguments are verified. Should be set to <code>FALSE</code> to save time when the arguments have been checked elsewhere.</p></dd>
 </dl></div>
@@ -199,7 +199,7 @@
 <span class="r-in"><span class="co"># Ns is the total number of trees per species</span></span>
 <span class="r-in"><span class="va">Ns</span> <span class="op">&lt;-</span> <span class="fu">as.AbdVector</span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span><span class="op">)</span></span>
 <span class="r-in"><span class="co"># Whittaker plot, poorly fitted by a log-normal distribution</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Ns</span>, Distribution <span class="op">=</span> <span class="st">"lnorm"</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Ns</span>, Distribution <span class="op">=</span> <span class="st">"lnorm"</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="SpeciesDistribution-1.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $mu</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9519812</span>
@@ -208,7 +208,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.011383</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="co"># ggplot version</span></span>
-<span class="r-in"><span class="fu">autoplot</span><span class="op">(</span><span class="va">Ns</span>, Distribution <span class="op">=</span> <span class="st">"lnorm"</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">Ns</span>, Distribution <span class="op">=</span> <span class="st">"lnorm"</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="SpeciesDistribution-2.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>

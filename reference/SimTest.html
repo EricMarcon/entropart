@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-9</span>
       </span>
     </div>
 
@@ -80,11 +80,11 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">as.SimTest</span><span class="op">(</span><span class="va">RealValue</span>, <span class="va">SimulatedValues</span><span class="op">)</span>
 <span class="fu">is.SimTest</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
 <span class="co"># S3 method for SimTest</span>
-<span class="fu">autoplot</span><span class="op">(</span><span class="va">object</span>, Quantiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>, <span class="va">...</span>,
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, Quantiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>, <span class="va">...</span>,
   colValue <span class="op">=</span> <span class="st">"red"</span>, colQuantiles <span class="op">=</span> <span class="st">"black"</span>, ltyQuantiles <span class="op">=</span> <span class="fl">2</span>,
   main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="st">"Simulated Values"</span>, ylab <span class="op">=</span> <span class="st">"Density"</span><span class="op">)</span>
 <span class="co"># S3 method for SimTest</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, Quantiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>, <span class="va">...</span>,
+<span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, Quantiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>, <span class="va">...</span>,
   colValue <span class="op">=</span> <span class="st">"red"</span>, lwdValue <span class="op">=</span> <span class="fl">2</span>, ltyValue <span class="op">=</span> <span class="fl">2</span>,
   colQuantiles <span class="op">=</span> <span class="st">"black"</span>, lwdQuantiles <span class="op">=</span> <span class="fl">1</span>, ltyQuantiles <span class="op">=</span> <span class="fl">2</span>,
   main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="st">"Simulated Values"</span>, ylab <span class="op">=</span> <span class="st">"Density"</span><span class="op">)</span>
@@ -154,16 +154,16 @@
 <span class="r-in"><span class="va">st</span> <span class="op">&lt;-</span> <span class="fu">as.SimTest</span><span class="op">(</span><span class="va">Real</span>, <span class="va">Sims</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">st</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Real value:  0.8 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Quantile in the simulated distribution:  0.805 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Quantile in the simulated distribution:  0.779 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Quantiles of simulations:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2.50% :  -1.891727 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 97.50% :  1.826495 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mean simulated value:  -0.04601932 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2.50% :  -1.969771 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 97.50% :  2.205597 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mean simulated value:  0.03609975 </span>
 <span class="r-in"><span class="co"># Plot</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">st</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">st</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="SimTest-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span class="co"># ggplot</span></span>
-<span class="r-in"><span class="fu">autoplot</span><span class="op">(</span><span class="va">st</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">st</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="SimTest-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 </code></pre></div>
