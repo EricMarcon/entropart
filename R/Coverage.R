@@ -15,7 +15,7 @@ function(Ns, Estimator = "Best", Level = NULL, CheckArguments = TRUE)
   SampleSize <- sum(Ns)
   
   if (is.null(Level)) {
-    # Etimate C at the observed level
+    # Estimate C at the observed level
     
     if (Estimator == "Best") Estimator <- "ZhangHuang"
     # More accurate
@@ -139,7 +139,11 @@ function(Ns, SampleCoverage, CheckArguments = TRUE)
   # Calculate abundance distribution
   DistN <- tapply(Ns, Ns, length)
   # Singletons. Convert named number to number.
-  Singletons <- as.numeric(DistN["1"])
+  if (is.na(DistN["1"])) {
+    Singletons <- 0 
+  } else {
+    Singletons <- as.numeric(DistN["1"])
+  }
   SampleSize <- sum(Ns)
   
   # Singletons only
