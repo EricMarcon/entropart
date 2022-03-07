@@ -207,7 +207,7 @@ The result is a `Divest` object which can be summarized and plotted.
 The result is a `DivProfile` object which can be summarized and plotted.
 
 ```{r DivProfile, fig.width=6, fig.height=6}
-dp <- DivProfile(1, Paracou618.MC)
+dp <- DivProfile(q.seq = seq(0, 2, 0.1), Paracou618.MC)
 autoplot(dp)
 ```
 
