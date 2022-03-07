@@ -198,7 +198,7 @@ If the observed species frequencies of a community are assumed to be a realizati
 de <- DivEst(q = 1, Paracou618.MC, Simulations = 50)
 # Margin adjustment required for this vignette html output
 par(mar=c(1,1,2.2,1))
-plot(de)
+autoplot(de)
 ```
 
 The result is a `Divest` object which can be summarized and plotted.
@@ -207,7 +207,7 @@ The result is a `Divest` object which can be summarized and plotted.
 The result is a `DivProfile` object which can be summarized and plotted.
 
 ```{r DivProfile, fig.width=6, fig.height=6}
-dp <- DivProfile(, Paracou618.MC)
+dp <- DivProfile(1, Paracou618.MC)
 autoplot(dp)
 ```
 
