@@ -43,7 +43,7 @@ RACbstick(Ns, CheckArguments = TRUE)
 }
 
 \author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>, Bruno Herault <Bruno.Herault@ecofog.gf>
+  Eric Marcon <Eric.Marcon@agroparistech.fr>, Bruno Herault <Bruno.Herault@cirad.fr>
 }
 \references{
   Fisher R.A., Corbet A.S., Williams C.B. (1943) The Relation Between the Number of Species and the Number of Individuals in a Random Sample of an Animal Population. \emph{Journal of Animal Ecology} 12: 42-58.

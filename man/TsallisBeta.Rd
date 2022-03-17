@@ -72,9 +72,6 @@ bcTsallisBeta(Ns, Nexp = NULL, q, Correction = "Best", CheckArguments = TRUE)
 
   Marcon, E., Scotti, I., Herault, B., Rossi, V. and Lang, G. (2014). Generalization of the partitioning of Shannon diversity. \emph{PLOS One} 9(3): e90289.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \examples{
 # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
 data(Paracou618)

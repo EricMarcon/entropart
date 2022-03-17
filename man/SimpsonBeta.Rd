@@ -69,9 +69,6 @@ bcSimpsonBeta(Ns, Nexp, Correction = "Best", CheckArguments = TRUE)
   
   Marcon, E., Scotti, I., Herault, B., Rossi, V. and Lang, G. (2014). Generalization of the partitioning of Shannon diversity. \emph{PLOS One} 9(3): e90289.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \seealso{
   \code{\link{Simpson}}, \code{\link{bcSimpsonBeta}}, \code{\link{BetaDiversity}}
 }

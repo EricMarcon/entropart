@@ -20,7 +20,4 @@ Preprocess.Tree(Tree)
 \value{
   An object of class \code{\link{PPtree}}.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \keyword{internal}

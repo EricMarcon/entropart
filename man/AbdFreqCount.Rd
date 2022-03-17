@@ -46,9 +46,6 @@ AbdFreqCount(Ns, Level = NULL, PCorrection="Chao2015", Unveiling="geom",
 
   Chao, A., Hsieh, T. C., Chazdon, R. L., Colwell, R. K., Gotelli, N. J. (2015) Unveiling the Species-Rank Abundance Distribution by Generalizing Good-Turing Sample Coverage Theory. \emph{Ecology} 96(5): 1189-1201.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \seealso{
   \code{\link{PhyloEntropy}}, \code{\link{ChaoPD}}
 }

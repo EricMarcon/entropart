@@ -136,7 +136,7 @@ is.AbdVector(x)
   Fisher's alpha (Fisher \emph{et al.}, 1943) is estimated to fit the log-series distribution. The estimation is done by the \code{\link{fisher.alpha}} function of package \code{vegan}. It may differ substantially from the estimation returned by \code{optimal.theta} from package \code{untb}.
 }
 \author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>, Bruno Herault <Bruno.Herault@ecofog.gf>
+  Eric Marcon <Eric.Marcon@agroparistech.fr>, Bruno Herault <Bruno.Herault@cirad.fr>
 }
 \references{
   Chao, A. and Shen, T. J. (2003). Nonparametric estimation of Shannon's index of diversity when there are unseen species in sample. \emph{Environmental and Ecological Statistics} 10(4): 429-443.

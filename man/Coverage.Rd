@@ -51,9 +51,6 @@ Coverage2Size(Ns, SampleCoverage, CheckArguments = TRUE)
   
   Zhang, Z. and Huang, H. (2007). Turing's formula revisited. \emph{Journal of Quantitative Linguistics} 14(2-3): 222-241.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \examples{
 # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
 data(Paracou618)

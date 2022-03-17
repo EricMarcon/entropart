@@ -79,9 +79,6 @@ bcGenSimpsonD(Ns, r = 1, CheckArguments = TRUE)
 
   Zhang Z. and Zhou J. (2010). Re-parameterization of multinomial distributions and diversity indices. \emph{Journal of Statistical Planning and Inference} 140(7): 1731-1738.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \examples{
 # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
 data(Paracou618)

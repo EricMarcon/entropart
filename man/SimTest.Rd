@@ -83,9 +83,6 @@ is.SimTest(x)
   \code{summary.SimTest} returns a summary of the object, including the empirical quantile of the real value in the simulated distributon.
 
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \examples{
 # Set the value to test
 Real <- 0.8

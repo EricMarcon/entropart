@@ -36,9 +36,6 @@ ShuffleMC(MClist, Weights = rep(1, length(MClist)), CheckArguments = TRUE)
   
   \code{ShuffleMC} returns a \code{\link{list}} of \code{\link{MetaCommunity}} objects.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \seealso{
   \code{\link{MetaCommunity}}
 }

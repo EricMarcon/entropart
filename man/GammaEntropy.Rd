@@ -54,9 +54,6 @@ GammaEntropy(MC, q = 1, Correction = "Best", Tree = NULL, Normalize = TRUE,
 
   Marcon, E., Zhang, Z. and Herault, B. (2014). The decomposition of similarity-based diversity and its bias correction. \emph{HAL} hal-00989454(version 3).
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \seealso{
   \code{\link{bcTsallis}}, \code{\link{bcPhyloEntropy}}
 }

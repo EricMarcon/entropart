@@ -23,9 +23,6 @@ mergeandlabel(x, y)
 \value{
   A dataframe containing all lines and columns of the merged dataframes.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \seealso{
   \code{\link{MergeC}}, \code{\link{MergeMC}}, \code{\link{ShuffleMC}}
 }

@@ -44,9 +44,6 @@ EntropyCI(FUN, Simulations = 100, Ns, BootstrapMethod = "Chao2015",
 \references{
   Marcon, E., Herault, B., Baraloto, C. and Lang, G. (2012). The Decomposition of Shannon's Entropy and a Confidence Interval for Beta Diversity. \emph{Oikos} 121(4): 516-522.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \examples{
 # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
 data(Paracou618)

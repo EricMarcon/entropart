@@ -72,9 +72,6 @@ An object of class \strong{MetaCommunity} is a list:
   
   \code{plot.MetaCommunity} plots it.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \examples{
 # Use BCI data from vegan package
 if (require(vegan, quietly = TRUE)) {

@@ -37,10 +37,6 @@ is.PPtree(x)
   
   See the dedicated vignette (\code{vignette("Phylogenies", package="entropart")}) for more details.
 }
-
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \examples{
 data(Paracou618)
 # Preprocess a phylog object

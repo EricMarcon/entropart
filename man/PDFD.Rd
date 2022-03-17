@@ -37,9 +37,6 @@ PDFD(Ps, Tree, CheckArguments = TRUE)
   
   Petchey, O. L. and Gaston, K. J. (2002). Functional diversity (FD), species richness and community composition. \emph{Ecology Letters} 5: 402-411.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \seealso{
   \code{\link{bcPhyloDiversity}}
 }

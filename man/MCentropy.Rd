@@ -52,6 +52,3 @@ is.MCentropy(x)
 
   \code{summary.MCentropy} returns a summary of the object's value.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}

@@ -140,9 +140,6 @@ They generalize the classical Species Accumulation Curves (SAC) which are divers
 \references{
   Chao, A., Gotelli, N. J., Hsieh, T. C., Sander, E. L., Ma, K. H., Colwell, R. K., Ellison, A. M (2014). Rarefaction and extrapolation with Hill numbers: A framework for sampling and estimation in species diversity studies.  \emph{Ecological Monographs}, 84(1): 45-67.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>, Bruno Herault <Bruno.Herault@ecofog.gf>
-}
 \seealso{
   \code{\link{Tsallis}}, \code{\link{Diversity}}
 }

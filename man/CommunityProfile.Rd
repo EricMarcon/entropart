@@ -137,7 +137,7 @@ CEnvelope(Profile, LineWidth = 2, ShadeColor = "grey75", BorderColor = "red", \d
   \item{high}{The upper bound of the confidence interval}
 }
 \author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>, Bruno Herault <Bruno.Herault@ecofog.gf>
+  Eric Marcon <Eric.Marcon@agroparistech.fr>, Bruno Herault <Bruno.Herault@cirad.fr>
 }
 \examples{
 # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)

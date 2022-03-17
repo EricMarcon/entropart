@@ -15,9 +15,4 @@ CheckentropartArguments()
 \details{
   The function compares the arguments passed to its parent function to the type they should be and performs some extra tests (\emph{e.g.} probabilities must be positive and sum to 1). It stops if an argument is not correct.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
-
-
 \keyword{internal}

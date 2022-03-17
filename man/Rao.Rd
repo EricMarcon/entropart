@@ -60,9 +60,6 @@ bcRao(Ns, Tree, Correction="Lande", CheckArguments = TRUE)
 
   Rao, C. R. (1982). Diversity and dissimilarity coefficients: a unified approach. \emph{Theoretical Population Biology} 21: 24-43.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \seealso{
   \code{\link{bcPhyloDiversity}}
 }

@@ -37,9 +37,6 @@ expq.CommunityProfile(Profile)
   
   Tsallis, C. (1994). What are the numbers that experiments provide? \emph{Quimica Nova} 17(6): 468-471.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \seealso{
   \code{\link{expq}}
 }

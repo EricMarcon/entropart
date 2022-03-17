@@ -67,9 +67,6 @@ bcSimpson(Ns, Correction = "Best", CheckArguments = TRUE)
 
   Simpson, E. H. (1949). Measurement of diversity. \emph{Nature} 163(4148): 688.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \seealso{
   \code{\link{Tsallis}}, \code{\link{bcSimpson}}
 }

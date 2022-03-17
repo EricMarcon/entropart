@@ -47,9 +47,6 @@ ChaoPD(Ps, q = 1, PhyloTree, Normalize = TRUE, Prune = FALSE, CheckArguments = T
   
   Leinster, T. and Cobbold, C. (2011). Measuring diversity: the importance of species similarity. \emph{Ecology} 93(3): 477-489.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \seealso{
   \code{\link{PhyloDiversity}}, \code{\link{AllenH}}
 }

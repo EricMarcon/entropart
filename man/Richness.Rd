@@ -96,9 +96,6 @@ bcRichness(Ns, Correction = "Best", Alpha = 0.05, JackOver = FALSE, JackMax = 10
 
   Chiu, C.-H., Wang, Y.-T., Walther, B. A., Chao, A. (2014) An Improved Nonparametric Lower Bound of Species Richness via a Modified Good-Turing Frequency Formula. \emph{Biometrics} 70(3): 671-682.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \examples{
 # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
 data(Paracou618)

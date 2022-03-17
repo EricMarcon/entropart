@@ -67,9 +67,6 @@ bcShannonBeta(Ns, Nexp, Correction = "Best", CheckArguments = TRUE)
   
   Zhang, Z. and Grabchak M. (2014). Nonparametric Estimation of Kullback-Leibler Divergence. \emph{Neural computation} 26(11): 2570-2593.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \seealso{
   \code{\link{bcShannonBeta}}
 }

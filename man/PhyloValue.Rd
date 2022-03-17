@@ -52,9 +52,6 @@ is.PhyloValue(x)
 \details{
   \code{PhyloValue} objects are the result of \code{\link{PhyloApply}}.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \examples{
 # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest
 #      and their taxonomy)

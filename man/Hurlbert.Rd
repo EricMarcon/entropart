@@ -76,9 +76,6 @@ bcHurlbertD(Ns, k = 2, CheckArguments = TRUE)
 
   Hurlbert (1971) The Nonconcept of Species Diversity: A Critique and Alternative Parameters. \emph{Ecology} 52(4): 577-586.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \examples{
 # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
 data(Paracou618)

@@ -71,9 +71,6 @@ rCommunity(n, size = sum(NorP), NorP = 1, BootstrapMethod = "Chao2015", S = 300,
   
   Reese G. C., Wilson K. R., Flather C. H. (2013) Program SimAssem: Software for simulating species assemblages and estimating species richness. \emph{Methods in Ecology and  Evolution} 4: 891-896.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \seealso{
   \code{\link{SpeciesDistribution}} and the program \code{SimAssem} (Reese \emph{et al.}, 2013; not an R package) for more distributions.
 }

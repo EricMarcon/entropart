@@ -23,7 +23,7 @@ ArgumentOriginalName(x)
 \author{
   BrodieG, <https://stackoverflow.com/users/2725969/brodieg>
   
-  Eric Marcon <Eric.Marcon@ecofog.gf>
+  Eric Marcon <Eric.Marcon@agroparistech.fr>
 }
 
 

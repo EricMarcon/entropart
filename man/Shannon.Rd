@@ -99,9 +99,6 @@ bcShannon(Ns, Correction = "Best", CheckArguments = TRUE)
   
   Zhang, Z. (2012). Entropy Estimation in Turing's Perspective. \emph{Neural Computation} 24(5): 1368-1389.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \seealso{
     \code{\link{bcShannon}}, \code{\link{Tsallis}}
 }

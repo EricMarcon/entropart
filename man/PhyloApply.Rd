@@ -56,9 +56,6 @@ PhyloApply(Tree, FUN, NorP, Normalize = TRUE, dfArgs = NULL,
 \references{
   Marcon, E., Herault, B. (2015). Decomposing  Phylodiversity. \emph{Methods in Ecology and Evolution} 6(3): 333-339.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \seealso{
   \code{\link{Preprocess.Tree}}
 }

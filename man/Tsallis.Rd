@@ -121,9 +121,6 @@ bcTsallis(Ns, q = 1, Correction = "Best", SampleCoverage = NULL,
   
   Zhang, Z., and Grabchak, M. (2016). Entropic Representation and Estimation of Diversity Indices. \emph{Journal of Nonparametric Statistics}, 28(3): 563-575.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \examples{
 # Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)
 data(Paracou618)

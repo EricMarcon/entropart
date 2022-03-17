@@ -77,9 +77,6 @@ bcHqz(Ns, q = 1, Z = diag(length(Ns)), Correction = "Best", SampleCoverage = NUL
   
   Ricotta, C. and Szeidl, L. (2006). Towards a unifying approach to diversity measures: Bridging the gap between the Shannon entropy and Rao's quadratic index. \emph{Theoretical Population Biology} 70(3): 237-243.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \seealso{
   \code{\link{Dqz}}, \code{\link{PhyloEntropy}}
 }

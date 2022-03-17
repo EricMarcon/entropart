@@ -26,9 +26,6 @@ Enq(n, q)
 \references{
   Grassberger, P. (1988). Finite sample corrections to entropy and dimension estimates. Physics Letters A 128(6-7): 369-373.
 }
-\author{
-  Eric Marcon <Eric.Marcon@ecofog.gf>
-}
 \note{
   The function is computed using the \code{\link{beta}}.function.
   
