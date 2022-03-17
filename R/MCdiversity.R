@@ -27,7 +27,7 @@ function (object, col = ggplot2::GeomCol$default_aes$fill,
   # Factors to keep the order of bars (avoid sort by name)
   theData$x <- factor(theData$x, levels=theData$x)
                       
-  thePlot <- ggplot2::ggplot(theData, ggplot2::aes_(x=~x, y=~y)) + 
+  thePlot <- ggplot2::ggplot(theData, ggplot2::aes(x=.data$x, y=.data$y)) + 
     ggplot2::geom_col(width=c(object$Weights, .5, .1), fill=col, colour=border) +
     ggplot2::labs(y="Diversity")
   

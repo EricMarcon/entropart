@@ -231,13 +231,13 @@ function (object, ..., main = NULL, xlab = "Order of Diversity", ylab = NULL, Wh
       theData$TotalAlphaDiversityLow <- object$TotalAlphaDiversityLow
       theData$TotalAlphaDiversityHigh <- object$TotalAlphaDiversityHigh
     }
-    AlphaPlot <- ggplot2::ggplot(theData, ggplot2::aes_(x=~object.Order, y=~object.TotalAlphaDiversity))
+    AlphaPlot <- ggplot2::ggplot(theData, ggplot2::aes(x=.data$object.Order, y=.data$object.TotalAlphaDiversity))
     if (!(is.null(object$TotalAlphaDiversityHigh) | is.null(object$TotalAlphaDiversityLow))) {
       AlphaPlot <- AlphaPlot +
-        ggplot2::geom_ribbon(ggplot2::aes_(ymin=~TotalAlphaDiversityLow, ymax=~TotalAlphaDiversityHigh), fill=ShadeColor, alpha=alpha) +
+        ggplot2::geom_ribbon(ggplot2::aes(ymin=.data$TotalAlphaDiversityLow, ymax=.data$TotalAlphaDiversityHigh), fill=ShadeColor, alpha=alpha) +
         # Add red lines on borders of polygon
-        ggplot2::geom_line(ggplot2::aes_(y=~TotalAlphaDiversityLow), colour=BorderColor, linetype=2) +
-        ggplot2::geom_line(ggplot2::aes_(y=~TotalAlphaDiversityHigh), colour=BorderColor, linetype=2)
+        ggplot2::geom_line(ggplot2::aes(y=.data$TotalAlphaDiversityLow), colour=BorderColor, linetype=2) +
+        ggplot2::geom_line(ggplot2::aes(y=.data$TotalAlphaDiversityHigh), colour=BorderColor, linetype=2)
     }
     AlphaPlot <- AlphaPlot +
       ggplot2::geom_line(colour=col, linetype=lty, size=lwd) +
@@ -250,7 +250,7 @@ function (object, ..., main = NULL, xlab = "Order of Diversity", ylab = NULL, Wh
   if (Which == "All" | (Which == "Communities" & is.null(ylab))) ylab <- expression(paste(alpha, " diversity"))
   if (Which == "All" | Which == "Communities") {
     theData <- reshape2::melt(cbind(data.frame(object$Order), object$CommunityAlphaDiversities), id.vars="object.Order", variable.name = "Community")
-    CommunitiesPlot <- ggplot2::ggplot(theData, ggplot2::aes_(x=~object.Order, y=~value, colour=~Community)) +
+    CommunitiesPlot <- ggplot2::ggplot(theData, ggplot2::aes(x=.data$object.Order, y=.data$value, colour=.data$Community)) +
       ggplot2::geom_line() +
       ggplot2::labs(title=main, x=xlab, y=ylab)
   }
@@ -265,13 +265,13 @@ function (object, ..., main = NULL, xlab = "Order of Diversity", ylab = NULL, Wh
       theData$TotalBetaDiversityLow <- object$TotalBetaDiversityLow
       theData$TotalBetaDiversityHigh <- object$TotalBetaDiversityHigh
     }
-    BetaPlot <- ggplot2::ggplot(theData, ggplot2::aes_(x=~object.Order, y=~object.TotalBetaDiversity))
+    BetaPlot <- ggplot2::ggplot(theData, ggplot2::aes(x=.data$object.Order, y=.data$object.TotalBetaDiversity))
     if (!(is.null(object$TotalBetaDiversityHigh) | is.null(object$TotalBetaDiversityLow))) {
       BetaPlot <- BetaPlot +
-        ggplot2::geom_ribbon(ggplot2::aes_(ymin=~TotalBetaDiversityLow, ymax=~TotalBetaDiversityHigh), fill=ShadeColor, alpha=alpha) +
+        ggplot2::geom_ribbon(ggplot2::aes(ymin=.data$TotalBetaDiversityLow, ymax=.data$TotalBetaDiversityHigh), fill=ShadeColor, alpha=alpha) +
         # Add red lines on borders of polygon
-        ggplot2::geom_line(ggplot2::aes_(y=~TotalBetaDiversityLow), colour=BorderColor, linetype=2) +
-        ggplot2::geom_line(ggplot2::aes_(y=~TotalBetaDiversityHigh), colour=BorderColor, linetype=2)
+        ggplot2::geom_line(ggplot2::aes(y=.data$TotalBetaDiversityLow), colour=BorderColor, linetype=2) +
+        ggplot2::geom_line(ggplot2::aes(y=.data$TotalBetaDiversityHigh), colour=BorderColor, linetype=2)
     }
     BetaPlot <- BetaPlot +
       ggplot2::geom_line(colour=col, linetype=lty, size=lwd) +
@@ -288,13 +288,13 @@ function (object, ..., main = NULL, xlab = "Order of Diversity", ylab = NULL, Wh
       theData$GammaDiversityLow <- object$GammaDiversityLow
       theData$GammaDiversityHigh <- object$GammaDiversityHigh
     }
-    GammaPlot <- ggplot2::ggplot(theData, ggplot2::aes_(x=~object.Order, y=~object.GammaDiversity))
+    GammaPlot <- ggplot2::ggplot(theData, ggplot2::aes(x=.data$object.Order, y=.data$object.GammaDiversity))
     if (!(is.null(object$GammaDiversityHigh) | is.null(object$GammaDiversityLow))) {
       GammaPlot <- GammaPlot +
-        ggplot2::geom_ribbon(ggplot2::aes_(ymin=~GammaDiversityLow, ymax=~GammaDiversityHigh), fill=ShadeColor, alpha=alpha) +
+        ggplot2::geom_ribbon(ggplot2::aes(ymin=.data$GammaDiversityLow, ymax=.data$GammaDiversityHigh), fill=ShadeColor, alpha=alpha) +
         # Add red lines on borders of polygon
-        ggplot2::geom_line(ggplot2::aes_(y=~GammaDiversityLow), colour=BorderColor, linetype=2) +
-        ggplot2::geom_line(ggplot2::aes_(y=~GammaDiversityHigh), colour=BorderColor, linetype=2)
+        ggplot2::geom_line(ggplot2::aes(y=.data$GammaDiversityLow), colour=BorderColor, linetype=2) +
+        ggplot2::geom_line(ggplot2::aes(y=.data$GammaDiversityHigh), colour=BorderColor, linetype=2)
     }
     GammaPlot <- GammaPlot +
       ggplot2::geom_line(colour=col, linetype=lty, size=lwd) +

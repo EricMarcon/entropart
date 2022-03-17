@@ -73,7 +73,7 @@ bcRichness(Ns, Correction = "Best", Alpha = 0.05, JackOver = FALSE, JackMax = 10
 \details{
   Bias correction requires the number of individuals. Use \code{bcRichness} and choose the \code{Correction}.
   
-  Chao correction techniques are from Chao (1984) and Chiu \emph{et al.} (2015). The Jackknife estimator is calculated by a straight adaptation of the code by Ji-Ping Wang (\code{\link[SPECIES]{jackknife}} in package \code{SPECIES}). The optimal order is selected according to Burnham and Overton (1978; 1979). The argument \code{JackOver} allows selecting one order over the optimal one.
+  Chao correction techniques are from Chao (1984) and Chiu \emph{et al.} (2015). The Jackknife estimator is calculated by a straight adaptation of the code by Ji-Ping Wang (\code{jackknife} in CRAN-archived package \code{SPECIES}). The optimal order is selected according to Burnham and Overton (1978; 1979). The argument \code{JackOver} allows selecting one order over the optimal one.
   Many other estimators are available elsewhere, the ones implemented here are necessary for other entropy estimations.
 
   The functions are designed to be used as simply as possible. \code{Richness} is a generic method. If its first argument is an abundance vector, an integer vector or a numeric vector which does not sum to 1, the bias corrected function \code{bcRichness} is called.

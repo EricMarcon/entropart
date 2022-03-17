@@ -1,5 +1,6 @@
 importFrom("ggplot2", "autoplot")
 importFrom("graphics", "plot")
+importFrom("rlang", ".data")
 
 export("AbdFreqCount")
 export("AllenH")

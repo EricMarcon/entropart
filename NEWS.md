@@ -1,3 +1,10 @@
+# entropart 1.6-9.9000
+
+## Improvements
+
+- Deprecated `aes_(x=~var)` aesthetics in ggplots replaced by `aes(x=.data$var)`.
+
+
 # entropart 1.6-9
 
 ## Bug correction

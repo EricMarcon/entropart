@@ -32,7 +32,7 @@ function (object, Quantiles = c(0.025, 0.975), ..., colValue = "red", colQuantil
 {
   df <- data.frame(SimulatedValues=object$SimulatedValues)
   thePlot <- ggplot2::ggplot() +
-    ggplot2::geom_density(data=df, ggplot2::aes_(x=~SimulatedValues, fill=factor("unique"), alpha=0.8)) +
+    ggplot2::geom_density(data=df, ggplot2::aes(x=.data$SimulatedValues, fill=factor("unique"), alpha=0.8)) +
     ggplot2::labs(title=main, x=xlab, y=ylab) +
     ggplot2::geom_vline(xintercept=object$RealValue, colour=colValue)
   for (qt in Quantiles) {

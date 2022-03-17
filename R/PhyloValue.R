@@ -60,7 +60,7 @@ function (object, xlab = expression(italic("T")), ylab = NULL, main = NULL,
   df <- data.frame(Time=as.numeric(c(0, rep(names(object$Cuts), each=2))), Value=c(rep(object$Cuts, each=2), 0))
   
   # Plot
-  thePlot <- ggplot2::ggplot(data=df, ggplot2::aes_(x=~Time, y=~Value)) +
+  thePlot <- ggplot2::ggplot(data=df, ggplot2::aes(x=.data$Time, y=.data$Value)) +
     ggplot2::geom_line(colour=col, linetype=lty, size=lwd) +
     ggplot2::labs(title=main, x=xlab, y=ylab) +
     ggplot2::geom_hline(yintercept=object$Total, linetype=2)

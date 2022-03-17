@@ -135,18 +135,18 @@ autoplot.CommunityProfile <-
            lty = ggplot2::GeomLine$default_aes$linetype,
            lwd = ggplot2::GeomLine$default_aes$size)
 {  
-  thePlot <- ggplot2::ggplot(as.data.frame.list(object), ggplot2::aes_(x=~x, y=~y))
+  thePlot <- ggplot2::ggplot(as.data.frame.list(object), ggplot2::aes(x=.data$x, y=.data$y))
   if (!(is.null(object$high) | is.null(object$low))) {
     thePlot <- thePlot +
-      ggplot2::geom_ribbon(ggplot2::aes_(ymin=~low, ymax=~high), fill=ShadeColor, alpha=alpha) +
+      ggplot2::geom_ribbon(ggplot2::aes(ymin=.data$low, ymax=.data$high), fill=ShadeColor, alpha=alpha) +
       # Add red lines on borders of polygon
-      ggplot2::geom_line(ggplot2::aes_(y=~low), colour=BorderColor, linetype=2) +
-      ggplot2::geom_line(ggplot2::aes_(y=~high), colour=BorderColor, linetype=2)
+      ggplot2::geom_line(ggplot2::aes(y=.data$low), colour=BorderColor, linetype=2) +
+      ggplot2::geom_line(ggplot2::aes(y=.data$high), colour=BorderColor, linetype=2)
   }
   if (!is.null(object$mid)) {
     thePlot <- thePlot +
       # Add dotted line for the mid value
-      ggplot2::geom_line(ggplot2::aes_(y=~mid), linetype=2)
+      ggplot2::geom_line(ggplot2::aes(y=.data$mid), linetype=2)
   }
   thePlot <- thePlot +
     ggplot2::geom_line(colour=col, linetype=lty, size=lwd) +
