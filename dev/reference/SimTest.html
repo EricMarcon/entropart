@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-8.9001</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-9.9000</span>
       </span>
     </div>
 
@@ -29,7 +29,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -139,10 +139,6 @@
 </dl><p><code>is.SimTest</code> returns <code>TRUE</code> if the object is of class <code>SimTest</code>.
 <code>summary.SimTest</code> returns a summary of the object, including the empirical quantile of the real value in the simulated distributon.</p>
     </div>
-    <div id="author">
-    <h2>Author</h2>
-    <p>Eric Marcon &lt;Eric.Marcon@ecofog.gf&gt;</p>
-    </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
@@ -154,11 +150,11 @@
 <span class="r-in"><span class="va">st</span> <span class="op">&lt;-</span> <span class="fu">as.SimTest</span><span class="op">(</span><span class="va">Real</span>, <span class="va">Sims</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">st</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Real value:  0.8 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Quantile in the simulated distribution:  0.795 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Quantile in the simulated distribution:  0.787 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Quantiles of simulations:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2.50% :  -1.920516 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 97.50% :  2.018792 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mean simulated value:  0.01245484 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2.50% :  -1.844284 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 97.50% :  1.950668 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mean simulated value:  0.03367697 </span>
 <span class="r-in"><span class="co"># Plot</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">st</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="SimTest-1.png" alt="" width="700" height="433"></span>
