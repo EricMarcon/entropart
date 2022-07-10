@@ -1,3 +1,10 @@
+# entropart 1.6-11
+
+## Bug correction
+
+- Corrected NEWS file structure.
+
+
 # entropart 1.6-10
 
 ## Improvements
@@ -141,7 +148,7 @@
 
 # entropart 1.4-6
 
-# Improvements
+## Improvements
 
 - LazyData is used to save memory.
 - Better reporting of the argument names in embedded calls of functions.
@@ -186,7 +193,7 @@
 - All scalar values of diversity or entropy are now named. Their name is the bias correction used to obtain them.
 - The `Unveiled` estimator is more versatile. `Correction = "Unveil"` is deprecated and replaced by `UnveilC`, `UnveiliC` or `UnveilJ` in functions such as `Tsallis()` or `Diversity()`.
 
-# Improvements 
+## Improvements 
 
 - Parallelization of `DivProfile()`, `CommunityProfile()` and `PhyloApply()` using the parallel package _mclapply_. No effect on Windows, pretty much faster on other systems.
 - Extensive use of `vapply()` instead of `sapply()` makes some functions faster.
