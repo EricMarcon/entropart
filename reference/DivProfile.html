@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-11</span>
       </span>
     </div>
 
@@ -77,84 +77,111 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">DivProfile</span><span class="op">(</span>q.seq <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">0.1</span><span class="op">)</span>, <span class="va">MC</span>, Biased <span class="op">=</span> <span class="cn">TRUE</span>, Correction <span class="op">=</span> <span class="st">"Best"</span>, 
-  Tree <span class="op">=</span> <span class="cn">NULL</span>, Normalize <span class="op">=</span> <span class="cn">TRUE</span>, Z <span class="op">=</span> <span class="cn">NULL</span>, 
-  NumberOfSimulations <span class="op">=</span> <span class="fl">0</span>, Alpha <span class="op">=</span> <span class="fl">0.05</span>, 
-  ShowProgressBar <span class="op">=</span> <span class="cn">TRUE</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu">is.DivProfile</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co"># S3 method for DivProfile</span>
-<span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="st">"Order of Diversity"</span>,
-  ylab <span class="op">=</span> <span class="cn">NULL</span>, Which <span class="op">=</span> <span class="st">"All"</span>, 
-  LineWidth <span class="op">=</span> <span class="fl">2</span>, ShadeColor <span class="op">=</span> <span class="st">"grey75"</span>, BorderColor <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>
-<span class="co"># S3 method for DivProfile</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span>, main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="st">"Order of Diversity"</span>,
-  ylab <span class="op">=</span> <span class="cn">NULL</span>, Which <span class="op">=</span> <span class="st">"All"</span>, ShadeColor <span class="op">=</span> <span class="st">"grey75"</span>, alpha <span class="op">=</span> <span class="fl">0.3</span>, BorderColor <span class="op">=</span> <span class="st">"red"</span>, 
-  labels <span class="op">=</span> <span class="cn">NULL</span>, font.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">11</span>, face<span class="op">=</span><span class="st">"plain"</span><span class="op">)</span>,
-  col <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomLine</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">colour</span>,
-  lty <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomLine</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">linetype</span>,
-  lwd <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomLine</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">size</span><span class="op">)</span>
-<span class="co"># S3 method for DivProfile</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">DivProfile</span><span class="op">(</span>q.seq <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">0.1</span><span class="op">)</span>, <span class="va">MC</span>, Biased <span class="op">=</span> <span class="cn">TRUE</span>, Correction <span class="op">=</span> <span class="st">"Best"</span>, </span>
+<span>  Tree <span class="op">=</span> <span class="cn">NULL</span>, Normalize <span class="op">=</span> <span class="cn">TRUE</span>, Z <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>  NumberOfSimulations <span class="op">=</span> <span class="fl">0</span>, Alpha <span class="op">=</span> <span class="fl">0.05</span>, </span>
+<span>  ShowProgressBar <span class="op">=</span> <span class="cn">TRUE</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">is.DivProfile</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for DivProfile</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="st">"Order of Diversity"</span>,</span>
+<span>  ylab <span class="op">=</span> <span class="cn">NULL</span>, Which <span class="op">=</span> <span class="st">"All"</span>, </span>
+<span>  LineWidth <span class="op">=</span> <span class="fl">2</span>, ShadeColor <span class="op">=</span> <span class="st">"grey75"</span>, BorderColor <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for DivProfile</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span>, main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="st">"Order of Diversity"</span>,</span>
+<span>  ylab <span class="op">=</span> <span class="cn">NULL</span>, Which <span class="op">=</span> <span class="st">"All"</span>, ShadeColor <span class="op">=</span> <span class="st">"grey75"</span>, alpha <span class="op">=</span> <span class="fl">0.3</span>, BorderColor <span class="op">=</span> <span class="st">"red"</span>, </span>
+<span>  labels <span class="op">=</span> <span class="cn">NULL</span>, font.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">11</span>, face<span class="op">=</span><span class="st">"plain"</span><span class="op">)</span>,</span>
+<span>  col <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomLine</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">colour</span>,</span>
+<span>  lty <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomLine</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">linetype</span>,</span>
+<span>  lwd <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomLine</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">size</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for DivProfile</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>q.seq</dt>
 <dd><p>A numeric vector.</p></dd>
-<dt>MC</dt>
+
+  <dt>MC</dt>
 <dd><p>A <code><a href="MetaCommunity.html">MetaCommunity</a></code> object.</p></dd>
-<dt>Biased</dt>
+
+  <dt>Biased</dt>
 <dd><p>Logical; if <code>FALSE</code>, a bias correction is appplied.</p></dd>
-<dt>Correction</dt>
+
+  <dt>Correction</dt>
 <dd><p>A string containing one of the possible corrections.</p>	
 <p>The correction must be accepted by <code><a href="AlphaEntropy.html">AlphaEntropy</a></code>, <code><a href="BetaEntropy.html">BetaEntropy</a></code> and <code><a href="GammaEntropy.html">GammaEntropy</a></code>. <code>"Best"</code> is the default value.</p></dd>
-<dt>Tree</dt>
+
+  <dt>Tree</dt>
 <dd><p>An object of class <code><a href="https://rdrr.io/r/stats/hclust.html" class="external-link">hclust</a></code>, <code>phylo</code>, <code><a href="https://rdrr.io/pkg/ade4/man/phylog.html" class="external-link">phylog</a></code> or <code><a href="PPtree.html">PPtree</a></code>. The tree must be ultrametric.</p></dd>
-<dt>Normalize</dt>
+
+  <dt>Normalize</dt>
 <dd><p>If <code>TRUE</code> (default), diversity is not affected by the height of the tree.<br>
   If <code>FALSE</code>, diversity is proportional to the height of the tree.</p></dd>
-<dt>Z</dt>
+
+  <dt>Z</dt>
 <dd><p>A relatedness matrix, <em>i.e.</em> a square matrix whose terms are all positive, strictly positive on the diagonal. Generally, the matrix is a similarity matrix, <em>i.e.</em> the diagonal terms equal 1 and other terms are between 0 and 1.</p></dd>
-<dt>NumberOfSimulations</dt>
+
+  <dt>NumberOfSimulations</dt>
 <dd><p>The number of simulations to run, 0 by default.</p></dd>
-<dt>Alpha</dt>
+
+  <dt>Alpha</dt>
 <dd><p>The risk level, 5% by default.</p></dd>
-<dt>ShowProgressBar</dt>
+
+  <dt>ShowProgressBar</dt>
 <dd><p>If <code>TRUE</code> (default), a progress bar is shown.</p></dd>
-<dt>CheckArguments</dt>
+
+  <dt>CheckArguments</dt>
 <dd><p>Logical; if <code>TRUE</code>, the function arguments are verified. Should be set to <code>FALSE</code> to save time when the arguments have been checked elsewhere.</p></dd>
-<dt>x</dt>
+
+  <dt>x</dt>
 <dd><p>An object to be tested or plotted.</p></dd>
-<dt>main</dt>
+
+  <dt>main</dt>
 <dd><p>The main title of the plot. Ignored if <code>Which = "All"</code>.</p></dd>
-<dt>xlab</dt>
+
+  <dt>xlab</dt>
 <dd><p>The x axis label of the plots.</p></dd>
-<dt>ylab</dt>
+
+  <dt>ylab</dt>
 <dd><p>The y axis label of the plot. Ignored if <code>Which = "All"</code>.</p></dd>
-<dt>Which</dt>
+
+  <dt>Which</dt>
 <dd><p>May be <code>"Communities"</code>, <code>"Alpha"</code>, <code>"Beta"</code> or <code>"Gamma"</code> to respectively plot the alpha diversity of communities or the metacommunity's alpha, beta or gamma diversity. If <code>"All"</code> (default), all four plots are shown.</p></dd>
-<dt>LineWidth</dt>
+
+  <dt>LineWidth</dt>
 <dd><p>The width of the line that represents the actual profile.</p></dd>
-<dt>ShadeColor</dt>
+
+  <dt>ShadeColor</dt>
 <dd><p>The color of the shaded confidence envelope.</p></dd>
-<dt>BorderColor</dt>
+
+  <dt>BorderColor</dt>
 <dd><p>The color of the bounds of the confidence envelope.</p></dd>
-<dt>alpha</dt>
+
+  <dt>alpha</dt>
 <dd><p>Opacity of the confidence enveloppe, between 0 and 1.</p></dd>
-<dt>labels</dt>
+
+  <dt>labels</dt>
 <dd><p>Vector of labels to be added to multiple plots. <code>"auto"</code> is the same as <code>c("a", "b", "c", "d)"</code>.</p></dd>
-<dt>font.label</dt>
+
+  <dt>font.label</dt>
 <dd><p>A list of arguments to customize labels. See <code>ggarrange</code>.</p></dd>
-<dt>col</dt>
+
+  <dt>col</dt>
 <dd><p>The color of the geom objects. See "Color Specification" in <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>.</p></dd>
-<dt>lty</dt>
+
+  <dt>lty</dt>
 <dd><p>The type of the lines. See <code><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></code>.</p></dd>
-<dt>lwd</dt>
+
+  <dt>lwd</dt>
 <dd><p>The width of the lines. See <code><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></code>.</p></dd>
-<dt>object</dt>
+
+  <dt>object</dt>
 <dd><p>A <code>MCdiversity</code> object to be summarized or plotted.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>Additional arguments to be passed to the generic methods.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -166,42 +193,62 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A <code>DivProfile</code> object. It is a list:</p>
+    
+
+<p>A <code>DivProfile</code> object. It is a list:</p>
 <dl><dt>MetaCommunity</dt>
 <dd><p>The name of the <code><a href="MetaCommunity.html">MetaCommunity</a></code> object containing inventory data.</p></dd>
-<dt>Order</dt>
+
+  <dt>Order</dt>
 <dd><p>A vector containing the values of <code>q</code>.</p></dd>
-<dt>Biased</dt>
+
+  <dt>Biased</dt>
 <dd><p>Logical. If <code>FALSE</code>, bias corrected values of diversity have been computed.</p></dd>
-<dt>Correction</dt>
+
+  <dt>Correction</dt>
 <dd><p>The estimation bias correction used to calculate diversity. Usually a string, but it may be a list if different corrections have been used in the estimation of phylodiversity.</p></dd>
-<dt>Method</dt>
+
+  <dt>Method</dt>
 <dd><p>The method used to calculate entropy ("HCDT", "Similarity-based").</p></dd>
-<dt>Tree</dt>
+
+  <dt>Tree</dt>
 <dd><p>The phylogenetic or functional tree used to calculate phylodiversity.</p></dd>
-<dt>Normalized</dt>
+
+  <dt>Normalized</dt>
 <dd><p>Logical. Indicates whether phylodiversity is normalized or proportional to the height of the tree.</p></dd>
-<dt>Z</dt>
+
+  <dt>Z</dt>
 <dd><p>The matrix used to calculate similarity-based entropy.</p></dd>
-<dt>CommunityAlphaDiversities</dt>
+
+  <dt>CommunityAlphaDiversities</dt>
 <dd><p>A matrix containing the alpha diversity of each community.</p></dd>
-<dt>TotalAlphaDiversity</dt>
+
+  <dt>TotalAlphaDiversity</dt>
 <dd><p>A vector containing the alpha diversity of communities for each order.</p></dd>
-<dt>BetaDiversity</dt>
+
+  <dt>BetaDiversity</dt>
 <dd><p>A vector containing the beta diversity of communities for each order.</p></dd>
-<dt>GammaDiversity</dt>
+
+  <dt>GammaDiversity</dt>
 <dd><p>A vector containing the gamma diversity of the metacommunity for each order.</p></dd>
-<dt>CommunityAlphaEntropies</dt>
+
+  <dt>CommunityAlphaEntropies</dt>
 <dd><p>A matrix containing the alpha entropy of each community.</p></dd>
-<dt>TotalAlphaEntropy</dt>
+
+  <dt>TotalAlphaEntropy</dt>
 <dd><p>A vector containing the alpha entropy of communities for each order.</p></dd>
-<dt>BetaEntropy</dt>
+
+  <dt>BetaEntropy</dt>
 <dd><p>A vector containing the beta entropy of communities for each order.</p></dd>
-<dt>GammaEntropy</dt>
+
+  <dt>GammaEntropy</dt>
 <dd><p>A vector containing the gamma entropy of the metacommunity for each order.</p></dd>
-<dt>Confidence envelopes</dt>
+
+  <dt>Confidence envelopes</dt>
 <dd><p>Total Alpha, Beta and Gamma Entropy and Diversity may come with a confidence envelope whose value is stored in twelve more vectors named suffixed Low or High, such as <code>GammaEntropyLow</code></p></dd>
-</dl><p><code>DivProfile</code> objects can be summarized and plotted.</p>
+
+  
+  </dl><p><code>DivProfile</code> objects can be summarized and plotted.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -220,15 +267,15 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Estimate diversity.</span></span>
-<span class="r-in"><span class="va">Profile</span> <span class="op">&lt;-</span> <span class="fu">DivProfile</span><span class="op">(</span>q.seq <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">0.1</span><span class="op">)</span>, <span class="va">Paracou618.MC</span>, Biased <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Profile</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Estimate diversity.</span></span></span>
+<span class="r-in"><span><span class="va">Profile</span> <span class="op">&lt;-</span> <span class="fu">DivProfile</span><span class="op">(</span>q.seq <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">0.1</span><span class="op">)</span>, <span class="va">Paracou618.MC</span>, Biased <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Profile</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="DivProfile-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">Profile</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">Profile</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="DivProfile-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">Profile</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">Profile</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Diversity profile of MetaCommunity Paracou618.MC</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  with correction: UnveilJ</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Diversity against its order:</span>
@@ -268,7 +315,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

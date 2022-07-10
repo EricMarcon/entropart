@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-11</span>
       </span>
     </div>
 
@@ -77,15 +77,17 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">Preprocess.MC</span><span class="op">(</span><span class="va">Nsi</span>, <span class="va">Wi</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">Preprocess.MC</span><span class="op">(</span><span class="va">Nsi</span>, <span class="va">Wi</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>Nsi</dt>
 <dd><p>A matrix containing abundance data, species in line, communities in column.</p></dd>
-<dt>Wi</dt>
+
+  <dt>Wi</dt>
 <dd><p>Normalized community weights (sum to 1).</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -93,29 +95,42 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>An object of class <strong>MetaCommunity</strong>. It is a list:</p>
+    
+
+<p>An object of class <strong>MetaCommunity</strong>. It is a list:</p>
 <dl><dt>Nsi</dt>
 <dd><p>A matrix containing abundance data, species in line, communities in column</p></dd>
-<dt>Nspecies</dt>
+
+  <dt>Nspecies</dt>
 <dd><p>The number of species</p></dd>
-<dt>Ncommunities</dt>
+
+  <dt>Ncommunities</dt>
 <dd><p>The number of communities</p></dd>
-<dt>Wi</dt>
+
+  <dt>Wi</dt>
 <dd><p>Normalized community weights (sum to 1)</p></dd>
-<dt>N</dt>
+
+  <dt>N</dt>
 <dd><p>The total number of individuals</p></dd>
-<dt>Ni</dt>
+
+  <dt>Ni</dt>
 <dd><p>A vector containing the number of individuals of each community</p></dd>
-<dt>Ns</dt>
+
+  <dt>Ns</dt>
 <dd><p>A vector containing the number of individuals of each species</p></dd>
-<dt>Psi</dt>
+
+  <dt>Psi</dt>
 <dd><p>A matrix whose columns are the probability vectors of communities (each of them sums to 1)</p></dd>
-<dt>Ps</dt>
+
+  <dt>Ps</dt>
 <dd><p>A vector containing the probability vector of the metacommunity</p></dd>
-<dt>SampleCoverage</dt>
+
+  <dt>SampleCoverage</dt>
 <dd><p>The sample coverage of the metacommunity</p></dd>
-<dt>SampleCoverage.communities</dt>
+
+  <dt>SampleCoverage.communities</dt>
 <dd><p>A vector containing the sample coverages of each community</p></dd>
+
 </dl></div>
     <div id="author">
     <h2>Author</h2>
@@ -134,7 +149,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

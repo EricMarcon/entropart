@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-11</span>
       </span>
     </div>
 
@@ -77,26 +77,31 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">MetaCommunity</span><span class="op">(</span><span class="va">Abundances</span>, Weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">Abundances</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu">is.MetaCommunity</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co"># S3 method for MetaCommunity</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span>
-<span class="co"># S3 method for MetaCommunity</span>
-<span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">MetaCommunity</span><span class="op">(</span><span class="va">Abundances</span>, Weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">Abundances</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">is.MetaCommunity</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for MetaCommunity</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for MetaCommunity</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>Abundances</dt>
 <dd><p>A dataframe containing the number of observations (lines are species, columns are communities). The first column of the dataframe may contain the species names.</p></dd>
-<dt>Weights</dt>
+
+  <dt>Weights</dt>
 <dd><p>A vector of positive numbers equal to community weights or a dataframe containing a vector named <code>Weights</code>. It does not have to be normalized. Weights are equal by default.</p></dd>
-<dt>x</dt>
+
+  <dt>x</dt>
 <dd><p>An object to be tested or plotted.</p></dd>
-<dt>object</dt>
+
+  <dt>object</dt>
 <dd><p>A <code>MetaCommunity</code> object to be summarized.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>Additional arguments to be passed to the generic methods.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -106,55 +111,72 @@
 <p>The simplest way to import data is to organize it into two text files. The first file should contain abundance data: the first column named <code>Species</code> for species names, and a column for each community.</p>
 <p>The second file should contain the community weights in two columns. The first one, named <code>Communities</code> should contain their names and the second one, named <code>Weights</code>, their weights.</p>  
 <p>Files can be read and data imported by code such as:</p>  
-<div class="sourceCode"><pre><code><span class="va">Abundances</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span>file<span class="op">=</span><span class="st">"Abundances.csv"</span>, row.names <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="va">Weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span>file<span class="op">=</span><span class="st">"Weights.csv"</span><span class="op">)</span>
-<span class="va">MC</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MetaCommunity.html">MetaCommunity</a></span><span class="op">(</span><span class="va">Abundances</span>, <span class="va">Weights</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode"><pre><code><span></span>
+<span><span class="va">Abundances</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span>file<span class="op">=</span><span class="st">"Abundances.csv"</span>, row.names <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">Weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span>file<span class="op">=</span><span class="st">"Weights.csv"</span><span class="op">)</span></span>
+<span><span class="va">MC</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MetaCommunity.html">MetaCommunity</a></span><span class="op">(</span><span class="va">Abundances</span>, <span class="va">Weights</span><span class="op">)</span></span></code></pre></div>
 
 
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>An object of class <strong>MetaCommunity</strong> is a list:</p>
+    
+
+<p>An object of class <strong>MetaCommunity</strong> is a list:</p>
 <dl><dt>Nsi</dt>
 <dd><p>A matrix containing abundance data, species in line, communities in column.</p></dd>
-<dt>Ns</dt>
+
+  <dt>Ns</dt>
 <dd><p>A vector containing the number of individuals of each species.</p></dd>
-<dt>Ni</dt>
+
+  <dt>Ni</dt>
 <dd><p>A vector containing the number of individuals of each community.</p></dd>
-<dt>N</dt>
+
+  <dt>N</dt>
 <dd><p>The total number of individuals.</p></dd>
-<dt>Psi</dt>
+
+  <dt>Psi</dt>
 <dd><p>A matrix whose columns are the probability vectors of communities (each of them sums to 1).</p></dd>
-<dt>Wi</dt>
+
+  <dt>Wi</dt>
 <dd><p>A vector containing the normalized community weights (sum to 1).</p></dd>
-<dt>Ps</dt>
+
+  <dt>Ps</dt>
 <dd><p>A vector containing the probability vector of the metacommunity.</p></dd>
-<dt>Nspecies</dt>
+
+  <dt>Nspecies</dt>
 <dd><p>The number of species.</p></dd>
-<dt>Ncommunities</dt>
+
+  <dt>Ncommunities</dt>
 <dd><p>The number of communities.</p></dd>
-<dt>SampleCoverage</dt>
+
+  <dt>SampleCoverage</dt>
 <dd><p>The sample coverage of the metacommunity.</p></dd>
-<dt>SampleCoverage.communities</dt>
+
+  <dt>SampleCoverage.communities</dt>
 <dd><p>A vector containing the sample coverages of each community.</p></dd>
-</dl><p><code>is.MetaCommunity</code> returns <code>TRUE</code> if the object is of class <code>MetaCommunity</code>.
-<code>summary.MetaCommunity</code> returns a summary of the object's value.
-<code>plot.MetaCommunity</code> plots it.</p>
+
+  
+  </dl><p><code>is.MetaCommunity</code> returns <code>TRUE</code> if the object is of class <code>MetaCommunity</code>.</p>
+<p></p>
+<p><code>summary.MetaCommunity</code> returns a summary of the object's value.</p>
+<p></p>
+<p><code>plot.MetaCommunity</code> plots it.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Use BCI data from vegan package</span></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://cran.r-project.org" class="external-link">vegan</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="co"># Load BCI data (number of trees per species in each 1-ha plot of a tropical forest)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">BCI</span><span class="op">)</span></span>
-<span class="r-in">  <span class="co"># BCI dataframe must be transposed (its lines are plots, not species)</span></span>
-<span class="r-in">  <span class="va">BCI.df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">BCI</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="co"># Create a metacommunity object from a matrix of abundances and a vector of weights</span></span>
-<span class="r-in">  <span class="co"># (here, all plots have a weight equal to 1)</span></span>
-<span class="r-in">  <span class="va">MC</span> <span class="op">&lt;-</span> <span class="fu">MetaCommunity</span><span class="op">(</span><span class="va">BCI.df</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> This is vegan 2.5-7</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Use BCI data from vegan package</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/vegandevs/vegan" class="external-link">vegan</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="co"># Load BCI data (number of trees per species in each 1-ha plot of a tropical forest)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">BCI</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="co"># BCI dataframe must be transposed (its lines are plots, not species)</span></span></span>
+<span class="r-in"><span>  <span class="va">BCI.df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">BCI</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="co"># Create a metacommunity object from a matrix of abundances and a vector of weights</span></span></span>
+<span class="r-in"><span>  <span class="co"># (here, all plots have a weight equal to 1)</span></span></span>
+<span class="r-in"><span>  <span class="va">MC</span> <span class="op">&lt;-</span> <span class="fu">MetaCommunity</span><span class="op">(</span><span class="va">BCI.df</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> This is vegan 2.6-2</span>
 </code></pre></div>
     </div>
   </div>
@@ -169,7 +191,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

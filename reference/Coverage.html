@@ -18,7 +18,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-11</span>
       </span>
     </div>
 
@@ -79,22 +79,27 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">Coverage</span><span class="op">(</span><span class="va">Ns</span>, Estimator <span class="op">=</span> <span class="st">"Best"</span>, Level <span class="op">=</span> <span class="cn">NULL</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu">Coverage2Size</span><span class="op">(</span><span class="va">Ns</span>, <span class="va">SampleCoverage</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">Coverage</span><span class="op">(</span><span class="va">Ns</span>, Estimator <span class="op">=</span> <span class="st">"Best"</span>, Level <span class="op">=</span> <span class="cn">NULL</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">Coverage2Size</span><span class="op">(</span><span class="va">Ns</span>, <span class="va">SampleCoverage</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>Ns</dt>
 <dd><p>A numeric vector containing species abundances.</p></dd>
-<dt>Estimator</dt>
+
+  <dt>Estimator</dt>
 <dd><p>A string containing one of the possible estimators: <code>"ZhangHuang"</code>, <code>"Chao"</code>, <code>"Turing"</code>, <code>"Good"</code>. <code>"Best"</code> is for <code>"Chao"</code>.</p></dd>
-<dt>Level</dt>
+
+  <dt>Level</dt>
 <dd><p>The level of interpolation or extrapolation, i.e. an abundance.</p></dd>
-<dt>SampleCoverage</dt>
+
+  <dt>SampleCoverage</dt>
 <dd><p>The target sample coverage.</p></dd>
-<dt>CheckArguments</dt>
+
+  <dt>CheckArguments</dt>
 <dd><p>Logical; if <code>TRUE</code>, the function arguments are verified. Should be set to <code>FALSE</code> to save time when the arguments have been checked elsewhere.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -104,8 +109,10 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>"Coverage"</code> returns a named number equal to the calculated sample coverage. The name is that of the estimator used.
-<code>"Coverage2Size"</code> returns a number equal to the sample size corresponding to the chosen sample coverage.</p>
+    <p></p>
+<p><code>"Coverage"</code> returns a named number equal to the calculated sample coverage. The name is that of the estimator used.</p>
+<p></p>
+<p><code>"Coverage2Size"</code> returns a number equal to the sample size corresponding to the chosen sample coverage.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -118,12 +125,12 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Ns is the vector of abundances of the metacommunity</span></span>
-<span class="r-in"><span class="va">Ns</span> <span class="op">&lt;-</span> <span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span></span>
-<span class="r-in"><span class="co"># Calculate the sample coverage of the metacommunity</span></span>
-<span class="r-in"><span class="fu">Coverage</span><span class="op">(</span><span class="va">Ns</span><span class="op">)</span>    <span class="co"># Stored in Paracou618.SampleCoverage</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Ns is the vector of abundances of the metacommunity</span></span></span>
+<span class="r-in"><span><span class="va">Ns</span> <span class="op">&lt;-</span> <span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span></span></span>
+<span class="r-in"><span><span class="co"># Calculate the sample coverage of the metacommunity</span></span></span>
+<span class="r-in"><span><span class="fu">Coverage</span><span class="op">(</span><span class="va">Ns</span><span class="op">)</span>    <span class="co"># Stored in Paracou618.SampleCoverage</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ZhangHuang </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  0.9226675 </span>
 </code></pre></div>
@@ -140,7 +147,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-11</span>
       </span>
     </div>
 
@@ -77,74 +77,98 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">DivEst</span><span class="op">(</span>q <span class="op">=</span> <span class="fl">0</span>, <span class="va">MC</span>, Biased <span class="op">=</span> <span class="cn">TRUE</span>, Correction <span class="op">=</span> <span class="st">"Best"</span>, Tree <span class="op">=</span> <span class="cn">NULL</span>, 
-  Normalize <span class="op">=</span> <span class="cn">TRUE</span>, Z <span class="op">=</span> <span class="cn">NULL</span>, Simulations <span class="op">=</span> <span class="fl">100</span>, 
-  ShowProgressBar <span class="op">=</span> <span class="cn">TRUE</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu">is.DivEst</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co"># S3 method for DivEst</span>
-<span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, main <span class="op">=</span> <span class="cn">NULL</span>, Which <span class="op">=</span> <span class="st">"All"</span>,
-  Quantiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>, colValue <span class="op">=</span> <span class="st">"red"</span>, lwdValue <span class="op">=</span> <span class="fl">2</span>, ltyValue <span class="op">=</span> <span class="fl">2</span>,
-  colQuantiles <span class="op">=</span> <span class="st">"black"</span>, lwdQuantiles <span class="op">=</span> <span class="fl">1</span>, ltyQuantiles <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="co"># S3 method for DivEst</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span>, main <span class="op">=</span> <span class="cn">NULL</span>, Which <span class="op">=</span> <span class="st">"All"</span>,
-  labels <span class="op">=</span> <span class="cn">NULL</span>, font.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">11</span>, face<span class="op">=</span><span class="st">"plain"</span><span class="op">)</span>,
-          Quantiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>, colValue <span class="op">=</span> <span class="st">"red"</span>, 
-          colQuantiles <span class="op">=</span> <span class="st">"black"</span>, ltyQuantiles <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="co"># S3 method for DivEst</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">DivEst</span><span class="op">(</span>q <span class="op">=</span> <span class="fl">0</span>, <span class="va">MC</span>, Biased <span class="op">=</span> <span class="cn">TRUE</span>, Correction <span class="op">=</span> <span class="st">"Best"</span>, Tree <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>  Normalize <span class="op">=</span> <span class="cn">TRUE</span>, Z <span class="op">=</span> <span class="cn">NULL</span>, Simulations <span class="op">=</span> <span class="fl">100</span>, </span>
+<span>  ShowProgressBar <span class="op">=</span> <span class="cn">TRUE</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">is.DivEst</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for DivEst</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, main <span class="op">=</span> <span class="cn">NULL</span>, Which <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>  Quantiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>, colValue <span class="op">=</span> <span class="st">"red"</span>, lwdValue <span class="op">=</span> <span class="fl">2</span>, ltyValue <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  colQuantiles <span class="op">=</span> <span class="st">"black"</span>, lwdQuantiles <span class="op">=</span> <span class="fl">1</span>, ltyQuantiles <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for DivEst</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span>, main <span class="op">=</span> <span class="cn">NULL</span>, Which <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>  labels <span class="op">=</span> <span class="cn">NULL</span>, font.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">11</span>, face<span class="op">=</span><span class="st">"plain"</span><span class="op">)</span>,</span>
+<span>          Quantiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>, colValue <span class="op">=</span> <span class="st">"red"</span>, </span>
+<span>          colQuantiles <span class="op">=</span> <span class="st">"black"</span>, ltyQuantiles <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for DivEst</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>q</dt>
 <dd><p>A number: the order of diversity.</p></dd>
-<dt>MC</dt>
+
+  <dt>MC</dt>
 <dd><p>A <code><a href="MetaCommunity.html">MetaCommunity</a></code> object.</p></dd>
-<dt>Biased</dt>
+
+  <dt>Biased</dt>
 <dd><p>Logical; if <code>FALSE</code>, a bias correction is appplied.</p></dd>
-<dt>Correction</dt>
+
+  <dt>Correction</dt>
 <dd><p>A string containing one of the possible corrections. The correction must be accepted by <code><a href="DivPart.html">DivPart</a></code>. <code>"Best"</code> is the default value.</p></dd>
-<dt>Tree</dt>
+
+  <dt>Tree</dt>
 <dd><p>An object of class <code><a href="https://rdrr.io/r/stats/hclust.html" class="external-link">hclust</a></code>, <code>phylo</code>, <code><a href="https://rdrr.io/pkg/ade4/man/phylog.html" class="external-link">phylog</a></code> or <code><a href="PPtree.html">PPtree</a></code>. The tree must be ultrametric.</p></dd>
-<dt>Normalize</dt>
+
+  <dt>Normalize</dt>
 <dd><p>If <code>TRUE</code> (default), diversity is not affected by the height of the tree..<br>
   If <code>FALSE</code>, diversity is proportional to the height of the tree.</p></dd>
-<dt>Z</dt>
+
+  <dt>Z</dt>
 <dd><p>A relatedness matrix, <em>i.e.</em> a square matrix whose terms are all positive, strictly positive on the diagonal. Generally, the matrix is a similarity matrix, <em>i.e.</em> the diagonal terms equal 1 and other terms are between 0 and 1.</p></dd>
-<dt>Simulations</dt>
+
+  <dt>Simulations</dt>
 <dd><p>The number of simulations to build confidence intervals.</p></dd>
-<dt>ShowProgressBar</dt>
+
+  <dt>ShowProgressBar</dt>
 <dd><p>If <code>TRUE</code> (default), a progress bar is shown.</p></dd>
-<dt>CheckArguments</dt>
+
+  <dt>CheckArguments</dt>
 <dd><p>Logical; if <code>TRUE</code>, the function arguments are verified. Should be set to <code>FALSE</code> to save time when the arguments have been checked elsewhere.</p></dd>
-<dt>x</dt>
+
+  <dt>x</dt>
 <dd><p>An object to be tested or plotted.</p></dd>
-<dt>main</dt>
+
+  <dt>main</dt>
 <dd><p>The title of the plot.</p></dd>
-<dt>Which</dt>
+
+  <dt>Which</dt>
 <dd><p>May be <code>"Alpha"</code>, <code>"Beta"</code> or <code>"Gamma"</code> to respectively plot the metacommunity's alpha, beta or gamma diversity. If <code>"All"</code> (default), all three plots are shown.</p></dd>
-<dt>labels</dt>
+
+  <dt>labels</dt>
 <dd><p>Vector of labels to be added to multiple plots. <code>"auto"</code> is the same as <code>c("a", "b", "c", "d)"</code>.</p></dd>
-<dt>font.label</dt>
+
+  <dt>font.label</dt>
 <dd><p>A list of arguments to customize labels. See <code>ggarrange</code>.</p></dd>
-<dt>object</dt>
+
+  <dt>object</dt>
 <dd><p>A <code>MCdiversity</code> object to be summarized or plotted.</p></dd>
-<dt>Quantiles</dt>
+
+  <dt>Quantiles</dt>
 <dd><p>A vector containing the quantiles of interest.</p></dd>
-<dt>colValue</dt>
+
+  <dt>colValue</dt>
 <dd><p>The color of the line representing the real value on the plot.</p></dd>
-<dt>lwdValue</dt>
+
+  <dt>lwdValue</dt>
 <dd><p>The width of the line representing the real value on the plot.</p></dd>
-<dt>ltyValue</dt>
+
+  <dt>ltyValue</dt>
 <dd><p>The line type of the line representing the real value on the plot.</p></dd>
-<dt>colQuantiles</dt>
+
+  <dt>colQuantiles</dt>
 <dd><p>The color of the lines representing the quantiles on the plot.</p></dd>
-<dt>lwdQuantiles</dt>
+
+  <dt>lwdQuantiles</dt>
 <dd><p>The width of the lines representing the quantiles on the plot.</p></dd>
-<dt>ltyQuantiles</dt>
+
+  <dt>ltyQuantiles</dt>
 <dd><p>The line type of the lines representing the quantiles on the plot.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>Additional arguments to be passed to the generic methods.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -154,10 +178,14 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A <code>Divest</code> object which is a <code><a href="DivPart.html">DivPart</a></code> object with an additional item in its list:</p>
+    
+
+<p>A <code>Divest</code> object which is a <code><a href="DivPart.html">DivPart</a></code> object with an additional item in its list:</p>
 <dl><dt>SimulatedDiversity</dt>
 <dd><p>A matrix containing the simulated values of alpha, beta and gamma diversity.</p></dd>
-</dl><p><code>Divest</code> objects can be summarized and plotted.</p>
+
+
+  </dl><p><code>Divest</code> objects can be summarized and plotted.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -176,13 +204,13 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Estimate Shannon diversity.</span></span>
-<span class="r-in"><span class="va">Estimation</span> <span class="op">&lt;-</span> <span class="fu">DivEst</span><span class="op">(</span>q <span class="op">=</span> <span class="fl">1</span>, <span class="va">Paracou618.MC</span>, Biased <span class="op">=</span> <span class="cn">FALSE</span>, Correction <span class="op">=</span> <span class="st">"UnveilJ"</span>, </span>
-<span class="r-in">Simulations <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Estimate Shannon diversity.</span></span></span>
+<span class="r-in"><span><span class="va">Estimation</span> <span class="op">&lt;-</span> <span class="fu">DivEst</span><span class="op">(</span>q <span class="op">=</span> <span class="fl">1</span>, <span class="va">Paracou618.MC</span>, Biased <span class="op">=</span> <span class="cn">FALSE</span>, Correction <span class="op">=</span> <span class="st">"UnveilJ"</span>, </span></span>
+<span class="r-in"><span>Simulations <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Estimation</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Estimation</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NAs introduced by coercion</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NAs introduced by coercion</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NAs introduced by coercion</span>
@@ -190,7 +218,7 @@
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NAs introduced by coercion</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NAs introduced by coercion</span>
 <span class="r-plt img"><img src="DivEst-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">Estimation</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">Estimation</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Diversity partitioning of order 1 of MetaCommunity Paracou618.MC</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  with correction: UnveilJ</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Alpha diversity of communities: </span>
@@ -206,17 +234,17 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 138.1078 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Quantiles of simulations (alpha, beta and gamma diversity):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        0%        1%      2.5%        5%       10%       25%       50%       75% </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  90.58253  90.83297  91.20863  91.83474  92.32861  94.29321  96.87478  99.65053 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  91.77232  91.92903  92.16409  92.55586  92.79754  94.55001  97.30795  99.51258 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       90%       95%     97.5%       99%      100% </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 101.73709 102.36111 103.07545 103.50406 103.78980 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 101.63626 102.32497 102.67632 102.88713 103.02767 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       0%       1%     2.5%       5%      10%      25%      50%      75% </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1.377156 1.377222 1.377320 1.377483 1.378761 1.403860 1.419430 1.439966 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1.385836 1.386322 1.387051 1.388266 1.390649 1.403663 1.416951 1.444796 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      90%      95%    97.5%      99%     100% </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1.467971 1.478549 1.488731 1.494840 1.498913 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1.447769 1.450214 1.459973 1.465829 1.469733 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       0%       1%     2.5%       5%      10%      25%      50%      75% </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 129.9730 130.0242 130.1010 130.2290 130.9031 133.6503 139.8732 141.8658 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 129.7210 130.0610 130.5710 131.4209 133.9518 136.0005 138.0451 141.3811 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      90%      95%    97.5%      99%     100% </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 144.0250 145.1951 146.3578 147.0555 147.5206 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 143.1537 144.1907 144.5753 144.8061 144.9600 </span>
 </code></pre></div>
     </div>
   </div>
@@ -231,7 +259,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

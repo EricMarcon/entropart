@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-11</span>
       </span>
     </div>
 
@@ -77,91 +77,113 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">as.SpeciesDistribution</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span>
-<span class="co"># S3 method for data.frame</span>
-<span class="fu">as.SpeciesDistribution</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span>
-<span class="co"># S3 method for integer</span>
-<span class="fu">as.SpeciesDistribution</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span>
-<span class="co"># S3 method for numeric</span>
-<span class="fu">as.SpeciesDistribution</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span>
-<span class="co"># S3 method for SpeciesDistribution</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span>, Distribution <span class="op">=</span> <span class="cn">NULL</span>, 
-         ylog <span class="op">=</span> <span class="cn">TRUE</span>, main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="st">"Rank"</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, 
-         pch <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomPoint</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">shape</span>,
-         col <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomPoint</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">colour</span>,
-         cex <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomPoint</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">size</span><span class="op">)</span> 
-<span class="co"># S3 method for SpeciesDistribution</span>
-<span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, Distribution <span class="op">=</span> <span class="cn">NULL</span>, 
-         type <span class="op">=</span> <span class="st">"b"</span>, log <span class="op">=</span> <span class="st">"y"</span>, main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="st">"Rank"</span>, ylab <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-<span class="fu">is.SpeciesDistribution</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="fu">as.ProbaVector</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span>
-<span class="co"># S3 method for data.frame</span>
-<span class="fu">as.ProbaVector</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span>
-<span class="co"># S3 method for integer</span>
-<span class="fu">as.ProbaVector</span><span class="op">(</span><span class="va">x</span>, Correction <span class="op">=</span> <span class="st">"None"</span>, Unveiling <span class="op">=</span> <span class="st">"None"</span>, 
-          RCorrection <span class="op">=</span> <span class="st">"Jackknife"</span>, JackOver <span class="op">=</span> <span class="cn">FALSE</span>, JackMax <span class="op">=</span> <span class="fl">10</span>, 
-          CEstimator <span class="op">=</span> <span class="st">"ZhangHuang"</span>, q <span class="op">=</span> <span class="fl">0</span>, <span class="va">...</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co"># S3 method for numeric</span>
-<span class="fu">as.ProbaVector</span><span class="op">(</span><span class="va">x</span>, Correction <span class="op">=</span> <span class="st">"None"</span>, Unveiling <span class="op">=</span> <span class="st">"None"</span>, 
-          RCorrection <span class="op">=</span> <span class="st">"Jackknife"</span>, JackOver <span class="op">=</span> <span class="cn">FALSE</span>, JackMax <span class="op">=</span> <span class="fl">10</span>, 
-          CEstimator <span class="op">=</span> <span class="st">"ZhangHuang"</span>, q <span class="op">=</span> <span class="fl">0</span>, <span class="va">...</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu">is.ProbaVector</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="fu">as.AbdVector</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span>
-<span class="co"># S3 method for data.frame</span>
-<span class="fu">as.AbdVector</span><span class="op">(</span><span class="va">x</span>, Round <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span>
-<span class="co"># S3 method for integer</span>
-<span class="fu">as.AbdVector</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span>
-<span class="co"># S3 method for numeric</span>
-<span class="fu">as.AbdVector</span><span class="op">(</span><span class="va">x</span>, Round <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span>
-<span class="fu">is.AbdVector</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">as.SpeciesDistribution</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for data.frame</span></span>
+<span><span class="fu">as.SpeciesDistribution</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for integer</span></span>
+<span><span class="fu">as.SpeciesDistribution</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for numeric</span></span>
+<span><span class="fu">as.SpeciesDistribution</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for SpeciesDistribution</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span>, Distribution <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>         ylog <span class="op">=</span> <span class="cn">TRUE</span>, main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="st">"Rank"</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>         pch <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomPoint</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">shape</span>,</span>
+<span>         col <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomPoint</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">colour</span>,</span>
+<span>         cex <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomPoint</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">size</span><span class="op">)</span> </span>
+<span><span class="co"># S3 method for SpeciesDistribution</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, Distribution <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>         type <span class="op">=</span> <span class="st">"b"</span>, log <span class="op">=</span> <span class="st">"y"</span>, main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="st">"Rank"</span>, ylab <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="fu">is.SpeciesDistribution</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="fu">as.ProbaVector</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for data.frame</span></span>
+<span><span class="fu">as.ProbaVector</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for integer</span></span>
+<span><span class="fu">as.ProbaVector</span><span class="op">(</span><span class="va">x</span>, Correction <span class="op">=</span> <span class="st">"None"</span>, Unveiling <span class="op">=</span> <span class="st">"None"</span>, </span>
+<span>          RCorrection <span class="op">=</span> <span class="st">"Jackknife"</span>, JackOver <span class="op">=</span> <span class="cn">FALSE</span>, JackMax <span class="op">=</span> <span class="fl">10</span>, </span>
+<span>          CEstimator <span class="op">=</span> <span class="st">"ZhangHuang"</span>, q <span class="op">=</span> <span class="fl">0</span>, <span class="va">...</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for numeric</span></span>
+<span><span class="fu">as.ProbaVector</span><span class="op">(</span><span class="va">x</span>, Correction <span class="op">=</span> <span class="st">"None"</span>, Unveiling <span class="op">=</span> <span class="st">"None"</span>, </span>
+<span>          RCorrection <span class="op">=</span> <span class="st">"Jackknife"</span>, JackOver <span class="op">=</span> <span class="cn">FALSE</span>, JackMax <span class="op">=</span> <span class="fl">10</span>, </span>
+<span>          CEstimator <span class="op">=</span> <span class="st">"ZhangHuang"</span>, q <span class="op">=</span> <span class="fl">0</span>, <span class="va">...</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">is.ProbaVector</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="fu">as.AbdVector</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for data.frame</span></span>
+<span><span class="fu">as.AbdVector</span><span class="op">(</span><span class="va">x</span>, Round <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for integer</span></span>
+<span><span class="fu">as.AbdVector</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for numeric</span></span>
+<span><span class="fu">as.AbdVector</span><span class="op">(</span><span class="va">x</span>, Round <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">is.AbdVector</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>An object.</p></dd>
-<dt>object</dt>
+
+  <dt>object</dt>
 <dd><p>An object.</p></dd>
-<dt>Distribution</dt>
+
+  <dt>Distribution</dt>
 <dd><p>The distribution to fit on the plot. May be <code>"lnorm"</code> (log-normal), <code>"lseries"</code> (log-series), <code>"geom"</code> (geometric) or <code>"bstick"</code> (broken stick). If <code>NULL</code>, no distribution is fitted. See <code><a href="rCommunity.html">rCommunity</a></code> for the description of these distributions.</p></dd>
-<dt>Round</dt>
+
+  <dt>Round</dt>
 <dd><p>If <code>TRUE</code> (by default), values of <code>x</code> are set to integer to create an <code>AbdVector</code>. This is useful if original abundances are not integers (this is often the case for <code><a href="MetaCommunity.html">MetaCommunity</a></code> abundances which are the product of probabilities by the number of individuals) and integer values are required (for example to calculate the bootstrap confidence interval of a community profile).</p></dd>
-<dt>Correction</dt>
+
+  <dt>Correction</dt>
 <dd><p>A string containing one of the possible corrections to estimate a probability distribution: <code>"None"</code> (no correction, the default value), or <code>"Chao2013"</code>, <code>"Chao2015"</code>, <code>"ChaoShen"</code> to estimate the probability of the observed species in the asymptotic distribution.</p></dd>
-<dt>Unveiling</dt>
+
+  <dt>Unveiling</dt>
 <dd><p>A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species: <code>"None"</code> (default, no species is added), <code>"unif"</code> (uniform: all unobserved species have the same probability) or <code>"geom"</code> (geometric: the unobserved species distribution is geometric).</p></dd>
-<dt>RCorrection</dt>
+
+  <dt>RCorrection</dt>
 <dd><p>A string containing a correction recognized by <code><a href="Richness.html">Richness</a></code> to evaluate the total number of species. <code>"Jackknife"</code> is the default value. An alternative is <code>"Rarefy"</code> to estimate the number of species such that the entropy of order <code>q</code> of the asymptotic distribution rarefied to the observed sample size equals the actual entropy of the data.</p></dd>
-<dt>JackOver</dt>
+
+  <dt>JackOver</dt>
 <dd><p>If <code>TRUE</code>, retain the jackknife order immediately superior to the optimal one, usually resulting in the overestimation of the number of species. Default is <code>FALSE</code>. Ignored if <code>RCorrection</code> is not <code>"Jackknife"</code>.</p></dd>
-<dt>JackMax</dt>
+
+  <dt>JackMax</dt>
 <dd><p>The highest jackknife order allowed. Default is 10. Allowed values are between 1 and 9.</p></dd>
-<dt>CEstimator</dt>
+
+  <dt>CEstimator</dt>
 <dd><p>A string containing an estimator recognized by <code><a href="Coverage.html">Coverage</a></code> to evaluate the sample coverage. <code>"ZhangHuang"</code> is the default value.</p></dd>
-<dt>q</dt>
+
+  <dt>q</dt>
 <dd><p>A number: the order of entropy. Default is 0 for richness. Used only to estimate asymptotic probability distributions with <code>RCorrection</code> equal to <code>"Rarefy"</code>. Then, the number of unobserved species is fitted so that the entropy of order <code>q</code> of the asymptotic probability distribution at the observed sample size equals the actual entropy of the data.</p></dd>
-<dt>type</dt>
+
+ <dt>type</dt>
 <dd><p>The plot type, see <code><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></code>.</p></dd>
-<dt>log</dt>
+
+  <dt>log</dt>
 <dd><p>The axis to plot in log scale, <em>e.g.</em> <code>"xy"</code> for both axes. Default is <code>"y"</code>.</p></dd>
-<dt>main</dt>
+
+  <dt>main</dt>
 <dd><p>The main title of the plot. if <code>NULL</code> (by default), there is no title.</p></dd>
-<dt>xlab</dt>
+
+  <dt>xlab</dt>
 <dd><p>The X axis label, "Rank" by default.</p></dd>
-<dt>ylab</dt>
+
+  <dt>ylab</dt>
 <dd><p>The Y axis label. if <code>NULL</code> (by default), "Probability" or "Abundance" is chosen according to the object class.</p></dd>
-<dt>ylog</dt>
+
+  <dt>ylog</dt>
 <dd><p>Logical; if <code>TRUE</code> (by default), the Y-axis of the plot is log scaled.</p></dd>
-<dt>pch</dt>
+
+  <dt>pch</dt>
 <dd><p>The plotting characters. See <code><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></code>.</p></dd>
-<dt>col</dt>
+
+  <dt>col</dt>
 <dd><p>The color of the geom objects. See "Color Specification" in <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>.</p></dd>
-<dt>cex</dt>
+
+  <dt>cex</dt>
 <dd><p>The character expansion (size) of the points. See <code><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></code>.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>Additional arguments to be passed to <code><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></code>. Unused elsewhere.</p></dd>
-<dt>CheckArguments</dt>
+
+  <dt>CheckArguments</dt>
 <dd><p>Logical; if <code>TRUE</code>, the function arguments are verified. Should be set to <code>FALSE</code> to save time when the arguments have been checked elsewhere.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -194,12 +216,12 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Ns is the total number of trees per species</span></span>
-<span class="r-in"><span class="va">Ns</span> <span class="op">&lt;-</span> <span class="fu">as.AbdVector</span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Whittaker plot, poorly fitted by a log-normal distribution</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Ns</span>, Distribution <span class="op">=</span> <span class="st">"lnorm"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Ns is the total number of trees per species</span></span></span>
+<span class="r-in"><span><span class="va">Ns</span> <span class="op">&lt;-</span> <span class="fu">as.AbdVector</span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Whittaker plot, poorly fitted by a log-normal distribution</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Ns</span>, Distribution <span class="op">=</span> <span class="st">"lnorm"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="SpeciesDistribution-1.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $mu</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9519812</span>
@@ -207,8 +229,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $sigma</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.011383</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="co"># ggplot version</span></span>
-<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">Ns</span>, Distribution <span class="op">=</span> <span class="st">"lnorm"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># ggplot version</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">Ns</span>, Distribution <span class="op">=</span> <span class="st">"lnorm"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="SpeciesDistribution-2.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -224,7 +246,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-11</span>
       </span>
     </div>
 
@@ -77,33 +77,43 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">rCommunity</span><span class="op">(</span><span class="va">n</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">NorP</span><span class="op">)</span>, NorP <span class="op">=</span> <span class="fl">1</span>, BootstrapMethod <span class="op">=</span> <span class="st">"Chao2015"</span>, S <span class="op">=</span> <span class="fl">300</span>, 
-    Distribution <span class="op">=</span> <span class="st">"lnorm"</span>,  sd <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.1</span>, alpha <span class="op">=</span> <span class="fl">40</span>,
-    CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rCommunity</span><span class="op">(</span><span class="va">n</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">NorP</span><span class="op">)</span>, NorP <span class="op">=</span> <span class="fl">1</span>, BootstrapMethod <span class="op">=</span> <span class="st">"Chao2015"</span>, S <span class="op">=</span> <span class="fl">300</span>, </span>
+<span>    Distribution <span class="op">=</span> <span class="st">"lnorm"</span>,  sd <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.1</span>, alpha <span class="op">=</span> <span class="fl">40</span>,</span>
+<span>    CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>n</dt>
 <dd><p>The number of communities to draw.</p></dd>
-<dt>size</dt>
+
+  <dt>size</dt>
 <dd><p>The number of individuals to draw in each community.</p></dd>
-<dt>BootstrapMethod</dt>
+
+  <dt>BootstrapMethod</dt>
 <dd><p>The method used to obtain the probabilities to generate bootstrapped communities from observed abundances. If <code>"Marcon"</code>, the probabilities are simply the abundances divided by the total number of individuals (Marcon <em>et al.</em>, 2012). If <code>"Chao2013"</code> or <code>"Chao2015"</code> (by default), a more sophisticated approach is used (see <code><a href="SpeciesDistribution.html">as.ProbaVector</a></code>) following Chao <em>et al.</em> (2013) or Chao <em>et al.</em> (2015).</p></dd>
-<dt>NorP</dt>
+
+  <dt>NorP</dt>
 <dd><p>A numeric vector or a two-column matrix. Contains either abundances or probabilities. Two-column matrices should contain the observed abundances (or probabilities) in the first column and the expected ones in the second column, to allow using beta diversity functions.</p></dd>
-<dt>S</dt>
+
+  <dt>S</dt>
 <dd><p>The number of species.</p></dd>
-<dt>Distribution</dt>
+
+  <dt>Distribution</dt>
 <dd><p>The distribution of species frequencies. May be <code>"lnorm"</code> (log-normal), <code>"lseries"</code> (log-series), <code>"geom"</code> (geometric) or <code>"bstick"</code> (broken stick).</p></dd>
-<dt>sd</dt>
+
+  <dt>sd</dt>
 <dd><p>The simulated distribution standard deviation. For the log-normal distribution, this is the standard deviation on the log scale.</p></dd>
-<dt>prob</dt>
+
+  <dt>prob</dt>
 <dd><p>The proportion of ressources taken by successive species.</p></dd>
-<dt>alpha</dt>
+
+  <dt>alpha</dt>
 <dd><p>Fisher's alpha.</p></dd>
-<dt>CheckArguments</dt>
+
+  <dt>CheckArguments</dt>
 <dd><p>Logical; if <code>TRUE</code>, the function arguments are verified. Should be set to <code>FALSE</code> to save time when the arguments have been checked elsewhere.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -114,7 +124,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A vector of species abundances (<code><a href="SpeciesDistribution.html">AbdVector</a></code>) if a single community has been drawn, or a <code><a href="MetaCommunity.html">MetaCommunity</a></code> containing simulated communities.</p>
+    
+
+<p>A vector of species abundances (<code><a href="SpeciesDistribution.html">AbdVector</a></code>) if a single community has been drawn, or a <code><a href="MetaCommunity.html">MetaCommunity</a></code> containing simulated communities.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -134,12 +146,12 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Generate communities made of 100000 individuals among 300 species and fit them</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="kw">for</span> <span class="op">(</span><span class="va">d</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"lnorm"</span>, <span class="st">"lseries"</span>, <span class="st">"geom"</span>, <span class="st">"bstick"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>  </span>
-<span class="r-in"><span class="fu">rCommunity</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, size <span class="op">=</span> <span class="fl">1E5</span>, S <span class="op">=</span> <span class="fl">300</span>, Distribution <span class="op">=</span> <span class="va">d</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">AbdVec</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">AbdVec</span>, Distribution <span class="op">=</span> <span class="va">d</span>, main <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Generate communities made of 100000 individuals among 300 species and fit them</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw">for</span> <span class="op">(</span><span class="va">d</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"lnorm"</span>, <span class="st">"lseries"</span>, <span class="st">"geom"</span>, <span class="st">"bstick"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>  </span></span>
+<span class="r-in"><span><span class="fu">rCommunity</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, size <span class="op">=</span> <span class="fl">1E5</span>, S <span class="op">=</span> <span class="fl">300</span>, Distribution <span class="op">=</span> <span class="va">d</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">AbdVec</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">AbdVec</span>, Distribution <span class="op">=</span> <span class="va">d</span>, main <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-plt img"><img src="rCommunity-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -155,7 +167,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>
