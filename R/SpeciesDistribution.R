@@ -284,7 +284,7 @@ function (x, Round = TRUE, ...)
 as.AbdVector.numeric <-
 function (x, Round = TRUE, ...) 
 {
-  # Try to save the names before applyinf as.vector
+  # Try to save the names before applying as.vector
   spNames <- names(x)
 
   if (Round) {
