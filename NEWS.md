@@ -1,3 +1,10 @@
+# entropart 1.6-11.9001
+
+## Bug correction
+
+- Corrected `Coverage()` documentation.
+
+
 # entropart 1.6-11
 
 ## Bug correction
