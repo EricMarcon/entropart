@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-9.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-11.9001</span>
       </span>
     </div>
 
@@ -77,39 +77,48 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">is.PhyloValue</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co"># S3 method for PhyloValue</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, xlab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">italic</a></span><span class="op">(</span><span class="st">"T"</span><span class="op">)</span><span class="op">)</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, main <span class="op">=</span> <span class="cn">NULL</span>,
-          col <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomLine</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">colour</span>,
-          lty <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomLine</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">linetype</span>,
-          lwd <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomLine</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">size</span>,
-          <span class="va">...</span><span class="op">)</span>
-<span class="co"># S3 method for PhyloValue</span>
-<span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, xlab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">italic</a></span><span class="op">(</span><span class="st">"T"</span><span class="op">)</span><span class="op">)</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, main <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span>
-<span class="co"># S3 method for PhyloValue</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">is.PhyloValue</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for PhyloValue</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, xlab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu">italic</span><span class="op">(</span><span class="st">"T"</span><span class="op">)</span><span class="op">)</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, main <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>          col <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomLine</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">colour</span>,</span>
+<span>          lty <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomLine</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">linetype</span>,</span>
+<span>          lwd <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomLine</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">size</span>,</span>
+<span>          <span class="va">...</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for PhyloValue</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, xlab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu">italic</span><span class="op">(</span><span class="st">"T"</span><span class="op">)</span><span class="op">)</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, main <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for PhyloValue</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>An object of class <code>PhyloValue</code>, including <code><a href="PhyloDiversity.html">PhyloDiversity</a></code> and <code><a href="PhyloEntropy.html">PhyloEntropy</a></code> objects.</p></dd>
-<dt>xlab</dt>
+
+  <dt>xlab</dt>
 <dd><p>The X axis label, "T" by default for Time.</p></dd>
-<dt>ylab</dt>
+
+  <dt>ylab</dt>
 <dd><p>The Y axis label. if <code>NULL</code> (by default), "Entropy" or "Diversity" or nothing is chosen according to the object class.</p></dd>
-<dt>main</dt>
+
+  <dt>main</dt>
 <dd><p>The main title of the plot. if <code>NULL</code> (by default), a default value is used.</p></dd>
-<dt>object</dt>
+
+  <dt>object</dt>
 <dd><p>A <code>PhyloValue</code> object to be summarized.</p></dd>
-<dt>col</dt>
+
+  <dt>col</dt>
 <dd><p>The color of the geom objects. See "Color Specification" in <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>.</p></dd>
-<dt>lty</dt>
+
+  <dt>lty</dt>
 <dd><p>The type of the lines. See <code><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></code>.</p></dd>
-<dt>lwd</dt>
+
+  <dt>lwd</dt>
 <dd><p>The width of the lines. See <code><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></code>.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>Additional arguments to be passed to <code><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -118,13 +127,13 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest</span></span>
-<span class="r-in"><span class="co">#      and their taxonomy)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Calculate richness along the tree</span></span>
-<span class="r-in"><span class="co"># (Cuts are 1=species, 2=genus, 3=family)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="PhyloApply.html">PhyloApply</a></span><span class="op">(</span><span class="va">Paracou618.Taxonomy</span>, FUN<span class="op">=</span><span class="va">Richness</span>,</span>
-<span class="r-in">  NorP<span class="op">=</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span>, Normalize<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest</span></span></span>
+<span class="r-in"><span><span class="co">#      and their taxonomy)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Calculate richness along the tree</span></span></span>
+<span class="r-in"><span><span class="co"># (Cuts are 1=species, 2=genus, 3=family)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="PhyloApply.html">PhyloApply</a></span><span class="op">(</span><span class="va">Paracou618.Taxonomy</span>, FUN<span class="op">=</span><span class="va">Richness</span>,</span></span>
+<span class="r-in"><span>  NorP<span class="op">=</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span>, Normalize<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Richness applied to Paracou618.MC$Ns along the tree: Paracou618.Taxonomy</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Results are normalized</span>
@@ -134,7 +143,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Values along the tree are:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1   2   3 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 359 156  58 </span>
-<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="PhyloValue-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -150,7 +159,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

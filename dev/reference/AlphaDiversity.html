@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-9.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-11.9001</span>
       </span>
     </div>
 
@@ -77,27 +77,34 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">AlphaDiversity</span><span class="op">(</span><span class="va">MC</span>, q <span class="op">=</span> <span class="fl">1</span>, Correction <span class="op">=</span> <span class="st">"Best"</span>, Tree <span class="op">=</span> <span class="cn">NULL</span>, Normalize <span class="op">=</span> <span class="cn">TRUE</span>, 
-  Z <span class="op">=</span> <span class="cn">NULL</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">AlphaDiversity</span><span class="op">(</span><span class="va">MC</span>, q <span class="op">=</span> <span class="fl">1</span>, Correction <span class="op">=</span> <span class="st">"Best"</span>, Tree <span class="op">=</span> <span class="cn">NULL</span>, Normalize <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>  Z <span class="op">=</span> <span class="cn">NULL</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>MC</dt>
 <dd><p>A <code><a href="MetaCommunity.html">MetaCommunity</a></code> object.</p></dd>
-<dt>q</dt>
+
+  <dt>q</dt>
 <dd><p>A number: the order of diversity. Default is 1 for Shannon diversity.</p></dd>
-<dt>Correction</dt>
+
+  <dt>Correction</dt>
 <dd><p>A string containing one of the possible corrections accepted by <code><a href="AlphaEntropy.html">AlphaEntropy</a></code> or <code>"None"</code> or <code>"Best"</code>, the default value.</p></dd>
-<dt>Tree</dt>
+
+  <dt>Tree</dt>
 <dd><p>An object of class <code><a href="https://rdrr.io/r/stats/hclust.html" class="external-link">hclust</a></code>, <code>phylo</code>, <code><a href="https://rdrr.io/pkg/ade4/man/phylog.html" class="external-link">phylog</a></code> or <code><a href="PPtree.html">PPtree</a></code>. The tree must be ultrametric.</p></dd>
-<dt>Normalize</dt>
+
+  <dt>Normalize</dt>
 <dd><p>If <code>TRUE</code> (default), diversity is not affected by the height of the tree.<br>
   If <code>FALSE</code>, diversity is proportional to the height of the tree.</p></dd>
-<dt>Z</dt>
+
+  <dt>Z</dt>
 <dd><p>A relatedness matrix, <em>i.e.</em> a square matrix whose terms are all positive, strictly positive on the diagonal. Generally, the matrix is a similarity matrix, <em>i.e.</em> the diagonal terms equal 1 and other terms are between 0 and 1.</p></dd>
-<dt>CheckArguments</dt>
+
+  <dt>CheckArguments</dt>
 <dd><p>Logical; if <code>TRUE</code>, the function arguments are verified. Should be set to <code>FALSE</code> to save time when the arguments have been checked elsewhere.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -105,7 +112,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>An <code><a href="MCdiversity.html">MCdiversity</a></code> object containing diversity values of each community and of the metacommunity.</p>
+    
+
+<p>An <code><a href="MCdiversity.html">MCdiversity</a></code> object containing diversity values of each community and of the metacommunity.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -120,10 +129,10 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Calculate Simpson alpha diversity</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu">AlphaDiversity</span><span class="op">(</span><span class="va">Paracou618.MC</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Calculate Simpson alpha diversity</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu">AlphaDiversity</span><span class="op">(</span><span class="va">Paracou618.MC</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Neutral alpha diversity of order 2 of metaCommunity Paracou618.MC </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> with correction: Best </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -132,8 +141,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 38.78158 53.97842 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Average diversity of the communities: </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 44.09399</span>
-<span class="r-in"><span class="co"># Compare without correction</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu">AlphaDiversity</span><span class="op">(</span><span class="va">Paracou618.MC</span>, <span class="fl">2</span>, Correction <span class="op">=</span> <span class="st">"None"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># Compare without correction</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu">AlphaDiversity</span><span class="op">(</span><span class="va">Paracou618.MC</span>, <span class="fl">2</span>, Correction <span class="op">=</span> <span class="st">"None"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Neutral alpha diversity of order 2 of metaCommunity Paracou618.MC </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> with correction: None </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -142,8 +151,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 36.65653 48.67684 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Average diversity of the communities: </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 40.98793</span>
-<span class="r-in"><span class="co"># Estimate phylogenetic Simpson alpha diversity</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu">AlphaDiversity</span><span class="op">(</span><span class="va">Paracou618.MC</span>, <span class="fl">2</span>, Tree <span class="op">=</span> <span class="va">Paracou618.Taxonomy</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">e</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># Estimate phylogenetic Simpson alpha diversity</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu">AlphaDiversity</span><span class="op">(</span><span class="va">Paracou618.MC</span>, <span class="fl">2</span>, Tree <span class="op">=</span> <span class="va">Paracou618.Taxonomy</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">e</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> HCDT alpha diversity of order 2 of metaCommunity Paracou618.MC with correction: </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Best </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -157,7 +166,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 17.16423 25.49632 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Average diversity of the communities: </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 19.95488</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">e</span><span class="op">)</span>  </span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">e</span><span class="op">)</span>  </span></span>
 <span class="r-plt img"><img src="AlphaDiversity-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -173,7 +182,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

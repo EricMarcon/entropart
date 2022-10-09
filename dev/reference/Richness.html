@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-9.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-11.9001</span>
       </span>
     </div>
 
@@ -77,56 +77,69 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">Richness</span><span class="op">(</span><span class="va">NorP</span>, <span class="va">...</span><span class="op">)</span>
-<span class="fu">bcRichness</span><span class="op">(</span><span class="va">Ns</span>, Correction <span class="op">=</span> <span class="st">"Best"</span>, Alpha <span class="op">=</span> <span class="fl">0.05</span>, JackOver <span class="op">=</span> <span class="cn">FALSE</span>, JackMax <span class="op">=</span> <span class="fl">10</span>, 
-              CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co"># S3 method for ProbaVector</span>
-<span class="fu">Richness</span><span class="op">(</span><span class="va">NorP</span>, <span class="va">...</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span>, Ps <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-<span class="co"># S3 method for AbdVector</span>
-<span class="fu">Richness</span><span class="op">(</span><span class="va">NorP</span>, Correction <span class="op">=</span> <span class="st">"Best"</span>, Alpha <span class="op">=</span> <span class="fl">0.05</span>, 
-  JackOver <span class="op">=</span> <span class="cn">FALSE</span>, JackMax <span class="op">=</span> <span class="fl">10</span>, 
-  Level <span class="op">=</span> <span class="cn">NULL</span>, PCorrection <span class="op">=</span> <span class="st">"Chao2015"</span>, Unveiling <span class="op">=</span> <span class="st">"geom"</span>, RCorrection <span class="op">=</span> <span class="st">"Rarefy"</span>,
-  <span class="va">...</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span>, Ns <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-<span class="co"># S3 method for integer</span>
-<span class="fu">Richness</span><span class="op">(</span><span class="va">NorP</span>, Correction <span class="op">=</span> <span class="st">"Best"</span>, Alpha <span class="op">=</span> <span class="fl">0.05</span>, 
-  JackOver <span class="op">=</span> <span class="cn">FALSE</span>, JackMax <span class="op">=</span> <span class="fl">10</span>, 
-  Level <span class="op">=</span> <span class="cn">NULL</span>, PCorrection <span class="op">=</span> <span class="st">"Chao2015"</span>, Unveiling <span class="op">=</span> <span class="st">"geom"</span>, RCorrection <span class="op">=</span> <span class="st">"Rarefy"</span>,
-  <span class="va">...</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span>, Ns <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-<span class="co"># S3 method for numeric</span>
-<span class="fu">Richness</span><span class="op">(</span><span class="va">NorP</span>, Correction <span class="op">=</span> <span class="st">"Best"</span>, Alpha <span class="op">=</span> <span class="fl">0.05</span>, 
-  JackOver <span class="op">=</span> <span class="cn">FALSE</span>, JackMax <span class="op">=</span> <span class="fl">10</span>, 
-  Level <span class="op">=</span> <span class="cn">NULL</span>, PCorrection <span class="op">=</span> <span class="st">"Chao2015"</span>, Unveiling <span class="op">=</span> <span class="st">"geom"</span>, RCorrection <span class="op">=</span> <span class="st">"Rarefy"</span>,
-  <span class="va">...</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span>, Ps <span class="op">=</span> <span class="cn">NULL</span>, Ns <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">Richness</span><span class="op">(</span><span class="va">NorP</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">bcRichness</span><span class="op">(</span><span class="va">Ns</span>, Correction <span class="op">=</span> <span class="st">"Best"</span>, Alpha <span class="op">=</span> <span class="fl">0.05</span>, JackOver <span class="op">=</span> <span class="cn">FALSE</span>, JackMax <span class="op">=</span> <span class="fl">10</span>, </span>
+<span>              CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for ProbaVector</span></span>
+<span><span class="fu">Richness</span><span class="op">(</span><span class="va">NorP</span>, <span class="va">...</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span>, Ps <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for AbdVector</span></span>
+<span><span class="fu">Richness</span><span class="op">(</span><span class="va">NorP</span>, Correction <span class="op">=</span> <span class="st">"Best"</span>, Alpha <span class="op">=</span> <span class="fl">0.05</span>, </span>
+<span>  JackOver <span class="op">=</span> <span class="cn">FALSE</span>, JackMax <span class="op">=</span> <span class="fl">10</span>, </span>
+<span>  Level <span class="op">=</span> <span class="cn">NULL</span>, PCorrection <span class="op">=</span> <span class="st">"Chao2015"</span>, Unveiling <span class="op">=</span> <span class="st">"geom"</span>, RCorrection <span class="op">=</span> <span class="st">"Rarefy"</span>,</span>
+<span>  <span class="va">...</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span>, Ns <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for integer</span></span>
+<span><span class="fu">Richness</span><span class="op">(</span><span class="va">NorP</span>, Correction <span class="op">=</span> <span class="st">"Best"</span>, Alpha <span class="op">=</span> <span class="fl">0.05</span>, </span>
+<span>  JackOver <span class="op">=</span> <span class="cn">FALSE</span>, JackMax <span class="op">=</span> <span class="fl">10</span>, </span>
+<span>  Level <span class="op">=</span> <span class="cn">NULL</span>, PCorrection <span class="op">=</span> <span class="st">"Chao2015"</span>, Unveiling <span class="op">=</span> <span class="st">"geom"</span>, RCorrection <span class="op">=</span> <span class="st">"Rarefy"</span>,</span>
+<span>  <span class="va">...</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span>, Ns <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for numeric</span></span>
+<span><span class="fu">Richness</span><span class="op">(</span><span class="va">NorP</span>, Correction <span class="op">=</span> <span class="st">"Best"</span>, Alpha <span class="op">=</span> <span class="fl">0.05</span>, </span>
+<span>  JackOver <span class="op">=</span> <span class="cn">FALSE</span>, JackMax <span class="op">=</span> <span class="fl">10</span>, </span>
+<span>  Level <span class="op">=</span> <span class="cn">NULL</span>, PCorrection <span class="op">=</span> <span class="st">"Chao2015"</span>, Unveiling <span class="op">=</span> <span class="st">"geom"</span>, RCorrection <span class="op">=</span> <span class="st">"Rarefy"</span>,</span>
+<span>  <span class="va">...</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span>, Ps <span class="op">=</span> <span class="cn">NULL</span>, Ns <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>Ps</dt>
 <dd><p>A probability vector, summing to 1.</p></dd>
-<dt>Ns</dt>
+
+  <dt>Ns</dt>
 <dd><p>A numeric vector containing species abundances.</p></dd>
-<dt>NorP</dt>
+
+  <dt>NorP</dt>
 <dd><p>A numeric vector, an integer vector, an abundance vector (<code><a href="SpeciesDistribution.html">AbdVector</a></code>) or a probability vector (<code><a href="SpeciesDistribution.html">ProbaVector</a></code>). Contains either abundances or probabilities.</p></dd>
-<dt>Correction</dt>
+
+  <dt>Correction</dt>
 <dd><p>A string containing one of the possible corrections: <code>"None"</code> (no correction), <code>"Jackknife"</code>, <code>"iChao1"</code>, or <code>"Chao1"</code>. <code>"Best"</code>, the default value, is currently <code>"Jackknife"</code>. Ignored by richness interpolation, and by extrapolation if <code>PCorrection</code> is not "None".</p></dd>
-<dt>Alpha</dt>
+
+  <dt>Alpha</dt>
 <dd><p>The risk level, 5% by default, used to optimize the jackknife order.</p></dd>
-<dt>JackOver</dt>
+
+  <dt>JackOver</dt>
 <dd><p>If <code>TRUE</code>, retain the jackknife order immediately superior to the optimal one, usually resulting in the overestimation of the number of species. Default is <code>FALSE</code>.</p></dd>
-<dt>JackMax</dt>
-<dd><p>The highest jackknife order allowed. Default is 10. Allowed values are between 1 and 9.</p></dd>
-<dt>Level</dt>
+
+  <dt>JackMax</dt>
+<dd><p>The highest jackknife order allowed. Default is 10. Allowed values are between 1 and 10.</p></dd>
+
+  <dt>Level</dt>
 <dd><p>The level of interpolation or extrapolation. It may be an a chosen sample size (an integer) or a sample coverage (a number between 0 and 1). Richness extrapolation require its asymptotic estimation depending on the choice of <code>Correction</code>.</p></dd>
-<dt>PCorrection</dt>
+
+  <dt>PCorrection</dt>
 <dd><p>A string containing one of the possible corrections to estimate a probability distribution in <code><a href="SpeciesDistribution.html">as.ProbaVector</a></code>: <code>"Chao2015"</code> is the default value. If "None", the asymptotic distribution is not estimated and extrapolation relies only on the asymptotic estimator of richness. Used only for extrapolation.</p></dd>
-<dt>Unveiling</dt>
+
+  <dt>Unveiling</dt>
 <dd><p>A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in <code><a href="SpeciesDistribution.html">as.ProbaVector</a></code>: <code>"geom"</code> (the unobserved species distribution is geometric) is the default value. Used only for extrapolation.</p></dd>
-<dt>RCorrection</dt>
+
+  <dt>RCorrection</dt>
 <dd><p>A string containing a correction recognized by <code>Richness</code> to evaluate the total number of species in <code><a href="SpeciesDistribution.html">as.ProbaVector</a></code>. <code>"Rarefy"</code> is the default value to estimate the number of species such that the entropy of the asymptotic distribution rarefied to the observed sample size equals the observed entropy of the data. Used only for extrapolation.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>Additional arguments. Unused.</p></dd>
-<dt>CheckArguments</dt>
+
+  <dt>CheckArguments</dt>
 <dd><p>Logical; if <code>TRUE</code>, the function arguments are verified. Should be set to <code>FALSE</code> to save time when the arguments have been checked elsewhere.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -139,7 +152,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A named number equal to the estimated number of species.
+    
+
+<p>A named number equal to the estimated number of species.
   The name is the <code>Correction</code>, except for "SAC" (Species Accumulation Curve) for interpolation.</p>
     </div>
     <div id="references">
@@ -153,31 +168,31 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Ns is the total number of trees per species</span></span>
-<span class="r-in"><span class="va">Ns</span> <span class="op">&lt;-</span> <span class="fu"><a href="SpeciesDistribution.html">as.AbdVector</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Species probabilities</span></span>
-<span class="r-in"><span class="va">Ps</span> <span class="op">&lt;-</span> <span class="fu"><a href="SpeciesDistribution.html">as.ProbaVector</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Whittaker plot</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Ns</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Ns is the total number of trees per species</span></span></span>
+<span class="r-in"><span><span class="va">Ns</span> <span class="op">&lt;-</span> <span class="fu"><a href="SpeciesDistribution.html">as.AbdVector</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Species probabilities</span></span></span>
+<span class="r-in"><span><span class="va">Ps</span> <span class="op">&lt;-</span> <span class="fu"><a href="SpeciesDistribution.html">as.ProbaVector</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Whittaker plot</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Ns</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="Richness-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Number of observed species</span></span>
-<span class="r-in"><span class="fu">Richness</span><span class="op">(</span><span class="va">Ps</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Number of observed species</span></span></span>
+<span class="r-in"><span><span class="fu">Richness</span><span class="op">(</span><span class="va">Ps</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> None </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  229 </span>
-<span class="r-in"><span class="co"># Estimate the actual number of species</span></span>
-<span class="r-in"><span class="fu">bcRichness</span><span class="op">(</span><span class="va">Ns</span>, Correction <span class="op">=</span> <span class="st">"Chao1"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># Estimate the actual number of species</span></span></span>
+<span class="r-in"><span><span class="fu">bcRichness</span><span class="op">(</span><span class="va">Ns</span>, Correction <span class="op">=</span> <span class="st">"Chao1"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Chao1 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 314.9348 </span>
-<span class="r-in"><span class="fu">bcRichness</span><span class="op">(</span><span class="va">Ns</span>, Correction <span class="op">=</span> <span class="st">"iChao1"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">bcRichness</span><span class="op">(</span><span class="va">Ns</span>, Correction <span class="op">=</span> <span class="st">"iChao1"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   iChao1 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 333.7466 </span>
-<span class="r-in"><span class="fu">bcRichness</span><span class="op">(</span><span class="va">Ns</span>, Correction <span class="op">=</span> <span class="st">"Jackknife"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">bcRichness</span><span class="op">(</span><span class="va">Ns</span>, Correction <span class="op">=</span> <span class="st">"Jackknife"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Jackknife 2 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         359 </span>
-<span class="r-in"><span class="fu">bcRichness</span><span class="op">(</span><span class="va">Ns</span>, Correction <span class="op">=</span> <span class="st">"Jackknife"</span>, JackOver<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">bcRichness</span><span class="op">(</span><span class="va">Ns</span>, Correction <span class="op">=</span> <span class="st">"Jackknife"</span>, JackOver<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Jackknife 3 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         381 </span>
 </code></pre></div>
@@ -194,7 +209,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

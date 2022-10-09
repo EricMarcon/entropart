@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-9.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-11.9001</span>
       </span>
     </div>
 
@@ -77,15 +77,17 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">Optimal.Similarity</span><span class="op">(</span><span class="va">Distance</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">Optimal.Similarity</span><span class="op">(</span><span class="va">Distance</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>Distance</dt>
 <dd><p>A distance matrix, <em>i.e.</em> a square matrix with zeros on its diagonal or a <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist</a></code> object.</p></dd>
+
 <dt>CheckArguments</dt>
 <dd><p>Logical; if <code>TRUE</code>, the function arguments are verified. Should be set to <code>FALSE</code> to save time when the arguments have been checked elsewhere.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -93,11 +95,15 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list:</p>
+    
+
+<p>A list:</p>
 <dl><dt>u</dt>
 <dd><p>The optimal scale \(u\).</p></dd>
-<dt>Matrix</dt>
+
+  <dt>Matrix</dt>
 <dd><p>The optimal similarity matrix <code>Z</code>.</p></dd>
+
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -110,15 +116,15 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Prepare the similarity matrix. The square root of Paracou618.dist is euclidean.</span></span>
-<span class="r-in"><span class="va">optimal</span> <span class="op">&lt;-</span> <span class="fu">Optimal.Similarity</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">Paracou618.dist</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Optimal scale</span></span>
-<span class="r-in"><span class="va">optimal</span><span class="op">$</span><span class="va">u</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Prepare the similarity matrix. The square root of Paracou618.dist is euclidean.</span></span></span>
+<span class="r-in"><span><span class="va">optimal</span> <span class="op">&lt;-</span> <span class="fu">Optimal.Similarity</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">Paracou618.dist</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Optimal scale</span></span></span>
+<span class="r-in"><span><span class="va">optimal</span><span class="op">$</span><span class="va">u</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.348622</span>
-<span class="r-in"><span class="co"># Calculate diversity of order 2</span></span>
-<span class="r-in"><span class="fu"><a href="Dqz.html">bcDqz</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span>, <span class="fl">2</span>, <span class="va">optimal</span><span class="op">$</span><span class="va">Matrix</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># Calculate diversity of order 2</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="Dqz.html">bcDqz</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span>, <span class="fl">2</span>, <span class="va">optimal</span><span class="op">$</span><span class="va">Matrix</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Best </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1.558321 </span>
 </code></pre></div>
@@ -135,7 +141,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

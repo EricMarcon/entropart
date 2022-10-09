@@ -18,7 +18,7 @@ Estimation-bias corrections are available."><meta property="og:image" content="h
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-9.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-11.9001</span>
       </span>
     </div>
 
@@ -90,9 +90,10 @@ Estimation-bias corrections are available."><meta property="og:image" content="h
 <p>The simplest way to import data is to organize it into two text files. The first file should contain abundance data: the first column named <code>Species</code> for species names, and a column for each community.</p>
 <p>The second file should contain the community weights in two columns. The first one, named <code>Communities</code> should contain their names and the second one, named <code>Weights</code>, their weights.</p>  
 <p>Files can be read and data imported by code such as:</p>  
-<div class="sourceCode"><pre><code><span class="va">Abundances</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span>file<span class="op">=</span><span class="st">"Abundances.csv"</span>, row.names <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="va">Weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span>file<span class="op">=</span><span class="st">"Weights.csv"</span><span class="op">)</span>
-<span class="va">MC</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MetaCommunity.html">MetaCommunity</a></span><span class="op">(</span><span class="va">Abundances</span>, <span class="va">Weights</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode"><pre><code><span></span>
+<span><span class="va">Abundances</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span>file<span class="op">=</span><span class="st">"Abundances.csv"</span>, row.names <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">Weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span>file<span class="op">=</span><span class="st">"Weights.csv"</span><span class="op">)</span></span>
+<span><span class="va">MC</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MetaCommunity.html">MetaCommunity</a></span><span class="op">(</span><span class="va">Abundances</span>, <span class="va">Weights</span><span class="op">)</span></span></code></pre></div>
 
 <p>The last line of the code calls the <code><a href="MetaCommunity.html">MetaCommunity</a></code> function to create an object that will be used by all metacommunity functions, such as <code><a href="DivPart.html">DivPart</a></code> (to partition diversity), <code><a href="DivEst.html">DivEst</a></code> (to partition diversity and calculate confidence interval of its estimation) or <code><a href="DivProfile.html">DivProfile</a></code> (to compute diversity profiles).</p>  
 <p>A full documentation is available in the vignette. Type: <code><a href="../articles/entropart.html">vignette("entropart")</a></code>. A quick introuction is in <code>vignette("introduction", "entropart")</code>.</p>
@@ -125,7 +126,7 @@ Estimation-bias corrections are available."><meta property="og:image" content="h
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

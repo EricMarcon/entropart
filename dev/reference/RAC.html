@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-9.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-11.9001</span>
       </span>
     </div>
 
@@ -77,18 +77,20 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">RAClnorm</span><span class="op">(</span><span class="va">Ns</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu">RACgeom</span><span class="op">(</span><span class="va">Ns</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu">RAClseries</span><span class="op">(</span><span class="va">Ns</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu">RACbstick</span><span class="op">(</span><span class="va">Ns</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">RAClnorm</span><span class="op">(</span><span class="va">Ns</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">RACgeom</span><span class="op">(</span><span class="va">Ns</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">RAClseries</span><span class="op">(</span><span class="va">Ns</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">RACbstick</span><span class="op">(</span><span class="va">Ns</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>Ns</dt>
 <dd><p>A numeric vector containing species abundances.</p></dd>
-<dt>CheckArguments</dt>
+
+  <dt>CheckArguments</dt>
 <dd><p>Logical; if <code>TRUE</code>, the function arguments are verified. Should be set to <code>FALSE</code> to save time when the arguments have been checked elsewhere.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -101,21 +103,30 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list (the parameters of distributions are returned only if the distribution has been fit):</p>
+    
+
+<p>A list (the parameters of distributions are returned only if the distribution has been fit):</p>
 <dl><dt>Rank</dt>
 <dd><p>A numeric vector. The ranks of species in the fitted RAC.</p></dd>
-<dt>Abundance</dt>
+
+  <dt>Abundance</dt>
 <dd><p>The abundance of species in the fitted RAC.</p></dd>
-<dt>mu</dt>
+
+  <dt>mu</dt>
 <dd><p>The expectation of the log-normal distribution</p></dd>
-<dt>sigma</dt>
+
+  <dt>sigma</dt>
 <dd><p>The standard deviation of the log-normal distribution</p></dd>
-<dt>alpha</dt>
+
+  <dt>alpha</dt>
 <dd><p>Fisher's alpha in the log-series distribution</p></dd>
-<dt>prob</dt>
+
+  <dt>prob</dt>
 <dd><p>The proportion of ressources taken by successive species in the geometric distribution</p></dd>
-<dt>max</dt>
+
+  <dt>max</dt>
 <dd><p>The maximum abundance in the broken-stick distribution</p></dd>
+
 </dl></div>
     <div id="author">
     <h2>Author</h2>
@@ -135,21 +146,21 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Ns is the total number of trees per species</span></span>
-<span class="r-in"><span class="va">Ns</span> <span class="op">&lt;-</span> <span class="fu"><a href="SpeciesDistribution.html">as.AbdVector</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Fitted parameters</span></span>
-<span class="r-in"><span class="va">RACln</span> <span class="op">&lt;-</span> <span class="fu">RAClnorm</span><span class="op">(</span><span class="va">Ns</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">RACln</span><span class="op">$</span><span class="va">mu</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Ns is the total number of trees per species</span></span></span>
+<span class="r-in"><span><span class="va">Ns</span> <span class="op">&lt;-</span> <span class="fu"><a href="SpeciesDistribution.html">as.AbdVector</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Fitted parameters</span></span></span>
+<span class="r-in"><span><span class="va">RACln</span> <span class="op">&lt;-</span> <span class="fu">RAClnorm</span><span class="op">(</span><span class="va">Ns</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">RACln</span><span class="op">$</span><span class="va">mu</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9519812</span>
-<span class="r-in"><span class="va">RACln</span><span class="op">$</span><span class="va">sigma</span></span>
+<span class="r-in"><span><span class="va">RACln</span><span class="op">$</span><span class="va">sigma</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.011383</span>
-<span class="r-in"><span class="fu">RACgeom</span><span class="op">(</span><span class="va">Ns</span><span class="op">)</span><span class="op">$</span><span class="va">prob</span></span>
+<span class="r-in"><span><span class="fu">RACgeom</span><span class="op">(</span><span class="va">Ns</span><span class="op">)</span><span class="op">$</span><span class="va">prob</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.01417454</span>
-<span class="r-in"><span class="fu">RAClseries</span><span class="op">(</span><span class="va">Ns</span><span class="op">)</span><span class="op">$</span><span class="va">alpha</span></span>
+<span class="r-in"><span><span class="fu">RAClseries</span><span class="op">(</span><span class="va">Ns</span><span class="op">)</span><span class="op">$</span><span class="va">alpha</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 86.94339</span>
-<span class="r-in"><span class="fu">RACbstick</span><span class="op">(</span><span class="va">Ns</span><span class="op">)</span><span class="op">$</span><span class="va">max</span></span>
+<span class="r-in"><span><span class="fu">RACbstick</span><span class="op">(</span><span class="va">Ns</span><span class="op">)</span><span class="op">$</span><span class="va">max</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 29.51418</span>
 </code></pre></div>
     </div>
@@ -165,7 +176,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

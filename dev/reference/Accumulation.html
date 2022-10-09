@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-9.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-11.9001</span>
       </span>
     </div>
 
@@ -77,83 +77,110 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">as.AccumCurve</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, low <span class="op">=</span> <span class="cn">NULL</span>, high <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-<span class="fu">is.AccumCurve</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="fu">EntAC</span><span class="op">(</span><span class="va">Ns</span>, q <span class="op">=</span> <span class="fl">0</span>, n.seq <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Ns</span><span class="op">)</span><span class="op">)</span>, PCorrection<span class="op">=</span><span class="st">"Chao2015"</span>, Unveiling<span class="op">=</span><span class="st">"geom"</span>,
-  RCorrection<span class="op">=</span><span class="st">"Rarefy"</span>, NumberOfSimulations <span class="op">=</span> <span class="fl">0</span>, Alpha <span class="op">=</span> <span class="fl">0.05</span>, 
-  ShowProgressBar <span class="op">=</span> <span class="cn">TRUE</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu">DivAC</span><span class="op">(</span><span class="va">Ns</span>, q <span class="op">=</span> <span class="fl">0</span>, n.seq <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Ns</span><span class="op">)</span><span class="op">)</span>, PCorrection<span class="op">=</span><span class="st">"Chao2015"</span>, Unveiling<span class="op">=</span><span class="st">"geom"</span>,
-  RCorrection<span class="op">=</span><span class="st">"Rarefy"</span>, NumberOfSimulations <span class="op">=</span> <span class="fl">0</span>, Alpha <span class="op">=</span> <span class="fl">0.05</span>, 
-  ShowProgressBar <span class="op">=</span> <span class="cn">TRUE</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co"># S3 method for AccumCurve</span>
-<span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, main <span class="op">=</span> <span class="cn">NULL</span>, 
-         xlab <span class="op">=</span> <span class="st">"Sample Size"</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, ylim <span class="op">=</span> <span class="cn">NULL</span>,
-         LineWidth <span class="op">=</span> <span class="fl">2</span>, ShadeColor <span class="op">=</span> <span class="st">"grey75"</span>, BorderColor <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>
-<span class="co"># S3 method for AccumCurve</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span>, main <span class="op">=</span> <span class="cn">NULL</span>, 
-         xlab <span class="op">=</span> <span class="st">"Sample Size"</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, 
-         ShadeColor <span class="op">=</span> <span class="st">"grey75"</span>, alpha <span class="op">=</span> <span class="fl">0.3</span>, BorderColor <span class="op">=</span> <span class="st">"red"</span>,
-         col <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomLine</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">colour</span>,
-         lty <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomLine</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">linetype</span>,
-         lwd <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomLine</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">size</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">as.AccumCurve</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, low <span class="op">=</span> <span class="cn">NULL</span>, high <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="fu">is.AccumCurve</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="fu">EntAC</span><span class="op">(</span><span class="va">Ns</span>, q <span class="op">=</span> <span class="fl">0</span>, n.seq <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Ns</span><span class="op">)</span><span class="op">)</span>, PCorrection<span class="op">=</span><span class="st">"Chao2015"</span>, Unveiling<span class="op">=</span><span class="st">"geom"</span>,</span>
+<span>  RCorrection<span class="op">=</span><span class="st">"Rarefy"</span>, NumberOfSimulations <span class="op">=</span> <span class="fl">0</span>, Alpha <span class="op">=</span> <span class="fl">0.05</span>, </span>
+<span>  ShowProgressBar <span class="op">=</span> <span class="cn">TRUE</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">DivAC</span><span class="op">(</span><span class="va">Ns</span>, q <span class="op">=</span> <span class="fl">0</span>, n.seq <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Ns</span><span class="op">)</span><span class="op">)</span>, PCorrection<span class="op">=</span><span class="st">"Chao2015"</span>, Unveiling<span class="op">=</span><span class="st">"geom"</span>,</span>
+<span>  RCorrection<span class="op">=</span><span class="st">"Rarefy"</span>, NumberOfSimulations <span class="op">=</span> <span class="fl">0</span>, Alpha <span class="op">=</span> <span class="fl">0.05</span>, </span>
+<span>  ShowProgressBar <span class="op">=</span> <span class="cn">TRUE</span>, CheckArguments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for AccumCurve</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, main <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>         xlab <span class="op">=</span> <span class="st">"Sample Size"</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, ylim <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>         LineWidth <span class="op">=</span> <span class="fl">2</span>, ShadeColor <span class="op">=</span> <span class="st">"grey75"</span>, BorderColor <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for AccumCurve</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span>, main <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>         xlab <span class="op">=</span> <span class="st">"Sample Size"</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>         ShadeColor <span class="op">=</span> <span class="st">"grey75"</span>, alpha <span class="op">=</span> <span class="fl">0.3</span>, BorderColor <span class="op">=</span> <span class="st">"red"</span>,</span>
+<span>         col <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomLine</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">colour</span>,</span>
+<span>         lty <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomLine</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">linetype</span>,</span>
+<span>         lwd <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomLine</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">size</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>An object. A numeric vector in <code>as.AccumCurve</code>.</p></dd>
-<dt>object</dt>
+
+  <dt>object</dt>
 <dd><p>An object.</p></dd>
-<dt>y</dt>
+
+  <dt>y</dt>
 <dd><p>A numeric vector.</p></dd>
-<dt>low</dt>
+
+  <dt>low</dt>
 <dd><p>A numeric vector.</p></dd>
-<dt>high</dt>
+
+  <dt>high</dt>
 <dd><p>A numeric vector.</p></dd>
-<dt>Ns</dt>
+
+  <dt>Ns</dt>
 <dd><p>A numeric vector containing species abundances.</p></dd>
-<dt>q</dt>
+
+  <dt>q</dt>
 <dd><p>A number: the order of diversity. Default is 1.</p></dd>
-<dt>n.seq</dt>
+
+  <dt>n.seq</dt>
 <dd><p>A sequence of numbers. Accumulation will be calculated at each value.</p></dd>
-<dt>PCorrection</dt>
+
+  <dt>PCorrection</dt>
 <dd><p>A string containing one of the possible corrections to estimate a probability distribution in <code><a href="SpeciesDistribution.html">as.ProbaVector</a></code>: <code>"Chao2015"</code> is the default value. Used only for extrapolation and <code>q</code> different from 0, 1, 2.</p></dd>
-<dt>Unveiling</dt>
+
+  <dt>Unveiling</dt>
 <dd><p>A string containing one of the possible unveiling methods to estimate the probabilities of the unobserved species in <code><a href="SpeciesDistribution.html">as.ProbaVector</a></code>: <code>"geom"</code> (geometric: the unobserved species distribution is geometric) is the default value. Used only for extrapolation and <code>q</code> different from 0, 1, 2.</p></dd>
-<dt>RCorrection</dt>
+
+  <dt>RCorrection</dt>
 <dd><p>A string containing a correction recognized by <code><a href="Richness.html">Richness</a></code> to evaluate the total number of species in <code><a href="SpeciesDistribution.html">as.ProbaVector</a></code>. <code>"Rarefy"</code> is the default value to estimate the number of species such that the entropy of the asymptotic distribution rarefied to the observed sample size equals the observed entropy of the data. Used only for extrapolation and <code>q</code> different from 0, 1, 2. If <code>q</code> is 0 (extrapolation of richness), <code>"Rarefy"</code> is taken for <code>"Jackknife"</code>.</p></dd>
-<dt>NumberOfSimulations</dt>
+
+  <dt>NumberOfSimulations</dt>
 <dd><p>The number of Simulations to build confidence intervals.</p></dd>
-<dt>Alpha</dt>
+
+  <dt>Alpha</dt>
 <dd><p>The risk level, 5% by default.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>Additional arguments to be passed to <code><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></code>. Unused elsewhere.</p></dd>
-<dt>main</dt>
+
+  <dt>main</dt>
 <dd><p>The main title of the plot. if <code>NULL</code> (by default), there is no title.</p></dd>
-<dt>xlab</dt>
+
+  <dt>xlab</dt>
 <dd><p>The X axis label, "Rank" by default.</p></dd>
-<dt>ylab</dt>
+
+  <dt>ylab</dt>
 <dd><p>The Y axis label. if <code>NULL</code> (by default), "Probability" or "Abundance" is chosen according to the object class.</p></dd>
-<dt>ylim</dt>
+
+  <dt>ylim</dt>
 <dd><p>The interval of y values plotted.</p></dd>
-<dt>LineWidth</dt>
+
+  <dt>LineWidth</dt>
 <dd><p>The width of the line that represents the actual profile.</p></dd>
-<dt>ShadeColor</dt>
+
+  <dt>ShadeColor</dt>
 <dd><p>The color of the shaded confidence envelope.</p></dd>
-<dt>BorderColor</dt>
+
+  <dt>BorderColor</dt>
 <dd><p>The color of the bounds of the confidence envelope.</p></dd>
-<dt>alpha</dt>
+
+  <dt>alpha</dt>
 <dd><p>Opacity of the confidence enveloppe, between 0 and 1.</p></dd>
-<dt>col</dt>
+
+  <dt>col</dt>
 <dd><p>The color of the geom objects. See "Color Specification" in <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>.</p></dd>
-<dt>lty</dt>
+
+  <dt>lty</dt>
 <dd><p>The type of the lines. See <code><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></code>.</p></dd>
-<dt>lwd</dt>
+
+  <dt>lwd</dt>
 <dd><p>The width of the lines. See <code><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></code>.</p></dd>
-<dt>ShowProgressBar</dt>
+
+  <dt>ShowProgressBar</dt>
 <dd><p>If <code>TRUE</code> (default), a progress bar is shown.</p></dd>
-<dt>CheckArguments</dt>
+
+  <dt>CheckArguments</dt>
 <dd><p>Logical; if <code>TRUE</code>, the function arguments are verified. Should be set to <code>FALSE</code> to save time when the arguments have been checked elsewhere.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -167,17 +194,25 @@ They generalize the classical Species Accumulation Curves (SAC) which are divers
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A <code>DivAC</code> or an <code>EntAC</code> object. Both are <code>AccumCurve</code> objects, which are a list:</p>
+    
+
+<p>A <code>DivAC</code> or an <code>EntAC</code> object. Both are <code>AccumCurve</code> objects, which are a list:</p>
 <dl><dt>x</dt>
 <dd><p>The sample size.</p></dd>
-<dt>y</dt>
+
+  <dt>y</dt>
 <dd><p>The value of entropy or diversity.</p></dd>
-<dt>low</dt>
+
+  <dt>low</dt>
 <dd><p>The lower bound of the confidence envelope of the estimation.</p></dd>
-<dt>high</dt>
+
+  <dt>high</dt>
 <dd><p>The upper bound of the confidence envelope of the estimation.</p></dd>
-</dl><p>Attibutes <code>"Size"</code> and <code>"Value"</code> contain the actual sample size and the corresponding diversity or entropy.
-<code>AccumCurve</code> objects can be summarized and plotted.</p>
+
+ 
+</dl><p>Attibutes <code>"Size"</code> and <code>"Value"</code> contain the actual sample size and the corresponding diversity or entropy.</p>
+<p></p>
+<p><code>AccumCurve</code> objects can be summarized and plotted.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -190,12 +225,12 @@ They generalize the classical Species Accumulation Curves (SAC) which are divers
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Ns is the total number of trees per species</span></span>
-<span class="r-in"><span class="va">Ns</span> <span class="op">&lt;-</span> <span class="fu"><a href="SpeciesDistribution.html">as.AbdVector</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Accumulation curve of Simpson's diversity</span></span>
-<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="fu">DivAC</span><span class="op">(</span><span class="va">Ns</span>, q<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load Paracou data (number of trees per species in two 1-ha plot of a tropical forest)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Paracou618</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Ns is the total number of trees per species</span></span></span>
+<span class="r-in"><span><span class="va">Ns</span> <span class="op">&lt;-</span> <span class="fu"><a href="SpeciesDistribution.html">as.AbdVector</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Accumulation curve of Simpson's diversity</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="fu">DivAC</span><span class="op">(</span><span class="va">Ns</span>, q<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-plt img"><img src="Accumulation-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
@@ -212,7 +247,7 @@ They generalize the classical Species Accumulation Curves (SAC) which are divers
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

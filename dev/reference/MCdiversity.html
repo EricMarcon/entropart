@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-9.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.6-11.9001</span>
       </span>
     </div>
 
@@ -77,52 +77,70 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">is.MCdiversity</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co"># S3 method for MCdiversity</span>
-<span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span>
-<span class="co"># S3 method for MCdiversity</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, col <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomCol</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">fill</span>,
-          border <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomCol</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">colour</span>, <span class="va">...</span><span class="op">)</span>
-<span class="co"># S3 method for MCdiversity</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">is.MCdiversity</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for MCdiversity</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for MCdiversity</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">object</span>, col <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomCol</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">fill</span>,</span>
+<span>          border <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggplot2-ggproto.html" class="external-link">GeomCol</a></span><span class="op">$</span><span class="va">default_aes</span><span class="op">$</span><span class="va">colour</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for MCdiversity</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>An object to be tested or plotted.</p></dd>
-<dt>object</dt>
+
+  <dt>object</dt>
 <dd><p>A <code>MCdiversity</code> object to be summarized or plotted.</p></dd>
-<dt>col</dt>
+
+  <dt>col</dt>
 <dd><p>The color used to fill the bars. See "Color Specification" in <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>.</p></dd>
-<dt>border</dt>
+
+  <dt>border</dt>
 <dd><p>The color of the borders around the bars. See <code><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></code>.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>Additional arguments to be passed to the generic methods.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Meta-community diversity objects are lists containing:</p>
+    
+
+<p>Meta-community diversity objects are lists containing:</p>
 <dl><dt>MetaCommunity</dt>
 <dd><p>The name of the <code><a href="MetaCommunity.html">MetaCommunity</a></code> object containing inventory data.</p></dd>
-<dt>Type</dt>
+
+  <dt>Type</dt>
 <dd><p>The type of diversity ("alpha", "beta" or "gamma").</p></dd>
-<dt>Order</dt>
+
+  <dt>Order</dt>
 <dd><p>The order of diversity \(q\).</p></dd>
-<dt>Correction</dt>
+
+  <dt>Correction</dt>
 <dd><p>The estimation bias correction used to calculate diversity.</p></dd>
-<dt>Tree</dt>
+
+  <dt>Tree</dt>
 <dd><p>The phylogenetic or functional tree used to calculate phylodiversity.</p></dd>
-<dt>Normalized</dt>
+
+  <dt>Normalized</dt>
 <dd><p>Logical. Indicates whether phylodiversity is normalized or proportional to the height of the tree.</p></dd>
-<dt>Weights</dt>
+
+  <dt>Weights</dt>
 <dd><p>A vector containing the weights of communities.</p></dd>
-<dt>Communities</dt>
+
+  <dt>Communities</dt>
 <dd><p>A vector containing the diversity of communities.</p></dd>
-<dt>Total</dt>
+
+  <dt>Total</dt>
 <dd><p>The total diversity.</p></dd>
-</dl><p><code>is.MCdiversity</code> returns <code>TRUE</code> if the object is of class <code>MCdiversity</code>.
-<code>summary.MCdiversity</code> returns a summary of the object's value.</p>
+
+
+  </dl><p><code>is.MCdiversity</code> returns <code>TRUE</code> if the object is of class <code>MCdiversity</code>.</p>
+<p></p>
+<p><code>summary.MCdiversity</code> returns a summary of the object's value.</p>
     </div>
 
   </div>
@@ -137,7 +155,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
