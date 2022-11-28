@@ -1,8 +1,10 @@
-# entropart 1.6-11.9001
+# entropart 1.6-11.9002
 
 ## Bug correction
 
 - Corrected `Coverage()` documentation.
+- "Marcon" correction of Shannon's entropy never returned Grassberger's estimate.
+This was very rarely an issue.
 
 
 # entropart 1.6-11
