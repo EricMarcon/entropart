@@ -1,10 +1,11 @@
-# entropart 1.6-11.9003
+# entropart 1.6-11.9004
 
 ## Bug correction
 
 - Corrected `Coverage()` documentation.
 - "Marcon" correction of Shannon's entropy never returned Grassberger's estimate.
 This was very rarely an issue.
+- Phylogenetic trees of class `phylo` with multichotomies raised an error when they were preprocessed by `Preprocess.Tree()`. 
 
 
 # entropart 1.6-11
