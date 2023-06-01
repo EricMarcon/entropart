@@ -42,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">entropart</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6-12</span>
       </span>
     </div>
 
@@ -99,7 +99,7 @@
 
       
 
-      </header><script src="reference_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>entropart Package Reference</h1>
@@ -112,23 +112,110 @@
 
     
     
-<p><em>entropart</em> is a package for <em>R</em> designed to estimate diversity based on HCDT entropy or similarity-based entropy.</p>
-<p>Diversity measurement can be done through a quite rigorous framework based on entropy, i.e. the amount of uncertainty calculated from the frequency distribution of a community <span class="citation">(Patil and Taillie 1982; Jost 2006; Marcon et al. 2014)</span>. Tsallis entropy, also known as HCDT entropy <span class="citation">(Havrda and Charvát 1967; Daróczy 1970; Tsallis 1988)</span>, is of particular interest <span class="citation">(Jost 2006; Marcon et al. 2014)</span> namely because it gathers the number of species, Shannon <span class="citation">(1948)</span> and Simpson <span class="citation">(1949)</span> indices of diversity into a single framework. Interpretation of entropy is not straightforward but one can easily transform it into Hill numbers <span class="citation">(Hill 1973)</span> which have many desirable properties <span class="citation">(Jost 2007)</span>: mainly, they are the number of equally-frequent species that would give the same level of diversity as the data.</p>
-<p><span class="citation">Marcon and Hérault (2015)</span> generalized the duality of entropy and diversity, deriving the relation between phylogenetic or functional diversity <span class="citation">(Chao, Chiu, and Jost 2010)</span> and phylogenetic or functional entropy (we will write <em>phylodiversity</em> and <em>phyloentropy</em> for short), as introduced by <span class="citation">Pavoine, Love, and Bonsall (2009)</span>. Special cases are the well-known PD <span class="citation">(Faith 1992)</span> and FD <span class="citation">(Petchey and Gaston 2002)</span> indices and Rao’s <span class="citation">(1982)</span> quadratic entropy. The same relation holds between Ricotta and Szeidl’s entropy of a community <span class="citation">(Ricotta and Szeidl 2006)</span> and similarity-based diversity <span class="citation">(Leinster and Cobbold 2012)</span>.</p>
-<p>The <em>entropart</em> package for R <span class="citation">(R Core Team 2018)</span> enables calculation of all these measures of diversity and entropy and their partitioning.</p>
-<p>Diversity partitioning means that, in a given area, the <span class="math inline">\(\gamma\)</span> diversity <span class="math inline">\(D_{\gamma}\)</span> of all individuals found may be split into within (<span class="math inline">\(\alpha\)</span> diversity, <span class="math inline">\(D_{\alpha}\)</span>) and between (<span class="math inline">\(\beta\)</span> diversity, <span class="math inline">\(D_{\beta}\)</span>) local assemblages. <span class="math inline">\(\alpha\)</span> diversity reflects the diversity of individuals <em>in</em> local assemblages whereas <span class="math inline">\(\beta\)</span> diversity reflects the diversity <em>of</em> the local assemblages. <span class="citation">Marcon et al. (2014)</span> derived the decomposition of Tsallis <span class="math inline">\(\gamma\)</span> entropy into its <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> components, generalized to phylodiversity <span class="citation">(Marcon and Hérault 2015)</span> and similarity-based diversity <span class="citation">(Marcon, Zhang, and Hérault 2014)</span>.</p>
-<p>Estimators of diversity are biased because of unseen species and also because they are not linear functions of probabilities <span class="citation">(Marcon et al. 2014)</span>. <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\gamma\)</span> diversities are underestimated by naive estimators <span class="citation">(Chao and Shen 2003; Dauby and Hardy 2012)</span>. <span class="math inline">\(\beta\)</span> diversity is severely biased too when sampling is not sufficient <span class="citation">(Beck, Holloway, and Schwanghart 2013)</span>. Bias-corrected estimators of phylodiversity have been developed by <span class="citation">Marcon and Hérault (2015)</span>. Estimators of similarity-based diversity were derived by <span class="citation">Marcon, Zhang, and Hérault (2014)</span>. The package includes them all <span class="citation">(Marcon and Hérault 2015)</span>.</p>
-<p>In summary, the framework supported by the package is as follows. First, an information function is chosen to describe the amount of surprise brought by the observation of each individual. In the simplest case of species-neutral diversity, it is just a decreasing function of probability: observing an individual of a rarer species brings more surprise. Various information functions allow evaluating species-neutral, phylogenetic or functional entropy. Surprise is averaged among all individuals of a community to obtain its entropy. Entropy is systematically transformed into diversity for interpretation. Diversity is an effective number of species, i.e. the number of equally-different and equally-frequent species that would give the same entropy as the data. The average entropy of communities of an assemblage is <span class="math inline">\(\alpha\)</span> entropy, while the entropy of the assemblage is <span class="math inline">\(\gamma\)</span> entropy. Their difference is <span class="math inline">\(\beta\)</span> entropy. After transformation, <span class="math inline">\(\beta\)</span> diversity is the ratio of <span class="math inline">\(\gamma\)</span> to <span class="math inline">\(\alpha\)</span> diversity. It is an effective number of communities, i.e. the number of equally-weighted communities with no species in common (and where species are maximally distinct between communities) necessary to obtain the same diversity as the data. Estimation-bias correction is more easily applied to entropy before transforming it into diversity.</p>
-<p>This framework is somehow different from that of <span class="citation">Chao, Chiu, and Jost (2014)</span> who define <span class="math inline">\(\alpha\)</span> diversity in another way <span class="citation">(see Marcon and Hérault 2015 for a detailed comparison)</span>, such that <span class="math inline">\(\alpha\)</span> entropy is not the average surprise of an assemblage. They also propose a definition of functional diversity <span class="citation">(Chiu and Chao 2014)</span> based in the information brought by pairs of individuals that is not supported in the package.</p>
-<p>The successive sections of this paper presents the package features, illustrated by worked examples based on the data included in the package.</p>
+<p><em>entropart</em> is a package for <em>R</em> designed to estimate
+diversity based on HCDT entropy or similarity-based entropy.</p>
+<p>Diversity measurement can be done through a quite rigorous framework
+based on entropy, i.e. the amount of uncertainty calculated from the
+frequency distribution of a community <span class="citation">(Patil and
+Taillie 1982; Jost 2006; Marcon et al. 2014)</span>. Tsallis entropy,
+also known as HCDT entropy <span class="citation">(Havrda and Charvát
+1967; Daróczy 1970; Tsallis 1988)</span>, is of particular interest
+<span class="citation">(Jost 2006; Marcon et al. 2014)</span> namely
+because it gathers the number of species, Shannon <span class="citation">(1948)</span> and Simpson <span class="citation">(1949)</span> indices of diversity into a single
+framework. Interpretation of entropy is not straightforward but one can
+easily transform it into Hill numbers <span class="citation">(Hill
+1973)</span> which have many desirable properties <span class="citation">(Jost 2007)</span>: mainly, they are the number of
+equally-frequent species that would give the same level of diversity as
+the data.</p>
+<p><span class="citation">Marcon and Hérault (2015a)</span> generalized
+the duality of entropy and diversity, deriving the relation between
+phylogenetic or functional diversity <span class="citation">(Chao, Chiu,
+and Jost 2010)</span> and phylogenetic or functional entropy (we will
+write <em>phylodiversity</em> and <em>phyloentropy</em> for short), as
+introduced by <span class="citation">Pavoine, Love, and Bonsall
+(2009)</span>. Special cases are the well-known PD <span class="citation">(Faith 1992)</span> and FD <span class="citation">(Petchey and Gaston 2002)</span> indices and Rao’s
+<span class="citation">(1982)</span> quadratic entropy. The same
+relation holds between Ricotta and Szeidl’s entropy of a community <span class="citation">(Ricotta and Szeidl 2006)</span> and similarity-based
+diversity <span class="citation">(Leinster and Cobbold 2012)</span>.</p>
+<p>The <em>entropart</em> package for R <span class="citation">(R Core
+Team 2018)</span> enables calculation of all these measures of diversity
+and entropy and their partitioning.</p>
+<p>Diversity partitioning means that, in a given area, the <span class="math inline">\(\gamma\)</span> diversity <span class="math inline">\(D_{\gamma}\)</span> of all individuals found may
+be split into within (<span class="math inline">\(\alpha\)</span>
+diversity, <span class="math inline">\(D_{\alpha}\)</span>) and between
+(<span class="math inline">\(\beta\)</span> diversity, <span class="math inline">\(D_{\beta}\)</span>) local assemblages. <span class="math inline">\(\alpha\)</span> diversity reflects the diversity
+of individuals <em>in</em> local assemblages whereas <span class="math inline">\(\beta\)</span> diversity reflects the diversity
+<em>of</em> the local assemblages. <span class="citation">Marcon et al.
+(2014)</span> derived the decomposition of Tsallis <span class="math inline">\(\gamma\)</span> entropy into its <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> components, generalized to
+phylodiversity <span class="citation">(Marcon and Hérault 2015a)</span>
+and similarity-based diversity <span class="citation">(Marcon, Zhang,
+and Hérault 2014)</span>.</p>
+<p>Estimators of diversity are biased because of unseen species and also
+because they are not linear functions of probabilities <span class="citation">(Marcon et al. 2014)</span>. <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\gamma\)</span> diversities are underestimated by
+naive estimators <span class="citation">(Chao and Shen 2003; Dauby and
+Hardy 2012)</span>. <span class="math inline">\(\beta\)</span> diversity
+is severely biased too when sampling is not sufficient <span class="citation">(Beck, Holloway, and Schwanghart 2013)</span>.
+Bias-corrected estimators of phylodiversity have been developed by <span class="citation">Marcon and Hérault (2015a)</span>. Estimators of
+similarity-based diversity were derived by <span class="citation">Marcon, Zhang, and Hérault (2014)</span>. The package
+includes them all <span class="citation">(Marcon and Hérault
+2015b)</span>.</p>
+<p>In summary, the framework supported by the package is as follows.
+First, an information function is chosen to describe the amount of
+surprise brought by the observation of each individual. In the simplest
+case of species-neutral diversity, it is just a decreasing function of
+probability: observing an individual of a rarer species brings more
+surprise. Various information functions allow evaluating
+species-neutral, phylogenetic or functional entropy. Surprise is
+averaged among all individuals of a community to obtain its entropy.
+Entropy is systematically transformed into diversity for interpretation.
+Diversity is an effective number of species, i.e. the number of
+equally-different and equally-frequent species that would give the same
+entropy as the data. The average entropy of communities of an assemblage
+is <span class="math inline">\(\alpha\)</span> entropy, while the
+entropy of the assemblage is <span class="math inline">\(\gamma\)</span>
+entropy. Their difference is <span class="math inline">\(\beta\)</span>
+entropy. After transformation, <span class="math inline">\(\beta\)</span> diversity is the ratio of <span class="math inline">\(\gamma\)</span> to <span class="math inline">\(\alpha\)</span> diversity. It is an effective
+number of communities, i.e. the number of equally-weighted communities
+with no species in common (and where species are maximally distinct
+between communities) necessary to obtain the same diversity as the data.
+Estimation-bias correction is more easily applied to entropy before
+transforming it into diversity.</p>
+<p>This framework is somehow different from that of <span class="citation">Chao, Chiu, and Jost (2014)</span> who define <span class="math inline">\(\alpha\)</span> diversity in another way <span class="citation">(see Marcon and Hérault 2015a for a detailed
+comparison)</span>, such that <span class="math inline">\(\alpha\)</span> entropy is not the average
+surprise of an assemblage. They also propose a definition of functional
+diversity <span class="citation">(Chiu and Chao 2014)</span> based in
+the information brought by pairs of individuals that is not supported in
+the package.</p>
+<p>The successive sections of this paper presents the package features,
+illustrated by worked examples based on the data included in the
+package.</p>
 <div class="section level2">
 <h2 id="package-organization">Package organization<a class="anchor" aria-label="anchor" href="#package-organization"></a>
 </h2>
 <div class="section level3">
 <h3 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h3>
-<p>Most functions of the package calculate entropy or diversity of a community or of an assemblage of communities called a <em>meta-community</em>. Community functions accept a vector of probabilities or of abundances for species data. Each element of the vector contains the probability or the number of occurrences of a species in a given community. Meta-community functions require a particular data organization in a <code>MetaCommunity</code> object described here.</p>
-<p>A <code>MetaCommunity</code> is basically a list. Its main components are <code>$Nsi</code>, a matrix containing the species abundances whose lines are species, columns are communities and <code>$Wi</code>, a vector containing community weights. Creating a <code>MetaCommunity</code> object is the purpose of the <code>MetaCommunity</code> function. Arguments are a dataframe containing the number of individuals per species (lines) in each community (columns), and a vector containing the community weights. The following example creates a <code>MetaCommunity</code> made of three communities of unequal weights with 4 species. The weighted average probabilities of occurrence of species and the total number of individuals define the meta-community as the assemblage of communities.</p>
+<p>Most functions of the package calculate entropy or diversity of a
+community or of an assemblage of communities called a
+<em>meta-community</em>. Community functions accept a vector of
+probabilities or of abundances for species data. Each element of the
+vector contains the probability or the number of occurrences of a
+species in a given community. Meta-community functions require a
+particular data organization in a <code>MetaCommunity</code> object
+described here.</p>
+<p>A <code>MetaCommunity</code> is basically a list. Its main components
+are <code>$Nsi</code>, a matrix containing the species abundances whose
+lines are species, columns are communities and <code>$Wi</code>, a
+vector containing community weights. Creating a
+<code>MetaCommunity</code> object is the purpose of the
+<code>MetaCommunity</code> function. Arguments are a dataframe
+containing the number of individuals per species (lines) in each
+community (columns), and a vector containing the community weights. The
+following example creates a <code>MetaCommunity</code> made of three
+communities of unequal weights with 4 species. The weighted average
+probabilities of occurrence of species and the total number of
+individuals define the meta-community as the assemblage of
+communities.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/EricMarcon/entropart" class="external-link">"entropart"</a></span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>C1<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span>, C2<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">20</span>, <span class="fl">35</span>, <span class="fl">5</span><span class="op">)</span>, C3<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">15</span>, <span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
@@ -144,16 +231,43 @@
 <span><span class="va">MC</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MetaCommunity.html">MetaCommunity</a></span><span class="op">(</span>Abundances<span class="op">=</span><span class="va">df</span>, Weights<span class="op">=</span><span class="va">w</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">MC</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference_files/figure-html/MetaCommunity-1.png" width="700"></p>
-<p>Communities (named C1, C2 ad C3) are represented in the left part of the figure, the metacommunity to the right. Bar widths are proportional to community weights. Species abundances are represented vertically (4 species are present in the meta-community, only 3 of them in communities C2 and C3).</p>
-<p>A meta-community is partitioned into several local communities (indexed by <span class="math inline">\(i=1, 2,\dots, I\)</span>). <span class="math inline">\(n_i\)</span> individuals are sampled in community <span class="math inline">\(i\)</span>. Let <span class="math inline">\(s=1,\ 2,\dots ,S\)</span> denote the species that compose the meta-community, <span class="math inline">\(n_{s,i}\)</span> the number of individuals of species <span class="math inline">\(s\)</span> sampled in the local community <span class="math inline">\(i\)</span>, <span class="math inline">\(n_s=\sum_i{n_{s,i}}\)</span> the total number of individuals of species <span class="math inline">\(s\)</span>, <span class="math inline">\(n=\sum_s{\sum_i{n_{s,i}}}\)</span> the total number of sampled individuals. Within each community <span class="math inline">\(i\)</span>, the probability <span class="math inline">\(p_{s,i}\)</span> for an individual to belong to species <span class="math inline">\(s\)</span> is estimated by <span class="math inline">\(\hat{p}_{s,i}=n_{s,i}/{n_i}\)</span>. The same probability for the meta-community is <span class="math inline">\(p_s\)</span>.</p>
-<p>Communities have a weight <span class="math inline">\(w_i\)</span>, satisfying <span class="math inline">\(p_s=\sum_i{w_i p_{s,i}}\)</span>. The commonly-used <span class="math inline">\(w_i=n_i/n\)</span> is a possible weight, but the weighting may be arbitrary (e.g. the sampled areas). The component <code>$Ps</code> of a <code>MetaCommunity</code> object contains the probability of occurrence of each species in the meta-community, calculated this way:</p>
+<p>Communities (named C1, C2 ad C3) are represented in the left part of
+the figure, the metacommunity to the right. Bar widths are proportional
+to community weights. Species abundances are represented vertically (4
+species are present in the meta-community, only 3 of them in communities
+C2 and C3).</p>
+<p>A meta-community is partitioned into several local communities
+(indexed by <span class="math inline">\(i=1, 2,\dots, I\)</span>). <span class="math inline">\(n_i\)</span> individuals are sampled in community
+<span class="math inline">\(i\)</span>. Let <span class="math inline">\(s=1,\ 2,\dots ,S\)</span> denote the species that
+compose the meta-community, <span class="math inline">\(n_{s,i}\)</span>
+the number of individuals of species <span class="math inline">\(s\)</span> sampled in the local community <span class="math inline">\(i\)</span>, <span class="math inline">\(n_s=\sum_i{n_{s,i}}\)</span> the total number of
+individuals of species <span class="math inline">\(s\)</span>, <span class="math inline">\(n=\sum_s{\sum_i{n_{s,i}}}\)</span> the total
+number of sampled individuals. Within each community <span class="math inline">\(i\)</span>, the probability <span class="math inline">\(p_{s,i}\)</span> for an individual to belong to
+species <span class="math inline">\(s\)</span> is estimated by <span class="math inline">\(\hat{p}_{s,i}=n_{s,i}/{n_i}\)</span>. The same
+probability for the meta-community is <span class="math inline">\(p_s\)</span>.</p>
+<p>Communities have a weight <span class="math inline">\(w_i\)</span>,
+satisfying <span class="math inline">\(p_s=\sum_i{w_i p_{s,i}}\)</span>.
+The commonly-used <span class="math inline">\(w_i=n_i/n\)</span> is a
+possible weight, but the weighting may be arbitrary (e.g. the sampled
+areas). The component <code>$Ps</code> of a <code>MetaCommunity</code>
+object contains the probability of occurrence of each species in the
+meta-community, calculated this way:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">MC</span><span class="op">$</span><span class="va">Ps</span></span></code></pre></div>
 <pre><code><span><span class="co">##       sp1       sp2       sp3       sp4 </span></span>
 <span><span class="co">## 0.2113095 0.3184524 0.3541667 0.1160714</span></span></code></pre>
-<p>The number of individuals <code>$Ns</code> of a <code>MetaCommunity</code> is theoretically unknown, since communities are just samples of it. The total number of individuals is <code>$N</code>. For simplicity, it is set to the total number of individuals of all communities. If community weights are their number of individuals, <code>$Ns</code> is just the sum of the numbers of individuals per species of communities. Else, <code>$Ns</code> may contain non-integer values, respecting the probabilities <code>$Ps</code> and summing to <code>$N</code>.</p>
+<p>The number of individuals <code>$Ns</code> of a
+<code>MetaCommunity</code> is theoretically unknown, since communities
+are just samples of it. The total number of individuals is
+<code>$N</code>. For simplicity, it is set to the total number of
+individuals of all communities. If community weights are their number of
+individuals, <code>$Ns</code> is just the sum of the numbers of
+individuals per species of communities. Else, <code>$Ns</code> may
+contain non-integer values, respecting the probabilities
+<code>$Ps</code> and summing to <code>$N</code>.</p>
 <p>A <code>MetaCommunity</code> can be summarized and plotted.</p>
-<p>The package contains an example dataset containing the inventory of two 1-ha tropical forest plots in Paracou, French Guiana <span class="citation">(Marcon et al. 2012)</span>:</p>
+<p>The package contains an example dataset containing the inventory of
+two 1-ha tropical forest plots in Paracou, French Guiana <span class="citation">(Marcon et al. 2012)</span>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"Paracou618"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">)</span></span></code></pre></div>
@@ -170,24 +284,57 @@
 <span><span class="co">## Community sample coverages are: </span></span>
 <span><span class="co">##      P006      P018 </span></span>
 <span><span class="co">## 0.8943859 0.8463782</span></span></code></pre>
-<p><code>Paracou618.MC</code> is a meta-community made of two communities named <em>P006</em> and <em>P018</em>, containing 425 species (their name is <em>Family_Genus_Species</em>, abbreviated to 4 characters). The values of the abundance matrix are the number of individuals of each species in each community. Sample coverage will be explained later.</p>
-<p>The dataset also contains a taxonomy and a functional tree. <code>Paracou618.Taxonomy</code> is an object of class <code>phylo</code>, defined in the package <em>ape</em> <span class="citation">(Paradis, Claude, and Strimmer 2004)</span>, namely a phylogenetic tree. This example data is only a taxonomy, containing family, genus and species levels for the sake of simplicity. <code>Paracou618.Functional</code> is an object of class <code>hclust</code> containing a functional tree based on leaf, height, stem and seed functional traits <span class="citation">(Hérault and Honnay 2007; Marcon and Hérault 2015)</span>. The package also accepts any ultrametric tree of class <code>phylog</code>, from <em>ade4</em> <span class="citation">(Dray and Dufour 2007)</span> or <code>hclust</code>. <code>Paracou618.dist</code> is the distance matrix (actually a <code>dist</code> object) used to build the functional tree.</p>
-<p>Numeric vectors containing species abundances (such as the <code>$Ns</code> component of <code>MetaCommunity</code>) or probabilities (such as <code>$Ps</code>) may be converted to abundance vectors (<code>AbdVector</code>) or probability vectors (<code>ProbaVector</code>) to clarify their content. By default, the <code>as.AbdVector</code> function transforms abundance values into integer if they are not (the <code>$Ns</code> components of a <code>MetaCommunity</code> is typically not an integer vector if community weights are not proportional to their numbers of individuals):</p>
+<p><code>Paracou618.MC</code> is a meta-community made of two
+communities named <em>P006</em> and <em>P018</em>, containing 425
+species (their name is <em>Family_Genus_Species</em>, abbreviated to 4
+characters). The values of the abundance matrix are the number of
+individuals of each species in each community. Sample coverage will be
+explained later.</p>
+<p>The dataset also contains a taxonomy and a functional tree.
+<code>Paracou618.Taxonomy</code> is an object of class
+<code>phylo</code>, defined in the package <em>ape</em> <span class="citation">(Paradis, Claude, and Strimmer 2004)</span>, namely a
+phylogenetic tree. This example data is only a taxonomy, containing
+family, genus and species levels for the sake of simplicity.
+<code>Paracou618.Functional</code> is an object of class
+<code>hclust</code> containing a functional tree based on leaf, height,
+stem and seed functional traits <span class="citation">(Hérault and
+Honnay 2007; Marcon and Hérault 2015a)</span>. The package also accepts
+any ultrametric tree of class <code>phylog</code>, from <em>ade4</em>
+<span class="citation">(Dray and Dufour 2007)</span> or
+<code>hclust</code>. <code>Paracou618.dist</code> is the distance matrix
+(actually a <code>dist</code> object) used to build the functional
+tree.</p>
+<p>Numeric vectors containing species abundances (such as the
+<code>$Ns</code> component of <code>MetaCommunity</code>) or
+probabilities (such as <code>$Ps</code>) may be converted to abundance
+vectors (<code>AbdVector</code>) or probability vectors
+(<code>ProbaVector</code>) to clarify their content. By default, the
+<code>as.AbdVector</code> function transforms abundance values into
+integer if they are not (the <code>$Ns</code> components of a
+<code>MetaCommunity</code> is typically not an integer vector if
+community weights are not proportional to their numbers of
+individuals):</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"Paracou618"</span><span class="op">)</span></span>
 <span><span class="va">PAbd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SpeciesDistribution.html">as.AbdVector</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">PAbd</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference_files/figure-html/AbdVector-1.png" width="700"></p>
-<p>the Paracou species distribution is plotted as a Rank-Abundance Curve (Whittaker plot).</p>
-<p>The <code>as.ProbaVector</code> function transforms abundances to probabilities if necessary:</p>
+<p>the Paracou species distribution is plotted as a Rank-Abundance Curve
+(Whittaker plot).</p>
+<p>The <code>as.ProbaVector</code> function transforms abundances to
+probabilities if necessary:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">PProba</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SpeciesDistribution.html">as.ProbaVector</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ps</span><span class="op">)</span></span></code></pre></div>
-<p><code>AbdVector</code> and <code>ProbaVector</code> objects both are <code>SpeciesDistribution</code> objects which can be plotted.</p>
+<p><code>AbdVector</code> and <code>ProbaVector</code> objects both are
+<code>SpeciesDistribution</code> objects which can be plotted.</p>
 </div>
 <div class="section level3">
 <h3 id="utilities">Utilities<a class="anchor" aria-label="anchor" href="#utilities"></a>
 </h3>
-<p>The deformed logarithm formalism <span class="citation">(Tsallis 1994)</span> is very convenient to manipulate entropies. The deformed logarithm of order <span class="math inline">\(q\)</span> is defined as:</p>
+<p>The deformed logarithm formalism <span class="citation">(Tsallis
+1994)</span> is very convenient to manipulate entropies. The deformed
+logarithm of order <span class="math inline">\(q\)</span> is defined
+as:</p>
 <p><span class="math display">\[\ln_q{x}=\frac{x^{1-q}-1}{1-q}\]</span></p>
 <p>It converges to <span class="math inline">\(\ln\)</span> when <span class="math inline">\(q\to 1\)</span>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
@@ -198,9 +345,11 @@
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"bottomright"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">ln</span><span class="op">[</span><span class="fl">0</span><span class="op">]</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>, <span class="st">"ln(x)"</span>, <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">ln</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">ln</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>, inset<span class="op">=</span>  <span class="fl">0.02</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference_files/figure-html/lnqCurve-1.png" width="700"></p>
 <p>The figure shows the curves of <span class="math inline">\(\ln_q{x}\)</span> for different values of <span class="math inline">\(q\)</span> between 0 and 4 (<span class="math inline">\(\ln_1{x}=\ln{x}\)</span>).</p>
-<p>The inverse function of <span class="math inline">\(\ln_q{x}\)</span> is the deformed exponential:</p>
+<p>The inverse function of <span class="math inline">\(\ln_q{x}\)</span>
+is the deformed exponential:</p>
 <p><span class="math display">\[e^x_q=[1+(1-q)x]^{\frac{1}{1-q}}\]</span></p>
-<p>Functions of the package are <code>lnq(x, q)</code> and <code>expq(x, q)</code>.</p>
+<p>Functions of the package are <code>lnq(x, q)</code> and
+<code>expq(x, q)</code>.</p>
 </div>
 </div>
 <div class="section level2">
@@ -214,59 +363,110 @@
 </h4>
 <p>Species-neutral HCDT entropy of order <span class="math inline">\(q\)</span> of a community is defined as:</p>
 <p><span class="math display">\[^q\!H=\frac{1-\sum_s{p^q_s}}{q-1}=-\sum_s{p^q_s}\ln_q{p_s}=\sum_s{p_s}\ln_q{\frac{1}{p_s}}\]</span></p>
-<p><span class="math inline">\(q\)</span> is the order of diversity (e.g.: 1 for Shannon). Entropy can be calculated by the <code>Tsallis</code> function. Paracou meta-community entropy of order 1 is:</p>
+<p><span class="math inline">\(q\)</span> is the order of diversity
+(e.g.: 1 for Shannon). Entropy can be calculated by the
+<code>Tsallis</code> function. Paracou meta-community entropy of order 1
+is:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/Tsallis.html">Tsallis</a></span><span class="op">(</span><span class="va">PProba</span>, q <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##     None </span></span>
 <span><span class="co">## 4.736023</span></span></code></pre>
-<p>For convenience, special cases of entropy of order <span class="math inline">\(q\)</span> have a clear-name function: <code>Richess</code> for <span class="math inline">\(q=0\)</span>, <code>Shannon</code> for <span class="math inline">\(q=1\)</span>, <code>Simpson</code> for <span class="math inline">\(q=2\)</span>.</p>
+<p>For convenience, special cases of entropy of order <span class="math inline">\(q\)</span> have a clear-name function:
+<code>Richess</code> for <span class="math inline">\(q=0\)</span>,
+<code>Shannon</code> for <span class="math inline">\(q=1\)</span>,
+<code>Simpson</code> for <span class="math inline">\(q=2\)</span>.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/Shannon.html">Shannon</a></span><span class="op">(</span><span class="va">PProba</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##     None </span></span>
 <span><span class="co">## 4.736023</span></span></code></pre>
-<p>Entropy values have no intuitive interpretation in general, except for the number of species <span class="math inline">\(^0\!H\)</span> and Simpson entropy <span class="math inline">\(^2\!H\)</span> which is the probability for two randomly chosen individuals to belong to different species.</p>
+<p>Entropy values have no intuitive interpretation in general, except
+for the number of species <span class="math inline">\(^0\!H\)</span> and
+Simpson entropy <span class="math inline">\(^2\!H\)</span> which is the
+probability for two randomly chosen individuals to belong to different
+species.</p>
 </div>
 <div class="section level4">
 <h4 id="sample-coverage">Sample coverage<a class="anchor" aria-label="anchor" href="#sample-coverage"></a>
 </h4>
-<p>A useful indicator of sampling quality is the sample coverage <span class="citation">(Good 1953; Chao, Lee, and Chen 1988; Zhang and Huang 2007)</span>, that is to say the probability for a species of the community to be observed in the actual sample. It equals the sum of the probability of occurrences of all observed species. Its historical estimator is <span class="citation">(Good 1953)</span>:</p>
+<p>A useful indicator of sampling quality is the sample coverage <span class="citation">(Good 1953; Chao, Lee, and Chen 1988; Zhang and Huang
+2007)</span>, that is to say the probability for a species of the
+community to be observed in the actual sample. It equals the sum of the
+probability of occurrences of all observed species. Its historical
+estimator is <span class="citation">(Good 1953)</span>:</p>
 <p><span class="math display">\[\hat{C}=1-\frac{S^1}{n}\]</span></p>
-<p><span class="math inline">\(S^1\)</span> is the number of singletons (species observed once) of the sample, and <span class="math inline">\(n\)</span> is its size. The estimator has been improved by taking into account the whole distribution of species <span class="citation">(Zhang and Huang 2007)</span>. The <code>Coverage</code> function calculates it, allowing to choose the estimator:</p>
+<p><span class="math inline">\(S^1\)</span> is the number of singletons
+(species observed once) of the sample, and <span class="math inline">\(n\)</span> is its size. The estimator has been
+improved by taking into account the whole distribution of species <span class="citation">(Zhang and Huang 2007)</span>. The
+<code>Coverage</code> function calculates it, allowing to choose the
+estimator:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/Coverage.html">Coverage</a></span><span class="op">(</span><span class="va">PAbd</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ZhangHuang </span></span>
 <span><span class="co">##  0.9226675</span></span></code></pre>
-<p>The sample coverage cannot be estimated from probability data: abundances are required.</p>
-<p>Its interpretation is straightforward: some species have not been sampled. Their number is unknown but their total probability of occurence can be estimated accurately. Here, it is a bit less than 8%. From another point of view, the probability for an individual of the community to belong to a sampled species is <span class="math inline">\(C\)</span>: 8% of them belong to missed species. The number of missed species may be estimated by <code>Richness</code> but this is not the point here. The sample coverage is the foundation of many estimators of entropy.</p>
+<p>The sample coverage cannot be estimated from probability data:
+abundances are required.</p>
+<p>Its interpretation is straightforward: some species have not been
+sampled. Their number is unknown but their total probability of
+occurence can be estimated accurately. Here, it is a bit less than 8%.
+From another point of view, the probability for an individual of the
+community to belong to a sampled species is <span class="math inline">\(C\)</span>: 8% of them belong to missed species.
+The number of missed species may be estimated by <code>Richness</code>
+but this is not the point here. The sample coverage is the foundation of
+many estimators of entropy.</p>
 </div>
 <div class="section level4">
 <h4 id="bias-corrected-estimators">Bias corrected estimators<a class="anchor" aria-label="anchor" href="#bias-corrected-estimators"></a>
 </h4>
-<p>Correction of estimation bias is used to improve the estimation of entropy despite unobserved species and also mathematical issues <span class="citation">(Bonachela, Hinrichsen, and Muñoz 2008)</span>. Bias-corrected estimators (often relying on sample coverage) are returned by functions whose names are prefixed by <code>bc</code>, such as <code>bcTsallis</code>. They are similar to the non-corrected ones but they use abundance data and propose several bias-correction techniques to select in the <code>Correction</code> argument. A <em>Best</em> correction is calculated by default, detailed in the help file of each function.</p>
+<p>Correction of estimation bias is used to improve the estimation of
+entropy despite unobserved species and also mathematical issues <span class="citation">(Bonachela, Hinrichsen, and Muñoz 2008)</span>.
+Bias-corrected estimators (often relying on sample coverage) are
+returned by functions whose names are prefixed by <code>bc</code>, such
+as <code>bcTsallis</code>. They are similar to the non-corrected ones
+but they use abundance data and propose several bias-correction
+techniques to select in the <code>Correction</code> argument. A
+<em>Best</em> correction is calculated by default, detailed in the help
+file of each function.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/Tsallis.html">bcTsallis</a></span><span class="op">(</span><span class="va">PAbd</span>, q <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##  UnveilJ </span></span>
 <span><span class="co">## 4.928035</span></span></code></pre>
-<p>The best correction for Tsallis entropy follows <span class="citation">Chao and Jost (2015)</span>. It combines an unbiased estimator previously derived by <span class="citation">Zhang and Grabchak (2016)</span> and an estimate of the remaining bias.</p>
-<p>All community functions such as <code>Tsallis</code> are actually generic methods that can handle several types of data the appropriate way: if the first argument of the function is a <code>ProbaVector</code> (or a numeric vector summing to 1), no bias correction is applied. If it is an <code>AbdVector</code> (or an integer vector), the bias-corrected estimator is used (e.g. <code>bcTsallis</code>). Numeric vectors summing to more than 2 are considered as abundances but most bias corrections do not allow non-integer values and return a warning.</p>
-<p>The different ways to use the functions are a matter of personal preference. <code>bcTsallis</code> is equivalent to <code>Tsallis</code> with an abundance vector:</p>
+<p>The best correction for Tsallis entropy follows <span class="citation">Chao and Jost (2015)</span>. It combines an unbiased
+estimator previously derived by <span class="citation">Zhang and
+Grabchak (2016)</span> and an estimate of the remaining bias.</p>
+<p>All community functions such as <code>Tsallis</code> are actually
+generic methods that can handle several types of data the appropriate
+way: if the first argument of the function is a <code>ProbaVector</code>
+(or a numeric vector summing to 1), no bias correction is applied. If it
+is an <code>AbdVector</code> (or an integer vector), the bias-corrected
+estimator is used (e.g. <code>bcTsallis</code>). Numeric vectors summing
+to more than 2 are considered as abundances but most bias corrections do
+not allow non-integer values and return a warning.</p>
+<p>The different ways to use the functions are a matter of personal
+preference. <code>bcTsallis</code> is equivalent to <code>Tsallis</code>
+with an abundance vector:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/Tsallis.html">Tsallis</a></span><span class="op">(</span><span class="va">PAbd</span>, q <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##  UnveilJ </span></span>
 <span><span class="co">## 4.928035</span></span></code></pre>
-<p>whilst <code>Tsallis</code> with a probability vector does not allow bias correction:</p>
+<p>whilst <code>Tsallis</code> with a probability vector does not allow
+bias correction:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/Tsallis.html">Tsallis</a></span><span class="op">(</span><span class="va">PProba</span>, q <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##     None </span></span>
 <span><span class="co">## 4.736023</span></span></code></pre>
-<p>Bias-corrected entropy is ready to be transformed into explicit diversity.</p>
+<p>Bias-corrected entropy is ready to be transformed into explicit
+diversity.</p>
 </div>
 <div class="section level4">
 <h4 id="effective-numbers-of-species">Effective numbers of species<a class="anchor" aria-label="anchor" href="#effective-numbers-of-species"></a>
 </h4>
-<p>Entropy should be converted into <em>true diversity</em> <span class="citation">(Jost 2007)</span>, i.e. effective number of species equal to <span class="citation">Hill (1973)</span> numbers:</p>
+<p>Entropy should be converted into <em>true diversity</em> <span class="citation">(Jost 2007)</span>, i.e. effective number of species
+equal to <span class="citation">Hill (1973)</span> numbers:</p>
 <p><span class="math display">\[^q\!D={\left(\sum_s{p^q_s}\right)}^{\frac{1}{1-q}}\]</span></p>
-<p>This can be done by the deformed exponential function, or using directly the <code>Diversity</code> or <code>bcDiversity</code> functions (equal to the deformed exponential of order <span class="math inline">\(q\)</span> of <code>Tsallis</code> or <code>bcTsallis</code>)</p>
+<p>This can be done by the deformed exponential function, or using
+directly the <code>Diversity</code> or <code>bcDiversity</code>
+functions (equal to the deformed exponential of order <span class="math inline">\(q\)</span> of <code>Tsallis</code> or
+<code>bcTsallis</code>)</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/expq.html">expq</a></span><span class="op">(</span><span class="fu"><a href="../reference/Tsallis.html">Tsallis</a></span><span class="op">(</span><span class="va">PAbd</span>, q <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, q <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##  UnveilJ </span></span>
@@ -275,19 +475,36 @@
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/Diversity.html">Diversity</a></span><span class="op">(</span><span class="va">PAbd</span>, q <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##  UnveilJ </span></span>
 <span><span class="co">## 73.09335</span></span></code></pre>
-<p>The effective number of species of the Paracou dataset is estimated to be 73 after bias correction (rather than 69 without it). It means that a community made of 73 equally-frequent species has the same Simpson entropy as the actual one. This is much less than the actual 425 sampled species. Simpson’s entropy focuses on dominant species.</p>
+<p>The effective number of species of the Paracou dataset is estimated
+to be 73 after bias correction (rather than 69 without it). It means
+that a community made of 73 equally-frequent species has the same
+Simpson entropy as the actual one. This is much less than the actual 425
+sampled species. Simpson’s entropy focuses on dominant species.</p>
 </div>
 <div class="section level4">
 <h4 id="hurlberts-diversity">Hurlbert’s diversity<a class="anchor" aria-label="anchor" href="#hurlberts-diversity"></a>
 </h4>
-<p>Hurlbert’s index of diversity <span class="citation">(Hurlbert 1971)</span> of order <span class="math inline">\(k\)</span> is the expected number of species observed in a sample of size <span class="math inline">\(k\)</span>.</p>
-<p><span class="math display">\[_k\!S = \sum_{s}{\left[ 1-\left( 1-p_s \right)^k \right]}\]</span></p>
-<p>Greater values of <span class="math inline">\(k\)</span> give more importance to rare species.</p>
-<p>An unibiased estimator of <span class="math inline">\(_k\!S\)</span> has been provided by Hurlbert, for values of <span class="math inline">\(k\)</span> up to the sample size <span class="math inline">\(n\)</span>:</p>
-<p><span class="math display">\[_k\!\hat{S} = \sum_{s}{\left[ 1- \binom{n-n_s}{k} / \binom{n}{k} \right]}\]</span></p>
-<p>The effective number of species <span class="math inline">\(_k\!D\)</span> can be found by solving the following equation <span class="citation">(Dauby and Hardy 2012)</span>:</p>
-<p><span class="math display">\[_k\!S  = {_k\!D} \left[1-{\left(1-\frac{1}{_k\!D}\right)}^k\right]\]</span></p>
-<p>Hurlbert’s index is calculated by the <code>Hurlbert</code> function. Its unbiased estimator is obtained by <code>bcHurlbert</code> (implicitly if an abundance vector is used). Its effective number of species is caclulated by <code>HurlbertD</code> or <code>bcHurlbertD</code>.</p>
+<p>Hurlbert’s index of diversity <span class="citation">(Hurlbert
+1971)</span> of order <span class="math inline">\(k\)</span> is the
+expected number of species observed in a sample of size <span class="math inline">\(k\)</span>.</p>
+<p><span class="math display">\[_k\!S = \sum_{s}{\left[ 1-\left( 1-p_s
+\right)^k \right]}\]</span></p>
+<p>Greater values of <span class="math inline">\(k\)</span> give more
+importance to rare species.</p>
+<p>An unibiased estimator of <span class="math inline">\(_k\!S\)</span>
+has been provided by Hurlbert, for values of <span class="math inline">\(k\)</span> up to the sample size <span class="math inline">\(n\)</span>:</p>
+<p><span class="math display">\[_k\!\hat{S} = \sum_{s}{\left[ 1-
+\binom{n-n_s}{k} / \binom{n}{k} \right]}\]</span></p>
+<p>The effective number of species <span class="math inline">\(_k\!D\)</span> can be found by solving the
+following equation <span class="citation">(Dauby and Hardy
+2012)</span>:</p>
+<p><span class="math display">\[_k\!S  = {_k\!D}
+\left[1-{\left(1-\frac{1}{_k\!D}\right)}^k\right]\]</span></p>
+<p>Hurlbert’s index is calculated by the <code>Hurlbert</code> function.
+Its unbiased estimator is obtained by <code>bcHurlbert</code>
+(implicitly if an abundance vector is used). Its effective number of
+species is caclulated by <code>HurlbertD</code> or
+<code>bcHurlbertD</code>.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/Hurlbert.html">Hurlbert</a></span><span class="op">(</span><span class="va">PProba</span>, k <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##   Biased </span></span>
@@ -300,24 +517,52 @@
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/Hurlbert.html">HurlbertD</a></span><span class="op">(</span><span class="va">PAbd</span>, k <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Unbiased </span></span>
 <span><span class="co">## 73.13163</span></span></code></pre>
-<p>Hurlbert’s diversity of order 2 is identical to Simpson’s diversity.</p>
+<p>Hurlbert’s diversity of order 2 is identical to Simpson’s
+diversity.</p>
 </div>
 </div>
 <div class="section level3">
 <h3 id="meta-community-functions">Meta-community functions<a class="anchor" aria-label="anchor" href="#meta-community-functions"></a>
 </h3>
-<p>Meta-community functions allow partitioning diversity according to Patil and Taillie’s concept of diversity of a mixture <span class="citation">(Patil and Taillie 1982)</span>, i.e. <span class="math inline">\(\alpha\)</span> entropy of a meta-community is defined as the weighted average of community entropy, following <span class="citation">Routledge (1979)</span>:</p>
-<p><span class="math display">\[^q\!H_{\alpha}=\sum_i w_i \,^q_iH_{\alpha}\]</span></p>
-<p><span class="math inline">\(^q_iH_{\alpha}\)</span> is the entropy of community <span class="math inline">\(i\)</span>:</p>
-<p><span class="math display">\[^q_i\!H_{\alpha}=\frac{1-\sum_s{p^q_{s,i}}}{q-1} =-\sum_s{p^q_{s,i}}\ln_q{p_{s,i}} =\sum_s{p_{s,i}}\ln_q{\frac{1}{p_{s,i}}}\]</span></p>
-<p>Jost’s <span class="citation">(2007)</span> definition of <span class="math inline">\(\alpha\)</span> entropy is not supported explicitly in the package since it only allows partitioning of equally weighted communities. In this particular case, both definitions are identical.</p>
-<p><span class="math inline">\(\gamma\)</span> entropy of the meta-community is defined as <span class="math inline">\(\alpha\)</span> entropy of a community. <span class="math inline">\(\beta\)</span> entropy, the difference between <span class="math inline">\(\gamma\)</span> and <span class="math inline">\(\alpha\)</span>, is the generalized Jensen-Shannon divergence between the species distribution of the meta-community and those of communities <span class="citation">(Marcon et al. 2014)</span>:</p>
-<p><span class="math display">\[^q\!H_{\beta} =^q\!H_{\gamma}-^q\!H_{\alpha} =\sum_s{p^q_{s,i}\ln_q\frac{p_{s,i}}{p_s}} =\sum_s{p_{s,i}\ln_q\frac{p_s}{p_{s,i}}}\]</span></p>
-<p><span class="math inline">\(\beta\)</span> entropy should be transformed into diversity, i.e. an effective number of communities: <span class="math display">\[^q\!D_{\beta}=e^{\frac{^q\!H_{\beta}}{1-(q-1)^q\!H_{\alpha}}}_q\]</span></p>
+<p>Meta-community functions allow partitioning diversity according to
+Patil and Taillie’s concept of diversity of a mixture <span class="citation">(Patil and Taillie 1982)</span>, i.e. <span class="math inline">\(\alpha\)</span> entropy of a meta-community is
+defined as the weighted average of community entropy, following <span class="citation">Routledge (1979)</span>:</p>
+<p><span class="math display">\[^q\!H_{\alpha}=\sum_i w_i
+\,^q_iH_{\alpha}\]</span></p>
+<p><span class="math inline">\(^q_iH_{\alpha}\)</span> is the entropy of
+community <span class="math inline">\(i\)</span>:</p>
+<p><span class="math display">\[^q_i\!H_{\alpha}=\frac{1-\sum_s{p^q_{s,i}}}{q-1}
+=-\sum_s{p^q_{s,i}}\ln_q{p_{s,i}}
+=\sum_s{p_{s,i}}\ln_q{\frac{1}{p_{s,i}}}\]</span></p>
+<p>Jost’s <span class="citation">(2007)</span> definition of <span class="math inline">\(\alpha\)</span> entropy is not supported
+explicitly in the package since it only allows partitioning of equally
+weighted communities. In this particular case, both definitions are
+identical.</p>
+<p><span class="math inline">\(\gamma\)</span> entropy of the
+meta-community is defined as <span class="math inline">\(\alpha\)</span>
+entropy of a community. <span class="math inline">\(\beta\)</span>
+entropy, the difference between <span class="math inline">\(\gamma\)</span> and <span class="math inline">\(\alpha\)</span>, is the generalized Jensen-Shannon
+divergence between the species distribution of the meta-community and
+those of communities <span class="citation">(Marcon et al.
+2014)</span>:</p>
+<p><span class="math display">\[^q\!H_{\beta}
+=^q\!H_{\gamma}-^q\!H_{\alpha}
+=\sum_s{p^q_{s,i}\ln_q\frac{p_{s,i}}{p_s}}
+=\sum_s{p_{s,i}\ln_q\frac{p_s}{p_{s,i}}}\]</span></p>
+<p><span class="math inline">\(\beta\)</span> entropy should be
+transformed into diversity, i.e. an effective number of communities:
+<span class="math display">\[^q\!D_{\beta}=e^{\frac{^q\!H_{\beta}}{1-(q-1)^q\!H_{\alpha}}}_q\]</span></p>
 <div class="section level4">
 <h4 id="basic-meta-community-functions">Basic meta-community functions<a class="anchor" aria-label="anchor" href="#basic-meta-community-functions"></a>
 </h4>
-<p>These values can be estimated by the meta-community functions named <code>AlphaEntropy</code>, <code>AlphaDiversity</code>, <code>BetaEntropy</code>, <code>BetaDiversity</code>. They accept a <code>Metacommunity</code> and an order of diversity <span class="math inline">\(q\)</span> as arguments, and return an <code>MCentropy</code> or <code>MCdiversity</code> object which can be summarized and plotted. <code>GammaEntropy</code> and <code>GammaDiversity</code> return a number. Estimation-bias corrections are applied by default:</p>
+<p>These values can be estimated by the meta-community functions named
+<code>AlphaEntropy</code>, <code>AlphaDiversity</code>,
+<code>BetaEntropy</code>, <code>BetaDiversity</code>. They accept a
+<code>Metacommunity</code> and an order of diversity <span class="math inline">\(q\)</span> as arguments, and return an
+<code>MCentropy</code> or <code>MCdiversity</code> object which can be
+summarized and plotted. <code>GammaEntropy</code> and
+<code>GammaDiversity</code> return a number. Estimation-bias corrections
+are applied by default:</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">e</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/AlphaEntropy.html">AlphaEntropy</a></span><span class="op">(</span><span class="va">Paracou618.MC</span>, q <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">e</span><span class="op">)</span></span></code></pre></div>
@@ -329,13 +574,28 @@
 <span><span class="co">## 4.427559 4.772981 </span></span>
 <span><span class="co">## Average entropy of the communities: </span></span>
 <span><span class="co">## [1] 4.575378</span></span></code></pre>
-<p>The Shannon <span class="math inline">\(\alpha\)</span> entropy of the meta-community is 4.58. It is the weighted average entropy of communities.</p>
-<p>The estimation of the diversity of a meta-community whose numbers of individuals<code>$Ns</code> are not integer values can’t be done with most corrections, which do require integers. The Grassberger correction can be used. Community data is pooled to obtain a global inventory whose sample coverage is estimated. The Chao-Shen correction can also be applied based on this sample coverage and the actual <code>$Ps</code> values of the meta-community. Finally, the <em>Best</em> correction is the greater of the two values obtained by Chao-Shen and Grassberger <span class="citation">(Marcon et al. 2014)</span>.</p>
+<p>The Shannon <span class="math inline">\(\alpha\)</span> entropy of
+the meta-community is 4.58. It is the weighted average entropy of
+communities.</p>
+<p>The estimation of the diversity of a meta-community whose numbers of
+individuals<code>$Ns</code> are not integer values can’t be done with
+most corrections, which do require integers. The Grassberger correction
+can be used. Community data is pooled to obtain a global inventory whose
+sample coverage is estimated. The Chao-Shen correction can also be
+applied based on this sample coverage and the actual <code>$Ps</code>
+values of the meta-community. Finally, the <em>Best</em> correction is
+the greater of the two values obtained by Chao-Shen and Grassberger
+<span class="citation">(Marcon et al. 2014)</span>.</p>
 </div>
 <div class="section level4">
 <h4 id="diversity-partition-of-a-metacommunity">Diversity Partition of a metacommunity<a class="anchor" aria-label="anchor" href="#diversity-partition-of-a-metacommunity"></a>
 </h4>
-<p>The <code>DivPart</code> function calculates everything at once. Its arguments are the same but bias correction is not applied by default. It can be, using the argument <code>Biased = FALSE</code>, and the correction chosen by the argument<code>Correction</code>. It returns a <code>DivPart</code> object which can be summarized (entropy is not printed by <code>summary</code>) and plotted:</p>
+<p>The <code>DivPart</code> function calculates everything at once. Its
+arguments are the same but bias correction is not applied by default. It
+can be, using the argument <code>Biased = FALSE</code>, and the
+correction chosen by the argument<code>Correction</code>. It returns a
+<code>DivPart</code> object which can be summarized (entropy is not
+printed by <code>summary</code>) and plotted:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/DivPart.html">DivPart</a></span><span class="op">(</span>q <span class="op">=</span> <span class="fl">1</span>, MC <span class="op">=</span> <span class="va">Paracou618.MC</span>, Biased <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></code></pre></div>
@@ -359,13 +619,31 @@
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference_files/figure-html/DivPartPlot-1.png" width="700"></p>
-<p>The <span class="math inline">\(\alpha\)</span> diversity of communities is 97 effective species (it is the exponential of the entropy calculated previously). This is more than Simpson’s diversity 73 species, calculated above) because less frequent species are taken into account. <span class="math inline">\(\gamma\)</span> diversity of the meta-community is 138 effective species. <span class="math inline">\(\beta\)</span> diversity is 1.42 effective communities, i.e. the two actual communities are as different from each other as 1.42 ones with equal weights and no species in common.</p>
-<p>The figure is the plot of the diversity partition of the meta-community <code>Paracou618.MC</code>. The long rectangle of height 1 represents <span class="math inline">\(\gamma\)</span> diversity, equal to 138 effective species. The narrower and higher rectangle has the same area: its horizontal size is <span class="math inline">\(\alpha\)</span> diversity (97 effective species) and its height is <span class="math inline">\(\beta\)</span> diversity (1.42 effective communities).}</p>
+<p>The <span class="math inline">\(\alpha\)</span> diversity of
+communities is 97 effective species (it is the exponential of the
+entropy calculated previously). This is more than Simpson’s diversity 73
+species, calculated above) because less frequent species are taken into
+account. <span class="math inline">\(\gamma\)</span> diversity of the
+meta-community is 138 effective species. <span class="math inline">\(\beta\)</span> diversity is 1.42 effective
+communities, i.e. the two actual communities are as different from each
+other as 1.42 ones with equal weights and no species in common.</p>
+<p>The figure is the plot of the diversity partition of the
+meta-community <code>Paracou618.MC</code>. The long rectangle of height
+1 represents <span class="math inline">\(\gamma\)</span> diversity,
+equal to 138 effective species. The narrower and higher rectangle has
+the same area: its horizontal size is <span class="math inline">\(\alpha\)</span> diversity (97 effective species)
+and its height is <span class="math inline">\(\beta\)</span> diversity
+(1.42 effective communities).}</p>
 </div>
 <div class="section level4">
 <h4 id="diversity-estimation-of-a-metacommunity">Diversity Estimation of a metacommunity<a class="anchor" aria-label="anchor" href="#diversity-estimation-of-a-metacommunity"></a>
 </h4>
-<p>The <code>DivEst</code> function decomposes diversity and estimates confidence interval of <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\gamma\)</span> diversity following <span class="citation">Marcon et al. (2012)</span>. If the observed species frequencies of a community are assumed to be a realization of a multinomial distribution, they can be drawn again to obtain a distribution of entropy.</p>
+<p>The <code>DivEst</code> function decomposes diversity and estimates
+confidence interval of <span class="math inline">\(\alpha\)</span>,
+<span class="math inline">\(\beta\)</span> and <span class="math inline">\(\gamma\)</span> diversity following <span class="citation">Marcon et al. (2012)</span>. If the observed species
+frequencies of a community are assumed to be a realization of a
+multinomial distribution, they can be drawn again to obtain a
+distribution of entropy.</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">de</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/DivEst.html">DivEst</a></span><span class="op">(</span>q <span class="op">=</span> <span class="fl">1</span>, <span class="va">Paracou618.MC</span>, Biased <span class="op">=</span> <span class="cn">FALSE</span>, Correction <span class="op">=</span> <span class="st">"Best"</span>, Simulations <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
@@ -416,13 +694,24 @@
 <span><span class="co">## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): NAs</span></span>
 <span><span class="co">## introduced by coercion</span></span></code></pre>
 <p><img src="reference_files/figure-html/DivEstPlot-1.png" width="700"></p>
-<p>The result is a <code>Divest</code> object which can be summarized and plotted. On the figure of the diversity estimation of the meta-community <code>Paracou618.MC</code>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\gamma\)</span> diversity probability densities are plotted, with a 95% confidence interval.</p>
-<p>The uncertainty of estimation is due to sampling: the distribution of the estimators corresponds to the simulated repetitions of sampling in the original multinomial distribution of species. It ignores the remaining bias of the estimator, which is unknown. Yet, except for <span class="math inline">\(q=2\)</span>, the corrected estimators <em>are</em> biased (even though much less than the non-corrected ones), especially when <span class="math inline">\(q\)</span> is small. New estimators to reduce the bias are included in the package regularly.</p>
+<p>The result is a <code>Divest</code> object which can be summarized
+and plotted. On the figure of the diversity estimation of the
+meta-community <code>Paracou618.MC</code>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\gamma\)</span> diversity probability densities
+are plotted, with a 95% confidence interval.</p>
+<p>The uncertainty of estimation is due to sampling: the distribution of
+the estimators corresponds to the simulated repetitions of sampling in
+the original multinomial distribution of species. It ignores the
+remaining bias of the estimator, which is unknown. Yet, except for <span class="math inline">\(q=2\)</span>, the corrected estimators
+<em>are</em> biased (even though much less than the non-corrected ones),
+especially when <span class="math inline">\(q\)</span> is small. New
+estimators to reduce the bias are included in the package regularly.</p>
 </div>
 <div class="section level4">
 <h4 id="diversity-profile-of-a-metacommunity">Diversity Profile of a metacommunity<a class="anchor" aria-label="anchor" href="#diversity-profile-of-a-metacommunity"></a>
 </h4>
-<p><code>DivProfile</code> calculates diversity profiles, i.e. the value of diversity against its order. The result is a <code>DivProfile</code> object which can be summarized and plotted.</p>
+<p><code>DivProfile</code> calculates diversity profiles, i.e. the value
+of diversity against its order. The result is a <code>DivProfile</code>
+object which can be summarized and plotted.</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/DivProfile.html">DivProfile</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">0.2</span><span class="op">)</span>, <span class="va">Paracou618.MC</span>, Biased <span class="op">=</span> <span class="cn">FALSE</span>, NumberOfSimulations <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
@@ -445,43 +734,98 @@
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">dp</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference_files/figure-html/DivProfilePlot-1.png" width="700"></p>
-<p>The figure shows the diversity profile of the meta-community <code>Paracou618.MC</code>. Values are the number of effective species (<span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\gamma\)</span> diversity) and the effective number of communities (<span class="math inline">\(\beta\)</span> diversity). Community P006 is represented by the solid line and community P018 by the dotted line. <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\gamma\)</span> diversity decrease from <span class="math inline">\(q=0\)</span> (number of species) to <span class="math inline">\(q=2\)</span> (Simpson diversity) by construction.}</p>
-<p>Small orders of diversity give more weight to rare species. P018 can be considered more diverse than P006 because their profiles (top right of the figure) do not cross <span class="citation">(Tothmeresz 1995)</span>: its diversity is systematically higher. The shape of the <span class="math inline">\(\beta\)</span> diversity profile shows that the communities are more diverse when their dominant species are considered.</p>
-<p>The bootstrap confidence intervals of the values of diversity <span class="citation">(Marcon et al. 2012, 2014)</span> are calculated if <code>NumberOfSimulations</code> is not 0.</p>
+<p>The figure shows the diversity profile of the meta-community
+<code>Paracou618.MC</code>. Values are the number of effective species
+(<span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\gamma\)</span> diversity) and the effective
+number of communities (<span class="math inline">\(\beta\)</span>
+diversity). Community P006 is represented by the solid line and
+community P018 by the dotted line. <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\gamma\)</span> diversity decrease from <span class="math inline">\(q=0\)</span> (number of species) to <span class="math inline">\(q=2\)</span> (Simpson diversity) by
+construction.}</p>
+<p>Small orders of diversity give more weight to rare species. P018 can
+be considered more diverse than P006 because their profiles (top right
+of the figure) do not cross <span class="citation">(Tothmeresz
+1995)</span>: its diversity is systematically higher. The shape of the
+<span class="math inline">\(\beta\)</span> diversity profile shows that
+the communities are more diverse when their dominant species are
+considered.</p>
+<p>The bootstrap confidence intervals of the values of diversity <span class="citation">(Marcon et al. 2012, 2014)</span> are calculated if
+<code>NumberOfSimulations</code> is not 0.</p>
 </div>
 <div class="section level4">
 <h4 id="alternative-functions">Alternative functions<a class="anchor" aria-label="anchor" href="#alternative-functions"></a>
 </h4>
-<p>Beta entropy can also be calculated by a set of functions named after the community functions, such as <code>TsallisBeta</code>, <code>bcTsallisBeta</code>, <code>SimpsonBeta</code>, etc. which require two vectors of abundances or probabilities instead of a <code>MetaCommunity</code> object: that of the community and the expected one (usually that of the meta-community). Bias correction is currently limited to Chao and Shen’s correction. The example below calculates the Shannon <span class="math inline">\(\beta\)</span> entropy of the first community of Paracou618 and the meta-community.</p>
+<p>Beta entropy can also be calculated by a set of functions named after
+the community functions, such as <code>TsallisBeta</code>,
+<code>bcTsallisBeta</code>, <code>SimpsonBeta</code>, etc. which require
+two vectors of abundances or probabilities instead of a
+<code>MetaCommunity</code> object: that of the community and the
+expected one (usually that of the meta-community). Bias correction is
+currently limited to Chao and Shen’s correction. The example below
+calculates the Shannon <span class="math inline">\(\beta\)</span>
+entropy of the first community of Paracou618 and the meta-community.</p>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ShannonBeta.html">ShannonBeta</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Psi</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>, <span class="va">PProba</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##      None </span></span>
 <span><span class="co">## 0.3499358</span></span></code></pre>
-<p>These functions are available for particular uses, when a <code>MetaCommunity</code> is not available or not convenient to use (e.g. simulations). Meta-community functions are preferred in general.</p>
+<p>These functions are available for particular uses, when a
+<code>MetaCommunity</code> is not available or not convenient to use
+(e.g. simulations). Meta-community functions are preferred in
+general.</p>
 </div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="phylogenetic-diversity">Phylogenetic diversity<a class="anchor" aria-label="anchor" href="#phylogenetic-diversity"></a>
 </h2>
-<p>Phylogenetic or functional diversity generalizes HCDT diversity, considering the distance between species <span class="citation">(Marcon and Hérault 2015)</span>. Here, all species take place in an ultrametric phylogenetic or functional tree.</p>
+<p>Phylogenetic or functional diversity generalizes HCDT diversity,
+considering the distance between species <span class="citation">(Marcon
+and Hérault 2015a)</span>. Here, all species take place in an
+ultrametric phylogenetic or functional tree.</p>
 <div class="figure">
 <img src="Tree.png" alt=""><p class="caption">Hypothetical ultrametric tree</p>
 </div>
-<p>The tree is cut into slices, delimited by two nodes: the hypothetical tree of the figure (a) contains three slices, delimited by two nodes. The first slice starts at the bottom of the tree and ends at the first node. In slice <span class="math inline">\(k\)</span>, <span class="math inline">\(L_k\)</span> leaves are found. The length of slices is <span class="math inline">\(T_k\)</span>. The probabilities of occurrence of the species belonging to branches that were below leaf <span class="math inline">\(l\)</span> in the original tree are summed to give the grouped probability <span class="math inline">\(u_{k,l}\)</span>. Figure (b) focuses on slice 2. The tree without slice 1 is reduced to 3 leaves. Frequencies of collapsed species are <span class="math inline">\(u_{k,l}\)</span>. Figure (c) shows slice 3 only.</p>
+<p>The tree is cut into slices, delimited by two nodes: the hypothetical
+tree of the figure (a) contains three slices, delimited by two nodes.
+The first slice starts at the bottom of the tree and ends at the first
+node. In slice <span class="math inline">\(k\)</span>, <span class="math inline">\(L_k\)</span> leaves are found. The length of
+slices is <span class="math inline">\(T_k\)</span>. The probabilities of
+occurrence of the species belonging to branches that were below leaf
+<span class="math inline">\(l\)</span> in the original tree are summed
+to give the grouped probability <span class="math inline">\(u_{k,l}\)</span>. Figure (b) focuses on slice 2.
+The tree without slice 1 is reduced to 3 leaves. Frequencies of
+collapsed species are <span class="math inline">\(u_{k,l}\)</span>.
+Figure (c) shows slice 3 only.</p>
 <p>HCDT entropy can be calculated in slice <span class="math inline">\(k\)</span>:</p>
-<p><span class="math display">\[^q_k{H}=-\sum_l{u_{k,l}} \ln_q{(1/u_{k,l})}\]</span></p>
-<p>Then, it is summed over the tree slices. Phyloentropy can be normalized or not. We normalize it so that it does not depend on the tree height:</p>
-<p><span class="math display">\[^q\overline{H}\left( T \right) = \sum^K_{k=1}{\frac{T_k}{T}{^q_k{\!H}}}\]</span></p>
-<p>Unnormalized values are multiplied by the height of the tree, such as <span class="math inline">\(^q\!\mathit{PD}(T)\)</span> <span class="citation">(Chao, Chiu, and Jost 2010)</span>.</p>
-<p>Phyloentropy is calculated as HCDT entropy along the slices of the trees applying possible estimation-bias corrections, summed, possibly normalized, and finally transformed into diversity:</p>
-<p><span class="math display">\[^q\overline{D}\left( T \right) = e^{^q\overline{H}\left( T \right)}_q\]</span></p>
+<p><span class="math display">\[^q_k{H}=-\sum_l{u_{k,l}}
+\ln_q{(1/u_{k,l})}\]</span></p>
+<p>Then, it is summed over the tree slices. Phyloentropy can be
+normalized or not. We normalize it so that it does not depend on the
+tree height:</p>
+<p><span class="math display">\[^q\overline{H}\left( T \right) =
+\sum^K_{k=1}{\frac{T_k}{T}{^q_k{\!H}}}\]</span></p>
+<p>Unnormalized values are multiplied by the height of the tree, such as
+<span class="math inline">\(^q\!\mathit{PD}(T)\)</span> <span class="citation">(Chao, Chiu, and Jost 2010)</span>.</p>
+<p>Phyloentropy is calculated as HCDT entropy along the slices of the
+trees applying possible estimation-bias corrections, summed, possibly
+normalized, and finally transformed into diversity:</p>
+<p><span class="math display">\[^q\overline{D}\left( T \right) =
+e^{^q\overline{H}\left( T \right)}_q\]</span></p>
 <div class="section level3">
 <h3 id="community-functions-1">Community functions<a class="anchor" aria-label="anchor" href="#community-functions-1"></a>
 </h3>
-<p><code>PhyloEntropy</code> and the estimation-bias-corrected <code>bcPhyloEntropy</code> are the phylogenetic analogs of <code>Tsallis</code> and <code>bcTsallis</code>. They accept the same arguments plus an ultrametric tree of class <code>phylo</code>, <code>hclust</code> or <code>phylog</code> and <code>Normalize</code> a boolean to normalize the tree height to 1 (by default).</p>
-<p>Phylogenetic diversity is calculated by <code>PhyloDiversity</code> or <code>bcPhyloDiversity</code> analogous to the species-neutral diversity functions <code>Diversity</code> and <code>bcDiversity</code>.</p>
-<p>Results are either a <code>PhyloDiversity</code> or a <code>PhyloEntropy</code> object, which can be plotted and summarized.</p>
+<p><code>PhyloEntropy</code> and the estimation-bias-corrected
+<code>bcPhyloEntropy</code> are the phylogenetic analogs of
+<code>Tsallis</code> and <code>bcTsallis</code>. They accept the same
+arguments plus an ultrametric tree of class <code>phylo</code>,
+<code>hclust</code> or <code>phylog</code> and <code>Normalize</code> a
+boolean to normalize the tree height to 1 (by default).</p>
+<p>Phylogenetic diversity is calculated by <code>PhyloDiversity</code>
+or <code>bcPhyloDiversity</code> analogous to the species-neutral
+diversity functions <code>Diversity</code> and
+<code>bcDiversity</code>.</p>
+<p>Results are either a <code>PhyloDiversity</code> or a
+<code>PhyloEntropy</code> object, which can be plotted and
+summarized.</p>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">phd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/PhyloDiversity.html">bcPhyloDiversity</a></span><span class="op">(</span><span class="va">PAbd</span>, q <span class="op">=</span> <span class="fl">1</span>, Tree <span class="op">=</span> <span class="va">Paracou618.Taxonomy</span>, Normalize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">phd</span><span class="op">)</span></span></code></pre></div>
@@ -497,16 +841,45 @@
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">phd</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference_files/figure-html/PhyloDiversityPlot-1.png" width="700"></p>
-<p>The figure shows the <span class="math inline">\(\gamma\)</span> phylodiversity estimation of the meta-community <code>Paracou618.MC</code>. The effective number of taxa of Shannon diversity is plotted against the distance from the leaves of the phylogenetic tree. Here, the tree is based on a rough taxonomy, so diversity of species, genera and families are the three levels of the curve. The dotted line represents the value of phylodiversity.</p>
-<p>The phylogenetic diversity of order 1 of the Paracou dataset is 56 effective species: 56 totally different species (only connected by the root of the tree) with equal probabilities would have the same entropy. It can be compared to its species-neutral diversity: 138 species. The latter is the diversity of the first slice of the tree. When going up the tree, diversity decreases because species collapse. On the figure, the diversity of the second slice, between <span class="math inline">\(T=1\)</span> and <span class="math inline">\(T=2\)</span>, is that of genera (64 effective genera) and the last slice contains20 effective families. The phylogenetic entropy of the community is the average of the entropy along slices, weighted by the slice lengths. Diversity can not be averaged the same way.</p>
-<p>A less trivial phylogeny would contain many slices, resulting in as many diversity levels with respect to <span class="math inline">\(T\)</span>.</p>
-<p>The <code>AllenH</code> function is close to <code>PhyloEntropy</code>: it also calculates phyloentropy but the algorithm is that of <span class="citation">Allen, Kon, and Bar-Yam (2009)</span> for <span class="math inline">\(q=1\)</span> and that of <span class="citation">Leinster and Cobbold (2012)</span> for <span class="math inline">\(q \ne 1\)</span>. It is much faster since it does not require calculating entropy for each slice of the tree but it does not allow estimation-bias correction. <code>ChaoPD</code> calculates phylodiversity according to <span class="citation">Chao, Chiu, and Jost (2010)</span>, with the same advantages and limits compared to <code>PhyloDiversity</code>.</p>
-<p>For convenience, <code>PDFD</code> and <code>Rao</code> functions are provided to calculate unnormalized phyloentropy of order 0 and 2.</p>
+<p>The figure shows the <span class="math inline">\(\gamma\)</span>
+phylodiversity estimation of the meta-community
+<code>Paracou618.MC</code>. The effective number of taxa of Shannon
+diversity is plotted against the distance from the leaves of the
+phylogenetic tree. Here, the tree is based on a rough taxonomy, so
+diversity of species, genera and families are the three levels of the
+curve. The dotted line represents the value of phylodiversity.</p>
+<p>The phylogenetic diversity of order 1 of the Paracou dataset is 56
+effective species: 56 totally different species (only connected by the
+root of the tree) with equal probabilities would have the same entropy.
+It can be compared to its species-neutral diversity: 138 species. The
+latter is the diversity of the first slice of the tree. When going up
+the tree, diversity decreases because species collapse. On the figure,
+the diversity of the second slice, between <span class="math inline">\(T=1\)</span> and <span class="math inline">\(T=2\)</span>, is that of genera (64 effective
+genera) and the last slice contains20 effective families. The
+phylogenetic entropy of the community is the average of the entropy
+along slices, weighted by the slice lengths. Diversity can not be
+averaged the same way.</p>
+<p>A less trivial phylogeny would contain many slices, resulting in as
+many diversity levels with respect to <span class="math inline">\(T\)</span>.</p>
+<p>The <code>AllenH</code> function is close to
+<code>PhyloEntropy</code>: it also calculates phyloentropy but the
+algorithm is that of <span class="citation">Allen, Kon, and Bar-Yam
+(2009)</span> for <span class="math inline">\(q=1\)</span> and that of
+<span class="citation">Leinster and Cobbold (2012)</span> for <span class="math inline">\(q \ne 1\)</span>. It is much faster since it does
+not require calculating entropy for each slice of the tree but it does
+not allow estimation-bias correction. <code>ChaoPD</code> calculates
+phylodiversity according to <span class="citation">Chao, Chiu, and Jost
+(2010)</span>, with the same advantages and limits compared to
+<code>PhyloDiversity</code>.</p>
+<p>For convenience, <code>PDFD</code> and <code>Rao</code> functions are
+provided to calculate unnormalized phyloentropy of order 0 and 2.</p>
 </div>
 <div class="section level3">
 <h3 id="meta-community-functions-1">Meta-community functions<a class="anchor" aria-label="anchor" href="#meta-community-functions-1"></a>
 </h3>
-<p><code>DivPart</code>, <code>DivEst</code> and <code>DivProfile</code> functions return phylogenetic entropy and diversity values instead of species-neutral ones if a tree is provided in the arguments.</p>
+<p><code>DivPart</code>, <code>DivEst</code> and <code>DivProfile</code>
+functions return phylogenetic entropy and diversity values instead of
+species-neutral ones if a tree is provided in the arguments.</p>
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/DivPart.html">DivPart</a></span><span class="op">(</span>q <span class="op">=</span> <span class="fl">1</span>, <span class="va">Paracou618.MC</span>, Biased <span class="op">=</span> <span class="cn">FALSE</span>, Correction <span class="op">=</span> <span class="st">"Best"</span>, Tree <span class="op">=</span> <span class="va">Paracou618.Taxonomy</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">dp</span><span class="op">)</span></span></code></pre></div>
@@ -527,8 +900,10 @@
 <span><span class="co">## [1] 1.273686</span></span>
 <span><span class="co">## Gamma diversity of the metacommunity: </span></span>
 <span><span class="co">## [1] 55.64502</span></span></code></pre>
-<p>The decomposition is interpreted as the species-neutral one: <span class="math inline">\(\gamma\)</span> diversity is 56 effective species, made of 1.3 effective communities of 44 effective species.</p>
-<p>Other meta-community functions, such as <code>AlphaEntropy</code> behave the same way:</p>
+<p>The decomposition is interpreted as the species-neutral one: <span class="math inline">\(\gamma\)</span> diversity is 56 effective species,
+made of 1.3 effective communities of 44 effective species.</p>
+<p>Other meta-community functions, such as <code>AlphaEntropy</code>
+behave the same way:</p>
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="../reference/BetaEntropy.html">BetaEntropy</a></span><span class="op">(</span><span class="va">Paracou618.MC</span>, q <span class="op">=</span> <span class="fl">2</span>, Tree <span class="op">=</span> <span class="va">Paracou618.Taxonomy</span>, Correction <span class="op">=</span> <span class="st">"None"</span>, Normalize <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## HCDT beta entropy of order 2 of metaCommunity Paracou618.MC with correction: </span></span>
@@ -549,22 +924,38 @@
 <span><span class="fu"><a href="https://rdrr.io/pkg/ade4/man/divc.html" class="external-link">divc</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Wi</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/pkg/ade4/man/disc.html" class="external-link">disc</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Nsi</span><span class="op">)</span>, <span class="va">Paracou618.Taxonomy</span><span class="op">$</span><span class="va">Wdist</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##                    diversity</span></span>
 <span><span class="co">## Paracou618.MC$Wi 0.009845941</span></span></code></pre>
-<p>The decomposition of the diversity of meta-communities with non integer <code>$Ns</code> starts with the estimation of <span class="math inline">\(\gamma\)</span> diversity. The best estimator is found for each slice of the tree. It is then used to estimate <span class="math inline">\(\alpha\)</span> diversity.</p>
+<p>The decomposition of the diversity of meta-communities with non
+integer <code>$Ns</code> starts with the estimation of <span class="math inline">\(\gamma\)</span> diversity. The best estimator is
+found for each slice of the tree. It is then used to estimate <span class="math inline">\(\alpha\)</span> diversity.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="similarity-based-diversity">Similarity-based diversity<a class="anchor" aria-label="anchor" href="#similarity-based-diversity"></a>
 </h2>
-<p><span class="citation">Leinster and Cobbold (2012)</span> introduced similarity-based diversity of a community <span class="math inline">\(^qD^Z\)</span>. A matrix <span class="math inline">\(\mathbf{Z}\)</span> describes the similarity between pairs of species, defined between 0 and 1. A species ordinariness is its average similarity with all species (weighted by species frequencies), including similarity with itself (equal to 1). Similarity-based diversity is the reciprocal of the generalized average of order <span class="math inline">\(q\)</span> <span class="citation">(Hardy, Littlewood, and Pólya 1952)</span> of the community species ordinariness.</p>
-<p>The <code>Dqz</code> function calculates similarity-based diversity. Its arguments are the vector of probabilities of occurrences of the species, the order of diversity and the similarity matrix <span class="math inline">\(\mathbf{Z}\)</span>. The <code>bcDqz</code> function allows estimation-bias correction <span class="citation">(Marcon, Zhang, and Hérault 2014)</span>.</p>
-<p>This example calculates the <span class="math inline">\(\gamma\)</span> diversity of the meta-community Paracou. First, the similarity matrix is calculated from the distance matrix between all pairs of species as 1 minus normalized dissimilarity.</p>
+<p><span class="citation">Leinster and Cobbold (2012)</span> introduced
+similarity-based diversity of a community <span class="math inline">\(^qD^Z\)</span>. A matrix <span class="math inline">\(\mathbf{Z}\)</span> describes the similarity
+between pairs of species, defined between 0 and 1. A species
+ordinariness is its average similarity with all species (weighted by
+species frequencies), including similarity with itself (equal to 1).
+Similarity-based diversity is the reciprocal of the generalized average
+of order <span class="math inline">\(q\)</span> <span class="citation">(Hardy, Littlewood, and Pólya 1952)</span> of the
+community species ordinariness.</p>
+<p>The <code>Dqz</code> function calculates similarity-based diversity.
+Its arguments are the vector of probabilities of occurrences of the
+species, the order of diversity and the similarity matrix <span class="math inline">\(\mathbf{Z}\)</span>. The <code>bcDqz</code>
+function allows estimation-bias correction <span class="citation">(Marcon, Zhang, and Hérault 2014)</span>.</p>
+<p>This example calculates the <span class="math inline">\(\gamma\)</span> diversity of the meta-community
+Paracou. First, the similarity matrix is calculated from the distance
+matrix between all pairs of species as 1 minus normalized
+dissimilarity.</p>
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">DistanceMatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">Paracou618.dist</span><span class="op">)</span></span>
 <span><span class="va">Z</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">DistanceMatrix</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">DistanceMatrix</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/Dqz.html">bcDqz</a></span><span class="op">(</span><span class="va">PAbd</span>, q <span class="op">=</span> <span class="fl">2</span>, <span class="va">Z</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##    Best </span></span>
 <span><span class="co">## 1.48295</span></span></code></pre>
-<p>If <span class="math inline">\(\mathbf{Z}\)</span> is the identity matrix, similarity-based diversity equals HCDT diversity:</p>
+<p>If <span class="math inline">\(\mathbf{Z}\)</span> is the identity
+matrix, similarity-based diversity equals HCDT diversity:</p>
 <div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/Dqz.html">Dqz</a></span><span class="op">(</span><span class="va">PProba</span>, q <span class="op">=</span> <span class="fl">2</span>, Z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">PProba</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##    None </span></span>
@@ -573,8 +964,18 @@
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/Diversity.html">Diversity</a></span><span class="op">(</span><span class="va">PProba</span>, q <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##    None </span></span>
 <span><span class="co">## 68.7215</span></span></code></pre>
-<p>Functional diversity of order 2 is only 1.48 effective species, which is very small compared to 69 effective species for Simpson diversity. 1.48 equally-frequent species with similarity equal to 0 would have the same functional diversity as the actual community (made of 425 species). This means that species are very similar from a functional point of view. The very low values returned by <span class="math inline">\(^qD^Z\)</span> are questioned by <span class="citation">Chao, Chiu, and Jost (2014)</span> and discussed in depth by <span class="citation">Marcon, Zhang, and Hérault (2014)</span>: the choice of the similarity matrix is not trivial.</p>
-<p>The similarity-based entropy of a community <span class="math inline">\(^qH^Z\)</span> [<span class="citation">Leinster and Cobbold (2012)</span>; Ricotta2006] has the same relations with diversity as HCDT entropy and Hill numbers. The <code>Hqz</code> function calculates it:</p>
+<p>Functional diversity of order 2 is only 1.48 effective species, which
+is very small compared to 69 effective species for Simpson diversity.
+1.48 equally-frequent species with similarity equal to 0 would have the
+same functional diversity as the actual community (made of 425 species).
+This means that species are very similar from a functional point of
+view. The very low values returned by <span class="math inline">\(^qD^Z\)</span> are questioned by <span class="citation">Chao, Chiu, and Jost (2014)</span> and discussed in
+depth by <span class="citation">Marcon, Zhang, and Hérault
+(2014)</span>: the choice of the similarity matrix is not trivial.</p>
+<p>The similarity-based entropy of a community <span class="math inline">\(^qH^Z\)</span> [<span class="citation">Leinster
+and Cobbold (2012)</span>; Ricotta2006] has the same relations with
+diversity as HCDT entropy and Hill numbers. The <code>Hqz</code>
+function calculates it:</p>
 <div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/Hqz.html">Hqz</a></span><span class="op">(</span><span class="va">PProba</span>, q <span class="op">=</span> <span class="fl">2</span>, <span class="va">Z</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##      None </span></span>
@@ -583,8 +984,10 @@
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/lnq.html">lnq</a></span><span class="op">(</span><span class="fu"><a href="../reference/Dqz.html">Dqz</a></span><span class="op">(</span><span class="va">PProba</span>, q <span class="op">=</span> <span class="fl">2</span>, <span class="va">Z</span><span class="op">)</span>, q <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##      None </span></span>
 <span><span class="co">## 0.3208152</span></span></code></pre>
-<p>As species-neutral entropy, <span class="math inline">\(^qH^Z\)</span> has no straightforward interpretation beyond the average surprise of a community.</p>
-<p>All meta-community functions can be used to estimate similarity-based diversity: argument <code>Z</code> must be provided:</p>
+<p>As species-neutral entropy, <span class="math inline">\(^qH^Z\)</span> has no straightforward
+interpretation beyond the average surprise of a community.</p>
+<p>All meta-community functions can be used to estimate similarity-based
+diversity: argument <code>Z</code> must be provided:</p>
 <div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">e</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/AlphaEntropy.html">AlphaEntropy</a></span><span class="op">(</span><span class="va">Paracou618.MC</span>, q <span class="op">=</span> <span class="fl">1</span>, Z <span class="op">=</span> <span class="va">Z</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">e</span><span class="op">)</span></span></code></pre></div>
@@ -599,18 +1002,39 @@
 <span><span class="co">## 0.3945541 0.3934725 </span></span>
 <span><span class="co">## Average entropy of the communities: </span></span>
 <span><span class="co">## [1] 0.3940912</span></span></code></pre>
-<p>The <span class="math inline">\(\alpha\)</span> functional entropy of the meta-community is the average entropy of communities.</p>
+<p>The <span class="math inline">\(\alpha\)</span> functional entropy of
+the meta-community is the average entropy of communities.</p>
 </div>
 <div class="section level2">
 <h2 id="advanced-tools">Advanced tools<a class="anchor" aria-label="anchor" href="#advanced-tools"></a>
 </h2>
-<p>The package comes with a set of tools to realize frequents tasks: run Monte-Carlo simulations on a community, quickly calculate its diversity profile, apply a function to a species distribution along a tree, and manipulate meta-communities.</p>
+<p>The package comes with a set of tools to realize frequents tasks: run
+Monte-Carlo simulations on a community, quickly calculate its diversity
+profile, apply a function to a species distribution along a tree, and
+manipulate meta-communities.</p>
 <div class="section level3">
 <h3 id="random-communities">Random communities<a class="anchor" aria-label="anchor" href="#random-communities"></a>
 </h3>
-<p>The <code>rCommunity</code> function allows creating random communities. Their species probability distribution can be drawn in a well-known distribution (such as a log-normal one) or obtained from the data, just by dividing abundances by the total number of individuals <span class="citation">(Marcon et al. 2012)</span>, or derived from a more sophisticated model by <span class="citation">Chao and Jost (2015)</span>. Finally, the specified number of communities are drawn in a multinomial distribution.</p>
-<p>The log-normal <span class="citation">(Preston 1948)</span>, the log-series <span class="citation">(Fisher, Corbet, and Williams 1943)</span>, the geometric <span class="citation">(Motomura 1932)</span>, and the broken-stick <span class="citation">(MacArthur 1957)</span> distributions can be simulated.</p>
-<p>This example code draws a single community of 1000 individuals according to a log-normal distribution with 300 species. Many species are not observed in the 1000-individual sample: the observed number of species is shown, with an estimation of the actual number (which should be 300). The simulated community is plotted (a Whittaker plot), with its log-normal distribution fitted from the data. Estimated parameters can be compared to the original ones.</p>
+<p>The <code>rCommunity</code> function allows creating random
+communities. Their species probability distribution can be drawn in a
+well-known distribution (such as a log-normal one) or obtained from the
+data, just by dividing abundances by the total number of individuals
+<span class="citation">(Marcon et al. 2012)</span>, or derived from a
+more sophisticated model by <span class="citation">Chao and Jost
+(2015)</span>. Finally, the specified number of communities are drawn in
+a multinomial distribution.</p>
+<p>The log-normal <span class="citation">(Preston 1948)</span>, the
+log-series <span class="citation">(Fisher, Corbet, and Williams
+1943)</span>, the geometric <span class="citation">(Motomura
+1932)</span>, and the broken-stick <span class="citation">(MacArthur
+1957)</span> distributions can be simulated.</p>
+<p>This example code draws a single community of 1000 individuals
+according to a log-normal distribution with 300 species. Many species
+are not observed in the 1000-individual sample: the observed number of
+species is shown, with an estimation of the actual number (which should
+be 300). The simulated community is plotted (a Whittaker plot), with its
+log-normal distribution fitted from the data. Estimated parameters can
+be compared to the original ones.</p>
 <div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/rCommunity.html">rCommunity</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, size <span class="op">=</span> <span class="fl">1000</span>, S<span class="op">=</span><span class="fl">300</span>, Distribution <span class="op">=</span> <span class="st">"lnorm"</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">NsRef</span></span>
 <span><span class="fu"><a href="../reference/Richness.html">Richness</a></span><span class="op">(</span><span class="fu"><a href="../reference/SpeciesDistribution.html">as.ProbaVector</a></span><span class="op">(</span><span class="va">NsRef</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -632,9 +1056,25 @@
 <div class="section level3">
 <h3 id="entropy-of-monte-carlo-simulated-communities">Entropy of Monte-Carlo simulated communities<a class="anchor" aria-label="anchor" href="#entropy-of-monte-carlo-simulated-communities"></a>
 </h3>
-<p>The <code>EntropyCI</code> function is a versatile tool to simplify simulations. Simulated communities are obtained by random draws in a multinomial distribution of species and their entropy is calculated. The arguments of <code>EntropyCI</code> are an entropy function (any entropy function of the package accepting a vector of species abundances, such as <code>bcTsallis</code>), the number of simulations to run, the observed species frequencies and the method to obtain probabilities for the multinomial distribution (the same as that of <code>rCommunity</code>).</p>
-<p>The result is a numeric vector containing the entropy value of each simulated community. Entropy can be finally transformed into diversity (but it is not correct to use a diversity function in simulations because the average simulated value must be calculated and only entropy can be averaged).</p>
-<p>This example shows how to use the function. First, the distribution of the <span class="math inline">\(\gamma\)</span> HCDT entropy of order 1 (Shannon entropy) of the Paracou meta-community is calculated and transformed into diversity. Then, the actual diversity is calculated and completed by the 95% confidence interval of the simulated values.</p>
+<p>The <code>EntropyCI</code> function is a versatile tool to simplify
+simulations. Simulated communities are obtained by random draws in a
+multinomial distribution of species and their entropy is calculated. The
+arguments of <code>EntropyCI</code> are an entropy function (any entropy
+function of the package accepting a vector of species abundances, such
+as <code>bcTsallis</code>), the number of simulations to run, the
+observed species frequencies and the method to obtain probabilities for
+the multinomial distribution (the same as that of
+<code>rCommunity</code>).</p>
+<p>The result is a numeric vector containing the entropy value of each
+simulated community. Entropy can be finally transformed into diversity
+(but it is not correct to use a diversity function in simulations
+because the average simulated value must be calculated and only entropy
+can be averaged).</p>
+<p>This example shows how to use the function. First, the distribution
+of the <span class="math inline">\(\gamma\)</span> HCDT entropy of order
+1 (Shannon entropy) of the Paracou meta-community is calculated and
+transformed into diversity. Then, the actual diversity is calculated and
+completed by the 95% confidence interval of the simulated values.</p>
 <div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SimulatedDiversity</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/expq.html">expq</a></span><span class="op">(</span><span class="fu"><a href="../reference/EntropyCI.html">EntropyCI</a></span><span class="op">(</span>FUN <span class="op">=</span> <span class="va">Tsallis</span>, Simulations <span class="op">=</span> <span class="fl">100</span>, Ns <span class="op">=</span> <span class="va">PAbd</span>, q <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, q <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
@@ -645,18 +1085,32 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">SimulatedDiversity</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##     2.5%    97.5% </span></span>
 <span><span class="co">## 127.8719 149.0098</span></span></code></pre>
-<p>These results are identical to those of the <code>DivEst</code> function but a single community can be addressed (<code>DivEst</code> requires a <code>MetaCommunity</code>).</p>
+<p>These results are identical to those of the <code>DivEst</code>
+function but a single community can be addressed (<code>DivEst</code>
+requires a <code>MetaCommunity</code>).</p>
 </div>
 <div class="section level3">
 <h3 id="diversity-or-entropy-profile-of-a-community">Diversity or Entropy Profile of a community<a class="anchor" aria-label="anchor" href="#diversity-or-entropy-profile-of-a-community"></a>
 </h3>
-<p>This function is used to calculate diversity or entropy profiles based on community functions such as <code>Tsallis</code> or <code>ChaoPD</code>. It is similar to <code>DivProfile</code> but does not require a <code>Metacommunity</code> for argument. It can compute a bootstrap confidence envelope of the estimation of the profile, like <code>EntropyCI</code>. It returns a <code>CommunityProfile</code> object which can be plotted. Profiles can be added to an existing plot by the <code>CEnvelope</code> function.</p>
-<p>This example evaluates bias correction on the diversity profile of the Paracou dataset. First, diversity profiles are calculated with and without bias correction. The corrected profile is calculated with its confidence envelope:</p>
+<p>This function is used to calculate diversity or entropy profiles
+based on community functions such as <code>Tsallis</code> or
+<code>ChaoPD</code>. It is similar to <code>DivProfile</code> but does
+not require a <code>Metacommunity</code> for argument. It can compute a
+bootstrap confidence envelope of the estimation of the profile, like
+<code>EntropyCI</code>. It returns a <code>CommunityProfile</code>
+object which can be plotted. Profiles can be added to an existing plot
+by the <code>CEnvelope</code> function.</p>
+<p>This example evaluates bias correction on the diversity profile of
+the Paracou dataset. First, diversity profiles are calculated with and
+without bias correction. The corrected profile is calculated with its
+confidence envelope:</p>
 <div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bcProfile</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CommunityProfile.html">CommunityProfile</a></span><span class="op">(</span><span class="va">Diversity</span>, <span class="va">PAbd</span>, NumberOfSimulations <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Profile</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CommunityProfile.html">CommunityProfile</a></span><span class="op">(</span><span class="va">Diversity</span>, <span class="va">PProba</span><span class="op">)</span></span></code></pre></div>
-<p>Then, they can be plotted altogether to obtain the <span class="math inline">\(\gamma\)</span> diversity profile of the the meta-community <code>Paracou618.MC</code>, without bias correction (dotted line) and with correction (solid line):</p>
+<p>Then, they can be plotted altogether to obtain the <span class="math inline">\(\gamma\)</span> diversity profile of the the
+meta-community <code>Paracou618.MC</code>, without bias correction
+(dotted line) and with correction (solid line):</p>
 <div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcProfile</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/CommunityProfile.html">CEnvelope</a></span><span class="op">(</span><span class="va">Profile</span>, lty<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
@@ -666,8 +1120,11 @@
 <div class="section level3">
 <h3 id="applying-a-function-over-a-phylogenetic-tree">Applying a Function over a Phylogenetic Tree<a class="anchor" aria-label="anchor" href="#applying-a-function-over-a-phylogenetic-tree"></a>
 </h3>
-<p>The <code>PhyloApply</code> function is used to apply an entropy community function (generally <code>bcTsallis</code>) along a tree, the same way <code>lapply</code> works with a list.</p>
-<p>This example shows how to calculate Shannon entropy along the tree containing the taxonomy to obtain species, genus and family entropy:</p>
+<p>The <code>PhyloApply</code> function is used to apply an entropy
+community function (generally <code>bcTsallis</code>) along a tree, the
+same way <code>lapply</code> works with a list.</p>
+<p>This example shows how to calculate Shannon entropy along the tree
+containing the taxonomy to obtain species, genus and family entropy:</p>
 <div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pa</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/PhyloApply.html">PhyloApply</a></span><span class="op">(</span>Tree<span class="op">=</span><span class="va">Paracou618.Taxonomy</span>, FUN<span class="op">=</span><span class="va">bcTsallis</span>, NorP<span class="op">=</span><span class="va">PAbd</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">pa</span><span class="op">)</span></span></code></pre></div>
@@ -691,9 +1148,21 @@
 <div class="section level3">
 <h3 id="manipulation-of-meta-communities">Manipulation of meta-communities<a class="anchor" aria-label="anchor" href="#manipulation-of-meta-communities"></a>
 </h3>
-<p>Several meta-communities, combined in a list, can be merged two different ways. The <code>MergeMC</code> function simplifies hierarchical partitioning of diversity: it considers the aggregated data of each meta-community as a community and builds an upper-level meta-community with them. The <span class="math inline">\(\alpha\)</span> entropy of the new meta-community is the weighted average <span class="math inline">\(\gamma\)</span> entropy of the original meta-communities.</p>
-<p><code>MergeC</code> combines the communities of several meta-communities to create a single meta-community containing them all. Last, <code>ShuffleMC</code> randomly shuffles communities accross meta-communities to allow simulations to test differences between meta-communities.</p>
-<p>This example shows how to do this. A first meta-community is created, weights of communities are proportional to their number of individuals:</p>
+<p>Several meta-communities, combined in a list, can be merged two
+different ways. The <code>MergeMC</code> function simplifies
+hierarchical partitioning of diversity: it considers the aggregated data
+of each meta-community as a community and builds an upper-level
+meta-community with them. The <span class="math inline">\(\alpha\)</span> entropy of the new meta-community
+is the weighted average <span class="math inline">\(\gamma\)</span>
+entropy of the original meta-communities.</p>
+<p><code>MergeC</code> combines the communities of several
+meta-communities to create a single meta-community containing them all.
+Last, <code>ShuffleMC</code> randomly shuffles communities accross
+meta-communities to allow simulations to test differences between
+meta-communities.</p>
+<p>This example shows how to do this. A first meta-community is created,
+weights of communities are proportional to their number of
+individuals:</p>
 <div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>C1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span>, C2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">20</span>, <span class="fl">35</span>, <span class="fl">5</span><span class="op">)</span>,</span>
 <span>  C3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">15</span>, <span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sp1"</span>, <span class="st">"sp2"</span>, <span class="st">"sp3"</span>, <span class="st">"sp4"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -714,7 +1183,8 @@
 <div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
 <span><span class="va">MC2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MetaCommunity.html">MetaCommunity</a></span><span class="op">(</span>Abundances <span class="op">=</span> <span class="va">df</span>, Weights <span class="op">=</span> <span class="va">w</span><span class="op">)</span></span></code></pre></div>
-<p>They can be merged to obtain a single meta-community containing all original communities:</p>
+<p>They can be merged to obtain a single meta-community containing all
+original communities:</p>
 <div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mergedMC1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MergeMC.html">MergeC</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">MC1</span>, <span class="va">MC2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">mergedMC1</span><span class="op">$</span><span class="va">Nsi</span></span></code></pre></div>
@@ -724,7 +1194,8 @@
 <span><span class="co">## sp3     10     35      0      0      0</span></span>
 <span><span class="co">## sp4     10      5      2      0      0</span></span>
 <span><span class="co">## sp5      0      0      0      4      4</span></span></code></pre>
-<p>They can also be merged considering each of them as a community of a higher-level meta-community:</p>
+<p>They can also be merged considering each of them as a community of a
+higher-level meta-community:</p>
 <div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mergedMC2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MergeMC.html">MergeMC</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">MC1</span>, <span class="va">MC2</span><span class="op">)</span>, Weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">MC1</span>, <span class="va">MC2</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">N</span><span class="op">)</span>, FUN.VALUE<span class="op">=</span><span class="fl">0.0</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">mergedMC2</span><span class="op">$</span><span class="va">Nsi</span></span></code></pre></div>
@@ -751,7 +1222,11 @@
 <span><span class="co">## Gamma diversity of the metacommunity: </span></span>
 <span><span class="co">##     None </span></span>
 <span><span class="co">## 4.281826</span></span></code></pre>
-<p>The <span class="math inline">\(\gamma\)</span> diversity of the top assemblage (MC1 and MC2) is 4.28 effective species, made of 1.24 effective meta-communities of 3.46 effective species. The <span class="math inline">\(\alpha\)</span> diversity of each meta-community of the top assemblage is their <span class="math inline">\(\gamma\)</span> diversity when it is partitioned in turn:</p>
+<p>The <span class="math inline">\(\gamma\)</span> diversity of the top
+assemblage (MC1 and MC2) is 4.28 effective species, made of 1.24
+effective meta-communities of 3.46 effective species. The <span class="math inline">\(\alpha\)</span> diversity of each meta-community
+of the top assemblage is their <span class="math inline">\(\gamma\)</span> diversity when it is partitioned
+in turn:</p>
 <div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dpMC1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/DivPart.html">DivPart</a></span><span class="op">(</span>q<span class="op">=</span><span class="fl">1</span>, MC<span class="op">=</span><span class="va">MC1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">dpMC1</span><span class="op">)</span></span></code></pre></div>
@@ -768,150 +1243,242 @@
 <span><span class="co">## Gamma diversity of the metacommunity: </span></span>
 <span><span class="co">##     None </span></span>
 <span><span class="co">## 3.772161</span></span></code></pre>
-<p>The <span class="math inline">\(\gamma\)</span> diversity of MC1 is 3.77 effective species, made of 1.38 effective meta-communities of 2.74 effective species. The same decomposition can be applied to MC2.</p>
+<p>The <span class="math inline">\(\gamma\)</span> diversity of MC1 is
+3.77 effective species, made of 1.38 effective meta-communities of 2.74
+effective species. The same decomposition can be applied to MC2.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+<h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references">
-<div id="ref-Allen2009">
-<p>Allen, Benjamin, Mark Kon, and Yaneer Bar-Yam. 2009. “A New Phylogenetic Diversity Measure Generalizing the Shannon Index and Its Application to Phyllostomid Bats.” <em>American Naturalist</em> 174 (2): 236–43. <a href="https://doi.org/10.1086/600101" class="external-link">https://doi.org/10.1086/600101</a>.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Allen2009" class="csl-entry">
+Allen, Benjamin, Mark Kon, and Yaneer Bar-Yam. 2009. <span>“<span class="nocase">A New Phylogenetic Diversity Measure Generalizing the
+Shannon Index and Its Application to Phyllostomid Bats</span>.”</span>
+<em>American Naturalist</em> 174 (2): 236–43. <a href="https://doi.org/10.1086/600101" class="external-link">https://doi.org/10.1086/600101</a>.
 </div>
-<div id="ref-Beck2013">
-<p>Beck, Jan, Jeremy D. Holloway, and Wolfgang Schwanghart. 2013. “Undersampling and the Measurement of Beta Diversity.” <em>Methods in Ecology and Evolution</em> 4 (4): 370–82.</p>
+<div id="ref-Beck2013" class="csl-entry">
+Beck, Jan, Jeremy D. Holloway, and Wolfgang Schwanghart. 2013.
+<span>“Undersampling and the Measurement of Beta Diversity.”</span>
+<em>Methods in Ecology and Evolution</em> 4 (4): 370–82.
 </div>
-<div id="ref-Bonachela2008">
-<p>Bonachela, Juan A., Haye Hinrichsen, and Miguel A. Muñoz. 2008. “Entropy estimates of small data sets.” <em>Journal of Physics A: Mathematical and Theoretical</em> 41 (202001): 1–9. <a href="https://doi.org/10.1088/1751-8113/41/20/202001" class="external-link">https://doi.org/10.1088/1751-8113/41/20/202001</a>.</p>
+<div id="ref-Bonachela2008" class="csl-entry">
+Bonachela, Juan A., Haye Hinrichsen, and Miguel A. Muñoz. 2008.
+<span>“<span class="nocase">Entropy estimates of small data
+sets</span>.”</span> <em>Journal of Physics A: Mathematical and
+Theoretical</em> 41 (202001): 1–9. <a href="https://doi.org/10.1088/1751-8113/41/20/202001" class="external-link">https://doi.org/10.1088/1751-8113/41/20/202001</a>.
 </div>
-<div id="ref-Chao2010">
-<p>Chao, Anne, Chun-Huo Chiu, and Lou Jost. 2010. “Phylogenetic Diversity Measures Based on Hill Numbers.” <em>Philosophical Transactions of the Royal Society B</em> 365 (1558): 3599–3609.</p>
+<div id="ref-Chao2010" class="csl-entry">
+Chao, Anne, Chun-Huo Chiu, and Lou Jost. 2010. <span>“Phylogenetic
+Diversity Measures Based on Hill Numbers.”</span> <em>Philosophical
+Transactions of the Royal Society B</em> 365 (1558): 3599–609.
 </div>
-<div id="ref-Chao2014a">
-<p>———. 2014. “Unifying Species Diversity, Phylogenetic Diversity, Functional Diversity and Related Similarity/Differentiation Measures Through Hill Numbers.” <em>Annual Review of Ecology, Evolution, and Systematics</em> 45: 297–324.</p>
+<div id="ref-Chao2014a" class="csl-entry">
+———. 2014. <span>“Unifying Species Diversity, Phylogenetic Diversity,
+Functional Diversity and Related Similarity/Differentiation Measures
+Through Hill Numbers.”</span> <em>Annual Review of Ecology, Evolution,
+and Systematics</em> 45: 297–324.
 </div>
-<div id="ref-Chao2015">
-<p>Chao, Anne, and Lou Jost. 2015. “Estimating Diversity and Entropy Profiles via Discovery Rates of New Species.” <em>Methods in Ecology and Evolution</em> 6 (8): 873–82.</p>
+<div id="ref-Chao2015" class="csl-entry">
+Chao, Anne, and Lou Jost. 2015. <span>“Estimating Diversity and Entropy
+Profiles via Discovery Rates of New Species.”</span> <em>Methods in
+Ecology and Evolution</em> 6 (8): 873–82.
 </div>
-<div id="ref-Chao1988">
-<p>Chao, Anne, Shen-Ming Lee, and T.-C. Chen. 1988. “A Generalized Good’s Nonparametric Coverage Estimator.” <em>Chinese Journal of Mathematics</em> 16: 189–99.</p>
+<div id="ref-Chao1988" class="csl-entry">
+Chao, Anne, Shen-Ming Lee, and T.-C. Chen. 1988. <span>“A Generalized
+Good’s Nonparametric Coverage Estimator.”</span> <em>Chinese Journal of
+Mathematics</em> 16: 189–99.
 </div>
-<div id="ref-Chao2003">
-<p>Chao, Anne, and T. J. Shen. 2003. “Nonparametric Estimation of Shannon’s Index of Diversity When There Are Unseen Species in Sample.” <em>Environmental and Ecological Statistics</em> 10 (4): 429–43.</p>
+<div id="ref-Chao2003" class="csl-entry">
+Chao, Anne, and T. J. Shen. 2003. <span>“Nonparametric Estimation of
+Shannon’s Index of Diversity When There Are Unseen Species in
+Sample.”</span> <em>Environmental and Ecological Statistics</em> 10 (4):
+429–43.
 </div>
-<div id="ref-Chiu2014b">
-<p>Chiu, Chun-Huo, and Anne Chao. 2014. “Distance-Based Functional Diversity Measures and Their Decomposition: A Framework Based on Hill Numbers.” <em>PloS One</em> 9 (7): e100014.</p>
+<div id="ref-Chiu2014b" class="csl-entry">
+Chiu, Chun-Huo, and Anne Chao. 2014. <span>“Distance-Based Functional
+Diversity Measures and Their Decomposition: A Framework Based on Hill
+Numbers.”</span> <em>PloS One</em> 9 (7): e100014.
 </div>
-<div id="ref-Daroczy1970">
-<p>Daróczy, Zoltán. 1970. “Generalized Information Functions.” <em>Information and Control</em> 16 (1): 36–51.</p>
+<div id="ref-Daroczy1970" class="csl-entry">
+Daróczy, Zoltán. 1970. <span>“Generalized Information Functions.”</span>
+<em>Information and Control</em> 16 (1): 36–51.
 </div>
-<div id="ref-Dauby2012">
-<p>Dauby, G., and O. J. Hardy. 2012. “Sampled-Based Estimation of Diversity Sensu Stricto by Transforming Hurlbert Diversities into Effective Number of Species.” <em>Ecography</em> 35 (7): 661–72.</p>
+<div id="ref-Dauby2012" class="csl-entry">
+Dauby, G., and O. J. Hardy. 2012. <span>“Sampled-Based Estimation of
+Diversity Sensu Stricto by Transforming Hurlbert Diversities into
+Effective Number of Species.”</span> <em>Ecography</em> 35 (7): 661–72.
 </div>
-<div id="ref-Dray2007">
-<p>Dray, Stéphane, and A. B. Dufour. 2007. “The Ade4 Package: Implementing the Duality Diagram for Ecologists.” <em>Journal of Statistical Software</em> 22 (4): 1–20.</p>
+<div id="ref-Dray2007" class="csl-entry">
+Dray, Stéphane, and A. B. Dufour. 2007. <span>“The Ade4 Package:
+Implementing the Duality Diagram for Ecologists.”</span> <em>Journal of
+Statistical Software</em> 22 (4): 1–20.
 </div>
-<div id="ref-Faith1992">
-<p>Faith, D. P. 1992. “Conservation Evaluation and Phylogenetic Diversity.” <em>Biological Conservation</em> 61 (1): 1–10.</p>
+<div id="ref-Faith1992" class="csl-entry">
+Faith, D. P. 1992. <span>“Conservation Evaluation and Phylogenetic
+Diversity.”</span> <em>Biological Conservation</em> 61 (1): 1–10.
 </div>
-<div id="ref-Fisher1943">
-<p>Fisher, R. A., A. S. Corbet, and C. B. Williams. 1943. “The Relation Between the Number of Species and the Number of Individuals in a Random Sample of an Animal Population.” <em>Journal of Animal Ecology</em> 12: 42–58.</p>
+<div id="ref-Fisher1943" class="csl-entry">
+Fisher, R. A., A. S. Corbet, and C. B. Williams. 1943. <span>“The
+Relation Between the Number of Species and the Number of Individuals in
+a Random Sample of an Animal Population.”</span> <em>Journal of Animal
+Ecology</em> 12: 42–58.
 </div>
-<div id="ref-Good1953">
-<p>Good, I. J. 1953. “On the Population Frequency of Species and the Estimation of Population Parameters.” <em>Biometrika</em> 40 (3/4): 237–64.</p>
+<div id="ref-Good1953" class="csl-entry">
+Good, I. J. 1953. <span>“On the Population Frequency of Species and the
+Estimation of Population Parameters.”</span> <em>Biometrika</em> 40
+(3/4): 237–64.
 </div>
-<div id="ref-Hardy1952">
-<p>Hardy, G. H., J. E. Littlewood, and G. Pólya. 1952. <em>Inequalities</em>. Cambridge University Press.</p>
+<div id="ref-Hardy1952" class="csl-entry">
+Hardy, G. H., J. E. Littlewood, and G. Pólya. 1952.
+<em>Inequalities</em>. Cambridge University Press.
 </div>
-<div id="ref-Havrda1967">
-<p>Havrda, Jan, and František Charvát. 1967. “Quantification Method of Classification Processes. Concept of Structural Alpha-Entropy.” <em>Kybernetika</em> 3 (1): 30–35.</p>
+<div id="ref-Havrda1967" class="csl-entry">
+Havrda, Jan, and František Charvát. 1967. <span>“Quantification Method
+of Classification Processes. Concept of Structural
+Alpha-Entropy.”</span> <em>Kybernetika</em> 3 (1): 30–35.
 </div>
-<div id="ref-Herault2007">
-<p>Hérault, Bruno, and Olivier Honnay. 2007. “Using Life-History Traits to Achieve a Functional Classification of Habitats.” <em>Applied Vegetation Science</em> 10 (1): 73–80.</p>
+<div id="ref-Herault2007" class="csl-entry">
+Hérault, Bruno, and Olivier Honnay. 2007. <span>“Using Life-History
+Traits to Achieve a Functional Classification of Habitats.”</span>
+<em>Applied Vegetation Science</em> 10 (1): 73–80.
 </div>
-<div id="ref-Hill1973">
-<p>Hill, M. O. 1973. “Diversity and Evenness: A Unifying Notation and Its Consequences.” <em>Ecology</em> 54 (2): 427–32.</p>
+<div id="ref-Hill1973" class="csl-entry">
+Hill, M. O. 1973. <span>“Diversity and Evenness: A Unifying Notation and
+Its Consequences.”</span> <em>Ecology</em> 54 (2): 427–32.
 </div>
-<div id="ref-Hurlbert1971">
-<p>Hurlbert, Stuart H. 1971. “The Nonconcept of Species Diversity: A Critique and Alternative Parameters.” <em>Ecology</em> 52 (4): 577–86. <a href="https://doi.org/10.2307/1934145" class="external-link">https://doi.org/10.2307/1934145</a>.</p>
+<div id="ref-Hurlbert1971" class="csl-entry">
+Hurlbert, Stuart H. 1971. <span>“<span class="nocase">The Nonconcept of
+Species Diversity: A Critique and Alternative Parameters</span>.”</span>
+<em>Ecology</em> 52 (4): 577–86. <a href="https://doi.org/10.2307/1934145" class="external-link">https://doi.org/10.2307/1934145</a>.
 </div>
-<div id="ref-Jost2006">
-<p>Jost, Lou. 2006. “Entropy and Diversity.” <em>Oikos</em> 113 (2): 363–75.</p>
+<div id="ref-Jost2006" class="csl-entry">
+Jost, Lou. 2006. <span>“Entropy and Diversity.”</span> <em>Oikos</em>
+113 (2): 363–75.
 </div>
-<div id="ref-Jost2007">
-<p>———. 2007. “Partitioning Diversity into Independent Alpha and Beta Components.” <em>Ecology</em> 88 (10): 2427–39.</p>
+<div id="ref-Jost2007" class="csl-entry">
+———. 2007. <span>“Partitioning Diversity into Independent Alpha and Beta
+Components.”</span> <em>Ecology</em> 88 (10): 2427–39.
 </div>
-<div id="ref-Leinster2012">
-<p>Leinster, Tom, and Christina Cobbold. 2012. “Measuring diversity: the importance of species similarity.” <em>Ecology</em> 93 (3): 477–89. <a href="https://doi.org/10.1890/10-2402.1" class="external-link">https://doi.org/10.1890/10-2402.1</a>.</p>
+<div id="ref-Leinster2012" class="csl-entry">
+Leinster, Tom, and Christina Cobbold. 2012. <span>“<span class="nocase">Measuring diversity: the importance of species
+similarity</span>.”</span> <em>Ecology</em> 93 (3): 477–89. <a href="https://doi.org/10.1890/10-2402.1" class="external-link">https://doi.org/10.1890/10-2402.1</a>.
 </div>
-<div id="ref-MacArthur1957">
-<p>MacArthur, Robert H. 1957. “On the Relative Abundance of Bird Species.” <em>Proceedings of the National Academy of Sciences of the United States of America</em> 43 (3): 293–95. <a href="http://www.jstor.org/stable/89566" class="external-link">http://www.jstor.org/stable/89566</a>.</p>
+<div id="ref-MacArthur1957" class="csl-entry">
+MacArthur, Robert H. 1957. <span>“<span class="nocase">On the Relative
+Abundance of Bird Species</span>.”</span> <em>Proceedings of the
+National Academy of Sciences of the United States of America</em> 43
+(3): 293–95. <a href="http://www.jstor.org/stable/89566" class="external-link">http://www.jstor.org/stable/89566</a>.
 </div>
-<div id="ref-Marcon2014b">
-<p>Marcon, Eric, and Bruno Hérault. 2015. “Decomposing Phylodiversity.” <em>Methods in Ecology and Evolution</em> 6 (3): 333–39. <a href="https://doi.org/10.1111/2041-210X.12323" class="external-link">https://doi.org/10.1111/2041-210X.12323</a>.</p>
+<div id="ref-Marcon2014b" class="csl-entry">
+Marcon, Eric, and Bruno Hérault. 2015a. <span>“<span>Decomposing
+Phylodiversity</span>.”</span> <em>Methods in Ecology and Evolution</em>
+6 (3): 333–39. <a href="https://doi.org/10.1111/2041-210X.12323" class="external-link">https://doi.org/10.1111/2041-210X.12323</a>.
 </div>
-<div id="ref-Marcon2014c">
-<p>Marcon, Eric, and Bruno Hérault. 2015. “Entropart, an R Package to Partition Diversity.” <em>Journal of Statistical Software</em> 67 (8): 1–26.</p>
+<div id="ref-Marcon2014c" class="csl-entry">
+———. 2015b. <span>“Entropart, an r Package to Partition
+Diversity.”</span> <em>Journal of Statistical Software</em> 67 (8):
+1–26.
 </div>
-<div id="ref-Marcon2012a">
-<p>Marcon, Eric, Bruno Hérault, Christopher Baraloto, and Gabriel Lang. 2012. “The Decomposition of Shannon’s Entropy and a Confidence Interval for Beta Diversity.” <em>Oikos</em> 121 (4): 516–22. <a href="https://doi.org/10.1111/j.1600-0706.2011.19267.x" class="external-link">https://doi.org/10.1111/j.1600-0706.2011.19267.x</a>.</p>
+<div id="ref-Marcon2012a" class="csl-entry">
+Marcon, Eric, Bruno Hérault, Christopher Baraloto, and Gabriel Lang.
+2012. <span>“<span class="nocase">The Decomposition of Shannon’s Entropy
+and a Confidence Interval for Beta Diversity</span>.”</span>
+<em>Oikos</em> 121 (4): 516–22. <a href="https://doi.org/10.1111/j.1600-0706.2011.19267.x" class="external-link">https://doi.org/10.1111/j.1600-0706.2011.19267.x</a>.
 </div>
-<div id="ref-Marcon2014a">
-<p>Marcon, Eric, Ivan Scotti, Bruno Hérault, Vivien Rossi, and Gabriel Lang. 2014. “Generalization of the Partitioning of Shannon Diversity.” <em>PLOS One</em> 9 (3): e90289.</p>
+<div id="ref-Marcon2014a" class="csl-entry">
+Marcon, Eric, Ivan Scotti, Bruno Hérault, Vivien Rossi, and Gabriel
+Lang. 2014. <span>“Generalization of the Partitioning of Shannon
+Diversity.”</span> <em>PLOS One</em> 9 (3): e90289.
 </div>
-<div id="ref-Marcon2014e">
-<p>Marcon, Eric, Zhiyi Zhang, and Bruno Hérault. 2014. “The Decomposition of Similarity-Based Diversity and Its Bias Correction.” <em>HAL</em> hal-00989454 (version 1): 1–12.</p>
+<div id="ref-Marcon2014e" class="csl-entry">
+Marcon, Eric, Zhiyi Zhang, and Bruno Hérault. 2014. <span>“The
+Decomposition of Similarity-Based Diversity and Its Bias
+Correction.”</span> <em>HAL</em> hal-00989454 (version 1): 1–12.
 </div>
-<div id="ref-Motomura1932">
-<p>Motomura, I. 1932. “On the Statistical Treatment of Communities.” <em>Zoological Magazine</em> 44: 379–83.</p>
+<div id="ref-Motomura1932" class="csl-entry">
+Motomura, I. 1932. <span>“On the Statistical Treatment of
+Communities.”</span> <em>Zoological Magazine</em> 44: 379–83.
 </div>
-<div id="ref-Paradis2004">
-<p>Paradis, Emmanuel, Julien Claude, and Korbinian Strimmer. 2004. “APE: Analyses of phylogenetics and evolution in R language.” <em>Bioinformatics</em> 20 (2): 289–90. <a href="https://doi.org/10.1093/bioinformatics/btg412" class="external-link">https://doi.org/10.1093/bioinformatics/btg412</a>.</p>
+<div id="ref-Paradis2004" class="csl-entry">
+Paradis, Emmanuel, Julien Claude, and Korbinian Strimmer. 2004.
+<span>“<span class="nocase">APE: Analyses of phylogenetics and evolution
+in R language</span>.”</span> <em>Bioinformatics</em> 20 (2): 289–90. <a href="https://doi.org/10.1093/bioinformatics/btg412" class="external-link">https://doi.org/10.1093/bioinformatics/btg412</a>.
 </div>
-<div id="ref-Patil1982">
-<p>Patil, G. P., and C. Taillie. 1982. “Diversity as a Concept and Its Measurement.” <em>Journal of the American Statistical Association</em> 77 (379): 548–61.</p>
+<div id="ref-Patil1982" class="csl-entry">
+Patil, G. P., and C. Taillie. 1982. <span>“Diversity as a Concept and
+Its Measurement.”</span> <em>Journal of the American Statistical
+Association</em> 77 (379): 548–61.
 </div>
-<div id="ref-Pavoine2009">
-<p>Pavoine, S., M. S. Love, and M. B. Bonsall. 2009. “Hierarchical Partitioning of Evolutionary and Ecological Patterns in the Organization of Phylogenetically-Structured Species Assemblages: Application to Rockfish (Genus: Sebastes) in the Southern California Bight.” <em>Ecology Letters</em> 12 (9): 898–908.</p>
+<div id="ref-Pavoine2009" class="csl-entry">
+Pavoine, S., M. S. Love, and M. B. Bonsall. 2009. <span>“Hierarchical
+Partitioning of Evolutionary and Ecological Patterns in the Organization
+of Phylogenetically-Structured Species Assemblages: Application to
+Rockfish (Genus: Sebastes) in the Southern California Bight.”</span>
+<em>Ecology Letters</em> 12 (9): 898–908.
 </div>
-<div id="ref-Petchey2002">
-<p>Petchey, Owen L., and Kevin J. Gaston. 2002. “Functional diversity (FD), species richness and community composition.” <em>Ecology Letters</em> 5: 402–11.</p>
+<div id="ref-Petchey2002" class="csl-entry">
+Petchey, Owen L., and Kevin J. Gaston. 2002. <span>“<span class="nocase">Functional diversity (FD), species richness and community
+composition</span>.”</span> <em>Ecology Letters</em> 5: 402–11.
 </div>
-<div id="ref-Preston1948">
-<p>Preston, F. W. 1948. “The Commonness, and Rarity, of Species.” <em>Ecology</em> 29 (3): 254–83.</p>
+<div id="ref-Preston1948" class="csl-entry">
+Preston, F. W. 1948. <span>“The Commonness, and Rarity, of
+Species.”</span> <em>Ecology</em> 29 (3): 254–83.
 </div>
-<div id="ref-Rao1982">
-<p>Rao, C. Radhakrishna. 1982. “Diversity and dissimilarity coefficients: a unified approach.” <em>Theoretical Population Biology</em> 21: 24–43.</p>
+<div id="ref-R" class="csl-entry">
+R Core Team. 2018. <em><span class="nocase">R: A Language and
+Environment for Statistical Computing</span></em>. Vienna, Austria: R
+Foundation for Statistical Computing. <a href="http://www.r-project.org" class="external-link">http://www.r-project.org</a>.
 </div>
-<div id="ref-R">
-<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="http://www.r-project.org" class="external-link">http://www.r-project.org</a>.</p>
+<div id="ref-Rao1982" class="csl-entry">
+Rao, C. Radhakrishna. 1982. <span>“<span class="nocase">Diversity and
+dissimilarity coefficients: a unified approach</span>.”</span>
+<em>Theoretical Population Biology</em> 21: 24–43.
 </div>
-<div id="ref-Ricotta2006">
-<p>Ricotta, Carlo, and Laszlo Szeidl. 2006. “Towards a Unifying Approach to Diversity Measures: Bridging the Gap Between the Shannon Entropy and Rao’s Quadratic Index.” <em>Theoretical Population Biology</em> 70 (3): 237–43.</p>
+<div id="ref-Ricotta2006" class="csl-entry">
+Ricotta, Carlo, and Laszlo Szeidl. 2006. <span>“Towards a Unifying
+Approach to Diversity Measures: Bridging the Gap Between the Shannon
+Entropy and Rao’s Quadratic Index.”</span> <em>Theoretical Population
+Biology</em> 70 (3): 237–43.
 </div>
-<div id="ref-Routledge1979">
-<p>Routledge, R. D. 1979. “Diversity indices: Which ones are admissible?” <em>Journal of Theoretical Biology</em> 76 (4): 503–15. <a href="https://doi.org/10.1016/0022-5193(79)90015-8" class="external-link">https://doi.org/10.1016/0022-5193(79)90015-8</a>.</p>
+<div id="ref-Routledge1979" class="csl-entry">
+Routledge, R. D. 1979. <span>“<span class="nocase">Diversity indices:
+Which ones are admissible?</span>”</span> <em>Journal of Theoretical
+Biology</em> 76 (4): 503–15. <a href="https://doi.org/10.1016/0022-5193(79)90015-8" class="external-link">https://doi.org/10.1016/0022-5193(79)90015-8</a>.
 </div>
-<div id="ref-Shannon1948">
-<p>Shannon, Claude E. 1948. “A Mathematical Theory of Communication.” <em>The Bell System Technical Journal</em> 27: 379–423, 623–56.</p>
+<div id="ref-Shannon1948" class="csl-entry">
+Shannon, Claude E. 1948. <span>“A Mathematical Theory of
+Communication.”</span> <em>The Bell System Technical Journal</em> 27:
+379–423, 623–56.
 </div>
-<div id="ref-Simpson1949">
-<p>Simpson, E. H. 1949. “Measurement of diversity.” <em>Nature</em> 163 (4148): 688.</p>
+<div id="ref-Simpson1949" class="csl-entry">
+Simpson, E. H. 1949. <span>“<span class="nocase">Measurement of
+diversity</span>.”</span> <em>Nature</em> 163 (4148): 688.
 </div>
-<div id="ref-Tothmeresz1995">
-<p>Tothmeresz, B. 1995. “Comparison of Different Methods for Diversity Ordering.” <em>Journal of Vegetation Science</em> 6 (2): 283–90.</p>
+<div id="ref-Tothmeresz1995" class="csl-entry">
+Tothmeresz, B. 1995. <span>“Comparison of Different Methods for
+Diversity Ordering.”</span> <em>Journal of Vegetation Science</em> 6
+(2): 283–90.
 </div>
-<div id="ref-Tsallis1988">
-<p>Tsallis, Constantino. 1988. “Possible Generalization of Boltzmann-Gibbs Statistics.” <em>Journal of Statistical Physics</em> 52 (1): 479–87.</p>
+<div id="ref-Tsallis1988" class="csl-entry">
+Tsallis, Constantino. 1988. <span>“Possible Generalization of
+Boltzmann-Gibbs Statistics.”</span> <em>Journal of Statistical
+Physics</em> 52 (1): 479–87.
 </div>
-<div id="ref-Tsallis1994">
-<p>———. 1994. “What are the numbers that experiments provide?” <em>Química Nova</em> 17 (6): 468–71. <a href="http://quimicanova.sbq.org.br/detalhe_artigo.asp?id=5517" class="external-link">http://quimicanova.sbq.org.br/detalhe_artigo.asp?id=5517</a>.</p>
+<div id="ref-Tsallis1994" class="csl-entry">
+———. 1994. <span>“<span class="nocase">What are the numbers that
+experiments provide?</span>”</span> <em>Qu<span>í</span>mica Nova</em>
+17 (6): 468–71. <a href="http://quimicanova.sbq.org.br/detalhe_artigo.asp?id=5517" class="external-link">http://quimicanova.sbq.org.br/detalhe_artigo.asp?id=5517</a>.
 </div>
-<div id="ref-Zhang2014">
-<p>Zhang, Zhiyi, and Michael Grabchak. 2016. “Entropic Representation and Estimation of Diversity Indices.” <em>Journal of Nonparametric Statistics</em> 28 (3): 563–75.</p>
+<div id="ref-Zhang2014" class="csl-entry">
+Zhang, Zhiyi, and Michael Grabchak. 2016. <span>“<span class="nocase">Entropic Representation and Estimation of Diversity
+Indices</span>.”</span> <em>Journal of Nonparametric Statistics</em> 28
+(3): 563–75.
 </div>
-<div id="ref-Zhang2007">
-<p>Zhang, Zhiyi, and Hongwei Huang. 2007. “Turing’s Formula Revisited.” <em>Journal of Quantitative Linguistics</em> 14 (2-3): 222–41.</p>
+<div id="ref-Zhang2007" class="csl-entry">
+Zhang, Zhiyi, and Hongwei Huang. 2007. <span>“Turing’s Formula
+Revisited.”</span> <em>Journal of Quantitative Linguistics</em> 14
+(2-3): 222–41.
 </div>
 </div>
 </div>
@@ -934,7 +1501,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
