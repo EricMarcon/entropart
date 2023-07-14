@@ -176,8 +176,10 @@ function(Ns, Correction = "Best", CheckArguments = TRUE)
   if (Correction == "Grassberger" | Correction == "Marcon") {
     # (-1)^n is problematic for long vectors (returns NA for large values). It is replaced by 1-n%%2*2 (Ns is rounded if is not an integer)
     Grassberger <- sum(Ns/N*(log(N)-digamma(Ns)-(1-round(Ns)%%2*2)/(Ns+1)))
+  }
+  if (Correction == "Grassberger") {
     names(Grassberger) <- Correction
-    return(Grassberger)
+    return (Grassberger)
   }
   if (Correction == "Marcon") {
     entropy <- max(ChaoShen, Grassberger)

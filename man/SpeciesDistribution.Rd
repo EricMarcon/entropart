@@ -20,7 +20,7 @@
 \alias{as.ProbaVector.numeric}
 \alias{is.ProbaVector}
 \title{
-  Species Distributions.
+  Species Distributions
 }
 \description{
   A Species Distribution is a (preferably named) vector containing species abundances or probabilities.
@@ -79,7 +79,7 @@ is.AbdVector(x)
   If \code{TRUE}, retain the jackknife order immediately superior to the optimal one, usually resulting in the overestimation of the number of species. Default is \code{FALSE}. Ignored if \code{RCorrection} is not \code{"Jackknife"}.
   }
   \item{JackMax}{
-  The highest jackknife order allowed. Default is 10. Allowed values are between 1 and 9.
+  The highest jackknife order allowed. Default is 10. Allowed values are between 1 and 10.
   }
   \item{CEstimator}{
   A string containing an estimator recognized by \code{\link{Coverage}} to evaluate the sample coverage. \code{"ZhangHuang"} is the default value.

@@ -152,7 +152,7 @@ function (x, Correction = "None", Unveiling = "None", RCorrection = "Jackknife",
     Ps <- Ns/N
     # Sample coverage
     C <- Coverage(Ns, Estimator=CEstimator)
-    if (Correction == "Chao2015" | Unveiling == "Chao2015" | RCorrection == "Rarefy") {
+    if (Correction == "Chao2015" | Unveiling != "None" | RCorrection == "Rarefy") {
       # Sample coverage of order 2 required
       Singletons <- sum(Ns==1)
       Doubletons <- sum(Ns==2)
@@ -284,7 +284,7 @@ function (x, Round = TRUE, ...)
 as.AbdVector.numeric <-
 function (x, Round = TRUE, ...) 
 {
-  # Try to save the names before applyinf as.vector
+  # Try to save the names before applying as.vector
   spNames <- names(x)
 
   if (Round) {

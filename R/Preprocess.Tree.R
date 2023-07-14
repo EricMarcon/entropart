@@ -21,6 +21,10 @@ function(Tree)
       # Build an hclust object to use cutree later.
       # Edge lengths are multiplied by 2 during the conversion. Divide by 2 before that.
       Tree$edge.length <- Tree$edge.length/2
+      # Make the tree binary if it contains polytomies or the conversion fails
+      if (!ape::is.binary(Tree)) {
+        Tree <- ape::multi2di(Tree)
+      }
       hTree <- ape::as.hclust.phylo(Tree)
     } else {
       if (inherits(Tree, "hclust")) {

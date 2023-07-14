@@ -49,7 +49,7 @@ bcRichness(Ns, Correction = "Best", Alpha = 0.05, JackOver = FALSE, JackMax = 10
   If \code{TRUE}, retain the jackknife order immediately superior to the optimal one, usually resulting in the overestimation of the number of species. Default is \code{FALSE}.
   }
   \item{JackMax}{
-  The highest jackknife order allowed. Default is 10. Allowed values are between 1 and 9.
+  The highest jackknife order allowed. Default is 10. Allowed values are between 1 and 10.
   }
   \item{Level}{
   The level of interpolation or extrapolation. It may be an a chosen sample size (an integer) or a sample coverage (a number between 0 and 1). Richness extrapolation require its asymptotic estimation depending on the choice of \code{Correction}.

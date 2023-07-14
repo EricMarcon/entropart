@@ -17,7 +17,7 @@ Coverage2Size(Ns, SampleCoverage, CheckArguments = TRUE)
   A numeric vector containing species abundances.
   }
   \item{Estimator}{
-  A string containing one of the possible estimators: \code{"ZhangHuang"}, \code{"Chao"}, \code{"Turing"}, \code{"Good"}. \code{"Best"} is for \code{"Chao"}.
+  A string containing one of the possible estimators: \code{"ZhangHuang"}, \code{"Chao"}, \code{"Turing"}, \code{"Good"}. \code{"Best"} is for \code{"ZhangHuang"}.
   }
   \item{Level}{
   The level of interpolation or extrapolation, i.e. an abundance.

@@ -47,7 +47,7 @@ N18 <- Paracou618.MC$Nsi[, "P018"]
 The data in `Paracou618.MC` is a `MetaCommunity`, to be discovered later.
 `N18` is a vector containing the abundances of 425 tree species, among them some zero values.
 This is the most simple and common format to provide data to estimate diversity.
-It can be used directly by the functions presented here, but it may be declared explicitely as an abundance vector to plot it, and possibly fit a well-known, e.g. log-normal [@Preston1948], distribution of species abundance (the red curve):
+It can be used directly by the functions presented here, but it may be declared explicitly as an abundance vector to plot it, and possibly fit a well-known, e.g. log-normal [@Preston1948], distribution of species abundance (the red curve):
 
 ```{r PlotN18}
 Abd18 <- as.AbdVector(N18)

@@ -44,7 +44,7 @@ library("entropart")
 data("Paracou618")
 # 2 ha of tropical forest, distribution of probabilities
 ParacouP <- Paracou618.MC$Ps
-# Diversity of order 1, no reduce-bias estimator used.
+# Diversity of order 1, no reduced-bias estimator available
 Diversity(ParacouP, q=1)
 ```
 
@@ -67,9 +67,9 @@ They also are more computer-intensive.
 ```{r}
 # Estimation of richness relies on jackknife 2 (poor sampling)
 Richness(ParacouN)
-# Richness is underestimated by Chao1 estimator
+# Richness is underestimated by the Chao1 estimator
 Richness(ParacouN, Correction="Chao1")
-# Diversity of order 1 underestimated by Chao-Jost estimator
+# Diversity of order 1 underestimated by the Chao-Jost estimator
 Diversity(ParacouN, q=1, Correction="ChaoJost")
 ```
 
@@ -97,7 +97,7 @@ Diversity(ParacouN, q=1, Level=Coverage2Size(ParacouN, SampleCoverage=0.9))
 If the sample size is smaller than the actual sample, entropy is interpolated.
 
 If it is higher, entropy must be extrapolated. For diversity orders equal to 0 (richness), 1 (Shannon) or 2 (Simpson), explicit, almost unbiased estimators are used. 
-Continuity of the estimation of diversity around the actual sample size is guaranted.
+Continuity of the estimation of diversity around the actual sample size is guaranteed.
 ```{r}
 # Simpson diversity at levels from 0.9 to 1.1 times the sample size
 Accumulation2 <- DivAC(ParacouN, q=2, n.seq=round(0.9*sum(ParacouN)):round(1.1*sum(ParacouN)))
@@ -117,7 +117,7 @@ The default arguments of all functions apply this strategy, except for Simpson's
 Diversity Accumulation Curves (DAC) are a generalization of the well-known Species Accumulation Curves (SAC).
 They represent diversity as a function of sample size.
 
-The `DivAc()`function allows to build them.
+The `DivAc()` function allows to build them.
 A bootstrap confidence interval can be calculated around the estimated DAC by simulating random multinomial draws of the asymptotic distribution at each sample size.
 ```{r}
 # Diversity at levels from 1 to twice the sample size
@@ -172,19 +172,11 @@ Diversity(spider$Girdled, q=0, Level=300)
 Diversity(spider$Girdled, q=1, Level=300)
 ```
 
-Small differences are due to different estimators of sample coverage: _entropart_ uses the more acurate `ZhangHuang` estimator by default.
-
-At non-integer orders of diversity, _iNEXT_ estimates the extrapolated diversity as a sum of factors of the probabilities of the communities [@Chao2014, Appendix E, last equation of page 2].
-The same technique of estimation as that of the Chao-Shen estimator of diversity is used but it does not work very well close to $q=1$ for instance and seems to overestimate diversity at higher orders.
-```{r}
-# Non-continuous estimation of diversity by iNext
-ggiNEXT(iNEXT(spider$Girdled, q=1.01))
-# Same estimation by entropart 
-autoplot(DivAC(spider$Girdled, q=1.01, n.seq=seq_len(2*sum(spider$Girdled)), NumberOfSimulations = 1000))
-```
+Small differences are due to different estimators of sample coverage: _entropart_ uses the more accurate `ZhangHuang` estimator by default.
 
 Last, confidence intervals of diversity accumulation assume normality in _iNEXT_: estimation variance is estimated by bootstrap and the confidence interval is defined as $\pm 1.96$ times the standard deviation.
 In _entropart_, confidence intervals are built directly from the quantiles of bootstrapped estimations.
+
 
 # References
 

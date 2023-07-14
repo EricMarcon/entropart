@@ -1,8 +1,18 @@
-# entropart 1.6-11.9000
+# entropart 1.6-12.9000
 
 ## Bug correction
 
 - `PhyloApply()` sometimes raised an "Error in m[, 1] : incorrect number of dimensions" due to the automatic conversion of a single-row matrix to a vector by `lapply()`. This happened when the tree's upper slice contained a single species.
+
+
+# entropart 1.6-12
+
+## Bug correction
+
+- Corrected `Coverage()` documentation.
+- "Marcon" correction of Shannon's entropy never returned Grassberger's estimate.
+This was very rarely an issue.
+- Phylogenetic trees of class `phylo` with multichotomies raised an error when they were preprocessed by `Preprocess.Tree()`. 
 
 
 # entropart 1.6-11
