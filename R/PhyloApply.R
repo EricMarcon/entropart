@@ -66,10 +66,35 @@ function(Tree, FUN, NorP, Normalize = TRUE, dfArgs = NULL, ..., CheckArguments =
   # Reorder NorP to fit DatedGroups
   NorP <- NorP[intersect(rownames(NorP), dimnames(DatedGroups)[[1]]),]
   # In each column, use the tip number as a factor to sum abundances of both NorP columns
-  DatedN <- sapply(colnames(DatedGroups), function(group) apply(NorP, 2, function(n) tapply(n, as.factor(DatedGroups[rownames(NorP),group]), sum)), simplify=FALSE)
+  DatedN <- lapply(
+    colnames(DatedGroups), 
+    function(group) {
+      apply(
+        NorP, 
+        2, 
+        function(n) {
+          tapply(
+            n, 
+            as.factor(DatedGroups[rownames(NorP), group]), 
+            sum
+          ) 
+        }
+      )
+    }
+  )
   # DatedN is a list of two-column matrices. It must be cleaned up if NorP was a vector
   if (NorPisVector) {
-    DatedN <- lapply(DatedN, function(m) m[,1])
+    DatedN <- lapply(
+      DatedN, 
+      function(m) {
+        # The matrix may have been converted to a vector by lapply() if it contained a single row
+        if (is.matrix(m)) {
+          m[,1]
+        } else {
+          m[1]
+        }
+      }
+    )
   }
   
   # Apply Function to each slice. A list is returned
