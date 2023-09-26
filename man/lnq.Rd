@@ -29,7 +29,7 @@ lnq.CommunityProfile(Profile)
   
   For \eqn{q>1}, \eqn{\ln_q{(+\infty)}=\frac{1}{(q-1)}}.
   
-  \code{lnq.CommunityProfile} calculates the deformed logarithm of a \code{\link{CommunityProfile}}. Its \code{$x} item (the order of dversity) is kept unchanged whilst other items are set to their logarithm of order \code{$x}. Thus, a diversity profile is transformed into an entropy profile.
+  \code{lnq.CommunityProfile} calculates the deformed logarithm of a \code{\link{CommunityProfile}}. Its \code{$x} item (the order of diversity) is kept unchanged whilst other items are set to their logarithm of order \code{$x}. Thus, a diversity profile is transformed into an entropy profile.
 }
 \value{
   A vector of the same length as \code{x} containing the transformed values or a \code{\link{CommunityProfile}}.  
