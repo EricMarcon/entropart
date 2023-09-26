@@ -1,13 +1,10 @@
 url: https://ericmarcon.github.io/entropart
 
+template:
+  bootstrap: 5
+
 development:
   mode: auto
-
-template:
-  params:
-    docsearch:
-      api_key: 79705a6445f5394f4452e7f3a3858244
-      index_name: entropart
 
 reference:
   - title: Package summary
