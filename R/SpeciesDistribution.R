@@ -392,11 +392,11 @@ function(object, ..., Distribution = NULL,
     }
   }
 
-  # Plot. X-axis starts at 0.01 to avoid the 0 X-label.
+  # Plot. Make X axis start at 1
   thePlot <- ggplot2::ggplot() +
     ggplot2::geom_point(data=df, mapping=ggplot2::aes(x=.data$Rank, y=.data$Ns), 
                         shape=pch, color=col, size=cex) +
-    ggplot2::scale_x_continuous(limits=c(0.01, S), expand=c(0, 0)) +
+    ggplot2::scale_x_continuous(labels = rlang::as_function(~ .x + 1)) +
     ggplot2::labs(title=main, x=xlab, y=ylab)
   
   # Log Y-axis
