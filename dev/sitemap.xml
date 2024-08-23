@@ -1,219 +1,75 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/articles/entropart.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/articles/extrapolation.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/articles/phylogenies.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/articles/reference.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/index.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/AbdFreqCount.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/Accumulation.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/AllenH.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/AlphaDiversity.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/AlphaEntropy.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/ArgumentOriginalName.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/BetaDiversity.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/BetaEntropy.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/ChaoPD.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/CheckentropartArguments.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/CommunityProfile.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/Coverage.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/DivEst.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/DivPart.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/DivProfile.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/Diversity.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/Dqz.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/EightSpAbundance.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/EightSpTree.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/Enq.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/EntropyCI.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/GammaDiversity.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/GammaEntropy.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/GenSimpson.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/Hqz.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/HqzBeta.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/Hurlbert.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/KLq.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/MCdiversity.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/MCentropy.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/MergeMC.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/MetaCommunity.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/Optimal.Similarity.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/PDFD.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/PPtree.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/Paracou618.Functional.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/Paracou618.MC.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/Paracou618.Taxonomy.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/Paracou618.dist.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/PhyloApply.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/PhyloBetaEntropy.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/PhyloDiversity.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/PhyloEntropy.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/PhyloValue.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/Preprocess.MC.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/Preprocess.Tree.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/RAC.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/Rao.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/Richness.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/Shannon.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/ShannonBeta.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/SimTest.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/Simpson.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/SimpsonBeta.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/SpeciesDistribution.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/Tsallis.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/TsallisBeta.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/entropart-package.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/expq.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/lnq.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/mergeandlabel.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/rCommunity.html</loc>
-  </url>
-  <url>
-    <loc>https://ericmarcon.github.io/entropart/dev/reference/reexports.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://ericmarcon.github.io/entropart/dev/articles/entropart.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/articles/extrapolation.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/articles/index.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/articles/phylogenies.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/articles/reference.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/authors.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/index.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/news/index.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/AbdFreqCount.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/Accumulation.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/AllenH.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/AlphaDiversity.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/AlphaEntropy.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/ArgumentOriginalName.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/BetaDiversity.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/BetaEntropy.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/ChaoPD.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/CheckentropartArguments.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/CommunityProfile.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/Coverage.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/DivEst.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/DivPart.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/DivProfile.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/Diversity.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/Dqz.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/EightSpAbundance.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/EightSpTree.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/Enq.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/EntropyCI.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/GammaDiversity.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/GammaEntropy.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/GenSimpson.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/Hqz.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/HqzBeta.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/Hurlbert.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/KLq.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/MCdiversity.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/MCentropy.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/MergeMC.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/MetaCommunity.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/Optimal.Similarity.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/PDFD.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/PPtree.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/Paracou618.Functional.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/Paracou618.MC.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/Paracou618.Taxonomy.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/Paracou618.dist.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/PhyloApply.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/PhyloBetaEntropy.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/PhyloDiversity.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/PhyloEntropy.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/PhyloValue.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/Preprocess.MC.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/Preprocess.Tree.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/RAC.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/Rao.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/Richness.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/Shannon.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/ShannonBeta.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/SimTest.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/Simpson.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/SimpsonBeta.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/SpeciesDistribution.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/Tsallis.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/TsallisBeta.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/entropart-package.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/expq.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/index.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/lnq.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/mergeandlabel.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/rCommunity.html</loc></url>
+<url><loc>https://ericmarcon.github.io/entropart/dev/reference/reexports.html</loc></url>
 </urlset>
+
