@@ -133,7 +133,7 @@ is.AbdVector(x)
   \code{SpeciesDistribution} objects can be plotted. The \code{plot} method returns the estimated parameters of the fitted distribution. The broken stick has no parameter, so the maximum abundance is returned.
 }
 \note{
-  Fisher's alpha (Fisher \emph{et al.}, 1943) is estimated to fit the log-series distribution. The estimation is done by the \code{\link{fisher.alpha}} function of package \code{vegan}. It may differ substantially from the estimation returned by \code{optimal.theta} from package \code{untb}.
+  Fisher's alpha (Fisher \emph{et al.}, 1943) is estimated to fit the log-series distribution. The estimation is done by the \code{\link[vegan]{fisher.alpha}} function of package \code{vegan}. It may differ substantially from the estimation returned by \code{optimal.theta} from package \code{untb}.
 }
 \author{
   Eric Marcon <Eric.Marcon@agroparistech.fr>, Bruno Herault <Bruno.Herault@cirad.fr>

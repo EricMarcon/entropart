@@ -22,7 +22,7 @@ is.PPtree(x)
 }
 \value{
   An object of class \strong{PPtree} is a list:
-  \item{phyTree}{A \code{\link{phylo}} tree}
+  \item{phyTree}{A "phylo" (see \code{\link[ape]{read.tree}}) tree}
   \item{hTree}{A \code{\link{hclust}} tree}
   \item{Height}{The height of the tree, that is to say the distance between root and leaves}
   \item{Cuts}{A vector. Cut times of the tree (the distance from nodes to leaves)}
@@ -33,7 +33,7 @@ is.PPtree(x)
   \code{plot.PPtree} plots it.
 }
 \note{
-  Versions up to 1.3 contained a \code{\link[ade4]{phylog}} tree, now deprecated in \code{ade4}. A \code{\link{phylo}} tree is now used.
+  Versions up to 1.3 contained a \code{\link[ade4]{phylog}} tree, now deprecated in \code{ade4}. A "phylo" (see \code{\link[ape]{read.tree}}) tree is now used.
   
   See the dedicated vignette (\code{vignette("Phylogenies", package="entropart")}) for more details.
 }

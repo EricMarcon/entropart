@@ -43,7 +43,7 @@ is.DivProfile(x)
   The correction must be accepted by \code{\link{AlphaEntropy}}, \code{\link{BetaEntropy}} and \code{\link{GammaEntropy}}. \code{"Best"} is the default value.
   }
   \item{Tree}{
-  An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link[ade4]{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
+  An object of class \code{\link{hclust}}, "phylo" (see \code{\link[ape]{read.tree}}), \code{\link[ade4]{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
   }
   \item{Normalize}{
   If \code{TRUE} (default), diversity is not affected by the height of the tree.\cr
@@ -95,7 +95,7 @@ is.DivProfile(x)
   Vector of labels to be added to multiple plots. \code{"auto"} is the same as \code{c("a", "b", "c", "d)"}.
   }
   \item{font.label}{
-  A list of arguments to customize labels. See \code{\link{ggarrange}}.
+  A list of arguments to customize labels. See \code{\link[ggpubr]{ggarrange}}.
   }
   \item{col}{
   The color of the geom objects. See "Color Specification" in \code{\link{par}}.

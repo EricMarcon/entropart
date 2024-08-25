@@ -11,7 +11,7 @@ Preprocess.Tree(Tree)
 }
 \arguments{
   \item{Tree}{
-  An object of class \code{\link{hclust}}, \code{\link{phylo}} or \code{\link[ade4]{phylog}}. The tree must be ultrametric.
+  An object of class \code{\link{hclust}}, "phylo" (see \code{\link[ape]{read.tree}}) or \code{\link[ade4]{phylog}}. The tree must be ultrametric.
   }
 }
 \details{

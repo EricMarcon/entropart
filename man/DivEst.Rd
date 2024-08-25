@@ -38,7 +38,7 @@ is.DivEst(x)
   A string containing one of the possible corrections. The correction must be accepted by \code{\link{DivPart}}. \code{"Best"} is the default value.
   }
   \item{Tree}{
-  An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link[ade4]{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
+  An object of class \code{\link{hclust}}, "phylo" (see \code{\link[ape]{read.tree}}), \code{\link[ade4]{phylog}} or \code{\link{PPtree}}. The tree must be ultrametric.
   }
   \item{Normalize}{
   If \code{TRUE} (default), diversity is not affected by the height of the tree..\cr
@@ -69,7 +69,7 @@ is.DivEst(x)
   Vector of labels to be added to multiple plots. \code{"auto"} is the same as \code{c("a", "b", "c", "d)"}.
   }
   \item{font.label}{
-  A list of arguments to customize labels. See \code{\link{ggarrange}}.
+  A list of arguments to customize labels. See \code{\link[ggpubr]{ggarrange}}.
   }
   \item{object}{
   A \code{MCdiversity} object to be summarized or plotted.

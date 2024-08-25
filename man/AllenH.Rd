@@ -17,7 +17,7 @@ AllenH(Ps, q = 1, PhyloTree, Normalize = TRUE, Prune = FALSE, CheckArguments = T
   A number: the order of entropy. Default is 1.
   }
   \item{PhyloTree}{
-  An object of class \code{\link{hclust}}, \code{\link{phylo}}, \code{\link[ade4]{phylog}} or \code{\link{PPtree}}. The tree is not necessarily ultrametric.
+  An object of class \code{\link{hclust}}, "phylo" (see \code{\link[ape]{read.tree}}), \code{\link[ade4]{phylog}} or \code{\link{PPtree}}. The tree is not necessarily ultrametric.
   }
   \item{Normalize}{
   If \code{TRUE} (default), diversity is not affected by the height of the tree.\cr

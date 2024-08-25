@@ -11,7 +11,7 @@
 data(Paracou618)
 }
 \format{
-  An object of class \code{\link{phylo}} containing a taxonomy.
+  An object of class "phylo" (see \code{\link[ape]{read.tree}}) containing a taxonomy.
 }
 
 \source{

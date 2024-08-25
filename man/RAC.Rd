@@ -29,7 +29,7 @@ RACbstick(Ns, CheckArguments = TRUE)
   method returns the estimated parameters of the fitted distribution. The broken stick has no parameter, so the maximum abundance is returned.
 }
 \note{
-  Fisher's alpha is estimated to fit the log-series distribution. The estimation is done by the \code{\link{fisher.alpha}} function of package \code{vegan}. It may differ substantially from the estimation returned by \code{optimal.theta} from package \code{untb}.
+  Fisher's alpha is estimated to fit the log-series distribution. The estimation is done by the \code{\link[vegan]{fisher.alpha}} function of package \code{vegan}. It may differ substantially from the estimation returned by \code{optimal.theta} from package \code{untb}.
 }
 \value{
   A list (the parameters of distributions are returned only if the distribution has been fit):

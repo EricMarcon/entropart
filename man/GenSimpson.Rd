@@ -72,7 +72,7 @@ bcGenSimpsonD(Ns, r = 1, CheckArguments = TRUE)
   A named number equal to the calculated index or diversity. The name is either "Biased" or "Unbiased", depending on the estimator used.
 }
 \note{
-  The unbiased estimator is calculated by the \code{\link{GenSimp.z}} function of the \code{EntropyEstimation} package. 
+  The unbiased estimator is calculated by the \code{\link[EntropyEstimation]{GenSimp.z}} function of the \code{EntropyEstimation} package. 
 }
 \references{
   Grabchak, M., Marcon, E., Lang, G., and Zhang, Z. (2017). The Generalized Simpson's Entropy is a Measure of Biodiversity. \emph{Plos One}, 12(3): e0173305.
