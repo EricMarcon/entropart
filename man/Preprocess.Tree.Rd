@@ -4,7 +4,7 @@
   Preprocessing of a phylogenetic tree
 }
 \description{
-  Calculates cuts and intervals of a phylogenetic tree and make it available both in \code{\link{hclust}} and \code{\link{phylo}} formats.
+  Calculates cuts and intervals of a phylogenetic tree and make it available both in \code{\link{hclust}} and "phylo" (see \code{\link[ape]{read.tree}}) formats.
 }
 \usage{
 Preprocess.Tree(Tree)
