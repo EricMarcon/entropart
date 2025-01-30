@@ -15,8 +15,8 @@ DivPart(q = 1, MC, Biased = TRUE, Correction = "Best", Tree = NULL,
   Normalize = TRUE, Z = NULL, CheckArguments = TRUE)
 is.DivPart(x)
 \method{plot}{DivPart}(x, \dots)
-\method{autoplot}{DivPart}(object, col = ggplot2::GeomRect$default_aes$fill, 
-  border = ggplot2::GeomRect$default_aes$colour, \dots)
+\method{autoplot}{DivPart}(object, col = "grey35", 
+  border = NA, \dots)
 \method{summary}{DivPart}(object, \dots)
 }
 \arguments{

@@ -13,8 +13,8 @@
 \usage{
 is.MCentropy(x)
 \method{plot}{MCentropy}(x, \dots)
-\method{autoplot}{MCentropy}(object, col = ggplot2::GeomCol$default_aes$fill,
-          border = ggplot2::GeomCol$default_aes$colour, \dots)
+\method{autoplot}{MCentropy}(object, col = "grey35",
+          border = NA, \dots)
 \method{summary}{MCentropy}(object, \dots)
 }
 \arguments{

@@ -13,8 +13,8 @@
 \usage{
 is.MCdiversity(x)
 \method{plot}{MCdiversity}(x, \dots)
-\method{autoplot}{MCdiversity}(object, col = ggplot2::GeomCol$default_aes$fill,
-          border = ggplot2::GeomCol$default_aes$colour, \dots)
+\method{autoplot}{MCdiversity}(object, col = "grey35",
+          border = NA, \dots)
 \method{summary}{MCdiversity}(object, \dots)
 }
 \arguments{
