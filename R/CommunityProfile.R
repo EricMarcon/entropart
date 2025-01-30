@@ -131,9 +131,9 @@ autoplot.CommunityProfile <-
   function(object, ..., main = NULL, 
            xlab = "Order of Diversity", ylab = "Diversity", 
            ShadeColor = "grey75", alpha = 0.3, BorderColor = "red",
-           col = ggplot2::GeomLine$default_aes$colour,
-           lty = ggplot2::GeomLine$default_aes$linetype,
-           lwd = ggplot2::GeomLine$default_aes$size)
+           col = "black",
+           lty = 1,
+           lwd = 0.5)
 {  
   thePlot <- ggplot2::ggplot(as.data.frame.list(object), ggplot2::aes(x=.data$x, y=.data$y))
   if (!(is.null(object$high) | is.null(object$low))) {

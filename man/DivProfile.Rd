@@ -22,9 +22,9 @@ is.DivProfile(x)
 \method{autoplot}{DivProfile}(object, \dots, main = NULL, xlab = "Order of Diversity",
   ylab = NULL, Which = "All", ShadeColor = "grey75", alpha = 0.3, BorderColor = "red", 
   labels = NULL, font.label = list(size=11, face="plain"),
-  col = ggplot2::GeomLine$default_aes$colour,
-  lty = ggplot2::GeomLine$default_aes$linetype,
-  lwd = ggplot2::GeomLine$default_aes$size)
+  col = "black",
+  lty = 1,
+  lwd = 0.5)
 \method{summary}{DivProfile}(object, \dots)
 }
 \arguments{

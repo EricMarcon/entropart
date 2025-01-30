@@ -27,9 +27,9 @@ DivAC(Ns, q = 0, n.seq = seq_len(sum(Ns)), PCorrection="Chao2015", Unveiling="ge
 \method{autoplot}{AccumCurve}(object, ..., main = NULL, 
          xlab = "Sample Size", ylab = NULL, 
          ShadeColor = "grey75", alpha = 0.3, BorderColor = "red",
-         col = ggplot2::GeomLine$default_aes$colour,
-         lty = ggplot2::GeomLine$default_aes$linetype,
-         lwd = ggplot2::GeomLine$default_aes$size)
+         col = "black",
+         lty = 1,
+         lwd = 0.5)
 }
 \arguments{
   \item{x}{
