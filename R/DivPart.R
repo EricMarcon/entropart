@@ -93,8 +93,8 @@ function (x, ...)
 
 
 autoplot.DivPart <- 
-function (object, col = ggplot2::GeomRect$default_aes$fill, 
-          border = ggplot2::GeomRect$default_aes$colour, ...) 
+function (object, col = "grey35", 
+          border = NA, ...) 
 {
   thePlot <- ggplot2::ggplot() +
     ggplot2::geom_rect(ggplot2::aes(xmin=.data$xmin, ymin=.data$ymin, xmax=.data$xmax, ymax=.data$ymax), 

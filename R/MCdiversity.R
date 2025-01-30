@@ -20,8 +20,8 @@ function (x, ...)
 
 
 autoplot.MCdiversity <- 
-function (object, col = ggplot2::GeomCol$default_aes$fill,
-          border = ggplot2::GeomCol$default_aes$colour, ...) 
+function (object, col = "grey35",
+          border = NA, ...) 
 {
   theData <- data.frame(x=c(names(object$Communities), "", "Metacommunity"), y=c(object$Communities, 0, object$Total))
   # Factors to keep the order of bars (avoid sort by name)

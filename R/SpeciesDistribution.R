@@ -371,9 +371,9 @@ function(x, ..., Distribution = NULL,
 autoplot.SpeciesDistribution <-
 function(object, ..., Distribution = NULL, 
          ylog = TRUE, main = NULL, xlab = "Rank", ylab = NULL, 
-         pch = ggplot2::GeomPoint$default_aes$shape,
-         col = ggplot2::GeomPoint$default_aes$colour,
-         cex = ggplot2::GeomPoint$default_aes$size) 
+         pch = 19,
+         col = "black",
+         cex = 1.5) 
 {
   # Eliminate zeros and sort
   Ns <- sort(object[object > 0], decreasing = TRUE)
