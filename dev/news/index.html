@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">entropart</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.6-13.9001</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.6-15.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,14 +39,21 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.6-13.9001" id="entropart-16-139001">entropart 1.6-13.9001<a class="anchor" aria-label="anchor" href="#entropart-16-139001"></a></h2>
+<h2 class="pkg-version" data-toc-text="1.6-15.9000" id="entropart-16-159000">entropart 1.6-15.9000<a class="anchor" aria-label="anchor" href="#entropart-16-159000"></a></h2>
 <div class="section level3">
-<h3 id="bug-correction-1-6-13-9001">Bug correction<a class="anchor" aria-label="anchor" href="#bug-correction-1-6-13-9001"></a></h3>
+<h3 id="external-changes-1-6-15-9000">External changes<a class="anchor" aria-label="anchor" href="#external-changes-1-6-15-9000"></a></h3>
+<ul><li>Replaced <code>Geom*$default_aes</code> by their values for compatibility with ggplot2 3.6.0 (PR <a href="https://github.com/EricMarcon/entropart/issues/3" class="external-link">#3</a> by <a href="https://github.com/teunbrand" class="external-link">@teunbrand</a>)</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.6-15" id="entropart-16-15">entropart 1.6-15<a class="anchor" aria-label="anchor" href="#entropart-16-15"></a></h2><p class="text-muted">CRAN release: 2024-08-26</p>
+<div class="section level3">
+<h3 id="bug-correction-1-6-15">Bug correction<a class="anchor" aria-label="anchor" href="#bug-correction-1-6-15"></a></h3>
 <ul><li>
 <code><a href="../reference/PhyloApply.html">PhyloApply()</a></code> sometimes raised an “Error in m[, 1] : incorrect number of dimensions” due to the automatic conversion of a single-row matrix to a vector by <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code>. This happened when the tree’s upper slice contained a single species.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="user-visible-changes-1-6-13-9001">User-visible changes<a class="anchor" aria-label="anchor" href="#user-visible-changes-1-6-13-9001"></a></h3>
+<h3 id="user-visible-changes-1-6-15">User-visible changes<a class="anchor" aria-label="anchor" href="#user-visible-changes-1-6-15"></a></h3>
 <ul><li>pkgdown site is now built with the bootstrap 5 template.</li>
 </ul></div>
 </div>
