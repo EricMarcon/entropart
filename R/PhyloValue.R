@@ -33,9 +33,9 @@ function (x, xlab = expression(italic("T")), ylab = NULL, main = NULL, ...)
 
 autoplot.PhyloValue <- 
 function (object, xlab = expression(italic("T")), ylab = NULL, main = NULL, 
-          col = ggplot2::GeomLine$default_aes$colour,
-          lty = ggplot2::GeomLine$default_aes$linetype,
-          lwd = ggplot2::GeomLine$default_aes$size,
+          col = "black",
+          lty = 1,
+          lwd = 0.5,
           ...) 
 {
   Entity <- ""
