@@ -1,3 +1,10 @@
+# entropart 1.6-15.9000
+
+## External changes
+
+- Replaced `Geom*$default_aes` by their values for compatibility with ggplot2 3.6.0 (PR #3 by @teunbrand)
+
+
 # entropart 1.6-15
 
 ## Bug correction
