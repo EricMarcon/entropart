@@ -1,0 +1,41 @@
+# Functional tree of species of Paracou field station plots 6 and 18, two 1-ha plots inventoried by the Bridge project.
+
+This dataset is from Paracou field station, French Guiana, managed by
+[Cirad](https://www.cirad.fr). Traits are detailed in Marcon and Herault
+(2014), the tree was built following Paine et al. (2011), based on
+[`Paracou618.dist`](https://ericmarcon.github.io/entropart/reference/Paracou618.dist.md).
+
+## Usage
+
+``` r
+data(Paracou618)
+```
+
+## Format
+
+An object of class [`hclust`](https://rdrr.io/r/stats/hclust.html).
+
+## Source
+
+Permanent data census of Paracou.
+
+## References
+
+Gourlet-Fleury, S., Guehl, J. M. and Laroussinie, O., Eds. (2004).
+*Ecology & management of a neotropical rainforest. Lessons drawn from
+Paracou, a long-term experimental research site in French Guiana*.
+Paris, Elsevier.
+
+Marcon, E., Herault, B. (2015). Decomposing Phylodiversity. *Methods in
+Ecology and Evolution* 6(3): 333-339.
+
+Paine, C. E. T., Baraloto, C., Chave, J., and Herault, B. (2011).
+Functional traits of individual trees reveal ecological constraints on
+community assembly in tropical rain forests. *Oikos*, 120(5), 720-727.
+
+## Examples
+
+``` r
+data(Paracou618)
+plot(Paracou618.Functional)
+```
