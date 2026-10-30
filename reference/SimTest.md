@@ -118,11 +118,11 @@ Sims <- rnorm(1000)
 st <- as.SimTest(Real, Sims)
 summary(st)
 #> Real value:  0.8 
-#> Quantile in the simulated distribution:  0.79 
+#> Quantile in the simulated distribution:  0.782 
 #> Quantiles of simulations:
-#> 2.50% :  -2.08575 
-#> 97.50% :  1.974651 
-#> Mean simulated value:  -0.03580398 
+#> 2.50% :  -2.140066 
+#> 97.50% :  2.177345 
+#> Mean simulated value:  0.006135806 
 # Plot
 plot(st)
 

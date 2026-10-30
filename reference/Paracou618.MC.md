@@ -33,6 +33,7 @@ structure of point patterns. *International Journal of Ecology*
 ## Examples
 
 ``` r
+
 data(Paracou618)
 summary(Paracou618.MC)
 #> Meta-community (class 'MetaCommunity') made of 1124 individuals in 2 

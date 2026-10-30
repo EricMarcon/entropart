@@ -27,6 +27,7 @@ defined, with distance 1 between the first 2 and distance 2 between both
 and the last one.
 
 ``` r
+
 dSp <- matrix(c(0, 1, 2, 1, 0, 2, 2, 2, 0), nrow=3, byrow=TRUE)
 row.names(dSp) <- colnames(dSp) <- c("A", "B", "C")
 dSp
@@ -42,6 +43,7 @@ dSp
 An `hclust` object is created by UPGMA hierarchical clustering.
 
 ``` r
+
 require("stats")
 plot(hTree <- hclust(as.dist(dSp), method="average"), hang=-0.01, axes = F)
 axis(2)
@@ -52,6 +54,7 @@ axis(2)
 Node heights are stored in `$height`.
 
 ``` r
+
 hTree$height
 ```
 
@@ -62,12 +65,14 @@ hTree$height
 Conversion to a `phylo` object is straightforward.
 
 ``` r
+
 require("ape")
 ```
 
     ## Loading required package: ape
 
 ``` r
+
 plot(phyloTree <- as.phylo(hTree))
 axis(1)
 ```
@@ -78,6 +83,7 @@ Edge lengths have been divided by 2 during the conversion, as documented
 in [`?as.phylo.hclust`](https://rdrr.io/pkg/ape/man/as.phylo.html).
 
 ``` r
+
 phyloTree$edge.length
 ```
 
@@ -88,6 +94,7 @@ multiplied by 2 after conversion, so that `phylo`objects can be
 identical to other phylogenies.
 
 ``` r
+
 phyloTree$edge.length <- 2*phyloTree$edge.length
 plot(phyloTree)
 axis(1)
@@ -100,12 +107,14 @@ axis(1)
 The last conversion is from `phylo` to `phylog`.
 
 ``` r
+
 require("ade4")
 ```
 
     ## Loading required package: ade4
 
 ``` r
+
 plot(phylogTree <- hclust2phylog(hTree))
 axis(1)
 ```
@@ -115,10 +124,11 @@ axis(1)
 Edge lengths are not stored directly in `phylog` objects. The `$droot`
 component keeps distances from tips to root. The `$Wdist` component is a
 `dist` (half a distance matrix without the zero-diagonal) whose values
-are $d_{s,t} = \sqrt{2\delta_{s,t}^{2}}$, where $\delta_{s,t}$ is the
-distance between species $s$ ant $t$.
+are $`d_{s,t}=\sqrt{2 \delta_{s,t}^2}`$, where $`\delta_{s,t}`$ is the
+distance between species $`s`$ ant $`t`$.
 
 ``` r
+
 phylogTree$droot
 ```
 
@@ -126,6 +136,7 @@ phylogTree$droot
     ##    2    2    2    1    0
 
 ``` r
+
 phylogTree$Wdist^2/2
 ```
 
@@ -138,6 +149,7 @@ phylogTree$Wdist^2/2
 A Newick description of a dendrogram can be read into a `phylo` object.
 
 ``` r
+
 NewickABC <- "(C:2,(A:1,B:1):1);"
 plot(phyloABC <- ape::read.tree(text=NewickABC))
 axis(1)

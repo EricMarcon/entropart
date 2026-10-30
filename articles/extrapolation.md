@@ -29,6 +29,7 @@ If community data is a vector of probabilities, sample size is unknown
 so the only available estimation is that of the actual sample.
 
 ``` r
+
 library("entropart")
 data("Paracou618")
 # 2 ha of tropical forest, distribution of probabilities
@@ -45,6 +46,7 @@ individuals per species. Then, the default estimator is the asymptotic
 one.
 
 ``` r
+
 # 2 ha of tropical forest, distribution of abundances
 ParacouN <- Paracou618.MC$Ns
 # Diversity of order 1, best asymptotic estimator used.
@@ -71,6 +73,7 @@ mathematical support, but they will severely underestimate the diversity
 of poorly-sampled communities. They also are more computer-intensive.
 
 ``` r
+
 # Estimation of richness relies on jackknife 2 (poor sampling)
 Richness(ParacouN)
 ```
@@ -79,6 +82,7 @@ Richness(ParacouN)
     ##         359
 
 ``` r
+
 # Richness is underestimated by the Chao1 estimator
 Richness(ParacouN, Correction="Chao1")
 ```
@@ -87,6 +91,7 @@ Richness(ParacouN, Correction="Chao1")
     ## 314.9348
 
 ``` r
+
 # Diversity of order 1 underestimated by the Chao-Jost estimator
 Diversity(ParacouN, q=1, Correction="ChaoJost")
 ```
@@ -101,6 +106,7 @@ comparing the diversity of poorly-sampled communities: a lower sample
 coverage can be chosen to limit the uncertainty of estimation.
 
 ``` r
+
 # Actual sample coverage
 Coverage(ParacouN)
 ```
@@ -112,6 +118,7 @@ The estimation level may be a sample size or a sample coverage that is
 converted internally into a sample size.
 
 ``` r
+
 # Diversity at half the sample size (interpolated)
 Diversity(ParacouN, q=1, Level=round(sum(ParacouN)/2))
 ```
@@ -120,6 +127,7 @@ Diversity(ParacouN, q=1, Level=round(sum(ParacouN)/2))
     ## 100.016
 
 ``` r
+
 # Sample size corresponding to 90% coverage
 Coverage2Size(ParacouN, SampleCoverage=0.9)
 ```
@@ -127,6 +135,7 @@ Coverage2Size(ParacouN, SampleCoverage=0.9)
     ## [1] 861
 
 ``` r
+
 # Diversity at 90% sample coverage
 Diversity(ParacouN, q=1, Level=0.9)
 ```
@@ -135,6 +144,7 @@ Diversity(ParacouN, q=1, Level=0.9)
     ## 109.1493
 
 ``` r
+
 # Equal to 
 Diversity(ParacouN, q=1, Level=Coverage2Size(ParacouN, SampleCoverage=0.9))
 ```
@@ -151,11 +161,13 @@ unbiased estimators are used. Continuity of the estimation of diversity
 around the actual sample size is guaranteed.
 
 ``` r
+
 # Simpson diversity at levels from 0.9 to 1.1 times the sample size
 Accumulation2 <- DivAC(ParacouN, q=2, n.seq=round(0.9*sum(ParacouN)):round(1.1*sum(ParacouN)))
 ```
 
 ``` r
+
 autoplot(Accumulation2)
 ```
 
@@ -178,7 +190,7 @@ until the rarefied entropy equals the actual sample’s entropy, ensuring
 continuity between interpolation and extrapolation.
 
 The default arguments of all functions apply this strategy, except for
-Simpson’s diversity ($q = 2$) that is estimated directly without bias.
+Simpson’s diversity ($`q=2`$) that is estimated directly without bias.
 
 ## Diversity accumulation
 
@@ -191,11 +203,13 @@ interval can be calculated around the estimated DAC by simulating random
 multinomial draws of the asymptotic distribution at each sample size.
 
 ``` r
+
 # Diversity at levels from 1 to twice the sample size
 Accumulation <- DivAC(ParacouN, q=1, n.seq=seq_len(1.1*sum(ParacouN)), NumberOfSimulations = 1000)
 ```
 
 ``` r
+
 autoplot(Accumulation)
 ```
 
@@ -210,6 +224,7 @@ best asymptotic estimation, sometimes quite much if sampling level is
 poor.
 
 ``` r
+
 # Extrapolation at 99.99% sample coverage
 Diversity(ParacouN, q=1, Level=0.9999)
 ```
@@ -218,6 +233,7 @@ Diversity(ParacouN, q=1, Level=0.9999)
     ## 128.3196
 
 ``` r
+
 # Unveiled Jaccknife asymptotic estimator
 Diversity(ParacouN, q=1)
 ```
@@ -226,6 +242,7 @@ Diversity(ParacouN, q=1)
     ## 138.1078
 
 ``` r
+
 # Chao-Jost estimator
 Diversity(ParacouN, q=1, Correction="ChaoJost")
 ```
@@ -239,6 +256,7 @@ Diversity profiles are usually asymptotic but they can be calculated at
 any coverage of sampling level.
 
 ``` r
+
 # Diversity at levels from 1 to twice the sample size
 Profile <- CommunityProfile(Diversity, ParacouN, Level=sum(ParacouN)*1.5)
 autoplot(Profile)
@@ -251,22 +269,23 @@ continuous at the observed sample size.
 
 ## Differences with the iNEXT package
 
-*iNEXT* (Hsieh, Ma, and Chao 2016) is designed primarily to interpolate
-or extrapolate diversity of integer orders. Extrapolation of diversity
-of order 0 relies on the Chao1 estimator of richness and that of order 1
+*iNEXT* (Hsieh et al. 2016) is designed primarily to interpolate or
+extrapolate diversity of integer orders. Extrapolation of diversity of
+order 0 relies on the Chao1 estimator of richness and that of order 1
 uses the Chao-Jost estimator. In *entropart*, extrapolation relies on
 the estimation of the asymptotic distribution of the community with
 asymptotic richness such that the entropy of the asymptotic distribution
 rarefied to the observed sample size equals the observed entropy of the
 data. This approach allows consistent estimation of extrapolated
 diversity at integer and non-integer orders, thus allowing consistent
-diversity profiles without discontinuities at $q = 0$ and $q = 1$. The
+diversity profiles without discontinuities at $`q=0`$ and $`q=1`$. The
 results of *iNEXT* can be obtained by forcing argument
 `PCorrection = "None"` to avoid estimating the asymptotic distribution
 and `Correction="Chao1"` for richness or `Correction="ChaoJost"` for
 Shannon’s diversity.
 
 ``` r
+
 library("iNEXT")
 data(spider)
 # Extrapolated diversity of an example dataset
@@ -279,6 +298,7 @@ estimateD(spider$Girdled, level=300)
     ## 3       data 300 Extrapolation       2 0.9579518  7.983882  6.231075  9.736689
 
 ``` r
+
 # Similar estimation by entropart
 Diversity(spider$Girdled, q=0, Level=300, Correction="Chao1", PCorrection = "None")
 ```
@@ -287,6 +307,7 @@ Diversity(spider$Girdled, q=0, Level=300, Correction="Chao1", PCorrection = "Non
     ## 33.31773
 
 ``` r
+
 Diversity(spider$Girdled, q=1, Level=300, Correction="ChaoJost", PCorrection = "None")
 ```
 
@@ -294,6 +315,7 @@ Diversity(spider$Girdled, q=1, Level=300, Correction="ChaoJost", PCorrection = "
     ##  12.8073
 
 ``` r
+
 # Estimation at order 2 is explicit, with no optional choice
 Diversity(spider$Girdled, q=2, Level=300)
 ```
@@ -302,6 +324,7 @@ Diversity(spider$Girdled, q=2, Level=300)
     ## 7.983882
 
 ``` r
+
 # Default estimation of entropart
 Diversity(spider$Girdled, q=0, Level=300)
 ```
@@ -310,6 +333,7 @@ Diversity(spider$Girdled, q=0, Level=300)
     ## 32.09179
 
 ``` r
+
 Diversity(spider$Girdled, q=1, Level=300)
 ```
 
@@ -321,17 +345,16 @@ Small differences are due to different estimators of sample coverage:
 
 Last, confidence intervals of diversity accumulation assume normality in
 *iNEXT*: estimation variance is estimated by bootstrap and the
-confidence interval is defined as $\pm 1.96$ times the standard
+confidence interval is defined as $`\pm 1.96`$ times the standard
 deviation. In *entropart*, confidence intervals are built directly from
 the quantiles of bootstrapped estimations.
 
 ## References
 
-Chao, Anne, Nicholas J. Gotelli, T. C. Hsieh, Elizabeth L. Sander, K. H.
-Ma, Robert K. Colwell, and Aaron M. Ellison. 2014. “Rarefaction and
-extrapolation with Hill numbers: A framework for sampling and estimation
-in species diversity studies.” *Ecological Monographs* 84 (1): 45–67.
-<https://doi.org/10.1890/13-0133.1>.
+Chao, Anne, Nicholas J. Gotelli, T. C. Hsieh, et al. 2014. “Rarefaction
+and extrapolation with Hill numbers: A framework for sampling and
+estimation in species diversity studies.” *Ecological Monographs* 84
+(1): 45–67. <https://doi.org/10.1890/13-0133.1>.
 
 Hsieh, T. C., K. H. Ma, and Anne Chao. 2016. “iNEXT: An R package for
 interpolation and extrapolation in measuring species diversity.”

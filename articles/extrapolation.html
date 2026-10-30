@@ -12,8 +12,8 @@
 <link rel="icon" sizes="any" href="../favicon.ico">
 <link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Asymptotic Estimation, Interpolation and Extrapolation ">
 </head>
@@ -269,17 +269,17 @@ continuous at the observed sample size.</p>
 <div class="section level2">
 <h2 id="differences-with-the-inext-package">Differences with the iNEXT package<a class="anchor" aria-label="anchor" href="#differences-with-the-inext-package"></a>
 </h2>
-<p><em>iNEXT</em> <span class="citation">(Hsieh, Ma, and Chao
-2016)</span> is designed primarily to interpolate or extrapolate
-diversity of integer orders. Extrapolation of diversity of order 0
-relies on the Chao1 estimator of richness and that of order 1 uses the
-Chao-Jost estimator. In <em>entropart</em>, extrapolation relies on the
-estimation of the asymptotic distribution of the community with
-asymptotic richness such that the entropy of the asymptotic distribution
-rarefied to the observed sample size equals the observed entropy of the
-data. This approach allows consistent estimation of extrapolated
-diversity at integer and non-integer orders, thus allowing consistent
-diversity profiles without discontinuities at
+<p><em>iNEXT</em> <span class="citation">(Hsieh et al. 2016)</span> is
+designed primarily to interpolate or extrapolate diversity of integer
+orders. Extrapolation of diversity of order 0 relies on the Chao1
+estimator of richness and that of order 1 uses the Chao-Jost estimator.
+In <em>entropart</em>, extrapolation relies on the estimation of the
+asymptotic distribution of the community with asymptotic richness such
+that the entropy of the asymptotic distribution rarefied to the observed
+sample size equals the observed entropy of the data. This approach
+allows consistent estimation of extrapolated diversity at integer and
+non-integer orders, thus allowing consistent diversity profiles without
+discontinuities at
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">q=0</annotation></semantics></math>
 and
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">q=1</annotation></semantics></math>.
@@ -325,7 +325,7 @@ estimator by default.</p>
 <p>Last, confidence intervals of diversity accumulation assume normality
 in <em>iNEXT</em>: estimation variance is estimated by bootstrap and the
 confidence interval is defined as
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>±</mo><mn>1.96</mn></mrow><annotation encoding="application/x-tex">\pm 1.96</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>±</mi><mn>1.96</mn></mrow><annotation encoding="application/x-tex">\pm 1.96</annotation></semantics></math>
 times the standard deviation. In <em>entropart</em>, confidence
 intervals are built directly from the quantiles of bootstrapped
 estimations.</p>
@@ -333,10 +333,9 @@ estimations.</p>
 <div class="section level2">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-Chao2014" class="csl-entry">
-Chao, Anne, Nicholas J. Gotelli, T. C. Hsieh, Elizabeth L. Sander, K. H.
-Ma, Robert K. Colwell, and Aaron M. Ellison. 2014. <span>“<span class="nocase">Rarefaction and extrapolation with Hill numbers: A
+Chao, Anne, Nicholas J. Gotelli, T. C. Hsieh, et al. 2014. <span>“<span class="nocase">Rarefaction and extrapolation with Hill numbers: A
 framework for sampling and estimation in species diversity
 studies</span>.”</span> <em>Ecological Monographs</em> 84 (1): 45–67. <a href="https://doi.org/10.1890/13-0133.1" class="external-link">https://doi.org/10.1890/13-0133.1</a>.
 </div>
@@ -358,7 +357,7 @@ and Evolution</em> 7: 1451–56. <a href="https://doi.org/10.1111/2041-210X.1261
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

@@ -12,8 +12,8 @@
 <link rel="icon" sizes="any" href="../favicon.ico">
 <link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="entropart">
 </head>
@@ -81,20 +81,19 @@ short introduction to its use.</p>
 according to the framework based on HCDT entropy, the correction of its
 estimation-bias <span class="citation">(Grassberger 1988; Chao and Shen
 2003; Chao and Jost 2015)</span> and its transformation into equivalent
-numbers of species <span class="citation">(Hill 1973; Jost 2006; Marcon
-et al. 2014)</span>. Estimation of diversity at arbitrary levels of
-sampling, requiring interpolation or extrapolation <span class="citation">(Chao et al. 2014)</span> is available</p>
+numbers of species <span class="citation">(Hill 1973; Jost 2006; Marcon,
+Scotti, et al. 2014)</span>. Estimation of diversity at arbitrary levels
+of sampling, requiring interpolation or extrapolation <span class="citation">(Chao et al. 2014)</span> is available</p>
 <p>Phylogenetic or functional diversity <span class="citation">(Marcon
 and Hérault 2015)</span> can be estimated, considering phyloentropy as
 the average species-neutral diversity over slices of a phylogenetic or
-functional tree <span class="citation">(S. Pavoine, Love, and Bonsall
-2009)</span>.</p>
+functional tree <span class="citation">(Pavoine et al. 2009)</span>.</p>
 <p>Similarity-based diversity <span class="citation">(Leinster and
-Cobbold 2012)</span> can be used to estimate <span class="citation">(Marcon, Zhang, and Hérault 2014)</span> functional
+Cobbold 2012)</span> can be used to estimate <span class="citation">(Marcon, Zhang, et al. 2014)</span> functional
 diversity from a similarity or dissimilarity matrix between species
 without requiring building a dendrogram and thus preserving the topology
-of species <span class="citation">(Sandrine Pavoine, Ollier, and Dufour
-2005; Podani and Schmera 2007)</span>.</p>
+of species <span class="citation">(Pavoine et al. 2005; Podani and
+Schmera 2007)</span>.</p>
 <p>The classical diversity estimators (Shannon and Simpson entropy) can
 be found in many R packages. <em>vegetarian</em> <span class="citation">(Charney and Record 2009)</span> allows calculating
 Hill numbers and partitioning them according to Jost’s framework. Bias
@@ -140,8 +139,8 @@ communities:</p>
 <code class="sourceCode R"><span><span class="va">rc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rCommunity.html">rCommunity</a></span><span class="op">(</span><span class="fl">1</span>, size<span class="op">=</span><span class="fl">10000</span>, Distribution <span class="op">=</span> <span class="st">"lseries"</span>, alpha <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">rc</span>, Distribution<span class="op">=</span><span class="st">"lseries"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="entropart_files/figure-html/rCommunity-1.png" class="r-plt" alt="" width="700"></p>
-<p>The Whittaker plot of a random log-series <span class="citation">(Fisher, Corbet, and Williams 1943)</span> distribution
-of 10000 individuals simulated with parameter
+<p>The Whittaker plot of a random log-series <span class="citation">(Fisher et al. 1943)</span> distribution of 10000
+individuals simulated with parameter
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>=</mo><mn>30</mn></mrow><annotation encoding="application/x-tex">\alpha=30</annotation></semantics></math>
 is produced.</p>
 </div>
@@ -255,7 +254,7 @@ entropy and diversity <span class="citation">(Marcon and Hérault
 <span><span class="co">## Diversity equals: 53.73643</span></span></code></pre>
 <p>With a Euclidian distance matrix between species, similarity-based
 diversity <span class="citation">(Leinster and Cobbold 2012; Marcon,
-Zhang, and Hérault 2014)</span> is available:</p>
+Zhang, et al. 2014)</span> is available:</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Prepare the similarity matrix</span></span>
 <span><span class="va">DistanceMatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">Paracou618.dist</span><span class="op">)</span></span>
@@ -388,8 +387,9 @@ the solid black one) do not cross <span class="citation">(Tothmeresz
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
 diversity profile shows that the communities are more diverse when their
 dominant species are considered.</p>
-<p>The bootstrap confidence intervals of the values of diversity <span class="citation">(Marcon et al. 2012, 2014)</span> are calculated if
-<code>NumberOfSimulations</code> is not 0.</p>
+<p>The bootstrap confidence intervals of the values of diversity <span class="citation">(Marcon et al. 2012; Marcon, Scotti, et al.
+2014)</span> are calculated if <code>NumberOfSimulations</code> is not
+0.</p>
 <p><code>DivPart</code>, <code>DivEst</code> and <code>DivProfile</code>
 use plugin estimators by default. To force them to apply the same
 estimators as community functions, the argument
@@ -408,14 +408,12 @@ diversity.</p>
 <div class="section level2">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-Cao2014" class="csl-entry">
-Cao, Lijuan, and Michael Grabchak. 2014.
-<span>“EntropyEstimation.”</span> <a href="https://cran.r-project.org/package=EntropyEstimation" class="external-link">https://cran.r-project.org/package=EntropyEstimation</a>.
+Cao, Lijuan, and Michael Grabchak. 2014. <em>EntropyEstimation</em>. <a href="https://cran.r-project.org/package=EntropyEstimation" class="external-link">https://cran.r-project.org/package=EntropyEstimation</a>.
 </div>
 <div id="ref-Chao2014" class="csl-entry">
-Chao, Anne, Nicholas J. Gotelli, T. C. Hsieh, Elizabeth L. Sander, K. H.
-Ma, Robert K. Colwell, and Aaron M. Ellison. 2014. <span>“<span class="nocase">Rarefaction and extrapolation with Hill numbers: A
+Chao, Anne, Nicholas J. Gotelli, T. C. Hsieh, et al. 2014. <span>“<span class="nocase">Rarefaction and extrapolation with Hill numbers: A
 framework for sampling and estimation in species diversity
 studies</span>.”</span> <em>Ecological Monographs</em> 84 (1): 45–67. <a href="https://doi.org/10.1890/13-0133.1" class="external-link">https://doi.org/10.1890/13-0133.1</a>.
 </div>
@@ -431,8 +429,8 @@ Sample.”</span> <em>Environmental and Ecological Statistics</em> 10 (4):
 429–43.
 </div>
 <div id="ref-Charney2009" class="csl-entry">
-Charney, Noah, and Sydne Record. 2009. <span>“Vegetarian: Jost Diversity
-Measures for Community Data.”</span> <a href="https://cran.r-project.org/package=vegetarian" class="external-link">https://cran.r-project.org/package=vegetarian</a>.
+Charney, Noah, and Sydne Record. 2009. <em>Vegetarian: Jost Diversity
+Measures for Community Data</em>. <a href="https://cran.r-project.org/package=vegetarian" class="external-link">https://cran.r-project.org/package=vegetarian</a>.
 </div>
 <div id="ref-Fisher1943" class="csl-entry">
 Fisher, R. A., A. S. Corbet, and C. B. Williams. 1943. <span>“The
@@ -527,7 +525,7 @@ Physics</em> 52 (1): 479–87.
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

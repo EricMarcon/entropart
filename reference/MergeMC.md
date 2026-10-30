@@ -87,4 +87,5 @@ plot(MergeMC(list(MC1, MC2)), main="Merged meta-communities")
 
 smc <- ShuffleMC(list(MC1, MC2))
 plot(MergeMC(smc), main="Shuffled, then Merged meta-communities")
+#> Warning: Zhang-Huang sample coverage cannot be estimated because one probability is over 1/2. Chao estimator is returned.
 ```

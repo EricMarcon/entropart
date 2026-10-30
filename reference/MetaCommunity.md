@@ -62,6 +62,7 @@ one, named `Weights`, their weights.
 
 Files can be read and data imported by code such as:
 
+
     Abundances <- read.csv(file="Abundances.csv", row.names = 1)
     Weights <- read.csv(file="Weights.csv")
     MC <- MetaCommunity(Abundances, Weights)

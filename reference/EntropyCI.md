@@ -104,5 +104,5 @@ cat("Estimated Diversity:", RealEst)
 #> Estimated Diversity: 138.1078
 quantile(SimulatedDiversity, probs = c(0.025, 0.975))
 #>     2.5%    97.5% 
-#> 127.0883 149.8831 
+#> 126.8446 151.3915 
 ```
