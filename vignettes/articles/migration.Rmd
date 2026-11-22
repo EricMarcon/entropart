@@ -1,0 +1,94 @@
+---
+title: "Migration"
+bibliography: ../entropart.bib
+output: 
+  rmarkdown::html_document:
+    toc: yes
+    toc_float: yes
+vignette: >
+  %\VignetteIndexEntry{Migration}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r global_options, include=FALSE}
+set.seed(97310)
+```
+
+*entropart* is being superseded by the [*divent*](https://ericmarcon.github.io/divent/) package.
+It will be maintained, i.e. bugs will be corrected and updates required by CRAN will be made, but no new development is expected.
+
+# General changes
+
+Object names follow the Pascal-case style in *entropart*, e.g.
+`DivPart()`.
+*divent* follows the recommendations of the tidyverse, e.g. snake-case names with prefixes, e.g. `div_part()`.
+
+Functions' values are often lists in *entropart*, vs. tibbles in *divent*, where argument `as_numeric = TRUE` allows obtaining numeric outputs from many functions.
+
+Abundance or probability data are named vectors in *entropart*, declared as `AbdVector` or `ProbaVector` objects by the `as.AbdVector()` or `as.ProbaVector()`function.
+In *divent*, numeric vectors are used directly or converted to tibbles of class `abundances` or `probabilities` by functions `as_abundances()` or `as_probabilities()`.
+
+The following table shows the correspondence between *entropart* and *divent* functions.
+
+# Function names
+
+| **entropart** | **divent** |
+|---------------------------------|---------------------------------------|
+| [`AbdFreqCount()`](https://ericmarcon.github.io/entropart/reference/AbdFreqCount.html): Abundance Frequency Count of a Community | [`abd_freq_count()`](https://ericmarcon.github.io/divent/reference/abd_freq_count.html) |
+| [`AllenH()`](https://ericmarcon.github.io/entropart/reference/AllenH.html): Phylogenetic Entropy of a Community | [`ent_allen()`](https://ericmarcon.github.io/divent/reference/ent_allen.html) |
+| [`CommunityProfile()`](https://ericmarcon.github.io/entropart/reference/CommunityProfile.html): Diversity Profile of a Community. Argument \`FUN\` defines the diversity function. | \- [`profile_hill()`](https://ericmarcon.github.io/divent/reference/profile_hill.html) : Taxonomic Diversity Profile of a Community<br>- [`profile_phylo()`](https://ericmarcon.github.io/divent/reference/profile_phylo.html): Phylogenetic Diversity Profile of a Community<br> - [`profile_similarity()`](https://ericmarcon.github.io/divent/reference/profile_similarity.html): Similarity-Based Diversity Profile of a Community |
+| [`Coverage()`](https://ericmarcon.github.io/entropart/reference/Coverage.html): Sample coverage of a community | [`coverage()`](https://ericmarcon.github.io/divent/reference/coverage.html) |
+| [`DivAC()`](https://ericmarcon.github.io/entropart/reference/Accumulation.html): Diversity accumulation. | [`accum_hill()`](https://ericmarcon.github.io/divent/reference/accum_hill.html) |
+| [`Diversity()`](https://ericmarcon.github.io/entropart/reference/Diversity.html) / [`bcDiversity()`](https://ericmarcon.github.io/entropart/reference/Diversity.html): Hill number of a community | [`div_hill()`](https://ericmarcon.github.io/divent/reference/div_hill.html) |
+| [`DivPart()`](https://ericmarcon.github.io/entropart/reference/DivPart.html): Diversity Partition of a metacommunity | [`div_part()`](https://ericmarcon.github.io/divent/reference/div_part.html) |
+| [`Dqz()`](https://ericmarcon.github.io/entropart/reference/Dqz.html) / [`bcDqz()`](https://ericmarcon.github.io/entropart/reference/Dqz.html): Similarity-based diversity of a community | [`div_similarity()`](https://ericmarcon.github.io/divent/reference/div_similarity.html) |
+| [`Enq()`](https://ericmarcon.github.io/entropart/reference/Enq.html): Grassberger's expectation of $n^q$ | [`e_n_q()`](https://ericmarcon.github.io/divent/reference/e_n_q.html) |
+| [`EntAC()`](https://ericmarcon.github.io/entropart/reference/Accumulation.html): Entropy accumulation. | [`accum_tsallis()`](https://ericmarcon.github.io/divent/reference/accum_hill.html) |
+| [`expq()`](https://ericmarcon.github.io/entropart/reference/expq.html): Exponential of order q | [`exp_q()`](https://ericmarcon.github.io/divent/reference/exp_q.html) |
+| [`GenSimpson()`](https://ericmarcon.github.io/entropart/reference/GenSimpson.html) / [`bcGenSimpson()`](https://ericmarcon.github.io/entropart/reference/GenSimpson.html): Generalized Simpson's Entropy | [`ent_gen_simpson()`](https://ericmarcon.github.io/divent/reference/ent_gen_simpson.html) |
+| [`GenSimpsonD()`](https://ericmarcon.github.io/entropart/reference/GenSimpson.html) / [`bcGenSimpsonD()`](https://ericmarcon.github.io/entropart/reference/GenSimpson.html): Generalized Simpson's Diversity | [`div_gen_simpson()`](https://ericmarcon.github.io/divent/reference/div_gen_simpson.html) |
+| [`Hqz()`](https://ericmarcon.github.io/entropart/reference/Hqz.html) / [`bcHqz()`](https://ericmarcon.github.io/entropart/reference/Hqz.html): Similarity-based entropy of a community | [`ent_similarity()`](https://ericmarcon.github.io/divent/reference/ent_similarity.html) |
+| [`Hurlbert()`](https://ericmarcon.github.io/entropart/reference/Hurlbert.html) / [`bcHurlbert()`](https://ericmarcon.github.io/entropart/reference/Hurlbert.html): Hurlbert's Entropy | [`ent_hurlbert()`](https://ericmarcon.github.io/divent/reference/div_hurlbert.html) |
+| [`HurlbertD()`](https://ericmarcon.github.io/entropart/reference/Hurlbert.html) / [`bcHurlbertD()`](https://ericmarcon.github.io/entropart/reference/Hurlbert.html): Hurlbert's Explicit Diversity | [`div_hurlbert()`](https://ericmarcon.github.io/divent/reference/div_hurlbert.html) |
+| [`lnq()`](https://ericmarcon.github.io/entropart/reference/lnq.html): Logarithm of order q | [`ln_q()`](https://ericmarcon.github.io/divent/reference/ln_q.html) |
+| [`MetaCommunity()`](https://ericmarcon.github.io/entropart/reference/MetaCommunity.html): Metacommunity class | [`metacommunity()`](https://ericmarcon.github.io/divent/reference/metacommunity.html): Aggregate communities into a metacommunity |
+| [`PDFD()`](https://ericmarcon.github.io/entropart/reference/PDFD.html): Phylogenetic Diversity / Functional Diversity of a Community | [`div_pd()`](https://ericmarcon.github.io/divent/reference/div_pd.html) |
+| [`PhyloDiversity()`](https://ericmarcon.github.io/entropart/reference/PhyloDiversity.html) / [`bcPhyloDiversity()`](https://ericmarcon.github.io/entropart/reference/PhyloDiversity.html): Phylogenetic Diversity of a Community | [`div_phylo()`](https://ericmarcon.github.io/divent/reference/div_phylo.html) |
+| [`PhyloEntropy()`](https://ericmarcon.github.io/entropart/reference/PhyloEntropy.html) / [`bcPhyloEntropy()`](https://ericmarcon.github.io/entropart/reference/PhyloEntropy.html): Phylogenetic Entropy of a community | [`ent_phylo()`](https://ericmarcon.github.io/divent/reference/ent_phylo.html) |
+| [`RAClnorm()`](https://ericmarcon.github.io/entropart/reference/RAC.html) / [`RACgeom()`](https://ericmarcon.github.io/entropart/reference/RAC.html) / [`RAClseries()`](https://ericmarcon.github.io/entropart/reference/RAC.html) / [`RACbstick()`](https://ericmarcon.github.io/entropart/reference/RAC.html): Fit Distributions to Well-Known Rank Abundance Curves. | [`fit_rac()`](https://ericmarcon.github.io/divent/reference/fit_rac.html) |
+| [`Rao()`](https://ericmarcon.github.io/entropart/reference/Rao.html) / [`bcRao()`](https://ericmarcon.github.io/entropart/reference/Rao.html): Rao's Quadratic Entropy of a Community | [`ent_rao()`](https://ericmarcon.github.io/divent/reference/ent_rao.html) |
+| [`rCommunity()`](https://ericmarcon.github.io/entropart/reference/rCommunity.html): Random Communities | [`rcommunity()`](https://ericmarcon.github.io/divent/reference/rcommunity.html) |
+| [`Richness()`](https://ericmarcon.github.io/entropart/reference/Richness.html) / [`bcRichness()`](https://ericmarcon.github.io/entropart/reference/Richness.html): Number of species of a community | [`div_richness()`](https://ericmarcon.github.io/divent/reference/div_richness.html) |
+| [`Shannon()`](https://ericmarcon.github.io/entropart/reference/Shannon.html) / [`bcShannon()`](https://ericmarcon.github.io/entropart/reference/Shannon.html): Shannon entropy of a community | [`ent_shannon()`](https://ericmarcon.github.io/divent/reference/ent_shannon.html) |
+| [`Simpson()`](https://ericmarcon.github.io/entropart/reference/Simpson.html) / [`bcSimpson()`](https://ericmarcon.github.io/entropart/reference/Simpson.html): Simpson entropy of a community | [`ent_simpson()`](https://ericmarcon.github.io/divent/reference/ent_simpson.html) |
+| [`Tsallis()`](https://ericmarcon.github.io/entropart/reference/Tsallis.html) / [`bcTsallis()`](https://ericmarcon.github.io/entropart/reference/Tsallis.html): Tsallis (HCDT) Entropy of a community | [`ent_tsallis()`](https://ericmarcon.github.io/divent/reference/ent_tsallis.html) |
+
+# Example
+
+```{r}
+library("entropart")
+library("divent")
+# Random community, lognormal, 10 individuals, 3 species 
+entropart::rCommunity(
+  n = 1,
+  size = 10, 
+  S = 3, 
+  Distribution = "lnorm"
+)
+# Equivalent to
+divent::rcommunity(
+  n = 1, 
+  size = 10, 
+  species_number = 3, 
+  distribution = "lnorm"
+)
+# use as.numeric() to produce a vector rather than a tibble
+divent::rcommunity(
+  n = 1, 
+  size = 10, 
+  species_number = 3, 
+  distribution = "lnorm"
+) |>
+  as.numeric()
+```
