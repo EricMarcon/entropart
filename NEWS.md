@@ -1,3 +1,7 @@
+# entropart 1.6-16.9000
+
+Preparing superseding by the *divent* package.
+
 # entropart 1.6-16
 
 ## External changes
