@@ -11,8 +11,16 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r global_options, include=FALSE}
+```{r global_options, include=FALSE, cache=TRUE}
 set.seed(97310)
+Library <- function(Packages) {
+  InstallAndLoad <- function(Package) {
+    if (!Package %in% installed.packages()[, 1]) {install.packages(Package, repos="https://cran.rstudio.com/")}
+    require(Package, character.only = TRUE)
+  }
+  invisible(vapply(Packages, InstallAndLoad, FUN.VALUE=TRUE))
+}
+Library(c("divent"))
 ```
 
 *entropart* is being superseded by the [*divent*](https://ericmarcon.github.io/divent/) package.
@@ -34,7 +42,7 @@ The following table shows the correspondence between *entropart* and *divent* fu
 # Function names
 
 | **entropart** | **divent** |
-|---------------------------------|---------------------------------------|
+|----|----|
 | [`AbdFreqCount()`](https://ericmarcon.github.io/entropart/reference/AbdFreqCount.html): Abundance Frequency Count of a Community | [`abd_freq_count()`](https://ericmarcon.github.io/divent/reference/abd_freq_count.html) |
 | [`AllenH()`](https://ericmarcon.github.io/entropart/reference/AllenH.html): Phylogenetic Entropy of a Community | [`ent_allen()`](https://ericmarcon.github.io/divent/reference/ent_allen.html) |
 | [`CommunityProfile()`](https://ericmarcon.github.io/entropart/reference/CommunityProfile.html): Diversity Profile of a Community. Argument \`FUN\` defines the diversity function. | \- [`profile_hill()`](https://ericmarcon.github.io/divent/reference/profile_hill.html) : Taxonomic Diversity Profile of a Community<br>- [`profile_phylo()`](https://ericmarcon.github.io/divent/reference/profile_phylo.html): Phylogenetic Diversity Profile of a Community<br> - [`profile_similarity()`](https://ericmarcon.github.io/divent/reference/profile_similarity.html): Similarity-Based Diversity Profile of a Community |
