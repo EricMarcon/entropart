@@ -6,15 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>entropart • entropart</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="entropart">
 <meta name="robots" content="noindex">
@@ -27,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">entropart</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.6-15.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.6-16.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,6 +41,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/extrapolation.html">Asymptotic Estimation, Interpolation and Extrapolation </a></li>
+    <li><a class="dropdown-item" href="../articles/migration.html">Migration</a></li>
     <li><a class="dropdown-item" href="../articles/phylogenies.html">Phylogenies in entropart</a></li>
     <li><a class="dropdown-item" href="../articles/reference.html">entropart Package Reference</a></li>
   </ul>
@@ -83,20 +83,19 @@ short introduction to its use.</p>
 according to the framework based on HCDT entropy, the correction of its
 estimation-bias <span class="citation">(Grassberger 1988; Chao and Shen
 2003; Chao and Jost 2015)</span> and its transformation into equivalent
-numbers of species <span class="citation">(Hill 1973; Jost 2006; Marcon
-et al. 2014)</span>. Estimation of diversity at arbitrary levels of
-sampling, requiring interpolation or extrapolation <span class="citation">(Chao et al. 2014)</span> is available</p>
+numbers of species <span class="citation">(Hill 1973; Jost 2006; Marcon,
+Scotti, et al. 2014)</span>. Estimation of diversity at arbitrary levels
+of sampling, requiring interpolation or extrapolation <span class="citation">(Chao et al. 2014)</span> is available</p>
 <p>Phylogenetic or functional diversity <span class="citation">(Marcon
 and Hérault 2015)</span> can be estimated, considering phyloentropy as
 the average species-neutral diversity over slices of a phylogenetic or
-functional tree <span class="citation">(S. Pavoine, Love, and Bonsall
-2009)</span>.</p>
+functional tree <span class="citation">(Pavoine et al. 2009)</span>.</p>
 <p>Similarity-based diversity <span class="citation">(Leinster and
-Cobbold 2012)</span> can be used to estimate <span class="citation">(Marcon, Zhang, and Hérault 2014)</span> functional
+Cobbold 2012)</span> can be used to estimate <span class="citation">(Marcon, Zhang, et al. 2014)</span> functional
 diversity from a similarity or dissimilarity matrix between species
 without requiring building a dendrogram and thus preserving the topology
-of species <span class="citation">(Sandrine Pavoine, Ollier, and Dufour
-2005; Podani and Schmera 2007)</span>.</p>
+of species <span class="citation">(Pavoine et al. 2005; Podani and
+Schmera 2007)</span>.</p>
 <p>The classical diversity estimators (Shannon and Simpson entropy) can
 be found in many R packages. <em>vegetarian</em> <span class="citation">(Charney and Record 2009)</span> allows calculating
 Hill numbers and partitioning them according to Jost’s framework. Bias
@@ -131,7 +130,7 @@ abundance (the red curve):</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Abd18</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SpeciesDistribution.html">as.AbdVector</a></span><span class="op">(</span><span class="va">N18</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">Abd18</span>, Distribution<span class="op">=</span><span class="st">"lnorm"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="entropart_files/figure-html/PlotN18-1.png" width="700"></p>
+<p><img src="entropart_files/figure-html/PlotN18-1.png" class="r-plt" alt="" width="700"></p>
 <p>Abundance vectors can also be converted to probability vectors,
 summing to 1:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -141,9 +140,9 @@ communities:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rCommunity.html">rCommunity</a></span><span class="op">(</span><span class="fl">1</span>, size<span class="op">=</span><span class="fl">10000</span>, Distribution <span class="op">=</span> <span class="st">"lseries"</span>, alpha <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">rc</span>, Distribution<span class="op">=</span><span class="st">"lseries"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="entropart_files/figure-html/rCommunity-1.png" width="700"></p>
-<p>The Whittaker plot of a random log-series <span class="citation">(Fisher, Corbet, and Williams 1943)</span> distribution
-of 10000 individuals simulated with parameter
+<p><img src="entropart_files/figure-html/rCommunity-1.png" class="r-plt" alt="" width="700"></p>
+<p>The Whittaker plot of a random log-series <span class="citation">(Fisher et al. 1943)</span> distribution of 10000
+individuals simulated with parameter
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>=</mo><mn>30</mn></mrow><annotation encoding="application/x-tex">\alpha=30</annotation></semantics></math>
 is produced.</p>
 </div>
@@ -232,12 +231,19 @@ Simpson’s diversities:</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">DP</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CommunityProfile.html">CommunityProfile</a></span><span class="op">(</span><span class="va">Diversity</span>, <span class="va">Abd18</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">DP</span><span class="op">)</span></span></code></pre></div>
-<p><img src="entropart_files/figure-html/DiversityProfile-1.png" width="700"></p>
+<pre><code><span><span class="co">## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Please use `linewidth` instead.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">entropart</span> package.</span></span>
+<span><span class="co">##   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/EricMarcon/entropart/issues/&gt;</span>.</span></span>
+<span><span class="co">## <span style="color: #555555;">This warning is displayed once per session.</span></span></span>
+<span><span class="co">## <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
+<span><span class="co">## <span style="color: #555555;">generated.</span></span></span></code></pre>
+<p><img src="entropart_files/figure-html/DiversityProfile-1.png" class="r-plt" alt="" width="700"></p>
 <p>If an ultrametric dendrogram describing species’ phylogeny (here, a
 mere taxonomy with family, genus and species) is available, phylogenetic
 entropy and diversity <span class="citation">(Marcon and Hérault
 2015)</span> can be calculated:</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="../reference/PhyloDiversity.html">PhyloDiversity</a></span><span class="op">(</span><span class="va">Abd18</span>,q<span class="op">=</span><span class="fl">1</span>,Tree<span class="op">=</span><span class="va">Paracou618.Taxonomy</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## alpha or gamma phylogenetic or functional diversity of order 1 of distribution </span></span>
 <span><span class="co">## Abd18</span></span>
@@ -250,8 +256,8 @@ entropy and diversity <span class="citation">(Marcon and Hérault
 <span><span class="co">## Diversity equals: 53.73643</span></span></code></pre>
 <p>With a Euclidian distance matrix between species, similarity-based
 diversity <span class="citation">(Leinster and Cobbold 2012; Marcon,
-Zhang, and Hérault 2014)</span> is available:</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+Zhang, et al. 2014)</span> is available:</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Prepare the similarity matrix</span></span>
 <span><span class="va">DistanceMatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">Paracou618.dist</span><span class="op">)</span></span>
 <span><span class="co"># Similarity can be 1 minus normalized distances between species</span></span>
@@ -264,11 +270,11 @@ Zhang, and Hérault 2014)</span> is available:</p>
 obtained the same way. <code>PhyloDiversity</code> is an object with a
 lot of information so an intermediate function is necessary to extract
 its <code>$Total</code> component:</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sbDP</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CommunityProfile.html">CommunityProfile</a></span><span class="op">(</span><span class="va">Dqz</span>, <span class="va">Abd18</span>, Z<span class="op">=</span><span class="va">Z</span><span class="op">)</span></span>
 <span><span class="va">pDP</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CommunityProfile.html">CommunityProfile</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">X</span>, <span class="va">...</span><span class="op">)</span> <span class="fu"><a href="../reference/PhyloDiversity.html">PhyloDiversity</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">...</span><span class="op">)</span><span class="op">$</span><span class="va">Total</span>, <span class="va">Abd18</span>, Tree<span class="op">=</span><span class="va">Paracou618.Taxonomy</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">pDP</span><span class="op">)</span></span></code></pre></div>
-<p><img src="entropart_files/figure-html/PDiversityProfile-1.png" width="700"></p>
+<p><img src="entropart_files/figure-html/PDiversityProfile-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 </div>
 <div class="section level2">
@@ -285,7 +291,7 @@ communities.</p>
 <p>The easiest way to build a meta-community consists of preparing a
 dataframe whose columns are communities and lines are species, and
 define weights in a vector (by default, all weights are equal):</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ericmarcon.github.io/entropart/">"entropart"</a></span><span class="op">)</span></span>
 <span><span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>C1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span>, C2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">20</span>, <span class="fl">35</span>, <span class="fl">5</span><span class="op">)</span>, C3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">15</span>, <span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sp1"</span>, <span class="st">"sp2"</span>, <span class="st">"sp3"</span>, <span class="st">"sp4"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##     C1 C2 C3</span></span>
@@ -293,14 +299,14 @@ define weights in a vector (by default, all weights are equal):</p>
 <span><span class="co">## sp2 10 20 15</span></span>
 <span><span class="co">## sp3 10 35  0</span></span>
 <span><span class="co">## sp4 10  5  2</span></span></code></pre>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <p>The <code>MetaCommunity</code> function creates the meta-community.
 It can be plotted:</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">MC</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MetaCommunity.html">MetaCommunity</a></span><span class="op">(</span>Abundances <span class="op">=</span> <span class="va">df</span>, Weights <span class="op">=</span> <span class="va">w</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">MC</span><span class="op">)</span></span></code></pre></div>
-<p><img src="entropart_files/figure-html/MetaCommunityMC-1.png" width="700"></p>
+<p><img src="entropart_files/figure-html/MetaCommunityMC-1.png" class="r-plt" alt="" width="700"></p>
 <p>Each shade of grey represents a species. Heights correspond to the
 probability of species and the width of each community is its
 weight.</p>
@@ -325,7 +331,7 @@ diversity).</p>
 <p>The <code>DivPart</code> function calculates everything at once, for
 a given order of diversity
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math>:</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/DivPart.html">DivPart</a></span><span class="op">(</span>q <span class="op">=</span> <span class="fl">1</span>, MC <span class="op">=</span> <span class="va">Paracou618.MC</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## HCDT diversity partitioning of order 1 of metaCommunity Paracou618.MC</span></span>
@@ -360,22 +366,22 @@ diversity following <span class="citation">Marcon et al. (2012)</span>.
 If the observed species frequencies of a community are assumed to be a
 realization of a multinomial distribution, they can be drawn again to
 obtain a distribution of entropy.</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">de</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/DivEst.html">DivEst</a></span><span class="op">(</span>q <span class="op">=</span> <span class="fl">1</span>, <span class="va">Paracou618.MC</span>, Simulations <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">de</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/DivEst.html">DivEst</a></span><span class="op">(</span>q <span class="op">=</span> <span class="fl">1</span>, <span class="va">Paracou618.MC</span>, Simulations <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Margin adjustment required for this vignette html output</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2.2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">de</span><span class="op">)</span></span></code></pre></div>
-<p><img src="entropart_files/figure-html/DivEst-1.png" width="576"></p>
+<p><img src="entropart_files/figure-html/DivEst-1.png" class="r-plt" alt="" width="576"></p>
 <p>The result is a <code>Divest</code> object which can be summarized
 and plotted.</p>
 <p><code>DivProfile</code> calculates diversity profiles. The result is
 a <code>DivProfile</code> object which can be summarized and
 plotted.</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/DivProfile.html">DivProfile</a></span><span class="op">(</span>q.seq <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">0.1</span><span class="op">)</span>, <span class="va">Paracou618.MC</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">dp</span><span class="op">)</span></span></code></pre></div>
-<p><img src="entropart_files/figure-html/DivProfile-1.png" width="576"></p>
+<p><img src="entropart_files/figure-html/DivProfile-1.png" class="r-plt" alt="" width="576"></p>
 <p>Plot #18 can be considered more diverse than plot #6 because their
 profiles (top right figure, plot #18 is the dotted red line, plot #6,
 the solid black one) do not cross <span class="citation">(Tothmeresz
@@ -383,8 +389,9 @@ the solid black one) do not cross <span class="citation">(Tothmeresz
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
 diversity profile shows that the communities are more diverse when their
 dominant species are considered.</p>
-<p>The bootstrap confidence intervals of the values of diversity <span class="citation">(Marcon et al. 2012, 2014)</span> are calculated if
-<code>NumberOfSimulations</code> is not 0.</p>
+<p>The bootstrap confidence intervals of the values of diversity <span class="citation">(Marcon et al. 2012; Marcon, Scotti, et al.
+2014)</span> are calculated if <code>NumberOfSimulations</code> is not
+0.</p>
 <p><code>DivPart</code>, <code>DivEst</code> and <code>DivProfile</code>
 use plugin estimators by default. To force them to apply the same
 estimators as community functions, the argument
@@ -403,14 +410,12 @@ diversity.</p>
 <div class="section level2">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-Cao2014" class="csl-entry">
-Cao, Lijuan, and Michael Grabchak. 2014.
-<span>“EntropyEstimation.”</span> <a href="https://cran.r-project.org/package=EntropyEstimation" class="external-link">https://cran.r-project.org/package=EntropyEstimation</a>.
+Cao, Lijuan, and Michael Grabchak. 2014. <em>EntropyEstimation</em>. <a href="https://cran.r-project.org/package=EntropyEstimation" class="external-link">https://cran.r-project.org/package=EntropyEstimation</a>.
 </div>
 <div id="ref-Chao2014" class="csl-entry">
-Chao, Anne, Nicholas J. Gotelli, T. C. Hsieh, Elizabeth L. Sander, K. H.
-Ma, Robert K. Colwell, and Aaron M. Ellison. 2014. <span>“<span class="nocase">Rarefaction and extrapolation with Hill numbers: A
+Chao, Anne, Nicholas J. Gotelli, T. C. Hsieh, et al. 2014. <span>“<span class="nocase">Rarefaction and extrapolation with Hill numbers: A
 framework for sampling and estimation in species diversity
 studies</span>.”</span> <em>Ecological Monographs</em> 84 (1): 45–67. <a href="https://doi.org/10.1890/13-0133.1" class="external-link">https://doi.org/10.1890/13-0133.1</a>.
 </div>
@@ -426,8 +431,8 @@ Sample.”</span> <em>Environmental and Ecological Statistics</em> 10 (4):
 429–43.
 </div>
 <div id="ref-Charney2009" class="csl-entry">
-Charney, Noah, and Sydne Record. 2009. <span>“Vegetarian: Jost Diversity
-Measures for Community Data.”</span> <a href="https://cran.r-project.org/package=vegetarian" class="external-link">https://cran.r-project.org/package=vegetarian</a>.
+Charney, Noah, and Sydne Record. 2009. <em>Vegetarian: Jost Diversity
+Measures for Community Data</em>. <a href="https://cran.r-project.org/package=vegetarian" class="external-link">https://cran.r-project.org/package=vegetarian</a>.
 </div>
 <div id="ref-Fisher1943" class="csl-entry">
 Fisher, R. A., A. S. Corbet, and C. B. Williams. 1943. <span>“The
@@ -522,7 +527,7 @@ Physics</em> 52 (1): 479–87.
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

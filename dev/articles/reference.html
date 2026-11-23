@@ -6,15 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>entropart Package Reference • entropart</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="entropart Package Reference">
 <meta name="robots" content="noindex">
@@ -27,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">entropart</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.6-15.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.6-16.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,6 +41,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/extrapolation.html">Asymptotic Estimation, Interpolation and Extrapolation </a></li>
+    <li><a class="dropdown-item" href="../articles/migration.html">Migration</a></li>
     <li><a class="dropdown-item" href="../articles/phylogenies.html">Phylogenies in entropart</a></li>
     <li><a class="dropdown-item" href="../articles/reference.html">entropart Package Reference</a></li>
   </ul>
@@ -79,11 +79,12 @@ diversity based on HCDT entropy or similarity-based entropy.</p>
 <p>Diversity measurement can be done through a quite rigorous framework
 based on entropy, i.e. the amount of uncertainty calculated from the
 frequency distribution of a community <span class="citation">(Patil and
-Taillie 1982; Jost 2006; Marcon et al. 2014)</span>. Tsallis entropy,
-also known as HCDT entropy <span class="citation">(Havrda and Charvát
-1967; Daróczy 1970; Tsallis 1988)</span>, is of particular interest
-<span class="citation">(Jost 2006; Marcon et al. 2014)</span> namely
-because it gathers the number of species, Shannon <span class="citation">(1948)</span> and Simpson <span class="citation">(1949)</span> indices of diversity into a single
+Taillie 1982; Jost 2006; Marcon, Scotti, et al. 2014)</span>. Tsallis
+entropy, also known as HCDT entropy <span class="citation">(Havrda and
+Charvát 1967; Daróczy 1970; Tsallis 1988)</span>, is of particular
+interest <span class="citation">(Jost 2006; Marcon, Scotti, et al.
+2014)</span> namely because it gathers the number of species, Shannon
+<span class="citation">(1948)</span> and Simpson <span class="citation">(1949)</span> indices of diversity into a single
 framework. Interpretation of entropy is not straightforward but one can
 easily transform it into Hill numbers <span class="citation">(Hill
 1973)</span> which have many desirable properties <span class="citation">(Jost 2007)</span>: mainly, they are the number of
@@ -91,14 +92,16 @@ equally-frequent species that would give the same level of diversity as
 the data.</p>
 <p><span class="citation">Marcon and Hérault (2015a)</span> generalized
 the duality of entropy and diversity, deriving the relation between
-phylogenetic or functional diversity <span class="citation">(Chao, Chiu,
-and Jost 2010)</span> and phylogenetic or functional entropy (we will
-write <em>phylodiversity</em> and <em>phyloentropy</em> for short), as
-introduced by <span class="citation">Pavoine, Love, and Bonsall
-(2009)</span>. Special cases are the well-known PD <span class="citation">(Faith 1992)</span> and FD <span class="citation">(Petchey and Gaston 2002)</span> indices and Rao’s
-<span class="citation">(1982)</span> quadratic entropy. The same
-relation holds between Ricotta and Szeidl’s entropy of a community <span class="citation">(Ricotta and Szeidl 2006)</span> and similarity-based
-diversity <span class="citation">(Leinster and Cobbold 2012)</span>.</p>
+phylogenetic or functional diversity <span class="citation">(Chao et al.
+2010)</span> and phylogenetic or functional entropy (we will write
+<em>phylodiversity</em> and <em>phyloentropy</em> for short), as
+introduced by <span class="citation">Pavoine et al. (2009)</span>.
+Special cases are the well-known PD <span class="citation">(Faith
+1992)</span> and FD <span class="citation">(Petchey and Gaston
+2002)</span> indices and Rao’s <span class="citation">(1982)</span>
+quadratic entropy. The same relation holds between Ricotta and Szeidl’s
+entropy of a community <span class="citation">(Ricotta and Szeidl
+2006)</span> and similarity-based diversity <span class="citation">(Leinster and Cobbold 2012)</span>.</p>
 <p>The <em>entropart</em> package for R <span class="citation">(R Core
 Team 2018)</span> enables calculation of all these measures of diversity
 and entropy and their partitioning.</p>
@@ -120,7 +123,7 @@ diversity reflects the diversity of individuals <em>in</em> local
 assemblages whereas
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
 diversity reflects the diversity <em>of</em> the local assemblages.
-<span class="citation">Marcon et al. (2014)</span> derived the
+<span class="citation">Marcon, Scotti, et al. (2014)</span> derived the
 decomposition of Tsallis
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>γ</mi><annotation encoding="application/x-tex">\gamma</annotation></semantics></math>
 entropy into its
@@ -128,18 +131,19 @@ entropy into its
 and
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
 components, generalized to phylodiversity <span class="citation">(Marcon
-and Hérault 2015a)</span> and similarity-based diversity <span class="citation">(Marcon, Zhang, and Hérault 2014)</span>.</p>
+and Hérault 2015a)</span> and similarity-based diversity <span class="citation">(Marcon, Zhang, et al. 2014)</span>.</p>
 <p>Estimators of diversity are biased because of unseen species and also
-because they are not linear functions of probabilities <span class="citation">(Marcon et al. 2014)</span>.
+because they are not linear functions of probabilities <span class="citation">(Marcon, Scotti, et al. 2014)</span>.
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
 and
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>γ</mi><annotation encoding="application/x-tex">\gamma</annotation></semantics></math>
 diversities are underestimated by naive estimators <span class="citation">(Chao and Shen 2003; Dauby and Hardy 2012)</span>.
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
-diversity is severely biased too when sampling is not sufficient <span class="citation">(Beck, Holloway, and Schwanghart 2013)</span>.
-Bias-corrected estimators of phylodiversity have been developed by <span class="citation">Marcon and Hérault (2015a)</span>. Estimators of
-similarity-based diversity were derived by <span class="citation">Marcon, Zhang, and Hérault (2014)</span>. The package
-includes them all <span class="citation">(Marcon and Hérault
+diversity is severely biased too when sampling is not sufficient <span class="citation">(Beck et al. 2013)</span>. Bias-corrected estimators of
+phylodiversity have been developed by <span class="citation">Marcon and
+Hérault (2015a)</span>. Estimators of similarity-based diversity were
+derived by <span class="citation">Marcon, Zhang, et al. (2014)</span>.
+The package includes them all <span class="citation">(Marcon and Hérault
 2015b)</span>.</p>
 <p>In summary, the framework supported by the package is as follows.
 First, an information function is chosen to describe the amount of
@@ -170,7 +174,7 @@ equally-weighted communities with no species in common (and where
 species are maximally distinct between communities) necessary to obtain
 the same diversity as the data. Estimation-bias correction is more
 easily applied to entropy before transforming it into diversity.</p>
-<p>This framework is somehow different from that of <span class="citation">Chao, Chiu, and Jost (2014)</span> who define
+<p>This framework is somehow different from that of <span class="citation">Chao et al. (2014)</span> who define
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
 diversity in another way <span class="citation">(see Marcon and Hérault
 2015a for a detailed comparison)</span>, such that
@@ -223,7 +227,7 @@ communities.</p>
 <code class="sourceCode R"><span><span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">MC</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MetaCommunity.html">MetaCommunity</a></span><span class="op">(</span>Abundances<span class="op">=</span><span class="va">df</span>, Weights<span class="op">=</span><span class="va">w</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">MC</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference_files/figure-html/MetaCommunity-1.png" width="700"></p>
+<p><img src="reference_files/figure-html/MetaCommunity-1.png" class="r-plt" alt="" width="700"></p>
 <p>Communities (named C1, C2 ad C3) are represented in the left part of
 the figure, the metacommunity to the right. Bar widths are proportional
 to community weights. Species abundances are represented vertically (4
@@ -307,9 +311,9 @@ individuals of each species in each community. Sample coverage will be
 explained later.</p>
 <p>The dataset also contains a taxonomy and a functional tree.
 <code>Paracou618.Taxonomy</code> is an object of class
-<code>phylo</code>, defined in the package <em>ape</em> <span class="citation">(Paradis, Claude, and Strimmer 2004)</span>, namely a
-phylogenetic tree. This example data is only a taxonomy, containing
-family, genus and species levels for the sake of simplicity.
+<code>phylo</code>, defined in the package <em>ape</em> <span class="citation">(Paradis et al. 2004)</span>, namely a phylogenetic
+tree. This example data is only a taxonomy, containing family, genus and
+species levels for the sake of simplicity.
 <code>Paracou618.Functional</code> is an object of class
 <code>hclust</code> containing a functional tree based on leaf, height,
 stem and seed functional traits <span class="citation">(Hérault and
@@ -333,7 +337,7 @@ individuals):</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"Paracou618"</span><span class="op">)</span></span>
 <span><span class="va">PAbd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SpeciesDistribution.html">as.AbdVector</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Ns</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">PAbd</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference_files/figure-html/AbdVector-1.png" width="700"></p>
+<p><img src="reference_files/figure-html/AbdVector-1.png" class="r-plt" alt="" width="700"></p>
 <p>the Paracou species distribution is plotted as a Rank-Abundance Curve
 (Whittaker plot).</p>
 <p>The <code>as.ProbaVector</code> function transforms abundances to
@@ -351,9 +355,9 @@ probabilities if necessary:</p>
 logarithm of order
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math>
 is defined as:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>ln</mo><mi>q</mi></msub><mi>x</mi><mo>=</mo><mfrac><mrow><msup><mi>x</mi><mrow><mn>1</mn><mo>−</mo><mi>q</mi></mrow></msup><mo>−</mo><mn>1</mn></mrow><mrow><mn>1</mn><mo>−</mo><mi>q</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\ln_q{x}=\frac{x^{1-q}-1}{1-q}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">ln</mi><mo>⁡</mo></mrow><mi>q</mi></msub><mi>x</mi><mo>=</mo><mfrac><mrow><msup><mi>x</mi><mrow><mn>1</mn><mo>−</mo><mi>q</mi></mrow></msup><mo>−</mo><mn>1</mn></mrow><mrow><mn>1</mn><mo>−</mo><mi>q</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\ln_q{x}=\frac{x^{1-q}-1}{1-q}</annotation></semantics></math></p>
 <p>It converges to
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>ln</mo><annotation encoding="application/x-tex">\ln</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="normal">ln</mi><annotation encoding="application/x-tex">\ln</annotation></semantics></math>
 when
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo>→</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">q\to 1</annotation></semantics></math>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
@@ -362,17 +366,17 @@ when
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/curve.html" class="external-link">curve</a></span><span class="op">(</span><span class="fu"><a href="../reference/lnq.html">lnq</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">1</span>, lty <span class="op">=</span> <span class="fl">3</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/curve.html" class="external-link">curve</a></span><span class="op">(</span><span class="fu"><a href="../reference/lnq.html">lnq</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">1</span>, lty <span class="op">=</span> <span class="fl">4</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>  </span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"bottomright"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">ln</span><span class="op">[</span><span class="fl">0</span><span class="op">]</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>, <span class="st">"ln(x)"</span>, <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">ln</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">ln</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>, inset<span class="op">=</span>  <span class="fl">0.02</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference_files/figure-html/lnqCurve-1.png" width="700"></p>
+<p><img src="reference_files/figure-html/lnqCurve-1.png" class="r-plt" alt="" width="700"></p>
 <p>The figure shows the curves of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>ln</mo><mi>q</mi></msub><mi>x</mi></mrow><annotation encoding="application/x-tex">\ln_q{x}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">ln</mi><mo>⁡</mo></mrow><mi>q</mi></msub><mi>x</mi></mrow><annotation encoding="application/x-tex">\ln_q{x}</annotation></semantics></math>
 for different values of
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math>
 between 0 and 4
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>ln</mo><mn>1</mn></msub><mi>x</mi><mo>=</mo><mo>ln</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">\ln_1{x}=\ln{x}</annotation></semantics></math>).</p>
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">ln</mi><mo>⁡</mo></mrow><mn>1</mn></msub><mi>x</mi><mo>=</mo><mrow><mi mathvariant="normal">ln</mi><mo>⁡</mo></mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">\ln_1{x}=\ln{x}</annotation></semantics></math>).</p>
 <p>The inverse function of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>ln</mo><mi>q</mi></msub><mi>x</mi></mrow><annotation encoding="application/x-tex">\ln_q{x}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">ln</mi><mo>⁡</mo></mrow><mi>q</mi></msub><mi>x</mi></mrow><annotation encoding="application/x-tex">\ln_q{x}</annotation></semantics></math>
 is the deformed exponential:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>e</mi><mi>q</mi><mi>x</mi></msubsup><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">[</mo><mn>1</mn><mo>+</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>x</mi><mo stretchy="true" form="postfix">]</mo></mrow><mfrac><mn>1</mn><mrow><mn>1</mn><mo>−</mo><mi>q</mi></mrow></mfrac></msup></mrow><annotation encoding="application/x-tex">e^x_q=[1+(1-q)x]^{\frac{1}{1-q}}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>e</mi><mi>q</mi><mi>x</mi></msubsup><mo>=</mo><mo stretchy="false" form="prefix">[</mo><mn>1</mn><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mi>x</mi><msup><mo stretchy="false" form="postfix">]</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>−</mo><mi>q</mi></mrow></mfrac></msup></mrow><annotation encoding="application/x-tex">e^x_q=[1+(1-q)x]^{\frac{1}{1-q}}</annotation></semantics></math></p>
 <p>Functions of the package are <code>lnq(x, q)</code> and
 <code>expq(x, q)</code>.</p>
 </div>
@@ -389,7 +393,7 @@ is the deformed exponential:</p>
 <p>Species-neutral HCDT entropy of order
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math>
 of a community is defined as:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>q</mi></msup><mspace width="-0.167em"></mspace><mi>H</mi><mo>=</mo><mfrac><mrow><mn>1</mn><mo>−</mo><munder><mo>∑</mo><mi>s</mi></munder><msubsup><mi>p</mi><mi>s</mi><mi>q</mi></msubsup></mrow><mrow><mi>q</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>=</mo><mo>−</mo><munder><mo>∑</mo><mi>s</mi></munder><msubsup><mi>p</mi><mi>s</mi><mi>q</mi></msubsup><msub><mo>ln</mo><mi>q</mi></msub><msub><mi>p</mi><mi>s</mi></msub><mo>=</mo><munder><mo>∑</mo><mi>s</mi></munder><msub><mi>p</mi><mi>s</mi></msub><msub><mo>ln</mo><mi>q</mi></msub><mfrac><mn>1</mn><msub><mi>p</mi><mi>s</mi></msub></mfrac></mrow><annotation encoding="application/x-tex">^q\!H=\frac{1-\sum_s{p^q_s}}{q-1}=-\sum_s{p^q_s}\ln_q{p_s}=\sum_s{p_s}\ln_q{\frac{1}{p_s}}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>q</mi></msup><mspace width="-0.167em"></mspace><mi>H</mi><mo>=</mo><mfrac><mrow><mn>1</mn><mo>−</mo><munder><mo>∑</mo><mi>s</mi></munder><msubsup><mi>p</mi><mi>s</mi><mi>q</mi></msubsup></mrow><mrow><mi>q</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>=</mo><mi>−</mi><munder><mo>∑</mo><mi>s</mi></munder><msubsup><mi>p</mi><mi>s</mi><mi>q</mi></msubsup><msub><mrow><mi mathvariant="normal">ln</mi><mo>⁡</mo></mrow><mi>q</mi></msub><msub><mi>p</mi><mi>s</mi></msub><mo>=</mo><munder><mo>∑</mo><mi>s</mi></munder><msub><mi>p</mi><mi>s</mi></msub><msub><mrow><mi mathvariant="normal">ln</mi><mo>⁡</mo></mrow><mi>q</mi></msub><mfrac><mn>1</mn><msub><mi>p</mi><mi>s</mi></msub></mfrac></mrow><annotation encoding="application/x-tex">^q\!H=\frac{1-\sum_s{p^q_s}}{q-1}=-\sum_s{p^q_s}\ln_q{p_s}=\sum_s{p_s}\ln_q{\frac{1}{p_s}}</annotation></semantics></math></p>
 <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math>
 is the order of diversity (e.g.: 1 for Shannon). Entropy can be
 calculated by the <code>Tsallis</code> function. Paracou meta-community
@@ -421,7 +425,7 @@ to different species.</p>
 <div class="section level4">
 <h4 id="sample-coverage">Sample coverage<a class="anchor" aria-label="anchor" href="#sample-coverage"></a>
 </h4>
-<p>A useful indicator of sampling quality is the sample coverage <span class="citation">(Good 1953; Chao, Lee, and Chen 1988; Zhang and Huang
+<p>A useful indicator of sampling quality is the sample coverage <span class="citation">(Good 1953; Chao et al. 1988; Zhang and Huang
 2007)</span>, that is to say the probability for a species of the
 community to be observed in the actual sample. It equals the sum of the
 probability of occurrences of all observed species. Its historical
@@ -454,14 +458,14 @@ sample coverage is the foundation of many estimators of entropy.</p>
 <h4 id="bias-corrected-estimators">Bias corrected estimators<a class="anchor" aria-label="anchor" href="#bias-corrected-estimators"></a>
 </h4>
 <p>Correction of estimation bias is used to improve the estimation of
-entropy despite unobserved species and also mathematical issues <span class="citation">(Bonachela, Hinrichsen, and Muñoz 2008)</span>.
-Bias-corrected estimators (often relying on sample coverage) are
-returned by functions whose names are prefixed by <code>bc</code>, such
-as <code>bcTsallis</code>. They are similar to the non-corrected ones
-but they use abundance data and propose several bias-correction
-techniques to select in the <code>Correction</code> argument. A
-<em>Best</em> correction is calculated by default, detailed in the help
-file of each function.</p>
+entropy despite unobserved species and also mathematical issues <span class="citation">(Bonachela et al. 2008)</span>. Bias-corrected
+estimators (often relying on sample coverage) are returned by functions
+whose names are prefixed by <code>bc</code>, such as
+<code>bcTsallis</code>. They are similar to the non-corrected ones but
+they use abundance data and propose several bias-correction techniques
+to select in the <code>Correction</code> argument. A <em>Best</em>
+correction is calculated by default, detailed in the help file of each
+function.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/Tsallis.html">bcTsallis</a></span><span class="op">(</span><span class="va">PAbd</span>, q <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##  UnveilJ </span></span>
@@ -575,7 +579,7 @@ community entropy, following <span class="citation">Routledge
 <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi></mi><mi>i</mi><mi>q</mi></msubsup><msub><mi>H</mi><mi>α</mi></msub></mrow><annotation encoding="application/x-tex">^q_iH_{\alpha}</annotation></semantics></math>
 is the entropy of community
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi></mi><mi>i</mi><mi>q</mi></msubsup><mspace width="-0.167em"></mspace><msub><mi>H</mi><mi>α</mi></msub><mo>=</mo><mfrac><mrow><mn>1</mn><mo>−</mo><munder><mo>∑</mo><mi>s</mi></munder><msubsup><mi>p</mi><mrow><mi>s</mi><mo>,</mo><mi>i</mi></mrow><mi>q</mi></msubsup></mrow><mrow><mi>q</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>=</mo><mo>−</mo><munder><mo>∑</mo><mi>s</mi></munder><msubsup><mi>p</mi><mrow><mi>s</mi><mo>,</mo><mi>i</mi></mrow><mi>q</mi></msubsup><msub><mo>ln</mo><mi>q</mi></msub><msub><mi>p</mi><mrow><mi>s</mi><mo>,</mo><mi>i</mi></mrow></msub><mo>=</mo><munder><mo>∑</mo><mi>s</mi></munder><msub><mi>p</mi><mrow><mi>s</mi><mo>,</mo><mi>i</mi></mrow></msub><msub><mo>ln</mo><mi>q</mi></msub><mfrac><mn>1</mn><msub><mi>p</mi><mrow><mi>s</mi><mo>,</mo><mi>i</mi></mrow></msub></mfrac></mrow><annotation encoding="application/x-tex">^q_i\!H_{\alpha}=\frac{1-\sum_s{p^q_{s,i}}}{q-1} =-\sum_s{p^q_{s,i}}\ln_q{p_{s,i}} =\sum_s{p_{s,i}}\ln_q{\frac{1}{p_{s,i}}}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi></mi><mi>i</mi><mi>q</mi></msubsup><mspace width="-0.167em"></mspace><msub><mi>H</mi><mi>α</mi></msub><mo>=</mo><mfrac><mrow><mn>1</mn><mo>−</mo><munder><mo>∑</mo><mi>s</mi></munder><msubsup><mi>p</mi><mrow><mi>s</mi><mo>,</mo><mi>i</mi></mrow><mi>q</mi></msubsup></mrow><mrow><mi>q</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>=</mo><mi>−</mi><munder><mo>∑</mo><mi>s</mi></munder><msubsup><mi>p</mi><mrow><mi>s</mi><mo>,</mo><mi>i</mi></mrow><mi>q</mi></msubsup><msub><mrow><mi mathvariant="normal">ln</mi><mo>⁡</mo></mrow><mi>q</mi></msub><msub><mi>p</mi><mrow><mi>s</mi><mo>,</mo><mi>i</mi></mrow></msub><mo>=</mo><munder><mo>∑</mo><mi>s</mi></munder><msub><mi>p</mi><mrow><mi>s</mi><mo>,</mo><mi>i</mi></mrow></msub><msub><mrow><mi mathvariant="normal">ln</mi><mo>⁡</mo></mrow><mi>q</mi></msub><mfrac><mn>1</mn><msub><mi>p</mi><mrow><mi>s</mi><mo>,</mo><mi>i</mi></mrow></msub></mfrac></mrow><annotation encoding="application/x-tex">^q_i\!H_{\alpha}=\frac{1-\sum_s{p^q_{s,i}}}{q-1} =-\sum_s{p^q_{s,i}}\ln_q{p_{s,i}} =\sum_s{p_{s,i}}\ln_q{\frac{1}{p_{s,i}}}</annotation></semantics></math></p>
 <p>Jost’s <span class="citation">(2007)</span> definition of
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
 entropy is not supported explicitly in the package since it only allows
@@ -591,12 +595,12 @@ entropy, the difference between
 and
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>,
 is the generalized Jensen-Shannon divergence between the species
-distribution of the meta-community and those of communities <span class="citation">(Marcon et al. 2014)</span>:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>q</mi></msup><mspace width="-0.167em"></mspace><msub><mi>H</mi><mi>β</mi></msub><msup><mo>=</mo><mi>q</mi></msup><mspace width="-0.167em"></mspace><msub><mi>H</mi><mi>γ</mi></msub><msup><mo>−</mo><mi>q</mi></msup><mspace width="-0.167em"></mspace><msub><mi>H</mi><mi>α</mi></msub><mo>=</mo><munder><mo>∑</mo><mi>s</mi></munder><mrow><msubsup><mi>p</mi><mrow><mi>s</mi><mo>,</mo><mi>i</mi></mrow><mi>q</mi></msubsup><msub><mo>ln</mo><mi>q</mi></msub><mfrac><msub><mi>p</mi><mrow><mi>s</mi><mo>,</mo><mi>i</mi></mrow></msub><msub><mi>p</mi><mi>s</mi></msub></mfrac></mrow><mo>=</mo><munder><mo>∑</mo><mi>s</mi></munder><mrow><msub><mi>p</mi><mrow><mi>s</mi><mo>,</mo><mi>i</mi></mrow></msub><msub><mo>ln</mo><mi>q</mi></msub><mfrac><msub><mi>p</mi><mi>s</mi></msub><msub><mi>p</mi><mrow><mi>s</mi><mo>,</mo><mi>i</mi></mrow></msub></mfrac></mrow></mrow><annotation encoding="application/x-tex">^q\!H_{\beta} =^q\!H_{\gamma}-^q\!H_{\alpha} =\sum_s{p^q_{s,i}\ln_q\frac{p_{s,i}}{p_s}} =\sum_s{p_{s,i}\ln_q\frac{p_s}{p_{s,i}}}</annotation></semantics></math></p>
+distribution of the meta-community and those of communities <span class="citation">(Marcon, Scotti, et al. 2014)</span>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>q</mi></msup><mspace width="-0.167em"></mspace><msub><mi>H</mi><mi>β</mi></msub><msup><mo>=</mo><mi>q</mi></msup><mspace width="-0.167em"></mspace><msub><mi>H</mi><mi>γ</mi></msub><msup><mo>−</mo><mi>q</mi></msup><mspace width="-0.167em"></mspace><msub><mi>H</mi><mi>α</mi></msub><mo>=</mo><munder><mo>∑</mo><mi>s</mi></munder><mrow><msubsup><mi>p</mi><mrow><mi>s</mi><mo>,</mo><mi>i</mi></mrow><mi>q</mi></msubsup><msub><mrow><mi mathvariant="normal">ln</mi><mo>⁡</mo></mrow><mi>q</mi></msub><mfrac><msub><mi>p</mi><mrow><mi>s</mi><mo>,</mo><mi>i</mi></mrow></msub><msub><mi>p</mi><mi>s</mi></msub></mfrac></mrow><mo>=</mo><munder><mo>∑</mo><mi>s</mi></munder><mrow><msub><mi>p</mi><mrow><mi>s</mi><mo>,</mo><mi>i</mi></mrow></msub><msub><mrow><mi mathvariant="normal">ln</mi><mo>⁡</mo></mrow><mi>q</mi></msub><mfrac><msub><mi>p</mi><mi>s</mi></msub><msub><mi>p</mi><mrow><mi>s</mi><mo>,</mo><mi>i</mi></mrow></msub></mfrac></mrow></mrow><annotation encoding="application/x-tex">^q\!H_{\beta} =^q\!H_{\gamma}-^q\!H_{\alpha} =\sum_s{p^q_{s,i}\ln_q\frac{p_{s,i}}{p_s}} =\sum_s{p_{s,i}\ln_q\frac{p_s}{p_{s,i}}}</annotation></semantics></math></p>
 <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
 entropy should be transformed into diversity, i.e. an effective number
 of communities:
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>q</mi></msup><mspace width="-0.167em"></mspace><msub><mi>D</mi><mi>β</mi></msub><mo>=</mo><msubsup><mi>e</mi><mi>q</mi><mfrac><mrow><msup><mi></mi><mi>q</mi></msup><mspace width="-0.167em"></mspace><msub><mi>H</mi><mi>β</mi></msub></mrow><mrow><mn>1</mn><mo>−</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>q</mi><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mi>q</mi></msup><mspace width="-0.167em"></mspace><msub><mi>H</mi><mi>α</mi></msub></mrow></mfrac></msubsup></mrow><annotation encoding="application/x-tex">^q\!D_{\beta}=e^{\frac{^q\!H_{\beta}}{1-(q-1)^q\!H_{\alpha}}}_q</annotation></semantics></math></p>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>q</mi></msup><mspace width="-0.167em"></mspace><msub><mi>D</mi><mi>β</mi></msub><mo>=</mo><msubsup><mi>e</mi><mi>q</mi><mfrac><mrow><msup><mi></mi><mi>q</mi></msup><mspace width="-0.167em"></mspace><msub><mi>H</mi><mi>β</mi></msub></mrow><mrow><mn>1</mn><mo>−</mo><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>−</mo><mn>1</mn><msup><mo stretchy="false" form="postfix">)</mo><mi>q</mi></msup><mspace width="-0.167em"></mspace><msub><mi>H</mi><mi>α</mi></msub></mrow></mfrac></msubsup></mrow><annotation encoding="application/x-tex">^q\!D_{\beta}=e^{\frac{^q\!H_{\beta}}{1-(q-1)^q\!H_{\alpha}}}_q</annotation></semantics></math></p>
 <div class="section level4">
 <h4 id="basic-meta-community-functions">Basic meta-community functions<a class="anchor" aria-label="anchor" href="#basic-meta-community-functions"></a>
 </h4>
@@ -632,7 +636,7 @@ sample coverage is estimated. The Chao-Shen correction can also be
 applied based on this sample coverage and the actual <code>$Ps</code>
 values of the meta-community. Finally, the <em>Best</em> correction is
 the greater of the two values obtained by Chao-Shen and Grassberger
-<span class="citation">(Marcon et al. 2014)</span>.</p>
+<span class="citation">(Marcon, Scotti, et al. 2014)</span>.</p>
 </div>
 <div class="section level4">
 <h4 id="diversity-partition-of-a-metacommunity">Diversity Partition of a metacommunity<a class="anchor" aria-label="anchor" href="#diversity-partition-of-a-metacommunity"></a>
@@ -665,7 +669,7 @@ printed by <code>summary</code>) and plotted:</p>
 <span><span class="co">## 4.427559 4.772981</span></span></code></pre>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference_files/figure-html/DivPartPlot-1.png" width="700"></p>
+<p><img src="reference_files/figure-html/DivPartPlot-1.png" class="r-plt" alt="" width="700"></p>
 <p>The
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
 diversity of communities is 97 effective species (it is the exponential
@@ -725,13 +729,13 @@ obtain a distribution of entropy.</p>
 <span><span class="co">##       90%       95%     97.5%       99%      100% </span></span>
 <span><span class="co">## 102.20997 102.87662 103.23507 103.88128 107.32784 </span></span>
 <span><span class="co">##       0%       1%     2.5%       5%      10%      25%      50%      75% </span></span>
-<span><span class="co">## 1.339921 1.363802 1.374748 1.385618 1.391838 1.407479 1.425705 1.441064 </span></span>
+<span><span class="co">## 1.339922 1.363803 1.374749 1.385619 1.391839 1.407480 1.425706 1.441064 </span></span>
 <span><span class="co">##      90%      95%    97.5%      99%     100% </span></span>
-<span><span class="co">## 1.450533 1.458069 1.461555 1.462179 1.467842 </span></span>
+<span><span class="co">## 1.450534 1.458070 1.461556 1.462083 1.467843 </span></span>
 <span><span class="co">##       0%       1%     2.5%       5%      10%      25%      50%      75% </span></span>
-<span><span class="co">## 124.5688 126.6939 127.9633 129.4314 132.5082 134.4104 138.2224 141.7208 </span></span>
+<span><span class="co">## 124.5689 126.6940 127.9634 129.4314 132.5082 134.4105 138.2225 141.7209 </span></span>
 <span><span class="co">##      90%      95%    97.5%      99%     100% </span></span>
-<span><span class="co">## 143.8709 144.4678 146.9597 148.2705 149.4349</span></span></code></pre>
+<span><span class="co">## 143.8710 144.4679 146.9598 148.2705 149.4250</span></span></code></pre>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">de</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): NAs</span></span>
@@ -746,7 +750,7 @@ obtain a distribution of entropy.</p>
 <span><span class="co">## introduced by coercion</span></span>
 <span><span class="co">## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): NAs</span></span>
 <span><span class="co">## introduced by coercion</span></span></code></pre>
-<p><img src="reference_files/figure-html/DivEstPlot-1.png" width="700"></p>
+<p><img src="reference_files/figure-html/DivEstPlot-1.png" class="r-plt" alt="" width="700"></p>
 <p>The result is a <code>Divest</code> object which can be summarized
 and plotted. On the figure of the diversity estimation of the
 meta-community <code>Paracou618.MC</code>,
@@ -794,7 +798,7 @@ object which can be summarized and plotted.</p>
 <span><span class="co">## UnveilJ   2.0        44.09399       1.657672        73.09335</span></span></code></pre>
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">dp</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference_files/figure-html/DivProfilePlot-1.png" width="700"></p>
+<p><img src="reference_files/figure-html/DivProfilePlot-1.png" class="r-plt" alt="" width="700"></p>
 <p>The figure shows the diversity profile of the meta-community
 <code>Paracou618.MC</code>. Values are the number of effective species
 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
@@ -819,8 +823,9 @@ of the figure) do not cross <span class="citation">(Tothmeresz
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
 diversity profile shows that the communities are more diverse when their
 dominant species are considered.</p>
-<p>The bootstrap confidence intervals of the values of diversity <span class="citation">(Marcon et al. 2012, 2014)</span> are calculated if
-<code>NumberOfSimulations</code> is not 0.</p>
+<p>The bootstrap confidence intervals of the values of diversity <span class="citation">(Marcon et al. 2012; Marcon, Scotti, et al.
+2014)</span> are calculated if <code>NumberOfSimulations</code> is not
+0.</p>
 </div>
 <div class="section level4">
 <h4 id="alternative-functions">Alternative functions<a class="anchor" aria-label="anchor" href="#alternative-functions"></a>
@@ -875,13 +880,13 @@ leaves. Frequencies of collapsed species are
 Figure (c) shows slice 3 only.</p>
 <p>HCDT entropy can be calculated in slice
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi></mi><mi>k</mi><mi>q</mi></msubsup><mi>H</mi><mo>=</mo><mo>−</mo><munder><mo>∑</mo><mi>l</mi></munder><msub><mi>u</mi><mrow><mi>k</mi><mo>,</mo><mi>l</mi></mrow></msub><msub><mo>ln</mo><mi>q</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mi>/</mi><msub><mi>u</mi><mrow><mi>k</mi><mo>,</mo><mi>l</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">^q_k{H}=-\sum_l{u_{k,l}} \ln_q{(1/u_{k,l})}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi></mi><mi>k</mi><mi>q</mi></msubsup><mi>H</mi><mo>=</mo><mi>−</mi><munder><mo>∑</mo><mi>l</mi></munder><msub><mi>u</mi><mrow><mi>k</mi><mo>,</mo><mi>l</mi></mrow></msub><msub><mrow><mi mathvariant="normal">ln</mi><mo>⁡</mo></mrow><mi>q</mi></msub><mrow><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mi>/</mi><msub><mi>u</mi><mrow><mi>k</mi><mo>,</mo><mi>l</mi></mrow></msub><mo stretchy="false" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">^q_k{H}=-\sum_l{u_{k,l}} \ln_q{(1/u_{k,l})}</annotation></semantics></math></p>
 <p>Then, it is summed over the tree slices. Phyloentropy can be
 normalized or not. We normalize it so that it does not depend on the
 tree height:</p>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>q</mi></msup><mover><mi>H</mi><mo accent="true">¯</mo></mover><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></munderover><mrow><mfrac><msub><mi>T</mi><mi>k</mi></msub><mi>T</mi></mfrac><mrow><msubsup><mi></mi><mi>k</mi><mi>q</mi></msubsup><mrow><mspace width="-0.167em"></mspace><mi>H</mi></mrow></mrow></mrow></mrow><annotation encoding="application/x-tex">^q\overline{H}\left( T \right) = \sum^K_{k=1}{\frac{T_k}{T}{^q_k{\!H}}}</annotation></semantics></math></p>
 <p>Unnormalized values are multiplied by the height of the tree, such as
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>q</mi></msup><mspace width="-0.167em"></mspace><mrow><mi>𝑃</mi><mi>𝐷</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">^q\!\mathit{PD}(T)</annotation></semantics></math><span class="citation">(Chao, Chiu, and Jost 2010)</span>.</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>q</mi></msup><mspace width="-0.167em"></mspace><mrow><mi>𝑃</mi><mi>𝐷</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>T</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">^q\!\mathit{PD}(T)</annotation></semantics></math><span class="citation">(Chao et al. 2010)</span>.</p>
 <p>Phyloentropy is calculated as HCDT entropy along the slices of the
 trees applying possible estimation-bias corrections, summed, possibly
 normalized, and finally transformed into diversity:</p>
@@ -916,7 +921,7 @@ summarized.</p>
 <span><span class="co">## Diversity equals: 55.64502</span></span></code></pre>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">phd</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference_files/figure-html/PhyloDiversityPlot-1.png" width="700"></p>
+<p><img src="reference_files/figure-html/PhyloDiversityPlot-1.png" class="r-plt" alt="" width="700"></p>
 <p>The figure shows the
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>γ</mi><annotation encoding="application/x-tex">\gamma</annotation></semantics></math>
 phylodiversity estimation of the meta-community
@@ -944,16 +949,16 @@ many diversity levels with respect to
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math>.</p>
 <p>The <code>AllenH</code> function is close to
 <code>PhyloEntropy</code>: it also calculates phyloentropy but the
-algorithm is that of <span class="citation">Allen, Kon, and Bar-Yam
-(2009)</span> for
+algorithm is that of <span class="citation">Allen et al. (2009)</span>
+for
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">q=1</annotation></semantics></math>
 and that of <span class="citation">Leinster and Cobbold (2012)</span>
 for
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo>≠</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">q \ne 1</annotation></semantics></math>.
 It is much faster since it does not require calculating entropy for each
 slice of the tree but it does not allow estimation-bias correction.
-<code>ChaoPD</code> calculates phylodiversity according to <span class="citation">Chao, Chiu, and Jost (2010)</span>, with the same
-advantages and limits compared to <code>PhyloDiversity</code>.</p>
+<code>ChaoPD</code> calculates phylodiversity according to <span class="citation">Chao et al. (2010)</span>, with the same advantages and
+limits compared to <code>PhyloDiversity</code>.</p>
 <p>For convenience, <code>PDFD</code> and <code>Rao</code> functions are
 provided to calculate unnormalized phyloentropy of order 0 and 2.</p>
 </div>
@@ -1005,8 +1010,8 @@ behave the same way:</p>
 <span><span class="co">## [1] 0.03350547</span></span></code></pre>
 <p>Compare with Rao’s <code>divc</code> computed by <em>ade4</em>:</p>
 <div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="http://pbil.univ-lyon1.fr/ADE-4/" class="external-link">"ade4"</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ade4/man/divc.html" class="external-link">divc</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Wi</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/pkg/ade4/man/disc.html" class="external-link">disc</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Nsi</span><span class="op">)</span>, <span class="va">Paracou618.Taxonomy</span><span class="op">$</span><span class="va">Wdist</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://adeverse.github.io/ade4/" class="external-link">"ade4"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://adeverse.github.io/ade4/reference/divc.html" class="external-link">divc</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Wi</span><span class="op">)</span>, <span class="fu"><a href="https://adeverse.github.io/ade4/reference/disc.html" class="external-link">disc</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Paracou618.MC</span><span class="op">$</span><span class="va">Nsi</span><span class="op">)</span>, <span class="va">Paracou618.Taxonomy</span><span class="op">$</span><span class="va">Wdist</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##                    diversity</span></span>
 <span><span class="co">## Paracou618.MC$Wi 0.009845941</span></span></code></pre>
 <p>The decomposition of the diversity of meta-communities with non
@@ -1031,13 +1036,13 @@ describes the similarity between pairs of species, defined between 0 and
 (weighted by species frequencies), including similarity with itself
 (equal to 1). Similarity-based diversity is the reciprocal of the
 generalized average of order
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math><span class="citation">(Hardy, Littlewood, and Pólya 1952)</span> of the
-community species ordinariness.</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math><span class="citation">(Hardy et al. 1952)</span> of the community
+species ordinariness.</p>
 <p>The <code>Dqz</code> function calculates similarity-based diversity.
 Its arguments are the vector of probabilities of occurrences of the
 species, the order of diversity and the similarity matrix
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐙</mi><annotation encoding="application/x-tex">\mathbf{Z}</annotation></semantics></math>.
-The <code>bcDqz</code> function allows estimation-bias correction <span class="citation">(Marcon, Zhang, and Hérault 2014)</span>.</p>
+The <code>bcDqz</code> function allows estimation-bias correction <span class="citation">(Marcon, Zhang, et al. 2014)</span>.</p>
 <p>This example calculates the
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>γ</mi><annotation encoding="application/x-tex">\gamma</annotation></semantics></math>
 diversity of the meta-community Paracou. First, the similarity matrix is
@@ -1068,10 +1073,9 @@ same functional diversity as the actual community (made of 425 species).
 This means that species are very similar from a functional point of
 view. The very low values returned by
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>q</mi></msup><msup><mi>D</mi><mi>Z</mi></msup></mrow><annotation encoding="application/x-tex">^qD^Z</annotation></semantics></math>
-are questioned by <span class="citation">Chao, Chiu, and Jost
-(2014)</span> and discussed in depth by <span class="citation">Marcon,
-Zhang, and Hérault (2014)</span>: the choice of the similarity matrix is
-not trivial.</p>
+are questioned by <span class="citation">Chao et al. (2014)</span> and
+discussed in depth by <span class="citation">Marcon, Zhang, et al.
+(2014)</span>: the choice of the similarity matrix is not trivial.</p>
 <p>The similarity-based entropy of a community
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>q</mi></msup><msup><mi>H</mi><mi>Z</mi></msup></mrow><annotation encoding="application/x-tex">^qH^Z</annotation></semantics></math>
 [<span class="citation">Leinster and Cobbold (2012)</span>; Ricotta2006]
@@ -1129,10 +1133,10 @@ more sophisticated model by <span class="citation">Chao and Jost
 (2015)</span>. Finally, the specified number of communities are drawn in
 a multinomial distribution.</p>
 <p>The log-normal <span class="citation">(Preston 1948)</span>, the
-log-series <span class="citation">(Fisher, Corbet, and Williams
-1943)</span>, the geometric <span class="citation">(Motomura
-1932)</span>, and the broken-stick <span class="citation">(MacArthur
-1957)</span> distributions can be simulated.</p>
+log-series <span class="citation">(Fisher et al. 1943)</span>, the
+geometric <span class="citation">(Motomura 1932)</span>, and the
+broken-stick <span class="citation">(MacArthur 1957)</span>
+distributions can be simulated.</p>
 <p>This example code draws a single community of 1000 individuals
 according to a log-normal distribution with 300 species. Many species
 are not observed in the 1000-individual sample: the observed number of
@@ -1151,7 +1155,7 @@ be compared to the original ones.</p>
 <span><span class="co">##         301</span></span></code></pre>
 <div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">NsRef</span>, Distribution<span class="op">=</span><span class="st">"lnorm"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference_files/figure-html/rCommunityPlot-1.png" width="700"></p>
+<p><img src="reference_files/figure-html/rCommunityPlot-1.png" class="r-plt" alt="" width="700"></p>
 <pre><code><span><span class="co">## $mu</span></span>
 <span><span class="co">## [1] 1.067494</span></span>
 <span><span class="co">## </span></span>
@@ -1191,7 +1195,7 @@ simulated values.</p>
 <div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">SimulatedDiversity</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##     2.5%    97.5% </span></span>
-<span><span class="co">## 127.0032 150.1363</span></span></code></pre>
+<span><span class="co">## 127.0033 150.1364</span></span></code></pre>
 <p>These results are identical to those of the <code>DivEst</code>
 function but a single community can be addressed (<code>DivEst</code>
 requires a <code>MetaCommunity</code>).</p>
@@ -1224,7 +1228,7 @@ line):</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcProfile</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/CommunityProfile.html">CEnvelope</a></span><span class="op">(</span><span class="va">Profile</span>, lty<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topright"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Bias Corrected"</span>, <span class="st">"Biased"</span><span class="op">)</span>, lty<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span>, inset<span class="op">=</span><span class="fl">0.02</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference_files/figure-html/CommunityProfileFig-1.png" width="700"></p>
+<p><img src="reference_files/figure-html/CommunityProfileFig-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level3">
 <h3 id="applying-a-function-over-a-phylogenetic-tree">Applying a Function over a Phylogenetic Tree<a class="anchor" aria-label="anchor" href="#applying-a-function-over-a-phylogenetic-tree"></a>
@@ -1367,7 +1371,7 @@ be applied to MC2.</p>
 <div class="section level2">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-Allen2009" class="csl-entry">
 Allen, Benjamin, Mark Kon, and Yaneer Bar-Yam. 2009. <span>“<span class="nocase">A New Phylogenetic Diversity Measure Generalizing the
 Shannon Index and Its Application to Phyllostomid Bats</span>.”</span>
@@ -1390,10 +1394,11 @@ Diversity Measures Based on Hill Numbers.”</span> <em>Philosophical
 Transactions of the Royal Society B</em> 365 (1558): 3599–609.
 </div>
 <div id="ref-Chao2014a" class="csl-entry">
-———. 2014. <span>“Unifying Species Diversity, Phylogenetic Diversity,
-Functional Diversity and Related Similarity/Differentiation Measures
-Through Hill Numbers.”</span> <em>Annual Review of Ecology, Evolution,
-and Systematics</em> 45: 297–324.
+Chao, Anne, Chun-Huo Chiu, and Lou Jost. 2014. <span>“Unifying Species
+Diversity, Phylogenetic Diversity, Functional Diversity and Related
+Similarity/Differentiation Measures Through Hill Numbers.”</span>
+<em>Annual Review of Ecology, Evolution, and Systematics</em> 45:
+297–324.
 </div>
 <div id="ref-Chao2015" class="csl-entry">
 Chao, Anne, and Lou Jost. 2015. <span>“Estimating Diversity and Entropy
@@ -1473,8 +1478,8 @@ Jost, Lou. 2006. <span>“Entropy and Diversity.”</span> <em>Oikos</em>
 113 (2): 363–75.
 </div>
 <div id="ref-Jost2007" class="csl-entry">
-———. 2007. <span>“Partitioning Diversity into Independent Alpha and Beta
-Components.”</span> <em>Ecology</em> 88 (10): 2427–39.
+Jost, Lou. 2007. <span>“Partitioning Diversity into Independent Alpha
+and Beta Components.”</span> <em>Ecology</em> 88 (10): 2427–39.
 </div>
 <div id="ref-Leinster2012" class="csl-entry">
 Leinster, Tom, and Christina Cobbold. 2012. <span>“<span class="nocase">Measuring diversity: the importance of species
@@ -1492,9 +1497,9 @@ Phylodiversity</span>.”</span> <em>Methods in Ecology and Evolution</em>
 6 (3): 333–39. <a href="https://doi.org/10.1111/2041-210X.12323" class="external-link">https://doi.org/10.1111/2041-210X.12323</a>.
 </div>
 <div id="ref-Marcon2014c" class="csl-entry">
-———. 2015b. <span>“Entropart, an r Package to Partition
-Diversity.”</span> <em>Journal of Statistical Software</em> 67 (8):
-1–26.
+Marcon, Eric, and Bruno Hérault. 2015b. <span>“Entropart, an r Package
+to Partition Diversity.”</span> <em>Journal of Statistical Software</em>
+67 (8): 1–26.
 </div>
 <div id="ref-Marcon2012a" class="csl-entry">
 Marcon, Eric, Bruno Hérault, Christopher Baraloto, and Gabriel Lang.
@@ -1543,8 +1548,8 @@ Species.”</span> <em>Ecology</em> 29 (3): 254–83.
 </div>
 <div id="ref-R" class="csl-entry">
 R Core Team. 2018. <em><span class="nocase">R: A Language and
-Environment for Statistical Computing</span></em>. Vienna, Austria: R
-Foundation for Statistical Computing. <a href="http://www.r-project.org" class="external-link">http://www.r-project.org</a>.
+Environment for Statistical Computing</span></em>. R Foundation for
+Statistical Computing. <a href="http://www.r-project.org" class="external-link">http://www.r-project.org</a>.
 </div>
 <div id="ref-Rao1982" class="csl-entry">
 Rao, C. Radhakrishna. 1982. <span>“<span class="nocase">Diversity and
@@ -1582,9 +1587,9 @@ Boltzmann-Gibbs Statistics.”</span> <em>Journal of Statistical
 Physics</em> 52 (1): 479–87.
 </div>
 <div id="ref-Tsallis1994" class="csl-entry">
-———. 1994. <span>“<span class="nocase">What are the numbers that
-experiments provide?</span>”</span> <em>Qu<span>í</span>mica Nova</em>
-17 (6): 468–71. <a href="http://quimicanova.sbq.org.br/detalhe_artigo.asp?id=5517" class="external-link">http://quimicanova.sbq.org.br/detalhe_artigo.asp?id=5517</a>.
+Tsallis, Constantino. 1994. <span>“<span class="nocase">What are the
+numbers that experiments provide?</span>”</span>
+<em>Qu<span>í</span>mica Nova</em> 17 (6): 468–71. <a href="http://quimicanova.sbq.org.br/detalhe_artigo.asp?id=5517" class="external-link">http://quimicanova.sbq.org.br/detalhe_artigo.asp?id=5517</a>.
 </div>
 <div id="ref-Zhang2014" class="csl-entry">
 Zhang, Zhiyi, and Michael Grabchak. 2016. <span>“<span class="nocase">Entropic Representation and Estimation of Diversity
@@ -1609,7 +1614,7 @@ Revisited.”</span> <em>Journal of Quantitative Linguistics</em> 14
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

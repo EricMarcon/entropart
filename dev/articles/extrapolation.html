@@ -6,15 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Asymptotic Estimation, Interpolation and Extrapolation  • entropart</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Asymptotic Estimation, Interpolation and Extrapolation ">
 <meta name="robots" content="noindex">
@@ -27,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">entropart</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.6-15.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.6-16.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,6 +41,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/extrapolation.html">Asymptotic Estimation, Interpolation and Extrapolation </a></li>
+    <li><a class="dropdown-item" href="../articles/migration.html">Migration</a></li>
     <li><a class="dropdown-item" href="../articles/phylogenies.html">Phylogenies in entropart</a></li>
     <li><a class="dropdown-item" href="../articles/reference.html">entropart Package Reference</a></li>
   </ul>
@@ -195,7 +195,14 @@ around the actual sample size is guaranteed.</p>
 <span><span class="va">Accumulation2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Accumulation.html">DivAC</a></span><span class="op">(</span><span class="va">ParacouN</span>, q<span class="op">=</span><span class="fl">2</span>, n.seq<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">0.9</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">ParacouN</span><span class="op">)</span><span class="op">)</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">1.1</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">ParacouN</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">Accumulation2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="extrapolation_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<pre><code><span><span class="co">## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Please use `linewidth` instead.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">entropart</span> package.</span></span>
+<span><span class="co">##   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/EricMarcon/entropart/issues/&gt;</span>.</span></span>
+<span><span class="co">## <span style="color: #555555;">This warning is displayed once per session.</span></span></span>
+<span><span class="co">## <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
+<span><span class="co">## <span style="color: #555555;">generated.</span></span></span></code></pre>
+<p><img src="extrapolation_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="" width="700"></p>
 <p>For non-integer orders, things get more complicated. In
 <em>entropart</em>, asymptotic entropy is estimated by the unveiled
 jackknife estimator and rarefied down to the actual sample size. There
@@ -219,12 +226,12 @@ as a function of sample size.</p>
 confidence interval can be calculated around the estimated DAC by
 simulating random multinomial draws of the asymptotic distribution at
 each sample size.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Diversity at levels from 1 to twice the sample size</span></span>
 <span><span class="va">Accumulation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Accumulation.html">DivAC</a></span><span class="op">(</span><span class="va">ParacouN</span>, q<span class="op">=</span><span class="fl">1</span>, n.seq<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">1.1</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">ParacouN</span><span class="op">)</span><span class="op">)</span>, NumberOfSimulations <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">Accumulation</span><span class="op">)</span></span></code></pre></div>
-<p><img src="extrapolation_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p><img src="extrapolation_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="" width="700"></p>
 <p>To ensure continuity of the DAC around the actual sample, the
 asymptotic diversity is estimated by unveiling the asymptotic
 distribution, choosing the number of species such that the rarefied
@@ -232,17 +239,17 @@ diversity at the observed sample size is the observed diversity. This
 means that the extrapolated diversity at a high sample coverage will
 differ from the best asymptotic estimation, sometimes quite much if
 sampling level is poor.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Extrapolation at 99.99% sample coverage</span></span>
 <span><span class="fu"><a href="../reference/Diversity.html">Diversity</a></span><span class="op">(</span><span class="va">ParacouN</span>, q<span class="op">=</span><span class="fl">1</span>, Level<span class="op">=</span><span class="fl">0.9999</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##     Best </span></span>
 <span><span class="co">## 128.3196</span></span></code></pre>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Unveiled Jaccknife asymptotic estimator</span></span>
 <span><span class="fu"><a href="../reference/Diversity.html">Diversity</a></span><span class="op">(</span><span class="va">ParacouN</span>, q<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##  UnveilJ </span></span>
 <span><span class="co">## 138.1078</span></span></code></pre>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Chao-Jost estimator</span></span>
 <span><span class="fu"><a href="../reference/Diversity.html">Diversity</a></span><span class="op">(</span><span class="va">ParacouN</span>, q<span class="op">=</span><span class="fl">1</span>, Correction<span class="op">=</span><span class="st">"ChaoJost"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ChaoJost </span></span>
@@ -253,28 +260,28 @@ sampling level is poor.</p>
 </h2>
 <p>Diversity profiles are usually asymptotic but they can be calculated
 at any coverage of sampling level.</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Diversity at levels from 1 to twice the sample size</span></span>
 <span><span class="va">Profile</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CommunityProfile.html">CommunityProfile</a></span><span class="op">(</span><span class="va">Diversity</span>, <span class="va">ParacouN</span>, Level<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">ParacouN</span><span class="op">)</span><span class="op">*</span><span class="fl">1.5</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">Profile</span><span class="op">)</span></span></code></pre></div>
-<p><img src="extrapolation_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
+<p><img src="extrapolation_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="" width="700"></p>
 <p>Extrapolated diversity is estimated at each order such that it is
 continuous at the observed sample size.</p>
 </div>
 <div class="section level2">
 <h2 id="differences-with-the-inext-package">Differences with the iNEXT package<a class="anchor" aria-label="anchor" href="#differences-with-the-inext-package"></a>
 </h2>
-<p><em>iNEXT</em> <span class="citation">(Hsieh, Ma, and Chao
-2016)</span> is designed primarily to interpolate or extrapolate
-diversity of integer orders. Extrapolation of diversity of order 0
-relies on the Chao1 estimator of richness and that of order 1 uses the
-Chao-Jost estimator. In <em>entropart</em>, extrapolation relies on the
-estimation of the asymptotic distribution of the community with
-asymptotic richness such that the entropy of the asymptotic distribution
-rarefied to the observed sample size equals the observed entropy of the
-data. This approach allows consistent estimation of extrapolated
-diversity at integer and non-integer orders, thus allowing consistent
-diversity profiles without discontinuities at
+<p><em>iNEXT</em> <span class="citation">(Hsieh et al. 2016)</span> is
+designed primarily to interpolate or extrapolate diversity of integer
+orders. Extrapolation of diversity of order 0 relies on the Chao1
+estimator of richness and that of order 1 uses the Chao-Jost estimator.
+In <em>entropart</em>, extrapolation relies on the estimation of the
+asymptotic distribution of the community with asymptotic richness such
+that the entropy of the asymptotic distribution rarefied to the observed
+sample size equals the observed entropy of the data. This approach
+allows consistent estimation of extrapolated diversity at integer and
+non-integer orders, thus allowing consistent diversity profiles without
+discontinuities at
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">q=0</annotation></semantics></math>
 and
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">q=1</annotation></semantics></math>.
@@ -282,8 +289,8 @@ The results of <em>iNEXT</em> can be obtained by forcing argument
 <code>PCorrection = "None"</code> to avoid estimating the asymptotic
 distribution and <code>Correction="Chao1"</code> for richness or
 <code>Correction="ChaoJost"</code> for Shannon’s diversity.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="http://chao.stat.nthu.edu.tw/wordpress/software_download/" class="external-link">"iNEXT"</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://sites.google.com/view/chao-lab-website/software/inext" class="external-link">"iNEXT"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">spider</span><span class="op">)</span></span>
 <span><span class="co"># Extrapolated diversity of an example dataset</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/iNEXT/man/estimateD.html" class="external-link">estimateD</a></span><span class="op">(</span><span class="va">spider</span><span class="op">$</span><span class="va">Girdled</span>, level<span class="op">=</span><span class="fl">300</span><span class="op">)</span></span></code></pre></div>
@@ -291,26 +298,26 @@ distribution and <code>Correction="Chao1"</code> for richness or
 <span><span class="co">## 1       data 300 Extrapolation       0 0.9579518 33.317733 25.466844 41.168622</span></span>
 <span><span class="co">## 2       data 300 Extrapolation       1 0.9579518 12.869603 10.671626 15.067579</span></span>
 <span><span class="co">## 3       data 300 Extrapolation       2 0.9579518  7.983882  6.231075  9.736689</span></span></code></pre>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Similar estimation by entropart</span></span>
 <span><span class="fu"><a href="../reference/Diversity.html">Diversity</a></span><span class="op">(</span><span class="va">spider</span><span class="op">$</span><span class="va">Girdled</span>, q<span class="op">=</span><span class="fl">0</span>, Level<span class="op">=</span><span class="fl">300</span>, Correction<span class="op">=</span><span class="st">"Chao1"</span>, PCorrection <span class="op">=</span> <span class="st">"None"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##    Chao1 </span></span>
 <span><span class="co">## 33.31773</span></span></code></pre>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/Diversity.html">Diversity</a></span><span class="op">(</span><span class="va">spider</span><span class="op">$</span><span class="va">Girdled</span>, q<span class="op">=</span><span class="fl">1</span>, Level<span class="op">=</span><span class="fl">300</span>, Correction<span class="op">=</span><span class="st">"ChaoJost"</span>, PCorrection <span class="op">=</span> <span class="st">"None"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ChaoJost </span></span>
 <span><span class="co">##  12.8073</span></span></code></pre>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Estimation at order 2 is explicit, with no optional choice</span></span>
 <span><span class="fu"><a href="../reference/Diversity.html">Diversity</a></span><span class="op">(</span><span class="va">spider</span><span class="op">$</span><span class="va">Girdled</span>, q<span class="op">=</span><span class="fl">2</span>, Level<span class="op">=</span><span class="fl">300</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Chao2014 </span></span>
 <span><span class="co">## 7.983882</span></span></code></pre>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Default estimation of entropart</span></span>
 <span><span class="fu"><a href="../reference/Diversity.html">Diversity</a></span><span class="op">(</span><span class="va">spider</span><span class="op">$</span><span class="va">Girdled</span>, q<span class="op">=</span><span class="fl">0</span>, Level<span class="op">=</span><span class="fl">300</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##     Best </span></span>
 <span><span class="co">## 32.09179</span></span></code></pre>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/Diversity.html">Diversity</a></span><span class="op">(</span><span class="va">spider</span><span class="op">$</span><span class="va">Girdled</span>, q<span class="op">=</span><span class="fl">1</span>, Level<span class="op">=</span><span class="fl">300</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##     Best </span></span>
 <span><span class="co">## 12.61092</span></span></code></pre>
@@ -320,7 +327,7 @@ estimator by default.</p>
 <p>Last, confidence intervals of diversity accumulation assume normality
 in <em>iNEXT</em>: estimation variance is estimated by bootstrap and the
 confidence interval is defined as
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>±</mo><mn>1.96</mn></mrow><annotation encoding="application/x-tex">\pm 1.96</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>±</mi><mn>1.96</mn></mrow><annotation encoding="application/x-tex">\pm 1.96</annotation></semantics></math>
 times the standard deviation. In <em>entropart</em>, confidence
 intervals are built directly from the quantiles of bootstrapped
 estimations.</p>
@@ -328,10 +335,9 @@ estimations.</p>
 <div class="section level2">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-Chao2014" class="csl-entry">
-Chao, Anne, Nicholas J. Gotelli, T. C. Hsieh, Elizabeth L. Sander, K. H.
-Ma, Robert K. Colwell, and Aaron M. Ellison. 2014. <span>“<span class="nocase">Rarefaction and extrapolation with Hill numbers: A
+Chao, Anne, Nicholas J. Gotelli, T. C. Hsieh, et al. 2014. <span>“<span class="nocase">Rarefaction and extrapolation with Hill numbers: A
 framework for sampling and estimation in species diversity
 studies</span>.”</span> <em>Ecological Monographs</em> 84 (1): 45–67. <a href="https://doi.org/10.1890/13-0133.1" class="external-link">https://doi.org/10.1890/13-0133.1</a>.
 </div>
@@ -353,7 +359,7 @@ and Evolution</em> 7: 1451–56. <a href="https://doi.org/10.1111/2041-210X.1261
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>
