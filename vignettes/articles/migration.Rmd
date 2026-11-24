@@ -13,9 +13,8 @@ vignette: >
 
 ```{r global_options, include=FALSE, cache=TRUE}
 set.seed(97310)
-set.seed(97310)
 # Necessary packages. Add all packages used in the code here.
-packages_required <- c("divent")
+packages_required <- c("divent", "tidyverse")
 # Already installed?
 packages_installed <- vapply(
   packages_required, 
@@ -72,7 +71,7 @@ The following table shows the correspondence between *entropart* and *divent* fu
 | [`PDFD()`](https://ericmarcon.github.io/entropart/reference/PDFD.html): Phylogenetic Diversity / Functional Diversity of a Community | [`div_pd()`](https://ericmarcon.github.io/divent/reference/div_pd.html) |
 | [`PhyloDiversity()`](https://ericmarcon.github.io/entropart/reference/PhyloDiversity.html) / [`bcPhyloDiversity()`](https://ericmarcon.github.io/entropart/reference/PhyloDiversity.html): Phylogenetic Diversity of a Community | [`div_phylo()`](https://ericmarcon.github.io/divent/reference/div_phylo.html) |
 | [`PhyloEntropy()`](https://ericmarcon.github.io/entropart/reference/PhyloEntropy.html) / [`bcPhyloEntropy()`](https://ericmarcon.github.io/entropart/reference/PhyloEntropy.html): Phylogenetic Entropy of a community | [`ent_phylo()`](https://ericmarcon.github.io/divent/reference/ent_phylo.html) |
-| [`RAClnorm()`](https://ericmarcon.github.io/entropart/reference/RAC.html) / [`RACgeom()`](https://ericmarcon.github.io/entropart/reference/RAC.html) / [`RAClseries()`](https://ericmarcon.github.io/entropart/reference/RAC.html) / [`RACbstick()`](https://ericmarcon.github.io/entropart/reference/RAC.html): Fit Distributions to Well-Known Rank Abundance Curves. | [`fit_rac()`](https://ericmarcon.github.io/divent/reference/fit_rac.html): the `distribution` argument allows selects the model. |
+| [`RAClnorm()`](https://ericmarcon.github.io/entropart/reference/RAC.html) / [`RACgeom()`](https://ericmarcon.github.io/entropart/reference/RAC.html) / [`RAClseries()`](https://ericmarcon.github.io/entropart/reference/RAC.html) / [`RACbstick()`](https://ericmarcon.github.io/entropart/reference/RAC.html): Fit Distributions to Well-Known Rank Abundance Curves. | [`fit_rac()`](https://ericmarcon.github.io/divent/reference/fit_rac.html): the `distribution` argument selects the model. |
 | [`Rao()`](https://ericmarcon.github.io/entropart/reference/Rao.html) / [`bcRao()`](https://ericmarcon.github.io/entropart/reference/Rao.html): Rao's Quadratic Entropy of a Community | [`ent_rao()`](https://ericmarcon.github.io/divent/reference/ent_rao.html) |
 | [`rCommunity()`](https://ericmarcon.github.io/entropart/reference/rCommunity.html): Random Communities | [`rcommunity()`](https://ericmarcon.github.io/divent/reference/rcommunity.html) |
 | [`Richness()`](https://ericmarcon.github.io/entropart/reference/Richness.html) / [`bcRichness()`](https://ericmarcon.github.io/entropart/reference/Richness.html): Number of species of a community | [`div_richness()`](https://ericmarcon.github.io/divent/reference/div_richness.html) |
@@ -85,6 +84,7 @@ The following table shows the correspondence between *entropart* and *divent* fu
 The examples below show how to create a random community with both packages and estimate its diversity.
 
 ```{r}
+set.seed(97310)
 # entropart
 library("entropart")
 # Random community, lognormal, 1000 individuals, 30 species 
@@ -106,7 +106,7 @@ CommunityProfile(Diversity, the_community) |>
 *divent* supports multiple communities.
 
 ```{r}
-# entropart
+# divent
 library("divent")
 library("tidyverse")
 # 3 random communities, lognormal, 1000 individuals, 30 species 
