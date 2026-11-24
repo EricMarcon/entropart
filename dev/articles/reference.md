@@ -109,7 +109,11 @@ the assemblage of communities.
 ``` r
 
 library("entropart")
-df <- data.frame(C1=c(10, 10, 10, 10), C2=c(0, 20, 35, 5), C3=c(25, 15, 0, 2))
+df <- data.frame(
+  C1 = c(10, 10, 10, 10),
+  C2 = c(0, 20, 35, 5), 
+  C3 = c(25, 15, 0, 2)
+)
 row.names(df) <- c("sp1", "sp2", "sp3", "sp4")
 df
 ```
@@ -123,7 +127,7 @@ df
 ``` r
 
 w <- c(1, 2, 1)
-MC <- MetaCommunity(Abundances=df, Weights=w)
+MC <- MetaCommunity(Abundances = df, Weights = w)
 plot(MC)
 ```
 
@@ -259,11 +263,21 @@ It converges to $`\ln`$ when $`q\to 1`$.
 
 ``` r
 
-curve(log(x), 0, 1, lty=1, ylab = expression(ln[q](x)))
+curve(log(x), 0, 1, lty = 1, ylab = expression(ln[q](x)))
 curve(lnq(x, 0), 0, 1, lty = 2, add = TRUE)
 curve(lnq(x, 2), 0, 1, lty = 3, add = TRUE)
 curve(lnq(x, 3), 0, 1, lty = 4, add = TRUE)  
-legend("bottomright", legend = c(expression(ln[0](x)), "ln(x)", expression(ln[2](x)), expression(ln[3](x))), lty = c(2, 1, 3, 4), inset=  0.02)
+legend(
+  "bottomright", 
+  legend = c(
+    expression(ln[0](x)), 
+    "ln(x)", 
+    expression(ln[2](x)), 
+    expression(ln[3](x))
+  ), 
+  lty = c(2, 1, 3, 4), 
+  inset =  0.02
+)
 ```
 
 ![](reference_files/figure-html/lnqCurve-1.png)
@@ -1122,7 +1136,7 @@ be compared to the original ones.
 
 ``` r
 
-rCommunity(n = 1, size = 1000, S=300, Distribution = "lnorm", sd=1) -> NsRef
+rCommunity(n = 1, size = 1000, S=300, Distribution = "lnorm", sd = 1) -> NsRef
 Richness(as.ProbaVector(NsRef))
 ```
 
@@ -1139,7 +1153,7 @@ Richness(NsRef)
 
 ``` r
 
-plot(NsRef, Distribution="lnorm")
+plot(NsRef, Distribution = "lnorm")
 ```
 
 ![](reference_files/figure-html/rCommunityPlot-1.png)
@@ -1175,7 +1189,10 @@ interval of the simulated values.
 
 ``` r
 
-SimulatedDiversity <- expq(EntropyCI(FUN = Tsallis, Simulations = 100, Ns = PAbd, q = 1), q = 1)
+SimulatedDiversity <- expq(
+  EntropyCI(FUN = Tsallis, Simulations = 100, Ns = PAbd, q = 1), 
+  q = 1
+)
 ```
 
 ``` r
@@ -1229,8 +1246,8 @@ correction (dotted line) and with correction (solid line):
 ``` r
 
 plot(bcProfile)
-CEnvelope(Profile, lty=3)
-legend("topright", c("Bias Corrected", "Biased"), lty=c(1,3), inset=0.02)
+CEnvelope(Profile, lty = 3)
+legend("topright", c("Bias Corrected", "Biased"), lty = c(1, 3), inset = 0.02)
 ```
 
 ![](reference_files/figure-html/CommunityProfileFig-1.png)
@@ -1246,7 +1263,7 @@ containing the taxonomy to obtain species, genus and family entropy:
 
 ``` r
 
-pa <- PhyloApply(Tree=Paracou618.Taxonomy, FUN=bcTsallis, NorP=PAbd)
+pa <- PhyloApply(Tree=Paracou618.Taxonomy, FUN = bcTsallis, NorP = PAbd)
 summary(pa)
 ```
 
@@ -1348,7 +1365,14 @@ higher-level meta-community:
 
 ``` r
 
-mergedMC2 <- MergeMC(list(MC1, MC2), Weights = vapply(list(MC1, MC2), function(x) (x$N), FUN.VALUE=0.0))
+mergedMC2 <- MergeMC(
+  list(MC1, MC2), 
+  Weights = vapply(
+    list(MC1, MC2), 
+    function(x) {x$N}, 
+    FUN.VALUE = 0
+  )
+)
 mergedMC2$Nsi
 ```
 
@@ -1363,7 +1387,7 @@ Hierarchical diversity partitioning can then be achieved:
 
 ``` r
 
-dpAll <- DivPart(q=1, MC=mergedMC2)
+dpAll <- DivPart(q = 1, MC = mergedMC2)
 summary(dpAll)
 ```
 
@@ -1389,7 +1413,7 @@ in turn:
 
 ``` r
 
-dpMC1 <- DivPart(q=1, MC=MC1)
+dpMC1 <- DivPart(q = 1, MC = MC1)
 summary(dpMC1)
 ```
 

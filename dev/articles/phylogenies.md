@@ -28,7 +28,7 @@ and the last one.
 
 ``` r
 
-dSp <- matrix(c(0, 1, 2, 1, 0, 2, 2, 2, 0), nrow=3, byrow=TRUE)
+dSp <- matrix(c(0, 1, 2, 1, 0, 2, 2, 2, 0), nrow = 3, byrow = TRUE)
 row.names(dSp) <- colnames(dSp) <- c("A", "B", "C")
 dSp
 ```
@@ -45,7 +45,7 @@ An `hclust` object is created by UPGMA hierarchical clustering.
 ``` r
 
 require("stats")
-plot(hTree <- hclust(as.dist(dSp), method="average"), hang=-0.01, axes = F)
+plot(hTree <- hclust(as.dist(dSp), method = "average"), hang = -0.01, axes = F)
 axis(2)
 ```
 
@@ -151,7 +151,7 @@ A Newick description of a dendrogram can be read into a `phylo` object.
 ``` r
 
 NewickABC <- "(C:2,(A:1,B:1):1);"
-plot(phyloABC <- ape::read.tree(text=NewickABC))
+plot(phyloABC <- ape::read.tree(text = NewickABC))
 axis(1)
 ```
 

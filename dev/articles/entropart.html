@@ -231,19 +231,12 @@ Simpson’s diversities:</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">DP</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CommunityProfile.html">CommunityProfile</a></span><span class="op">(</span><span class="va">Diversity</span>, <span class="va">Abd18</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">DP</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Please use `linewidth` instead.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">entropart</span> package.</span></span>
-<span><span class="co">##   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/EricMarcon/entropart/issues/&gt;</span>.</span></span>
-<span><span class="co">## <span style="color: #555555;">This warning is displayed once per session.</span></span></span>
-<span><span class="co">## <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
-<span><span class="co">## <span style="color: #555555;">generated.</span></span></span></code></pre>
 <p><img src="entropart_files/figure-html/DiversityProfile-1.png" class="r-plt" alt="" width="700"></p>
 <p>If an ultrametric dendrogram describing species’ phylogeny (here, a
 mere taxonomy with family, genus and species) is available, phylogenetic
 entropy and diversity <span class="citation">(Marcon and Hérault
 2015)</span> can be calculated:</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="../reference/PhyloDiversity.html">PhyloDiversity</a></span><span class="op">(</span><span class="va">Abd18</span>,q<span class="op">=</span><span class="fl">1</span>,Tree<span class="op">=</span><span class="va">Paracou618.Taxonomy</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## alpha or gamma phylogenetic or functional diversity of order 1 of distribution </span></span>
 <span><span class="co">## Abd18</span></span>
@@ -257,7 +250,7 @@ entropy and diversity <span class="citation">(Marcon and Hérault
 <p>With a Euclidian distance matrix between species, similarity-based
 diversity <span class="citation">(Leinster and Cobbold 2012; Marcon,
 Zhang, et al. 2014)</span> is available:</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Prepare the similarity matrix</span></span>
 <span><span class="va">DistanceMatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">Paracou618.dist</span><span class="op">)</span></span>
 <span><span class="co"># Similarity can be 1 minus normalized distances between species</span></span>
@@ -270,7 +263,7 @@ Zhang, et al. 2014)</span> is available:</p>
 obtained the same way. <code>PhyloDiversity</code> is an object with a
 lot of information so an intermediate function is necessary to extract
 its <code>$Total</code> component:</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sbDP</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CommunityProfile.html">CommunityProfile</a></span><span class="op">(</span><span class="va">Dqz</span>, <span class="va">Abd18</span>, Z<span class="op">=</span><span class="va">Z</span><span class="op">)</span></span>
 <span><span class="va">pDP</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CommunityProfile.html">CommunityProfile</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">X</span>, <span class="va">...</span><span class="op">)</span> <span class="fu"><a href="../reference/PhyloDiversity.html">PhyloDiversity</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">...</span><span class="op">)</span><span class="op">$</span><span class="va">Total</span>, <span class="va">Abd18</span>, Tree<span class="op">=</span><span class="va">Paracou618.Taxonomy</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">pDP</span><span class="op">)</span></span></code></pre></div>
@@ -291,7 +284,7 @@ communities.</p>
 <p>The easiest way to build a meta-community consists of preparing a
 dataframe whose columns are communities and lines are species, and
 define weights in a vector (by default, all weights are equal):</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ericmarcon.github.io/entropart/">"entropart"</a></span><span class="op">)</span></span>
 <span><span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>C1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span>, C2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">20</span>, <span class="fl">35</span>, <span class="fl">5</span><span class="op">)</span>, C3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">15</span>, <span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sp1"</span>, <span class="st">"sp2"</span>, <span class="st">"sp3"</span>, <span class="st">"sp4"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##     C1 C2 C3</span></span>
@@ -299,11 +292,11 @@ define weights in a vector (by default, all weights are equal):</p>
 <span><span class="co">## sp2 10 20 15</span></span>
 <span><span class="co">## sp3 10 35  0</span></span>
 <span><span class="co">## sp4 10  5  2</span></span></code></pre>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <p>The <code>MetaCommunity</code> function creates the meta-community.
 It can be plotted:</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">MC</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MetaCommunity.html">MetaCommunity</a></span><span class="op">(</span>Abundances <span class="op">=</span> <span class="va">df</span>, Weights <span class="op">=</span> <span class="va">w</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">MC</span><span class="op">)</span></span></code></pre></div>
 <p><img src="entropart_files/figure-html/MetaCommunityMC-1.png" class="r-plt" alt="" width="700"></p>
@@ -331,7 +324,7 @@ diversity).</p>
 <p>The <code>DivPart</code> function calculates everything at once, for
 a given order of diversity
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math>:</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/DivPart.html">DivPart</a></span><span class="op">(</span>q <span class="op">=</span> <span class="fl">1</span>, MC <span class="op">=</span> <span class="va">Paracou618.MC</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## HCDT diversity partitioning of order 1 of metaCommunity Paracou618.MC</span></span>
@@ -366,9 +359,9 @@ diversity following <span class="citation">Marcon et al. (2012)</span>.
 If the observed species frequencies of a community are assumed to be a
 realization of a multinomial distribution, they can be drawn again to
 obtain a distribution of entropy.</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">de</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/DivEst.html">DivEst</a></span><span class="op">(</span>q <span class="op">=</span> <span class="fl">1</span>, <span class="va">Paracou618.MC</span>, Simulations <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Margin adjustment required for this vignette html output</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2.2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">de</span><span class="op">)</span></span></code></pre></div>
@@ -378,7 +371,7 @@ and plotted.</p>
 <p><code>DivProfile</code> calculates diversity profiles. The result is
 a <code>DivProfile</code> object which can be summarized and
 plotted.</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/DivProfile.html">DivProfile</a></span><span class="op">(</span>q.seq <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">0.1</span><span class="op">)</span>, <span class="va">Paracou618.MC</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">dp</span><span class="op">)</span></span></code></pre></div>
 <p><img src="entropart_files/figure-html/DivProfile-1.png" class="r-plt" alt="" width="576"></p>

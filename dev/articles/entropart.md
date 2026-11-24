@@ -222,14 +222,6 @@ DP <- CommunityProfile(Diversity, Abd18)
 autoplot(DP)
 ```
 
-    ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-    ## ℹ Please use `linewidth` instead.
-    ## ℹ The deprecated feature was likely used in the entropart package.
-    ##   Please report the issue at <https://github.com/EricMarcon/entropart/issues/>.
-    ## This warning is displayed once per session.
-    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-    ## generated.
-
 ![](entropart_files/figure-html/DiversityProfile-1.png)
 
 If an ultrametric dendrogram describing species’ phylogeny (here, a mere

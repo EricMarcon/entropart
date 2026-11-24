@@ -232,8 +232,4 @@ Ns <- as.AbdVector(Paracou618.MC$Ns)
 # Accumulation curve of Simpson's diversity
 autoplot(DivAC(Ns, q=2))
 #> 
-#> Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-#> ℹ Please use `linewidth` instead.
-#> ℹ The deprecated feature was likely used in the entropart package.
-#>   Please report the issue at <https://github.com/EricMarcon/entropart/issues/>.
 ```

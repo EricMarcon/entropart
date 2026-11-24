@@ -260,7 +260,9 @@ Phylogenetic Entropy of a community</td>
 / <a href="https://ericmarcon.github.io/entropart/reference/RAC.html"><code>RAClseries()</code></a>
 / <a href="https://ericmarcon.github.io/entropart/reference/RAC.html"><code>RACbstick()</code></a>:
 Fit Distributions to Well-Known Rank Abundance Curves.</td>
-<td><a href="https://ericmarcon.github.io/divent/reference/fit_rac.html" class="external-link"><code>fit_rac()</code></a></td>
+<td>
+<a href="https://ericmarcon.github.io/divent/reference/fit_rac.html" class="external-link"><code>fit_rac()</code></a>:
+the <code>distribution</code> argument selects the model.</td>
 </tr>
 <tr class="odd">
 <td>
@@ -307,44 +309,80 @@ Tsallis (HCDT) Entropy of a community</td>
 </table>
 </div>
 <div class="section level2">
-<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
+<p>The examples below show how to create a random community with both
+packages and estimate its diversity.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ericmarcon.github.io/entropart/">"entropart"</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ericmarcon.github.io/divent/" class="external-link">"divent"</a></span><span class="op">)</span></span>
-<span><span class="co"># Random community, lognormal, 10 individuals, 3 species </span></span>
-<span><span class="fu">entropart</span><span class="fu">::</span><span class="fu"><a href="../reference/rCommunity.html">rCommunity</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">97310</span><span class="op">)</span></span>
+<span><span class="co"># entropart</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ericmarcon.github.io/entropart/">"entropart"</a></span><span class="op">)</span></span>
+<span><span class="co"># Random community, lognormal, 1000 individuals, 30 species </span></span>
+<span><span class="va">the_community</span> <span class="op">&lt;-</span> <span class="fu">entropart</span><span class="fu">::</span><span class="fu"><a href="../reference/rCommunity.html">rCommunity</a></span><span class="op">(</span></span>
 <span>  n <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  size <span class="op">=</span> <span class="fl">10</span>, </span>
-<span>  S <span class="op">=</span> <span class="fl">3</span>, </span>
+<span>  size <span class="op">=</span> <span class="fl">1000</span>, </span>
+<span>  S <span class="op">=</span> <span class="fl">30</span>, </span>
 <span>  Distribution <span class="op">=</span> <span class="st">"lnorm"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] 3 4 3</span></span>
-<span><span class="co">## attr(,"class")</span></span>
-<span><span class="co">## [1] "AbdVector"           "SpeciesDistribution" "integer"</span></span></code></pre>
+<span><span class="op">)</span></span>
+<span><span class="co"># Shannon's entropy</span></span>
+<span><span class="fu"><a href="../reference/Shannon.html">Shannon</a></span><span class="op">(</span><span class="va">the_community</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##  UnveilJ </span></span>
+<span><span class="co">## 2.880002</span></span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Equivalent to</span></span>
-<span><span class="fu">divent</span><span class="fu">::</span><span class="fu"><a href="https://ericmarcon.github.io/divent/reference/rcommunity.html" class="external-link">rcommunity</a></span><span class="op">(</span></span>
-<span>  n <span class="op">=</span> <span class="fl">1</span>, </span>
-<span>  size <span class="op">=</span> <span class="fl">10</span>, </span>
-<span>  species_number <span class="op">=</span> <span class="fl">3</span>, </span>
-<span>  distribution <span class="op">=</span> <span class="st">"lnorm"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 5</span></span></span>
-<span><span class="co">##   site    weight  sp_1  sp_2  sp_3</span></span>
-<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">1</span> lnorm_1     10     2     7     1</span></span></code></pre>
+<code class="sourceCode R"><span><span class="co"># Shannon's diversity (Hill number of order 1)</span></span>
+<span><span class="fu"><a href="../reference/Diversity.html">Diversity</a></span><span class="op">(</span><span class="va">the_community</span>, q <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## UnveilJ </span></span>
+<span><span class="co">## 17.8143</span></span></code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># use as.numeric() to produce a vector rather than a tibble</span></span>
-<span><span class="fu">divent</span><span class="fu">::</span><span class="fu"><a href="https://ericmarcon.github.io/divent/reference/rcommunity.html" class="external-link">rcommunity</a></span><span class="op">(</span></span>
-<span>  n <span class="op">=</span> <span class="fl">1</span>, </span>
-<span>  size <span class="op">=</span> <span class="fl">10</span>, </span>
-<span>  species_number <span class="op">=</span> <span class="fl">3</span>, </span>
+<code class="sourceCode R"><span><span class="co"># Diversity profile</span></span>
+<span><span class="fu"><a href="../reference/CommunityProfile.html">CommunityProfile</a></span><span class="op">(</span><span class="va">Diversity</span>, <span class="va">the_community</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="migration_files/figure-html/unnamed-chunk-1-1.png" class="r-plt" alt="" width="700"></p>
+<p><em>divent</em> supports multiple communities.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># divent</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ericmarcon.github.io/divent/" class="external-link">"divent"</a></span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Loading required package: Rcpp</span></span></code></pre>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org" class="external-link">"tidyverse"</a></span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ── <span style="font-weight: bold;">Attaching core tidyverse packages</span> ──────────────────────── tidyverse 2.0.0 ──</span></span>
+<span><span class="co">## <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">dplyr    </span> 1.2.1     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">readr    </span> 2.2.0</span></span>
+<span><span class="co">## <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">forcats  </span> 1.0.1     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">stringr  </span> 1.6.0</span></span>
+<span><span class="co">## <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">ggplot2  </span> 4.0.4     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tibble   </span> 3.3.1</span></span>
+<span><span class="co">## <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">lubridate</span> 1.9.5     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tidyr    </span> 1.3.2</span></span>
+<span><span class="co">## <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">purrr    </span> 1.2.2</span></span></code></pre>
+<pre><code><span><span class="co">## ── <span style="font-weight: bold;">Conflicts</span> ────────────────────────────────────────── tidyverse_conflicts() ──</span></span>
+<span><span class="co">## <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">filter()</span> masks <span style="color: #0000BB;">stats</span>::filter()</span></span>
+<span><span class="co">## <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">lag()</span>    masks <span style="color: #0000BB;">stats</span>::lag()</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Use the conflicted package (<span style="color: #0000BB; font-style: italic;">&lt;http://conflicted.r-lib.org/&gt;</span>) to force all conflicts to become errors</span></span></code></pre>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># 3 random communities, lognormal, 1000 individuals, 30 species </span></span>
+<span><span class="fu"><a href="https://ericmarcon.github.io/divent/reference/rcommunity.html" class="external-link">rcommunity</a></span><span class="op">(</span></span>
+<span>  n <span class="op">=</span> <span class="fl">3</span>, </span>
+<span>  size <span class="op">=</span> <span class="fl">1000</span>, </span>
+<span>  species_number <span class="op">=</span> <span class="fl">30</span>, </span>
 <span>  distribution <span class="op">=</span> <span class="st">"lnorm"</span></span>
 <span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## sp_1 sp_2 sp_3 </span></span>
-<span><span class="co">##    8    2    0</span></span></code></pre>
+<span>  <span class="co"># Give it a name</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>site <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Lognormal community"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span></span>
+<span>  <span class="va">the_communities</span></span>
+<span><span class="co"># Shannon's entropy</span></span>
+<span><span class="fu"><a href="https://ericmarcon.github.io/divent/reference/ent_shannon.html" class="external-link">ent_shannon</a></span><span class="op">(</span><span class="va">the_communities</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 3 × 5</span></span></span>
+<span><span class="co">##   site                  weight estimator order entropy</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span> Lognormal community 1   <span style="text-decoration: underline;">1</span>000 UnveilJ       1    2.93</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2</span> Lognormal community 2   <span style="text-decoration: underline;">1</span>000 UnveilJ       1    2.98</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">3</span> Lognormal community 3   <span style="text-decoration: underline;">1</span>000 UnveilJ       1    2.97</span></span></code></pre>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Shannon's diversity, numeric values</span></span>
+<span><span class="fu"><a href="https://ericmarcon.github.io/divent/reference/div_hill.html" class="external-link">div_hill</a></span><span class="op">(</span><span class="va">the_communities</span>, q <span class="op">=</span> <span class="fl">1</span>, as_numeric <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 18.66929 19.75556 19.50123</span></span></code></pre>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Diversity profile</span></span>
+<span><span class="fu"><a href="https://ericmarcon.github.io/divent/reference/profile_hill.html" class="external-link">profile_hill</a></span><span class="op">(</span><span class="va">the_communities</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="migration_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="" width="700"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

@@ -35,7 +35,7 @@ data("Paracou618")
 # 2 ha of tropical forest, distribution of probabilities
 ParacouP <- Paracou618.MC$Ps
 # Diversity of order 1, no reduced-bias estimator available
-Diversity(ParacouP, q=1)
+Diversity(ParacouP, q = 1)
 ```
 
     ##   None 
@@ -50,7 +50,7 @@ one.
 # 2 ha of tropical forest, distribution of abundances
 ParacouN <- Paracou618.MC$Ns
 # Diversity of order 1, best asymptotic estimator used.
-Diversity(ParacouN, q=1)
+Diversity(ParacouN, q = 1)
 ```
 
     ##  UnveilJ 
@@ -84,7 +84,7 @@ Richness(ParacouN)
 ``` r
 
 # Richness is underestimated by the Chao1 estimator
-Richness(ParacouN, Correction="Chao1")
+Richness(ParacouN, Correction = "Chao1")
 ```
 
     ##    Chao1 
@@ -93,7 +93,7 @@ Richness(ParacouN, Correction="Chao1")
 ``` r
 
 # Diversity of order 1 underestimated by the Chao-Jost estimator
-Diversity(ParacouN, q=1, Correction="ChaoJost")
+Diversity(ParacouN, q = 1, Correction = "ChaoJost")
 ```
 
     ## ChaoJost 
@@ -120,7 +120,7 @@ converted internally into a sample size.
 ``` r
 
 # Diversity at half the sample size (interpolated)
-Diversity(ParacouN, q=1, Level=round(sum(ParacouN)/2))
+Diversity(ParacouN, q = 1, Level = round(sum(ParacouN) / 2))
 ```
 
     ##  Interp 
@@ -129,7 +129,7 @@ Diversity(ParacouN, q=1, Level=round(sum(ParacouN)/2))
 ``` r
 
 # Sample size corresponding to 90% coverage
-Coverage2Size(ParacouN, SampleCoverage=0.9)
+Coverage2Size(ParacouN, SampleCoverage = 0.9)
 ```
 
     ## [1] 861
@@ -137,7 +137,7 @@ Coverage2Size(ParacouN, SampleCoverage=0.9)
 ``` r
 
 # Diversity at 90% sample coverage
-Diversity(ParacouN, q=1, Level=0.9)
+Diversity(ParacouN, q = 1, Level = 0.9)
 ```
 
     ##   Interp 
@@ -146,7 +146,11 @@ Diversity(ParacouN, q=1, Level=0.9)
 ``` r
 
 # Equal to 
-Diversity(ParacouN, q=1, Level=Coverage2Size(ParacouN, SampleCoverage=0.9))
+Diversity(
+  ParacouN, 
+  q = 1, 
+  Level = Coverage2Size(ParacouN, SampleCoverage = 0.9)
+)
 ```
 
     ##   Interp 
@@ -163,21 +167,17 @@ around the actual sample size is guaranteed.
 ``` r
 
 # Simpson diversity at levels from 0.9 to 1.1 times the sample size
-Accumulation2 <- DivAC(ParacouN, q=2, n.seq=round(0.9*sum(ParacouN)):round(1.1*sum(ParacouN)))
+Accumulation2 <- DivAC(
+  ParacouN, 
+  q = 2, 
+  n.seq = round(0.9 * sum(ParacouN)):round(1.1 * sum(ParacouN))
+)
 ```
 
 ``` r
 
 autoplot(Accumulation2)
 ```
-
-    ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-    ## ℹ Please use `linewidth` instead.
-    ## ℹ The deprecated feature was likely used in the entropart package.
-    ##   Please report the issue at <https://github.com/EricMarcon/entropart/issues/>.
-    ## This warning is displayed once per session.
-    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-    ## generated.
 
 ![](extrapolation_files/figure-html/unnamed-chunk-5-1.png)
 
@@ -205,7 +205,12 @@ multinomial draws of the asymptotic distribution at each sample size.
 ``` r
 
 # Diversity at levels from 1 to twice the sample size
-Accumulation <- DivAC(ParacouN, q=1, n.seq=seq_len(1.1*sum(ParacouN)), NumberOfSimulations = 1000)
+Accumulation <- DivAC(
+  ParacouN, 
+  q = 1, 
+  n.seq = seq_len(1.1 * sum(ParacouN)), 
+  NumberOfSimulations = 1000
+)
 ```
 
 ``` r
@@ -226,7 +231,7 @@ poor.
 ``` r
 
 # Extrapolation at 99.99% sample coverage
-Diversity(ParacouN, q=1, Level=0.9999)
+Diversity(ParacouN, q = 1, Level = 0.9999)
 ```
 
     ##     Best 
@@ -235,7 +240,7 @@ Diversity(ParacouN, q=1, Level=0.9999)
 ``` r
 
 # Unveiled Jaccknife asymptotic estimator
-Diversity(ParacouN, q=1)
+Diversity(ParacouN, q = 1)
 ```
 
     ##  UnveilJ 
@@ -244,7 +249,7 @@ Diversity(ParacouN, q=1)
 ``` r
 
 # Chao-Jost estimator
-Diversity(ParacouN, q=1, Correction="ChaoJost")
+Diversity(ParacouN, q = 1, Correction = "ChaoJost")
 ```
 
     ## ChaoJost 
@@ -258,7 +263,7 @@ any coverage of sampling level.
 ``` r
 
 # Diversity at levels from 1 to twice the sample size
-Profile <- CommunityProfile(Diversity, ParacouN, Level=sum(ParacouN)*1.5)
+Profile <- CommunityProfile(Diversity, ParacouN, Level = sum(ParacouN) * 1.5)
 autoplot(Profile)
 ```
 
@@ -289,7 +294,7 @@ Shannon’s diversity.
 library("iNEXT")
 data(spider)
 # Extrapolated diversity of an example dataset
-estimateD(spider$Girdled, level=300)
+estimateD(spider$Girdled, level = 300)
 ```
 
     ##   Assemblage   m        Method Order.q        SC        qD    qD.LCL    qD.UCL
@@ -300,7 +305,7 @@ estimateD(spider$Girdled, level=300)
 ``` r
 
 # Similar estimation by entropart
-Diversity(spider$Girdled, q=0, Level=300, Correction="Chao1", PCorrection = "None")
+Diversity(spider$Girdled, q = 0, Level = 300, Correction = "Chao1", PCorrection = "None")
 ```
 
     ##    Chao1 
@@ -308,7 +313,7 @@ Diversity(spider$Girdled, q=0, Level=300, Correction="Chao1", PCorrection = "Non
 
 ``` r
 
-Diversity(spider$Girdled, q=1, Level=300, Correction="ChaoJost", PCorrection = "None")
+Diversity(spider$Girdled, q = 1, Level = 300, Correction = "ChaoJost", PCorrection = "None")
 ```
 
     ## ChaoJost 
@@ -317,7 +322,7 @@ Diversity(spider$Girdled, q=1, Level=300, Correction="ChaoJost", PCorrection = "
 ``` r
 
 # Estimation at order 2 is explicit, with no optional choice
-Diversity(spider$Girdled, q=2, Level=300)
+Diversity(spider$Girdled, q = 2, Level = 300)
 ```
 
     ## Chao2014 
@@ -326,7 +331,7 @@ Diversity(spider$Girdled, q=2, Level=300)
 ``` r
 
 # Default estimation of entropart
-Diversity(spider$Girdled, q=0, Level=300)
+Diversity(spider$Girdled, q = 0, Level = 300)
 ```
 
     ##     Best 
@@ -334,7 +339,7 @@ Diversity(spider$Girdled, q=0, Level=300)
 
 ``` r
 
-Diversity(spider$Girdled, q=1, Level=300)
+Diversity(spider$Girdled, q = 1, Level = 300)
 ```
 
     ##     Best 

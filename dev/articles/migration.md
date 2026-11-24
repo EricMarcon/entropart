@@ -35,52 +35,111 @@ The following table shows the correspondence between *entropart* and
 
 [TABLE]
 
-## Example
+## Examples
+
+The examples below show how to create a random community with both
+packages and estimate its diversity.
 
 ``` r
 
+set.seed(97310)
+# entropart
 library("entropart")
-library("divent")
-# Random community, lognormal, 10 individuals, 3 species 
-entropart::rCommunity(
+# Random community, lognormal, 1000 individuals, 30 species 
+the_community <- entropart::rCommunity(
   n = 1,
-  size = 10, 
-  S = 3, 
+  size = 1000, 
+  S = 30, 
   Distribution = "lnorm"
 )
+# Shannon's entropy
+Shannon(the_community)
 ```
 
-    ## [1] 3 4 3
-    ## attr(,"class")
-    ## [1] "AbdVector"           "SpeciesDistribution" "integer"
+    ##  UnveilJ 
+    ## 2.880002
 
 ``` r
 
-# Equivalent to
-divent::rcommunity(
-  n = 1, 
-  size = 10, 
-  species_number = 3, 
-  distribution = "lnorm"
-)
+# Shannon's diversity (Hill number of order 1)
+Diversity(the_community, q = 1)
 ```
 
-    ## # A tibble: 1 × 5
-    ##   site    weight  sp_1  sp_2  sp_3
-    ##   <chr>    <dbl> <int> <int> <int>
-    ## 1 lnorm_1     10     2     7     1
+    ## UnveilJ 
+    ## 17.8143
 
 ``` r
 
-# use as.numeric() to produce a vector rather than a tibble
-divent::rcommunity(
-  n = 1, 
-  size = 10, 
-  species_number = 3, 
+# Diversity profile
+CommunityProfile(Diversity, the_community) |>
+  autoplot()
+```
+
+![](migration_files/figure-html/unnamed-chunk-1-1.png)
+
+*divent* supports multiple communities.
+
+``` r
+
+# divent
+library("divent")
+```
+
+    ## Loading required package: Rcpp
+
+``` r
+
+library("tidyverse")
+```
+
+    ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+    ## ✔ dplyr     1.2.1     ✔ readr     2.2.0
+    ## ✔ forcats   1.0.1     ✔ stringr   1.6.0
+    ## ✔ ggplot2   4.0.4     ✔ tibble    3.3.1
+    ## ✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+    ## ✔ purrr     1.2.2
+
+    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ✖ dplyr::filter() masks stats::filter()
+    ## ✖ dplyr::lag()    masks stats::lag()
+    ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+``` r
+
+# 3 random communities, lognormal, 1000 individuals, 30 species 
+rcommunity(
+  n = 3, 
+  size = 1000, 
+  species_number = 30, 
   distribution = "lnorm"
 ) |>
-  as.numeric()
+  # Give it a name
+  mutate(site = paste("Lognormal community", 1:3)) ->
+  the_communities
+# Shannon's entropy
+ent_shannon(the_communities)
 ```
 
-    ## sp_1 sp_2 sp_3 
-    ##    8    2    0
+    ## # A tibble: 3 × 5
+    ##   site                  weight estimator order entropy
+    ##   <chr>                  <dbl> <chr>     <dbl>   <dbl>
+    ## 1 Lognormal community 1   1000 UnveilJ       1    2.93
+    ## 2 Lognormal community 2   1000 UnveilJ       1    2.98
+    ## 3 Lognormal community 3   1000 UnveilJ       1    2.97
+
+``` r
+
+# Shannon's diversity, numeric values
+div_hill(the_communities, q = 1, as_numeric = TRUE)
+```
+
+    ## [1] 18.66929 19.75556 19.50123
+
+``` r
+
+# Diversity profile
+profile_hill(the_communities) |>
+  autoplot()
+```
+
+![](migration_files/figure-html/unnamed-chunk-2-1.png)
