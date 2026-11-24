@@ -18,11 +18,11 @@ EntAC <- function(Ns, q = 0, n.seq = seq_len(sum(Ns)), PCorrection = "Chao2015",
   # Interpolation
   n.seqInt <- n.seq[n.seq < N]
   # Calculate entropy at each level
-  for(Level in n.seqInt) {
+  for (Level in n.seqInt) {
     # Calculate Entropy
-    i <- which(n.seq = =Level)
-    Entropy[i] <- Tsallis.numeric(Ns, q=q, Level=Level, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=FALSE)
-    if(ShowProgressBar & interactive()) 
+    i <- which(n.seq == Level)
+    Entropy[i] <- Tsallis.numeric(Ns, q = q, Level = Level, PCorrection = PCorrection, Unveiling = Unveiling, RCorrection = RCorrection, CheckArguments = FALSE)
+    if (ShowProgressBar & interactive()) 
       utils::setTxtProgressBar(ProgressBar, i)
   }
   # Level == Sample Size
@@ -169,7 +169,7 @@ function(x, y, low = NULL, high = NULL)
   if (length(x) != length(y))
     stop("x and y must have the same length")
   
-  AccumCurve <- list(x=x, y=y)
+  AccumCurve <- list(x = x, y = y)
   if (!is.null(low)) {
     if (length(x) != length(low))
       stop("x and low must have the same length")
