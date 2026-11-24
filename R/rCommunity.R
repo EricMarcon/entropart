@@ -15,34 +15,34 @@ function(n, size = sum(NorP), NorP = 1, BootstrapMethod = "Chao2015",
       LSabundance <- function(N, alpha) {
         # adapted from Dan Lunn, http://www.stats.ox.ac.uk/~dlunn/BS1_05/BS1_Rcode.pdf
         # Fisher's x is log-series 1-theta
-        x <- N/(N+alpha)
+        x <- N / (N + alpha)
         # Draw a random number between 0 and 1
         u <- stats::runif(1)
         # k is the number of individuals to draw
         k <- 1
         # Calculate the probability at k=1
-        P <- -x/log(1-x)
+        P <- -x / log(1 - x)
         # Store it in the distribution function
         F <- P
         # Repeat while the cumulated probabiilty is below u
         while (u >= F) {
           # Probability at k+1 obtained from that at k
-          P <- P*k*x/(k+1)
+          P <- P * k * x / (k + 1)
           # Increment k
-          k <- k+1
+          k <- k + 1
           # Increment the cumulated probability
-          F <- F+P
+          F <- F + P
         }
         return(k)
       }
       # Draw the abundances of the number of species corresponding to size and alpha
-      Ns <-replicate(n, replicate(round(-alpha*log(alpha/(size+alpha))), LSabundance(size, alpha)))
+      Ns <- replicate(n, replicate(round(-alpha * log(alpha / (size + alpha))), LSabundance(size, alpha)))
     } else {
       # Other distributions: draw probabilities
       Ps <- switch(Distribution,
-                   geom = prob/(1-(1-prob)^S)*(1-prob)^(0:(S-1)),
+                   geom = prob / (1 - (1 - prob)^S) * (1 - prob)^(0:(S - 1)),
                    lnorm = (stats::rlnorm(S, 0, sd) -> Nslnorm)/sum(Nslnorm),
-                   bstick = c(cuts <- sort(stats::runif(S-1)), 1)- c(0, cuts)
+                   bstick = c(cuts <- sort(stats::runif(S - 1)), 1) - c(0, cuts)
                   )
     }
     

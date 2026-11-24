@@ -240,8 +240,8 @@ function (object, ..., main = NULL, xlab = "Order of Diversity", ylab = NULL, Wh
         ggplot2::geom_line(ggplot2::aes(y=.data$TotalAlphaDiversityHigh), colour=BorderColor, linetype=2)
     }
     AlphaPlot <- AlphaPlot +
-      ggplot2::geom_line(colour=col, linetype=lty, size=lwd) +
-      ggplot2::labs(title=main, x=xlab, y=ylab)
+      ggplot2::geom_line(colour = col, linetype = lty, linewidth = lwd) +
+      ggplot2::labs(title = main, x = xlab, y = ylab)
   }
   if (Which == "Alpha")
     return(AlphaPlot)
@@ -274,7 +274,7 @@ function (object, ..., main = NULL, xlab = "Order of Diversity", ylab = NULL, Wh
         ggplot2::geom_line(ggplot2::aes(y=.data$TotalBetaDiversityHigh), colour=BorderColor, linetype=2)
     }
     BetaPlot <- BetaPlot +
-      ggplot2::geom_line(colour=col, linetype=lty, size=lwd) +
+      ggplot2::geom_line(colour=col, linetype=lty, linewidth=lwd) +
       ggplot2::labs(title=main, x=xlab, y=ylab)
   }
   if (Which == "Beta")
@@ -297,7 +297,7 @@ function (object, ..., main = NULL, xlab = "Order of Diversity", ylab = NULL, Wh
         ggplot2::geom_line(ggplot2::aes(y=.data$GammaDiversityHigh), colour=BorderColor, linetype=2)
     }
     GammaPlot <- GammaPlot +
-      ggplot2::geom_line(colour=col, linetype=lty, size=lwd) +
+      ggplot2::geom_line(colour=col, linetype=lty, linewidth=lwd) +
       ggplot2::labs(title=main, x=xlab, y=ylab)
   }
   if (Which == "Gamma")

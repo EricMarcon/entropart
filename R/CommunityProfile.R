@@ -21,49 +21,49 @@ function(FUN, NorP, q.seq = seq(0, 2, 0.1),
       rencenter <- FALSE
     }
     # The simulated communities may be of arbitrary size to obtain the confidence interval of the diversity of a smaller community
-    MCSim <- rCommunity(NumberOfSimulations, size=size, NorP=NsInt, BootstrapMethod=BootstrapMethod, CheckArguments = FALSE)
+    MCSim <- rCommunity(NumberOfSimulations, size = size, NorP = NsInt, BootstrapMethod = BootstrapMethod, CheckArguments = FALSE)
     # May return NA if the bootstrap method is not recognized
     if (any(is.na(MCSim))) stop("Communities could not be simulated.")
-    ProgressBar <- utils::txtProgressBar(min=0, max=NumberOfSimulations)
-    Sims <- matrix(nrow=NumberOfSimulations, ncol=length(q.seq))
+    ProgressBar <- utils::txtProgressBar(min = 0, max = NumberOfSimulations)
+    Sims <- matrix(nrow = NumberOfSimulations, ncol = length(q.seq))
     # Loops are required for the progress bar, instead of:
     # Sims <- apply(MCSim$Nsi, 2, function(Nsi) CommunityProfile(FUN, Nsi, q.seq, ...)$y)
     for (i in seq_len(NumberOfSimulations)) {
       # Parallelize. Do not allow more forks in PhyloApply()
-      ProfileAsaList <- parallel::mclapply(q.seq, function(q) FUN(MCSim$Nsi[, i], q, ..., CheckArguments=FALSE), mc.allow.recursive=FALSE)
+      ProfileAsaList <- parallel::mclapply(q.seq, function(q) FUN(MCSim$Nsi[, i], q, ..., CheckArguments = FALSE), mc.allow.recursive = FALSE)
       Sims[i, ] <- simplify2array(ProfileAsaList)
-      if(ShowProgressBar & interactive()) 
+      if (ShowProgressBar & interactive()) 
         utils::setTxtProgressBar(ProgressBar, i)
     }
     close(ProgressBar)
     # Recenter simulated values if size is that of the community
     Means <- apply(Sims, 2, mean)
     if (rencenter) {
-      Sims <- t(t(Sims)-Means+Values)
+      Sims <- t(t(Sims) - Means + Values)
     }
 
     # Quantiles of simulations for each q
-    EstEnvelope <- apply(Sims, 2, stats::quantile, probs = c(Alpha/2, 1-Alpha/2))
+    EstEnvelope <- apply(Sims, 2, stats::quantile, probs = c(Alpha / 2, 1 - Alpha / 2))
     colnames(EstEnvelope) <- q.seq
-    Profile <- list(x=q.seq,
-                    y=Values,
-                    low=EstEnvelope[1, ],
-                    high=EstEnvelope[2, ])
+    Profile <- list(x = q.seq,
+                    y = Values,
+                    low = EstEnvelope[1, ],
+                    high = EstEnvelope[2, ])
     if (!rencenter) {
       Profile$mid <- Means
     }
   } else {
-    Profile <- list(x=q.seq,
-                    y=Values)
+    Profile <- list(x = q.seq,
+                    y = Values)
   }
   
   class(Profile) <- "CommunityProfile"
-  return (Profile)
+  return(Profile)
 }
 
 
 as.CommunityProfile <-
-function (x, y, low = NULL, high = NULL, mid = NULL) 
+function(x, y, low = NULL, high = NULL, mid = NULL) 
 {
   if (!is.numeric(x))
     stop("x must be a numeric vector")
@@ -72,7 +72,7 @@ function (x, y, low = NULL, high = NULL, mid = NULL)
   if (length(x) != length(y))
     stop("x and y must have the same length")
   
-  Profile <- list(x=x, y=y)
+  Profile <- list(x = x, y = y)
   if (!is.null(low)) {
     if (length(x) != length(low))
       stop("x and low must have the same length")
@@ -94,7 +94,7 @@ function (x, y, low = NULL, high = NULL, mid = NULL)
 
 
 is.CommunityProfile <-
-function (x) 
+function(x) 
 {
   inherits(x, "CommunityProfile")
 }
@@ -122,8 +122,8 @@ function(x, ..., main = NULL,
     ymax <- ylim[2]
   }
   
-  graphics::plot(x=x$x, y=x$y, type="n", main=main, xlab=xlab, ylab=ylab, ylim=c(ymin, ymax), ...)
-  CEnvelope(x, LineWidth=LineWidth, ShadeColor=ShadeColor, BorderColor=BorderColor)
+  graphics::plot(x = x$x, y = x$y, type = "n", main = main, xlab = xlab, ylab = ylab, ylim = c(ymin, ymax), ...)
+  CEnvelope(x, LineWidth = LineWidth, ShadeColor = ShadeColor, BorderColor = BorderColor)
 }
 
 
@@ -135,22 +135,22 @@ autoplot.CommunityProfile <-
            lty = 1,
            lwd = 0.5)
 {  
-  thePlot <- ggplot2::ggplot(as.data.frame.list(object), ggplot2::aes(x=.data$x, y=.data$y))
+  thePlot <- ggplot2::ggplot(as.data.frame.list(object), ggplot2::aes(x = .data$x, y = .data$y))
   if (!(is.null(object$high) | is.null(object$low))) {
     thePlot <- thePlot +
-      ggplot2::geom_ribbon(ggplot2::aes(ymin=.data$low, ymax=.data$high), fill=ShadeColor, alpha=alpha) +
+      ggplot2::geom_ribbon(ggplot2::aes(ymin = .data$low, ymax = .data$high), fill = ShadeColor, alpha = alpha) +
       # Add red lines on borders of polygon
-      ggplot2::geom_line(ggplot2::aes(y=.data$low), colour=BorderColor, linetype=2) +
-      ggplot2::geom_line(ggplot2::aes(y=.data$high), colour=BorderColor, linetype=2)
+      ggplot2::geom_line(ggplot2::aes(y = .data$low), colour = BorderColor, linetype = 2) +
+      ggplot2::geom_line(ggplot2::aes(y = .data$high), colour = BorderColor, linetype = 2)
   }
   if (!is.null(object$mid)) {
     thePlot <- thePlot +
       # Add dotted line for the mid value
-      ggplot2::geom_line(ggplot2::aes(y=.data$mid), linetype=2)
+      ggplot2::geom_line(ggplot2::aes(y = .data$mid), linetype = 2)
   }
   thePlot <- thePlot +
-    ggplot2::geom_line(colour=col, linetype=lty, size=lwd) +
-    ggplot2::labs(title=main, x=xlab, y=ylab)
+    ggplot2::geom_line(colour = col, linetype = lty, linewidth = lwd) +
+    ggplot2::labs(title = main, x = xlab, y = ylab)
   
   return(thePlot)
 }

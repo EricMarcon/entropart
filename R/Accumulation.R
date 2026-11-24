@@ -11,7 +11,7 @@ EntAC <- function(Ns, q = 0, n.seq = seq_len(sum(Ns)), PCorrection = "Chao2015",
   
   # Prepare the vector of results
   Entropy <- numeric(length(n.seq))
-  ProgressBar <- utils::txtProgressBar(min=0, max=length(n.seq))
+  ProgressBar <- utils::txtProgressBar(min = 0, max = length(n.seq))
   # i must be initialized if the accumulation contains extrapolation only
   i <- 0
   
@@ -20,16 +20,16 @@ EntAC <- function(Ns, q = 0, n.seq = seq_len(sum(Ns)), PCorrection = "Chao2015",
   # Calculate entropy at each level
   for(Level in n.seqInt) {
     # Calculate Entropy
-    i <- which(n.seq==Level)
+    i <- which(n.seq = =Level)
     Entropy[i] <- Tsallis.numeric(Ns, q=q, Level=Level, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, CheckArguments=FALSE)
     if(ShowProgressBar & interactive()) 
       utils::setTxtProgressBar(ProgressBar, i)
   }
   # Level == Sample Size
-  if (any(n.seq==N)) {
-    i <- which(n.seq==N)
-    Entropy[i] <- Tsallis.ProbaVector(Ns/N, q=q, CheckArguments=FALSE)
-    if(ShowProgressBar & interactive()) 
+  if (any(n.seq == N)) {
+    i <- which(n.seq == N)
+    Entropy[i] <- Tsallis.ProbaVector(Ns / N, q = q, CheckArguments = FALSE)
+    if (ShowProgressBar & interactive()) 
       utils::setTxtProgressBar(ProgressBar, i)
   }
   # Extrapolation. Don't use Tsallis for speed.
@@ -37,7 +37,7 @@ EntAC <- function(Ns, q = 0, n.seq = seq_len(sum(Ns)), PCorrection = "Chao2015",
   PsU <- NULL
   if (length(n.seqExt)) {
     # Unveil the full distribution that rarefies to the observed entropy (or other options)
-    PsU <- as.ProbaVector.numeric(Ns, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, q=q, CheckArguments=FALSE)
+    PsU <- as.ProbaVector.numeric(Ns, Correction = PCorrection, Unveiling = Unveiling, RCorrection = RCorrection, q = q, CheckArguments = FALSE)
     # Richness
     if (q == 0) {
       Singletons <-  sum(Ns == 1)
@@ -46,23 +46,23 @@ EntAC <- function(Ns, q = 0, n.seq = seq_len(sum(Ns)), PCorrection = "Chao2015",
         Sobs <- sum(Ns > 0)
         S0 <- length(PsU) - Sobs
         # Extrapolate richness (the vector is n.seqExt)
-        Entropy[(i+1):length(n.seq)] <- Sobs + S0*(1 - (1 - Singletons/(N*S0+Singletons))^(n.seqExt-N)) -1
+        Entropy[(i + 1):length(n.seq)] <- Sobs + S0*(1 - (1 - Singletons / (N * S0 + Singletons))^(n.seqExt - N)) - 1
       } else {
         # No singleton
-        Entropy[(i+1):length(n.seq)] <- Sobs -1
+        Entropy[(i + 1):length(n.seq)] <- Sobs - 1
       }
-      if(ShowProgressBar & interactive()) 
+      if (ShowProgressBar & interactive()) 
         utils::setTxtProgressBar(ProgressBar, length(n.seq))
     } else {
       # Shannon
       if (q == 1) {
         # Estimate the asymptotic entropy
-        Hinf <- Shannon.ProbaVector(PsU, CheckArguments=FALSE)
+        Hinf <- Shannon.ProbaVector(PsU, CheckArguments = FALSE)
         # Estimate observed entropy
-        Hn <- Shannon.ProbaVector(Ns/N, CheckArguments=FALSE)
+        Hn <- Shannon.ProbaVector(Ns / N, CheckArguments = FALSE)
         # Interpolation (the vector is n.seqExt)
-        Entropy[(i+1):length(n.seq)] <- N/n.seqExt*Hn + (n.seqExt-N)/n.seqExt*Hinf
-        if(ShowProgressBar & interactive()) 
+        Entropy[(i + 1):length(n.seq)] <- N / n.seqExt * Hn + (n.seqExt - N) / n.seqExt * Hinf
+        if (ShowProgressBar & interactive()) 
           utils::setTxtProgressBar(ProgressBar, length(n.seq))
       } else {
         # Simpson
@@ -70,25 +70,25 @@ EntAC <- function(Ns, q = 0, n.seq = seq_len(sum(Ns)), PCorrection = "Chao2015",
           # Exit if Ns contains no or a single species
           if (length(Ns) < 2) {
             if (length(Ns) == 0) {
-              Entropy[(i+1):length(n.seq)] <- NA
+              Entropy[(i + 1):length(n.seq)] <- NA
             } else {
-              Entropy[(i+1):length(n.seq)] <- 0
+              Entropy[(i + 1):length(n.seq)] <- 0
             }
           } else {
             # Valid extrapolation (the vector is n.seqExt)
-            Entropy[(i+1):length(n.seq)] <- 1 - 1/n.seqExt - (1-1/n.seqExt)*sum(Ns*(Ns-1))/N/(N-1)
+            Entropy[(i + 1):length(n.seq)] <- 1 - 1 / n.seqExt - (1 - 1 / n.seqExt) * sum(Ns * (Ns - 1)) / N / (N - 1)
           }
-          if(ShowProgressBar & interactive()) 
+          if (ShowProgressBar & interactive()) 
             utils::setTxtProgressBar(ProgressBar, length(n.seq))
         } else {
           # General case: q is not 0, 1 or 2 
-          for(Level in n.seqExt) {
+          for (Level in n.seqExt) {
             # Abundance frequence count at Level (Chao et al., 2014, eq. 5)
-            Snu <- vapply(seq_len(Level), function(nu) sum(exp(lchoose(Level, nu) + nu*log(PsU) + (Level-nu)*log(1-PsU))), FUN.VALUE=0.0)
+            Snu <- vapply(seq_len(Level), function(nu) sum(exp(lchoose(Level, nu) + nu * log(PsU) + (Level - nu) * log(1 - PsU))), FUN.VALUE = 0.0)
             # Estimate entropy (Chao et al., 2014, eq. 6)
-            i <- which(n.seq==Level)
-            Entropy[i]  <- (sum((seq_len(Level)/Level)^q * Snu) - 1) / (1-q)
-            if(ShowProgressBar & interactive()) 
+            i <- which(n.seq == Level)
+            Entropy[i]  <- (sum((seq_len(Level) / Level)^q * Snu) - 1) / (1 - q)
+            if (ShowProgressBar & interactive()) 
               utils::setTxtProgressBar(ProgressBar, i)
           }
         }
@@ -98,7 +98,7 @@ EntAC <- function(Ns, q = 0, n.seq = seq_len(sum(Ns)), PCorrection = "Chao2015",
 
   
   # Simulations: generate distributions from the unveiled probabilities
-  if (NumberOfSimulations > 0 & (PCorrection=="None" | Unveiling=="None")) {
+  if (NumberOfSimulations > 0 & (PCorrection == "None" | Unveiling == "None")) {
     warning("Accumulation confidence interval can't be estimated without unveiling the asymptotic distribution. Neither PCorrection nor Unveiling can be 'None'")
     NumberOfSimulations <- 0
   }
@@ -107,24 +107,24 @@ EntAC <- function(Ns, q = 0, n.seq = seq_len(sum(Ns)), PCorrection = "Chao2015",
     Envelope <- matrix(0.0, nrow = length(n.seq), ncol = 2)
     if (is.null(PsU)) {
       # Unveil the full distribution if not done before
-      PsU <- as.ProbaVector.numeric(Ns, Correction=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, q=q, CheckArguments=FALSE)
+      PsU <- as.ProbaVector.numeric(Ns, Correction = PCorrection, Unveiling = Unveiling, RCorrection = RCorrection, q = q, CheckArguments = FALSE)
     }
-    for(Level in n.seq) {
+    for (Level in n.seq) {
       # Generate simulated communities at each level
-      Communities <- stats::rmultinom(NumberOfSimulations, size=Level, prob=PsU)
+      Communities <- stats::rmultinom(NumberOfSimulations, size = Level, prob = PsU)
       # Probabilities
       Communities <- Communities/Level
       # Calculate entropy
-      Entropies <- apply(Communities, 2, Tsallis.ProbaVector, q=q, CheckArguments=FALSE)
-      i <- which(n.seq==Level)
+      Entropies <- apply(Communities, 2, Tsallis.ProbaVector, q = q, CheckArguments = FALSE)
+      i <- which(n.seq == Level)
       # Store quantiles
-      Envelope[i, ] <- stats::quantile(Entropies, probs = c(Alpha/2, 1-Alpha/2))
-      if(ShowProgressBar & interactive()) 
+      Envelope[i, ] <- stats::quantile(Entropies, probs = c(Alpha / 2, 1 - Alpha / 2))
+      if (ShowProgressBar & interactive()) 
         utils::setTxtProgressBar(ProgressBar, i)
     }
-    entAC <- list(x=n.seq, y=Entropy, low=Envelope[, 1], high=Envelope[, 2])
+    entAC <- list(x = n.seq, y = Entropy, low = Envelope[, 1], high = Envelope[, 2])
   } else {
-    entAC <- list(x=n.seq, y=Entropy)
+    entAC <- list(x = n.seq, y = Entropy)
   }
   
   close(ProgressBar)
@@ -132,7 +132,7 @@ EntAC <- function(Ns, q = 0, n.seq = seq_len(sum(Ns)), PCorrection = "Chao2015",
   class(entAC) <- c("EntAC", "AccumCurve", class(entAC))
   # Return actual values as attributes
   attr(entAC, "Size") <- N
-  attr(entAC, "Value") <- Tsallis(Ns, q=q, Correction="None", CheckArguments=FALSE)
+  attr(entAC, "Value") <- Tsallis(Ns, q = q, Correction = "None", CheckArguments = FALSE)
   return(entAC)
 }
 
@@ -144,7 +144,7 @@ DivAC <- function(Ns, q = 0, n.seq = seq_len(sum(Ns)), PCorrection = "Chao2015",
     CheckentropartArguments()
 
   # Estimate entropy
-  Accumulation <- EntAC(Ns=Ns, q=q, n.seq=n.seq, PCorrection=PCorrection, Unveiling=Unveiling, RCorrection=RCorrection, NumberOfSimulations=NumberOfSimulations, Alpha=Alpha, CheckArguments=FALSE)
+  Accumulation <- EntAC(Ns = Ns, q = q, n.seq = n.seq, PCorrection = PCorrection, Unveiling = Unveiling, RCorrection = RCorrection, NumberOfSimulations = NumberOfSimulations, Alpha = Alpha, CheckArguments = FALSE)
   # Calculate diversity
   Accumulation$y <- expq(Accumulation$y, q)
   if (!is.null(Accumulation$low))
@@ -153,14 +153,14 @@ DivAC <- function(Ns, q = 0, n.seq = seq_len(sum(Ns)), PCorrection = "Chao2015",
     Accumulation$high <- expq(Accumulation$high, q)
   
   # Change the class
-  class(Accumulation)[which(class(Accumulation)=="EntAC")] <- "DivAC"
+  class(Accumulation)[which(class(Accumulation) == "EntAC")] <- "DivAC"
   attr(Accumulation, "Value") <- expq(attr(Accumulation, "Value"), q)
   return(Accumulation)
 }
 
 
 as.AccumCurve <-
-function (x, y, low = NULL, high = NULL) 
+function(x, y, low = NULL, high = NULL) 
 {
   if (!is.numeric(x))
     stop("x must be a numeric vector")
@@ -186,7 +186,7 @@ function (x, y, low = NULL, high = NULL)
 
 
 is.AccumCurve <-
-function (x) 
+function(x) 
 {
   inherits(x, "AccumCurve")
 }
@@ -224,12 +224,12 @@ function(x, ..., main = NULL,
     }
   }
   
-  graphics::plot(x=x$x, y=x$y, type="n", main=main, xlab=xlab, ylab=ylab, ylim=c(ymin, ymax), ...)
-  CEnvelope(x, LineWidth=LineWidth, ShadeColor=ShadeColor, BorderColor=BorderColor)
+  graphics::plot(x = x$x, y = x$y, type = "n", main = main, xlab = xlab, ylab = ylab, ylim = c(ymin, ymax), ...)
+  CEnvelope(x, LineWidth = LineWidth, ShadeColor = ShadeColor, BorderColor = BorderColor)
   
   # Actual value
-  graphics::abline(v=attr(x, "Size"), lty=2)
-  graphics::abline(h=attr(x, "Value"), lty=2)
+  graphics::abline(v = attr(x, "Size"), lty = 2)
+  graphics::abline(h = attr(x, "Value"), lty = 2)
 }
 
 
@@ -241,13 +241,13 @@ function(object, ..., main = NULL,
          lty = 1,
          lwd = 0.5)
 {  
-  thePlot <- ggplot2::ggplot(as.data.frame.list(object), ggplot2::aes(x=.data$x, y=.data$y))
+  thePlot <- ggplot2::ggplot(as.data.frame.list(object), ggplot2::aes(x = .data$x, y = .data$y))
   if (!(is.null(object$high) | is.null(object$low))) {
     thePlot <- thePlot +
-      ggplot2::geom_ribbon(ggplot2::aes(ymin=.data$low, ymax=.data$high), fill=ShadeColor, alpha=alpha) +
+      ggplot2::geom_ribbon(ggplot2::aes(ymin = .data$low, ymax = .data$high), fill = ShadeColor, alpha = alpha) +
       # Add red lines on borders of polygon
-      ggplot2::geom_line(ggplot2::aes(y=.data$low), colour=BorderColor, linetype=2) +
-      ggplot2::geom_line(ggplot2::aes(y=.data$high), colour=BorderColor, linetype=2)
+      ggplot2::geom_line(ggplot2::aes(y = .data$low), colour = BorderColor, linetype = 2) +
+      ggplot2::geom_line(ggplot2::aes(y = .data$high), colour = BorderColor, linetype = 2)
   }
   if (is.null(ylab)) {
     if (inherits(object, "EntAC")) {
@@ -259,13 +259,13 @@ function(object, ..., main = NULL,
     }
   }
   thePlot <- thePlot +
-    ggplot2::geom_line(colour=col, linetype=lty, size=lwd) +
-    ggplot2::labs(title=main, x=xlab, y=ylab)
+    ggplot2::geom_line(colour = col, linetype = lty, linewidth = lwd) +
+    ggplot2::labs(title = main, x = xlab, y = ylab)
   
   # Actual value
   thePlot <- thePlot +
-    ggplot2::geom_hline(yintercept = attr(object, "Value"), lty=2) +
-    ggplot2::geom_vline(xintercept = attr(object, "Size"), lty=2)
+    ggplot2::geom_hline(yintercept = attr(object, "Value"), lty = 2) +
+    ggplot2::geom_vline(xintercept = attr(object, "Size"), lty = 2)
     
   return(thePlot)
 }
